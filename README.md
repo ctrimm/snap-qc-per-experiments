@@ -74,6 +74,7 @@ transfer, LM eval) every experiment here must move.
 | 40 | [Published-rate calibration](experiments/exp40_published_rate_calibration.md) | Calibration | Held — generator within ~1pp of microdata-implied dollar rate; published rates run 2–3pp higher, all in the over component (procedural errors); do NOT tune toward published rates |
 | 41 | [Policy-QA bridge](experiments/exp41_policy_qa_bridge.md) | LM gate (prep) | Held — benefit calculator scores 21/22 (20/20 in-scope) as a QA oracle; found the $23-minimum eligibility-screen bug; child-support deduction out-of-scope |
 | 42 | [Depcare/medical deep dive](experiments/exp42_depcare_medical_deepdive.md) | Calibration | Held — medical residual is the medexp>0 cell under-drawn 2.34x (projection →1.00x); depcare needs kids×earner interaction (projection →0.83x); nature-57 over-drawn 4–7x |
+| 43 | [Transformer transfer probe](experiments/exp43_transformer_transfer_probe.md) | Transfer | Staged — design + runnable script + Mac Studio runbook; 4 arms (pool × loss-weight) × 3 seeds on a tiny feature-tokenizer transformer; pre-registered decision bar locks or re-opens the LM recipe's pool and reweighting choices |
 
 Recommended next run: household size-mix experiment (real 59.7% size-1 vs synth 46.8% —
 the remaining senior-rate gap), then re-trial exp28's re-sliced mixes (arm D predicts
