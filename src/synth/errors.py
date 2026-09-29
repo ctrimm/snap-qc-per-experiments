@@ -248,6 +248,115 @@ def _sample(rng, probs: dict):
     return rng.choices(keys, weights=weights)[0]
 
 
+def _draw_nature(facts, bucket, dist, dir_w, rng):
+    """Draw (nature, cause) for a bucket: empirical nature mix (earner-
+    conditional) with direction-level retry-bias correction."""
+    nkey = ("nature_given_bucket_earner" if facts.get("earned", 0) > 0
+            else "nature_given_bucket_no_earner")
+    nmix = dist.get(nkey, {}).get(bucket) or dist["nature_given_bucket"][bucket]
+    bw = dir_w.get(bucket)
+    if bw:
+        nmix = {n: p * bw.get(_dirclass(int(n)), 1.0) for n, p in nmix.items()}
+    nature = int(_sample(rng, nmix))
+    cause = int(_sample(rng, dist["cause_given_bucket"][bucket]))
+    return nature, cause
+
+
+def _inject_persistent(facts, rng, dist, applicable, dir_w, max_attempts,
+                     stats=None):
+    """Exp7: per-bucket persistence, single-draw-and-drop.
+
+    Each variance's bucket is drawn ONCE from the empirical (conditional,
+    zero-base-scaled) mix weighted by 1/eff_b^* (eff.json "bucket" section:
+    the harmonic-mean per-bucket feasibility). The nature is drawn ONCE from
+    the empirical mix with direction-level importance weights (1/m_d,
+    eff.json "dir_weight") and applied ONCE: if it moves the benefit it is
+    recorded, else the variance is dropped.
+
+    Why this is exact where the retry loop was not: the old loop redrew the
+    bucket on every failed attempt, so always-feasible buckets (hhcomp,
+    arithmetic) won the retry lottery and were over-recorded ~3x. Fixing the
+    bucket and dropping (instead of retrying) makes P(record b) = drawn_b x
+    keep_b with keep_b = eff_b^*, so the 1/eff_b^* weight lands recorded_b
+    exactly on empirical; likewise P(record n | b) lands on empirical by the
+    1/m_d importance weights. No within-bucket race, so household-structural
+    infeasibility (shelter at the cap, hhcomp-under on singles) cannot
+    distort the nature mix — it just lowers keep_b, which the weight absorbs.
+    max_attempts is unused (no retries); stats collects drawn/recorded counts
+    for keep-rate measurement.
+    """
+    eff_b = (dist.get("effectiveness") or {}).get("bucket", {})
+    if eff_b:
+        applicable = {b: p / max(eff_b.get(b, 1.0), 0.02)
+                      for b, p in applicable.items()}
+    agency = copy.deepcopy(facts)
+    truth = facts
+    benefit_noise = 0.0
+    variances = []
+    n_var = 2 if rng.random() < 0.15 else 1
+
+    def pair(a, t, noise):
+        c = benefit_mod.compute(t)["benefit"]
+        i = max(0, int(round(benefit_mod.compute(a)["benefit"] + noise)))
+        return i, c
+
+    for _ in range(n_var):
+        bucket = _sample(rng, applicable)
+        if stats is not None:
+            stats["drawn"][bucket] += 1
+        c_issued, c_correct = pair(agency, truth, benefit_noise)
+        nature, cause = _draw_nature(facts, bucket, dist, dir_w, rng)
+        trial_noise = 0.0
+        if bucket == "arithmetic":
+            # Direct benefit noise always materializes.
+            trial_noise = rng.choice([-1, 1]) * _u(rng, 10, 60)
+        else:
+            trial_agency = copy.deepcopy(agency)
+            trial_truth = truth
+            truth_corr, nature_override = _apply_one(
+                trial_agency, trial_truth, bucket, nature, rng, dist)
+            if truth_corr:
+                trial_truth = {**trial_truth, **truth_corr}
+            if nature_override is not None:
+                nature = nature_override
+        t_issued, t_correct = pair(
+            trial_agency if bucket != "arithmetic" else agency,
+            trial_truth if bucket != "arithmetic" else truth,
+            benefit_noise + trial_noise)
+        if ((t_issued, t_correct) != (c_issued, c_correct)
+                and t_issued != t_correct):
+            if bucket != "arithmetic":
+                agency, truth = trial_agency, trial_truth
+            benefit_noise += trial_noise
+            if stats is not None:
+                stats["recorded"][bucket] += 1
+            variances.append({
+                "element": REPRESENTATIVE_ELEMENT[bucket],
+                "element_bucket": bucket,
+                "nature": nature,
+                "cause": cause,
+                "timing": "after" if nature == 97 else "at_action",
+            })
+        # Infeasible for this household: variance dropped (no retry — retrying
+        # within the bucket is what distorts the nature mix).
+
+    if not variances:
+        return _clean_case(facts, benefit_mod.compute(facts)["benefit"])
+    issued = max(0, int(round(benefit_mod.compute(agency)["benefit"] + benefit_noise)))
+    correct = benefit_mod.compute(truth)["benefit"]
+    dollar = abs(correct - issued)
+    return {
+        "facts": truth,
+        "issued_facts": agency,
+        "correct_benefit": correct,
+        "issued_benefit": issued,
+        "finding": 2 if issued > correct else 3,
+        "dollar_error": dollar,
+        "reportable": dollar > params.QC_ERROR_THRESHOLD,
+        "variances": variances,
+    }
+
+
 def _clean_case(facts, correct):
     return {
         "facts": facts,
@@ -261,7 +370,8 @@ def _clean_case(facts, correct):
     }
 
 
-def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12):
+def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12,
+           persistent_buckets: bool = False, _stats: dict = None):
     """Returns a case dict with true facts, agency-view facts, correct and
     issued benefits, finding, dollar error, and the variance list.
 
@@ -272,12 +382,22 @@ def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12):
     Injection is earner-conditional: real QC shows P(error|earned>0) well
     above P(error|earned=0), and a flat coin flattens the earnings->error
     gradient the transfer classifier needs (exp4 diagnosis).
+
+    persistent_buckets (exp7): draw each variance's bucket once from the
+    empirical mix (weighted by 1/eff_b^*) and apply each drawn nature once,
+    dropping infeasible ones instead of redrawing the bucket. Removes the
+    cross-bucket retry lottery that over-records always-materializing
+    buckets (hhcomp, arithmetic) while keeping the importance-weighting
+    math exact.
     """
     p_inject: float
     inj = dist.get("injection_rate")
     if inj:
         # Attrition-corrected coin: realized P(error | status) then matches
         # the empirical FY2024 conditionals (see calibrate_injection.py).
+        # Persistent mode has its own attrition profile -> own coins.
+        if persistent_buckets and isinstance(inj.get("persistent"), dict):
+            inj = inj["persistent"]
         p_inject = inj["earner"] if facts.get("earned", 0) > 0 else inj["no_earner"]
     else:
         # Fallback: raw empirical conditionals (uncorrected for retry loss).
@@ -293,9 +413,14 @@ def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12):
     # Correct for retry-filtering bias: buckets whose corruptions often no-op
     # (shelter cap absorption, medical threshold) are upweighted so the
     # post-retry mix matches the empirical mix. See experiments/eff.json.
+    # Skipped in persistent mode: the bucket is drawn once, so there is no
+    # cross-bucket retry lottery to correct.
     eff = dist.get("effectiveness") or {}
     eff_b = eff.get("bucket", eff)  # eff.json is nested; tolerate the old flat shape
     dir_w = eff.get("dir_weight", {})
+    if persistent_buckets:
+        return _inject_persistent(facts, rng, dist, applicable, dir_w,
+                                  max_attempts, stats=_stats)
     if eff_b:
         applicable = {b: p / max(eff_b.get(b, 1.0), 0.02) for b, p in applicable.items()}
 
@@ -307,20 +432,7 @@ def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12):
         n_var = 2 if rng.random() < 0.15 else 1
         for _ in range(n_var):
             bucket = _sample(rng, applicable)
-            # Nature mix is also earner-conditional (e.g. earned-bucket 40s
-            # cluster on non-earner cases); fall back to the marginal mix.
-            nkey = ("nature_given_bucket_earner" if facts.get("earned", 0) > 0
-                    else "nature_given_bucket_no_earner")
-            nmix = dist.get(nkey, {}).get(bucket) or dist["nature_given_bucket"][bucket]
-            # Direction-level retry correction: natures whose corruptions
-            # often no-op (over-direction deductions vs the shelter cap) are
-            # upweighted so the recorded P(nature | bucket) matches empirical.
-            bw = dir_w.get(bucket)
-            if bw:
-                nmix = {n: p * bw.get(_dirclass(int(n)), 1.0)
-                        for n, p in nmix.items()}
-            nature = int(_sample(rng, nmix))
-            cause = int(_sample(rng, dist["cause_given_bucket"][bucket]))
+            nature, cause = _draw_nature(facts, bucket, dist, dir_w, rng)
             if bucket == "arithmetic":
                 benefit_noise += rng.choice([-1, 1]) * _u(rng, 10, 60)
                 nature_override = None

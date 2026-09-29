@@ -60,7 +60,7 @@ def _sample(rng, probs):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--n", type=int, default=4000)
+    ap.add_argument("--n", type=int, default=20000)
     args = ap.parse_args()
 
     dist = load_dist(ROOT / "dist.json")
@@ -80,16 +80,24 @@ def main():
     for _ in range(args.n):
         f = household.sample_household(rng)
         b = rng.choice(buckets)
-        nmix = dist["nature_given_bucket"][b]
+        # Draw from the earner-conditional mix, exactly as _draw_nature does
+        # (minus the direction weights, which rescale whole direction classes
+        # and therefore do not change the within-class materialization rate).
+        # The old code drew from the marginal mix, which mis-measures m_d
+        # whenever the conditional nature composition differs (deduction
+        # buckets: shelter-over 0.178 -> 0.254, sua-under 0.558 -> 0.673).
+        nkey = ("nature_given_bucket_earner" if f.get("earned", 0) > 0
+                else "nature_given_bucket_no_earner")
+        nmix = dist.get(nkey, {}).get(b) or dist["nature_given_bucket"][b]
         nature = _sample(rng, nmix)
         if b == "medical" and not f["senior_disabled"]:
             continue
         agency = dict(f)
         truth = dict(f)
-        tc, _ = errors._apply_one(agency, truth, b, nature, rng, dist)
+        tc, _ = errors._apply_one(agency, truth, b, int(nature), rng, dist)
         if tc:
             truth.update(tc)
-        d = dirclass(nature)
+        d = dirclass(int(nature))
         tot[b][d] += 1
         b0 = benefit_mod.compute(truth)["benefit"]
         b1 = benefit_mod.compute(agency)["benefit"]

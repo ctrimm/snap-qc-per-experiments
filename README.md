@@ -33,11 +33,12 @@ transfer, LM eval) every experiment here must move.
 | 6 | [Calibration v4: eligibility-screen injection](experiments/exp6_eligibility_screen.md) | Calibration | Held decisively — finding mix L1 = 0.009; realized error 0.396 vs 0.397 |
 | 6b | [Calibration methodology: attrition-corrected injection](experiments/exp6_calibration_methodology.md) | Calibration | Load-bearing — phase-1 coins, stochastic-97 coins, two-level effectiveness |
 | 4 | [Transfer v2: richer shared features](experiments/exp4_transfer_v2.md) | Transfer | Held, with a surprise — binary macroF1 0.616 (prior fixed); element v1 0.493 beats v2 0.451 (derived features embed generator assumptions) |
+| 7 | [Per-bucket persistence: hybrid single-draw-and-drop](experiments/exp7_per_bucket_persistence.md) | Calibration | Held — hhcomp 2.86x→1.27x, arithmetic 3.47x→1.42x; finding L1 0.010→0.044 (within-direction 57 residual) |
 
-Recommended next run: exp 7 — per-bucket persistence in the retry loop (draw
-the bucket once from the empirical mix, retry natures within it) to kill the
-hhcomp/arithmetic selection bias now binding element transfer. Then
-senior-conditioned bucket mixes for medical and the SUA mechanics rework.
+Recommended next run: exp 4 transfer re-run on the persistent generator —
+does the faithful element mix lift element accuracy past 0.493? Then
+per-nature importance weights for the 57 residual and senior-conditioned
+bucket mixes for medical.
 
 ## Data
 

@@ -17,7 +17,10 @@ empirical target: c = t*m_u / (t*m_u + (1-t)*m_o).
 Writes experiments/inject.json. Re-run whenever the sampler, corruptors, or
 retry budget change — same maintenance story as eff.json.
 
-Usage: python experiments/calibrate_injection.py [--n 6000] [--n97 4000] [--max-attempts 12]
+Usage: python experiments/calibrate_injection.py [--n 6000] [--n97 4000] [--max-attempts 12] [--persistent-buckets]
+With --persistent-buckets, phase 1 is recalibrated for exp7's persistent
+injection mode (different attrition profile) and the coins are stored under
+the "persistent" key; phase 2 (97 coins) is mode-independent and reused.
 """
 import argparse
 import json
@@ -72,6 +75,8 @@ def main():
     ap.add_argument("--n", type=int, default=6000)
     ap.add_argument("--n97", type=int, default=4000)
     ap.add_argument("--max-attempts", type=int, default=12)
+    ap.add_argument("--persistent-buckets", action="store_true",
+                    help="calibrate phase-1 coins for exp7 persistent mode")
     args = ap.parse_args()
 
     dist = load_dist(ROOT / "dist.json")
@@ -81,14 +86,16 @@ def main():
               error_rate_given_no_earner=1.0,
               injection_rate={"earner": 1.0, "no_earner": 1.0})
 
-    print("phase 1: injection coin per earner status")
+    print(f"phase 1: injection coin per earner status "
+          f"({'persistent' if args.persistent_buckets else 'standard'} mode)")
     rng = random.Random(11)
     trials = {"earner": 0, "no_earner": 0}
     materialized = {"earner": 0, "no_earner": 0}
     for _ in range(args.n):
         f = household.sample_household(rng)
         key = "earner" if f["earned"] > 0 else "no_earner"
-        case = E.inject(f, rng, d2, max_attempts=args.max_attempts)
+        case = E.inject(f, rng, d2, max_attempts=args.max_attempts,
+                        persistent_buckets=args.persistent_buckets)
         trials[key] += 1
         if case["finding"] != 1:
             materialized[key] += 1
@@ -101,6 +108,22 @@ def main():
         out[key] = round(coin, 4)
         print(f"{key}: P(materialize|inject)={m:.3f} empirical_P(err)={empirical:.3f} "
               f"-> coin={coin:.3f} (n={trials[key]})")
+
+    if args.persistent_buckets:
+        # Merge into the existing inject.json under the "persistent" key;
+        # phase 2 (97 coins) is mode-independent — the realized
+        # P(over|97) formula c*m_o/(c*m_o+(1-c)*m_u) holds for the
+        # within-bucket nature race too — so it is left untouched.
+        inj_path = ROOT / "inject.json"
+        merged = json.load(open(inj_path)) if inj_path.exists() else {}
+        merged["persistent"] = out
+        merged["_note_persistent"] = (
+            "persistent: phase-1 coins recalibrated for exp7 persistent-bucket "
+            "injection (different attrition profile: per-bucket keep rates). "
+            "p_over_97_resolve is shared (mode-independent).")
+        json.dump(merged, open(inj_path, "w"), indent=1)
+        print("wrote", inj_path, "(persistent section)")
+        return
 
     print("phase 2: 97-resolution coin per bucket")
     out["p_over_97_resolve"] = calibrate_97_direction(dist, n=args.n97)

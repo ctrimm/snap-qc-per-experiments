@@ -21,6 +21,9 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--max-attempts", type=int, default=12,
                     help="retry budget per error case in errors.inject")
+    ap.add_argument("--persistent-buckets", action="store_true",
+                    help="exp7: draw each variance's bucket once and retry "
+                         "natures within it (kills the cross-bucket retry lottery)")
     args = ap.parse_args()
 
     dist = load_dist(args.dist)
@@ -29,7 +32,8 @@ def main():
     with open(args.out, "w") as out:
         for _ in range(args.n):
             facts = household.sample_household(rng)
-            case = errors.inject(facts, rng, dist, max_attempts=args.max_attempts)
+            case = errors.inject(facts, rng, dist, max_attempts=args.max_attempts,
+                                 persistent_buckets=args.persistent_buckets)
             out.write(json.dumps(case) + "\n")
     print(f"wrote {args.n} cases -> {args.out}", file=sys.stderr)
 
