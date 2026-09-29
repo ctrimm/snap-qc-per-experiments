@@ -104,9 +104,10 @@ kept separate from the main index per project convention.
 | # | Experiment | Gate | Verdict |
 |---|---|---|---|
 | PA1 | [PA-conditioned generator](experiments/pa1_pa_generator.md) | Calibration | Held — finding L1 0.028 (target ≤0.03), element L1 0.065, cause L1 0.050; national output byte-identical; key fix was fitting cause ratios on non-97 variances (national 97-cause blanking distorted the draw) |
+| PA2 | [PA-filtered transfer](experiments/pa2_pa_transfer.md) | Transfer | **PASS (conditional)** — PA synth predicts real PA errors: element acc 0.567 vs 0.453 baseline, macroF1 0.208 vs 0.062; PA-conditioning beats national on element (+0.03–0.09); unweighted GBM beats class-balanced on PA's shelter-heavy mix; finding needs calibrated ranking (binary AUC 0.645), not hard classification |
 | PA3 | [PA error anatomy](experiments/pa3_pa_anatomy.md) | Calibration | Held — shelter deduction errors ~2x national (omitted 2.30x, included 1.95x), medical-included 1.93x, newly-employed wages 1.51x ($258 median); computation errors 0.12x national corroborate the clean-engine finding; PA codes cause "Other" 3.5x national |
 
-In progress: PA2 (PA-filtered transfer).
+In progress: PA4 (prioritization sim), PA5 (dollar ranking), PA6 (temporal), PA7 (feature audit).
 
 ## Data
 
