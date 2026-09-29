@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pkl
+snap-qc-data/
+*.csv
+*.sas7bdat
