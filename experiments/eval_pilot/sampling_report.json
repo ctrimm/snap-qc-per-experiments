@@ -1,0 +1,132 @@
+{
+  "seed": 30,
+  "n_items": 1400,
+  "plan": {
+    "test_main": {
+      "n": 1000,
+      "finding": {
+        "correct": 333,
+        "overissuance": 375,
+        "underissuance": 292
+      },
+      "bucket_quota": 50
+    },
+    "test_2024": {
+      "n": 200,
+      "finding": {
+        "correct": 67,
+        "overissuance": 75,
+        "underissuance": 58
+      },
+      "bucket_quota": 8
+    },
+    "dev": {
+      "n": 200,
+      "finding": {
+        "correct": 67,
+        "overissuance": 75,
+        "underissuance": 58
+      },
+      "bucket_quota": 8
+    }
+  },
+  "actual_finding": {
+    "test_main": {
+      "overissuance": 375,
+      "underissuance": 292,
+      "correct": 333
+    },
+    "test_2024": {
+      "underissuance": 58,
+      "overissuance": 75,
+      "correct": 67
+    },
+    "dev": {
+      "underissuance": 58,
+      "overissuance": 75,
+      "correct": 67
+    }
+  },
+  "actual_bucket_test": {
+    "earned": 74,
+    "unearned": 67,
+    "depcare": 59,
+    "shelter": 78,
+    "sua": 59,
+    "medical": 60,
+    "childsupport": 59,
+    "hhcomp": 61,
+    "assets": 4,
+    "arithmetic": 58,
+    "reporting": 19,
+    "standard": 58,
+    "income_total": 15,
+    "other": 62,
+    "null": 467
+  },
+  "actual_bucket_test_main": {
+    "earned": 62,
+    "unearned": 58,
+    "depcare": 51,
+    "shelter": 65,
+    "sua": 51,
+    "medical": 52,
+    "childsupport": 51,
+    "hhcomp": 52,
+    "assets": 1,
+    "arithmetic": 50,
+    "reporting": 11,
+    "standard": 50,
+    "income_total": 9,
+    "other": 52,
+    "null": 385
+  },
+  "actual_bucket_test_2024": {
+    "earned": 12,
+    "unearned": 9,
+    "depcare": 8,
+    "shelter": 13,
+    "sua": 8,
+    "medical": 8,
+    "childsupport": 8,
+    "hhcomp": 9,
+    "assets": 3,
+    "arithmetic": 8,
+    "reporting": 8,
+    "standard": 8,
+    "income_total": 6,
+    "other": 10,
+    "null": 82
+  },
+  "actual_bucket_dev": {
+    "earned": 14,
+    "unearned": 12,
+    "depcare": 9,
+    "shelter": 11,
+    "sua": 10,
+    "medical": 10,
+    "childsupport": 8,
+    "hhcomp": 9,
+    "arithmetic": 8,
+    "standard": 8,
+    "other": 8,
+    "null": 93
+  },
+  "nature97_test": 121,
+  "state_share_test_max": 0.060833333333333336,
+  "rule_agreement": {
+    "n_multi_reportable_test": 130,
+    "largest_dollar_vs_first_recorded": 0.676923076923077
+  },
+  "dollar_error_test": {
+    "n": 800,
+    "p10": 3,
+    "p25": 12,
+    "p50": 36,
+    "p75": 90,
+    "p90": 195,
+    "p99": 493,
+    "max": 1190,
+    "mean": 76.0925
+  }
+}

@@ -1,0 +1,45 @@
+{
+ "_note": "Re-sliced empirical 4-stratum bucket mixes, senior = FSNELDER>0 | SSI1-8>0 | FSNDIS>0 (exp11 procedure otherwise). Exp28 measured in-process only: adopting needs the sampler senior-rate fix first (generator senior rate 36.2% vs real 49.6%; see exp28 chronicle). For the coordinator to apply to dist.json. Aggregates only; never microdata.",
+ "mixes": {
+  "bucket_probs_given_no_earner_nonsenior": {
+   "earned": 0.09672544080604534,
+   "unearned": 0.4534005037783375,
+   "shelter": 0.18740554156171285,
+   "sua": 0.11486146095717883,
+   "medical": 0.0005037783375314861,
+   "depcare": 0.009571788413098237,
+   "hhcomp": 0.08916876574307304,
+   "arithmetic": 0.04836272040302267
+  },
+  "bucket_probs_given_earner_nonsenior": {
+   "earned": 0.5736953018470311,
+   "unearned": 0.11739184331225982,
+   "shelter": 0.17429031858187677,
+   "sua": 0.050948307921160285,
+   "medical": 0.00012396181975951408,
+   "depcare": 0.042147018718234786,
+   "hhcomp": 0.02925498946324532,
+   "arithmetic": 0.012148258336432379
+  },
+  "bucket_probs_given_no_earner_senior": {
+   "earned": 0.006214018093758567,
+   "unearned": 0.28072740564744586,
+   "shelter": 0.4836882025038838,
+   "sua": 0.10262268116604222,
+   "medical": 0.09448962807274057,
+   "depcare": 0.0007310609522068902,
+   "hhcomp": 0.013890158091930914,
+   "arithmetic": 0.017636845471991226
+  },
+  "bucket_probs_given_earner_senior": {
+   "earned": 0.4812601846822379,
+   "unearned": 0.18957088538837588,
+   "shelter": 0.19608908202064096,
+   "sua": 0.048343291689299295,
+   "medical": 0.03530689842476915,
+   "depcare": 0.00977729494839761,
+   "hhcomp": 0.02933188484519283,
+   "arithmetic": 0.010320478001086366
+  }
+ }
+}

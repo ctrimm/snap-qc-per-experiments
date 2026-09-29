@@ -58,14 +58,19 @@ transfer, LM eval) every experiment here must move.
 | 23 | [Merge dollar mechanisms + recalibrate](experiments/exp23_merge_recalibrate.md) | Calibration | Partially held — dollar marginal fixed (share ≤$56: 0.36→0.67 vs 0.70 real; p90 inversion fixed) but finding mix not recovered: whole-unit overs double-counted (already coded as earned income); phase-1 coin is direction-blind |
 | 24 | [Adopt draw fix + re-baseline](experiments/exp24_adopt_rebaseline.md) | Calibration + Transfer | Partially held — new defaults: finding L1 0.036→0.025 (0.019 retry); macroF1 −0.007…−0.031 — the calibration win and macroF1 loss are the same event (fewer distinct rare examples) |
 | 25 | [Training recipe re-derivation](experiments/exp25_training_recipe.md) | Transfer | Did not hold — faithful persistent + balanced remains the best recipe; retry loop has no remaining role. Recipe question closed |
+| 26 | [Combine dollar mechanisms with new defaults](experiments/exp26_combine_dollar.md) | Calibration | Held — finding L1 0.016; share ≤$56 0.69 vs 0.70 real; p90 inversion fixed; whole-unit recoded as earned-income zeroing, direction-aware phase-1 coin |
+| 27 | [Earned-bucket audit](experiments/exp27_earned_audit.md) | Calibration | Partially held — dominant constraint is the first-variance bucket mix (real M1 earned-richer than marginal); M1/M2 fix → 0.972x but L1 0.037, staged pending direction recalibration |
+| 28 | [Shares-game residuals](experiments/exp28_shares_game.md) | Calibration | Partially held — nature-57 1.16x→1.03x (weights re-measured under corrected draw), depcare 0.44x→0.89x (kid-gate dilution fix); medical stuck 0.55x (FSNDIS mis-slicing, blocked on sampler senior-rate fix) |
+| 29 | [Sampler base-positivity gaps](experiments/exp29_sampler_positivity.md) | Calibration | Held — worst |real−synth| 0.009 per stratum; finding L1 0.026; materialization matrix + 97-coins re-derived for the new sampler |
+| 30 | [QC-variance eval pilot](experiments/exp30_eval_pilot.md) | LM gate (prep) | Package delivered — 1,400 frozen items, scorer + bootstrap gate, Mac Studio runbook; dummy baselines green; LM discrimination pending the Mac Studio run |
 
-Recommended next run: combine exp23's dollar mechanisms with exp24's new defaults —
-recode the whole-unit mechanism as earned-income zeroing (matching the file's coding),
-subtract whole-unit mass from the empirical direction targets, and make the phase-1 coin
-direction-aware; then re-run the golden calibration suite. Target the new residuals:
-earned ~0.8x audit, medical/depcare deflation (0.53x/0.41x), nature-57 inflation (1.16x),
-and exp21's household-sampler base-positivity gaps. Pilot exp17's QC-variance eval once
-calibration settles — the first LM-gate data point.
+Recommended next run: adopt exp26's dollar mechanisms as a generator default (bake the
+recalibration — earned-income zeroing, unit-mass subtraction, direction-aware phase-1
+coin — into the module, not just the flag), then re-baseline calibration + transfer.
+Remaining residuals: medical 0.57x (needs the sampler senior-rate fix 36.2%→49.6% before
+the re-sliced mixes from exp28 can land), exp27's M1/M2 direction recalibration,
+52-under median overshoot. Run exp30's pilot on the Mac Studio for the first LM-gate
+data point, then the human label audit.
 
 ## Data
 

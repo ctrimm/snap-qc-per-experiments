@@ -18,6 +18,33 @@ from . import params
 # observed spread. All earners pass the income screen at these levels.
 EARN_MU = {1: 7.23, 2: 7.75, 3: 7.97, 4: 8.18, 5: 8.32, 6: 8.46}
 
+# exp29: stratum-conditioned base-positivity tables (pre-screen P(field > 0)
+# per stratum), fitted so POST-screen P(base > 0) matches the real FY2024 QC
+# per-stratum aggregates (see experiments/exp29_sampler_positivity.py).
+# Replaces the old flat rates (unearned 0.85/0.50 by senior flag alone;
+# shelter 0.63 flat; sua 0.72 flat), which missed senior strata on unearned
+# (real 0.95/0.81), earner/senior strata on shelter (real 0.88/0.91/0.95),
+# and the whole per-stratum sua spread (real 0.46-0.88). Stratum keys match
+# errors._stratum_key. Only WHO has a positive base changes: amounts,
+# benefit math, and injection are untouched. Note the values are
+# PRE-screen draw probabilities: the income screen attenuates unearned on
+# earner strata (drawn unearned often fails the net-income test), so e.g.
+# earner_nonsenior needs pre-screen 0.492 to land post-screen 0.260; the
+# earner_senior unearned cell is steep enough to need bisection (0.913 ->
+# 0.809).
+BASE_POSITIVITY = {
+    "unearned": {"no_earner_nonsenior": 0.465, "earner_nonsenior": 0.492,
+                 "no_earner_senior": 0.953, "earner_senior": 0.913},
+    "shelter":  {"no_earner_nonsenior": 0.500, "earner_nonsenior": 0.876,
+                 "no_earner_senior": 0.909, "earner_senior": 0.908},
+    "sua":      {"no_earner_nonsenior": 0.456, "earner_nonsenior": 0.811,
+                 "no_earner_senior": 0.823, "earner_senior": 0.886},
+}
+# Legacy (pre-exp29) flat rates, for in-process BEFORE comparisons:
+#   {"unearned": {s: 0.50/0.85}, "shelter": {s: 0.63}, "sua": {s: 0.72}}.
+# Patching BASE_POSITIVITY to these values reproduces the old sampler
+# exactly (same rng call order).
+
 
 def _income_eligible(facts: dict) -> bool:
     size = facts["hh_size"]
@@ -57,15 +84,20 @@ def _sample_unscreened(rng: random.Random) -> dict:
         mu = EARN_MU[min(size, 6)]
         earned = rng.lognormvariate(mu, 0.75)
 
+    # Stratum key for the base-positivity tables below. Matches
+    # errors._stratum_key; earned and senior_disabled are already fixed at
+    # this point, so the key is known before these fields are drawn.
+    _skey = ("earner" if earned > 0 else "no_earner") + "_" + \
+            ("senior" if senior_or_disabled else "nonsenior")
+
     unearned = 0.0
-    p_une = 0.85 if senior_or_disabled else 0.50
-    if rng.random() < p_une:
+    if rng.random() < BASE_POSITIVITY["unearned"][_skey]:
         unearned = rng.choices([943, 1400, 600], weights=[0.45, 0.35, 0.20])[0] * rng.uniform(0.8, 1.15)
 
     shelter = rng.uniform(350, 1700)
-    if rng.random() < 0.37:
+    if rng.random() >= BASE_POSITIVITY["shelter"][_skey]:
         shelter = 0.0  # subsidized / no shelter cost edge cases
-    sua = 1 if rng.random() < 0.72 else 0
+    sua = 1 if rng.random() < BASE_POSITIVITY["sua"][_skey] else 0
 
     medical = 0.0
     if senior_or_disabled and rng.random() < 0.17:

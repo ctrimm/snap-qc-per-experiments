@@ -246,6 +246,11 @@ def _applicable_buckets(facts: dict, dist: dict, rng: random.Random):
             base_pos = (base == 1) if bucket == "sua" else (base > 0)
             if not base_pos:
                 w = ZERO_BASE_WEIGHT.get(bucket, 1.0)
+        # exp28: undo the kid-gating dilution (see _DEPCARE_KID_WEIGHT).
+        # Placed after the zero-base scaling so it multiplies the final w
+        # rather than being overwritten by it.
+        if bucket == "depcare":
+            w *= _DEPCARE_KID_WEIGHT[f"{earner}_{senior}"]
         # hhcomp and arithmetic always fully applicable
         if w > 0:
             cands[bucket] = p * w
@@ -280,13 +285,32 @@ def _draw_nature(facts, bucket, dist, dir_w, rng):
     return nature, cause
 
 
+
+# Exp28: depcare kid-dilution correction. Depcare is drawn only on kid
+# households (exp12 gate) but with the *unconditional* empirical weight,
+# so the recorded share undershoots by ~P(kid | stratum). Multiplying the
+# depcare draw weight by 1/P_synth(kid | stratum) undoes the
+# generator-side gating dilution (the empirical mix has no such gating,
+# so this is not double-counting). P_synth(kid | s) measured on the
+# committed sampler (20k, seed 7); re-measure if the sampler's kid rates
+# change.
+_DEPCARE_KID_WEIGHT = {
+    "no_earner_nonsenior": 1.929,
+    "earner_nonsenior": 1.953,
+    "no_earner_senior": 2.884,
+    "earner_senior": 3.318,
+}
 _NATURE_57_WEIGHT = {
-    # 1 / materialization rate, measured in persistent flow (exp13),
-    # scaled by 0.8 after the first pass overshot to 1.29x.
-    "medical": 2.86,
-    "shelter": 1.69,
-    "earned": 1.60,
-    "depcare": 1.00,
+    # 1 / materialization rate, re-measured in the persistent flow under
+    # the corrected draw (exp28; exp13's values were measured pre-draw-fix
+    # and overshot the 57 share to 1.16x), scaled by exp13's 0.8 damping.
+    # medical/shelter: 20k-run m = 0.281/0.552; earned: stratified forced
+    # m = 0.789 (n=4000); depcare: forced-bucket kid-gated m = 0.661
+    # (n=1467 drawn 57s).
+    "medical": 2.85,
+    "shelter": 1.45,
+    "earned": 1.01,
+    "depcare": 1.21,
 }
 
 
@@ -306,24 +330,36 @@ def _recorded_cause(nature, cause, rng):
 # path (eff.json "bucket" section) could not see that removing the weights
 # changes the zero-base/positive-base composition inside cells
 # (unearned/no_earner_nonsenior keep rate moved 0.81 -> 0.65).
-# Caveat: the depcare senior-strata cells have tiny measurement samples
-# (3 and 4 draws); follow-ups may re-measure or pool them.
+# exp29: per-(bucket, stratum) materialization matrix RE-MEASURED under the
+# exp29 stratum-conditioned household sampler (150k cases, seed 11; see
+# experiments/exp29_sampler_positivity.py). The sampler change shifted
+# 15/32 keep rates >= 0.05 (sua/earner_senior 0.525 -> 0.689,
+# sua/no_earner_senior 0.380 -> 0.507), so exp24's matrix was stale.
+# Adoption rule: cells with >= 200 draws take the new value; 8
+# tiny-sample cells pool the exp24 value (earned/no_earner_senior,
+# medical/earner_nonsenior, medical/earner_senior, depcare/no_earner_
+# nonsenior, depcare/no_earner_senior, depcare/earner_senior,
+# hhcomp/earner_senior, arithmetic/earner_senior).
+# NOTE (2026-09-29): exp28's worker temporarily restored exp24's matrix
+# here for legacy-sampler runs and saved this table to
+# experiments/exp28_exp29_matrix_backup.json; exp29 restores it below.
+# exp28's _DEPCARE_KID_WEIGHT and _NATURE_57_WEIGHT (above) are kept as-is.
 MATERIALIZATION_MATRIX = {
-    "earned":     {"no_earner_nonsenior": 0.665037, "earner_nonsenior": 0.819570,
-                   "no_earner_senior": 0.723077, "earner_senior": 0.764706},
-    "unearned":   {"no_earner_nonsenior": 0.648397, "earner_nonsenior": 0.938224,
-                   "no_earner_senior": 0.667449, "earner_senior": 0.788136},
-    "shelter":    {"no_earner_nonsenior": 0.228657, "earner_nonsenior": 0.422714,
-                   "no_earner_senior": 0.426030, "earner_senior": 0.590444},
-    "sua":        {"no_earner_nonsenior": 0.197137, "earner_nonsenior": 0.455617,
-                   "no_earner_senior": 0.379898, "earner_senior": 0.525000},
+    "earned":     {"no_earner_nonsenior": 0.701571, "earner_nonsenior": 0.767128,
+                   "no_earner_senior": 0.723077, "earner_senior": 0.777919},
+    "unearned":   {"no_earner_nonsenior": 0.712205, "earner_nonsenior": 0.940186,
+                   "no_earner_senior": 0.597623, "earner_senior": 0.858382},
+    "shelter":    {"no_earner_nonsenior": 0.203991, "earner_nonsenior": 0.472366,
+                   "no_earner_senior": 0.531957, "earner_senior": 0.688802},
+    "sua":        {"no_earner_nonsenior": 0.165438, "earner_nonsenior": 0.484848,
+                   "no_earner_senior": 0.507028, "earner_senior": 0.688995},
     "medical":    {"no_earner_nonsenior": 0.020000, "earner_nonsenior": 0.020000,
-                   "no_earner_senior": 0.522399, "earner_senior": 0.860465},
-    "depcare":    {"no_earner_nonsenior": 0.326923, "earner_nonsenior": 0.710247,
+                   "no_earner_senior": 0.500588, "earner_senior": 0.860465},
+    "depcare":    {"no_earner_nonsenior": 0.326923, "earner_nonsenior": 0.675603,
                    "no_earner_senior": 0.666667, "earner_senior": 0.500000},
-    "hhcomp":     {"no_earner_nonsenior": 0.666667, "earner_nonsenior": 0.648968,
-                   "no_earner_senior": 0.545455, "earner_senior": 0.272727},
-    "arithmetic": {"no_earner_nonsenior": 1.000000, "earner_nonsenior": 1.000000,
+    "hhcomp":     {"no_earner_nonsenior": 0.697733, "earner_nonsenior": 0.673913,
+                   "no_earner_senior": 0.535433, "earner_senior": 0.272727},
+    "arithmetic": {"no_earner_nonsenior": 0.998733, "earner_nonsenior": 1.000000,
                    "no_earner_senior": 1.000000, "earner_senior": 1.000000},
 }
 # exp20's guardrails, kept: damp the matrix weight toward the scalar,

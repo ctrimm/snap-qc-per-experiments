@@ -1,0 +1,53 @@
+{
+ "_note": "exp29 worker uncommitted MATERIALIZATION_MATRIX as found in working tree 2026-09-29 (reconstructed: exp29 kept exp24 values for the 3 cells exp28 later overwrote; those are restored here). Saved so exp29 work is not lost while exp28 restores the exp24 baseline for its legacy-sampler runs.",
+ "matrix": {
+  "earned": {
+   "no_earner_nonsenior": 0.701571,
+   "earner_nonsenior": 0.767128,
+   "no_earner_senior": 0.723077,
+   "earner_senior": 0.777919
+  },
+  "unearned": {
+   "no_earner_nonsenior": 0.712205,
+   "earner_nonsenior": 0.940186,
+   "no_earner_senior": 0.597623,
+   "earner_senior": 0.858382
+  },
+  "shelter": {
+   "no_earner_nonsenior": 0.203991,
+   "earner_nonsenior": 0.472366,
+   "no_earner_senior": 0.531957,
+   "earner_senior": 0.688802
+  },
+  "sua": {
+   "no_earner_nonsenior": 0.165438,
+   "earner_nonsenior": 0.484848,
+   "no_earner_senior": 0.507028,
+   "earner_senior": 0.688995
+  },
+  "medical": {
+   "no_earner_nonsenior": 0.02,
+   "earner_nonsenior": 0.02,
+   "no_earner_senior": 0.500588,
+   "earner_senior": 0.860465
+  },
+  "depcare": {
+   "no_earner_nonsenior": 0.326923,
+   "earner_nonsenior": 0.675603,
+   "no_earner_senior": 0.666667,
+   "earner_senior": 0.5
+  },
+  "hhcomp": {
+   "no_earner_nonsenior": 0.697733,
+   "earner_nonsenior": 0.673913,
+   "no_earner_senior": 0.535433,
+   "earner_senior": 0.272727
+  },
+  "arithmetic": {
+   "no_earner_nonsenior": 0.998733,
+   "earner_nonsenior": 1.0,
+   "no_earner_senior": 1.0,
+   "earner_senior": 1.0
+  }
+ }
+}
