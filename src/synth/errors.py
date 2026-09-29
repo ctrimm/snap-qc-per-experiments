@@ -196,18 +196,19 @@ def _apply_one(agency, truth, bucket, nature, rng, dist=None,
 
 
 # Measured from the FY2024 QC file (all cases): P(case has a variance in
-# bucket | base amount is zero) relative to P(variance | base > 0). Lets
-# zero-base households draw income / deduction variances at the real (low)
-# rate instead of never or always. Medical uses FSNELDER>0 as the base
-# population (re-measured 2026-09-28; was 0.036 under an older cut).
-ZERO_BASE_WEIGHT = {
-    "earned": 0.018,
-    "unearned": 0.091,
-    "shelter": 0.227,
-    # medical removed (exp11), depcare removed (exp12): the stratified
-    # empirical mixes already capture the real base-rate relationships;
-    # the extra suppression was double-counting.
-}
+# bucket | base amount is zero) relative to P(variance | base > 0).
+#
+# EMPTY (exp24, adopting exp21's audit): the earned/unearned/shelter entries
+# were double-counting -- the empirical stratum mixes already reflect real
+# zero-base households, so scaling zero-base draws down again suppressed
+# them twice (exp11 diagnosed and removed the same for medical; exp12 for
+# depcare). Simulated drawn/empirical share ratios under the old weights:
+# earned collapsed to 0.03 on no-earner strata, unearned to 0.29-0.65,
+# while sua inflated ~2x and medical ~1.1-2.0x by renormalization.
+# Removing the three entries fixes the draw side (exp21: unearned 0.77x
+# -> 0.94x, sua 1.04x -> 0.90x, finding L1 0.036 -> 0.025 with the
+# re-measured matrix below).
+ZERO_BASE_WEIGHT = {}
 
 _BASE_FIELD = {
     "earned": "earned", "unearned": "unearned", "shelter": "shelter",
@@ -298,32 +299,97 @@ def _recorded_cause(nature, cause, rng):
     return cause
 
 
+# Per-(bucket, stratum) keep rates measured under the corrected draw
+# (exp21 step [5]: 60k cases, seed 11, ZERO_BASE_WEIGHT patched to {},
+# clipped to [0.02, 1.0] as measured). Exp24 adopts this as the default
+# materialization correction in _inject_persistent: the scalar 1/eff_b^*
+# path (eff.json "bucket" section) could not see that removing the weights
+# changes the zero-base/positive-base composition inside cells
+# (unearned/no_earner_nonsenior keep rate moved 0.81 -> 0.65).
+# Caveat: the depcare senior-strata cells have tiny measurement samples
+# (3 and 4 draws); follow-ups may re-measure or pool them.
+MATERIALIZATION_MATRIX = {
+    "earned":     {"no_earner_nonsenior": 0.665037, "earner_nonsenior": 0.819570,
+                   "no_earner_senior": 0.723077, "earner_senior": 0.764706},
+    "unearned":   {"no_earner_nonsenior": 0.648397, "earner_nonsenior": 0.938224,
+                   "no_earner_senior": 0.667449, "earner_senior": 0.788136},
+    "shelter":    {"no_earner_nonsenior": 0.228657, "earner_nonsenior": 0.422714,
+                   "no_earner_senior": 0.426030, "earner_senior": 0.590444},
+    "sua":        {"no_earner_nonsenior": 0.197137, "earner_nonsenior": 0.455617,
+                   "no_earner_senior": 0.379898, "earner_senior": 0.525000},
+    "medical":    {"no_earner_nonsenior": 0.020000, "earner_nonsenior": 0.020000,
+                   "no_earner_senior": 0.522399, "earner_senior": 0.860465},
+    "depcare":    {"no_earner_nonsenior": 0.326923, "earner_nonsenior": 0.710247,
+                   "no_earner_senior": 0.666667, "earner_senior": 0.500000},
+    "hhcomp":     {"no_earner_nonsenior": 0.666667, "earner_nonsenior": 0.648968,
+                   "no_earner_senior": 0.545455, "earner_senior": 0.272727},
+    "arithmetic": {"no_earner_nonsenior": 1.000000, "earner_nonsenior": 1.000000,
+                   "no_earner_senior": 1.000000, "earner_senior": 1.000000},
+}
+# exp20's guardrails, kept: damp the matrix weight toward the scalar,
+# fall back to the scalar on mechanics-gap cells (m < 0.10), and cap the
+# weight at 2.5x of the scalar (trust region).
+MATRIX_DAMP = 0.8
+MATRIX_MIN_M = 0.10
+MATRIX_TRUST_CAP = 2.5
+
+
+def _stratum_key(facts: dict):
+    """Must match the stratum key logic in _applicable_buckets."""
+    earner = "earner" if facts.get("earned", 0) > 0 else "no_earner"
+    senior = "senior" if facts.get("senior_disabled") else "nonsenior"
+    return f"{earner}_{senior}"
+
+
+def _matrix_weight(bucket, stratum, eff_b):
+    """Guardrailed importance weight from the per-(bucket, stratum)
+    keep-rate matrix (exp24 default; exp20's rules)."""
+    m = MATERIALIZATION_MATRIX[bucket][stratum]
+    sc = eff_b.get(bucket, 1.0)
+    if m < MATRIX_MIN_M:
+        m = sc  # mechanics-gap cell: fall back to the scalar
+    w = MATRIX_DAMP / max(m, 0.02) + (1.0 - MATRIX_DAMP) / max(sc, 0.02)
+    return min(w, MATRIX_TRUST_CAP / max(sc, 0.02))
+
+
 def _inject_persistent(facts, rng, dist, applicable, dir_w, max_attempts,
-                     stats=None):
+                     stats=None, legacy_materialization=False):
     """Exp7: per-bucket persistence, single-draw-and-drop.
 
-    Each variance's bucket is drawn ONCE from the empirical (conditional,
-    zero-base-scaled) mix weighted by 1/eff_b^* (eff.json "bucket" section:
-    the harmonic-mean per-bucket feasibility). The nature is drawn ONCE from
-    the empirical mix with direction-level importance weights (1/m_d,
-    eff.json "dir_weight") and applied ONCE: if it moves the benefit it is
+    Each variance's bucket is drawn ONCE from the empirical (conditional)
+    mix, corrected for materialization (see MATERIALIZATION_MATRIX and
+    legacy_materialization below), and applied ONCE: if it moves the benefit it is
     recorded, else the variance is dropped.
 
     Why this is exact where the retry loop was not: the old loop redrew the
     bucket on every failed attempt, so always-feasible buckets (hhcomp,
     arithmetic) won the retry lottery and were over-recorded ~3x. Fixing the
     bucket and dropping (instead of retrying) makes P(record b) = drawn_b x
-    keep_b with keep_b = eff_b^*, so the 1/eff_b^* weight lands recorded_b
-    exactly on empirical; likewise P(record n | b) lands on empirical by the
+    keep_b, so the materialization correction lands recorded_b on
+    empirical; likewise P(record n | b) lands on empirical by the
     1/m_d importance weights. No within-bucket race, so household-structural
     infeasibility (shelter at the cap, hhcomp-under on singles) cannot
-    distort the nature mix — it just lowers keep_b, which the weight absorbs.
+    distort the nature mix — it just lowers keep_b, which the correction
+    absorbs.
     max_attempts is unused (no retries); stats collects drawn/recorded counts
     for keep-rate measurement.
+
+    legacy_materialization (exp24): True restores the pre-exp24 scalar
+    1/eff_b^* correction for reproducibility of old chronicles. Default
+    (False) uses the re-measured per-(bucket, stratum)
+    MATERIALIZATION_MATRIX.
     """
     eff_b = (dist.get("effectiveness") or {}).get("bucket", {})
-    if eff_b:
-        applicable = {b: p / max(eff_b.get(b, 1.0), 0.02)
+    if legacy_materialization:
+        # Pre-exp24 behavior: scalar correction, blind to within-cell
+        # composition shifts.
+        if eff_b:
+            applicable = {b: p / max(eff_b.get(b, 1.0), 0.02)
+                          for b, p in applicable.items()}
+    else:
+        # exp24 default: per-(bucket, stratum) keep-rate matrix.
+        stratum = _stratum_key(facts)
+        applicable = {b: p * _matrix_weight(b, stratum, eff_b)
                       for b, p in applicable.items()}
     agency = copy.deepcopy(facts)
     truth = facts
@@ -407,7 +473,8 @@ def _clean_case(facts, correct):
 
 
 def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12,
-           persistent_buckets: bool = False, _stats: dict = None):
+           persistent_buckets: bool = False, _stats: dict = None,
+           legacy_materialization: bool = False):
     """Returns a case dict with true facts, agency-view facts, correct and
     issued benefits, finding, dollar error, and the variance list.
 
@@ -420,11 +487,17 @@ def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12,
     gradient the transfer classifier needs (exp4 diagnosis).
 
     persistent_buckets (exp7): draw each variance's bucket once from the
-    empirical mix (weighted by 1/eff_b^*) and apply each drawn nature once,
-    dropping infeasible ones instead of redrawing the bucket. Removes the
-    cross-bucket retry lottery that over-records always-materializing
+    empirical mix (materialization-corrected) and apply each drawn nature
+    once, dropping infeasible ones instead of redrawing the bucket. Removes
+    the cross-bucket retry lottery that over-records always-materializing
     buckets (hhcomp, arithmetic) while keeping the importance-weighting
     math exact.
+
+    legacy_materialization (exp24): persistent mode only; restores the
+    pre-exp24 scalar 1/eff_b^* materialization correction (reproducibility
+    of old chronicles). Default uses the re-measured per-(bucket, stratum)
+    MATERIALIZATION_MATRIX. The retry loop keeps its scalar correction
+    either way (the matrix was measured in persistent flow).
     """
     p_inject: float
     inj = dist.get("injection_rate")
@@ -450,13 +523,16 @@ def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12,
     # (shelter cap absorption, medical threshold) are upweighted so the
     # post-retry mix matches the empirical mix. See experiments/eff.json.
     # Skipped in persistent mode: the bucket is drawn once, so there is no
-    # cross-bucket retry lottery to correct.
+    # cross-bucket retry lottery to correct (and the materialization
+    # correction lives in _inject_persistent: matrix by default, scalar
+    # with legacy_materialization=True).
     eff = dist.get("effectiveness") or {}
     eff_b = eff.get("bucket", eff)  # eff.json is nested; tolerate the old flat shape
     dir_w = eff.get("dir_weight", {})
     if persistent_buckets:
         return _inject_persistent(facts, rng, dist, applicable, dir_w,
-                                  max_attempts, stats=_stats)
+                                  max_attempts, stats=_stats,
+                                  legacy_materialization=legacy_materialization)
     if eff_b:
         applicable = {b: p / max(eff_b.get(b, 1.0), 0.02) for b, p in applicable.items()}
 

@@ -28,6 +28,15 @@ def main():
                          "moves, else dropped (hybrid single-draw-and-drop; "
                          "kills the cross-bucket retry lottery). "
                          "--no-persistent-buckets restores the old retry loop.")
+    # exp24: restores the pre-exp24 scalar 1/eff_b materialization
+    # correction in persistent mode (reproducibility of old chronicles).
+    # Default (off) uses the re-measured per-(bucket,stratum) keep-rate
+    # matrix as the generator default. Does not touch the retry loop.
+    ap.add_argument("--legacy-materialization", action="store_true",
+                    default=False,
+                    help="exp24: use the old scalar materialization "
+                         "correction instead of the re-measured "
+                         "per-(bucket,stratum) matrix (persistent mode).")
     args = ap.parse_args()
 
     dist = load_dist(args.dist)
@@ -37,7 +46,8 @@ def main():
         for _ in range(args.n):
             facts = household.sample_household(rng)
             case = errors.inject(facts, rng, dist, max_attempts=args.max_attempts,
-                                 persistent_buckets=args.persistent_buckets)
+                                 persistent_buckets=args.persistent_buckets,
+                                 legacy_materialization=args.legacy_materialization)
             out.write(json.dumps(case) + "\n")
     print(f"wrote {args.n} cases -> {args.out}", file=sys.stderr)
 

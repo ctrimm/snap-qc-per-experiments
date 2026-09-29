@@ -48,12 +48,24 @@ transfer, LM eval) every experiment here must move.
 | 12 | [Kid-conditioned depcare](experiments/exp12_kid_depcare.md) | Calibration | Held — depcare 0.03x→0.56x via n_kids + kid-gating; all 8 elements now 0.56x–1.56x |
 | 13 | [Per-nature weights for 57](experiments/exp13_nature57_weights.md) | Calibration | Held — nature 57 0.50x→1.04x via 1/m importance weights measured in persistent flow (0.8 damping) |
 | 14 | [Bucket materialization correction](experiments/exp14_materialization_correction.md) | Calibration | Did not hold — re-measuring eff_b under stratum mixes improved finding L1 (0.042→0.036) but hhcomp/arithmetic stuck at ~1.5x; scalar eff_b insufficient |
+| 8b | [Parameter fitting for rules recovery](experiments/exp8b_parameter_fitting.md) | Rules recovery | Held weakly — national effective params match FY2024 statute exactly (30% rate 0.2995, $672 cap point mass); no misconfiguration signal in 22-state scan. Individual-engine fingerprinting blocked: no vendor IDs, error rows carry reviewer values |
+| 8c | [PA engine deviations](experiments/exp8c_pa_deviations.md) | Rules recovery | Clean PA engine (informative negative) — every param = statute every FY; statutory formula predicts RAWBEN exactly 99.7–100%. Fixed two statute-table errors (FY2021 min $19, FY2022 std ded 177/177/177/184/215/246) |
+| 18 | [Dollar-error mechanisms](experiments/exp18_dollar_mechanisms.md) | Calibration | Partially held — small-error mode (nature-97 conditioning) + whole-unit ineligibility (p=0.0125) verified; asymmetry mostly fixed (still inverted at p90); finding mix regressed pending recalibration |
+| 19 | [Retry-loop + oversampling transfer](experiments/exp19_retry_oversample_transfer.md) | Transfer | Did not hold — exp9's count mechanism falsified: gap survives at count parity (0.287 vs 0.304); second-variance structure the live candidate |
+| 20 | [Per-(bucket,stratum) materialization matrix](experiments/exp20_materialization_matrix.md) | Calibration | Partially held — mechanism works (keep rates invariant to draw weights) but not shippable; exposed ZERO_BASE_WEIGHT double-count on the draw side |
+| 21 | [Zero-base-weight audit](experiments/exp21_zerobase_audit.md) | Calibration | Largely held — removing the double-count: finding L1 0.036→0.024, hhcomp 1.59→1.11x, arithmetic 1.51→1.10x; stale exp20 matrix does not transfer (re-measure on corrected draw) |
+| 22 | [Second-variance structure transfer](experiments/exp22_second_variance_transfer.md) | Transfer | Held — residual edge is household selection (89.3% of gap), not multi-variance structure; on the post-exp24 generator the retry edge no longer exists |
+| 23 | [Merge dollar mechanisms + recalibrate](experiments/exp23_merge_recalibrate.md) | Calibration | Partially held — dollar marginal fixed (share ≤$56: 0.36→0.67 vs 0.70 real; p90 inversion fixed) but finding mix not recovered: whole-unit overs double-counted (already coded as earned income); phase-1 coin is direction-blind |
+| 24 | [Adopt draw fix + re-baseline](experiments/exp24_adopt_rebaseline.md) | Calibration + Transfer | Partially held — new defaults: finding L1 0.036→0.025 (0.019 retry); macroF1 −0.007…−0.031 — the calibration win and macroF1 loss are the same event (fewer distinct rare examples) |
+| 25 | [Training recipe re-derivation](experiments/exp25_training_recipe.md) | Transfer | Did not hold — faithful persistent + balanced remains the best recipe; retry loop has no remaining role. Recipe question closed |
 
-Recommended next run: apply the exp10 statutory income-limit corrections
-(frame contamination fix), recalibrate, and re-check the calibration metrics;
-implement exp15's blank-cause rule for nature 97. Then the exp16 dollar-error
-mechanisms (small-error mode, whole-unit ineligibility) and senior/kid-
-conditioned bucket mixes for medical/depcare.
+Recommended next run: combine exp23's dollar mechanisms with exp24's new defaults —
+recode the whole-unit mechanism as earned-income zeroing (matching the file's coding),
+subtract whole-unit mass from the empirical direction targets, and make the phase-1 coin
+direction-aware; then re-run the golden calibration suite. Target the new residuals:
+earned ~0.8x audit, medical/depcare deflation (0.53x/0.41x), nature-57 inflation (1.16x),
+and exp21's household-sampler base-positivity gaps. Pilot exp17's QC-variance eval once
+calibration settles — the first LM-gate data point.
 
 ## Data
 
