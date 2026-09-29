@@ -1,10 +1,97 @@
 {
- "arithmetic": 0.92175,
- "earned": 0.63575,
- "unearned": 0.6425,
- "shelter": 0.21025,
- "medical": 0.045,
- "hhcomp": 0.62225,
- "depcare": 0.11325,
- "sua": 0.227
+ "bucket": {
+  "arithmetic": 1.0,
+  "earned": 0.71,
+  "unearned": 0.749,
+  "shelter": 0.291,
+  "medical": 0.451,
+  "hhcomp": 0.603,
+  "depcare": 0.444,
+  "sua": 0.336
+ },
+ "dir_materialization": {
+  "arithmetic": {
+   "over": 1.0,
+   "under": 1.0,
+   "other": 1.0
+  },
+  "earned": {
+   "over": 0.708,
+   "under": 0.667,
+   "other": 0.715
+  },
+  "unearned": {
+   "over": 0.738,
+   "under": 0.727,
+   "other": 0.764
+  },
+  "shelter": {
+   "over": 0.178,
+   "under": 0.566,
+   "other": 0.356
+  },
+  "medical": {
+   "over": 0.352,
+   "under": 0.704,
+   "other": 0.453
+  },
+  "hhcomp": {
+   "over": 1.0,
+   "under": 0.461,
+   "other": 0.577
+  },
+  "depcare": {
+   "over": 0.329,
+   "under": 0.628,
+   "other": 0.542
+  },
+  "sua": {
+   "over": 0.259,
+   "under": 0.558,
+   "other": 0.343
+  }
+ },
+ "dir_weight": {
+  "arithmetic": {
+   "over": 1.0,
+   "under": 1.0,
+   "other": 1.0
+  },
+  "earned": {
+   "over": 1.002,
+   "under": 1.065,
+   "other": 0.992
+  },
+  "unearned": {
+   "over": 1.015,
+   "under": 1.03,
+   "other": 0.98
+  },
+  "shelter": {
+   "over": 1.638,
+   "under": 0.515,
+   "other": 0.819
+  },
+  "medical": {
+   "over": 1.283,
+   "under": 0.641,
+   "other": 0.995
+  },
+  "hhcomp": {
+   "over": 0.603,
+   "under": 1.308,
+   "other": 1.045
+  },
+  "depcare": {
+   "over": 1.35,
+   "under": 0.707,
+   "other": 0.819
+  },
+  "sua": {
+   "over": 1.3,
+   "under": 0.603,
+   "other": 0.98
+  }
+ },
+ "_note": "bucket: P(materialize|bucket) under the direction-weighted nature draw. dir_weight: per-(bucket, direction-class) importance weights reproducing the empirical nature mix."
 }

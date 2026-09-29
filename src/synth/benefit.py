@@ -27,7 +27,10 @@ def compute(facts: dict) -> dict:
     net = max(0.0, adjusted - excess_shelter)
     benefit = params.max_allotment(size) - 0.30 * net
     benefit = max(0.0, benefit)
-    if size <= 2 and benefit > 0:
+    # Minimum benefit: every *eligible* 1-2 person household gets at least
+    # $23 (FY2024). The sampler screens for eligibility, so this applies
+    # unconditionally here — it is what keeps $0 cases out of the frame.
+    if size <= 2:
         benefit = max(benefit, params.MINIMUM_BENEFIT)
     benefit = math.floor(benefit)
 

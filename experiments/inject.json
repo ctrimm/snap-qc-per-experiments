@@ -1,0 +1,15 @@
+{
+ "earner": 0.6178,
+ "no_earner": 0.4165,
+ "p_over_97_resolve": {
+  "arithmetic": 0.4857,
+  "depcare": 0.5313,
+  "earned": 0.6078,
+  "hhcomp": 0.3749,
+  "medical": 0.5589,
+  "shelter": 0.5427,
+  "sua": 0.6832,
+  "unearned": 0.6742
+ },
+ "_note": "Injection coin per earner status, corrected for retry-loop attrition so realized P(error|status) matches FY2024 QC. p_over_97_resolve corrects the 97 direction coin for directional materialization asymmetry (shelter cap)."
+}

@@ -28,9 +28,16 @@ transfer, LM eval) every experiment here must move.
 |---|---|---|---|
 | 1 | [Synthetic generator calibration](experiments/exp1_calibration.md) | Calibration | Partially held — taxonomy close, over-issuances underproduced |
 | 2 | [Synthetic→real transfer test](experiments/exp2_transfer.md) | Transfer | Held, with headroom — AUC 0.656; element acc 0.422 vs 0.614 real→real |
+| 3 | [Calibration v2: income-variance direction fix](experiments/exp3_calibration_v2.md) | Calibration | Held — was a sign bug; finding mix L1 0.30→0.19 |
+| 5 | [Calibration v3: omission-coherence fix](experiments/exp5_omission_coherence.md) | Calibration | Partially held — under moved 9.4%→10.9%; problem is *who* gets errors |
+| 6 | [Calibration v4: eligibility-screen injection](experiments/exp6_eligibility_screen.md) | Calibration | Held decisively — finding mix L1 = 0.009; realized error 0.396 vs 0.397 |
+| 6b | [Calibration methodology: attrition-corrected injection](experiments/exp6_calibration_methodology.md) | Calibration | Load-bearing — phase-1 coins, stochastic-97 coins, two-level effectiveness |
+| 4 | [Transfer v2: richer shared features](experiments/exp4_transfer_v2.md) | Transfer | Held, with a surprise — binary macroF1 0.616 (prior fixed); element v1 0.493 beats v2 0.451 (derived features embed generator assumptions) |
 
-Recommended next run: richer shared features for exp2 (close the 0.422→0.614
-gap), in parallel with exp1's over-issuance calibration fix.
+Recommended next run: exp 7 — per-bucket persistence in the retry loop (draw
+the bucket once from the empirical mix, retry natures within it) to kill the
+hhcomp/arithmetic selection bias now binding element transfer. Then
+senior-conditioned bucket mixes for medical and the SUA mechanics rework.
 
 ## Data
 
