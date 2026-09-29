@@ -21,9 +21,13 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--max-attempts", type=int, default=12,
                     help="retry budget per error case in errors.inject")
-    ap.add_argument("--persistent-buckets", action="store_true",
-                    help="exp7: draw each variance's bucket once and retry "
-                         "natures within it (kills the cross-bucket retry lottery)")
+    ap.add_argument("--persistent-buckets", action=argparse.BooleanOptionalAction,
+                    default=True,
+                    help="exp7 (default on): draw each variance's bucket once "
+                         "and apply the nature once — recorded if the benefit "
+                         "moves, else dropped (hybrid single-draw-and-drop; "
+                         "kills the cross-bucket retry lottery). "
+                         "--no-persistent-buckets restores the old retry loop.")
     args = ap.parse_args()
 
     dist = load_dist(args.dist)
