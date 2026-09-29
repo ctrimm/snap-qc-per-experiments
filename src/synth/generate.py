@@ -9,7 +9,7 @@ import random
 import sys
 from pathlib import Path
 
-from . import errors, household
+from . import dollar_mech, errors, household
 from .distutil import load_dist
 
 
@@ -37,17 +37,35 @@ def main():
                     help="exp24: use the old scalar materialization "
                          "correction instead of the re-measured "
                          "per-(bucket,stratum) matrix (persistent mode).")
+    # exp31: adopt exp26's dollar-error mechanisms as a generator default.
+    # Verdict (experiments/exp31_adopt_dollar.md): ADOPTED — the bars hold
+    # (finding L1 0.019, share <=$56 0.69, p90 inversion fixed, element L1
+    # at parity with baseline, transfer macroF1 cost -0.004). The flag
+    # remains as the escape hatch for reproducing the stock injector.
+    ap.add_argument("--dollar-mechanisms", action=argparse.BooleanOptionalAction,
+                    default=True,
+                    help="exp31: enable the dollar-error mechanisms "
+                         "(timing-97 small-error mode, whole-unit "
+                         "ineligibility recorded as earned/35, coarse-under "
+                         "rescale) with the exp26 recalibration baked in as "
+                         "module defaults (no separate fitting step). "
+                         "--no-dollar-mechanisms restores the stock injector.")
     args = ap.parse_args()
 
     dist = load_dist(args.dist)
+    if args.dollar_mechanisms:
+        dist = dollar_mech.enable_adopted(dist)
+        injector = dollar_mech.inject_case
+    else:
+        injector = errors.inject
 
     rng = random.Random(args.seed)
     with open(args.out, "w") as out:
         for _ in range(args.n):
             facts = household.sample_household(rng)
-            case = errors.inject(facts, rng, dist, max_attempts=args.max_attempts,
-                                 persistent_buckets=args.persistent_buckets,
-                                 legacy_materialization=args.legacy_materialization)
+            case = injector(facts, rng, dist, max_attempts=args.max_attempts,
+                            persistent_buckets=args.persistent_buckets,
+                            legacy_materialization=args.legacy_materialization)
             out.write(json.dumps(case) + "\n")
     print(f"wrote {args.n} cases -> {args.out}", file=sys.stderr)
 

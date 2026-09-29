@@ -422,3 +422,176 @@ def disable():
 def is_enabled():
     """True if the mechanism patches are currently installed."""
     return _orig_income is not None
+
+
+# --------------------------------------------------------------------------
+# exp31: adopted calibration -- the exp26 recalibration as module defaults
+# --------------------------------------------------------------------------
+# The mechanisms collapse without the recalibration: enable() alone (no
+# fitted coins / scales / effectiveness) gives finding L1 0.103 (exp31
+# measured). These constants are the exp26 recalibration re-fitted on the
+# CURRENT generator state -- exp24 draw defaults (ZERO_BASE_WEIGHT={} +
+# exp29 re-measured MATERIALIZATION_MATRIX), exp29 sampler (BASE_POSITIVITY),
+# exp29 97-coins, exp28 kid-weight/57-weights -- seed set A (exp26's exact
+# seeds: pre-pass 5000, eff 11, 97-cal 21, boost 31). A re-fit on seed set
+# B (5001/13/23/33) agrees within tolerance: boosts +/-0.01, phase-1 coins
+# +/-0.025, 97 coins +/-0.011, unit-bucket factor +/-0.002, V +/-1.2%; the
+# noisiest fitted values are the nature-44 under scale (0.641 vs 0.759) and
+# rare-bucket dir_weight cells (medical/depcare/sua, up to 0.141). Full
+# comparison: experiments/exp31_adopt_dollar.md.
+#
+# BRITTLENESS (measured): these are fitted to one generator state. Exp26's
+# published values (fitted before exp29's matrix re-measurement) differ from
+# the re-fit above (boosts 0.686->0.664, phase-1 coins ~0.02), so if the draw
+# defaults, the materialization matrix, or the sampler change, re-run
+# `python3 experiments/exp31_adopt_dollar.py capture` and re-render this
+# section with experiments/exp31_render_constants.py. Design (b) -- persisted
+# fitted values -- was chosen over adaptive re-fitting inside enable() on
+# measured evidence: the recalibration needs ~150k case-generations per
+# invocation, and its measurement noise would make seeded runs
+# non-reproducible.
+# mechanism-4 coarse-under scales (real_median / synth_median, clipped [0.25, 1.0])
+EXP31_UNDER_SCALE = {44: 0.641, 57: 0.301, 52: 0.587}
+
+# recorded variances per case in the mechanism-on pre-pass; feeds the
+# unit-bucket double-counting correction via apply_unit_bucket_correction
+# (re-derives the factor 0.8732 on the current dist)
+EXP31_VARIANCES_PER_CASE = 0.39
+
+# per-bucket effectiveness re-measured AFTER mechanisms 1+4 were installed
+# (the rescale changes materialization rates -- exp23's subtlety), with the
+# direction-balance boosts (over 0.663816, under 0.989421) folded into dir_weight
+EXP31_EFFECTIVENESS = {
+ "bucket": {
+  "arithmetic": 1.0,
+  "earned": 0.723,
+  "unearned": 0.558,
+  "shelter": 0.33,
+  "medical": 0.423,
+  "hhcomp": 0.713,
+  "depcare": 0.633,
+  "sua": 0.307
+ },
+ "dir_materialization": {
+  "arithmetic": {
+   "over": 1.0,
+   "under": 1.0,
+   "other": 1.0
+  },
+  "earned": {
+   "over": 0.768,
+   "under": 0.752,
+   "other": 0.7
+  },
+  "unearned": {
+   "over": 0.624,
+   "under": 0.596,
+   "other": 0.506
+  },
+  "shelter": {
+   "over": 0.323,
+   "under": 0.468,
+   "other": 0.305
+  },
+  "medical": {
+   "over": 0.41,
+   "under": 0.456,
+   "other": 0.417
+  },
+  "hhcomp": {
+   "over": 1.0,
+   "under": 0.629,
+   "other": 0.661
+  },
+  "depcare": {
+   "over": 0.481,
+   "under": 0.791,
+   "other": 0.831
+  },
+  "sua": {
+   "over": 0.317,
+   "under": 0.501,
+   "other": 0.252
+  }
+ },
+ "dir_weight": {
+  "arithmetic": {
+   "over": 0.6638,
+   "under": 0.9894,
+   "other": 1.0
+  },
+  "earned": {
+   "over": 0.6247,
+   "under": 0.9508,
+   "other": 1.033
+  },
+  "unearned": {
+   "over": 0.5941,
+   "under": 0.9251,
+   "other": 1.102
+  },
+  "shelter": {
+   "over": 0.6791,
+   "under": 0.6975,
+   "other": 1.083
+  },
+  "medical": {
+   "over": 0.6857,
+   "under": 0.9182,
+   "other": 1.016
+  },
+  "hhcomp": {
+   "over": 0.4733,
+   "under": 1.123,
+   "other": 1.08
+  },
+  "depcare": {
+   "over": 0.8736,
+   "under": 0.7925,
+   "other": 0.762
+  },
+  "sua": {
+   "over": 0.6426,
+   "under": 0.6055,
+   "other": 1.216
+  }
+ }
+}
+
+# 97-resolution coins per bucket (phase-2 refit under the mechanisms)
+EXP31_P97_COINS = {'arithmetic': 0.4857, 'depcare': 0.5314, 'earned': 0.6142, 'hhcomp': 0.3852, 'medical': 0.5978, 'shelter': 0.3944, 'sua': 0.5302, 'unearned': 0.6862}
+
+# direction-aware phase-1 coins per stratum (empirical minus the unit mass,
+# renormalized to the residual pool, over per-stratum P(materialize|inject))
+EXP31_PHASE1_COINS = {'earner': 0.9131, 'no_earner': 0.8573}
+
+def adopted_dist(dist):
+    """Return a dist copy with the exp31 adopted calibration baked in.
+
+    In-memory only -- the committed dist.json/eff.json/inject.json are never
+    rewritten. Applies: the re-measured effectiveness (direction-balance
+    boosts already folded into dir_weight), the unit-bucket double-counting
+    correction (the whole-unit mass already lives in the empirical earned
+    mix, so it is subtracted from the earned draw weight first), the refit
+    97-resolution coins, and the direction-aware phase-1 coins.
+    """
+    d = copy.deepcopy(dist)
+    d["effectiveness"] = copy.deepcopy(EXP31_EFFECTIVENESS)
+    d = apply_unit_bucket_correction(
+        d, P_UNIT_DEFAULT, EXP31_VARIANCES_PER_CASE)
+    inj = dict(d["injection_rate"])
+    inj["p_over_97_resolve"] = dict(EXP31_P97_COINS)
+    inj["persistent"] = dict(EXP31_PHASE1_COINS)
+    d["injection_rate"] = inj
+    return d
+
+
+def enable_adopted(dist):
+    """Install the mechanism patches with the exp31 adopted config and return
+    the calibrated dist copy -- the single entry point for the
+    --dollar-mechanisms generator default. No separate fitting step: the
+    exp26 recalibration is baked in as module defaults (see above).
+    Idempotent like enable(); pair with disable() to restore stock behavior.
+    """
+    enable(under_scale=EXP31_UNDER_SCALE)
+    return adopted_dist(dist)

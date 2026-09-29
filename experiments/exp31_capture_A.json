@@ -1,0 +1,140 @@
+{
+ "under_scales": {
+  "44": 0.641,
+  "57": 0.301,
+  "52": 0.587
+ },
+ "v_per_case": 0.389967,
+ "unit_factor": 0.8732,
+ "eff_new": {
+  "bucket": {
+   "arithmetic": 1.0,
+   "earned": 0.723,
+   "unearned": 0.558,
+   "shelter": 0.33,
+   "medical": 0.423,
+   "hhcomp": 0.713,
+   "depcare": 0.633,
+   "sua": 0.307
+  },
+  "dir_materialization": {
+   "arithmetic": {
+    "over": 1.0,
+    "under": 1.0,
+    "other": 1.0
+   },
+   "earned": {
+    "over": 0.768,
+    "under": 0.752,
+    "other": 0.7
+   },
+   "unearned": {
+    "over": 0.624,
+    "under": 0.596,
+    "other": 0.506
+   },
+   "shelter": {
+    "over": 0.323,
+    "under": 0.468,
+    "other": 0.305
+   },
+   "medical": {
+    "over": 0.41,
+    "under": 0.456,
+    "other": 0.417
+   },
+   "hhcomp": {
+    "over": 1.0,
+    "under": 0.629,
+    "other": 0.661
+   },
+   "depcare": {
+    "over": 0.481,
+    "under": 0.791,
+    "other": 0.831
+   },
+   "sua": {
+    "over": 0.317,
+    "under": 0.501,
+    "other": 0.252
+   }
+  },
+  "dir_weight": {
+   "arithmetic": {
+    "over": 1.0,
+    "under": 1.0,
+    "other": 1.0
+   },
+   "earned": {
+    "over": 0.941,
+    "under": 0.961,
+    "other": 1.033
+   },
+   "unearned": {
+    "over": 0.895,
+    "under": 0.935,
+    "other": 1.102
+   },
+   "shelter": {
+    "over": 1.023,
+    "under": 0.705,
+    "other": 1.083
+   },
+   "medical": {
+    "over": 1.033,
+    "under": 0.928,
+    "other": 1.016
+   },
+   "hhcomp": {
+    "over": 0.713,
+    "under": 1.135,
+    "other": 1.08
+   },
+   "depcare": {
+    "over": 1.316,
+    "under": 0.801,
+    "other": 0.762
+   },
+   "sua": {
+    "over": 0.968,
+    "under": 0.612,
+    "other": 1.216
+   }
+  }
+ },
+ "coins97": {
+  "arithmetic": 0.4857,
+  "depcare": 0.5314,
+  "earned": 0.6142,
+  "hhcomp": 0.3852,
+  "medical": 0.5978,
+  "shelter": 0.3944,
+  "sua": 0.5302,
+  "unearned": 0.6862
+ },
+ "boosts": {
+  "over": 0.663816,
+  "under": 0.989421
+ },
+ "residual_final": {
+  "n": 9868,
+  "over": 0.268646,
+  "under": 0.173895,
+  "m": {
+   "earner": 0.64259,
+   "no_earner": 0.36826
+  },
+  "over_s": {
+   "earner": 0.424027,
+   "no_earner": 0.210951
+  },
+  "under_s": {
+   "earner": 0.218563,
+   "no_earner": 0.15731
+  }
+ },
+ "phase1_coins": {
+  "earner": 0.9131,
+  "no_earner": 0.8573
+ }
+}

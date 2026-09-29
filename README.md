@@ -63,6 +63,7 @@ transfer, LM eval) every experiment here must move.
 | 28 | [Shares-game residuals](experiments/exp28_shares_game.md) | Calibration | Partially held — nature-57 1.16x→1.03x (weights re-measured under corrected draw), depcare 0.44x→0.89x (kid-gate dilution fix); medical stuck 0.55x (FSNDIS mis-slicing, blocked on sampler senior-rate fix) |
 | 29 | [Sampler base-positivity gaps](experiments/exp29_sampler_positivity.md) | Calibration | Held — worst |real−synth| 0.009 per stratum; finding L1 0.026; materialization matrix + 97-coins re-derived for the new sampler |
 | 30 | [QC-variance eval pilot](experiments/exp30_eval_pilot.md) | LM gate (prep) | Package delivered — 1,400 frozen items, scorer + bootstrap gate, Mac Studio runbook; dummy baselines green; LM discrimination pending the Mac Studio run |
+| 31 | [Adopt dollar mechanisms as default](experiments/exp31_adopt_dollar.md) | Calibration + Transfer | Adopted — finding L1 0.019, share ≤$56 0.69, p90 inversion fixed; `--dollar-mechanisms` default on; recalibration baked into the module (seed-stable); transfer macroF1 cost −0.003 (acceptable) |
 | 33 | [State-level heterogeneity](experiments/exp33_state_heterogeneity.md) | Calibration | Held — state payment error rates span 2.39% (SD) to 17.64% (DC), rankings persistent; variance lives in error size, not frequency; state dimension warranted via per-state error-rate offsets fit from microdata |
 | 34 | [Temporal drift FY2020–2024](experiments/exp34_temporal_drift.md) | Calibration | Partially held — finding mix + dollar scale genuinely drift (error rate 0.346→0.397); the big FY2024 nature/cause shifts are codebook changes, not behavior; year-conditioning warranted but must not launder new conventions |
 | 35 | [Discriminator diagnostic](experiments/exp35_discriminator_diagnostic.md) | Calibration | Held emphatically — synth-vs-real GBM AUC 0.981; shelter deduction is the biggest leak (shuffling it drops AUC 0.30); even "correct" cases separate at 0.974 |
@@ -74,13 +75,12 @@ transfer, LM eval) every experiment here must move.
 | 41 | [Policy-QA bridge](experiments/exp41_policy_qa_bridge.md) | LM gate (prep) | Held — benefit calculator scores 21/22 (20/20 in-scope) as a QA oracle; found the $23-minimum eligibility-screen bug; child-support deduction out-of-scope |
 | 42 | [Depcare/medical deep dive](experiments/exp42_depcare_medical_deepdive.md) | Calibration | Held — medical residual is the medexp>0 cell under-drawn 2.34x (projection →1.00x); depcare needs kids×earner interaction (projection →0.83x); nature-57 over-drawn 4–7x |
 
-Recommended next run: adopt exp26's dollar mechanisms as a generator default (bake the
-recalibration — earned-income zeroing, unit-mass subtraction, direction-aware phase-1
-coin — into the module, not just the flag), then re-baseline calibration + transfer.
-Remaining residuals: medical 0.57x (needs the sampler senior-rate fix 36.2%→49.6% before
-the re-sliced mixes from exp28 can land), exp27's M1/M2 direction recalibration,
-52-under median overshoot. Run exp30's pilot on the Mac Studio for the first LM-gate
-data point, then the human label audit.
+Recommended next run: exp32 (medical senior-rate sampler fix 36.2%→49.6%, then re-trial
+exp28's re-sliced mixes — the path to medical ≥0.75x). Then: exp27's M1/M2 direction
+recalibration for earned; re-derive the classifier-training recipe on the adopted
+defaults (arm-(b) F1 redistribution); run exp30's pilot on the Mac Studio for the first
+LM-gate data point, then the human label audit. Re-fit dollar constants on any future
+draw/matrix/sampler change (procedure in exp31).
 
 Second-coordinator findings to fold in: prototype state-conditioned error-rate offsets
 (exp33); add a `--year` knob with per-FY finding/direction/dollar slices, nature/cause
