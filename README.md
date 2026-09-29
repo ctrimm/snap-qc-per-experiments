@@ -93,6 +93,17 @@ microdata-implied substance rate, not the published series (exp40); use exp41's
 explicit scope manifest (exp41/exp42 follow-ups: medical medexp-conditioned draw,
 depcare kid×earner strata).
 
+## PA experiment index
+
+Pennsylvania POC track (STATE=42, n=3,268 FY2020–2024). Files named `paN_*`;
+kept separate from the main index per project convention.
+
+| # | Experiment | Gate | Verdict |
+|---|---|---|---|
+| PA3 | [PA error anatomy](experiments/pa3_pa_anatomy.md) | Calibration | Held — shelter deduction errors ~2x national (omitted 2.30x, included 1.95x), medical-included 1.93x, newly-employed wages 1.51x ($258 median); computation errors 0.12x national corroborate the clean-engine finding; PA codes cause "Other" 3.5x national |
+
+In progress: PA1 (PA-conditioned generator), PA2 (PA-filtered transfer).
+
 ## Data
 
 Real QC public-use files (FY2020–2024, `~/workspace/snap-qc-data/`) are
