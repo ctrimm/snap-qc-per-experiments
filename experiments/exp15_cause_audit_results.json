@@ -1,0 +1,197 @@
+{
+  "real_by_bucket": {
+    "arithmetic": {
+      "agency": 0.7956,
+      "client": 0.0443,
+      "other": 0.1108,
+      "unknown": 0.0493
+    },
+    "assets": {
+      "agency": 0.1429,
+      "client": 0.5714,
+      "other": 0.2857
+    },
+    "childsupport": {
+      "agency": 0.6033,
+      "client": 0.0785,
+      "other": 0.2231,
+      "unknown": 0.095
+    },
+    "depcare": {
+      "agency": 0.5065,
+      "client": 0.2208,
+      "other": 0.1844,
+      "unknown": 0.0883
+    },
+    "earned": {
+      "agency": 0.3038,
+      "client": 0.2693,
+      "other": 0.2885,
+      "unknown": 0.1384
+    },
+    "hhcomp": {
+      "agency": 0.4717,
+      "client": 0.4184,
+      "other": 0.0824,
+      "unknown": 0.0275
+    },
+    "income_total": {
+      "agency": 0.3766,
+      "client": 0.3701,
+      "other": 0.2338,
+      "unknown": 0.0195
+    },
+    "medical": {
+      "agency": 0.5114,
+      "client": 0.0672,
+      "other": 0.2879,
+      "unknown": 0.1335
+    },
+    "other": {
+      "agency": 0.7143,
+      "client": 0.1667,
+      "other": 0.102,
+      "unknown": 0.017
+    },
+    "reporting": {
+      "agency": 0.4722,
+      "client": 0.1389,
+      "other": 0.3611,
+      "unknown": 0.0278
+    },
+    "shelter": {
+      "agency": 0.2326,
+      "client": 0.2983,
+      "other": 0.3146,
+      "unknown": 0.1545
+    },
+    "standard": {
+      "agency": 0.8089,
+      "client": 0.0446,
+      "other": 0.1019,
+      "unknown": 0.0446
+    },
+    "sua": {
+      "agency": 0.5019,
+      "client": 0.2642,
+      "other": 0.1637,
+      "unknown": 0.0702
+    },
+    "unearned": {
+      "agency": 0.4442,
+      "client": 0.195,
+      "other": 0.2426,
+      "unknown": 0.1183
+    }
+  },
+  "real_by_code": {
+    "1": 0.1414,
+    "10": 0.069,
+    "12": 0.1227,
+    "14": 0.0357,
+    "15": 0.0195,
+    "16": 0.0476,
+    "17": 0.0115,
+    "18": 0.0174,
+    "19": 0.0389,
+    "2": 0.058,
+    "20": 0.0149,
+    "21": 0.0015,
+    "22": 0.038,
+    "23": 0.0003,
+    "24": 0.0005,
+    "25": 0.0005,
+    "26": 0.273,
+    "3": 0.0222,
+    "4": 0.0608,
+    "7": 0.0019,
+    "8": 0.0025,
+    "99": 0.0222
+  },
+  "real_n": 23726,
+  "real_overall": {
+    "agency": 0.366,
+    "client": 0.2472,
+    "other": 0.2622,
+    "unknown": 0.1246
+  },
+  "synth_by_bucket": {
+    "arithmetic": {
+      "agency": 0.8125,
+      "client": 0.0664,
+      "other": 0.1211
+    },
+    "assets": {},
+    "childsupport": {},
+    "depcare": {
+      "agency": 0.25,
+      "client": 0.25,
+      "other": 0.5
+    },
+    "earned": {
+      "agency": 0.3426,
+      "client": 0.3092,
+      "other": 0.3482
+    },
+    "hhcomp": {
+      "agency": 0.5057,
+      "client": 0.4371,
+      "other": 0.0571
+    },
+    "income_total": {},
+    "medical": {
+      "agency": 0.6981,
+      "client": 0.0566,
+      "other": 0.2453
+    },
+    "other": {},
+    "reporting": {},
+    "shelter": {
+      "agency": 0.2886,
+      "client": 0.3461,
+      "other": 0.3653
+    },
+    "standard": {},
+    "sua": {
+      "agency": 0.5514,
+      "client": 0.2608,
+      "other": 0.1878
+    },
+    "unearned": {
+      "agency": 0.5127,
+      "client": 0.2174,
+      "other": 0.27
+    }
+  },
+  "synth_by_code": {
+    "1": 0.1464,
+    "10": 0.065,
+    "12": 0.1226,
+    "14": 0.0333,
+    "15": 0.019,
+    "16": 0.0457,
+    "17": 0.0121,
+    "18": 0.0163,
+    "19": 0.0397,
+    "2": 0.0606,
+    "20": 0.0172,
+    "21": 0.0017,
+    "22": 0.0384,
+    "23": 0.0003,
+    "24": 0.0008,
+    "25": 0.0006,
+    "26": 0.2735,
+    "3": 0.0221,
+    "4": 0.0601,
+    "7": 0.0023,
+    "8": 0.0028,
+    "99": 0.0194
+  },
+  "synth_n": 8614,
+  "synth_overall": {
+    "agency": 0.4128,
+    "client": 0.2892,
+    "other": 0.298,
+    "unknown": 0
+  }
+}

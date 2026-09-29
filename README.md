@@ -39,12 +39,17 @@ transfer, LM eval) every experiment here must move.
 | 4b | [Transfer v3: the persistent generator](experiments/exp4_transfer_v3.md) | Transfer | Did not hold — element acc fell 0.493→0.442 on the faithful mix (class starvation); binary improved 0.616→0.639. Lesson: calibration fidelity ≠ transfer utility; rebalance classes when training |
 | 7 | [Per-bucket persistence: hybrid single-draw-and-drop](experiments/exp7_per_bucket_persistence.md) | Calibration | Held — hhcomp 2.86x→1.27x, arithmetic 3.47x→1.42x; finding L1 0.010→0.044 (within-direction 57 residual) |
 | 8a | [RAWBEN validation for rules recovery](experiments/exp8a_rawben_validation.md) | Rules recovery | Held with filters — AMTERR == |FSBEN−RAWBEN| in 85% exact / 92% within $1; RAWBEN is the issued benefit; drop recoupment-type rows for fitting |
+| 9 | [Class-balanced element transfer](experiments/exp9_class_balanced_transfer.md) | Transfer | Did not hold — retry-loop + balanced (0.458/0.274) beats persistent + balanced (0.443/0.252); mechanism is distinct example counts, not priors. Doctrine: train classifiers on retry-loop + balancing, keep persistent generator for the data product |
+| 10 | [Statutory parameter refresh (research)](experiments/exp10_statutory_parameter_refresh.md) | Calibration | Partially falsified — benefit math matches FY2024 statute exactly; income-eligibility limits ~6% too high (later-year table), a frame-contamination blindspot. Apply step staged |
+| 15 | [Cause-mix calibration audit](experiments/exp15_cause_audit.md) | Calibration | Held — conditional cause mix L1 = 0.014 (agency/client/other track at ~1.0x); only gap is 12.5% blank causes on nature 97, a labeling rule not yet implemented |
+| 16 | [Dollar-error distribution re-check](experiments/exp16_dollar_error.md) | Calibration | Did not hold — dollar marginal drifted: p50 $31 real vs $74 synth, low tail starved (69% ≤ $56 real vs 37% synth), over/under asymmetry inverted, extreme over-tail thin. Corruption mechanics too coarse |
+| 17 | [QC-variance eval set design](experiments/exp17_qc_variance_eval_design.md) | LM gate (prep) | Design delivered — 1,200 items, 6 tasks, stratified off the natural prior, composite scoring vs dummy/base/ceiling; 7 open questions for reviewer judgment |
 
-Recommended next run: element transfer with class-balanced training
-(oversample rare buckets / class_weight="balanced") on the persistent
-generator — does the cleaner feature→bucket mapping beat the old generator
-once starvation is removed? Then per-nature importance weights for the 57
-residual and senior-conditioned bucket mixes for medical.
+Recommended next run: apply the exp10 statutory income-limit corrections
+(frame contamination fix), recalibrate, and re-check the calibration metrics;
+implement exp15's blank-cause rule for nature 97. Then the exp16 dollar-error
+mechanisms (small-error mode, whole-unit ineligibility) and senior/kid-
+conditioned bucket mixes for medical/depcare.
 
 ## Data
 
