@@ -45,6 +45,22 @@ BASE_POSITIVITY = {
 # Patching BASE_POSITIVITY to these values reproduces the old sampler
 # exactly (same rng call order).
 
+# exp32: elderly/disability draw rates refit so POST income-screen rates match
+# the real FY2024 QC per-size aggregates (senior = FSNELDER>0 | SSI1-8>0 |
+# FSNDIS>0; real P(elderly)=0.309, P(disabled|not elderly)=0.270,
+# P(senior)=0.496). Both drivers were off: the senior-age draw (size-1
+# 0.28->0.354, size-2 0.08->0.169, size-3+ 0.08->0.025) and the disability flag
+# (0.12 flat -> 0.152/0.100/0.101 by size group). Values are PRE-screen: the
+# income screen inflates senior rates (seniors skip the gross test), so these
+# were tuned by fixed-point simulation to land the post-screen targets
+# (see experiments/exp32_medical_senior.py). Size groups: 1 / 2 / 3+.
+_P_ELDERLY_BY_SIZE = {1: 0.3538, 2: 0.1694, 3: 0.0254}
+_P_DISABLED_BY_SIZE = {1: 0.1515, 2: 0.0995, 3: 0.1008}
+# Legacy (pre-exp32) rates, for in-process BEFORE comparisons:
+#   elderly 0.28 if size==1 else 0.08; disabled 0.12 flat.
+# Patching the two tables to {1:0.28,2:0.08,3:0.08} / {1:0.12,2:0.12,3:0.12}
+# reproduces the old sampler exactly (same rng call order).
+
 
 def _income_eligible(facts: dict) -> bool:
     size = facts["hh_size"]
@@ -65,10 +81,10 @@ def sample_household(rng: random.Random) -> dict:
 def _sample_unscreened(rng: random.Random) -> dict:
     size = rng.choices([1, 2, 3, 4, 5, 6], weights=[0.45, 0.25, 0.14, 0.09, 0.04, 0.03])[0]
 
-    elderly = rng.random() < (0.28 if size == 1 else 0.08)
-    disabled = (not elderly) and rng.random() < 0.12
+    _szg = 1 if size == 1 else (2 if size == 2 else 3)
+    elderly = rng.random() < _P_ELDERLY_BY_SIZE[_szg]
+    disabled = (not elderly) and rng.random() < _P_DISABLED_BY_SIZE[_szg]
     senior_or_disabled = elderly or disabled
-
     n_earners = 0
     earned = 0.0
     # P(any earnings) tuned so post-screen earned>0 ~= 0.27 (real QC FY2024).

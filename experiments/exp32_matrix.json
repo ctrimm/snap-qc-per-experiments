@@ -1,0 +1,103 @@
+{
+ "matrix": {
+  "earned": {
+   "no_earner_nonsenior": 0.513344,
+   "earner_nonsenior": 0.756909,
+   "no_earner_senior": 0.663594,
+   "earner_senior": 0.694981
+  },
+  "shelter": {
+   "no_earner_nonsenior": 0.115249,
+   "earner_nonsenior": 0.394621,
+   "no_earner_senior": 0.456559,
+   "earner_senior": 0.551977
+  },
+  "unearned": {
+   "no_earner_nonsenior": 0.491616,
+   "earner_nonsenior": 0.855385,
+   "no_earner_senior": 0.546749,
+   "earner_senior": 0.731286
+  },
+  "sua": {
+   "no_earner_nonsenior": 0.122154,
+   "earner_nonsenior": 0.432271,
+   "no_earner_senior": 0.467485,
+   "earner_senior": 0.688995
+  },
+  "medical": {
+   "no_earner_nonsenior": 0.02,
+   "earner_nonsenior": 0.02,
+   "no_earner_senior": 0.456311,
+   "earner_senior": 0.860465
+  },
+  "hhcomp": {
+   "no_earner_nonsenior": 0.710544,
+   "earner_nonsenior": 0.692101,
+   "no_earner_senior": 0.45339,
+   "earner_senior": 0.272727
+  },
+  "arithmetic": {
+   "no_earner_nonsenior": 1.0,
+   "earner_nonsenior": 1.0,
+   "no_earner_senior": 1.0,
+   "earner_senior": 1.0
+  },
+  "depcare": {
+   "no_earner_nonsenior": 0.370968,
+   "earner_nonsenior": 0.762808,
+   "no_earner_senior": 0.666667,
+   "earner_senior": 0.5
+  }
+ },
+ "draws": {
+  "earned": {
+   "no_earner_nonsenior": 1274,
+   "earner_nonsenior": 16862,
+   "no_earner_senior": 217,
+   "earner_senior": 1036
+  },
+  "shelter": {
+   "no_earner_nonsenior": 25319,
+   "earner_nonsenior": 10263,
+   "no_earner_senior": 29212,
+   "earner_senior": 683
+  },
+  "unearned": {
+   "no_earner_nonsenior": 9721,
+   "earner_nonsenior": 3658,
+   "no_earner_senior": 13904,
+   "earner_senior": 521
+  },
+  "sua": {
+   "no_earner_nonsenior": 11289,
+   "earner_nonsenior": 3012,
+   "no_earner_senior": 6351,
+   "earner_senior": 189
+  },
+  "medical": {
+   "no_earner_nonsenior": 2381,
+   "earner_nonsenior": 110,
+   "no_earner_senior": 5253,
+   "earner_senior": 88
+  },
+  "hhcomp": {
+   "no_earner_nonsenior": 1451,
+   "earner_nonsenior": 1114,
+   "no_earner_senior": 708,
+   "earner_senior": 185
+  },
+  "arithmetic": {
+   "no_earner_nonsenior": 650,
+   "earner_nonsenior": 283,
+   "no_earner_senior": 485,
+   "earner_senior": 21
+  },
+  "depcare": {
+   "no_earner_nonsenior": 372,
+   "earner_nonsenior": 1581,
+   "no_earner_senior": 16,
+   "earner_senior": 20
+  }
+ },
+ "_note": "SUPERSEDED (see experiments/exp32_medical_senior.md): keep rates measured under senior-fix + dollar-mechanisms ON (150k, seed 11). The 18/32 raw shift vs the committed matrix is the dollar-mechanism effect (16/32 cells), not the senior-fix effect (6/32); the mechanism effect was already absorbed by exp31s effectiveness re-fit, so adopting this table double-counts and regresses depcare (0.96x -> 0.78x). Committed matrix kept. Raw measurement retained for the record."
+}

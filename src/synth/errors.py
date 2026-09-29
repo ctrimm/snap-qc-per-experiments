@@ -294,11 +294,12 @@ def _draw_nature(facts, bucket, dist, dir_w, rng):
 # so this is not double-counting). P_synth(kid | s) measured on the
 # committed sampler (20k, seed 7); re-measure if the sampler's kid rates
 # change.
+# exp32: re-measured P_synth(kid|s) under the senior-fix sampler (100k households, seed 5); the senior fix shifts the size mix within senior strata (see experiments/exp32_medical_senior.py).
 _DEPCARE_KID_WEIGHT = {
-    "no_earner_nonsenior": 1.929,
-    "earner_nonsenior": 1.953,
-    "no_earner_senior": 2.884,
-    "earner_senior": 3.318,
+    "no_earner_nonsenior": 1.808,
+    "earner_nonsenior": 1.843,
+    "no_earner_senior": 3.671,
+    "earner_senior": 4.391,
 }
 _NATURE_57_WEIGHT = {
     # 1 / materialization rate, re-measured in the persistent flow under
