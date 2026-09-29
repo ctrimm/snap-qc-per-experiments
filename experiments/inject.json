@@ -1,6 +1,6 @@
 {
- "earner": 0.6195,
- "no_earner": 0.3985,
+ "earner": 0.6188,
+ "no_earner": 0.3826,
  "p_over_97_resolve": {
   "arithmetic": 0.4857,
   "depcare": 0.5412,
@@ -13,8 +13,8 @@
  },
  "_note": "Injection coin per earner status, corrected for retry-loop attrition so realized P(error|status) matches FY2024 QC. p_over_97_resolve corrects the 97 direction coin for directional materialization asymmetry (shelter cap).",
  "persistent": {
-  "earner": 0.8169,
-  "no_earner": 0.7469
+  "earner": 0.8158,
+  "no_earner": 0.7506
  },
  "_note_persistent": "persistent: phase-1 coins recalibrated for exp7 persistent-bucket injection (different attrition profile: per-bucket keep rates). p_over_97_resolve is shared (mode-independent)."
 }

@@ -75,8 +75,23 @@ def _sample_unscreened(rng: random.Random) -> dict:
     if size > 2 and rng.random() < 0.07:
         depcare = rng.uniform(100, 650)
 
+    # n_kids from the empirical FY2024 distribution (exp12): depcare
+    # variances occur exclusively on kid households.
+    _KID_DIST = {
+        1: [(0, 0.98), (1, 0.02)],
+        2: [(0, 0.36), (1, 0.58), (2, 0.06)],
+        3: [(0, 0.04), (1, 0.23), (2, 0.67), (3, 0.06)],
+        4: [(0, 0.01), (1, 0.05), (2, 0.35), (3, 0.55), (4, 0.04)],
+        5: [(0, 0.005), (1, 0.01), (2, 0.07), (3, 0.42), (4, 0.46), (5, 0.03)],
+        6: [(1, 0.01), (2, 0.03), (3, 0.09), (4, 0.54), (5, 0.31), (6, 0.02)],
+    }
+    _kd = _KID_DIST[min(size, 6)]
+    _ks, _ws = zip(*_kd)
+    n_kids = rng.choices(_ks, weights=_ws)[0]
+
     return {
         "hh_size": size,
+        "n_kids": n_kids,
         "earned": round(earned, 2),
         "unearned": round(unearned, 2),
         "shelter": round(shelter, 2),

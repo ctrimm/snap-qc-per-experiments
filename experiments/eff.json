@@ -1,13 +1,13 @@
 {
  "bucket": {
   "arithmetic": 1.0,
-  "earned": 0.768,
-  "unearned": 0.734,
-  "shelter": 0.361,
-  "medical": 0.504,
-  "hhcomp": 0.58,
-  "depcare": 0.557,
-  "sua": 0.34
+  "earned": 0.725,
+  "unearned": 0.735,
+  "shelter": 0.325,
+  "medical": 0.491,
+  "hhcomp": 0.647,
+  "depcare": 0.525,
+  "sua": 0.322
  },
  "dir_materialization": {
   "arithmetic": {
@@ -16,39 +16,39 @@
    "other": 1.0
   },
   "earned": {
-   "over": 0.828,
-   "under": 0.719,
-   "other": 0.747
+   "over": 0.744,
+   "under": 0.755,
+   "other": 0.713
   },
   "unearned": {
-   "over": 0.773,
-   "under": 0.722,
-   "other": 0.707
+   "over": 0.761,
+   "under": 0.723,
+   "other": 0.718
   },
   "shelter": {
-   "over": 0.248,
-   "under": 0.647,
-   "other": 0.4
+   "over": 0.228,
+   "under": 0.633,
+   "other": 0.348
   },
   "medical": {
-   "over": 0.419,
-   "under": 0.675,
-   "other": 0.506
+   "over": 0.405,
+   "under": 0.621,
+   "other": 0.51
   },
   "hhcomp": {
    "over": 1.0,
-   "under": 0.474,
-   "other": 0.527
+   "under": 0.539,
+   "other": 0.598
   },
   "depcare": {
-   "over": 0.485,
-   "under": 0.598,
-   "other": 0.648
+   "over": 0.443,
+   "under": 0.611,
+   "other": 0.588
   },
   "sua": {
-   "over": 0.291,
-   "under": 0.67,
-   "other": 0.303
+   "over": 0.272,
+   "under": 0.651,
+   "other": 0.288
   }
  },
  "dir_weight": {
@@ -58,39 +58,39 @@
    "other": 1.0
   },
   "earned": {
-   "over": 0.927,
-   "under": 1.068,
-   "other": 1.028
+   "over": 0.974,
+   "under": 0.96,
+   "other": 1.017
   },
   "unearned": {
-   "over": 0.949,
-   "under": 1.016,
-   "other": 1.038
+   "over": 0.966,
+   "under": 1.017,
+   "other": 1.024
   },
   "shelter": {
-   "over": 1.455,
-   "under": 0.558,
-   "other": 0.902
+   "over": 1.425,
+   "under": 0.513,
+   "other": 0.933
   },
   "medical": {
-   "over": 1.202,
-   "under": 0.747,
-   "other": 0.995
+   "over": 1.212,
+   "under": 0.79,
+   "other": 0.963
   },
   "hhcomp": {
-   "over": 0.58,
-   "under": 1.225,
-   "other": 1.102
+   "over": 0.647,
+   "under": 1.199,
+   "other": 1.081
   },
   "depcare": {
-   "over": 1.149,
-   "under": 0.93,
-   "other": 0.859
+   "over": 1.183,
+   "under": 0.858,
+   "other": 0.892
   },
   "sua": {
-   "over": 1.17,
-   "under": 0.507,
-   "other": 1.122
+   "over": 1.183,
+   "under": 0.495,
+   "other": 1.119
   }
  },
  "_note": "bucket: P(materialize|bucket) under the direction-weighted nature draw. dir_weight: per-(bucket, direction-class) importance weights reproducing the empirical nature mix."

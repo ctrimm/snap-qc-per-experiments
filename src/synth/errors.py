@@ -204,8 +204,9 @@ ZERO_BASE_WEIGHT = {
     "earned": 0.018,
     "unearned": 0.091,
     "shelter": 0.227,
-    "medical": 0.087,
-    "depcare": 0.008,
+    # medical removed (exp11), depcare removed (exp12): the stratified
+    # empirical mixes already capture the real base-rate relationships;
+    # the extra suppression was double-counting.
 }
 
 _BASE_FIELD = {
@@ -219,16 +220,25 @@ def _applicable_buckets(facts: dict, dist: dict, rng: random.Random):
     amount is zero (a household with no earnings can still get an earned-
     income variance — an unreported source — but rarely does).
 
-    The bucket mix is conditional on earner status: real QC shows earned is
-    53% of variances on earner cases but ~0% otherwise (exp6 diagnosis); a
-    single marginal mix cannot reproduce both.
+    The bucket mix is conditional on earner status and senior/disabled status:
+    real QC shows medical is 0.109 of variances on (no-earner, senior) but
+    0.048 on (no-earner, non-senior) (exp11); a single marginal mix cannot
+    reproduce both.
     """
-    key = ("bucket_probs_given_earner" if facts.get("earned", 0) > 0
-           else "bucket_probs_given_no_earner")
+    earner = "earner" if facts.get("earned", 0) > 0 else "no_earner"
+    senior = "senior" if facts.get("senior_disabled") else "nonsenior"
+    key = f"bucket_probs_given_{earner}_{senior}"
+    if key not in dist:
+        # fall back to the earner-only mix, then the marginal
+        key = (f"bucket_probs_given_{earner}"
+               if f"bucket_probs_given_{earner}" in dist else "bucket_probs")
     mix = dist.get(key, dist["bucket_probs"])
     cands = {}
     for bucket, p in mix.items():
         w = 1.0
+        # depcare variances occur exclusively on kid households (exp12)
+        if bucket == "depcare" and facts.get("n_kids", 0) == 0:
+            continue
         field = _BASE_FIELD.get(bucket)
         if field is not None:
             base = facts[field]
@@ -257,9 +267,26 @@ def _draw_nature(facts, bucket, dist, dir_w, rng):
     bw = dir_w.get(bucket)
     if bw:
         nmix = {n: p * bw.get(_dirclass(int(n)), 1.0) for n, p in nmix.items()}
+    # Exp13: importance weights for nature 57 ("budgeted too little").
+    # Measured materialization m_{b,57} in the persistent flow is low
+    # (medical 0.28, shelter 0.47); upweight the draw by 1/m so the
+    # recorded rate matches the empirical mix.
+    w57 = _NATURE_57_WEIGHT.get(bucket, 1.0)
+    if w57 != 1.0:
+        nmix = {n: (p * w57 if int(n) == 57 else p) for n, p in nmix.items()}
     nature = int(_sample(rng, nmix))
     cause = int(_sample(rng, dist["cause_given_bucket"][bucket]))
     return nature, cause
+
+
+_NATURE_57_WEIGHT = {
+    # 1 / materialization rate, measured in persistent flow (exp13),
+    # scaled by 0.8 after the first pass overshot to 1.29x.
+    "medical": 2.86,
+    "shelter": 1.69,
+    "earned": 1.60,
+    "depcare": 1.00,
+}
 
 
 def _recorded_cause(nature, cause, rng):
