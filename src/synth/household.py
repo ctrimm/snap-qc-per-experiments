@@ -45,10 +45,13 @@ def _sample_unscreened(rng: random.Random) -> dict:
     n_earners = 0
     earned = 0.0
     # P(any earnings) tuned so post-screen earned>0 ~= 0.27 (real QC FY2024).
+    # Bumped 0.60 -> 0.65 when the FY2024 income limits were corrected
+    # (exp10): the lower screen rejects more earners, so more must be drawn
+    # pre-screen to hold the post-screen share.
+    p_earn = 0.65 if not senior_or_disabled else 0.13
     # Household earnings drawn size-dependent, fitted to real FSEARN medians
     # among earners (exp6): the old per-earner lognormal(7.45, .) was far too
     # high and most earners failed the new income screen.
-    p_earn = 0.60 if not senior_or_disabled else 0.13
     if rng.random() < p_earn:
         n_earners = 1 if rng.random() < 0.9 else 2
         mu = EARN_MU[min(size, 6)]

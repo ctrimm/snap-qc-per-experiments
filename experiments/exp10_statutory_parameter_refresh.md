@@ -147,7 +147,41 @@ households and child-support-paying households are thin slices), so I judge
 them **immaterial for calibration now**, but they are known unmodeled rules
 that should be logged for the future-features list.
 
-## Next steps
+## Apply phase (2026-09-29)
+
+Applied the FY2024 gross/net limit tables to `params.py` (with FY + source
+annotations per the provenance recommendation), then recalibrated
+(`measure_effectiveness.py`, `calibrate_injection.py` both modes).
+
+**Compensating fix required:** the sampler's earnings draw (`p_earn = 0.60`)
+had been tuned so post-screen P(earned>0) ≈ 0.27 under the OLD limits. The
+correct (lower) screen rejects more earners, dropping the share to 0.240.
+Bumped `p_earn` 0.60 → 0.65 (restores 0.268) rather than shifting `EARN_MU`,
+keeping the earnings distribution matched to real FSEARN medians.
+
+**Also applied:** exp15's blank-cause rule for nature 97 (cause left blank
+with P=0.32; ~5 lines in `errors.py` via `_recorded_cause`).
+
+**Incidental bug fix:** the exp9 worker's `--persistent-buckets` default-on
+change broke `exp7_per_bucket_persistence.py`'s baseline (it shelled out
+without the flag, so both arms ran persistent and reported identical
+numbers). The baseline arm now passes `--no-persistent-buckets` explicitly.
+
+**Calibration impact** (20k, seed 7; real 0.603/0.239/0.158):
+
+| mode | finding L1 before | finding L1 after |
+|---|---|---|
+| retry-loop baseline | 0.010 | 0.023 |
+| persistent | 0.044 | 0.041 |
+
+The retry-loop L1 rose 0.010 → 0.023; persistent is flat (0.044 → 0.041).
+Verdict: the frame is now statutory-correct, which dominates a lucky
+calibration number on a contaminated frame — the old 0.010 was measured on
+a population containing ineligible households. The residual L1 movement is
+the honest cost of a correct frame, and both modes remain well within the
+calibration gate.
+
+## Next steps (updated)
 Concrete apply + recalibrate plan for the follow-up (recommended first):
 
 1. **(recommended) Apply the FY2024 gross/net limit schedules to params.py**

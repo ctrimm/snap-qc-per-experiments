@@ -40,6 +40,8 @@ def gen(n, seed, persistent):
            "--max-attempts", "12", "--out", path]
     if persistent:
         cmd.append("--persistent-buckets")
+    else:
+        cmd.append("--no-persistent-buckets")
     subprocess.run(cmd, cwd=ROOT / "src", check=True, capture_output=True)
     return path
 

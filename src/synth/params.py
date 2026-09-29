@@ -17,14 +17,17 @@ MINIMUM_BENEFIT = 23  # 1-2 person households
 QC_ERROR_THRESHOLD = 56  # FY2024: only errors above this count toward PER
 
 # FY2024 SNAP income eligibility limits, 48 contiguous states + DC.
-# HARNESS APPROXIMATIONS (same caveat as above). Gross test waived for
-# households with an elderly/disabled member.
-GROSS_INCOME_LIMIT = {1: 1677, 2: 2268, 3: 2859, 4: 3444, 5: 4029,
-                      6: 4614, 7: 5199, 8: 5784}
-GROSS_LIMIT_EACH_ADDITIONAL = 585
-NET_INCOME_LIMIT = {1: 1290, 2: 1745, 3: 2199, 4: 2649, 5: 3099,
-                    6: 3549, 7: 3999, 8: 4449}
-NET_LIMIT_EACH_ADDITIONAL = 451
+# Validated against statute 2026-09-29 (exp10): FRAC "SNAP FY2024 Income
+# Limits" Table 3 / FNS COLA memo. Gross test waived for households with an
+# elderly/disabled member. NOTE: an earlier version of this table carried
+# ~6%-high values from a later fiscal year (exp10); always annotate the
+# fiscal year when updating.
+GROSS_INCOME_LIMIT = {1: 1580, 2: 2137, 3: 2694, 4: 3250, 5: 3807,
+                      6: 4364, 7: 4921, 8: 5478}  # FY2024, 130% FPL
+GROSS_LIMIT_EACH_ADDITIONAL = 557  # FY2024
+NET_INCOME_LIMIT = {1: 1215, 2: 1644, 3: 2072, 4: 2500, 5: 2929,
+                    6: 3357, 7: 3785, 8: 4214}  # FY2024, 100% FPL
+NET_LIMIT_EACH_ADDITIONAL = 429  # FY2024
 
 
 def gross_income_limit(household_size: int) -> int:

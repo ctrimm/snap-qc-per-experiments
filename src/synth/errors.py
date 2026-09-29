@@ -262,6 +262,15 @@ def _draw_nature(facts, bucket, dist, dir_w, rng):
     return nature, cause
 
 
+def _recorded_cause(nature, cause, rng):
+    """Exp15: the real file leaves cause blank on 32% of nature-97 variances
+    ('not required to be reported or acted upon' — no-fault timing). Mirror
+    that labeling so pretraining labels stay faithful."""
+    if nature == 97 and rng.random() < 0.32:
+        return None
+    return cause
+
+
 def _inject_persistent(facts, rng, dist, applicable, dir_w, max_attempts,
                      stats=None):
     """Exp7: per-bucket persistence, single-draw-and-drop.
@@ -334,7 +343,7 @@ def _inject_persistent(facts, rng, dist, applicable, dir_w, max_attempts,
                 "element": REPRESENTATIVE_ELEMENT[bucket],
                 "element_bucket": bucket,
                 "nature": nature,
-                "cause": cause,
+                "cause": _recorded_cause(nature, cause, rng),
                 "timing": "after" if nature == 97 else "at_action",
             })
         # Infeasible for this household: variance dropped (no retry — retrying
@@ -446,7 +455,7 @@ def inject(facts: dict, rng: random.Random, dist: dict, max_attempts: int = 12,
                 "element": REPRESENTATIVE_ELEMENT[bucket],
                 "element_bucket": bucket,
                 "nature": nature,
-                "cause": cause,
+                "cause": _recorded_cause(nature, cause, rng),
                 "timing": "after" if nature == 97 else "at_action",
             })
         correct = benefit_mod.compute(truth)["benefit"]
