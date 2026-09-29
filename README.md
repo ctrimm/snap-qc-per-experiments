@@ -21,6 +21,9 @@ transfer, LM eval) every experiment here must move.
 - `experiments/TEMPLATE.md` — chronicle template. Every experiment gets:
   hypothesis (tied to the north star) → method → results → verdict → next
   steps.
+- `terms.md` — glossary: evaluation metrics (L1, F1, macro F1, AUC) and
+  generator vocabulary (finding, variance, element/nature/cause, materialize,
+  importance weights, coins).
 
 ## Experiment index
 
