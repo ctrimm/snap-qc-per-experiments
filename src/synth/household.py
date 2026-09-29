@@ -56,6 +56,10 @@ BASE_POSITIVITY = {
 # (see experiments/exp32_medical_senior.py). Size groups: 1 / 2 / 3+.
 _P_ELDERLY_BY_SIZE = {1: 0.3538, 2: 0.1694, 3: 0.0254}
 _P_DISABLED_BY_SIZE = {1: 0.1515, 2: 0.0995, 3: 0.1008}
+# Pre-screen household size draw weights (sizes 1..6; real 7+ folded into 6).
+# exp44: fitted to the real post-screen size mix (see experiments/exp44_size_mix.md).
+# Legacy draw was [0.45, 0.25, 0.14, 0.09, 0.04, 0.03].
+_SIZE_WEIGHTS = [0.5676, 0.1634, 0.1148, 0.0758, 0.0433, 0.035]
 # Legacy (pre-exp32) rates, for in-process BEFORE comparisons:
 #   elderly 0.28 if size==1 else 0.08; disabled 0.12 flat.
 # Patching the two tables to {1:0.28,2:0.08,3:0.08} / {1:0.12,2:0.12,3:0.12}
@@ -79,7 +83,7 @@ def sample_household(rng: random.Random) -> dict:
 
 
 def _sample_unscreened(rng: random.Random) -> dict:
-    size = rng.choices([1, 2, 3, 4, 5, 6], weights=[0.45, 0.25, 0.14, 0.09, 0.04, 0.03])[0]
+    size = rng.choices([1, 2, 3, 4, 5, 6], weights=_SIZE_WEIGHTS)[0]
 
     _szg = 1 if size == 1 else (2 if size == 2 else 3)
     elderly = rng.random() < _P_ELDERLY_BY_SIZE[_szg]

@@ -1,0 +1,39 @@
+{
+ "pre_screen_weights": [
+  0.5676,
+  0.1634,
+  0.1148,
+  0.0758,
+  0.0433,
+  0.035
+ ],
+ "targets": [
+  0.5967,
+  0.1576,
+  0.1027,
+  0.0708,
+  0.0397,
+  0.0324
+ ],
+ "final_post_screen": [
+  0.5956,
+  0.1571,
+  0.105,
+  0.0692,
+  0.0408,
+  0.0323
+ ],
+ "kid_weight_remeasured": {
+  "no_earner_nonsenior": 2.083,
+  "earner_nonsenior": 2.147,
+  "no_earner_senior": 4.997,
+  "earner_senior": 5.6
+ },
+ "kid_weight_committed": {
+  "no_earner_nonsenior": 1.808,
+  "earner_nonsenior": 1.843,
+  "no_earner_senior": 3.671,
+  "earner_senior": 4.391
+ },
+ "matrix_isolated_shifts_ge_0.05": 6
+}
