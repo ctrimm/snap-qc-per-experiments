@@ -139,7 +139,12 @@ move the dollar distribution.
    It improves hhcomp/arithmetic toward 1.0x on both seeds, holds L1 ≤
    0.015, leaves dollars flat, and needs no matrix re-fit. But medical is
    0.76x/0.64x — seed-dependent, bar not cleanly met. Adopting it is the
-   coordinator's call; it is strictly better composition.
+   coordinator's call; it is strictly better composition. **Coordinator decision
+   (2026-09-29): adopted.** The fitted pre-screen weights are now the default
+   in `src/synth/household.py` (`_SIZE_WEIGHTS`); legacy values retained in the
+   comment. Rationale: safety profile clean on both seeds, strictly better
+   composition, no matrix re-fit required. The medical gap is re-attributed to
+   the earner x senior joint (staged).
 2. **The re-sliced mixes are dead — clean negative.** `exp28_resliced_mixes.json`
    should be retired, not re-trialed: even with correct size composition,
    the mixes miss every bar and blow up hhcomp/arithmetic. The failure is
