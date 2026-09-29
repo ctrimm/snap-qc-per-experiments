@@ -63,6 +63,16 @@ transfer, LM eval) every experiment here must move.
 | 28 | [Shares-game residuals](experiments/exp28_shares_game.md) | Calibration | Partially held — nature-57 1.16x→1.03x (weights re-measured under corrected draw), depcare 0.44x→0.89x (kid-gate dilution fix); medical stuck 0.55x (FSNDIS mis-slicing, blocked on sampler senior-rate fix) |
 | 29 | [Sampler base-positivity gaps](experiments/exp29_sampler_positivity.md) | Calibration | Held — worst |real−synth| 0.009 per stratum; finding L1 0.026; materialization matrix + 97-coins re-derived for the new sampler |
 | 30 | [QC-variance eval pilot](experiments/exp30_eval_pilot.md) | LM gate (prep) | Package delivered — 1,400 frozen items, scorer + bootstrap gate, Mac Studio runbook; dummy baselines green; LM discrimination pending the Mac Studio run |
+| 33 | [State-level heterogeneity](experiments/exp33_state_heterogeneity.md) | Calibration | Held — state payment error rates span 2.39% (SD) to 17.64% (DC), rankings persistent; variance lives in error size, not frequency; state dimension warranted via per-state error-rate offsets fit from microdata |
+| 34 | [Temporal drift FY2020–2024](experiments/exp34_temporal_drift.md) | Calibration | Partially held — finding mix + dollar scale genuinely drift (error rate 0.346→0.397); the big FY2024 nature/cause shifts are codebook changes, not behavior; year-conditioning warranted but must not launder new conventions |
+| 35 | [Discriminator diagnostic](experiments/exp35_discriminator_diagnostic.md) | Calibration | Held emphatically — synth-vs-real GBM AUC 0.981; shelter deduction is the biggest leak (shuffling it drops AUC 0.30); even "correct" cases separate at 0.974 |
+| 36 | [Transfer scaling curve](experiments/exp36_transfer_scaling.md) | Transfer | Partially held — macroF1 plateaus 0.28–0.30 at N≈5–10k; rare-bucket tail does NOT saturate (medical/hhcomp keep climbing); arithmetic F1 declines with N — fidelity, not volume |
+| 37 | [Transfer across model classes](experiments/exp37_transfer_model_classes.md) | Transfer | Did not hold as stated — persistent pool is weakly model-agnostic, but class_weight="balanced" is GBM-specific and harmful for logreg (0.175→0.485 accuracy when removed); transformer probe needed before locking the LM recipe |
+| 38 | [Rare-rule mass audit](experiments/exp38_rare_rule_mass.md) | Calibration | Clean negative — student/ABAWD/elderly rules carry ≤1.4% of element-marginal L1; 98.6% of the gap is share mismatches in modeled buckets; no dedicated mechanisms warranted |
+| 39 | [Household joint-distribution realism](experiments/exp39_joint_distributions.md) | Calibration | Held — synth mean benefit $423.8 vs real $341.1 is compositional, not a math bug; P(earner\|hhsize) is flat in synth vs 0.14→0.69 real; sampler needs empirical conditional tables |
+| 40 | [Published-rate calibration](experiments/exp40_published_rate_calibration.md) | Calibration | Held — generator within ~1pp of microdata-implied dollar rate; published rates run 2–3pp higher, all in the over component (procedural errors); do NOT tune toward published rates |
+| 41 | [Policy-QA bridge](experiments/exp41_policy_qa_bridge.md) | LM gate (prep) | Held — benefit calculator scores 21/22 (20/20 in-scope) as a QA oracle; found the $23-minimum eligibility-screen bug; child-support deduction out-of-scope |
+| 42 | [Depcare/medical deep dive](experiments/exp42_depcare_medical_deepdive.md) | Calibration | Held — medical residual is the medexp>0 cell under-drawn 2.34x (projection →1.00x); depcare needs kids×earner interaction (projection →0.83x); nature-57 over-drawn 4–7x |
 
 Recommended next run: adopt exp26's dollar mechanisms as a generator default (bake the
 recalibration — earned-income zeroing, unit-mass subtraction, direction-aware phase-1
@@ -71,6 +81,17 @@ Remaining residuals: medical 0.57x (needs the sampler senior-rate fix 36.2%→49
 the re-sliced mixes from exp28 can land), exp27's M1/M2 direction recalibration,
 52-under median overshoot. Run exp30's pilot on the Mac Studio for the first LM-gate
 data point, then the human label audit.
+
+Second-coordinator findings to fold in: prototype state-conditioned error-rate offsets
+(exp33); add a `--year` knob with per-FY finding/direction/dollar slices, nature/cause
+pinned to the FY2024 convention (exp34); audit shelter-deduction modeling — the biggest
+discriminator leak (exp35); replace the household sampler's flat conditionals with
+empirical tables starting with P(earner|hhsize) (exp39); run a transformer-class transfer
+probe before locking the LM recipe (exp37); record the training target as the
+microdata-implied substance rate, not the published series (exp40); use exp41's
+22-question set as the LM-gate regression golden set and fence QA generation with an
+explicit scope manifest (exp41/exp42 follow-ups: medical medexp-conditioned draw,
+depcare kid×earner strata).
 
 ## Data
 
