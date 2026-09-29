@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Predicting SNAP Payment Errors: A Pilot Proposal for Pennsylvania</title>
+<style>
+  @page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+</style>
+</head>
+<body>
+
+<h1>Predicting SNAP Payment Errors:<br>A Pilot Proposal for Pennsylvania</h1>
+<div class="subtitle">Synthetic-data-validated case prioritization for quality-control review</div>
+<div class="meta">September 29, 2026 &nbsp;·&nbsp; Research whitepaper &nbsp;·&nbsp; Methods and validation artifacts are open-source at github.com/ctrimm/snap-qc-per-experiments</div>
+
+<h2>1. Executive summary</h2>
+<p>We have built and validated a synthetic data generator that reproduces how SNAP payment errors occur in Pennsylvania's caseload, calibrated against five years of federal quality-control (QC) microdata. Machine-learning models trained <em>only</em> on this synthetic data predict real Pennsylvania errors meaningfully better than baseline — proof the synthetic cases carry genuine signal about where errors happen.</p>
+<p>The operational finding: a two-part ranking model (probability of error &times; predicted error dollars), applied to prioritize QC review, recovers <span class="kpi">$6,074 vs $3,851 for random review</span> at a fixed review budget — <span class="kpi">$75 vs $47 per hour of reviewer time</span>. Reviewing the riskiest half of cases catches 67% of all errors with half the reviews.</p>
+<p>We propose a low-risk pilot: train the ranker on Pennsylvania's own historical QC data, validate on a recent holdout, then run it in shadow alongside existing review. No production eligibility-system changes. No new data collection.</p>
+
+<h2>2. The problem</h2>
+<p>SNAP payment error rates remain stubbornly high nationwide, and every error is either taxpayer money over-issued or a household underpaid. Quality-control review is the corrective mechanism — but reviewer time is finite, and cases are currently selected for review without a data-driven sense of where errors concentrate. The result is expensive review effort spread thinly over a caseload where risk is highly uneven.</p>
+<p>Pennsylvania is a strong candidate for a targeted approach. Our analysis of 3,268 Pennsylvania QC cases (FY2020–2024) shows the state's benefit-calculation engine matches federal statute essentially exactly (99.7–100% of cases) — Pennsylvania's errors live in the <em>human process layer</em> (verification, timing, documentation), which is precisely where a prediction tool adds value. Error patterns are also concentrated: shelter-deduction errors run at roughly twice the national rate, while computation errors run at a tenth.</p>
+
+<h2>3. What was built and validated</h2>
+<p><strong>A Pennsylvania-conditioned synthetic generator.</strong> Starting from a nationally calibrated generator (error-type mix matching reality within ~1 percentage point), we fit Pennsylvania-specific error-rate offsets and empirical error mixes. The PA-conditioned output reproduces Pennsylvania's finding mix, element mix, and cause mix within a few percentage points, while leaving national output unchanged.</p>
+<p><strong>Validated predictive signal.</strong> Models trained only on PA-conditioned synthetic cases predict real, held-out Pennsylvania errors: 0.556 element-level accuracy vs a 0.453 baseline, and PA-conditioning genuinely beats a nationally trained model. The one honest threat to this result — whether the generator had indirectly seen the holdout data — was tested with a fully clean refit; the advantage survived.</p>
+<p><strong>A dollar-aware ranking.</strong> The set's most important surprise: ranking cases by error probability <em>alone</em> performs worse than random at the top slice. Error probability and error size are nearly orthogonal in Pennsylvania's mix — the dollars live in income errors, not the frequent shelter errors. The product must therefore be a two-part ranker: calibrated probability of error multiplied by predicted error dollars.</p>
+
+<div class="callout">
+<p><strong>Headline pilot economics (simulated on held-out PA cases, top-20% review budget):</strong></p>
+<table>
+<tr><th></th><th>Random review</th><th>Two-part ranker</th></tr>
+<tr><td>Error dollars recovered</td><td>$3,851</td><td><span class="kpi">$6,074</span></td></tr>
+<tr><td>Value per review hour</td><td>$47</td><td><span class="kpi">$75</span></td></tr>
+<tr><td>Share of all error dollars captured</td><td>—</td><td>31.5%</td></tr>
+</table>
+<p>Of the $6,074: $4,239 is over-issuance (direct program savings); $1,835 is under-issuance (households underpaid — the correct QC outcome, but a make-whole cost). Savings-only value: $52/hr vs $47/hr.</p>
+</div>
+
+<h2>4. The pilot</h2>
+<h3>What Pennsylvania provides</h3>
+<ul>
+<li>Historical QC case extracts the state already holds (no new data collection, no new PII).</li>
+<li>A review team willing to work a ranked queue for a defined pilot period.</li>
+</ul>
+<h3>What changes — and what does not</h3>
+<ul>
+<li><strong>Phase 0 (cold start, no PA data needed):</strong> the synthetic-trained ranker scores a sample of cases; rankings are validated against known outcomes.</li>
+<li><strong>Phase 1:</strong> the two-part ranker is trained on PA's historical QC data and validated on a recent holdout the model never saw.</li>
+<li><strong>Phase 2 (shadow):</strong> the ranker scores the live review caseload; reviewers work the top slice; outcomes are measured against the baseline selection method.</li>
+<li><strong>What does not change:</strong> no modifications to the eligibility system, no automated determinations (the model prioritizes review — it never decides a case), no data leaves the state's control.</li>
+</ul>
+<h3>Success metrics</h3>
+<ul>
+<li>Precision in the reviewed slice vs baseline selection.</li>
+<li>Error dollars recovered per reviewer hour vs baseline.</li>
+<li>Reviewer time saved to reach a fixed error-capture target.</li>
+</ul>
+<p>A reasonable pilot shape is 8–12 weeks from data handoff to shadow-readout.</p>
+
+<h2>5. Limitations and honest caveats</h2>
+<ul>
+<li><strong>Headroom.</strong> The synthetic-trained ranker captures roughly one-third of the performance a model trained on real PA data is projected to reach. The pilot's Phase 1 exists to close exactly this gap.</li>
+<li><strong>Small-dollar skew.</strong> The errors the ranker catches skew toward smaller dollar amounts; large-dollar errors remain harder to find and are the priority for Phase 1 feature work.</li>
+<li><strong>Procedural errors are invisible.</strong> Published federal error rates run 2–3 points above what case microdata implies, entirely in procedural errors the microdata cannot see. This tool targets substantive case errors, not procedural compliance.</li>
+<li><strong>Stability.</strong> The signal is year-to-year stable in our tests, but the error-probability baseline should be re-tuned on recent data at pilot start.</li>
+<li><strong>Human judgment stays in the loop.</strong> This is a triage tool for reviewers, not an adjudication engine. Final determinations remain human — by design.</li>
+</ul>
+
+<h2>6. The ask</h2>
+<p>We are looking for a Pennsylvania partner to run this pilot: a data contact who can provide historical QC extracts, and a review team for the shadow phase. We bring the validated methodology, the synthetic cold-start model, and the open-source validation artifacts. All methods, experiments, and results are published openly; nothing about the approach is proprietary or black-box.</p>
+
+<div class="footer">
+<p>Methods, experiment chronicles (50+), and validation code: github.com/ctrimm/snap-qc-per-experiments (private research repo; access on request). This work is conducted in the open-source civic-technology lane. Contact: via the repository.</p>
+</div>
+
+</body>
+</html>
