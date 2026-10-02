@@ -25,10 +25,13 @@ main, or copy the tree). You need:
 - Real QC microdata for the eval split: the script expects
   `~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`
   (same machine-relative path as the sandbox; adjust the `QC` constant at
-  the top of the script if your checkout lives elsewhere). Download it
-  from the `data-qc-fy2024-v1` release on this repo (attached as
-  `qc_pub_fy2024.csv`, 88MB) and place it at that path. Held-out only —
-  never train on it, and never let it into any training corpus.
+  the top of the script if your checkout lives elsewhere). It's vendored in
+  this repo gzipped at `data/raw/qcfy2024_csv/qc_pub_fy2024.csv.gz`
+  (88MB uncompressed; committed 2026-10-02 per Cory's instruction) —
+  unpack it with:
+  `mkdir -p ~/workspace/snap-qc-data/raw/qcfy2024_csv && gunzip -c data/raw/qcfy2024_csv/qc_pub_fy2024.csv.gz > ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`
+  Held-out only — never train on it, and never let it into any training
+  corpus.
 
 Install: `pip install torch scikit-learn numpy`
 
