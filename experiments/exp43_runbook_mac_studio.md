@@ -23,15 +23,19 @@ main, or copy the tree). You need:
 - The generator's Python deps (whatever `src/` already needs — if the
   sandbox runs `python3 -m synth.generate`, mirror that env).
 - Real QC microdata for the eval split: the script expects
-  `~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`
-  (same machine-relative path as the sandbox; adjust the `QC` constant at
-  the top of the script if your checkout lives elsewhere). It's vendored in
-  this repo gzipped at `data/raw/qcfy2024_csv/qc_pub_fy2024.csv.gz`
-  (88MB uncompressed; committed 2026-10-02 per Cory's instruction) —
-  unpack it with:
-  `mkdir -p ~/workspace/snap-qc-data/raw/qcfy2024_csv && gunzip -c data/raw/qcfy2024_csv/qc_pub_fy2024.csv.gz > ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`
-  Held-out only — never train on it, and never let it into any training
-  corpus.
+  `../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`
+  (the data lives in `snap-qc-data/` next to the repo checkout, e.g.
+  `~/Documents/GitHub/snap-qc-data` on the Mac Studio; adjust the `QC`
+  constant at the top of the script if your checkout lives elsewhere).
+  It's vendored in this repo gzipped at
+  `data/raw/qcfy2024_csv/qc_pub_fy2024.csv.gz` (88MB uncompressed;
+  committed 2026-10-02 per Cory's instruction) — unpack it from the repo
+  root with:
+  `mkdir -p ../snap-qc-data/raw/qcfy2024_csv && gunzip -c data/raw/qcfy2024_csv/qc_pub_fy2024.csv.gz > ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`
+  The original source is https://snapqcdata.net/datafiles
+  (`qcfy2024_csv.zip`; the site returns 403 to `curl` without a browser
+  User-Agent). Held-out only — never train on it, and never let it into
+  any training corpus.
 
 Install: `pip install torch scikit-learn numpy`
 

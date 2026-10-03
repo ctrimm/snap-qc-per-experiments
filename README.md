@@ -144,5 +144,7 @@ NY track complete: 8c + NY1–NY8 all landed. Verdict summary: validated signal 
 
 ## Data
 
-Real QC public-use files (FY2020–2024, `~/workspace/snap-qc-data/`) are
+Real QC public-use files (FY2020–2024) live in `snap-qc-data/`, which sits
+next to this repo checkout (i.e. `../snap-qc-data/` from the repo root); the
+files come from https://snapqcdata.net/datafiles. They are
 **held-out validation only** — never training. They are not committed here.

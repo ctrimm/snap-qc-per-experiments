@@ -30,8 +30,8 @@ public-use microdata (STATE='42', n=3,268 rows; FYWGT-weighted;
 microdata-implied rates, NOT FNS-published). National reference is the same
 pooled microdata basis (per exp33's verdict; FY2024-only shown to be
 outlier-sensitive — e.g. PA medO/medU ratio 1.05 in FY2024 vs 0.89/0.93/0.78/0.85
-in FY2020–2023). Microdata is read-only at `~/workspace/snap-qc-data/`, never
-copied into the repo.
+in FY2020–2023). Microdata is read-only at `snap-qc-data/` beside the repo
+checkout, never copied into the repo.
 
 PA-vs-national empirical facts (pooled, FYWGT-weighted):
 - Finding c/o/u: PA 0.5875/0.2469/0.1656 vs nat 0.6151/0.2372/0.1477.
@@ -70,7 +70,7 @@ the module installs nothing.
 
 ## Results
 
-`python3 experiments/pa1_pa_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7`
+`python3 experiments/pa1_pa_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7`
 (PA synth vs real PA; national sanity: nat synth 0.610/0.241/0.149 = exp31):
 
 | metric | it1 | it2 | it3 (final) |
@@ -160,5 +160,5 @@ python3 experiments/pa1_pa_generator.py fit
 
 Re-run validation:
 ```bash
-python3 experiments/pa1_pa_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7
+python3 experiments/pa1_pa_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7
 ```

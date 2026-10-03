@@ -24,7 +24,7 @@ Usage:
     python3 -m src.synth.generate --n 20000 --seed 7 \
         --dist experiments/dist.json --out /tmp/exp38_synth.csv
     python3 experiments/exp38_rare_rule_mass.py \
-        --real-dir ~/workspace/snap-qc-data/raw --synth /tmp/exp38_synth.csv
+        --real-dir ../snap-qc-data/raw --synth /tmp/exp38_synth.csv
 
 ML vocabulary: L1 distance = sum over categories of |p_real - p_synth|,
 a measure of how far the synthetic marginal distribution is from the real

@@ -53,7 +53,7 @@ cd src && python3 -m synth.generate --n 20000 --seed 7 \
 python3 experiments/pa2_pa_transfer.py \
     --pa-synth /tmp/pa2out/pa_synth.jsonl \
     --nat-synth /tmp/pa2out/nat_synth.jsonl \
-    --qc-dir ~/workspace/snap-qc-data/raw \
+    --qc-dir ../snap-qc-data/raw \
     --holdout-json experiments/pa2_holdout_idx.json
 ```
 No model weights are written anywhere; PA4/PA5/PA7 retrain via the three

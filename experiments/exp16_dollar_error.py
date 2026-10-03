@@ -18,7 +18,7 @@ keyed by finding: 2=over, 3=under).
 
 Usage:
     python3 experiments/exp16_dollar_error.py \
-        --real ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
+        --real ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
         --synth /tmp/exp16_synth.jsonl
 """
 import argparse

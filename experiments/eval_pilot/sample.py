@@ -43,10 +43,11 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 sys.path.insert(0, str(HERE))
 import labels as L  # noqa: E402
 
-RAW = Path.home() / "workspace/snap-qc-data/raw"
+RAW = ROOT.parent / "snap-qc-data/raw"
 YEAR_FILES = {
     2021: RAW / "qcfy2021_csv/qc_pub_fy2021.csv",
     2022: RAW / "qcfy2022_csv/qc_pub_fy2022.csv",

@@ -34,7 +34,7 @@ Reproduction (exact commands, from repo root):
   3) python3 experiments/pa2_pa_transfer.py \\
         --pa-synth /tmp/pa2out/pa_synth.jsonl \\
         --nat-synth /tmp/pa2out/nat_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/pa2_holdout_idx.json
 
 Generator notes: dollar mechanisms ON and persistent buckets are the

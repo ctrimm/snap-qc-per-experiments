@@ -61,7 +61,7 @@ from synth.distutil import load_dist  # noqa: E402
 
 QC_ERROR_THRESHOLD = params_mod.QC_ERROR_THRESHOLD
 
-QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 EL_COLS = [f"ELEMENT{i}" for i in range(1, 10)]
 NTR_COLS = [f"NATURE{i}" for i in range(1, 10)]
 STRATA = ["no_earner_nonsenior", "earner_nonsenior",

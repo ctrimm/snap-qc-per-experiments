@@ -19,7 +19,7 @@ Reproduction (exact commands, from repo root):
         --dist experiments/dist.json --out /tmp/ny45out/ny_synth.jsonl
   2) python3 experiments/ny4_prioritization.py \\
         --ny-synth /tmp/ny45out/ny_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/ny2_holdout_idx.json
 
 Calibration design (documented choice):

@@ -68,7 +68,7 @@ from synth.codebook import element_bucket  # noqa: E402
 from synth.distutil import load_dist  # noqa: E402
 from synth import benefit as benefit_mod  # noqa: E402
 
-QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 SSI_COLS = [f"SSI{i}" for i in range(1, 9)]
 
 BUCKETS = ["earned", "unearned", "shelter", "sua", "medical", "depcare",

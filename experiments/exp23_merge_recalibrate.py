@@ -24,7 +24,7 @@ medians). This experiment:
 
 Usage:
     python3 experiments/exp23_merge_recalibrate.py \
-        --real ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
+        --real ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
         --dist experiments/dist.json --dollar-mechanisms
 
 Without --dollar-mechanisms only the stock baseline runs. Real microdata is
