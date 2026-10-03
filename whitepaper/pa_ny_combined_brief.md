@@ -5,8 +5,10 @@
 We've now run the same validation in two states, and the same story holds in both:
 the benefit-calculation engine is clean, so the errors live in the human process
 layer — and a model trained only on synthetic cases calibrated to that state's
-caseload recovers ~1.6x the error dollars of random review at the same review
+caseload recovers ~1.5x the error dollars of random review at the same review
 budget.
+
+**Revision note (October 3, 2026).** PA's economics were revised after exp44's fitted household-size mix was adopted into the generator: PA5's $6,074 / $75 per review hour / 31.5% of error dollars used the legacy mix. Re-running PA5's exact two-part ranker recipe on the same holdout under current generator defaults (verified in exp47) gives $5,483 / $67/hr / 28.4% — a 1.42x lift over random review's $3,851 / $47/hr, vs PA5's 1.58x. NY's figures reproduced exactly and are unchanged.
 
 ## Pennsylvania
 
@@ -14,8 +16,8 @@ budget.
 - **Engine check:** benefit-calculation engine matches statute 99.7–100% — errors are process-layer.
 - **Signature:** shelter errors ~2x national; computation errors 0.1x national.
 - **Winner:** two-part ranker (error probability × predicted dollars). At a 20%
-  review budget: **$6,074 vs $3,851 random** ($75 vs $47 per review hour),
-  capturing **31.5%** of all error dollars. Of that, **$4,239 is over-issuance**
+  review budget: **$5,483 vs $3,851 random** ($67 vs $47 per review hour),
+  capturing **28.4%** of all error dollars. Of that, **$4,034 is over-issuance**
   (direct program savings).
 
 ## New York
