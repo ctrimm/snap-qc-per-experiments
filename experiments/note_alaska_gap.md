@@ -27,3 +27,6 @@ Alaska is present in all five years. The 55 distinct `STATE` values are FIPS 1â€
 ## Takeaway
 
 `STATE` is integer-coded; use `STATE == 2` (or zero-pad to two chars at read time, e.g. `zfill(2)`) when matching FIPS codes. Anyone filtering with `"02"` will silently drop Alaska in every FY. Suggest adopting a canonical two-char `state_fips` derived column in the synthetic-data pilot's loader to prevent recurrence.
+
+## Addendum â€” microdata-implied AK payment-error rates (verified 2026-10-03)
+HWGT-weighted sum(|AMTERR|)/sum(RAWBEN) for STATE==2: FY2024 5.64%, FY2023 4.51% (unweighted: 6.55%/5.21%). Official published rates: 24.66% / 60.37%. The gap is procedural errors and federal re-review invisible to the case records. FY2025 official rates (published summer 2026) corroborate the pattern elsewhere: NJ fell 7.47pp to 6.86%, the largest drop in the nation.
