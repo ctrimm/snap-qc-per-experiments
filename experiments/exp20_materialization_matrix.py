@@ -38,7 +38,7 @@ from synth import errors, household  # noqa: E402
 from synth.codebook import element_bucket  # noqa: E402
 from synth.distutil import load_dist  # noqa: E402
 
-QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 EL_COLS = [f"ELEMENT{i}" for i in range(1, 10)]
 NTR_COLS = [f"NATURE{i}" for i in range(1, 10)]
 BUCKETS = ["earned", "unearned", "shelter", "sua", "medical", "depcare",

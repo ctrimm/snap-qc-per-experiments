@@ -57,7 +57,7 @@ from synth import dollar_mech, errors, household        # noqa: E402
 from synth.codebook import element_bucket              # noqa: E402
 from synth.distutil import load_dist                    # noqa: E402
 
-REAL = (EXP_DIR.parent.parent / "snap-qc-data/raw/qcfy2024_csv"
+REAL = (Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv"
         / "qc_pub_fy2024.csv")
 BUCKETS = ["earned", "shelter", "unearned", "sua", "medical",
            "hhcomp", "arithmetic", "depcare"]

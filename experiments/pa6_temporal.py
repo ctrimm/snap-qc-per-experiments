@@ -43,8 +43,7 @@ Usage (from repo root):
     python3 experiments/pa6_temporal.py
 Results -> /tmp/pa6out/pa6_results.json (workspace scratch, not the repo).
 
-Requires: scikit-learn. Microdata read-only at snap-qc-data/ next to the repo
-checkout.
+Requires: scikit-learn. Microdata read-only at ~/workspace/snap-qc-data.
 """
 import copy
 import json
@@ -61,7 +60,7 @@ from src.synth import pa_state  # noqa: E402
 import pa1_pa_generator as pa1  # noqa: E402
 import pa2_pa_transfer as pa2  # noqa: E402
 
-QC_DIR = str(ROOT.parent / "snap-qc-data" / "raw")
+QC_DIR = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
 DIST = str(ROOT / "experiments" / "dist.json")
 OUT = Path("/tmp/pa6out")
 OUT.mkdir(exist_ok=True)

@@ -23,8 +23,8 @@ worker doesn't repeat them):
   excluded from the deduction-identity fits.
 
 Read-only wrt the microdata: this script only reads
-../snap-qc-data/raw/ (beside the repo checkout) and writes a small aggregate
-JSON next to itself. Run: python3 experiments/exp8b_parameter_fitting.py [--fy 2024]
+~/workspace/snap-qc-data/raw/ and writes a small aggregate JSON next to
+itself. Run: python3 experiments/exp8b_parameter_fitting.py [--fy 2024]
 """
 
 import argparse
@@ -35,8 +35,7 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
-DATA = os.path.join(os.path.dirname(ROOT), "snap-qc-data", "raw")
+DATA = os.path.expanduser("~/workspace/snap-qc-data/raw")
 
 # FY2024 statutory parameters, contiguous US + DC (exp10-audited; tech doc
 # Appendix F Tables F.3/F.5/F.6).

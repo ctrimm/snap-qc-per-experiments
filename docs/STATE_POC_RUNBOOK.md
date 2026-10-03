@@ -29,11 +29,9 @@ is called out in each step and summarized in "Known fragilities" at the end.
 ## 1. Prerequisites
 
 - **Microdata (read-only, never copied into the repo, never committed):**
-  `../snap-qc-data/raw/qcfy{2020..2024}_csv/qc_pub_fy{FY}.csv` —
-  `snap-qc-data/` sits beside the repo checkout. The stages take
-  `--qc-dir ../snap-qc-data/raw` (or hardcode
-  `QC_DIR = str(ROOT.parent / "snap-qc-data" / "raw")`, where `ROOT =
-  Path(__file__).resolve().parent.parent`).
+  `~/workspace/snap-qc-data/raw/qcfy{2020..2024}_csv/qc_pub_fy{FY}.csv`.
+  The stages take `--qc-dir ~/workspace/snap-qc-data/raw` (or hardcode
+  `QC_DIR = str(Path.home() / "workspace" / "snap-qc-data" / "raw")`).
   Microdata is *held-out validation only* — nothing in this chain commits
   real case rows to the repo.
 - **Python deps:** `pandas`, `numpy`, `scikit-learn`, plus stdlib. The
@@ -68,7 +66,7 @@ python3 - <<'EOF'
 import csv, glob
 from collections import Counter
 c = Counter()
-for f in sorted(glob.glob('../snap-qc-data/raw/qcfy*_csv/qc_pub_fy*.csv')):
+for f in sorted(glob.glob('/home/hatch/workspace/snap-qc-data/raw/qcfy*_csv/qc_pub_fy*.csv')):
     with open(f) as fh:
         r = csv.DictReader(fh)
         for row in r:
@@ -101,8 +99,7 @@ pandas, which infers `STATE` as int; the csv.DictReader scripts in stages
 holdout table, and the anomaly test for any state-specific pattern
 (NY tested exp8b's uncapped-shelter anomaly; keep whatever anomaly the
 state's anatomy suggests). `DATA` is hardcoded to
-`<ROOT>.parent / "snap-qc-data" / "raw"` (`snap-qc-data/` beside the repo
-checkout).
+`/home/hatch/workspace/snap-qc-data/raw`.
 
 **Run (no arguments):**
 
@@ -148,7 +145,7 @@ The harness has two subcommands:
 
 ```bash
 python3 experiments/<st>1_<st>_generator.py fit        # recompute targets; prints baked constants
-python3 experiments/<st>1_<st>_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7
+python3 experiments/<st>1_<st>_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7
 ```
 
 The fit computes (FYWGT-weighted, pooled FY2020–2024, `<SS>` vs national):
@@ -275,7 +272,7 @@ cd src && python3 -m synth.generate --n 20000 --seed 7 \
 python3 experiments/<st>2_<st>_transfer.py \
     --ny-synth /tmp/<st>2out/<st>_synth.jsonl \
     --nat-synth /tmp/<st>2out/nat_synth.jsonl \
-    --qc-dir ../snap-qc-data/raw \
+    --qc-dir ~/workspace/snap-qc-data/raw \
     --holdout-json experiments/<st>2_holdout_idx.json \
     --<st>-synth-s8 /tmp/<st>2out/<st>_synth_s8.jsonl \
     --<st>-synth-s9 /tmp/<st>2out/<st>_synth_s9.jsonl \
@@ -328,7 +325,7 @@ whitepaper's "The problem" section and the copilot attention order).
 **Run:**
 
 ```bash
-python3 experiments/<st>3_<st>_anatomy.py --qc ../snap-qc-data/raw --out /tmp/<st>3out/anatomy.json
+python3 experiments/<st>3_<st>_anatomy.py --qc ~/workspace/snap-qc-data/raw --out /tmp/<st>3out/anatomy.json
 ```
 
 **Outputs:** finding/direction mixes; dollar-error quantiles (AMTERR);
@@ -368,7 +365,7 @@ python3 -m src.synth.<st>_state --n 20000 --seed 7 \
     --dist experiments/dist.json --out /tmp/<st>45out/<st>_synth.jsonl
 python3 experiments/<st>4_prioritization.py \
     --ny-synth /tmp/<st>45out/<st>_synth.jsonl \
-    --qc-dir ../snap-qc-data/raw \
+    --qc-dir ~/workspace/snap-qc-data/raw \
     --holdout-json experiments/<st>2_holdout_idx.json
 ```
 
@@ -410,7 +407,7 @@ python3 -m src.synth.<st>_state --n 20000 --seed 7 \
     --dist experiments/dist.json --out /tmp/<st>45out/<st>_synth.jsonl
 python3 experiments/<st>5_dollar_ranking.py \
     --ny-synth /tmp/<st>45out/<st>_synth.jsonl \
-    --qc-dir ../snap-qc-data/raw \
+    --qc-dir ~/workspace/snap-qc-data/raw \
     --holdout-json experiments/<st>2_holdout_idx.json
 ```
 
@@ -506,7 +503,7 @@ signals, not post-decision fields or reviewer-coded label smuggling.
 ```bash
 python3 experiments/<st>7_feature_audit.py \
     --ny-synth /tmp/<st>2out/<st>_synth.jsonl \
-    --qc-dir ../snap-qc-data/raw \
+    --qc-dir ~/workspace/snap-qc-data/raw \
     --holdout-json experiments/<st>2_holdout_idx.json
 ```
 

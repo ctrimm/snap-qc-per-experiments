@@ -26,7 +26,7 @@ later):
 
 Usage:
     python3 experiments/exp18_dollar_mechanisms.py \
-        --real ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
+        --real ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
         --dist experiments/dist.json
 
 Grid-searches mechanism knobs on 20k-case synth draws and reports the

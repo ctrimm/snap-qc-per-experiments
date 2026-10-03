@@ -19,7 +19,7 @@ attention.
 ## Method
 
 Microdata: SNAP QC public-use files FY2020-2024, read-only
-(`snap-qc-data/` beside the repo checkout). Pennsylvania = STATE 42 (n = 3,268 rows;
+(`~/workspace/snap-qc-data/`). Pennsylvania = STATE 42 (n = 3,268 rows;
 1,395 error cases), national = all rows (n = 167,002). All shares are FYWGT-
 weighted. Element/nature/cause mixes are computed on each error case's primary
 variance (slot 1); a check against all nine variance slots gave identical mixes

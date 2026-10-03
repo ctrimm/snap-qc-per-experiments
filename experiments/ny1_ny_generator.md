@@ -26,8 +26,8 @@ for NY2. The national (default) path must stay byte-identical.
 public-use microdata (STATE='36', n=3,257 rows: FY2020 399 / FY2021 221 /
 FY2022 896 / FY2023 856 / FY2024 885; FYWGT-weighted; microdata-implied
 rates, NOT FNS-published). National reference is the same pooled microdata
-basis (non-NY rows). Microdata is read-only at `snap-qc-data/` beside the
-repo checkout, never copied into the repo.
+basis (non-NY rows). Microdata is read-only at `~/workspace/snap-qc-data/`,
+never copied into the repo.
 
 NY-vs-national empirical facts (pooled, FYWGT-weighted):
 - Finding c/o/u: NY 0.6345/0.2101/0.1553 vs nat 0.6122/0.2398/0.1480.
@@ -80,7 +80,7 @@ design was used from the start.
 
 ## Results
 
-`python3 experiments/ny1_ny_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7`
+`python3 experiments/ny1_ny_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7`
 (NY synth vs real NY; national sanity: nat synth 0.601/0.245/0.154):
 
 | metric | it1 | it2 (final) |
@@ -195,5 +195,5 @@ python3 experiments/ny1_ny_generator.py fit
 
 Re-run validation:
 ```bash
-python3 experiments/ny1_ny_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7
+python3 experiments/ny1_ny_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7
 ```

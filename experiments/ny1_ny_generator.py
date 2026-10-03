@@ -8,7 +8,7 @@ Usage:
     python3 experiments/ny1_ny_generator.py fit
         # recompute NY targets from microdata; prints the NY_* constants
         # baked into src/synth/ny_state.py (documents their provenance)
-    python3 experiments/ny1_ny_generator.py validate --qc ../snap-qc-data/raw
+    python3 experiments/ny1_ny_generator.py validate --qc ~/workspace/snap-qc-data/raw
         # generate national + NY-conditioned cases, report validation metrics
 
 North-star gates: calibration (synthetic NY marginals match real NY QC) and
@@ -26,8 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.synth.codebook import element_bucket, cause_bucket  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent.parent
-QC_DEFAULT = str(ROOT.parent / "snap-qc-data" / "raw")
+QC_DEFAULT = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
 FYS = [2020, 2021, 2022, 2023, 2024]
 NY_STATE = "36"
 SUPPORTED = ("earned", "unearned", "shelter", "sua", "medical",

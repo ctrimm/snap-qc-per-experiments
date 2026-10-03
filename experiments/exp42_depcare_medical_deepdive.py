@@ -20,7 +20,7 @@ case is proxied by the case's signed dollar_error (issued - correct).
 
 Usage:
     python3 experiments/exp42_depcare_medical_deepdive.py \
-        --real-dir ../snap-qc-data/raw --synth /tmp/exp42_synth.csv
+        --real-dir ~/workspace/snap-qc-data/raw --synth /tmp/exp42_synth.csv
 Writes /tmp/exp42_results.json and prints the tables for the chronicle.
 """
 import argparse
@@ -32,7 +32,7 @@ import statistics
 import sys
 
 # import the repo's codebook read-only for labels/bucket mapping
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.expanduser("~/workspace/snap-qc-per-experiments"))
 from src.synth.codebook import (NATURE_LABELS, CAUSE_BUCKETS, element_bucket,
                                 cause_bucket)
 

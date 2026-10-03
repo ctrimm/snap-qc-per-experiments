@@ -17,12 +17,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import sys
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from synth.codebook import element_bucket, cause_bucket  # noqa: E402
 from synth.errors import SUPPORTED_BUCKETS  # noqa: E402
 
-QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 OUT = Path(__file__).resolve().parent / "dist.json"
 
 

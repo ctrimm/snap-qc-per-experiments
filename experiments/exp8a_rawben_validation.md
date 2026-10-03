@@ -1,6 +1,6 @@
 # Experiment 8a — RAWBEN validation: is the issued benefit a clean read of the agency's engine?
 **Date:** 2026-09-29 · **Code:** `/tmp/exp8a_validate_rawben.py` (read-only;
-data stays out of the repo) · **Data:** `snap-qc-data/raw/` (beside the repo checkout)
+data stays out of the repo) · **Data:** `~/workspace/snap-qc-data/raw/`
 FY2020–2024 public-use files (167,002 rows total)
 
 ## Hypothesis

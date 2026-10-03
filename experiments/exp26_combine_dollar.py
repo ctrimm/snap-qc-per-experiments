@@ -30,7 +30,7 @@ eff.json / inject.json / dist.json are NOT rewritten (in-memory only).
 
 Usage:
     python3 experiments/exp26_combine_dollar.py \
-        --real ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
+        --real ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
         --dist experiments/dist.json
 
 Real microdata is held-out validation: aggregates are read, nothing

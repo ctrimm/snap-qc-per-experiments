@@ -13,7 +13,7 @@ that the public-use microdata STATUS/AMTERR do not capture.
 
 Inputs:
   - synthetic cases: /tmp/exp40_synth.jsonl (20k, seed 7, dist.json)
-  - real microdata: ../snap-qc-data/raw/qcfy20{20..24}_csv/qc_pub_fy20XX.csv
+  - real microdata: ~/workspace/snap-qc-data/raw/qcfy20{20..24}_csv/qc_pub_fy20XX.csv
     (held-out validation; NEVER committed)
   - published figures (web): FNS FY2023 = 11.68% (over 10.03 / under 1.64),
     FY2024 = 10.93% (over 9.26 / under 1.67). See exp40 chronicle for URLs.
@@ -24,8 +24,7 @@ import json
 import os
 import sys
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(os.path.dirname(ROOT), "snap-qc-data", "raw")
+DATA = os.path.expanduser("~/workspace/snap-qc-data/raw")
 SYNTH = "/tmp/exp40_synth.jsonl"
 
 FILES = {

@@ -24,7 +24,7 @@ cd src && python3 -m synth.pa_state --n 20000 --seed 7 \
     --dist ../experiments/dist.json --out /tmp/pa4out/pa_synth.jsonl
 python3 experiments/pa4_prioritization.py \
     --pa-synth /tmp/pa4out/pa_synth.jsonl \
-    --qc-dir ../snap-qc-data/raw \
+    --qc-dir ~/workspace/snap-qc-data/raw \
     --holdout-json experiments/pa2_holdout_idx.json
 ```
 The regeneration was verified byte-identical (md5 `64fd2f0bfb11d0fcff6d239f98bf02b2`)

@@ -13,8 +13,8 @@ cause shares.
 Usage: python experiments/exp15_cause_audit.py [--n 20000] [--seed 7]
          [--synth /tmp/exp15_synth.jsonl] [--no-regen]
 
-Held-out rule: reads the real QC public-use file from snap-qc-data/ beside the
-repo checkout (the microdata is never committed or written into the repo).
+Held-out rule: reads the real QC public-use file from ~/workspace/snap-qc-data
+(the microdata is never committed or written into the repo).
 """
 import argparse
 import csv
@@ -28,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from synth.codebook import element_bucket  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 
 # Coarse cause buckets. Labels below are the FY2024 Tech Doc codebook text
 # (Chapter V). Note: src/synth/codebook.py's CAUSE_BUCKETS groups only

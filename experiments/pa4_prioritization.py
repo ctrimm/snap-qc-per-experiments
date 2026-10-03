@@ -14,7 +14,7 @@ Reproduction (exact commands, from repo root):
         --dist ../experiments/dist.json --out /tmp/pa4out/pa_synth.jsonl
   2) python3 experiments/pa4_prioritization.py \\
         --pa-synth /tmp/pa4out/pa_synth.jsonl \\
-        --qc-dir ../snap-qc-data/raw \\
+        --qc-dir ~/workspace/snap-qc-data/raw \\
         --holdout-json experiments/pa2_holdout_idx.json
 
 Calibration design (documented choice):

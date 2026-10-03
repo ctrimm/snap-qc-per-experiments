@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 from synth.codebook import element_bucket  # noqa: E402
 
-REAL = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+REAL = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 SSI_COLS = [f"SSI{i}" for i in range(1, 9)]
 EL_COLS = [f"ELEMENT{i}" for i in range(1, 10)]
 

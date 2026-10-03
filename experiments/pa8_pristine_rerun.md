@@ -23,7 +23,7 @@ Gate: transfer (the element gate is the transfer gate's currency, per PA2).
 
 **Pristine refit** (`python3 experiments/pa8_pristine_rerun.py`, from repo
 root; ran in a clean `git archive` checkout, microdata read-only at
-`snap-qc-data/raw` beside the repo checkout): a verbatim port of `pa1.fit_pa_targets`
+`~/workspace/snap-qc-data/raw`): a verbatim port of `pa1.fit_pa_targets`
 with one change — rows whose (fy, PA-relative row index) key appears in
 `experiments/pa2_holdout_idx.json` are skipped before any aggregate is
 touched (STATE indexing verified identical: strip vs no-strip PA counts

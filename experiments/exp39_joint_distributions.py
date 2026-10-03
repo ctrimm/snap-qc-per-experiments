@@ -41,7 +41,7 @@ Method:
 
 Usage:
     python3 experiments/exp39_joint_distributions.py \
-        --real ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
+        --real ~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv \
         --synth /tmp/exp39_synth.jsonl
 """
 import argparse

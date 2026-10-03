@@ -69,7 +69,7 @@ python3 -m src.synth.ny_state --n 20000 --seed 7 \
     --dist experiments/dist.json --out /tmp/ny45out/ny_synth.jsonl
 python3 experiments/ny5_dollar_ranking.py \
     --ny-synth /tmp/ny45out/ny_synth.jsonl \
-    --qc-dir ../snap-qc-data/raw \
+    --qc-dir ~/workspace/snap-qc-data/raw \
     --holdout-json experiments/ny2_holdout_idx.json
 ```
 

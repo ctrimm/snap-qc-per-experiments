@@ -30,9 +30,7 @@ from synth.distutil import load_dist
 from synth import benefit as benefit_mod
 
 EXP_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(EXP_DIR)
-QC = os.path.join(os.path.dirname(ROOT), "snap-qc-data",
-                   "raw", "qcfy2024_csv", "qc_pub_fy2024.csv")
+QC = "/home/hatch/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 EL_COLS = [f"ELEMENT{i}" for i in range(1, 10)]
 NA_COLS = [f"NATURE{i}" for i in range(1, 10)]
 BUCKETS = ["earned", "shelter", "unearned", "sua", "medical", "hhcomp",

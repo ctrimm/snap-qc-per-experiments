@@ -1,7 +1,7 @@
 # Experiment 8b — rules-recovery parameter fitting: what benefit formula does the agency fleet actually run?
 **Date:** 2026-09-29 · **Code:** `experiments/exp8b_parameter_fitting.py`
 (fitted aggregates in `experiments/exp8b_fitted_params.json`) · **Data:**
-`snap-qc-data/raw/` (beside the repo checkout) FY2024 public-use file (read-only; nothing
+`~/workspace/snap-qc-data/raw/` FY2024 public-use file (read-only; nothing
 from the microdata is written into the repo)
 
 ## Hypothesis

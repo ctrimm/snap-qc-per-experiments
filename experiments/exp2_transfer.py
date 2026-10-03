@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from synth.codebook import element_bucket  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 
 FEATURES = ["hh_size", "earned", "unearned", "shelter", "sua",
             "medical_exp", "depcare", "senior_disabled", "issued_benefit"]

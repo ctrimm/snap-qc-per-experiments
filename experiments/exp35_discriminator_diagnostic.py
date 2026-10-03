@@ -27,7 +27,7 @@ from synth import params  # noqa: E402
 from synth.codebook import element_bucket  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 SYNTH = Path("/tmp/exp35_synth.jsonl")
 
 V2 = ["hh_size", "earned", "unearned", "shelter", "sua",
