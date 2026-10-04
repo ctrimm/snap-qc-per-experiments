@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Predicting SNAP Payment Errors: A Pilot Proposal for Idaho</title>
+<style>
+  @page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+</style>
+</head>
+<body>
+
+<h1>Predicting SNAP Payment Errors:<br>A Pilot Proposal for Idaho</h1>
+<div class="subtitle">Synthetic-data-validated case prioritization for quality-control review — tested where errors are rare</div>
+<div class="meta">October 4, 2026 &nbsp;·&nbsp; Research whitepaper &nbsp;·&nbsp; Methods and validation artifacts are open-source at github.com/ctrimm/snap-qc-per-experiments</div>
+
+<h2>1. Executive summary</h2>
+<p>Idaho has the second-lowest SNAP payment error rate in the nation (3.85% FY2025, federally published). That makes it a hard and valuable test of our approach: if synthetic-data-trained models can find errors <em>where errors are rare</em>, the method is robust. We built and validated an Idaho-conditioned synthetic data generator, calibrated against federal quality-control (QC) microdata (3,839 Idaho cases, FY2020–2024; generator fitted on FY2022–2024). Machine-learning models trained <em>only</em> on this synthetic data predict the <em>type</em> of real, held-out Idaho errors better than a nationally trained model — and the edge survived a fully clean refit that excluded every holdout row. On the error-vs-clean ranking task the Idaho-conditioned model ties the national model; the transferable signal lives in the error-type task. Proof the synthetic cases carry genuine signal about where Idaho's errors happen, even in one of the nation's cleanest caseloads.</p>
+<p>The operational finding — and the track's key scientific result: ranking cases by error probability <em>alone</em> is the winning rule, recovering <span class="kpi">$3,000 vs $2,143 for random review</span> at a fixed review budget — <span class="kpi">$31 vs $22 per hour of reviewer time</span>. This <em>replicates</em> the South Dakota reversal and contradicts the Pennsylvania/New York pattern, where probability-alone was worse than random and dollar-aware rankers won. The emerging rule: where errors are rare and small, rank by probability; where a big-dollar tail exists, model the dollars. Reviewing the riskiest half of cases catches 68% of all errors with half the reviews.</p>
+<p>We propose a low-risk pilot: train the ranker on Idaho's own historical QC data, validate on a recent holdout, then run it in shadow alongside existing review. No production eligibility-system changes. No new data collection.</p>
+
+<h2>2. The problem</h2>
+<p>SNAP payment error rates remain stubbornly high nationwide, and every error is either taxpayer money over-issued or a household underpaid. Quality-control review is the corrective mechanism — but reviewer time is finite, and cases are currently selected for review without a data-driven sense of where errors concentrate. The result is expensive review effort spread thinly over a caseload where risk is highly uneven.</p>
+<p>Idaho is a demanding test of a targeted approach. Our analysis of 3,839 Idaho QC cases (FY2020–2024) shows the state's benefit-calculation engine is clean (the statutory formula predicts issued benefits exactly on 93.4–97.2% of cases per year, within a point of the national fleet; no uncapped-shelter anomaly) — Idaho's errors live in the <em>human process layer</em> (verification, timing, documentation), which is precisely where a prediction tool adds value. The error signature is distinctive: timing errors — cases the agency was not yet required to act on — run at 1.57x the national rate and make up 62% of all variances; shelter-deduction errors run 1.40x and dominate the caseload; the state codes client-caused errors at 1.66x the national rate. Error dollars are small (median $15 vs $28 nationally; 90th percentile $64 vs $186) and hyper-concentrated: the top tenth of errors by dollar size holds 74% of all error dollars.</p>
+
+<h2>3. What was built and validated</h2>
+<p><strong>An Idaho-conditioned synthetic generator.</strong> Starting from a nationally calibrated generator, we fit Idaho-specific error-rate offsets and empirical error mixes on FY2022–2024 microdata (FY2020–21 excluded as partial-year files). The Idaho-conditioned output reproduces the state's finding mix (L1 0.0215), element mix (L1 0.083), and cause mix (L1 0.096), while leaving national output byte-identical. Documented structural residuals: the dollar median undershoots ($7 vs $19 — the relative-offset architecture cannot express the timing-vs-substantive dollar shape) and the rare guarded buckets (dependent care, household composition, arithmetic) draw at national rates.</p>
+<p><strong>Validated predictive signal — with an honest qualification.</strong> Models trained only on Idaho-conditioned synthetic cases beat the nationally trained model at predicting <em>which type</em> of error a held-out Idaho case has (element accuracy wins on 5 of 6 seed comparisons; the accuracy edge persists under a fully clean refit that excluded all 960 holdout rows: +5.4pp over national). On the error-vs-clean ranking task, Idaho-conditioning ties the national model (finding AUC +0.017 pristine, within noise). The transferable signal is real, but it lives in the error-type and dollar tasks, not in fine-grained error-vs-clean ranking — the mirror image of the New York result, and the fourth state to confirm there is no universal conditioning story.</p>
+<p><strong>Probability-alone wins — the South Dakota replication.</strong> In Pennsylvania and New York, ranking by error probability alone was <em>worse than random</em> at the top slice, because probability and error size were nearly orthogonal: the dollars lived in a big-dollar income tail that probability couldn't see. Idaho, like South Dakota, has no big-dollar tail (90th percentile: $87 vs $70 in SD), and the synthetic dollar regressors are miscalibrated — multiplying a good probability ranker (AUC 0.68) by a bad dollar estimate <em>hurts</em>: the two-part rule recovers less than random at the top-10% budget (0.61x). Probability-alone is the best rule at the top-10% and top-30% budgets and ties at top-20%. Two low-error, small-dollar states now show this reversal against two higher-error states — the ranking rule must be re-fit to each state's error economics, not copied between states.</p>
+
+<div class="callout">
+<p><strong>Headline pilot economics (simulated on held-out Idaho cases, top-20% review budget):</strong></p>
+<table>
+<tr><th></th><th>Random review</th><th>P(error)-only ranker</th></tr>
+<tr><td>Error dollars recovered</td><td>$2,143</td><td><span class="kpi">$3,000</span></td></tr>
+<tr><td>Value per review hour</td><td>$22</td><td><span class="kpi">$31</span></td></tr>
+<tr><td>Share of all error dollars captured</td><td>—</td><td>28.0%</td></tr>
+</table>
+<p>Of the $3,000: $2,397 is over-issuance (direct program savings); $603 is under-issuance (households underpaid — the correct QC outcome, but a make-whole cost). Savings-only value: $24.97/hr vs ~$13.4/hr for random review. Absolute dollars are small — Idaho's errors are rare <em>and</em> small — but the lift over random (1.40x) is real, and the probability-only rule is also the fairest configuration tested (see below).</p>
+</div>
+
+<h2>4. The pilot</h2>
+<h3>What Idaho provides</h3>
+<ul>
+<li>Historical QC case extracts the state already holds (no new data collection, no new PII).</li>
+<li>A review team willing to work a ranked queue for a defined pilot period.</li>
+</ul>
+<h3>What changes — and what does not</h3>
+<ul>
+<li><strong>Phase 0 (cold start, no Idaho data needed):</strong> the synthetic-trained ranker scores a sample of cases; rankings are validated against known outcomes.</li>
+<li><strong>Phase 1:</strong> the ranker is trained on Idaho's historical QC data and validated on a recent holdout the model never saw. Phase 1 also selects the ranking rule for Idaho's economics (probability-alone vs dollar-aware) rather than inheriting another state's.</li>
+<li><strong>Phase 2 (shadow):</strong> the ranker scores the live review caseload; reviewers work the top slice; outcomes are measured against the baseline selection method.</li>
+<li><strong>What does not change:</strong> no modifications to the eligibility system, no automated determinations (the model prioritizes review — it never decides a case), no data leaves the state's control.</li>
+</ul>
+<h3>Success metrics</h3>
+<ul>
+<li>Precision in the reviewed slice vs baseline selection.</li>
+<li>Error dollars recovered per reviewer hour vs baseline.</li>
+<li>Reviewer time saved to reach a fixed error-capture target.</li>
+</ul>
+<p>A reasonable pilot shape is 8–12 weeks from data handoff to shadow-readout.</p>
+
+<h2>5. Limitations and honest caveats</h2>
+<ul>
+<li><strong>Mixed transfer — stated plainly.</strong> Idaho-conditioning improves error-<em>type</em> prediction (accuracy edge +5.4pp pristine) but does not beat the national model on error-vs-clean ranking (AUC +0.017, within noise). The pilot's value proposition rests on the ranking economics (validated below), not on a finding-task advantage.</li>
+<li><strong>Modest top-20% lift.</strong> The winning rule's 1.40x lift at the headline budget is below our ~1.5x bar, and it ties the direct dollar model there (1.40x vs 1.42x); the "probability-alone wins" claim rests on the top-10% (1.77x) and top-30% (1.26x) budgets plus simplicity. The holdout is 960 cases; the top-10% slice is 96 cases — confidence intervals are wide.</li>
+<li><strong>The ranking rule is state-specific.</strong> Probability-alone wins in Idaho because there is no big-dollar tail and the dollar regressors are miscalibrated. If Idaho's error economics shift (a big-dollar tail emerging), the rule must be re-tuned — Phase 1 selects the rule per state rather than assuming transfer.</li>
+<li><strong>Refit on full years, not annually.</strong> The transfer signal is year-to-year stable and the pooled three-year fit beats a single-year refit — but shelter-deduction errors showed real decay across the period boundary and should be watched, and FY2024 brought a coding-practice change (the state began recording causes on timing errors far more often; the cause-blank rate fell from 67% to 27%). Partial-year files (FY2020–21) are excluded from refits.</li>
+<li><strong>Procedural errors are invisible.</strong> The federally published payment error rate (3.85% FY2025) and the case-microdata-implied case-error rate (33.9%) measure different things: the published rate is dollar-weighted and includes procedural errors the microdata cannot see. This tool targets substantive case errors, not procedural compliance.</li>
+<li><strong>Headroom.</strong> The synthetic-trained ranker captures roughly two-thirds of the performance a model trained on real Idaho data is projected to reach (1.40x vs 2.08x lift). The pilot's Phase 1 exists to close exactly this gap.</li>
+<li><strong>Human judgment stays in the loop.</strong> This is a triage tool for reviewers, not an adjudication engine. Final determinations remain human — by design.</li>
+</ul>
+
+<h3>Review-burden note</h3>
+<p>In the Pennsylvania and New York tracks, <em>dollar-maximizing</em> rankers proved risk-regressive: they deprioritized elderly and disabled households (the highest-error groups) because their errors are frequent but small-dollar. We re-ran the household-type burden analysis on Idaho's probability-only winner: it is roughly twice as proportional to error risk (CV 0.29 vs ~0.59), reviews elderly/disabled households at 0.54–0.57x their risk (vs 0.22–0.35 for the dollar rankers), and does <em>not</em> over-review childless adults (0.40x vs 1.41–1.45x). The regressivity is a property of the dollar objective, not of ranking per se — and it is one more reason the ranking rule must be selected per state. A residual tilt remains and should be disclosed to the pilot partner.</p>
+
+<h2>6. The ask</h2>
+<p>We are looking for an Idaho partner to run this pilot: a data contact who can provide historical QC extracts, and a review team for the shadow phase. We bring the validated methodology, the synthetic cold-start model, and the open-source validation artifacts. All methods, experiments, and results are published openly; nothing about the approach is proprietary or black-box.</p>
+
+<div class="footer">
+<p>Methods, experiment chronicles, and validation code: github.com/ctrimm/snap-qc-per-experiments (private research repo; access on request). This work is conducted in the open-source civic-technology lane. Contact: via the repository.</p>
+</div>
+
+</body>
+</html>
