@@ -25,7 +25,8 @@ budget.
 - **Data:** 3,257 QC cases, FY2020–24.
 - **Engine check:** benefit-calculation engine matches statute 94–98% — errors are process-layer.
 - **Signature:** timing errors 1.56x national (nearly two-thirds of errors),
-  medical errors 1.79x, utility-allowance errors 1.51x.
+  medical errors 1.79x (pooled FY2020–24; 1.27x on FY2022–24 excluding the
+  pandemic-thinned FY2020–21 files — exp50), utility-allowance errors 1.51x.
 - **Winner:** direct expected-dollar ranker. At a 20% review budget:
   **$6,958 vs $4,574 random** ($85 vs $56 per review hour), capturing **30.4%**
   of error dollars. Of that, **$4,751 is over-issuance** (direct savings).
