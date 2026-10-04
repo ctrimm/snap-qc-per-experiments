@@ -22,8 +22,11 @@ The correction surfaced a larger, genuine discrepancy. Alaska's published error 
 
 | FY | Published | Microdata |
 |----|-----------|-----------|
-| 2023 | 60.37% | 4.66% |
+| 2023 | 60.37% | 4.51% |
 | 2024 | 24.66% | 5.63% |
+
+Microdata rates are HWGT-weighted sum(|AMTERR|)/sum(RAWBEN) for STATE==2
+(verified 2026-10-03; see `experiments/note_alaska_gap.md`).
 
 New Jersey FY2025 collapsed to 6.86% (−7.47pp) in the same window.
 
