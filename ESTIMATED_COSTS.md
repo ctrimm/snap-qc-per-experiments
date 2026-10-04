@@ -65,7 +65,7 @@ current when the data pipeline is ready; do not lock in a base now.
    calibrated to real QC variance distributions (the snap-qc-per-experiments
    generator output — mechanics of how income, deductions, household
    composition, and timing move benefits).
-3. Real QC public-use files (FY2017–2024) as **held-out validation only**
+3. Real QC public-use files (FY2020–2024; FY2025 pending) as **held-out validation only**
    — never in training.
 
 **Eval gates before spending:** CalFresh MCQ 500-question benchmark
@@ -80,6 +80,35 @@ QC-variance eval designed in `experiments/exp17_qc_variance_eval_design.md`.
 | SFT / LoRA, ablations | Mac Studio M3 Ultra | Fits comfortably; iteration speed |
 | Inference, eval harnesses | Mac Studio / LM Studio | Already the local setup |
 | From-scratch pretraining | Nowhere in this plan | Not needed |
+
+## What the six-state panel changes (2026-10-04)
+
+The PA/NY/TX/SD/ID/UT tracks (`docs/CROSS_STATE_SYNTHESIS.md`) established three
+things with cost implications. Net effect: the ~$3k–$7k envelope **stands** — the
+lessons move work between budget lines (more CPU eval, same GPU spend); they add
+no GPU line.
+
+1. **No universal ranking rule — but re-deriving it is CPU-cheap.** The winning
+   ranker differs by state (two-part, direct-dollar, or P-alone, depending on
+   the state's dollar tail), so production needs a per-state calibration run.
+   That run is gradient-boosted trees on synthetic cases plus held-out
+   validation: minutes on CPU, ~$0 GPU spend. The cost is engineering time, not
+   compute. Budget one calibration pass per deployment state; no new training
+   runs.
+
+2. **State-conditioning belongs in the data mix, not in separate pretraining
+   runs.** State-conditioned synthetic beats national pools on transfer, but the
+   LM doesn't need six pretraining runs — it needs state identifiers in the
+   continued-pretraining mix (the generator already emits them). If deployment
+   wants stronger per-state specialization, per-state LoRA adapters on the Mac
+   Studio are the shape: cheap, swappable, no datacenter bill.
+
+3. **The fairness gate is now a per-state eval requirement, not a research
+   extra.** exp47–49: the household-type burden analysis must run for each
+   deployment state's winning ranker (risk-regressivity is a property of
+   dollar-maximizing rankers specifically — UT showed it at 0.155, ID's P-alone
+   winner largely avoids it). Compute-cheap (same CPU harness); required before
+   pilot sign-off.
 
 ## Budget envelope
 
