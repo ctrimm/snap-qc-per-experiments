@@ -1,5 +1,5 @@
-# Experiment 43 — transformer transfer probe (STAGED)
-**Date:** 2026-09-29 · **Code:** `experiments/exp43_transformer_transfer_probe.py` · **Runbook:** `experiments/exp43_runbook_mac_studio.md`
+# Experiment 43 — transformer transfer probe (pool ports; reweighting does not)
+**Date:** 2026-09-29 (designed), 2026-10-02 (run) · **Code:** `experiments/exp43_transformer_transfer_probe.py` · **Runbook:** `experiments/exp43_runbook_mac_studio.md`
 
 ### Hypothesis
 The exp25/exp37 transfer recipe has two components: (1) train on the
@@ -29,7 +29,7 @@ objective for classification; the loss-reweighting arms multiply each
 example's loss by its class's inverse frequency, which is the exact analogue
 of `class_weight="balanced"` in a gradient-boosted tree.
 
-### Method (STAGED — not yet run)
+### Method
 Two stages. Stage 1 runs anywhere (CPU sandbox OK); Stage 2 needs torch and
 is staged for the Mac Studio (runbook: `exp43_runbook_mac_studio.md`).
 
@@ -92,14 +92,49 @@ logreg/unweighted 0.485/0.244, MLP 0.347/0.244 — the transformer should
 land in the nonlinear band (macroF1 ≈ 0.24–0.30) for the guard to pass.
 
 ### Results
-STAGED. Stage 1 pipeline smoke-tested in the sandbox (`--stage data
---smoke`, 2×500 cases → features → npz round-trip OK). Full pools and
-Stage 2 await the Mac Studio per the runbook.
+Run on the Mac Studio 2026-10-02 (torch 2.14.0, MPS; Stage 1 ~5 s, full
+12-training battery 78 s wall). Real eval split: FY2024 QC public-use file
+from snapqcdata.net, 17,318 rows (matches exp37).
+
+**Pools.** Persistent 7,979 error rows — identical to exp37. Retry 7,364
+rows vs exp37's 8,150 (−786, −9.6%). Expected drift: the exp31
+dollar-mechanism generator defaults are now on and exp37 ran before that
+adoption; the persistent pool is unaffected, the retry loop is not. Class
+counts (earned, shelter, unearned, sua, medical, hhcomp, arithmetic,
+depcare): persistent 1849/2574/1944/732/348/227/165/140; retry
+1617/1909/2207/577/211/419/336/88.
+
+| arm | pool | loss | seed 7 | seed 8 | seed 9 | mean acc | mean macroF1 (range) |
+|-----|------|------|--------|--------|--------|----------|----------------------|
+| t1 | persistent | uniform | 0.548/0.303 | 0.563/0.295 | 0.566/0.301 | 0.559 | **0.299** (0.007) |
+| t2 | retry | uniform | 0.538/0.287 | 0.543/0.291 | 0.544/0.290 | 0.542 | 0.290 (0.004) |
+| t3 | persistent | balanced | 0.426/0.278 | 0.455/0.302 | 0.397/0.255 | 0.426 | 0.278 (0.046) |
+| t4 | retry | balanced | 0.393/0.252 | 0.377/0.253 | 0.359/0.241 | 0.376 | 0.249 (0.012) |
+
+Cells are acc/macroF1 on the real split.
+
+Decision bar as printed by the script:
+1. Probe-validity guard: best arm 0.299 > 0.244 → **PASS**.
+2. Pool question: t1 0.299 vs t2 0.290 (t1 ahead by 0.009; bar is
+   t1 ≥ t2 − 0.01) → **PASS** — lock the persistent pool.
+3. Reweighting question: t3 0.278 vs t1 0.299, Δ = −0.021 (bar: < −0.02
+   means it does not port) → **FAIL**.
 
 ### Verdict
-STAGED — no verdict yet. The experiment is designed, scripted, and
-runnable; the decision bar above is the pre-registered read of the
-outcome.
+Hypothesis (a) confirmed, (b) rejected, read strictly off the
+pre-registered bar. The persistent pool holds for a transformer-class
+model — and here it wins outright on both losses (t1 > t2, t3 > t4),
+unlike logreg in exp37 — so the pool choice is **locked** for LM
+pretraining data. Inverse-frequency loss reweighting does **not** port:
+it costs 13 points of accuracy and 0.021 macroF1 on the persistent pool
+(0.041 on retry), the exp37 logreg failure repeated. The LM recipe uses
+**uniform loss**; imbalance handling, if any, comes from resampling,
+tested separately.
+
+Caveat, not a reinterpretation: t3 is the noisiest arm (seed range
+0.046; seed 8 alone reached 0.302) and its mean misses the bar by 0.001.
+The accuracy cost is unambiguous on every seed, and t4 fails the same
+comparison by twice the margin, so the verdict stands.
 
 ### Compute assessment (honest)
 This does **not** run in the CPU sandbox. The sandbox has no torch, 2 CPU
@@ -110,13 +145,7 @@ slow, fragile setup that risks an inconclusive answer. The Mac Studio
 there anyway. Staging it there is the right call, not a shortcut.
 
 ### Next steps
-1. Mac Studio: follow `exp43_runbook_mac_studio.md` — install torch, run
-   Stage 1 (full pools), `--stage train --smoke-train` to validate the
-   torch path, then the full 12-run battery.
-2. Read the verdict off the decision bar: lock or re-derive each recipe
-   component for the LM pretraining plan.
-3. If the reweighting question fails: follow-up probe on resampling
-   (oversample rare buckets in the training mix) as the cross-entropy-safe
-   alternative — do not assume it ports either.
-4. If the probe-validity guard fails: widen the architecture/tuning
-   (d_model, layers, LR) before concluding anything about the recipe.
+1. LM pretraining recipe: persistent pool, uniform loss.
+2. Follow-up probe on resampling (oversample rare buckets in the training
+   mix) as the cross-entropy-safe alternative for rare-bucket recall — do
+   not assume it ports either.
