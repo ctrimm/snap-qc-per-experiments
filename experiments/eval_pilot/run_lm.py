@@ -201,7 +201,8 @@ def parse_class(raw):
 def parse_dollar(raw):
     m = re.search(r"^T?6\s*[:\-]\s*(.+?)\s*$", raw or "", re.M | re.I)
     v = _opt_int(m.group(1) if m else None)
-    return {"t6": v}, (v != "UNPARSEABLE")
+    # no "T6:" line at all (e.g. truncated at max_tokens) is a failed parse
+    return {"t6": v}, (v is not None and v != "UNPARSEABLE")
 
 
 # ---------------------------------------------------------------- LM call

@@ -132,7 +132,9 @@ def load_preds(path):
             if line:
                 r = json.loads(line)
                 d = preds.setdefault(r["item_id"], {})
-                d.update(r.get("parsed", {}))
+                # run_lm.py writes "UNPARSEABLE"; normalize to None (= wrong)
+                d.update({k: (None if v == "UNPARSEABLE" else v)
+                          for k, v in r.get("parsed", {}).items()})
     return preds
 
 

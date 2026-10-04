@@ -4,3 +4,7 @@ __pycache__/
 snap-qc-data/
 *.csv
 *.sas7bdat
+
+# exp30 eval-pilot run scratch
+experiments/eval_pilot/smoke/
+experiments/eval_pilot/*.log

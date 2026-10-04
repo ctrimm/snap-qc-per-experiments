@@ -49,13 +49,40 @@ Empirical side-findings (for the open design questions):
 - **Q7 (format):** MCQ for T1–T5, free-form integer for T6; one classification prompt + one dollar prompt per item.
 - Dollar-error calibration (Q4 input): test p50 $36, p90 $195, p99 $493, max $1,190; T6 bands provisional, flagged for human-label calibration.
 
+### Results — Mac Studio base-model run (2026-10-02 → 10-04)
+
+`google/gemma-4-31b` (dense) via LM Studio, temperature 0, `max_tokens` 400 (runner default), all four conditions on the 1,200 test items; 41 h wall (11–19 s/prompt vs the 2–4 s estimate). Predictions: `experiments/eval_pilot/preds_base_*.jsonl`; scores: `score_base_*.json`.
+
+| | zero/jargon | zero/plain | few/jargon | few/plain |
+|---|---|---|---|---|
+| composite | 0.074 | 0.045 | 0.101 | 0.108 |
+| composite, test_2024 | 0.065 | 0.022 | 0.107 | 0.119 |
+| T1 macroF1 | 0.489 | 0.435 | 0.559 | 0.565 |
+| T2 macroF1 | 0.296 | 0.270 | 0.348 | 0.374 |
+| T3 macroF1 | 0.062 | 0.044 | 0.049 | 0.045 |
+| T4 macroF1 | 0.024 | 0.032 | 0.036 | 0.026 |
+| T5 macroF1 | 0.139 | 0.133 | 0.135 | 0.135 |
+| T6 direction acc | 0.309 | 0.238 | 0.179 | 0.121 |
+| classification no-answer | 17% | 22% | 0% | 0% |
+| dollar no-answer | 13% | 36% | 36% | 65% |
+
+Paired bootstrap (10k): few/jargon − zero/jargon +0.028 [+0.016, +0.040]; few/plain − zero/jargon +0.034 [+0.022, +0.047]; few/plain − few/jargon +0.007 [−0.003, +0.016] (tie).
+
+Findings:
+- **Truncation at 400 tokens** is the largest distortion. Missing answers score as wrong. Few-shot eliminates classification truncation — this is all of its T1 gain (T1 accuracy on answered items 0.573 zero/jargon vs 0.572 few/jargon) and part of T2 (0.338 → 0.379 on answered items) — but raises dollar truncation (13% → 36–65%).
+- **T6 as designed is near-unanswerable:** with RAWBEN withheld (leakage rule) the model must rebuild the agency's benefit; it answers $0 on 1,042/1,048 finished zero/jargon items. Under few/jargon only 20 of 143 nonzero answers have the right sign.
+- **Over/under confusion:** true overissuances predicted underissuance 193× vs overissuance 51× (zero/jargon); 209 vs 46 under few/jargon. A model weakness the eval measures correctly.
+- **T3 far below the 0.214 floor** in every condition (best 0.062); medical, childsupport, assets, reporting F1 = 0 in all four.
+- No FY2024 year shift.
+- Bugs fixed (no score changes): `score.py` now normalizes the runner's `"UNPARSEABLE"` string to `None` (it crashed on T6); `run_lm.py` now flags a dollar answer with no `T6:` line as `parse_ok: false` (it was hiding truncation in parse-rate counts).
+
 ### Verdict
 
-Hypothesis partially confirmed: the pilot package is delivered, baselines are green (dummy composite = 0.000 by construction; perfect model → 1.000, gate passes), and the whole pipeline runs without raw data on the Mac side. LM discrimination itself is **pending** — no LM runs exist yet. I claim nothing unrun.
+Hypothesis partially confirmed. The eval discriminates: every condition beats the dummy and the bootstrap resolves ~0.03 composite differences with CIs excluding zero, which is the resolution the gate needs. A 31B general model gets ~10% of the way from dummy to ceiling (best composite 0.108). Condition choice (Q6): few-shot beats zero-shot; jargon vs plain is a statistical tie under few-shot — **lock few/jargon** on the tie-break (36% vs 65% dollar truncation; plain is clearly worse zero-shot). Two design defects block trusting gate decisions yet: the 400-token cap and T6's unanswerability. T3's 0.214 floor looks unreachable if a 31B model sits at ~0.06.
 
 ### Next steps
-
-1. **Mac Studio LM run** (the blocker): 4 base conditions (~1.5–2.5h each) + tuned run per `experiments/eval_pilot/README.md`.
-2. Human label audit (Q1) on a dev-set sample before trusting T3/T4/T5 taxonomy labels as ground truth.
-3. T6 band calibration (Q4) against auditor judgments.
-4. Then exp31: train the 1.5–4B domain model candidate and put it through this gate.
+1. Eval v1.1: raise `max_tokens` (~1,500) and rerun few/jargon on the base model.
+2. Decide T6: expose the issued amount, drop it from the composite, or rebuild the task.
+3. Re-derive the T3 floor if v1.1 leaves a 31B model near 0.06.
+4. Run the actual gate base (untuned 1.5–4B candidate) under the locked condition.
+5. Human label audit (Q1) on a dev-set sample; T6 band calibration (Q4).
