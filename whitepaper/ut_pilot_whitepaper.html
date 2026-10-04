@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Predicting SNAP Payment Errors: A Pilot Proposal for Utah</title>
+<style>
+  @page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+</style>
+</head>
+<body>
+
+<h1>Predicting SNAP Payment Errors:<br>A Pilot Proposal for Utah</h1>
+<div class="subtitle">Synthetic-data-validated case prioritization for quality-control review — the low-error panel's decisive test</div>
+<div class="meta">October 4, 2026 &nbsp;·&nbsp; Research whitepaper &nbsp;·&nbsp; Methods and validation artifacts are open-source at github.com/ctrimm/snap-qc-per-experiments</div>
+
+<h2>1. Executive summary</h2>
+<p>Utah has the third-lowest SNAP payment error rate in the nation (5.54% FY2025, federally published) — the decisive third leg of our low-error panel alongside South Dakota (lowest) and Idaho (second-lowest). We built and validated a Utah-conditioned synthetic data generator, calibrated against federal quality-control (QC) microdata (4,101 Utah cases, FY2020–2024; fitted on FY2022–2024, excluding partial-year files). Machine-learning models trained <em>only</em> on this synthetic data rank real Utah cases by error risk well above chance — finding AUC (a ranking metric where 0.5 is chance and 1.0 is perfect) of <span class="kpi">0.728 vs 0.678</span> for a nationally trained model — and the advantage survived a fully clean refit that excluded every holdout row. Proof the synthetic cases carry genuine signal about where errors happen, even in one of the nation's cleanest caseloads.</p>
+<p>The operational finding — and the panel's decisive result: the winning ranking rule is the <em>two-part</em> P(error) × expected-dollars model, recovering <span class="kpi">$4,604 vs $2,701 for random review</span> at a fixed review budget — <span class="kpi">$45 vs $26 per hour of reviewer time</span>. This does <em>not</em> replicate South Dakota's surprise, where probability-alone won: Utah's dollars, small on average, concentrate in a heavy tail (the top fifth of cases holds 93% of all error dollars), and the dollar-aware model finds that tail. Reviewing the riskiest half of cases catches 74% of all errors with half the reviews.</p>
+<p>We propose a low-risk pilot: train the ranker on Utah's own historical QC data, validate on a recent holdout, then run it in shadow alongside existing review. No production eligibility-system changes. No new data collection.</p>
+
+<h2>2. The problem</h2>
+<p>SNAP payment error rates remain stubbornly high nationwide, and every error is either taxpayer money over-issued or a household underpaid. Quality-control review is the corrective mechanism — but reviewer time is finite, and cases are currently selected for review without a data-driven sense of where errors concentrate. The result is expensive review effort spread thinly over a caseload where risk is highly uneven.</p>
+<p>Utah is the low-error panel's decisive test. Our analysis of 4,101 Utah QC cases (FY2020–2024) shows the state's benefit-calculation engine matches federal statute at 95.6–99.2% exact per fiscal year — Utah's errors live in the <em>human process layer</em> (verification, timing, documentation), which is precisely where a prediction tool adds value. The error signature is distinctive: wage-timing errors — earnings the agency was not yet required to act on — run at 1.95x the national rate and make up a fifth of all error weight; shelter-deduction errors cut both directions (over-deductions at 2.21x national, under-deductions at 1.33x); substantive errors are coded to the client at 1.56x the national rate, with essentially no "unknown cause" coding. Error dollars are small (median $22 vs $31 nationally, 90th percentile $99 vs $202) but concentrated: the top tenth of errors by dollar size holds 75% of all error dollars, earned-income and shelter cases dominating the tail.</p>
+
+<h2>3. What was built and validated</h2>
+<p><strong>A Utah-conditioned synthetic generator.</strong> Starting from a nationally calibrated generator, we fit Utah-specific error-rate offsets and empirical error mixes on FY2022–2024 microdata (partial-year FY2020–21 excluded — a lesson from the New York track). The UT-conditioned output reproduces Utah's finding mix (L1 0.045), element mix (L1 0.070), and cause mix (L1 0.035 — the tightest of the four states studied), while leaving national output byte-identical. Documented residuals: the generator slightly overstates the over-issuance share (+6.5pp), a structural limit of its direction machinery that downstream calibration absorbs.</p>
+<p><strong>Validated predictive signal.</strong> Models trained only on UT-conditioned synthetic cases predict real, held-out Utah errors better than the nationally trained model on all three tested seeds: finding AUC 0.724 vs 0.649 on average (the largest finding edge of any state studied), and the edge survived a fully clean refit excluding every holdout row (pristine AUC 0.728 vs 0.678 — no contamination premium). On fine-grained error-type classification the Utah model wins the majority of comparisons but the margin is thin and seed-dependent; the transferable signal lives in the finding and dollar tasks, and the whitepaper's claims are scoped accordingly.</p>
+<p><strong>Two-part wins — the South Dakota reversal does not replicate.</strong> In South Dakota, ranking by error probability alone won (2.07x) because errors were uniformly tiny and dollar prediction added only noise. In Utah, probability-alone manages just 1.08x — the <em>worst</em> of the three rules — while the two-part model reaches 1.70x. The mechanism is visible: Utah's dollars concentrate in a heavy tail (93% in the top fifth of cases) that the expected-dollar leg successfully targets. The panel lesson is refined: it is not "low error rate implies probability-alone wins" — it is "no dollar tail implies probability-alone wins." The ranking rule must be re-fit to each state's error economics, not copied between states.</p>
+
+<div class="callout">
+<p><strong>Headline pilot economics (simulated on held-out Utah cases, top-20% review budget):</strong></p>
+<table>
+<tr><th></th><th>Random review</th><th>Two-part ranker</th></tr>
+<tr><td>Error dollars recovered</td><td>$2,701</td><td><span class="kpi">$4,604</span></td></tr>
+<tr><td>Value per review hour</td><td>$26</td><td><span class="kpi">$45</span></td></tr>
+<tr><td>Share of all error dollars captured</td><td>—</td><td>34.1%</td></tr>
+</table>
+<p>Of the $4,604: $3,124 is over-issuance (direct program savings); $1,480 is under-issuance (households underpaid — the correct QC outcome, but a make-whole cost). Savings-only value: $30/hr vs ~$15/hr for random review. The synthetic-trained ranker captures 89% of the performance a model trained on real Utah data is projected to reach.</p>
+</div>
+
+<h2>4. The pilot</h2>
+<h3>What Utah provides</h3>
+<ul>
+<li>Historical QC case extracts the state already holds (no new data collection, no new PII).</li>
+<li>A review team willing to work a ranked queue for a defined pilot period.</li>
+</ul>
+<h3>What changes — and what does not</h3>
+<ul>
+<li><strong>Phase 0 (cold start, no Utah data needed):</strong> the synthetic-trained ranker scores a sample of cases; rankings are validated against known outcomes.</li>
+<li><strong>Phase 1:</strong> the ranker is trained on Utah's historical QC data and validated on a recent holdout the model never saw. Phase 1 also selects the ranking rule for Utah's economics (two-part vs probability-alone vs direct) rather than inheriting another state's, and runs the household-type review-burden analysis as a deployment gate (see limitations).</li>
+<li><strong>Phase 2 (shadow):</strong> the ranker scores the live review caseload; reviewers work the top slice; outcomes are measured against the baseline selection method.</li>
+<li><strong>What does not change:</strong> no modifications to the eligibility system, no automated determinations (the model prioritizes review — it never decides a case), no data leaves the state's control.</li>
+</ul>
+<h3>Success metrics</h3>
+<ul>
+<li>Precision in the reviewed slice vs baseline selection.</li>
+<li>Error dollars recovered per reviewer hour vs baseline.</li>
+<li>Reviewer time saved to reach a fixed error-capture target.</li>
+</ul>
+<p>A reasonable pilot shape is 8–12 weeks from data handoff to shadow-readout.</p>
+
+<h2>5. Limitations and honest caveats</h2>
+<ul>
+<li><strong>Small samples, wide intervals.</strong> The holdout contains 337 error cases; per-seed margins are thin and confidence intervals are wide. We report three seeds and prefer qualified claims — the finding-task transfer is consistent across seeds, but this is a small-sample result and should be re-validated on Utah's own larger historical extract in Phase 1.</li>
+<li><strong>The ranking rule is state-specific.</strong> Two-part wins in Utah because a heavy dollar tail exists for the expected-dollar leg to find; in South Dakota, probability-alone won because there was no tail. If Utah's error economics shift, the rule must be re-tuned — Phase 1 selects the rule per state rather than assuming transfer.</li>
+<li><strong>Refit on a rolling multi-year window; no annual refit required.</strong> The transfer signal is year-to-year stable (no decay across the FY2022→FY2023–24 boundary), but two shifts deserve watches: the medical-deduction bucket showed real F1 decay, and FY2024 brought a coding-practice change (Utah began recording causes on timing errors — the blank rate dropped from ~0.98 to 0.61). Partial-year files are excluded from refits.</li>
+<li><strong>Procedural errors are invisible.</strong> The federally published payment error rate (5.54% FY2025) and the case-microdata-implied case-error rate (33.2%) measure different things: the published rate is dollar-weighted and includes procedural errors the microdata cannot see. This tool targets substantive case errors, not procedural compliance.</li>
+<li><strong>Headroom.</strong> The synthetic-trained two-part ranker reaches 1.70x vs 1.92x for the real-trained projection — the generator's feature-to-dollar conditional is the binding constraint, and the pilot's Phase 1 exists to close exactly this gap.</li>
+<li><strong>Human judgment stays in the loop.</strong> This is a triage tool for reviewers, not an adjudication engine. Final determinations remain human — by design.</li>
+</ul>
+
+<h3>Review-burden note</h3>
+<p>Unlike South Dakota — whose winning rule was probability-alone — Utah's recommended rule is dollar-maximizing, so the risk-regressivity caveat from the Pennsylvania and New York tracks applies in full: at a 20% review budget, elderly and disabled households (the highest-error groups, at 36–41% base error rates) are reviewed at roughly one-sixth the rate their error risk warrants (review-to-risk ratios of 0.155), while the lowest-risk childless-adult households are over-reviewed at 1.8x. The expected-dollar leg drives this tilt (probability-alone is more than twice as proportional). A household-type-stratified review-burden analysis is a required Phase-1 deployment gate, with per-type review floors as the operational mitigation — the dollars recovered must not come at the cost of abandoning review where errors are most frequent.</p>
+
+<h2>6. The ask</h2>
+<p>We are looking for a Utah partner to run this pilot: a data contact who can provide historical QC extracts, and a review team for the shadow phase. We bring the validated methodology, the synthetic cold-start model, and the open-source validation artifacts. All methods, experiments, and results are published openly; nothing about the approach is proprietary or black-box.</p>
+
+<div class="footer">
+<p>Methods, experiment chronicles (70+), and validation code: github.com/ctrimm/snap-qc-per-experiments (private research repo; access on request). This work is conducted in the open-source civic-technology lane. Contact: via the repository.</p>
+</div>
+
+</body>
+</html>
