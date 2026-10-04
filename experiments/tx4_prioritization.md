@@ -35,7 +35,8 @@ Calibration on the real-TX train split (n=2,592): raw AUC 0.7189; CV Brier
 isotonic 0.20069 vs Platt 0.20328 — **isotonic chosen**; in-sample Brier
 0.19797. Holdout (n=865, 383 errors, base rate 44.3%): raw AUC 0.6977,
 calibrated AUC **0.6999** (calibration is monotone: identical ranking).
-TX8 pristine reference: TBD (TX8 has not run; gate is conditional).
+TX8 pristine reference: **0.6854** — the calibrated 0.6999 clears it, so
+the contamination-adjusted gate passes.
 
 | Review budget | Precision | Lift | Caught | Share of errors | Errors/100 reviews |
 |---|---|---|---|---|---|
@@ -59,7 +60,10 @@ $108.
 ## Verdict
 
 **CONDITIONAL PASS — the ranking beats random review at every budget, but
-TX's lifts are the weakest of the three state POCs.** In executive numbers:
+TX's lifts are the weakest of the three state POCs.** (The condition is
+now satisfied: TX8 quantifies the contamination premium at +0.003 on the
+finding AUC — negligible — and the calibrated 0.6999 clears TX8's pristine
+0.6854 reference.) In executive numbers:
 Texas reviewers today find errors in about **44 of every 100** cases they
 review (TX's base rate is the highest of the three states). In the model's
 ranked order, the first 100 reviews turn up about **57 errors instead of
@@ -71,8 +75,10 @@ list — not at AUC 0.70.
 
 Two honest caveats for the CIO: (1) this is **retrospective ranking on
 QC-labeled cases**, not a live deployment; (2) the numbers carry TX2's
-holdout-contamination caveat, to be quantified by TX8 (the calibrated AUC
-0.6999 must clear TX8's pristine reference for the gate to fully pass).
+holdout-contamination caveat, quantified by TX8 as **+0.003 on the
+finding AUC** (0.688 contaminated vs 0.6854 pristine) — negligible, and
+the calibrated 0.6999 clears the pristine 0.6854 reference, so the gate
+fully passes.
 Unlike NY4, the caught errors **do skew small-dollar** (median $21 vs $30)
 — error-count gains overstate dollars-recovered gains, which is TX5's
 problem to solve with dollar-aware ranking.

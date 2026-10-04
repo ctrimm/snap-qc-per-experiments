@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Predicting SNAP Payment Errors: A Pilot Proposal for Texas</title>
+<style>
+  @page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+</style>
+</head>
+<body>
+
+<h1>Predicting SNAP Payment Errors:<br>A Pilot Proposal for Texas</h1>
+<div class="subtitle">Synthetic-data-validated case prioritization for quality-control review</div>
+<div class="meta">October 4, 2026 &nbsp;·&nbsp; Research whitepaper &nbsp;·&nbsp; Methods and validation artifacts are open-source at github.com/ctrimm/snap-qc-per-experiments</div>
+
+<h2>1. Executive summary</h2>
+<p>We have built and validated a synthetic data generator that reproduces how SNAP payment errors occur in Texas's caseload, calibrated against five years of federal quality-control (QC) microdata. Machine-learning models trained <em>only</em> on this synthetic data rank real Texas cases by error risk above chance (binary AUC 0.69 vs 0.67 for a nationally trained model, consistently across seeds) — proof the synthetic cases carry genuine signal about where errors happen. A fully clean refit excluding the holdout rows confirmed the signal is not a contamination artifact (premium: +0.003 on the finding AUC).</p>
+<p>The operational finding: a two-part dollar-aware ranking model (error probability × expected dollar impact), applied to prioritize QC review, recovers <span class="kpi">$5,798 vs $4,634 for random review</span> at a fixed review budget — <span class="kpi">$67 vs $54 per hour of reviewer time</span>. Reviewing the riskiest half of cases catches 65% of all errors with half the reviews.</p>
+<p>We propose a low-risk pilot: train the ranker on Texas's own historical QC data, validate on a recent holdout, then run it in shadow alongside existing review. No production eligibility-system changes. No new data collection.</p>
+
+<h2>2. The problem</h2>
+<p>SNAP payment error rates remain stubbornly high nationwide, and every error is either taxpayer money over-issued or a household underpaid. Quality-control review is the corrective mechanism — but reviewer time is finite, and cases are currently selected for review without a data-driven sense of where errors concentrate. The result is expensive review effort spread thinly over a caseload where risk is highly uneven.</p>
+<p>Texas is a strong candidate for a targeted approach. Our analysis of 3,457 Texas QC cases (FY2020–2024) shows the state's benefit-calculation engine is the cleanest of the three states studied — it matches federal statute at 99.5–100% of holdout cases — so Texas's errors live in the <em>human process layer</em> (verification, documentation, coding), which is precisely where a prediction tool adds value. The pattern is distinctive: "other"-coded errors (nature 99) run at 4.28x the national rate and make up nearly a quarter of Texas's errors; agency-caused errors hold the highest share of the three states (58%); and the state's error direction flipped from over-tilted (59% over in FY2020-21) to under-tilted (45–49% over in FY2022-24). Texas's base error rate is the highest of the three states (44%), so even modest ranking gains touch a large volume of cases.</p>
+
+<h2>3. What was built and validated</h2>
+<p><strong>A Texas-conditioned synthetic generator.</strong> Starting from a nationally calibrated generator (error-type mix matching reality within ~1 percentage point), we fit Texas-specific error-rate offsets and empirical error mixes. The TX-conditioned output reproduces Texas's finding mix (L1 0.028), element mix (0.034), and cause mix (0.029) — the tightest calibration of the three state tracks — while leaving national output byte-identical.</p>
+<p><strong>Validated predictive signal — with one honest qualification.</strong> Models trained only on TX-conditioned synthetic cases beat baseline and beat a nationally trained model at ranking error vs correct (AUC 0.688 vs 0.670), and the advantage survived a fully clean refit excluding the holdout rows (0.685 vs 0.670 — a +0.003 contamination premium, effectively zero). On the element-classification task, however, the TX-conditioned model beats the majority baseline (0.407 vs 0.274) but does <em>not</em> beat the nationally trained model (0.441): Texas's distinctive signature sits in coding practice (nature-99 "other" coding), which is unlearnable from agency-view features. The transferable signal is real, but it lives in the finding and dollar tasks, not in fine-grained element prediction. Texas-conditioning buys exactly one thing on element: better dependent-care error prediction (F1 0.42 vs 0.38).</p>
+<p><strong>A dollar-aware ranking.</strong> The set's most important surprise, confirmed a third time: ranking cases by error probability <em>alone</em> performs worse than random at the top slice (0.98x). Error probability and error size are nearly orthogonal in Texas's mix — probability chases frequent small-dollar errors (caught median $21) while the dollars live in the income-error tail. The product must therefore be a dollar-aware ranker: here, the two-part structure (P(error) × expected dollars) won — like Pennsylvania, not New York — with lift 1.25x at the top-20% budget.</p>
+
+<div class="callout">
+<p><strong>Headline pilot economics (simulated on held-out TX cases, top-20% review budget):</strong></p>
+<table>
+<tr><th></th><th>Random review</th><th>Dollar ranker</th></tr>
+<tr><td>Error dollars recovered</td><td>$4,634</td><td><span class="kpi">$5,798</span></td></tr>
+<tr><td>Value per review hour</td><td>$54</td><td><span class="kpi">$67</span></td></tr>
+<tr><td>Share of all error dollars captured</td><td>—</td><td>25.0%</td></tr>
+</table>
+<p>Of the $5,798: $3,866 is over-issuance (direct program savings); $1,932 is under-issuance (households underpaid — the correct QC outcome, but a make-whole cost). Savings-only value: $44.69/hr vs $32.38/hr random. Honest qualification: the 1.25x lift trails the ~1.5x bar cleared by Pennsylvania (1.58x) and New York (1.52x) — Texas's economics are the weakest of the three tracks, and the whitepaper reports this plainly.</p>
+</div>
+
+<h2>4. The pilot</h2>
+<h3>What Texas provides</h3>
+<ul>
+<li>Historical QC case extracts the state already holds (no new data collection, no new PII).</li>
+<li>A review team willing to work a ranked queue for a defined pilot period.</li>
+</ul>
+<h3>What changes — and what does not</h3>
+<ul>
+<li><strong>Phase 0 (cold start, no TX data needed):</strong> the synthetic-trained ranker scores a sample of cases; rankings are validated against known outcomes.</li>
+<li><strong>Phase 1:</strong> the dollar ranker is trained on Texas's historical QC data and validated on a recent holdout the model never saw.</li>
+<li><strong>Phase 2 (shadow):</strong> the ranker scores the live review caseload; reviewers work the top slice; outcomes are measured against the baseline selection method.</li>
+<li><strong>What does not change:</strong> no modifications to the eligibility system, no automated determinations (the model prioritizes review — it never decides a case), no data leaves the state's control.</li>
+</ul>
+<h3>Success metrics</h3>
+<ul>
+<li>Precision in the reviewed slice vs baseline selection.</li>
+<li>Error dollars recovered per reviewer hour vs baseline.</li>
+<li>Reviewer time saved to reach a fixed error-capture target.</li>
+</ul>
+<p>A reasonable pilot shape is 8–12 weeks from data handoff to shadow-readout.</p>
+
+<h2>5. Limitations and honest caveats</h2>
+<ul>
+<li><strong>The lift is modest.</strong> The synthetic-trained ranker reaches 1.25x at the top-20% budget — real dollars per hour ($67 vs $54), but below Pennsylvania's 1.58x and New York's 1.52x. The pilot's Phase 1 (training on real TX data) exists to close this gap; the headroom arm projects 1.61x.</li>
+<li><strong>TX-conditioning does not win everywhere.</strong> On fine-grained element prediction the nationally trained model beats the TX-conditioned one (0.441 vs 0.409); Texas's most distinctive errors (nature-99 "other" coding) are a coding practice, not a learnable feature pattern. The transferable signal lives in finding and dollar tasks.</li>
+<li><strong>The error direction flipped.</strong> Texas's errors went from 59% over-issuance (FY2020-21) to 45–49% over (FY2022-24). The ranker was validated across this flip (finding accuracy rose +0.086), but the dollar ranker should be re-tuned on recent data at pilot start — under-issuance exposure is the growing half of the problem.</li>
+<li><strong>A labeling break in FY2024.</strong> Texas went from blanking all nature-97 error causes (FY2020-23) to recording all of them (FY2024). Any cause-mix analysis — and any future generator refit — must stratify by fiscal year.</li>
+<li><strong>Procedural errors are invisible.</strong> Published federal error rates run above what case microdata implies, in procedural errors the microdata cannot see. This tool targets substantive case errors, not procedural compliance.</li>
+<li><strong>Stability.</strong> The signal is year-to-year stable in our tests (element accuracy rises +0.034 across the FY2022/23 boundary), but the error-probability baseline should be re-tuned on recent data at pilot start; arithmetic and dependent-care errors are the two buckets with measurable decay and should be watched.</li>
+<li><strong>Human judgment stays in the loop.</strong> This is a triage tool for reviewers, not an adjudication engine. Final determinations remain human — by design.</li>
+</ul>
+
+<h2>6. The ask</h2>
+<p>We are looking for a Texas partner to run this pilot: a data contact who can provide historical QC extracts, and a review team for the shadow phase. We bring the validated methodology, the synthetic cold-start model, and the open-source validation artifacts. All methods, experiments, and results are published openly; nothing about the approach is proprietary or black-box.</p>
+
+<div class="footer">
+<p>Methods, experiment chronicles (70+), and validation code: github.com/ctrimm/snap-qc-per-experiments (private research repo; access on request). This work is conducted in the open-source civic-technology lane. Contact: via the repository.</p>
+</div>
+
+</body>
+</html>

@@ -61,7 +61,7 @@ SUA_YES = {"3", "4", "5", "6", "7", "8"}
 SPLIT_SEED = 20260929
 TEST_SIZE = 0.25
 FY_FILES = [2020, 2021, 2022, 2023, 2024]
-TX8_PRISTINE_REF_AUC = None  # filled after TX8 runs (pristine finding binary AUC, clean 8-feat, no-cw)
+TX8_PRISTINE_REF_AUC = 0.6854  # TX8 pristine no-cw finding binary AUC (2026-10-03)
 
 
 def fnum(v):
