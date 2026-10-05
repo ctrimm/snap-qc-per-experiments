@@ -9,20 +9,29 @@ Per-task metrics (primary metric first):
   T6 dollar    : direction accuracy (secondary: MAE, tolerance-band credits,
                  exact-match rate)
 
-Composite = mean over tasks of (model - dummy) / (ceiling - dummy),
+Composite = mean over T1-T5 of (model - dummy) / (ceiling - dummy),
 clipped to [0, 1]. Ceilings: real->real macroF1 where published
 (T2 0.832, T3 0.422); 1.0 elsewhere (placeholder, flagged in output).
+
+Eval v1.1 (exp30 v1 run + cap test): T6 is scored and reported but left
+out of the composite and the win count -- with RAWBEN withheld no model
+tested beats the always-$0 dummy on it. Runs use max_tokens 1500.
 
 Gate check (exp17 section 5), model vs its own base (--base-preds):
   1. composite strictly higher, 95% paired-bootstrap CI excludes zero
      (10k resamples over items);
-  2. wins on >= 4 of 6 tasks (per-task bootstrap CI excludes zero);
+  2. wins on >= 4 of the 5 composite tasks (per-task bootstrap CI
+     excludes zero; was >= 4 of 6 in v1);
   3. T3 macroF1 >= 0.214 (GBM synth->real floor).
+--ref-preds additionally reports composite vs a reference model (e.g. the
+untuned 31B); informational only, not part of PASS.
 
 Usage:
   python3 score.py --items items.json --preds preds.jsonl --out scores.json
   python3 score.py --items items.json --preds tuned.jsonl \\
       --base-preds base.jsonl --out gate.json
+  python3 score.py --items items.json --preds tuned.jsonl \\
+      --base-preds base.jsonl --ref-preds ref_31b.jsonl --out gate.json
   python3 score.py --items items.json --dummy --out baselines.json
   python3 score.py --items items.json --preds preds.jsonl --split test_2024
 
@@ -49,6 +58,9 @@ CEILINGS = {"t1": 1.0, "t2": T2_REAL2REAL_MACROF1, "t3": T3_REAL2REAL_MACROF1,
             "t4": 1.0, "t5": 1.0, "t6": 1.0}
 T3_GBM_FLOOR = 0.214
 BOOTSTRAP_B = 10000
+EVAL_VERSION = "v1.1"
+TASKS = ("t1", "t2", "t3", "t4", "t5", "t6")
+COMPOSITE_TASKS = ("t1", "t2", "t3", "t4", "t5")  # v1.1: T6 reported only
 
 
 # ---------------------------------------------------------------- metrics
@@ -196,7 +208,7 @@ def dummy_preds(items):
 
 def composite(task_scores, dummy_scores):
     parts = {}
-    for t in ("t1", "t2", "t3", "t4", "t5", "t6"):
+    for t in COMPOSITE_TASKS:
         m, d, c = task_scores[t]["primary"], dummy_scores[t]["primary"], CEILINGS[t]
         parts[t] = min(1.0, max(0.0, (m - d) / (c - d))) if c > d else 0.0
     return sum(parts.values()) / len(parts), parts
@@ -267,7 +279,7 @@ def bootstrap_gate(items, preds_model, preds_base, seed=12345, b=BOOTSTRAP_B):
     correct cases). 10k resamples, stdlib only.
     """
     rng = random.Random(seed)
-    tasks = ("t1", "t2", "t3", "t4", "t5", "t6")
+    tasks = TASKS
     n_classes = {t: len(L.TASKS[t]["values"]) for t in tasks if t != "t6"}
     codes = {}
     for t in tasks:
@@ -283,7 +295,7 @@ def bootstrap_gate(items, preds_model, preds_base, seed=12345, b=BOOTSTRAP_B):
 
     def composite_of(prim):
         parts = []
-        for t in tasks:
+        for t in COMPOSITE_TASKS:
             m, d, c = prim[t], dummy_primary[t], CEILINGS[t]
             parts.append(min(1.0, max(0.0, (m - d) / (c - d))) if c > d else 0.0)
         return sum(parts) / len(parts)
@@ -314,7 +326,7 @@ def bootstrap_gate(items, preds_model, preds_base, seed=12345, b=BOOTSTRAP_B):
         "composite_diff_ci95": [lo, hi],
         "composite_win": lo > 0,
         "task_wins": wins,
-        "n_wins": sum(1 for t in wins if wins[t]["win"]),
+        "n_wins": sum(1 for t in COMPOSITE_TASKS if wins[t]["win"]),
     }
 
 
@@ -332,6 +344,8 @@ def main():
                     choices=["test", "test_main", "test_2024", "dev", "all"],
                     help="test = test_main + test_2024")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--ref-preds", default=None,
+                    help="reference model preds (e.g. untuned 31B); reported only")
     ap.add_argument("--bootstrap-b", type=int, default=BOOTSTRAP_B)
     ap.add_argument("--seed", type=int, default=12345)
     ap.add_argument("--ids", default=None,
@@ -354,13 +368,15 @@ def main():
         preds = load_preds(args.preds)
         model_name = args.preds
 
-    tasks = ("t1", "t2", "t3", "t4", "t5", "t6")
+    tasks = TASKS
     task_scores = {t: score_task(t, task_pairs(items, preds, t)) for t in tasks}
     dummy_scores = {t: score_task(t, task_pairs(items, dummy_preds(items), t))
                     for t in tasks}
     comp, parts = composite(task_scores, dummy_scores)
 
     out = {
+        "eval_version": EVAL_VERSION,
+        "composite_tasks": list(COMPOSITE_TASKS),
         "model": model_name,
         "split": args.split,
         "n_items": len(items),
@@ -380,22 +396,36 @@ def main():
         gate["pass"] = (gate["composite_win"] and gate["n_wins"] >= 4
                         and gate["t3_clears_gbm_floor"])
         out["gate_vs_base"] = gate
+    if args.ref_preds and not args.dummy:
+        ref = bootstrap_gate(items, preds, load_preds(args.ref_preds),
+                             seed=args.seed, b=args.bootstrap_b)
+        out["vs_reference"] = {"ref_preds": args.ref_preds,
+                               "composite_diff_mean": ref["composite_diff_mean"],
+                               "composite_diff_ci95": ref["composite_diff_ci95"],
+                               "beats_reference": ref["composite_win"]}
 
     txt = []
-    txt.append(f"model: {model_name}  split: {args.split}  n={len(items)}")
+    txt.append(f"eval {EVAL_VERSION}  model: {model_name}  split: {args.split}  "
+               f"n={len(items)}")
     txt.append(f"{'task':<6}{'primary':>10}{'acc':>10}{'n':>7}")
     for t in tasks:
         s = task_scores[t]
         acc = s.get("accuracy", float("nan"))
         txt.append(f"{t:<6}{s['primary']:>10.3f}{acc:>10.3f}{s['n']:>7d}")
-    txt.append(f"composite: {comp:.3f}")
+    txt.append(f"composite (T1-T5): {comp:.3f}")
     if "gate_vs_base" in out:
         g = out["gate_vs_base"]
         lo, hi = g["composite_diff_ci95"]
         txt.append(f"gate: composite diff {g['composite_diff_mean']:+.3f} "
-                   f"[{lo:+.3f},{hi:+.3f}] wins={g['n_wins']}/6 "
+                   f"[{lo:+.3f},{hi:+.3f}] wins={g['n_wins']}/{len(COMPOSITE_TASKS)} "
                    f"t3>={T3_GBM_FLOOR}: {g['t3_clears_gbm_floor']} "
                    f"PASS={g['pass']}")
+    if "vs_reference" in out:
+        r = out["vs_reference"]
+        lo, hi = r["composite_diff_ci95"]
+        txt.append(f"vs reference: composite diff {r['composite_diff_mean']:+.3f} "
+                   f"[{lo:+.3f},{hi:+.3f}] beats={r['beats_reference']} "
+                   f"(informational)")
     print("\n".join(txt))
 
     if args.out:

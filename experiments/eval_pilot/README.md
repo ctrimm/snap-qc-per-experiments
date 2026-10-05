@@ -1,5 +1,21 @@
 # QC-variance eval pilot — Mac Studio runbook
 
+**Eval v1.1 (2026-10-05).** Changes from v1, all from the exp30 Mac Studio
+runs (see `../exp30_eval_pilot.md`):
+- `max_tokens` 1500 (was 400): at 400, 13–65% of dollar answers were cut
+  off before the `T6:` line; at 1500, 0% for gemma-4-31b.
+- Prompt condition locked to **few-shot + jargon** (few-shot removes
+  classification truncation; jargon vs plain tied, jargon truncates less).
+- T6 is scored and reported but **left out of the composite and the win
+  count**: with RAWBEN withheld, no model tested beats the always-$0 dummy.
+  Gate leg 2 is now ≥ 4 wins of 5 tasks (was 4 of 6).
+- `score.py --ref-preds` reports composite vs a reference model (e.g. the
+  untuned 31B). Informational only, not part of PASS.
+- `run_lm.py --ids FILE` / `score.py --ids FILE` restrict to an item subset
+  (e.g. `subset_300.txt`, a stratified 300-item cut).
+
+v1 results (`preds_base_*`, `score_base_*`) stay as recorded under v1 rules.
+
 Runs the frozen 1,400-item QC-variance eval (exp17 design, exp30 pilot build)
 against a local model served by LM Studio's OpenAI-compatible endpoint.
 No raw QC microdata needed on this machine: `items.json` ships the frozen
@@ -33,7 +49,16 @@ Sanity check the prompt rendering before spending GPU time:
 python3 run_lm.py --dry-run --condition zero --template jargon
 ```
 
-## Step 1 — run the base model (4 prompt conditions)
+## Step 1 (v1 only) — run the base model (4 prompt conditions)
+
+Under v1.1 the condition is locked, so a base run is one command:
+
+```bash
+python3 run_lm.py --condition few --template jargon --split test \
+    --out preds_<model>_few_jargon.jsonl     # max_tokens 1500 by default
+```
+
+The four-condition sweep below is how v1 chose that condition:
 
 Each condition runs the 1,200 locked test items (2 prompts per item:
 classification T1–T5 + dollar T6). At ~2–4 s per prompt on a 30B model,
@@ -57,14 +82,12 @@ the test set is never used for prompt iteration.
 ## Step 2 — run the synthetic-pretrained model
 
 Point `QC_EVAL_MODEL` at the pretrained checkpoint (same tokenizer family
-as the base) and repeat the condition you will use for the gate decision
-(start with `zero` + `jargon` unless Step 1 shows a clearly better
-discriminator — see "Reading the results"):
+as the base) and run the locked v1.1 condition:
 
 ```bash
 export QC_EVAL_MODEL="<synthetic-pretrained model id>"
-python3 run_lm.py --condition zero --template jargon --split test \
-    --out preds_tuned_zero_jargon.jsonl
+python3 run_lm.py --condition few --template jargon --split test \
+    --out preds_tuned_few_jargon.jsonl
 ```
 
 ## Step 3 — score and check the gate
@@ -75,18 +98,20 @@ python3 score.py --items items.json --dummy --split test
 
 # base model alone
 python3 score.py --items items.json \
-    --preds preds_base_zero_jargon.jsonl --split test
+    --preds preds_base_few_jargon.jsonl --split test
 
-# gate decision: tuned vs its own base (same prompt condition)
+# gate decision: tuned vs its own base (same prompt condition);
+# --ref-preds adds an informational comparison against the untuned 31B
 python3 score.py --items items.json \
-    --preds preds_tuned_zero_jargon.jsonl \
-    --base-preds preds_base_zero_jargon.jsonl \
-    --split test --out gate_zero_jargon.json
+    --preds preds_tuned_few_jargon.jsonl \
+    --base-preds preds_base_few_jargon.jsonl \
+    --ref-preds preds_base_few_jargon_31b.jsonl \
+    --split test --out gate_few_jargon.json
 
 # year-robustness cut (FY2024 slice, reported separately)
 python3 score.py --items items.json \
-    --preds preds_tuned_zero_jargon.jsonl \
-    --base-preds preds_base_zero_jargon.jsonl \
+    --preds preds_tuned_few_jargon.jsonl \
+    --base-preds preds_base_few_jargon.jsonl \
     --split test_2024 --out gate_2024.json
 ```
 
@@ -100,13 +125,13 @@ t3      0.355   0.402    712     # element macroF1 (error cases w/ primary)
 t4      ...                      # nature macroF1
 t5      ...                      # cause macroF1
 t6      0.688     --    1200     # dollar direction accuracy
-composite: 0.412
+composite (T1-T5): 0.412
 ```
 
 - `primary` is the metric that counts: macroF1 for T1–T5, direction
   accuracy for T6. (T6 secondaries — MAE, tolerance-band credits,
   exact-match rate — are in the JSON.)
-- `composite` = mean over tasks of
+- `composite` = mean over T1–T5 (v1.1; T6 reported only) of
   (model − dummy) / (ceiling − dummy), i.e. "fraction of the way from
   guessing to the best tabular reference". T2/T3 ceilings are the published
   real→real GBM numbers (0.832 / 0.422); the rest use 1.0 as a placeholder
@@ -119,8 +144,8 @@ own base model on the same prompt condition:
 
 1. **Composite strictly higher**, with the 95% paired-bootstrap CI
    (10,000 resamples) excluding zero.
-2. **Wins on at least 4 of 6 tasks** individually (per-task bootstrap CI
-   excludes zero).
+2. **Wins on at least 4 of the 5 composite tasks** (T1–T5) individually
+   (per-task bootstrap CI excludes zero). v1 was 4 of 6 with T6 included.
 3. **T3 element macroF1 ≥ 0.214** — the GBM synth→real floor. A language
    model reading the actual case facts should beat a GBM trained on
    synthetic tabular features at naming the error element.

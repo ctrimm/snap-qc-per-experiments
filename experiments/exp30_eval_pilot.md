@@ -97,9 +97,15 @@ few/jargon on a stratified 300-item subset (`eval_pilot/subset_300.txt`: 250 tes
 - gemma-4-e4b (untuned, ~4B) sits at the dummy floor: composite 0.006, predicts "correct" on 259/300 (T1 below dummy), T3 0.005. Its dollar answers run ~4,000 chars median, so 400 tokens truncates 97% and 1,500 still truncates 9%.
 - Decision: adopt `max_tokens` 1,500 as eval v1.1 (v1 results stand as recorded). If e4b is the candidate family, its base is near zero on every task: the composite/win-count legs of the gate become easy and the T3 ≥ 0.214 floor is the binding, likely unreachable, constraint.
 
+### Eval v1.1 adopted (2026-10-05)
+
+Decisions: `max_tokens` 1500; condition locked to few/jargon; T6 scored and reported but excluded from the composite and win count (gate leg 2 becomes ≥ 4 of 5 tasks); `score.py --ref-preds` reports tuned-vs-31B as an informational line, not part of PASS. T3 floor unchanged at 0.214 pending re-derivation. Details in `eval_pilot/README.md`.
+
+v1 runs rescored under the v1.1 composite (T1–T5): zero/jargon 0.088, zero/plain 0.053, few/jargon 0.121, few/plain 0.129. Subset (300): 31b@1500 0.114, e4b@1500 0.008. The committed `score_base_*` / `score_v11_*` JSON files keep their original v1 composites.
+
 ### Next steps
-1. Eval v1.1: `max_tokens` 1,500 (adopted on the cap-test evidence above).
-2. Decide T6: even fully answered, a 31B model can't beat always-$0 with RAWBEN withheld. Expose the issued amount, drop T6 from the composite, or rebuild the task.
+1. ~~Eval v1.1~~ adopted (above).
+2. T6 redesign as its own task (out of the composite meanwhile).
 3. Re-derive the T3 floor (31b 0.034–0.062, e4b 0.005 vs 0.214).
 4. Full 1,200-item e4b base run under v1.1 once T6 and the T3 floor are settled.
 5. Human label audit (Q1) on a dev-set sample; T6 band calibration (Q4).

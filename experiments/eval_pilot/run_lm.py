@@ -207,7 +207,7 @@ def parse_dollar(raw):
 
 # ---------------------------------------------------------------- LM call
 
-def chat(prompt, temperature=0.0, max_tokens=400):
+def chat(prompt, temperature=0.0, max_tokens=1500):
     headers = {"Content-Type": "application/json"}
     if API_KEY:
         headers["Authorization"] = f"Bearer {API_KEY}"
@@ -239,7 +239,7 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--temperature", type=float, default=0.0)
-    ap.add_argument("--max-tokens", type=int, default=400)
+    ap.add_argument("--max-tokens", type=int, default=1500)  # v1.1; v1 used 400
     ap.add_argument("--ids", default=None,
                     help="file of item_ids (one per line) to restrict the run to")
     args = ap.parse_args()
