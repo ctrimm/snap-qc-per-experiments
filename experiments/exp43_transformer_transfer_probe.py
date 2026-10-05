@@ -39,7 +39,7 @@ from synth import benefit as benefit_mod  # noqa: E402
 from synth import params  # noqa: E402
 from synth.codebook import element_bucket  # noqa: E402
 
-QC = Path.home() / "workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
+QC = ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"
 
 # Clean 8-feature set: exp37's v1 minus issued_benefit (PA7 post-decision
 # finding; removal was immaterial there, 0.559 vs 0.567 acc).

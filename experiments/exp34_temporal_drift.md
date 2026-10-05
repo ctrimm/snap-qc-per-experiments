@@ -11,7 +11,7 @@ years, and the synthetic pretraining data should carry a year conditioning.
 ## Method
 1. Loaded the five QC public-use files (held-out; read-only, nothing from the
    microdata is written into the repo):
-   `~/workspace/snap-qc-data/raw/qcfyYYYY_csv/qc_pub_fyYYYY.csv`.
+   `../snap-qc-data/raw/qcfyYYYY_csv/qc_pub_fyYYYY.csv`.
    FY2021 covers Jul–Sep only (n = 9,832 rows vs 27k–45k for other years).
    Unweighted microdata, the same convention as exp16.
 2. Per FY, in one pandas pass: finding mix from STATUS (1 = correct,

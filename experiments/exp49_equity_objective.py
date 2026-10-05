@@ -24,7 +24,7 @@ Reproduction (from repo root), synth files already built by exp47:
   python3 experiments/exp49_equity_objective.py \\
       --pa-synth /tmp/exp47out/pa_synth.jsonl \\
       --ny-synth /tmp/exp47out/ny_synth.jsonl \\
-      --qc-dir ~/workspace/snap-qc-data/raw
+      --qc-dir ../snap-qc-data/raw
 
 CPU only. Microdata read-only. Raw tables -> /tmp/exp49out/exp49_results.json
 (scratch, not committed).

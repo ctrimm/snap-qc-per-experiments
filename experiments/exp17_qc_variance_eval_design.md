@@ -234,7 +234,7 @@ scoring choices, not polish.
 ## Next steps
 1. (Recommended) Resolve open questions 5 (FY2024 inclusion) and 6/7
    (prompt/output format) — then build the pilot sampler: 1,200-item frozen
-   sample + 200-item dev slice from `~/workspace/snap-qc-data/raw/`
+   sample + 200-item dev slice from `snap-qc-data/raw/` (beside the repo checkout)
    (FY2021–2023 ± FY2024), with the exclusion denylist.
 2. Write the label pipeline (primary-variance rule, leakage field
    exclusion) and the scorer (per-task metrics + composite + paired

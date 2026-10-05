@@ -34,7 +34,8 @@ Usage (from repo root):
     python3 experiments/ut8_ut_pristine_rerun.py [--balanced]
 Results -> /tmp/ut8out/ut8_results.json (workspace scratch, not the repo).
 
-Requires: scikit-learn. Microdata read-only at ~/workspace/snap-qc-data.
+Requires: scikit-learn. Microdata read-only at snap-qc-data/ next to the
+repo checkout.
 """
 import argparse
 import copy
@@ -57,7 +58,7 @@ import ut1_ut_generator as ut1  # noqa: E402
 import ut2_ut_transfer as ut2  # noqa: E402
 from src.synth.codebook import cause_bucket, element_bucket  # noqa: E402
 
-QC_DIR = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+QC_DIR = str(ROOT.parent / "snap-qc-data" / "raw")
 HOLDOUT_JSON = str(ROOT / "experiments" / "ut2_holdout_idx.json")
 DIST = str(ROOT / "experiments" / "dist.json")
 OUT = Path("/tmp/ut8out")

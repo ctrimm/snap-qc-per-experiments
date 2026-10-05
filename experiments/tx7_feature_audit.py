@@ -26,7 +26,7 @@ Reproduction (from repo root):
         --dist experiments/dist.json --out /tmp/tx7out/tx_synth.jsonl
   2) python3 experiments/tx7_feature_audit.py \\
         --tx-synth /tmp/tx7out/tx_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/tx_holdout_idx.json
 
 Requires: scikit-learn.

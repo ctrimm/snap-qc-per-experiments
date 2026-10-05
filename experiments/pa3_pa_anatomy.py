@@ -8,7 +8,7 @@ plain language, and FY trends within PA.
 All rates use FYWGT sample weights. Read-only on the microdata.
 
 Usage:
-    python3 pa3_pa_anatomy.py --qc ~/workspace/snap-qc-data/raw --out results.json
+    python3 pa3_pa_anatomy.py --qc ../snap-qc-data/raw --out results.json
 """
 import argparse
 import csv

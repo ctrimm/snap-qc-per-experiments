@@ -28,7 +28,7 @@ Reproduction (from repo root):
   3) python3 experiments/exp47_household_type_burden.py \\
         --pa-synth /tmp/exp47out/pa_synth.jsonl \\
         --ny-synth /tmp/exp47out/ny_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw
+        --qc-dir ../snap-qc-data/raw
 
 Requires: scikit-learn, numpy. CPU only. Microdata read-only.
 """

@@ -33,7 +33,7 @@ Reproduction (exact commands, from repo root):
         --seed 7 --dist ../experiments/dist.json --out /tmp/pa5out/pa_synth.jsonl
   2) python3 experiments/pa5_dollar_ranking.py \\
         --pa-synth /tmp/pa5out/pa_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/pa2_holdout_idx.json
 
 Requires: scikit-learn, numpy.

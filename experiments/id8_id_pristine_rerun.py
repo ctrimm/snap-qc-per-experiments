@@ -35,7 +35,8 @@ Usage (from repo root):
     python3 experiments/id8_id_pristine_rerun.py [--balanced]
 Results -> /tmp/id8out/id8_results.json (workspace scratch, not the repo).
 
-Requires: scikit-learn. Microdata read-only at ~/workspace/snap-qc-data.
+Requires: scikit-learn. Microdata read-only at ../snap-qc-data (beside the
+repo checkout).
 """
 import argparse
 import copy
@@ -58,7 +59,7 @@ import id1_id_generator as id1  # noqa: E402
 import id2_id_transfer as id2  # noqa: E402
 from src.synth.codebook import cause_bucket, element_bucket  # noqa: E402
 
-QC_DIR = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+QC_DIR = str(ROOT.parent / "snap-qc-data" / "raw")
 HOLDOUT_JSON = str(ROOT / "experiments" / "id2_holdout_idx.json")
 DIST = str(ROOT / "experiments" / "dist.json")
 OUT = Path("/tmp/id8out")

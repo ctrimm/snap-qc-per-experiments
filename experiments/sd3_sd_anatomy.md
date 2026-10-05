@@ -18,7 +18,7 @@ plain language, and FY trends. All rates FYWGT-weighted.
 
 ## Method
 
-Microdata-only, read-only on `~/workspace/snap-qc-data/raw`. Primary
+Microdata-only, read-only on `snap-qc-data/raw` (beside the repo checkout). Primary
 variance slot (ELEMENT1/NATURE1/AGENCY1); all-slots element-bucket mix for
 the ratio table. "National" = all non-SD rows pooled FY2020–2024.
 

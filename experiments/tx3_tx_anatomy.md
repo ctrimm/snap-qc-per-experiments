@@ -22,7 +22,7 @@ difference between two mixes.
 ## Method
 
 Microdata: SNAP QC public-use files FY2020-2024, read-only
-(`~/workspace/snap-qc-data/`). Texas = STATE 48 (n = 3,457 rows;
+(`snap-qc-data/` beside the repo checkout). Texas = STATE 48 (n = 3,457 rows;
 1,530 error cases), national = all rows (n = 167,002). All shares are
 FYWGT-weighted. Element/nature/cause mixes are computed on each error case's
 primary variance (slot 1); the all-nine-slots check gave identical mixes to

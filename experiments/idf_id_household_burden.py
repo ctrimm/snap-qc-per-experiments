@@ -24,7 +24,7 @@ Reproduction (from repo root):
         --dist experiments/dist.json --out /tmp/idfout/id_synth.jsonl
   2) python3 experiments/idf_id_household_burden.py \\
         --id-synth /tmp/idfout/id_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw
+        --qc-dir ../snap-qc-data/raw
 
 Requires: scikit-learn, numpy. CPU only. Microdata read-only.
 """

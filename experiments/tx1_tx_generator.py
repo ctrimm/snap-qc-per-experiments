@@ -8,7 +8,7 @@ Usage:
     python3 experiments/tx1_tx_generator.py fit
         # recompute TX targets from microdata; prints the TX_* constants
         # baked into src/synth/tx_state.py (documents their provenance)
-    python3 experiments/tx1_tx_generator.py validate --qc ~/workspace/snap-qc-data/raw
+    python3 experiments/tx1_tx_generator.py validate --qc ../snap-qc-data/raw
         # generate national + TX-conditioned cases, report validation metrics
 
 North-star gates: calibration (synthetic TX marginals match real TX QC) and
@@ -23,10 +23,11 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 from src.synth.codebook import element_bucket, cause_bucket  # noqa: E402
 
-QC_DEFAULT = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+QC_DEFAULT = str(ROOT.parent / "snap-qc-data" / "raw")
 FYS = [2020, 2021, 2022, 2023, 2024]
 TX_STATE = "48"
 SUPPORTED = ("earned", "unearned", "shelter", "sua", "medical",
@@ -305,7 +306,7 @@ def _run_gen_nat(n, seed, out):
     subprocess.run(
         [sys.executable, "-m", "src.synth.generate", "--n", str(n),
          "--seed", str(seed), "--dist", "experiments/dist.json", "--out", out],
-        check=True, cwd=str(Path(__file__).resolve().parent.parent))
+        check=True, cwd=str(ROOT))
 
 
 def _l1(a, b):

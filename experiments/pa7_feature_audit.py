@@ -22,7 +22,7 @@ Reproduction (from repo root):
         --dist ../experiments/dist.json --out /tmp/pa7out/pa_synth.jsonl
   2) python3 experiments/pa7_feature_audit.py \\
         --pa-synth /tmp/pa7out/pa_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/pa2_holdout_idx.json
 
 Requires: scikit-learn.

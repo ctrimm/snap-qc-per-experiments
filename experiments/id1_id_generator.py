@@ -8,7 +8,7 @@ Usage:
     python3 experiments/id1_id_generator.py fit
         # recompute ID targets from microdata; prints the ID_* constants
         # baked into src/synth/id_state.py (documents their provenance)
-    python3 experiments/id1_id_generator.py validate --qc ~/workspace/snap-qc-data/raw
+    python3 experiments/id1_id_generator.py validate --qc ../snap-qc-data/raw
         # generate national + ID-conditioned cases, report validation metrics
 
 North-star gates: calibration (synthetic ID marginals match real ID QC) and
@@ -23,10 +23,11 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 from src.synth.codebook import element_bucket, cause_bucket  # noqa: E402
 
-QC_DEFAULT = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+QC_DEFAULT = str(ROOT.parent / "snap-qc-data" / "raw")
 # Fitting window: FY2022-2024 only. FY2020 (n=515) and FY2021 (n=213) are
 # partial-year/thin QC files for Idaho; the NY6 lesson (partial-year files
 # move the fitted error rate ~1.9pp and distort bucket ratios) is adopted

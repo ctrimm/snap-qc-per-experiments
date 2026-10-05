@@ -20,7 +20,7 @@ Reproduction (exact commands, from repo root):
         --dist experiments/dist.json --out /tmp/sd45out/sd_synth.jsonl
   2) python3 experiments/sd4_prioritization.py \\
         --sd-synth /tmp/sd45out/sd_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/sd_holdout_idx.json
 
 Calibration design (documented choice):

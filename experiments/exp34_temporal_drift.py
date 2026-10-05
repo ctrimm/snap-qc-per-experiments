@@ -5,7 +5,7 @@ materially across FY2020-2024 (COVID-era waivers through unwinding), a single
 FY2024-calibrated dist.json may misrepresent other years and a
 year-conditioned dist is warranted.
 
-Real side: ~/workspace/snap-qc-data/raw/qcfyYYYY_csv/qc_pub_fyYYYY.csv
+Real side: ../snap-qc-data/raw/qcfyYYYY_csv/qc_pub_fyYYYY.csv
 (held-out; NEVER committed). FY2021 covers Jul-Sep only. Unweighted
 microdata, same convention as exp16.
 
@@ -21,10 +21,13 @@ import argparse
 import json
 import statistics
 import sys
+from pathlib import Path
 
 import pandas as pd
 
 from src.synth.codebook import element_bucket, cause_bucket
+
+ROOT = Path(__file__).resolve().parent.parent
 
 QUANTS = (0.10, 0.25, 0.50, 0.90, 0.99)
 ELEMS = [f"ELEMENT{i}" for i in range(1, 10)]
@@ -32,11 +35,11 @@ NATS = [f"NATURE{i}" for i in range(1, 10)]
 AGS = [f"AGENCY{i}" for i in range(1, 10)]
 
 REAL_FILES = {
-    2020: "/home/hatch/workspace/snap-qc-data/raw/qcfy2020_csv/qc_pub_fy2020.csv",
-    2021: "/home/hatch/workspace/snap-qc-data/raw/qcfy2021_csv/qc_pub_fy2021.csv",
-    2022: "/home/hatch/workspace/snap-qc-data/raw/qcfy2022_csv/qc_pub_fy2022.csv",
-    2023: "/home/hatch/workspace/snap-qc-data/raw/qcfy2023_csv/qc_pub_fy2023.csv",
-    2024: "/home/hatch/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv",
+    2020: str(ROOT.parent / "snap-qc-data/raw/qcfy2020_csv/qc_pub_fy2020.csv"),
+    2021: str(ROOT.parent / "snap-qc-data/raw/qcfy2021_csv/qc_pub_fy2021.csv"),
+    2022: str(ROOT.parent / "snap-qc-data/raw/qcfy2022_csv/qc_pub_fy2022.csv"),
+    2023: str(ROOT.parent / "snap-qc-data/raw/qcfy2023_csv/qc_pub_fy2023.csv"),
+    2024: str(ROOT.parent / "snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv"),
 }
 
 

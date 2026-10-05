@@ -30,8 +30,8 @@ byte-identical.
 public-use microdata (STATE='48', n=3,457 rows: FY2020 612 / FY2021 182 /
 FY2022 866 / FY2023 842 / FY2024 955; FYWGT-weighted; microdata-implied
 rates, NOT FNS-published). National reference is the same pooled microdata
-basis (non-TX rows). Microdata is read-only at `~/workspace/snap-qc-data/`,
-never copied into the repo. Partial-year files FY2020–21 are included in
+basis (non-TX rows). Microdata is read-only at `snap-qc-data/` beside the
+repo checkout, never copied into the repo. Partial-year files FY2020–21 are included in
 the *fit* (pooled targets need the n) but excluded from refits per the NY6
 lesson — documented per-stage.
 
@@ -87,7 +87,7 @@ distort the pooled cause fit exactly the way PA1's it1 blew up.
 
 ## Results
 
-`python3 experiments/tx1_tx_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7`
+`python3 experiments/tx1_tx_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7`
 (TX synth vs real TX; national sanity: nat synth 0.601/0.245/0.154):
 
 | metric | it1 | it2 | it2b (final) |
@@ -198,5 +198,5 @@ python3 experiments/tx1_tx_generator.py fit
 
 Re-run validation:
 ```bash
-python3 experiments/tx1_tx_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7
+python3 experiments/tx1_tx_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7
 ```

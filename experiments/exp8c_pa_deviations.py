@@ -13,15 +13,20 @@ are examined descriptively only (reviewer-verified inputs, not the engine's).
 Findings are framed as PA-program behavior; the file carries no engine/vendor
 identifier, so no vendor attribution is possible.
 
-Read-only wrt the microdata: reads ~/workspace/snap-qc-data/raw/, prints to
-stdout. No repo writes (no JSON; the chronicle .md carries the numbers).
+Read-only wrt the microdata: reads ../snap-qc-data/raw/ (beside the repo
+checkout), prints to stdout. No repo writes (no JSON; the chronicle .md
+carries the numbers).
 Run: python3 experiments/exp8c_pa_deviations.py
 """
+
+import os
 
 import numpy as np
 import pandas as pd
 
-DATA = "/home/hatch/workspace/snap-qc-data/raw"
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+DATA = os.path.join(os.path.dirname(ROOT), "snap-qc-data", "raw")
 
 # Statutory parameters, 48 contiguous states + DC, per fiscal year.
 # Sources: USDA FNS COLA memos (FY2020 eff 10/1/2019; FY2021 7/29/2020 memo;

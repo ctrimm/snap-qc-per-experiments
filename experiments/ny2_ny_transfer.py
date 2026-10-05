@@ -37,7 +37,7 @@ Reproduction (exact commands, from repo root):
   3) python3 experiments/ny2_ny_transfer.py \\
         --ny-synth /tmp/ny2out/ny_synth.jsonl \\
         --nat-synth /tmp/ny2out/nat_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/ny2_holdout_idx.json \\
         [--ny-synth-s8 ... --ny-synth-s9 ... --nat-synth-s8 ... --nat-synth-s9 ...]
 

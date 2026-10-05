@@ -32,7 +32,8 @@ control).
 ## Method
 
 **Pristine refit** (`python3 experiments/ny8_ny_pristine_rerun.py`, from repo
-root; microdata read-only at `~/workspace/snap-qc-data/raw`): a verbatim
+root; microdata read-only at `snap-qc-data/raw` beside the repo checkout): a
+verbatim
 port of `ny1.fit_ny_targets` with one change — rows whose (fy, NY-relative
 row index) key appears in `experiments/ny2_holdout_idx.json` are skipped
 before any aggregate is touched (STATE indexing verified identical: strip

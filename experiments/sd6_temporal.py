@@ -59,7 +59,7 @@ Usage (from repo root):
     python3 experiments/ny6_temporal.py
 Results -> /tmp/sd6out/sd6_results.json (workspace scratch, not the repo).
 
-Requires: scikit-learn. Microdata read-only at ~/workspace/snap-qc-data.
+Requires: scikit-learn. Microdata read-only at ../snap-qc-data (beside the repo checkout).
 """
 import copy
 import csv
@@ -78,7 +78,7 @@ import sd1_sd_generator as sd1  # noqa: E402
 import sd2_sd_transfer as sd2  # noqa: E402
 from src.synth.codebook import element_bucket  # noqa: E402
 
-QC_DIR = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+QC_DIR = str(ROOT.parent / "snap-qc-data" / "raw")
 DIST = str(ROOT / "experiments" / "dist.json")
 OUT = Path("/tmp/sd6out")
 OUT.mkdir(exist_ok=True)

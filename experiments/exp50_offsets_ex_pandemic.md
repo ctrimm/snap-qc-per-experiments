@@ -31,8 +31,8 @@ forward: the baked `*_BUCKET_RATIO` include a one-step realized-output
 calibration (documented in pa1's fit notes); the deltas here are pure-empirical
 old vs pure-empirical new, i.e. the recipe's own sensitivity.
 
-QC microdata was read-only throughout; nothing written to `~/workspace/snap-qc-data`;
-no microdata committed.
+QC microdata was read-only throughout; nothing written to `snap-qc-data/` beside
+the repo checkout; no microdata committed.
 
 ## Results
 

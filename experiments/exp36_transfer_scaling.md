@@ -32,7 +32,7 @@ Exp25's closed recipe, exactly, applied at five synthetic volumes:
   17,318 rows, keep-buckets fixed from the N=20000 faithful pool (all 8
   buckets), applied identically to every N. Test set never touched; real
   microdata read in place from
-  `~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv` (never copied
+  `../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv` (never copied
   into the repo).
 - **Knee rule (pre-registered):** saturation knee = smallest N where doubling
   N buys <0.005 macroF1.

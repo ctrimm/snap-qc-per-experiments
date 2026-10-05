@@ -13,15 +13,19 @@ are examined descriptively only (reviewer-verified inputs, not the engine's).
 Findings are framed as UT-program behavior; the file carries no engine/vendor
 identifier, so no vendor attribution is possible.
 
-Read-only wrt the microdata: reads ~/workspace/snap-qc-data/raw/, prints to
-stdout. No repo writes (no JSON; the chronicle .md carries the numbers).
+Read-only wrt the microdata: reads snap-qc-data/raw/ next to the repo
+checkout, prints to stdout. No repo writes (no JSON; the chronicle .md
+carries the numbers).
 Run: python3 experiments/sd8c_ut_engine_cleanliness.py
 """
+
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-DATA = "/home/hatch/workspace/snap-qc-data/raw"
+ROOT = Path(__file__).resolve().parent.parent
+DATA = str(ROOT.parent / "snap-qc-data" / "raw")
 
 # Statutory parameters, 48 contiguous states + DC, per fiscal year.
 # Sources: USDA FNS COLA memos (FY2020 eff 10/1/2019; FY2021 7/29/2020 memo;

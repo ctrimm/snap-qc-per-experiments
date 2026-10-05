@@ -183,5 +183,5 @@ python3 experiments/ut1_ut_generator.py fit
 
 Re-run validation:
 ```bash
-python3 experiments/ut1_ut_generator.py validate --qc ~/workspace/snap-qc-data/raw --n 20000 --seed 7
+python3 experiments/ut1_ut_generator.py validate --qc ../snap-qc-data/raw --n 20000 --seed 7
 ```

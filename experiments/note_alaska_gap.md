@@ -6,7 +6,7 @@ The `STATE` field in all five FY CSVs stores the FIPS state code as a bare **int
 
 ## Evidence
 
-**Step 1 — verify the claim in `~/workspace/snap-qc-data/raw/` (READ-ONLY, untouched).**
+**Step 1 — verify the claim in `snap-qc-data/raw/` beside the repo checkout (READ-ONLY, untouched).**
 Counts of `STATE == 2` vs `STATE == "02"` per FY:
 
 | FY | file | rows | STATE=="02" | STATE==2 (Alaska) |
@@ -20,7 +20,7 @@ Counts of `STATE == 2` vs `STATE == "02"` per FY:
 Alaska is present in all five years. The 55 distinct `STATE` values are FIPS 1–56 (with non-existent codes 3, 7, 14, 43, 52 absent) plus 66 (Guam) and 78 (US Virgin Islands) — no padding anywhere in the column. The FY2024 tech doc's weighting tables (`techdocs/fy2024.txt`, Table II.2) independently confirm Alaska cases are in the FY2024 file, and the codebook defines `STATE` as "FIPS code for State or territory" (Alaska = 02).
 
 **Step 2 — inspect the extract pipeline.**
-`~/workspace/snap-qc-data/README.md` documents a direct download from https://snapqcdata.net/datafiles on 2026-09-28 (only quirk: site 403s plain curl, needs a browser User-Agent header). No download, filtering, or transformation scripts exist anywhere in `~/workspace/snap-qc-data/`. There is no state filter list that could have dropped Alaska; the extract is the upstream files as published.
+`snap-qc-data/README.md` (beside the repo checkout) documents a direct download from https://snapqcdata.net/datafiles on 2026-09-28 (only quirk: site 403s plain curl, needs a browser User-Agent header). No download, filtering, or transformation scripts exist anywhere in `snap-qc-data/`. There is no state filter list that could have dropped Alaska; the extract is the upstream files as published.
 
 **Step 3 — web search on FNS excluding Alaska from QC.** Not needed: local evidence is conclusive (Alaska is present under code `2` in every FY). A search would answer a different question than the one that actually occurred.
 

@@ -37,7 +37,7 @@ Reproduction (exact commands, from repo root):
   3) python3 experiments/id2_id_transfer.py \\
         --id-synth /tmp/id2out/id_synth.jsonl \\
         --nat-synth /tmp/id2out/nat_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/id2_holdout_idx.json \\
         [--id-synth-s8 ... --id-synth-s9 ... --nat-synth-s8 ... --nat-synth-s9 ...]
 

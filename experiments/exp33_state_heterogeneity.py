@@ -14,7 +14,7 @@ Usage:
     python3 -m src.synth.generate --n 20000 --seed 7 --dist experiments/dist.json \
         --out /tmp/exp33_synth.jsonl
     python3 experiments/exp33_state_heterogeneity.py \
-        --qc ~/workspace/snap-qc-data/raw --synth /tmp/exp33_synth.jsonl
+        --qc ../snap-qc-data/raw --synth /tmp/exp33_synth.jsonl
 """
 import argparse
 import csv

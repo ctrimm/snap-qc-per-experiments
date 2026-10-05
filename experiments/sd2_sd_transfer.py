@@ -37,7 +37,7 @@ Reproduction (exact commands, from repo root):
   3) python3 experiments/sd2_sd_transfer.py \\
         --sd-synth /tmp/sd2out/sd_synth.jsonl \\
         --nat-synth /tmp/sd2out/nat_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/sd_holdout_idx.json \\
         [--sd-synth-s8 ... --sd-synth-s9 ... --nat-synth-s8 ... --nat-synth-s9 ...]
 

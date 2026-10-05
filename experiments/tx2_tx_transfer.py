@@ -37,7 +37,7 @@ Reproduction (exact commands, from repo root):
   3) python3 experiments/tx2_tx_transfer.py \\
         --tx-synth /tmp/tx2out/tx_synth.jsonl \\
         --nat-synth /tmp/tx2out/nat_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/tx_holdout_idx.json \\
         [--tx-synth-s8 ... --tx-synth-s9 ... --nat-synth-s8 ... --nat-synth-s9 ...]
 

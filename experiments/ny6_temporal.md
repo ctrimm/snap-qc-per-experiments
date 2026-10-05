@@ -212,7 +212,7 @@ python3 experiments/ny6_temporal.py
 python3 - <<'EOF'
 import sys; sys.path.insert(0,'experiments')
 from ny1_ny_generator import fit_ny_targets
-t = fit_ny_targets('/home/hatch/workspace/snap-qc-data/raw', fys=[2020,2021,2022])
+t = fit_ny_targets('../snap-qc-data/raw', fys=[2020,2021,2022])
 print(t['n_ny_rows'], round(t['ny']['case_err_rate'],4))
 EOF
 ```

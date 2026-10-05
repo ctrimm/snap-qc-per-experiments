@@ -39,7 +39,7 @@ Reproduction (exact commands, from repo root):
         --dist experiments/dist.json --out /tmp/ut45out/ut_synth.jsonl
   2) python3 experiments/sd5_dollar_ranking.py \\
         --ut-synth /tmp/ut45out/ut_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/ut2_holdout_idx.json
 
 Requires: scikit-learn, numpy.

@@ -15,7 +15,7 @@ Usage:
     python3 experiments/ut1_ut_generator.py fit
         # recompute UT targets from microdata; prints the UT_* constants
         # baked into src/synth/ut_state.py (documents their provenance)
-    python3 experiments/ut1_ut_generator.py validate --qc ~/workspace/snap-qc-data/raw
+    python3 experiments/ut1_ut_generator.py validate --qc ../snap-qc-data/raw
         # generate national + UT-conditioned cases, report validation metrics
 
 North-star gates: calibration (synthetic UT marginals match real UT QC) and
@@ -33,7 +33,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.synth.codebook import element_bucket, cause_bucket  # noqa: E402
 
-QC_DEFAULT = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+ROOT = Path(__file__).resolve().parent.parent
+QC_DEFAULT = str(ROOT.parent / "snap-qc-data" / "raw")
 FYS = [2020, 2021, 2022, 2023, 2024]
 # UT1 fit basis: FY2022-2024 ONLY. FY2020 (n=729) and FY2021 (n=245) are
 # partial-year files for UT — the NY6 lesson ("drop partial-year QC files

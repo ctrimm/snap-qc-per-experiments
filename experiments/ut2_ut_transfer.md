@@ -118,7 +118,7 @@ python3 -m src.synth.ut_state --n 20000 --seed 7 --dist experiments/dist.json --
 cd src && python3 -m synth.generate --n 20000 --seed 7 --dist ../experiments/dist.json --max-attempts 12 --out $S/nat_synth.jsonl
 # (+ seeds 8/9 for robustness)
 python3 experiments/ut2_ut_transfer.py --ut-synth $S/ut_synth.jsonl --nat-synth $S/nat_synth.jsonl \
-  --qc-dir ~/workspace/snap-qc-data/raw --holdout-json experiments/ut2_holdout_idx.json \
+  --qc-dir ../snap-qc-data/raw --holdout-json experiments/ut2_holdout_idx.json \
   --ut-synth-s8 $S/ut_synth_s8.jsonl --ut-synth-s9 $S/ut_synth_s9.jsonl \
   --nat-synth-s8 $S/nat_synth_s8.jsonl --nat-synth-s9 $S/nat_synth_s9.jsonl
 ```

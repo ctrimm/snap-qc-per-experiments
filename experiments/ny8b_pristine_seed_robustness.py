@@ -22,7 +22,8 @@ Usage (from repo root):
     python3 experiments/ny8b_pristine_seed_robustness.py
 Results -> /tmp/ny8bout/ny8b_results.json (workspace scratch, not the repo).
 
-Requires: scikit-learn. Microdata read-only at ~/workspace/snap-qc-data.
+Requires: scikit-learn. Microdata read-only at ../snap-qc-data (beside the
+repo checkout).
 CPU only.
 """
 import copy

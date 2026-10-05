@@ -27,7 +27,7 @@ Reproduction (from repo root):
         --dist experiments/dist.json --out /tmp/ut45out/ut_synth.jsonl
   2) python3 experiments/ut_fairness.py \\
         --ut-synth /tmp/ut45out/ut_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw
+        --qc-dir ../snap-qc-data/raw
 
 Requires: scikit-learn, numpy. CPU only. Microdata read-only.
 """

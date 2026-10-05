@@ -33,7 +33,7 @@ Features: v1 (hh_size, earned, unearned, shelter, sua, medical_exp,
 depcare, senior_disabled, issued_benefit), exactly as exp25.
 
 Eval: real FY2024 QC public-use file
-(`~/workspace/snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`), held
+(`../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv`), held
 out — never trained on, never copied into the repo. Eval split identical
 to exp9/exp19/exp22/exp25: all real rows whose ELEMENT1 element bucket
 appears in the persistent baseline — 17,318 of 44,891 rows; buckets:

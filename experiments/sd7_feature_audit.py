@@ -26,7 +26,7 @@ Reproduction (from repo root):
         --dist experiments/dist.json --out /tmp/sd7out/sd_synth.jsonl
   2) python3 experiments/sd7_feature_audit.py \\
         --sd-synth /tmp/sd7out/sd_synth.jsonl \\
-        --qc-dir ~/workspace/snap-qc-data/raw \\
+        --qc-dir ../snap-qc-data/raw \\
         --holdout-json experiments/sd_holdout_idx.json
 
 Requires: scikit-learn.

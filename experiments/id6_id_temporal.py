@@ -56,7 +56,8 @@ Usage (from repo root):
     python3 experiments/id6_id_temporal.py
 Results -> /tmp/id6out/id6_results.json (workspace scratch, not the repo).
 
-Requires: scikit-learn. Microdata read-only at ~/workspace/snap-qc-data.
+Requires: scikit-learn. Microdata read-only at ../snap-qc-data (beside the
+repo checkout).
 """
 import copy
 import csv
@@ -75,7 +76,7 @@ import id1_id_generator as id1  # noqa: E402
 import id2_id_transfer as id2  # noqa: E402
 from src.synth.codebook import element_bucket  # noqa: E402
 
-QC_DIR = str(Path.home() / "workspace" / "snap-qc-data" / "raw")
+QC_DIR = str(ROOT.parent / "snap-qc-data" / "raw")
 DIST = str(ROOT / "experiments" / "dist.json")
 OUT = Path("/tmp/id6out")
 OUT.mkdir(exist_ok=True)
