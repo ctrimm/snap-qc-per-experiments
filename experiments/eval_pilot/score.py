@@ -334,12 +334,17 @@ def main():
     ap.add_argument("--out", default=None)
     ap.add_argument("--bootstrap-b", type=int, default=BOOTSTRAP_B)
     ap.add_argument("--seed", type=int, default=12345)
+    ap.add_argument("--ids", default=None,
+                    help="file of item_ids (one per line) to restrict scoring to")
     args = ap.parse_args()
 
     splits = {"test": ("test_main", "test_2024"), "all": ("test_main", "test_2024", "dev"),
               "test_main": ("test_main",), "test_2024": ("test_2024",),
               "dev": ("dev",)}[args.split]
     items = load_items(args.items, splits)
+    if args.ids:
+        keep = set(Path(args.ids).read_text().split())
+        items = [it for it in items if it["item_id"] in keep]
     if args.dummy:
         preds = dummy_preds(items)
         model_name = "dummy (most-frequent)"

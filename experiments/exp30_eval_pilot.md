@@ -80,9 +80,26 @@ Findings:
 
 Hypothesis partially confirmed. The eval discriminates: every condition beats the dummy and the bootstrap resolves ~0.03 composite differences with CIs excluding zero, which is the resolution the gate needs. A 31B general model gets ~10% of the way from dummy to ceiling (best composite 0.108). Condition choice (Q6): few-shot beats zero-shot; jargon vs plain is a statistical tie under few-shot — **lock few/jargon** on the tie-break (36% vs 65% dollar truncation; plain is clearly worse zero-shot). Two design defects block trusting gate decisions yet: the 400-token cap and T6's unanswerability. T3's 0.214 floor looks unreachable if a 31B model sits at ~0.06.
 
+### Results — v1.1 cap test (2026-10-04 → 10-05)
+
+few/jargon on a stratified 300-item subset (`eval_pilot/subset_300.txt`: 250 test_main + 50 test_2024, stratified by finding, seed 30; v1 few/jargon scores 0.095 on it vs 0.101 on all 1,200). New runner/scorer flags: `run_lm.py --max-tokens --ids`, `score.py --ids`. Driver: `run_cap_test.sh`.
+
+| | dummy | 31b @400 (v1) | 31b @1500 | e4b @400 | e4b @1500 |
+|---|---|---|---|---|---|
+| composite | 0.000 | 0.095 | 0.095 | 0.006 | 0.006 |
+| T1 macroF1 | 0.400 | 0.539 | 0.539 | 0.352 | 0.352 |
+| T2 macroF1 | 0.182 | 0.371 | 0.371 | 0.207 | 0.207 |
+| T3 macroF1 | 0.014 | 0.034 | 0.034 | 0.005 | 0.005 |
+| T6 direction acc | 0.333 | 0.173 | 0.280 | 0.007 | 0.323 |
+| dollar no-answer | — | 36% | 0% | 97% | 9% |
+
+- The cap fixes truncation only. 31b classification answers are identical to v1 on 300/300 items (few-shot classification was never truncated; temperature 0). T6 recovers 0.173 → 0.280 but stays below the always-$0 dummy, and the composite clips below-dummy tasks to zero gain, so the composite is unchanged.
+- gemma-4-e4b (untuned, ~4B) sits at the dummy floor: composite 0.006, predicts "correct" on 259/300 (T1 below dummy), T3 0.005. Its dollar answers run ~4,000 chars median, so 400 tokens truncates 97% and 1,500 still truncates 9%.
+- Decision: adopt `max_tokens` 1,500 as eval v1.1 (v1 results stand as recorded). If e4b is the candidate family, its base is near zero on every task: the composite/win-count legs of the gate become easy and the T3 ≥ 0.214 floor is the binding, likely unreachable, constraint.
+
 ### Next steps
-1. Eval v1.1: raise `max_tokens` (~1,500) and rerun few/jargon on the base model.
-2. Decide T6: expose the issued amount, drop it from the composite, or rebuild the task.
-3. Re-derive the T3 floor if v1.1 leaves a 31B model near 0.06.
-4. Run the actual gate base (untuned 1.5–4B candidate) under the locked condition.
+1. Eval v1.1: `max_tokens` 1,500 (adopted on the cap-test evidence above).
+2. Decide T6: even fully answered, a 31B model can't beat always-$0 with RAWBEN withheld. Expose the issued amount, drop T6 from the composite, or rebuild the task.
+3. Re-derive the T3 floor (31b 0.034–0.062, e4b 0.005 vs 0.214).
+4. Full 1,200-item e4b base run under v1.1 once T6 and the T3 floor are settled.
 5. Human label audit (Q1) on a dev-set sample; T6 band calibration (Q4).

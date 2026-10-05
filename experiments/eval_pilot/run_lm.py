@@ -239,6 +239,9 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--temperature", type=float, default=0.0)
+    ap.add_argument("--max-tokens", type=int, default=400)
+    ap.add_argument("--ids", default=None,
+                    help="file of item_ids (one per line) to restrict the run to")
     args = ap.parse_args()
 
     if not args.dry_run and not MODEL:
@@ -250,6 +253,9 @@ def main():
               "test_main": ("test_main",), "test_2024": ("test_2024",),
               "dev": ("dev",)}[args.split]
     items = [it for it in items if it["split"] in splits]
+    if args.ids:
+        keep = set(Path(args.ids).read_text().split())
+        items = [it for it in items if it["item_id"] in keep]
     if args.limit:
         items = items[:args.limit]
 
@@ -297,7 +303,8 @@ def main():
                 if (it["item_id"], kind) in done:
                     continue
                 prompt = builder(it["fields"], args.template, examples)
-                raw = chat(prompt, temperature=args.temperature)
+                raw = chat(prompt, temperature=args.temperature,
+                           max_tokens=args.max_tokens)
                 parsed, ok = parser(raw)
                 fh.write(json.dumps({
                     "item_id": it["item_id"], "kind": kind,
