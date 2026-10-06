@@ -84,6 +84,39 @@ def macro_f1(pairs, classes):
     return sum(f1s) / len(f1s)
 
 
+def chance_corrected(pairs, classes, b=1000, seed=0):
+    """Skill beyond the model's own answer mix (exp52: macro-F1 rewards
+    prior shifts, so a model can gain composite by re-balancing its answers
+    with no case-level discrimination).
+
+    kappa  -- Cohen's kappa; unparseable/missing predictions are their own
+              predicted class.
+    excess -- macro-F1 minus its mean under B permutations of the
+              predictions across items (same answer mix, no alignment);
+              p_value = share of permutations scoring >= observed.
+    """
+    if not pairs:
+        return {"kappa": float("nan"), "perm_mean": float("nan"),
+                "excess": float("nan"), "p_value": float("nan")}
+    n = len(pairs)
+    preds = [p for p, _ in pairs]
+    truth = [t for _, t in pairs]
+    po = sum(1 for p, t in pairs if p == t) / n
+    cp, ct = Counter(preds), Counter(truth)
+    pe = sum(cp[c] * ct[c] for c in ct) / (n * n)
+    kappa = (po - pe) / (1 - pe) if pe < 1 else 0.0
+    obs = macro_f1(pairs, classes)
+    rng = random.Random(seed)
+    perm = []
+    for _ in range(b):
+        sh = preds[:]
+        rng.shuffle(sh)
+        perm.append(macro_f1(list(zip(sh, truth)), classes))
+    pm = sum(perm) / b
+    return {"kappa": kappa, "perm_mean": pm, "excess": obs - pm,
+            "p_value": sum(1 for x in perm if x >= obs) / b}
+
+
 def per_class_f1(pairs, classes):
     out = {}
     for c in classes:
@@ -368,11 +401,24 @@ def main():
         preds = load_preds(args.preds)
         model_name = args.preds
 
-    tasks = TASKS
+    # class-only runs (run_lm.py --kinds class) carry no T6 predictions;
+    # report T6 as skipped rather than as all-wrong
+    t6_skipped = not args.dummy and not any("t6" in p for p in preds.values())
+    tasks = COMPOSITE_TASKS if t6_skipped else TASKS
     task_scores = {t: score_task(t, task_pairs(items, preds, t)) for t in tasks}
     dummy_scores = {t: score_task(t, task_pairs(items, dummy_preds(items), t))
                     for t in tasks}
     comp, parts = composite(task_scores, dummy_scores)
+    # chance-corrected view (reported alongside; the gate is unchanged)
+    skill_parts = {}
+    for t in COMPOSITE_TASKS:
+        cc = chance_corrected(task_pairs(items, preds, t), L.TASKS[t]["values"],
+                              seed=args.seed)
+        task_scores[t]["chance"] = cc
+        c, pm = CEILINGS[t], cc["perm_mean"]
+        skill_parts[t] = (min(1.0, max(0.0, cc["excess"] / (c - pm)))
+                          if c > pm else 0.0)
+    comp_skill = sum(skill_parts.values()) / len(skill_parts)
 
     out = {
         "eval_version": EVAL_VERSION,
@@ -385,6 +431,9 @@ def main():
         "ceilings": CEILINGS,
         "composite": comp,
         "composite_parts": parts,
+        "composite_skill": comp_skill,
+        "composite_skill_parts": skill_parts,
+        "t6_skipped": t6_skipped,
     }
 
     if args.base_preds and not args.dummy:
@@ -407,12 +456,15 @@ def main():
     txt = []
     txt.append(f"eval {EVAL_VERSION}  model: {model_name}  split: {args.split}  "
                f"n={len(items)}")
-    txt.append(f"{'task':<6}{'primary':>10}{'acc':>10}{'n':>7}")
+    txt.append(f"{'task':<6}{'primary':>10}{'acc':>10}{'n':>7}{'kappa':>8}{'excess':>8}{'p':>7}")
     for t in tasks:
         s = task_scores[t]
         acc = s.get("accuracy", float("nan"))
-        txt.append(f"{t:<6}{s['primary']:>10.3f}{acc:>10.3f}{s['n']:>7d}")
-    txt.append(f"composite (T1-T5): {comp:.3f}")
+        cc = s.get("chance")
+        extra = (f"{cc['kappa']:>8.3f}{cc['excess']:>8.3f}{cc['p_value']:>7.3f}"
+                 if cc else "")
+        txt.append(f"{t:<6}{s['primary']:>10.3f}{acc:>10.3f}{s['n']:>7d}{extra}")
+    txt.append(f"composite (T1-T5): {comp:.3f}   composite skill (chance-corrected): {comp_skill:.3f}")
     if "gate_vs_base" in out:
         g = out["gate_vs_base"]
         lo, hi = g["composite_diff_ci95"]

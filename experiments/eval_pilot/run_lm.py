@@ -242,7 +242,11 @@ def main():
     ap.add_argument("--max-tokens", type=int, default=1500)  # v1.1; v1 used 400
     ap.add_argument("--ids", default=None,
                     help="file of item_ids (one per line) to restrict the run to")
+    ap.add_argument("--kinds", default="class,dollar",
+                    help="prompts to run: class,dollar (default) or class "
+                         "(v1.1 gate runs; T6 is outside the composite)")
     args = ap.parse_args()
+    kinds = set(args.kinds.split(","))
 
     if not args.dry_run and not MODEL:
         ap.error("QC_EVAL_MODEL is not set (model id as shown in LM Studio)")
@@ -300,7 +304,7 @@ def main():
             for kind, builder, parser in (
                     ("class", build_class_prompt, parse_class),
                     ("dollar", build_dollar_prompt, parse_dollar)):
-                if (it["item_id"], kind) in done:
+                if kind not in kinds or (it["item_id"], kind) in done:
                     continue
                 prompt = builder(it["fields"], args.template, examples)
                 raw = chat(prompt, temperature=args.temperature,

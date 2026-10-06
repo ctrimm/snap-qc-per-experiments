@@ -13,6 +13,10 @@ runs (see `../exp30_eval_pilot.md`):
   untuned 31B). Informational only, not part of PASS.
 - `run_lm.py --ids FILE` / `score.py --ids FILE` restrict to an item subset
   (e.g. `subset_300.txt`, a stratified 300-item cut).
+- `run_lm.py --kinds class` skips the dollar prompt. Dollar answers are
+  ~100x longer than classification answers (median ~4,000 vs ~35 chars for
+  e4b) and T6 is outside the composite, so gate runs use class-only;
+  `score.py` then reports T6 as skipped.
 
 v1 results (`preds_base_*`, `score_base_*`) stay as recorded under v1 rules.
 
