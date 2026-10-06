@@ -5,3 +5,7 @@ sft_errmix_lr1e-5_300	SFT lr1e-5 300 steps bs4 error-weighted mix	0.101	0.051	0.
 sft_lr2e-5_300	SFT lr2e-5 300 steps bs4 finding-balanced	0.139	0.098	0.553	0.186	0.109	0.078	0.078	189/197
 grpo_on_sft_lr1e-5_300	GRPO lr5e-6 80 steps g8 on top of sft_lr1e-5_300	0.200	0.160	0.605	0.263	0.181	0.142	0.085	184/197
 grpo160_on_sft_lr1e-5_300	GRPO lr5e-6 160 steps g8 on top of sft_lr1e-5_300	0.201	0.164	0.605	0.263	0.180	0.142	0.088	184/197
+sft_lr1e-5_600	SFT lr1e-5 600 steps bs4 finding-balanced	0.256	0.200	0.707	0.424	0.154	0.219	0.118	164/197
+grpo_on_sft_lr1e-5_600	GRPO lr5e-6 80 steps g8 on top of sft_lr1e-5_600	0.208	0.150	0.665	0.348	0.140	0.144	0.112	168/197
+sft_corrmix_lr1e-5_300	SFT lr1e-5 300 steps bs4 correct-heavy mix (50/25/25)	0.202	0.142	0.656	0.332	0.186	0.135	0.112	172/197
+grpo_on_sft_corrmix_lr1e-5_300	GRPO lr5e-6 80 steps g8 on top of sft_corrmix_lr1e-5_300	0.216	0.155	0.668	0.344	0.217	0.149	0.119	163/197

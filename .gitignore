@@ -8,3 +8,14 @@ snap-qc-data/
 # exp30 eval-pilot run scratch
 experiments/eval_pilot/smoke/
 experiments/eval_pilot/*.log
+
+# Colab kit: data/eval copies are rebuilt from the repo (see google_drive/README.md)
+google_drive/data/
+google_drive/eval/
+google_drive/src/
+google_drive/results/
+
+# exp52: quarantined server outputs (only the README is kept) and quick-eval id byproducts
+experiments/eval_pilot/invalid_server_adapter/*
+!experiments/eval_pilot/invalid_server_adapter/README.txt
+experiments/eval_pilot/*.ids

@@ -82,9 +82,15 @@ FY2024 slice composite 0.019. Predicts "correct" on 1,022/1,200 (T1 below dummy)
 
 Gate vs own base: composite +0.177 [+0.159, +0.195], wins 5/5, T3 0.110 < 0.214 → **PASS=False on leg 3 only**. vs untuned 31B (informational): +0.066 [+0.046, +0.087]. FY2024 slice: +0.167 [+0.122, +0.213] vs base, +0.054 [+0.005, +0.103] vs 31B. Chance-corrected: real skill on T1/T2/T3 (p < 0.001), marginal on T4 (excess 0.013, p 0.022), none on T5 (κ ≈ 0), so the T4/T5 macro-F1 wins are mostly prior shifts.
 
+**Rounds 3–4 (2026-10-06).** GRPO 160 on SFT-300: dev skill 0.164 (≈80 steps). **SFT 600 steps: dev 0.200.** GRPO 80 on SFT-600 *hurt* (0.150). Correct-heavy mix (50/25/25) SFT-300: 0.142, fewer error calls (161 vs 176/197); +GRPO 80: 0.155. GRPO helps an undertrained SFT model and hurts a well-trained one.
+
+**Test gate on SFT 600 (direct loading):** composite 0.238 vs base 0.011 (+0.227 [+0.210, +0.245]), 5/5 wins, T3 macro-F1 0.117 < 0.214 → PASS=False on leg 3 only. Composite skill 0.178. vs untuned 31B: +0.116 [+0.097, +0.136]. vs the earlier SFT-300→GRPO model: +0.050 [+0.034, +0.066]. FY2024: +0.195 vs base, +0.082 vs 31B. T1 accuracy 75.6%, κ T1 0.385 / T2 0.198 / T3 0.133. Error calls 971/1,200 (truth 800), precision 0.761. The test set has now been scored on two dev-chosen models; the dev ranking held.
+
+**Colab port (HF transformers + PEFT, `google_drive/`).** SFT 1,200 on an A100: synthetic mean excess 0.176 (best yet) but real dev skill 0.104; its step-600 checkpoint scored 0.129 on dev (Studio SFT-600: 0.200). More steps fit synthetic better and real worse; the Colab-vs-Studio gap at 600 steps is unresolved (port difference vs single-run variance).
+
 ### Verdict
 
-Hypothesis confirmed for legs 1–2, not leg 3. Training gemma-4-e4b on synthetic cases only (answer-only SFT, then GRPO) produces real, chance-corrected QC skill on held-out real cases: test composite 0.011 → 0.188, 5/5 task wins, and it beats an untuned model ~8× its size. It holds on the FY2024 year-shift slice. T3 (0.110) misses the tabular 0.214 floor; under the "beat own base on T3 with a CI excluding zero" option it would pass. Two method lessons: GRPO only helps once the policy is above chance (SFT first), and macro-F1 composites need a chance-corrected companion.
+Hypothesis confirmed for legs 1–2, not leg 3. Training gemma-4-e4b on synthetic cases only produces real, chance-corrected QC skill on held-out real cases. Best recipe: answer-only SFT, 600 steps, no GRPO: test composite 0.011 → 0.238, 5/5 task wins, and +0.116 over an untuned model ~8× its size. It holds on the FY2024 year-shift slice. T3 (0.110) misses the tabular 0.214 floor; under the "beat own base on T3 with a CI excluding zero" option it would pass. Two method lessons: GRPO only helps once the policy is above chance (SFT first), and macro-F1 composites need a chance-corrected companion.
 
 ### Next steps
 
