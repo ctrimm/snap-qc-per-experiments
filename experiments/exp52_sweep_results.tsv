@@ -1,0 +1,14 @@
+trial	iters	config	dev_composite	t1	t2	t3	changed_vs_base	train_reward_last	minutes
+base	0	no training (bf16)	0.014	0.321	0.226	0.008	0/197		6
+lr1e-5	80	LR=1e-5 GROUP=8 MAXC=64	0.000	0.000	0.000	0.000	197/197	0.000	23
+lr3e-5	80	LR=3e-5 GROUP=8 MAXC=64	0.000	0.000	0.000	0.000	197/197	0.000	23
+lr1e-4	80	LR=1e-4 GROUP=8 MAXC=64	0.000	0.000	0.000	0.000	197/197	0.000	23
+lr3e-6	80	LR=3e-6 GROUP=8 MAXC=64	0.012	0.314	0.222	0.008	10/197	0.560	19
+lr1e-5_s2	80	LR=1e-5 SCALE=2 GROUP=8 MAXC=64	0.014	0.321	0.226	0.008	2/197	0.605	19
+lr5e-6	80	LR=5e-6 GROUP=8 MAXC=64	0.034	0.342	0.249	0.035	49/197	0.595	19
+b3_accum4	80	LR=5e-6 GROUP=8 MAXC=64 GRAD_ACCUM=4	0.020	0.333	0.247	0.014	11/197	0.550	19
+b3_beta0.3	80	LR=5e-6 GROUP=8 MAXC=64 BETA=0.3	0.014	0.321	0.226	0.008	12/197	0.600	19
+b3_errmix	80	LR=5e-6 GROUP=8 MAXC=64 DATA=/Users/corytrimm/Documents/GitHub/snap-qc-data/derived/exp52_rlvr_errmix	0.089	0.494	0.344	0.031	119/197	0.170	19
+b4_t12reward	80	LR=5e-6 GROUP=8 MAXC=64 DATA=/Users/corytrimm/Documents/GitHub/snap-qc-data/derived/exp52_rlvr_errmix REWARD_FUNCS=qc_task_reward,qc_t12_reward,qc_format_reward REWARD_WEIGHTS=[0.5,0.4,0.1]	0.019	0.322	0.236	0.019	22/197	0.325	19
+b4_rank64	80	LR=5e-6 GROUP=8 MAXC=64 DATA=/Users/corytrimm/Documents/GitHub/snap-qc-data/derived/exp52_rlvr_errmix RANK=64	0.017	0.399	0.238	0.012	197/197	0.267	18
+b4_alllayers	80	LR=5e-6 GROUP=8 MAXC=64 DATA=/Users/corytrimm/Documents/GitHub/snap-qc-data/derived/exp52_rlvr_errmix NUM_LAYERS=-1	nan@5						9

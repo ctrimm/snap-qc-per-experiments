@@ -1,0 +1,1 @@
+Tuned-model preds/gates here were produced through mlx_lm.server, which drops --adapter-path when the request names "default_model" (server.py remaps model_path before the adapter lookup). They equal the base answers exactly. Kept for the record; not results.

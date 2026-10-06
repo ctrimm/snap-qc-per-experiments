@@ -1,0 +1,11 @@
+# Exp52 GRPO: LoRA parameters only. mlx_lm_lora's -c merge reliably applies
+# lora_parameters; every other setting is passed on the CLI in
+# exp52_grpo_train.sh (snap-eval lesson: keys with non-None argparse
+# defaults are silently ignored from YAML).
+lora_parameters:
+  rank: 16
+  scale: 20.0
+  dropout: 0.05
+# --fuse is store_true with a None default, so (unlike most flags) the YAML
+# value does apply. Fuse per checkpoint at eval time instead.
+fuse: false

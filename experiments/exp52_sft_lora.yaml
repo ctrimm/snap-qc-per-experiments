@@ -1,0 +1,5 @@
+# Exp52 SFT LoRA parameters (same adapter shape as the GRPO runs).
+lora_parameters:
+  rank: 16
+  scale: 20.0
+  dropout: 0.05

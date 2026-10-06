@@ -1,0 +1,7 @@
+trial	config	dev_composite	dev_skill	dev_t1_f1	t1_kappa	t2_kappa	t3_kappa	syn_mean_excess	changed_vs_base
+base	no training (bf16)	0.014	0.019	0.321	0.037	0.038	0.003	0.062	
+sft_lr1e-5_300	SFT lr1e-5 300 steps bs4 finding-balanced	0.179	0.132	0.594	0.246	0.186	0.079	0.075	184/197
+sft_errmix_lr1e-5_300	SFT lr1e-5 300 steps bs4 error-weighted mix	0.101	0.051	0.444	0.049	0.073	0.135	0.052	195/197
+sft_lr2e-5_300	SFT lr2e-5 300 steps bs4 finding-balanced	0.139	0.098	0.553	0.186	0.109	0.078	0.078	189/197
+grpo_on_sft_lr1e-5_300	GRPO lr5e-6 80 steps g8 on top of sft_lr1e-5_300	0.200	0.160	0.605	0.263	0.181	0.142	0.085	184/197
+grpo160_on_sft_lr1e-5_300	GRPO lr5e-6 160 steps g8 on top of sft_lr1e-5_300	0.201	0.164	0.605	0.263	0.180	0.142	0.088	184/197
