@@ -1,0 +1,245 @@
+{
+ "nested_cv_top20_$": {
+  "untuned_clean8": 29919.0,
+  "tuned_real": 31954.0,
+  "tuned_real_synth": 32236.0
+ },
+ "nested_cv_random_top20_$": 13378.0,
+ "time_split": {
+  "untuned_lift": 2.151278600269179,
+  "tuned_lift": 2.3371467025572006
+ },
+ "final_arm": "tuned_real_synth",
+ "final_cfg": {
+  "clf": {
+   "learning_rate": 0.1,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 40,
+   "l2_regularization": 0.0,
+   "max_iter": 200
+  },
+  "reg": {
+   "learning_rate": 0.03,
+   "max_leaf_nodes": 15,
+   "min_samples_leaf": 10,
+   "l2_regularization": 0.0,
+   "max_iter": 100
+  },
+  "w_synth": 0.0
+ },
+ "holdout": {
+  "untuned_clean8": {
+   "auc_p_error_proxy": null,
+   "top10": {
+    "recovered_$": 6970.0,
+    "lift": 3.008,
+    "per_hour_$": 162.09
+   },
+   "top20": {
+    "recovered_$": 10918.0,
+    "lift": 2.356,
+    "per_hour_$": 126.22
+   },
+   "top30": {
+    "recovered_$": 14388.0,
+    "lift": 2.07,
+    "per_hour_$": 110.68
+   }
+  },
+  "final": {
+   "auc_p_error_proxy": null,
+   "top10": {
+    "recovered_$": 6539.0,
+    "lift": 2.822,
+    "per_hour_$": 152.07
+   },
+   "top20": {
+    "recovered_$": 12407.0,
+    "lift": 2.678,
+    "per_hour_$": 143.43
+   },
+   "top30": {
+    "recovered_$": 14658.0,
+    "lift": 2.109,
+    "per_hour_$": 112.75
+   }
+  }
+ },
+ "outer_picks": [
+  {
+   "real": [
+    {
+     "learning_rate": 0.05,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 400
+    },
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 10,
+     "l2_regularization": 1.0,
+     "max_iter": 200
+    }
+   ],
+   "real_synth": [
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 100
+    },
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 100
+    },
+    0.0
+   ]
+  },
+  {
+   "real": [
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 400
+    },
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.1,
+     "max_iter": 100
+    }
+   ],
+   "real_synth": [
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 40,
+     "l2_regularization": 0.1,
+     "max_iter": 200
+    },
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 7,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.1,
+     "max_iter": 100
+    },
+    0.0
+   ]
+  },
+  {
+   "real": [
+    {
+     "learning_rate": 0.05,
+     "max_leaf_nodes": 15,
+     "min_samples_leaf": 80,
+     "l2_regularization": 0.1,
+     "max_iter": 400
+    },
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 15,
+     "min_samples_leaf": 20,
+     "l2_regularization": 1.0,
+     "max_iter": 200
+    }
+   ],
+   "real_synth": [
+    {
+     "learning_rate": 0.05,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 200
+    },
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 7,
+     "min_samples_leaf": 20,
+     "l2_regularization": 1.0,
+     "max_iter": 100
+    },
+    0.0
+   ]
+  },
+  {
+   "real": [
+    {
+     "learning_rate": 0.05,
+     "max_leaf_nodes": 15,
+     "min_samples_leaf": 10,
+     "l2_regularization": 1.0,
+     "max_iter": 200
+    },
+    {
+     "learning_rate": 0.05,
+     "max_leaf_nodes": 7,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 400
+    }
+   ],
+   "real_synth": [
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 7,
+     "min_samples_leaf": 80,
+     "l2_regularization": 0.0,
+     "max_iter": 100
+    },
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 7,
+     "min_samples_leaf": 20,
+     "l2_regularization": 1.0,
+     "max_iter": 100
+    },
+    0.0
+   ]
+  },
+  {
+   "real": [
+    {
+     "learning_rate": 0.05,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 100
+    },
+    {
+     "learning_rate": 0.03,
+     "max_leaf_nodes": 7,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 400
+    }
+   ],
+   "real_synth": [
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 15,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.0,
+     "max_iter": 200
+    },
+    {
+     "learning_rate": 0.1,
+     "max_leaf_nodes": 31,
+     "min_samples_leaf": 20,
+     "l2_regularization": 0.1,
+     "max_iter": 200
+    },
+    0.0
+   ]
+  }
+ ]
+}

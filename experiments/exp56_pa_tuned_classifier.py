@@ -46,6 +46,31 @@ REVIEW_MIN = 30
 
 WITH_ISSUED = False  # --with-issued: add issued_benefit (known at triage time)
 
+# --state: same harness for the other POC states (code, holdout, generator)
+STATES = {"PA": ("42", "pa2_holdout_idx.json", "pa_state", "generate_pa"),
+          "NY": ("36", "ny2_holdout_idx.json", "ny_state", "generate_ny"),
+          "TX": ("48", "tx_holdout_idx.json", "tx_state", "generate_tx"),
+          "SD": ("46", "sd_holdout_idx.json", "sd_state", "generate_sd"),
+          "UT": ("49", "ut2_holdout_idx.json", "ut_state", "generate_ut"),
+          "ID": ("16", "id2_holdout_idx.json", "id_state", "generate_id")}
+
+
+def load_state_real(qc_dir, code):
+    """pa5.load_pa_real for any state: key (fy, idx among the state's rows)."""
+    import csv
+    rows = {}
+    for fy in pa5.FY_FILES:
+        path = next(iter((Path(qc_dir) / f"qcfy{fy}_csv").glob("*.csv")))
+        idx = 0
+        with open(path, newline="") as fh:
+            for row in csv.DictReader(fh):
+                if row["STATE"].strip() != code:
+                    continue
+                rows[(fy, idx)] = (pa5.real_row_features(row), row["STATUS"].strip(),
+                                   pa5.fnum(row["AMTERR"]), None)
+                idx += 1
+    return rows
+
 
 def feats(f, derived=True):
     x = [f[k] for k in CLEAN8] + ([f["issued_benefit"]] if WITH_ISSUED else [])
@@ -133,7 +158,8 @@ def report(name, score, amt, y, over):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--qc-dir", required=True)
-    ap.add_argument("--holdout-json", required=True)
+    ap.add_argument("--holdout-json", default=None, help="default: the state's holdout file")
+    ap.add_argument("--state", default="PA", choices=sorted(STATES))
     ap.add_argument("--n-search", type=int, default=30)
     ap.add_argument("--synth-n", type=int, default=20000)
     ap.add_argument("--out", default=str(ROOT / "experiments" / "exp56_results.json"))
@@ -144,10 +170,12 @@ def main():
     global WITH_ISSUED
     WITH_ISSUED = args.with_issued
     from sklearn.model_selection import StratifiedKFold
-    from synth.pa_state import generate_pa
-
-    real = pa5.load_pa_real(args.qc_dir)
-    hold = {tuple(k) for k in json.loads(Path(args.holdout_json).read_text())["holdout_keys"]}
+    import importlib
+    code, hfile, mod, fn = STATES[args.state]
+    generate_state = getattr(importlib.import_module(f"synth.{mod}"), fn)
+    real = load_state_real(args.qc_dir, code)
+    hpath = args.holdout_json or str(ROOT / "experiments" / hfile)
+    hold = {tuple(k) for k in json.loads(Path(hpath).read_text())["holdout_keys"]}
     tr_keys = [k for k in sorted(real) if k not in hold]
     te_keys = [k for k in sorted(real) if k in hold]
 
@@ -162,15 +190,16 @@ def main():
     Xte, yte, ate, ote = arrays(te_keys)
     Xtr8, _, _, _ = arrays(tr_keys, derived=False)
     Xte8, _, _, _ = arrays(te_keys, derived=False)
-    print(f"PA real: train {len(tr_keys)} (errors {ytr.sum()}), holdout {len(te_keys)}", flush=True)
+    print(f"{args.state} real: train {len(tr_keys)} (errors {ytr.sum()}), holdout {len(te_keys)} "
+          f"(of {len(real)} rows; holdout keys found {len(set(hold) & set(real))})", flush=True)
 
     tf = tempfile.NamedTemporaryFile(suffix=".jsonl", delete=False); tf.close()
-    generate_pa(n=args.synth_n, seed=7, dist=str(ROOT / "experiments/dist.json"), out=tf.name)
+    generate_state(n=args.synth_n, seed=7, dist=str(ROOT / "experiments/dist.json"), out=tf.name)
     srows = pa5.load_synth(tf.name)
     sX = np.array([feats(r[0]) for r in srows])
     sy = np.array([int(r[1]) for r in srows]); samt = np.array([r[2] for r in srows])
     synth = (sX, sy, samt)
-    print(f"PA synthetic: {len(srows)} cases (errors {sy.sum()})", flush=True)
+    print(f"{args.state} synthetic: {len(srows)} cases (errors {sy.sum()})", flush=True)
 
     # ---- nested CV estimate on the non-holdout rows
     outer = list(StratifiedKFold(5, shuffle=True, random_state=56).split(Xtr, ytr))

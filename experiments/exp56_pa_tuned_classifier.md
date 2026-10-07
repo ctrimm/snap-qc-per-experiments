@@ -1,4 +1,4 @@
-# Experiment 56 — tuned PA triage classifier (issued benefit +0.7× lift; tuning +5–10%; synthetic adds nothing with real data)
+# Experiment 56 — tuned triage classifier, PA + five states (issued benefit +0.7× in PA; tuning +4–11% in 5 of 6 states)
 
 **Date:** 2026-10-07 · **Code:** `experiments/exp56_pa_tuned_classifier.py` · **Results:** `experiments/exp56_results.json`
 
@@ -51,12 +51,27 @@ Reference: PA5's untuned ranker *with* `issued_benefit` reached 5.00× / 3.15× 
 
 Tuned + synth with issued: 3.32× nested CV (synthetic still adds nothing).
 
+**All six POC states** (`--state`, `--with-issued`, n_search 30; results `experiments/exp56_results_<ST>_with_issued.json`; holdouts are each state's existing PA2/NY2/TX/SD/UT2/ID2 split; "untuned" = scikit-learn defaults, same features):
+
+| state | training cases (errors) | nested-CV top-20% lift: untuned → tuned | time split (FY23–24) | synthetic | holdout top-20% $/hr tuned (random) |
+|---|---|---|---|---|---|
+| PA | 2,451 (1,046) | 3.19× → **3.34×** (+5%) | 2.93× → 3.16× | no gain (3.32×) | $158 ($47) |
+| NY | 2,442 (895) | 3.12× → **3.31×** (+6%) | 3.14× → 3.20× | no gain (3.20×) | $193 ($56) |
+| TX | 2,592 (1,147) | 2.24× → **2.41×** (+8%) | 2.15× → 2.34× | +0.02× (2.41 vs 2.39) | $143 ($53) |
+| SD | 1,773 (455) | 2.59× → 2.55× (−2%) | 2.31× → 2.35× | — | $58 ($22) |
+| UT | 3,075 (1,010) | 2.48× → **2.76×** (+11%) | 2.11× → 2.24× | **+0.14×** (2.76 vs 2.62) | $61 ($26) |
+| ID | 2,879 (969) | 2.85× → **2.96×** (+4%) | 2.64× → 2.65× | no gain (2.87×) | $62 ($22) |
+
+Holdout top-20% for each state's final arm vs untuned: NY 3.44× vs 3.32×, TX 2.68× vs 2.36×, SD 2.66× vs 2.88×, UT 2.32× vs 2.33×, ID 2.79× vs 2.72× (120–200 cases per top-20% slice; noisy).
+
 ### Verdict
 
-Held, with the feature mattering more than the tuning. Adding `issued_benefit` — known at triage time; PA7's exclusion was about element classification — is worth ~+0.7× top-20% lift (nested CV 2.48× → 3.19×) and brings the top 10% to ~5×, matching PA5's original ranker. Tuning for dollars recovered adds a modest, consistent 5–10% on top (with issued: nested CV 3.19× → 3.34×, time split 2.93× → 3.16×). Best PA ranker: tuned + issued benefit, ~$244 per review hour at the top 10% and $158/hr at the top 20% on the holdout (30 min/case). Clean-8 alone: tuning adds 9–10% at the top 20%. The holdout shows the gain at the top 10% (+30%) but not at 20% (163 cases; within noise), so nested CV is the estimate to quote. PA-synthetic rows add nothing once real PA data is available (weight 0 in every fold), confirming PA5: synthetic is the cold start, not the production model. The largest remaining lever is a feature, not tuning: `issued_benefit`, dropped by PA7 for the element task, is known at triage time and carried PA5's ranker to 3.15× at the top 20%.
+Held, with the feature mattering more than the tuning. Adding `issued_benefit` — known at triage time; PA7's exclusion was about element classification — is worth ~+0.7× top-20% lift (nested CV 2.48× → 3.19×) and brings the top 10% to ~5×, matching PA5's original ranker. Tuning for dollars recovered adds a modest, consistent 5–10% on top (with issued: nested CV 3.19× → 3.34×, time split 2.93× → 3.16×). Best PA ranker: tuned + issued benefit, ~$244 per review hour at the top 10% and $158/hr at the top 20% on the holdout (30 min/case). Clean-8 alone: tuning adds 9–10% at the top 20%.
+
+Across the six POC states the recipe mostly holds: tuning adds 4–11% in nested CV in five states and every time split is equal or better; SD, the smallest dataset (455 training errors), is the exception (−2%; the inner search overfits). Synthetic rows help clearly only in UT (+0.14×) and marginally in TX; elsewhere they add nothing, so "synthetic = cold start" holds for four of six states. Every state's ranker beats random review by 2.4–3.3× at the top 20%. The holdout shows the gain at the top 10% (+30%) but not at 20% (163 cases; within noise), so nested CV is the estimate to quote. PA-synthetic rows add nothing once real PA data is available (weight 0 in every fold), confirming PA5: synthetic is the cold start, not the production model. The largest remaining lever is a feature, not tuning: `issued_benefit`, dropped by PA7 for the element task, is known at triage time and carried PA5's ranker to 3.15× at the top 20%.
 
 ### Next steps
 
 1. ~~Re-run with `issued_benefit`~~ done (arm b): adopt it for the triage ranker.
 2. **(recommended)** Calibrate P(error) (isotonic on out-of-fold predictions) so expected-dollar estimates are quotable, plus PA5's smearing correction for the log-dollar regressor.
-3. Repeat for NY/TX/SD/UT/ID with the same harness once the PA recipe is settled.
+3. ~~Repeat for NY/TX/SD/UT/ID~~ done (above). For SD, use the untuned recipe or a narrower search; for UT, keep the synthetic rows.
