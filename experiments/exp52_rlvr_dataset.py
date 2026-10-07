@@ -208,6 +208,61 @@ def case_labels(case):
     return lab
 
 
+LABEL_TARGETS = ROOT / "experiments" / "exp54_label_targets.json"
+PRE2024_SHARE = 1000 / 1200  # eval test mix: FY21-23 items vs FY24 items
+
+
+def label_match(rows, rng, weight_cap=10.0):
+    """exp54: make synthetic T3-T5 labels follow the eval's rules.
+
+    1. Fiscal-year coding: tag each case with an era (pre-2024 at the eval's
+       5/6 share). Pre-2024 cases follow the FY2021-23 codebook: cause 26
+       (no-fault, FY2024-only) is re-drawn from real P(cause | element) and
+       natures 56/57 (FY2024-only) are coded 53.
+    2. Label mix: per-row weight = product over T3/T4/T5 of real/synthetic
+       share (eval definition, largest reportable variance), capped; error
+       rows are then drawn by weighted sampling without replacement.
+    Returns per-row weights (1.0 for correct cases).
+    """
+    tg = json.loads(LABEL_TARGETS.read_text())
+    cause_pre = tg["cause_given_t3_pre2024"]
+    eras = []
+    for _, lab in rows:
+        era = "pre2024" if rng.random() < PRE2024_SHARE else "fy2024"
+        eras.append(era)
+        if era == "pre2024" and lab["t3"]:
+            if lab["t5"] == "no_fault":
+                dist = cause_pre.get(lab["t3"]) or {"agency": 1.0}
+                lab["t5"] = rng.choices(list(dist), weights=list(dist.values()))[0]
+            if lab["t4"] in ("56", "57"):
+                lab["t4"] = "53"
+    synth = {(e, t): Counter(lab[t] for (_, lab), ee in zip(rows, eras) if ee == e and lab[t])
+             for e in ("pre2024", "fy2024") for t in ("t3", "t4", "t5")}
+    w = []
+    for (_, lab), e in zip(rows, eras):
+        if lab["t1"] == "correct" or not lab["t3"]:
+            w.append(1.0)
+            continue
+        x = 1.0
+        for t in ("t3", "t4", "t5"):
+            if not lab[t]:
+                continue
+            c = synth[(e, t)]
+            target = tg["marginals"][e][t]
+            present = sum(target.get(k, 0) for k in c)  # renormalize over labels synth can produce
+            ps = c[lab[t]] / sum(c.values())
+            pt = target.get(lab[t], 0) / present if present else 0
+            x *= (pt / ps) if ps else 0
+        w.append(min(weight_cap, x))
+    return w
+
+
+def weighted_sample(idx, weights, k, rng):
+    """Efraimidis-Spirakis weighted sampling without replacement."""
+    keys = sorted(((rng.random() ** (1.0 / weights[i]) if weights[i] > 0 else 0.0), i) for i in idx)
+    return [i for _, i in keys[-k:]]
+
+
 def few_shot_examples(items_path):
     # Same deterministic dev examples run_lm.py uses for --condition few.
     dev = [d for d in json.loads(Path(items_path).read_text()) if d["split"] == "dev"]
@@ -235,6 +290,8 @@ def main():
     ap.add_argument("--calibrate", action="store_true",
                     help="measure real view-identity rates -> exp52_view_calibration.json")
     ap.add_argument("--no-view-calibration", action="store_true")
+    ap.add_argument("--label-match", action="store_true",
+                    help="exp54: FY-aware coding + reweight T3-T5 toward the eval's real label mix")
     args = ap.parse_args()
     if args.calibrate:
         return calibrate()
@@ -246,6 +303,7 @@ def main():
     if not args.no_view_calibration:
         view_changes = apply_view_calibration(
             rows, json.loads(CALIBRATION.read_text()), rng)
+    weights = label_match(rows, rng) if args.label_match else [1.0] * len(rows)
     need = args.train + args.valid
     if args.balance in ("finding", "errors", "correct"):
         by = {f: [i for i, r in enumerate(rows) if r[1]["t2"] == f]
@@ -261,7 +319,7 @@ def main():
             sys.exit(f"not enough cases per finding for {want}: {short}; raise --n")
         idx = []
         for f in FINDING.values():
-            idx += rng.sample(by[f], want[f])
+            idx += weighted_sample(by[f], weights, want[f], rng)
         taken = set(idx)
         idx += rng.sample([i for i in range(len(rows)) if i not in taken], need - len(idx))
         picked = [rows[i] for i in idx]
@@ -289,6 +347,7 @@ def main():
         "generator": "persistent pool, --max-attempts 12, experiments/dist.json",
         "balance": args.balance, "condition": f"{args.condition}/jargon",
         "counts": {k: len(v) for k, v in splits.items()},
+        "label_match": args.label_match,
         "view_calibration": None if view_changes is None else {
             "file": CALIBRATION.name, "changes_before_sampling": view_changes,
             "p_identical_after": {
