@@ -61,7 +61,13 @@ def _sample(rng, probs):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=20000)
+    ap.add_argument("--bundle", default=None,
+                    help="read dist.json / write outputs in this directory instead of experiments/ "
+                         "(exp55: a separately calibrated reportable-variance bundle)")
     args = ap.parse_args()
+    global ROOT
+    if args.bundle:
+        ROOT = Path(args.bundle).resolve()
 
     dist = load_dist(ROOT / "dist.json")
     buckets = list(dist["bucket_probs"])

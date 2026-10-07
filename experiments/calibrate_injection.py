@@ -77,7 +77,13 @@ def main():
     ap.add_argument("--max-attempts", type=int, default=12)
     ap.add_argument("--persistent-buckets", action="store_true",
                     help="calibrate phase-1 coins for exp7 persistent mode")
+    ap.add_argument("--bundle", default=None,
+                    help="read dist.json / write outputs in this directory instead of experiments/ "
+                         "(exp55: a separately calibrated reportable-variance bundle)")
     args = ap.parse_args()
+    global ROOT
+    if args.bundle:
+        ROOT = Path(args.bundle).resolve()
 
     dist = load_dist(ROOT / "dist.json")
     # force injection: coin = 1 regardless of earner status. Note inject()

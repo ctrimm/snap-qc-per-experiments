@@ -565,7 +565,37 @@ EXP31_P97_COINS = {'arithmetic': 0.4857, 'depcare': 0.5314, 'earned': 0.6142, 'h
 # renormalized to the residual pool, over per-stratum P(materialize|inject))
 EXP31_PHASE1_COINS = {'earner': 0.9131, 'no_earner': 0.8573}
 
-def adopted_dist(dist):
+def constants_from_capture(path):
+    """exp55: load an alternate calibration from an exp31-style capture JSON.
+
+    Applies the same folding exp31_render_constants.py does (direction-balance
+    boosts folded into dir_weight) and returns the dict adopted_dist/enable_adopted
+    accept as `constants`. Used for distributions other than dist.json (e.g.
+    experiments/dist_reportable.json); the module defaults stay the dist.json fit.
+    """
+    import json
+    cap = json.loads(open(path).read())
+    eff, bo, bu = cap["eff_new"], cap["boosts"]["over"], cap["boosts"]["under"]
+    dir_w = {}
+    for b, w in eff["dir_weight"].items():
+        w2 = dict(w)
+        if "over" in w2:
+            w2["over"] = round(w2["over"] * bo, 4)
+        if "under" in w2:
+            w2["under"] = round(w2["under"] * bu, 4)
+        dir_w[b] = w2
+    return {
+        "under_scale": {int(k): v for k, v in cap["under_scales"].items()},
+        "variances_per_case": round(cap["v_per_case"], 4),
+        "effectiveness": {"bucket": eff["bucket"],
+                          "dir_materialization": eff["dir_materialization"],
+                          "dir_weight": dir_w},
+        "p97_coins": dict(cap["coins97"]),
+        "phase1_coins": dict(cap["phase1_coins"]),
+    }
+
+
+def adopted_dist(dist, constants=None):
     """Return a dist copy with the exp31 adopted calibration baked in.
 
     In-memory only -- the committed dist.json/eff.json/inject.json are never
@@ -575,23 +605,24 @@ def adopted_dist(dist):
     mix, so it is subtracted from the earned draw weight first), the refit
     97-resolution coins, and the direction-aware phase-1 coins.
     """
+    c = constants or {}
     d = copy.deepcopy(dist)
-    d["effectiveness"] = copy.deepcopy(EXP31_EFFECTIVENESS)
+    d["effectiveness"] = copy.deepcopy(c.get("effectiveness", EXP31_EFFECTIVENESS))
     d = apply_unit_bucket_correction(
-        d, P_UNIT_DEFAULT, EXP31_VARIANCES_PER_CASE)
+        d, P_UNIT_DEFAULT, c.get("variances_per_case", EXP31_VARIANCES_PER_CASE))
     inj = dict(d["injection_rate"])
-    inj["p_over_97_resolve"] = dict(EXP31_P97_COINS)
-    inj["persistent"] = dict(EXP31_PHASE1_COINS)
+    inj["p_over_97_resolve"] = dict(c.get("p97_coins", EXP31_P97_COINS))
+    inj["persistent"] = dict(c.get("phase1_coins", EXP31_PHASE1_COINS))
     d["injection_rate"] = inj
     return d
 
 
-def enable_adopted(dist):
+def enable_adopted(dist, constants=None):
     """Install the mechanism patches with the exp31 adopted config and return
     the calibrated dist copy -- the single entry point for the
     --dollar-mechanisms generator default. No separate fitting step: the
     exp26 recalibration is baked in as module defaults (see above).
     Idempotent like enable(); pair with disable() to restore stock behavior.
     """
-    enable(under_scale=EXP31_UNDER_SCALE)
-    return adopted_dist(dist)
+    enable(under_scale=(constants or {}).get("under_scale", EXP31_UNDER_SCALE))
+    return adopted_dist(dist, constants)

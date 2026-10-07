@@ -123,7 +123,7 @@ def stage_capture(args):
     r_under = real["n_under"] / real["n"]
     fit = refit(5000, 11, 21, 31, real_meds, r_over, r_under, dist,
                 label="seed-set A (exp26 exact)")
-    out = EXP_DIR / "exp31_capture_A.json"
+    out = Path(args.out) if args.out else EXP_DIR / "exp31_capture_A.json"
     out.write_text(json.dumps(_jsonable(fit), indent=1))
     print(f"\nwrote {out}")
 
@@ -469,6 +469,8 @@ def main():
     ap.add_argument("stage", choices=["capture", "refit_b", "rebaseline"])
     ap.add_argument("--real", default=str(REAL_DEFAULT))
     ap.add_argument("--dist", default=str(EXP_DIR / "dist.json"))
+    ap.add_argument("--out", default=None,
+                    help="capture output (default exp31_capture_A.json); exp55 writes elsewhere")
     args = ap.parse_args()
     {"capture": stage_capture, "refit_b": stage_refit_b,
      "rebaseline": stage_rebaseline}[args.stage](args)

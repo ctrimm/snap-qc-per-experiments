@@ -50,11 +50,17 @@ def main():
                          "rescale) with the exp26 recalibration baked in as "
                          "module defaults (no separate fitting step). "
                          "--no-dollar-mechanisms restores the stock injector.")
+    ap.add_argument("--calibration", default=None,
+                    help="exp55: exp31-style capture JSON to use instead of the "
+                         "module-default calibration (which is fit to dist.json); "
+                         "pair with a matching --dist, e.g. dist_reportable.json")
     args = ap.parse_args()
 
     dist = load_dist(args.dist)
     if args.dollar_mechanisms:
-        dist = dollar_mech.enable_adopted(dist)
+        constants = (dollar_mech.constants_from_capture(args.calibration)
+                     if args.calibration else None)
+        dist = dollar_mech.enable_adopted(dist, constants)
         injector = dollar_mech.inject_case
     else:
         injector = errors.inject

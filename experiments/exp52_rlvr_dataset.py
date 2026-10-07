@@ -143,12 +143,12 @@ def apply_view_calibration(rows, cal, rng):
     return dict(changed)
 
 
-def gen_synth(n, seed, persistent=True):
+def gen_synth(n, seed, persistent=True, dist=None):
     # Lineage: exp43 gen_synth (exp25/exp37 protocol).
     tf = tempfile.NamedTemporaryFile(suffix=".jsonl", delete=False)
     tf.close()
     cmd = [sys.executable, "-m", "synth.generate", "--n", str(n),
-           "--seed", str(seed), "--dist", str(ROOT / "experiments/dist.json"),
+           "--seed", str(seed), "--dist", str(Path(dist).resolve() if dist else ROOT / "experiments/dist.json"),
            "--max-attempts", "12", "--out", tf.name]
     if not persistent:
         cmd.append("--no-persistent-buckets")
@@ -212,7 +212,7 @@ LABEL_TARGETS = ROOT / "experiments" / "exp54_label_targets.json"
 PRE2024_SHARE = 1000 / 1200  # eval test mix: FY21-23 items vs FY24 items
 
 
-def label_match(rows, rng, weight_cap=10.0):
+def label_match(rows, rng, weight_cap=10.0, reweight=True):
     """exp54: make synthetic T3-T5 labels follow the eval's rules.
 
     1. Fiscal-year coding: tag each case with an era (pre-2024 at the eval's
@@ -236,6 +236,8 @@ def label_match(rows, rng, weight_cap=10.0):
                 lab["t5"] = rng.choices(list(dist), weights=list(dist.values()))[0]
             if lab["t4"] in ("56", "57"):
                 lab["t4"] = "53"
+    if not reweight:  # exp55: mixes match by construction; FY-aware coding only
+        return [1.0] * len(rows)
     synth = {(e, t): Counter(lab[t] for (_, lab), ee in zip(rows, eras) if ee == e and lab[t])
              for e in ("pre2024", "fy2024") for t in ("t3", "t4", "t5")}
     w = []
@@ -290,20 +292,27 @@ def main():
     ap.add_argument("--calibrate", action="store_true",
                     help="measure real view-identity rates -> exp52_view_calibration.json")
     ap.add_argument("--no-view-calibration", action="store_true")
+    ap.add_argument("--dist", default=None,
+                    help="generator distribution (default experiments/dist.json; exp55: dist_reportable.json)")
+    ap.add_argument("--fy-coding", action="store_true",
+                    help="exp55: FY-aware coding (cause 26, natures 56/57) without label reweighting")
     ap.add_argument("--label-match", action="store_true",
                     help="exp54: FY-aware coding + reweight T3-T5 toward the eval's real label mix")
     args = ap.parse_args()
     if args.calibrate:
         return calibrate()
 
-    cases = gen_synth(args.n, args.seed)
+    cases = gen_synth(args.n, args.seed, dist=args.dist)
     rows = [(case_fields(c), case_labels(c)) for c in cases]
     rng = random.Random(args.seed)
     view_changes = None
     if not args.no_view_calibration:
         view_changes = apply_view_calibration(
             rows, json.loads(CALIBRATION.read_text()), rng)
-    weights = label_match(rows, rng) if args.label_match else [1.0] * len(rows)
+    if args.label_match or args.fy_coding:
+        weights = label_match(rows, rng, reweight=args.label_match)
+    else:
+        weights = [1.0] * len(rows)
     need = args.train + args.valid
     if args.balance in ("finding", "errors", "correct"):
         by = {f: [i for i, r in enumerate(rows) if r[1]["t2"] == f]
@@ -347,7 +356,8 @@ def main():
         "generator": "persistent pool, --max-attempts 12, experiments/dist.json",
         "balance": args.balance, "condition": f"{args.condition}/jargon",
         "counts": {k: len(v) for k, v in splits.items()},
-        "label_match": args.label_match,
+        "label_match": args.label_match, "fy_coding": args.fy_coding,
+        "dist": str(args.dist or "experiments/dist.json"),
         "view_calibration": None if view_changes is None else {
             "file": CALIBRATION.name, "changes_before_sampling": view_changes,
             "p_identical_after": {
