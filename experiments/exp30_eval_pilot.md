@@ -103,6 +103,10 @@ Decisions: `max_tokens` 1500; condition locked to few/jargon; T6 scored and repo
 
 v1 runs rescored under the v1.1 composite (T1–T5): zero/jargon 0.088, zero/plain 0.053, few/jargon 0.121, few/plain 0.129. Subset (300): 31b@1500 0.114, e4b@1500 0.008. The committed `score_base_*` / `score_v11_*` JSON files keep their original v1 composites.
 
+### Eval v1.2 adopted (2026-10-07)
+
+T3 scored 9-class (six rare buckets folded into "other"); leg-3 bar 0.210 (exp53 classifier, same eval, same rule). Details in `eval_pilot/README.md`. Under v1.2 on the 1,200 test items: e4b base T3 0.009 / composite 0.011; untuned 31B 0.078 / 0.132; exp53 classifier 0.210 / 0.240; exp52 SFT step 600 0.183 / 0.268; exp52 SFT step 400 **0.229 / 0.302**, which passes all three gate legs (provisional: the rule was set after these results were seen).
+
 ### Next steps
 1. ~~Eval v1.1~~ adopted (above).
 2. T6 redesign as its own task (out of the composite meanwhile).

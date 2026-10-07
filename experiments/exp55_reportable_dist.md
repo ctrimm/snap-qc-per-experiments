@@ -16,6 +16,12 @@ exp54 matched synthetic labels to the eval by reweighting, which fixed the label
 
 **Training test.** 4,000 / 200 finding-balanced, view-calibrated training cases from `dist_reportable.json` with FY-aware coding only (cause 26 re-drawn and natures 56/57 coded 53 for the eval's 5/6 pre-2024 share; no reweighting). Answer-only SFT, lr 1e-5, rank 16, batch 4, 500 steps; dev scores at steps 300/400/500.
 
+### Correction (2026-10-07, later the same day)
+
+The "zero-dollar variance" framing below is wrong. Per-variance AMOUNT = 0 is overwhelmingly a **state recording practice**: in 22 of 53 states more than half of error cases carry no per-variance amount (Texas, Georgia, Louisiana, Michigan, Ohio, Colorado, Wisconsin, Kentucky at 98–100%), while others record nearly all of them (PA, NY, Arizona, Nevada, Alaska, Delaware at 0–2%; POC states: PA 0.1%, NY 0%, ID 38%, UT 67%, SD 75%, TX 99.9%). The share is stable across FY2020–24 (45–53%). Within the 16 FY2024 states that record amounts, zero-amount variances are only 12% of the total (755 vs 5,312), and nature 97 is 31% of the amount-carrying variances.
+
+What that means: `dist.json` pools variances from all states, while the eval's T3–T5 labels (largest AMOUNT > 0 variance) can only come from amount-recording states. `dist_reportable.json` is in effect the variance distribution of the amount-recording states. It still matches what the eval labels, so the practical result (label mix closer to the eval, LLM skill at parity) stands, but the mechanism is state composition, not "tolerance variances that are mostly timing". There is no "small timing error regime" to model in the generator; the "45% of error cases" finding below is the same recording practice.
+
 ### Results
 
 Calibration vs real FY2024:
@@ -69,6 +75,6 @@ Held for fidelity, parity for skill. The reportable distribution fixes the T3–
 ### Next steps
 
 1. ~~Score the SFT run~~ done (above). For LLM data, stop around step 300 with this distribution.
-2. Generator-as-product (dollar ranking): model the no-reportable-variance regime as a mixture (~45% of error cases, small timing errors, no T3–T5 label). Should close the ≤ $56 gap and pull the finding mix under the bar. Not needed for the LLM gate: only 8% of eval error items lack a T3 label, so training on 45% N/A answers would hurt T3.
+2. ~~Model the no-reportable-variance regime~~ withdrawn: it is a state recording practice (see Correction), not an error type. The state rankers use case-level AMTERR, which every state records, so they are unaffected. If per-state eval-style labels are ever needed, model it as a per-state "records variance amounts" flag.
 3. Dropped from the backlog: "raise the multi-variance rate" (exp27). Only 7% of real error cases carry 2+ *reportable* variances; exp27's ~33% counted zero-dollar variances. Synthetic is already at 10%.
 4. Eval decision (exp30, with the T3 bar): score T3 over the 8 modeled buckets or prevalence-weighted, rather than macro-F1 over 14 buckets where 6 are ~2–3% of reality but 30% of test items. Preferred over generator work for those buckets.

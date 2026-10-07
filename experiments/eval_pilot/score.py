@@ -56,9 +56,18 @@ T2_REAL2REAL_MACROF1 = 0.832
 T3_REAL2REAL_MACROF1 = 0.422
 CEILINGS = {"t1": 1.0, "t2": T2_REAL2REAL_MACROF1, "t3": T3_REAL2REAL_MACROF1,
             "t4": 1.0, "t5": 1.0, "t6": 1.0}
-T3_GBM_FLOOR = 0.214
+T3_GBM_FLOOR = 0.214  # v1.1 leg-3 bar (14-class T3)
+# v1.2 (2026-10-07): T3 scored over the 8 generator-modeled element buckets
+# plus "other" (the six rare buckets -- childsupport, assets, reporting,
+# standard, income_total, other -- are 2-3% of real reportable primaries but
+# 30% of T3 test items under exp30's per-bucket quotas). Leg-3 bar = the
+# exp53 gradient-boosted classifier trained on the same synthetic data,
+# scored on this eval under the same rule.
+T3_MODELED = ["earned", "unearned", "shelter", "sua", "medical", "depcare", "hhcomp", "arithmetic"]
+T3_CLASSES_V12 = T3_MODELED + ["other"]
+T3_FLOOR_V12 = 0.210
 BOOTSTRAP_B = 10000
-EVAL_VERSION = "v1.1"
+EVAL_VERSION = "v1.2"  # --eval-version v1.1 reproduces 14-class T3 scoring
 TASKS = ("t1", "t2", "t3", "t4", "t5", "t6")
 COMPOSITE_TASKS = ("t1", "t2", "t3", "t4", "t5")  # v1.1: T6 reported only
 
@@ -183,6 +192,19 @@ def load_preds(path):
     return preds
 
 
+def classes_for(task):
+    if task == "t3" and EVAL_VERSION == "v1.2":
+        return T3_CLASSES_V12
+    return L.TASKS[task]["values"]
+
+
+def _t3_map(v):
+    """v1.2: fold the six rare element buckets into "other"."""
+    if EVAL_VERSION != "v1.2" or v is None or v == "UNPARSEABLE":
+        return v
+    return v if v in T3_MODELED else "other"
+
+
 def task_pairs(items, preds, task):
     """(pred, true) pairs; unparseable pred -> wrong (pred=None never equals)."""
     pairs = []
@@ -193,6 +215,8 @@ def task_pairs(items, preds, task):
         pred = preds.get(it["item_id"], {}).get(task)
         if task == "t4" and pred is not None:
             pred = str(pred)
+        if task == "t3":
+            pred, true = _t3_map(pred), _t3_map(true)
         pairs.append((pred, true))
     return pairs
 
@@ -214,7 +238,7 @@ def score_task(task, pairs):
             "exact_match_rate": sum(1 for b in bands if b == 1.0) / len(bands),
             "primary": dacc,
         }
-    classes = L.TASKS[task]["values"]
+    classes = classes_for(task)
     return {
         "n": len(pairs),
         "macro_f1": macro_f1(pairs, classes),
@@ -266,7 +290,7 @@ def _codes(items, preds, task):
             tc.append(sign3(t))
             pc.append(sign3(p) if p is not None and p != "UNPARSEABLE" else 9)
         return pc, tc, len(tc)
-    classes = L.TASKS[task]["values"]
+    classes = classes_for(task)
     cidx = {c: i for i, c in enumerate(classes)}
     pc, tc = [], []
     for it in items:
@@ -276,6 +300,8 @@ def _codes(items, preds, task):
         p = preds.get(it["item_id"], {}).get(task)
         if task == "t4" and p is not None:
             p = str(p)
+        if task == "t3":
+            p, t = _t3_map(p), _t3_map(t)
         tc.append(cidx[t])
         pc.append(cidx.get(p, len(classes)))
     return pc, tc, len(tc)
@@ -313,7 +339,7 @@ def bootstrap_gate(items, preds_model, preds_base, seed=12345, b=BOOTSTRAP_B):
     """
     rng = random.Random(seed)
     tasks = TASKS
-    n_classes = {t: len(L.TASKS[t]["values"]) for t in tasks if t != "t6"}
+    n_classes = {t: len(classes_for(t)) for t in tasks if t != "t6"}
     codes = {}
     for t in tasks:
         codes[t] = (_codes(items, preds_model, t), _codes(items, preds_base, t))
@@ -381,9 +407,13 @@ def main():
                     help="reference model preds (e.g. untuned 31B); reported only")
     ap.add_argument("--bootstrap-b", type=int, default=BOOTSTRAP_B)
     ap.add_argument("--seed", type=int, default=12345)
+    ap.add_argument("--eval-version", choices=["v1.1", "v1.2"], default="v1.2",
+                    help="v1.2 (default): 9-class T3, leg-3 bar 0.210; v1.1: 14-class T3, bar 0.214")
     ap.add_argument("--ids", default=None,
                     help="file of item_ids (one per line) to restrict scoring to")
     args = ap.parse_args()
+    global EVAL_VERSION
+    EVAL_VERSION = args.eval_version
 
     splits = {"test": ("test_main", "test_2024"), "all": ("test_main", "test_2024", "dev"),
               "test_main": ("test_main",), "test_2024": ("test_2024",),
@@ -412,7 +442,7 @@ def main():
     # chance-corrected view (reported alongside; the gate is unchanged)
     skill_parts = {}
     for t in COMPOSITE_TASKS:
-        cc = chance_corrected(task_pairs(items, preds, t), L.TASKS[t]["values"],
+        cc = chance_corrected(task_pairs(items, preds, t), classes_for(t),
                               seed=args.seed)
         task_scores[t]["chance"] = cc
         c, pm = CEILINGS[t], cc["perm_mean"]
@@ -440,7 +470,9 @@ def main():
         base = load_preds(args.base_preds)
         gate = bootstrap_gate(items, preds, base, seed=args.seed, b=args.bootstrap_b)
         t3 = task_scores["t3"]["macro_f1"]
-        gate["t3_clears_gbm_floor"] = t3 >= T3_GBM_FLOOR
+        floor = T3_FLOOR_V12 if EVAL_VERSION == "v1.2" else T3_GBM_FLOOR
+        gate["t3_floor"] = floor
+        gate["t3_clears_gbm_floor"] = t3 >= floor
         gate["t3_macro_f1"] = t3
         gate["pass"] = (gate["composite_win"] and gate["n_wins"] >= 4
                         and gate["t3_clears_gbm_floor"])
@@ -470,7 +502,7 @@ def main():
         lo, hi = g["composite_diff_ci95"]
         txt.append(f"gate: composite diff {g['composite_diff_mean']:+.3f} "
                    f"[{lo:+.3f},{hi:+.3f}] wins={g['n_wins']}/{len(COMPOSITE_TASKS)} "
-                   f"t3>={T3_GBM_FLOOR}: {g['t3_clears_gbm_floor']} "
+                   f"t3>={g['t3_floor']}: {g['t3_clears_gbm_floor']} "
                    f"PASS={g['pass']}")
     if "vs_reference" in out:
         r = out["vs_reference"]

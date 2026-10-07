@@ -92,9 +92,11 @@ Gate vs own base: composite +0.177 [+0.159, +0.195], wins 5/5, T3 0.110 < 0.214 
 
 **Test gate on the dev winner (original run, step 400):** composite 0.266 vs base 0.011 (+0.255 [+0.237, +0.272]), 5/5 wins, T3 macro-F1 0.152 < 0.214 → PASS=False on leg 3 only. Composite skill 0.208. κ T1 0.410 / T2 0.238 / T3 0.172. vs step 600: +0.027 [+0.013, +0.042]. vs untuned 31B: +0.144 [+0.124, +0.164]. vs the exp53 classifier: +0.061 [+0.041, +0.081]. FY2024: +0.212 vs base, +0.099 vs 31B. Error calls 926/1,200 (truth 800), precision 0.775. The test set has now scored three dev-chosen models; hold it until the next major change.
 
+**Eval v1.2 gate (2026-10-07; 9-class T3, leg-3 bar 0.210).** SFT step 400 vs bf16 base: composite 0.302 (+0.291 [+0.271, +0.310]), 5/5 wins, T3 0.229 ≥ 0.210 → **PASS=True** (provisional: v1.2 was adopted after these results were seen). FY2024 slice: +0.245 [+0.196, +0.292], T3 0.234, PASS. vs untuned 31B: +0.169 [+0.146, +0.192].
+
 ### Verdict
 
-Hypothesis confirmed for legs 1–2, not leg 3. Training gemma-4-e4b on synthetic cases only produces real, chance-corrected QC skill on held-out real cases. Best recipe: answer-only SFT, lr 1e-5, rank 16, stopped at ~400 steps, no GRPO: test composite 0.011 → 0.266, 5/5 task wins, +0.144 over an untuned model ~8× its size and +0.061 over a gradient-boosted classifier trained on the same synthetic data. It holds on the FY2024 year-shift slice. T3 (0.110) misses the tabular 0.214 floor; under the "beat own base on T3 with a CI excluding zero" option it would pass. Two method lessons: GRPO only helps once the policy is above chance (SFT first), and macro-F1 composites need a chance-corrected companion.
+Hypothesis confirmed for legs 1–2 under v1.1, and for all three legs under eval v1.2 (provisional). Training gemma-4-e4b on synthetic cases only produces real, chance-corrected QC skill on held-out real cases. Best recipe: answer-only SFT, lr 1e-5, rank 16, stopped at ~400 steps, no GRPO: test composite 0.011 → 0.266, 5/5 task wins, +0.144 over an untuned model ~8× its size and +0.061 over a gradient-boosted classifier trained on the same synthetic data. It holds on the FY2024 year-shift slice. T3 (0.110) misses the tabular 0.214 floor; under the "beat own base on T3 with a CI excluding zero" option it would pass. Two method lessons: GRPO only helps once the policy is above chance (SFT first), and macro-F1 composites need a chance-corrected companion.
 
 ### Next steps
 

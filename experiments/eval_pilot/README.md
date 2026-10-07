@@ -20,6 +20,8 @@ runs (see `../exp30_eval_pilot.md`):
 
 v1 results (`preds_base_*`, `score_base_*`) stay as recorded under v1 rules.
 
+**Eval v1.2 (2026-10-07).** T3 is scored over 9 classes: the 8 element buckets the generator models plus "other", with the six rare buckets (childsupport, assets, reporting, standard, income_total, other) folded into "other" for both predictions and labels. Those six are 2–3% of real reportable primaries but 30% of T3 test items under exp30's per-bucket quotas, and 6 of 14 equal-weight macro-F1 classes. Gate leg 3 becomes T3 9-class macro-F1 ≥ **0.210**, the exp53 gradient-boosted classifier trained on the same synthetic data, scored on this eval (same intent as v1.1's 0.214: an LM reading the case should name the element at least as well as a tabular model on synthetic features). `score.py --eval-version v1.1` reproduces v1.1 exactly. Adopted after results were seen, so passes under v1.2 are provisional until confirmed on a fresh run.
+
 Runs the frozen 1,400-item QC-variance eval (exp17 design, exp30 pilot build)
 against a local model served by LM Studio's OpenAI-compatible endpoint.
 No raw QC microdata needed on this machine: `items.json` ships the frozen
