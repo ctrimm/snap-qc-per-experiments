@@ -34,3 +34,6 @@ sft_r32_lr1e-5_600_ckpt500	checkpoint 500 of sft_r32_lr1e-5_600	0.211	0.149	0.64
 sft_labelmatch_lr1e-5_600_ckpt300	checkpoint 300 of sft_labelmatch_lr1e-5_600	0.197	0.148	0.645	0.330	0.136	0.130		180/197
 sft_labelmatch_lr1e-5_600_ckpt400	checkpoint 400 of sft_labelmatch_lr1e-5_600	0.255	0.192	0.730	0.468	0.261	0.100		161/197
 sft_labelmatch_lr1e-5_600_ckpt500	checkpoint 500 of sft_labelmatch_lr1e-5_600	0.148	0.092	0.604	0.245	0.144	0.031		96/197
+sft_exp55_reportable_lr1e-5_500	exp55: SFT lr1e-5 500 steps on dist_reportable.json + FY coding	0.160	0.102	0.600	0.237	0.181	0.060	0.150	98/197
+sft_exp55_reportable_lr1e-5_500_ckpt300	checkpoint 300 of sft_exp55_reportable_lr1e-5_500	0.280	0.225	0.760	0.523	0.323	0.117		149/197
+sft_exp55_reportable_lr1e-5_500_ckpt400	checkpoint 400 of sft_exp55_reportable_lr1e-5_500	0.236	0.172	0.701	0.409	0.252	0.105		161/197

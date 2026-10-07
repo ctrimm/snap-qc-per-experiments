@@ -1,4 +1,4 @@
-# Experiment 55 — reportable-variance distribution for the generator (IN PROGRESS)
+# Experiment 55 — reportable-variance distribution for the generator (labels fixed by construction; real-case skill at parity)
 
 **Date:** 2026-10-07 · **Code:** `experiments/exp55_build_dist_reportable.py`, `experiments/exp55_measure.py`, `experiments/exp52_rlvr_dataset.py --dist --fy-coding` · **Artifact:** `experiments/dist_reportable.json`
 
@@ -46,15 +46,29 @@ Within-direction nature mix (what the balanced training set sees), L1 vs real: o
 
 Training labels by construction (no reweighting): T4 97 27%, 53 18%; T5 agency 48%, client 32%, other 18%, no-fault 2% (real FY21–23: 47 / 38 / 16 / 0%).
 
-SFT dev results: pending (run started 2026-10-07 14:02).
+**SFT dev results** (197 real items; checkpoints of a 500-step run):
+
+| | step 300 | step 400 | step 500 |
+|---|---|---|---|
+| composite skill | **0.225** | 0.172 | 0.102 |
+| T1 κ / accuracy | 0.523 / 79.7% | 0.409 | 0.237 |
+| T2 κ | **0.323** | 0.252 | 0.181 |
+| T3 κ | 0.117 | 0.105 | 0.060 |
+| T4 / T5 κ | −0.003 / −0.012 | | |
+
+vs the original recipe (all-variance `dist.json`): peaks 0.271 (seed 52, step 400) and 0.167 (seed 53, step 600). Synthetic-valid mean excess 0.150 (step 500).
+
+**Missing-regime profile (FY2024).** 8,053 of 17,836 error cases (45%) carry no reportable variance: median AMTERR $21 (87% ≤ $56) vs $47 (55% ≤ $56) for cases with one; their variances are mostly nature 97 (6,708); over/under 4,486 / 3,567. A faithful generator is a mixture: ~45% small timing errors with no reportable variance (no T3–T5 label) and ~55% drawn from the reportable distribution. The old all-variance draw was modeling the first regime.
+
+**Rare T3 buckets.** The six buckets the generator never produces (childsupport, assets, reporting, standard, income_total, other) are 2–3% of real reportable primaries (FY2021–24) but 30% of the eval's T3 test items (217 / 733) and 6 of its 14 macro-F1 classes, because exp30's sampler gave each bucket a quota. Adding them to the generator buys little realism and needs new household facts, benefit math and calibration per bucket.
 
 ### Verdict
 
-Pending the SFT result. So far: the reportable distribution fixes the label mix by construction. With its own re-fit exp31 constants (`--calibration`), the finding mix is near the bar (L1 0.037 vs ≤ 0.03); dollar sizes still skew large until the no-reportable-variance case type is modeled.
+Held for fidelity, parity for skill. The reportable distribution fixes the T3–T5 label mix by construction (nature 97 0.41 → 0.21 vs 0.20 real) and, with its own exp31 capture (`--calibration`), keeps the finding mix near the bar (L1 0.037). Trained on it, the LLM peaks at dev skill 0.225, inside the seed band of the original recipe (0.167–0.271): best T2 κ of any run (0.323) and best T1 accuracy (79.7%), lower T3 κ than seed 52 (0.117 vs 0.253, level with seed 53), and an earlier peak (step 300). T4/T5 stay at chance, confirming exp54. Adopted as the more faithful LLM training data; not test-gated (it doesn't clearly beat the current best, test composite 0.266, and the test set has had three looks). Dollar sizes still skew large until the no-reportable-variance regime is modeled.
 
 ### Next steps
 
-1. Score the SFT run (dev, checkpoints 300–500) against the original recipe (seed 52 / 53 peaks 0.271 / 0.167).
-2. Model the missing case type: error cases whose only recorded variances have no dollar effect (~45% of real FY2024 error cases; small dollar errors, no T3–T5 label). Should close the ≤ $56 gap and pull the finding mix under the bar. (`calibrate_injection.py` / `measure_effectiveness.py` gained `--bundle`, but the exp31 capture path above is the one that matters under dollar mechanisms.)
+1. ~~Score the SFT run~~ done (above). For LLM data, stop around step 300 with this distribution.
+2. Generator-as-product (dollar ranking): model the no-reportable-variance regime as a mixture (~45% of error cases, small timing errors, no T3–T5 label). Should close the ≤ $56 gap and pull the finding mix under the bar. Not needed for the LLM gate: only 8% of eval error items lack a T3 label, so training on 45% N/A answers would hurt T3.
 3. Dropped from the backlog: "raise the multi-variance rate" (exp27). Only 7% of real error cases carry 2+ *reportable* variances; exp27's ~33% counted zero-dollar variances. Synthetic is already at 10%.
-4. Remaining generator item: the six T3 buckets it never produces (childsupport, assets, reporting, standard, income_total, other).
+4. Eval decision (exp30, with the T3 bar): score T3 over the 8 modeled buckets or prevalence-weighted, rather than macro-F1 over 14 buckets where 6 are ~2–3% of reality but 30% of test items. Preferred over generator work for those buckets.
