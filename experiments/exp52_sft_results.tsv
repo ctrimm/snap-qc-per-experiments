@@ -9,3 +9,28 @@ sft_lr1e-5_600	SFT lr1e-5 600 steps bs4 finding-balanced	0.256	0.200	0.707	0.424
 grpo_on_sft_lr1e-5_600	GRPO lr5e-6 80 steps g8 on top of sft_lr1e-5_600	0.208	0.150	0.665	0.348	0.140	0.144	0.112	168/197
 sft_corrmix_lr1e-5_300	SFT lr1e-5 300 steps bs4 correct-heavy mix (50/25/25)	0.202	0.142	0.656	0.332	0.186	0.135	0.112	172/197
 grpo_on_sft_corrmix_lr1e-5_300	GRPO lr5e-6 80 steps g8 on top of sft_corrmix_lr1e-5_300	0.216	0.155	0.668	0.344	0.217	0.149	0.119	163/197
+sft_lr1e-5_600_ckpt100	checkpoint 100 of sft_lr1e-5_600	0.101	0.067	0.553	0.186	0.102	0.081		185/197
+sft_lr1e-5_600_ckpt200	checkpoint 200 of sft_lr1e-5_600	0.101	0.080	0.468	0.068	0.012	0.191		191/197
+sft_lr1e-5_600_ckpt300	checkpoint 300 of sft_lr1e-5_600	0.179	0.132	0.594	0.246	0.186	0.079		184/197
+sft_lr1e-5_600_ckpt400	checkpoint 400 of sft_lr1e-5_600	0.320	0.271	0.768	0.539	0.286	0.253		157/197
+sft_lr1e-5_600_ckpt500	checkpoint 500 of sft_lr1e-5_600	0.309	0.246	0.763	0.529	0.274	0.180		156/197
+sft_lr1e-5_600_seed53	SFT lr1e-5 600 steps bs4 finding-balanced, seed 53	0.223	0.167	0.707	0.424	0.221	0.114	0.154	164/197
+sft_corrmix_lr1e-5_600	SFT lr1e-5 600 steps bs4 correct-heavy mix (50/25/25)	0.217	0.156	0.670	0.348	0.216	0.083	0.171	118/197
+sft_lr5e-6_600	SFT lr5e-6 600 steps bs4 finding-balanced	0.260	0.204	0.744	0.489	0.186	0.151	0.157	151/197
+sft_r32_lr1e-5_600	SFT lr1e-5 600 steps bs4 finding-balanced, LoRA rank 32	0.210	0.153	0.657	0.322	0.145	0.146	0.148	120/197
+sft_labelmatch_lr1e-5_600	exp54: SFT lr1e-5 600 steps bs4, FY-aware coding + eval-definition label mix	0.194	0.141	0.629	0.287	0.242	0.076	0.167	99/197
+sft_lr1e-5_600_seed53_ckpt300	checkpoint 300 of sft_lr1e-5_600_seed53	0.119	0.094	0.495	0.105	0.049	0.189		189/197
+sft_lr1e-5_600_seed53_ckpt400	checkpoint 400 of sft_lr1e-5_600_seed53	0.165	0.123	0.597	0.242	0.102	0.165		184/197
+sft_lr1e-5_600_seed53_ckpt500	checkpoint 500 of sft_lr1e-5_600_seed53	0.161	0.111	0.545	0.179	0.117	0.159		191/197
+sft_corrmix_lr1e-5_600_ckpt300	checkpoint 300 of sft_corrmix_lr1e-5_600	0.202	0.142	0.656	0.332	0.186	0.135		172/197
+sft_corrmix_lr1e-5_600_ckpt400	checkpoint 400 of sft_corrmix_lr1e-5_600	0.230	0.172	0.718	0.438	0.284	0.055		131/197
+sft_corrmix_lr1e-5_600_ckpt500	checkpoint 500 of sft_corrmix_lr1e-5_600	0.178	0.135	0.628	0.302	0.200	0.043		90/197
+sft_lr5e-6_600_ckpt300	checkpoint 300 of sft_lr5e-6_600	0.218	0.163	0.655	0.346	0.228	0.099		179/197
+sft_lr5e-6_600_ckpt400	checkpoint 400 of sft_lr5e-6_600	0.258	0.195	0.697	0.394	0.257	0.150		137/197
+sft_lr5e-6_600_ckpt500	checkpoint 500 of sft_lr5e-6_600	0.241	0.183	0.713	0.425	0.191	0.139		138/197
+sft_r32_lr1e-5_600_ckpt300	checkpoint 300 of sft_r32_lr1e-5_600	0.130	0.095	0.557	0.197	0.091	0.077		190/197
+sft_r32_lr1e-5_600_ckpt400	checkpoint 400 of sft_r32_lr1e-5_600	0.176	0.116	0.589	0.218	0.163	0.091		98/197
+sft_r32_lr1e-5_600_ckpt500	checkpoint 500 of sft_r32_lr1e-5_600	0.211	0.149	0.645	0.308	0.157	0.113		110/197
+sft_labelmatch_lr1e-5_600_ckpt300	checkpoint 300 of sft_labelmatch_lr1e-5_600	0.197	0.148	0.645	0.330	0.136	0.130		180/197
+sft_labelmatch_lr1e-5_600_ckpt400	checkpoint 400 of sft_labelmatch_lr1e-5_600	0.255	0.192	0.730	0.468	0.261	0.100		161/197
+sft_labelmatch_lr1e-5_600_ckpt500	checkpoint 500 of sft_labelmatch_lr1e-5_600	0.148	0.092	0.604	0.245	0.144	0.031		96/197
