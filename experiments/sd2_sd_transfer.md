@@ -147,7 +147,10 @@ above — SD8 will quantify the contamination premium.
 - **SD4/SD5** use arm (b) — SD synth + GBM no-cw — for P(error) work,
   with threshold/calibration on the real-SD train split (never the
   holdout), mirroring NY4/NY5's use of NY2's winning arm.
+  - **Done →** [SD4](sd4_prioritization.md), [SD5](sd5_dollar_ranking.md): SD4: PASS — calibrated AUC 0.7239; top-20% lift 1.35x (34.7 errors/100 reviews); riskiest half catches 75.7% of errors; caught errors balanced (21 over / 20 under), no small-d… SD5: PASS — the PA/NY reversal: P(error)-alone wins (top-10% 1.95x, top-20% 2.07x, top-30% 2.12x): top-20% $2,644 vs $1,275 random ($45/hr vs $22/hr, 30-min review assumption)…
 - **SD7** runs before SD4/SD5 are finalized (feature-set audit) — or
   SD4/SD5 carry NY's clean-8 set with a documented assumption.
+  - **Done →** [SD7](sd7_feature_audit.md), [SD4](sd4_prioritization.md), [SD5](sd5_dollar_ranking.md): SD7: PASS — clean-8 adopted (hh_size, earned, unearned, shelter, sua, medical_exp, depcare, senior_disabled); only leakage feature was issued_benefit, immaterial on removal SD4: PASS — calibrated AUC 0.7239; top-20% lift 1.35x (34.7 errors/100 reviews); riskiest half catches 75.7% of errors; caught errors balanced (21 over / 20 under), no small-d…
 - **SD8** pristine rerun: exclude all holdout rows from the SD1 fit,
   regenerate, re-run this battery; the verdict must survive.
+  - **Done →** [SD8](sd8_sd_pristine_rerun.md): SD8: PASS — pristine finding AUC 0.750 vs national 0.680 (+0.071), the strongest finding transfer of the three states; pristine scores *higher* than contaminated (+0.023, with…

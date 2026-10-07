@@ -117,6 +117,7 @@ battery (ID2) is the empirical test of whether they matter.
       --dist ../experiments/dist.json --max-attempts 12 \
       --out /tmp/id2out/nat_synth.jsonl
   ```
+  - **Done →** [ID2](id2_id_transfer.md): ID2: MIXED — the mirror of NY2: element leg passes (ID wins macroF1 6/6, acc 5/6; signature in shelter/earned), finding leg does not (ID wins AUC 2/6; national ties/wins). Bal…
 - Reproduction: `python3 experiments/id1_id_generator.py fit` (prints the
   it1 constants baked into `src/synth/id_state.py`); it2/it3 steps are
   `/tmp/id1out/calibrate_id1.py` and `/tmp/id1out/bake_it2.py` (scratch,

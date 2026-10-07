@@ -197,5 +197,6 @@ behavior.
 - **TX6 (temporal)** must test the direction flip: a refit on FY2020-21 vs
   pooled, evaluated on FY2023-24, will show whether the under-tilt is
   stable or the flip breaks the transfer.
+  - **Done →** [TX6](tx6_temporal.md): TX6: PASS with a labeling break — element accuracy *rises* +0.034 across the FY2022/23 boundary (no decay); TX went from blanking 100% of nature-97 causes (FY2020–23) to recor…
 - The FY2022 mass-change blip is a natural experiment for the generator's
   robustness — noted, not modeled.

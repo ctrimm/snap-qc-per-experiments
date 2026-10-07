@@ -140,6 +140,7 @@ overstate dollars-recovered gains the way they did in PA.
   keep two-thirds of errors), never as a risk score for individual-case
   action. The 51%-precision top-decile number is the guardrail against
   over-claiming.
+  - **Done →** [NY5](ny5_dollar_ranking.md): NY5: Conditional PASS — winner is (c) direct expected-dollar (diverges from PA's two-part): top-20% recovers $6,958 vs $4,574 random (1.52x; $85/hr vs $56/hr, ~$29/hr marginal…
 - **Open question — feature timing (not solved):** the clean-8 features
   (household size, earnings, shelter costs, SUA, medical, depcare,
   senior/disabled flag) are all known at certification time, which is
@@ -155,3 +156,4 @@ overstate dollars-recovered gains the way they did in PA.
   caveat entirely.
 - **Optional (if dollars matter):** re-rank by expected dollar error —
   NY5 does this against a dollars-recovered metric.
+  - **Done →** [NY5](ny5_dollar_ranking.md): NY5: Conditional PASS — winner is (c) direct expected-dollar (diverges from PA's two-part): top-20% recovers $6,958 vs $4,574 random (1.52x; $85/hr vs $56/hr, ~$29/hr marginal…

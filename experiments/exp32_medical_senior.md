@@ -177,9 +177,11 @@ composition, not rates.
    pre-screen-vs-post-screen size-mix approximation in the diagnostic.
    Blast radius is wide (depcare size>2 gate, kid distribution, hhcomp), so
    it deserves its own experiment, not a drive-by constant change.
+   - **Done →** [exp44](exp44_size_mix.md): Size-mix fit done (safe: hhcomp/arithmetic → 1.0x); re-sliced mixes re-trialled and retired.
 2. **Coordinator:** apply `exp28_resliced_mixes.json` to `dist.json` only
    after step 1 lands. The committed `dist.json`/`eff.json`/`inject.json`
    were not touched here.
+   - **Done →** [exp44](exp44_size_mix.md): Superseded: re-sliced mixes retired.
 3. **Joint matrix+effectiveness re-measurement under mechanisms-ON** is the
    principled fix for the 16/32 mechanism-effect keep shifts — but it must
    redo exp31's effectiveness fit jointly (the current pair is jointly

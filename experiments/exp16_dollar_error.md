@@ -110,8 +110,11 @@ large over-issuances, and learn the wrong directional dollar asymmetry.
    bucket's share of realized errors, or add sub-$56 perturbation modes
    (small income rounding, minor deduction mis-keying), targeting ~69% of
    error cases ≤ $56.
+   - **Done →** [exp18](exp18_dollar_mechanisms.md): Small-error mode (nature-97 conditioning) verified.
 2. Model whole-unit ineligibility (correct benefit $0, error = issued
    benefit) as a distinct over-error mode; this should restore both the
    over-tail and the over>under asymmetry.
+   - **Done →** [exp18](exp18_dollar_mechanisms.md): Whole-unit ineligibility mode verified (p = 0.0125).
 3. Re-run this script plus the golden eval after the fix — the dollar
    marginal and the retrieval ranking must move together.
+   - **Done →** [exp23](exp23_merge_recalibrate.md), [exp26](exp26_combine_dollar.md): Dollar marginal re-checked after merging: share ≤ $56 0.69 vs 0.70 real, p90 inversion fixed.

@@ -81,4 +81,6 @@ there is noisy.
 
 - SD8's pristine refit replaces the provisional reference; if the
   pristine AUC clears 0.72 the CONDITIONAL becomes a full PASS.
+  - **Done →** [SD8](sd8_sd_pristine_rerun.md): SD8: PASS — pristine finding AUC 0.750 vs national 0.680 (+0.071), the strongest finding transfer of the three states; pristine scores *higher* than contaminated (+0.023, with…
 - SD5 (dollar ranking) consumes the same calibrated P(error) machinery.
+  - **Done →** [SD5](sd5_dollar_ranking.md): SD5: PASS — the PA/NY reversal: P(error)-alone wins (top-10% 1.95x, top-20% 2.07x, top-30% 2.12x): top-20% $2,644 vs $1,275 random ($45/hr vs $22/hr, 30-min review assumption)…

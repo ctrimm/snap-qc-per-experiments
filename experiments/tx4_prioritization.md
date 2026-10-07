@@ -88,6 +88,8 @@ problem to solve with dollar-aware ranking.
 - **TX5** tests whether dollar-aware ranking (P(error)×E[dollars], direct
   expected-dollar) fixes the small-dollar skew and what it earns per
   review hour.
+  - **Done →** [TX5](tx5_dollar_ranking.md): TX5: Conditional PASS (weak) — winner is (b) two-part P(error)×E[dollars] (PA-style, not NY's direct): top-20% $5,798 vs $4,634 random (1.25x; $67/hr vs $54/hr, 30-min review…
 - **TX8** supplies the pristine AUC reference; if the contamination
   premium exceeds ~0.02, the lifts above are flattered and the gate
   revisits.
+  - **Done →** [TX8](tx8_tx_pristine_rerun.md): TX8: PASS — the MIXED verdict is not a contamination artifact: pristine refit excluding all 865 holdout rows confirms finding edge, contamination premium +0.003 on finding AUC…

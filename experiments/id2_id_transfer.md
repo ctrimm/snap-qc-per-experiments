@@ -138,7 +138,10 @@ pass is not a contamination artifact.
 - **ID4/ID5** use arm (a) — ID synth + GBM balanced — for P(error) work,
   with calibration on the real-ID train split, mirroring SD4/SD5's use of
   SD2's winning arm (but the balanced recipe, documented above).
+  - **Done →** [ID4](id4_id_prioritization.md), [ID5](id5_id_dollar_ranking.md): ID4: CONDITIONAL PASS — calibrated P(error) AUC 0.6731 (balanced arm, clean-8); top-20% lift 1.42x; riskiest half catches 67.5% of errors; caught median $11 vs $18 holdout-wid… ID5: CONDITIONAL PASS — the SD replication: P(error)-alone wins (top-10% 1.77x, top-20% 1.40x, top-30% 1.26x): top-20% $3,000 vs $2,143 random ($31/hr vs $22/hr); over/under $…
 - **ID7** runs before ID4/ID5 are finalized (feature-set audit) — or
   ID4/ID5 carry the clean-8 set with a documented assumption.
+  - **Done →** [ID7](id7_id_feature_audit.md), [ID4](id4_id_prioritization.md), [ID5](id5_id_dollar_ranking.md): ID7: PASS — clean-8 adopted; only leakage feature issued_benefit/RAWBEN, removal cost disclosed (−0.028 acc / −0.016 macroF1); top features (earned/unearned/shelter) match ID3… ID4: CONDITIONAL PASS — calibrated P(error) AUC 0.6731 (balanced arm, clean-8); top-20% lift 1.42x; riskiest half catches 67.5% of errors; caught median $11 vs $18 holdout-wid…
 - **ID8** pristine rerun: exclude all holdout rows from the ID1 fit,
   regenerate, re-run this battery; the element verdict must survive.
+  - **Done →** [ID8](id8_id_pristine_rerun.md): ID8: MIXED stands with qualification — pristine element accuracy edge persists (+0.054 over national) but macroF1 ties (−0.002); finding AUC margin unchanged (+0.017). Contami…

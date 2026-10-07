@@ -113,6 +113,7 @@ P(error); where a big-dollar tail exists, model the dollars.*
   ($3,000/$10,713), over/under $2,397/$603.
 - ID6/ID8 proceed unchanged; ID8's pristine rerun should confirm the
   (a)-rule economics (P(error) AUC is the load-bearing metric).
+  - **Done →** [ID6](id6_id_temporal.md), [ID8](id8_id_pristine_rerun.md): ID6: PASS — no annual refit: pooled fit beats single-year refit on the clean temporal test; finding signal flat across the FY2022→FY23-24 boundary; coin-cal stable (1.20=1.20)… ID8: MIXED stands with qualification — pristine element accuracy edge persists (+0.054 over national) but macroF1 ties (−0.002); finding AUC margin unchanged (+0.017). Contami…
 - The fairness check (exp47 pattern) runs on the (a) winner — and the
   risk-regressivity caveat, currently scoped to dollar-maximizing rankers,
   needs re-examination for a P(error)-only winner.

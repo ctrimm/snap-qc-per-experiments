@@ -170,6 +170,7 @@ before locking it, not inherited from GBM results.
    reweighting for class balance; confirm which recipe components hold
    for a transformer-class model before locking the LM pretraining
    recipe.
+   - **Done →** [exp43](exp43_transformer_transfer_probe.md): Transformer probe: persistent pool ports, balanced loss does not.
 2. MLP class-weight follow-up (small): the MLP used sample-weight-
    emulated balanced weights, which this experiment shows can hurt
    non-tree models; re-run MLP/persistent vs retry with uniform weights

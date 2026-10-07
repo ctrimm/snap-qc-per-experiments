@@ -63,5 +63,7 @@ offsets see only pooled marginals).
 - ID5 tests whether dollar-aware ranking beats this P(error) baseline —
   the track's key scientific question (does SD's P-alone reversal
   replicate in Idaho?).
+  - **Done →** [ID5](id5_id_dollar_ranking.md): ID5: CONDITIONAL PASS — the SD replication: P(error)-alone wins (top-10% 1.77x, top-20% 1.40x, top-30% 1.26x): top-20% $3,000 vs $2,143 random ($31/hr vs $22/hr); over/under $…
 - ID8's pristine rerun confirms the 0.6731 AUC is not a contamination
   artifact.
+  - **Done →** [ID8](id8_id_pristine_rerun.md): ID8: MIXED stands with qualification — pristine element accuracy edge persists (+0.054 over national) but macroF1 ties (−0.002); finding AUC margin unchanged (+0.017). Contami…

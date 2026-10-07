@@ -159,9 +159,11 @@ empirically grounded and documented above.
   train on SD synth, test on held-out real SD rows. Watch the small-sample
   caveat: SD's holdout will hold ~590 rows with ~145 error cases — report
   per-seed results and confidence intervals, NY2-style.
+  - **Done →** [SD2](sd2_sd_transfer.md): SD2: PASS — finding AUC 0.7278 vs 0.6382 national on the 592-row holdout (152 error cases); per-seed results reported with thin margins disclosed (seed 9 only +0.017). Small-s…
 - If SD2's finding transfer is weak, the staged lever is a second
   97-share push — but the it3 saturation curve says expect ≤+0.05, so
   prefer re-scoping (NY2's MIXED pattern) over more calibration.
+  - **Resolved (not needed) →** [SD2](sd2_sd_transfer.md): SD2: PASS — finding AUC 0.7278 vs 0.6382 national on the 592-row holdout (152 error cases); per-seed results reported with thin margins disclosed (seed 9 only +0.017). Small-s…
 - The cause-ratio basis correction (it2b) is a candidate generator-level
   fix: the fit harness could emit basis-aligned ratios directly. Filed as
   future work, not blocking.

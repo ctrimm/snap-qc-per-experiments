@@ -95,6 +95,8 @@ against the 1.5x bar.
 
 - **TX6** tests whether the under-tilt (which the dollar ranking leans on)
   is temporally stable.
+  - **Done →** [TX6](tx6_temporal.md): TX6: PASS with a labeling break — element accuracy *rises* +0.034 across the FY2022/23 boundary (no decay); TX went from blanking 100% of nature-97 causes (FY2020–23) to recor…
 - **TX8** quantifies how much of the 1.25x is contamination premium.
+  - **Done →** [TX8](tx8_tx_pristine_rerun.md): TX8: PASS — the MIXED verdict is not a contamination artifact: pristine refit excluding all 865 holdout rows confirms finding edge, contamination premium +0.003 on finding AUC…
 - Generator lever for the dollar conditional: TX1's structural residual
   (p90 175 vs 149) is where the missing headroom lives.

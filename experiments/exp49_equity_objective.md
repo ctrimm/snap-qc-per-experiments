@@ -171,6 +171,7 @@ budget *across* types by where the errors are.
   elderly/disabled households, re-run with floors keyed to under-issuance
   error shares (or dollars) instead — expect the equity/$ tradeoff to look
   different, possibly steeper.
+  - **Done →** [exp51](exp51_underissuance_floors.md): Under-issuance-keyed floors tested: V3/V4 dominate the pure ranker.
 - **Robustness:** re-check on the FY2025 microdata when it lands
   (watch: `fy2025-qc-microdata-watch`) — the error mix by type may move,
   and the floors inherit whatever the train shares say. Also test at

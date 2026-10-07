@@ -173,11 +173,15 @@ draw.
    default alters other experiments' baselines, so this needs an explicit
    go-ahead; the old behavior remains reproducible via the script's
    patch pattern.)
+   - **Done →** [exp24](exp24_adopt_rebaseline.md): Draw fix adopted as default and re-baselined (finding L1 0.036 → 0.025).
 2. Earned ~0.8x stickiness: separate audit — the constraint is not
    draw-side zero-base; likely keep-rate or nature-mix.
+   - **Partly done →** [exp27](exp27_earned_audit.md): Earned audit found the constraint is the first-variance bucket mix; fix staged pending direction recalibration (exp45).
 3. Medical/depcare relative deflation and nature-57 inflation: revisit
    whether the empirical mixes or the exp13 57-weights need
    re-measurement under the corrected draw.
+   - **Done →** [exp28](exp28_shares_game.md): Nature-57 weights re-measured (1.16x → 1.03x), depcare kid-gate fixed (0.44x → 0.89x).
 4. Household sampler base-positivity gaps (shelter/sua for senior
    strata, sua for no_earner_nonsenior) as a sampler follow-up; they do
    not change the draw-fix conclusion but matter for calibration.
+   - **Done →** [exp29](exp29_sampler_positivity.md): Sampler base-positivity fixed: worst per-stratum gap 0.009.

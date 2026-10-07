@@ -31,5 +31,6 @@ iteration would be needed for exact convergence, but 1.04x is within noise.
 ## Next steps
 1. Exp14: SUA mechanics rework — though sua is at 0.99x, so re-scope to
    whether the 57-weight approach generalizes to other underproduced natures.
+   - **Done →** [exp14](exp14_materialization_correction.md): Run as the bucket materialization correction (re-scoped).
 2. The damping-factor finding (0.8) suggests a general principle: draw-weight
    corrections need one empirical iteration, not analytic 1/m.

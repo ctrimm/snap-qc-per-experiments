@@ -112,8 +112,10 @@ Sua, medical, and depcare mechanics gaps persist under every config
    explicit oversampling to uniform (was config (c) with config (d)'s
    resampling). If more distinct rare examples is the mechanism, this
    should beat (c)'s 0.274 macroF1.
+   - **Done →** [exp19](exp19_retry_oversample_transfer.md): Retry loop + oversampling tested: the count mechanism was falsified (gap survives at count parity).
 2. Raise generation-time rare-bucket quotas (e.g. floor each bucket at a
    few hundred *distinct* cases) as a generator knob, then rebalance —
    this makes the "two favors" decomposition a design parameter.
 3. Continue sua/medical/depcare mechanics work (exp7 thread); sampling
    cannot fix those.
+   - **Partly done →** [exp11](exp11_senior_bucket_mix.md), [exp12](exp12_kid_depcare.md), [exp42](exp42_depcare_medical_deepdive.md): Medical/depcare mechanics improved; SUA still open.

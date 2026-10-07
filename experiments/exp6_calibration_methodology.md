@@ -84,8 +84,10 @@ these are its proposal corrections.
    If a bucket's conditional materialization diverges (medical did), the
    correction under/over-shoots — measure m under the actual draw
    distribution as a refinement.
+   - **Done →** [exp14](exp14_materialization_correction.md), [exp20](exp20_materialization_matrix.md): Conditional materialization measured per (bucket, stratum) matrix (exp20), after the scalar version fell short (exp14).
 2. Same importance-weighting treatment for the nature mix *within*
    (bucket, direction): currently only direction classes are corrected.
+   - **Done →** [exp13](exp13_nature57_weights.md): Per-nature importance weights within bucket: nature 57 went 0.50x → 1.04x.
 3. `dist.json` / `eff.json` / `inject.json` are committed so the repo runs
    standalone; the real QC microdata stays out of the repo (held-out
    validation only).

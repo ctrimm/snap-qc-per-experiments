@@ -96,6 +96,8 @@ Hypothesis confirmed for legs 1–2, not leg 3. Training gemma-4-e4b on syntheti
 
 1. **Decide the T3 bar** (options in the exp30 vault note); with option B this run passes the gate.
 2. Training-mix balance: SFT over-calls "error" (176/197 dev); try a mix near the real prior (~2:1 error:correct).
+   - **Done:** Tested on Oct 6: the balanced mix was already 1/3 correct; a correct-heavy mix (50/25/25) eased over-calling (176 → 161 error calls) but trailed longer SFT.
 3. More GRPO on top of SFT (80 steps helped; the compile-cache crash needs per-segment resumes past ~250 steps).
+   - **Done:** Tested on Oct 6: GRPO 160 ≈ GRPO 80 (dev skill 0.164 vs 0.160), and GRPO on SFT-600 hurt (0.200 → 0.150).
 4. Generator coverage for the six T3 buckets it never produces (~22% of T3 test items), and a T5 signal (no skill yet).
 5. Serve adapters correctly for deployment: fuse, or pass `"adapters"` in the request body, since `mlx_lm.server --adapter-path` is ignored for `"default_model"`.

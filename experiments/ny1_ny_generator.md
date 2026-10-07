@@ -166,6 +166,7 @@ is what NY2's transfer experiment needs.
   transfer (finding/element/nature/cause + dollar amount); seed-robustness
   (n=20k seeds 8, 9); an NY-vs-PA cross-state transfer comparison (PA2's
   protocol) to test whether state-conditioned training beats pooled.
+  - **Done →** [NY2](ny2_ny_transfer.md): NY2: MIXED — element: NY synth 0.435 acc / 0.168 macroF1 vs majority 0.274/0.033 (real signal) but national-trained 0.468/0.151 wins on element (NY's signature sits in the rar…
 - If dollar-amount transfer underperforms, the defined lever is a
   97-vs-non97 (or per-bucket) dollar scale in the corruptor wrapper —
   NY's substantive errors are 1.1–3.7x national per bucket, which no

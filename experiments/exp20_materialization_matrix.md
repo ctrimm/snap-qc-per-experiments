@@ -137,11 +137,14 @@ script); the binding constraint is now the draw side, not materialization.
    re-apply the exp20 matrix on top of the corrected draw. If the
    double-counting diagnosis is right, this fixes sua's inflation *and*
    lets the matrix do its job.
+   - **Done →** [exp21](exp21_zerobase_audit.md): Zero-base audit run: finding L1 0.036 → 0.024.
 2. If the audit confirms it, fit the draw correction and the
    materialization matrix jointly in one damped iteration (the exp20
    stability finding — keep rates invariant to draw weights — says one
    iteration suffices; no IPF loop needed).
+   - **Done →** [exp21](exp21_zerobase_audit.md), [exp24](exp24_adopt_rebaseline.md): Draw fix and re-measured matrix fitted and adopted.
 3. The arithmetic residual (1.24x, m = 1.0 everywhere) belongs to the same
    audit: the always-applicable fallback in `_applicable_buckets` is a
    draw-mix problem, and the matrix correctly reports there is nothing to
    fix on the materialization side.
+   - **Done →** [exp21](exp21_zerobase_audit.md): Arithmetic 1.51 → 1.10x with the draw fix.

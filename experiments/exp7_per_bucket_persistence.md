@@ -83,10 +83,13 @@ the calibration gate in passing territory.
    (the naive single-apply measurement mis-transfers; IPF oscillates at
    dir level). One experiment: measure m_n in the hybrid flow, apply,
    verify 57 → ~1.0x and finding L1 back toward 0.02. *(recommended)*
+   - **Done →** [exp13](exp13_nature57_weights.md): Per-nature 1/m weights measured in the persistent flow (0.8 damping): nature 57 0.50x → 1.04x.
 2. **Exp 4 transfer re-run** on the persistent generator — the payoff
    experiment for exp 7: does the faithful element mix lift element
    accuracy past 0.493?
+   - **Done →** [exp4b](exp4_transfer_v3.md): Transfer re-run on the persistent generator.
 3. **Senior-conditioned bucket mixes** (open since 2026-09-28): real
    P(medical) is 0.109 on (no-earner, senior) vs 0.048 on (no-earner,
    non-senior); the medical 0.11x element residual is a draw problem, not
    a materialization problem.
+   - **Done →** [exp11](exp11_senior_bucket_mix.md): Senior-conditioned bucket mixes: medical 0.11x → 0.67x.

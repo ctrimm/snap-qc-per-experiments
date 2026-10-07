@@ -48,7 +48,10 @@ but not yet trusted as a training prior without the fixes below.
 1. (Recommended) Rebalance at-max exposure: make max-allotment cases rarer
    in the sampler or give corruptions a path to push *through* the ceiling
    via income-side errors, so over-issuances reach ~24%.
+   - **Done →** [exp6](exp6_eligibility_screen.md): The eligibility screen fixed the over-issuance shortfall: finding-mix L1 0.009, realized error rate 0.396 vs 0.397 real.
 2. Strengthen earned-income error mass (higher under-report rates at
    low earnings) to close the 0.31x gap.
+   - **Partly done →** [exp27](exp27_earned_audit.md): Earned-bucket audit reached 0.972x with first/second-variance mixes, but direction recalibration (exp45) is still staged.
 3. Revisit SUA/medical/depcare mechanics — currently near-degenerate in the
    generator (also visible in exp2's per-bucket transfer F1).
+   - **Partly done →** [exp11](exp11_senior_bucket_mix.md), [exp12](exp12_kid_depcare.md), [exp42](exp42_depcare_medical_deepdive.md): Medical (0.11x → 0.67x) and depcare (0.03x → 0.56x) were lifted; SUA mechanics remain unreworked.

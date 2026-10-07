@@ -263,6 +263,7 @@ persistent generator (which stays the data product), not the retry loop.
    retry-materializable households in the persistent pool — which the
    selection result predicts should lift transfer *and* element-mix
    fidelity without the retry loop's distortion.
+   - **Done →** [exp25](exp25_training_recipe.md): Recipe re-derived on the post-exp24 generator.
 2. Disentangle the (i) ablation: subsample (c) to (i)'s 6,299 rows while
    holding the multi-variance rate fixed, to separate structure-removal
    from the size/hard-household confound.

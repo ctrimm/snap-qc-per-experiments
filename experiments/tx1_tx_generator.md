@@ -170,6 +170,7 @@ nature-99-coded errors — is faithfully in the generator.
   train on TX synth, test on real TX microdata. Suggested TX2 checks: GBM
   transfer (finding/element + dollar amount); seed-robustness (n=20k seeds
   8, 9); the TX-vs-national decision battery per the NY2 protocol.
+  - **Done →** [TX2](tx2_tx_transfer.md): TX2: MIXED — finding: TX-synth AUC 0.688 vs national 0.670 (wins, 2/6 seeds — weaker than NY's 6/6). Element: 0.407 vs 0.441 national — TX *loses* on fine-grained element pred…
 - If p(over|err) fidelity becomes binding, the staged lever is a damped
   (sqrt) second-step direction calibration — residual factors are modest
   but the instrument's gain > 1 must be respected.

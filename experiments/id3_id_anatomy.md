@@ -67,3 +67,4 @@ $64). The ratios table is the calibration spec ID1 already used.
 - The 2–3 defining ratios (timing 1.57x, shelter 1.40x, client-cause 1.66x)
   go in the whitepaper's "The problem" section.
 - ID7 cross-checks that the model's top features match this anatomy.
+  - **Done →** [ID7](id7_id_feature_audit.md): ID7: PASS — clean-8 adopted; only leakage feature issued_benefit/RAWBEN, removal cost disclosed (−0.028 acc / −0.016 macroF1); top features (earned/unearned/shelter) match ID3…

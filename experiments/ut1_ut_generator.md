@@ -154,12 +154,15 @@ the module docstring and the fit harness.
 - **UT2** consumes `generate_ut` (API below) for the transfer experiment:
   train on UT synth, test on held-out real UT rows (all five FYs, ~1,025
   rows, ~340 error cases — a larger holdout than SD's).
+  - **Done →** [UT2](ut2_ut_transfer.md): UT2: PASS — finding AUC 0.724 vs 0.649 national avg (6/6 seed×setting comparisons, largest finding edge of any state); element marginal pass (9/12 comparisons, thin seed-depen…
 - Watch the over-share residual in UT5's over/under split: the synth's
   +6.5pp over tilt is calibrated out at the margin by UT4/UT5's real-train
   calibration, but the split should be reported honestly.
+  - **Done →** [UT5](ut5_dollar_ranking.md), [UT4](ut4_prioritization.md): UT5: PASS — the SD non-replication: two-part P(error)×E[$] wins (top-20% $4,604 vs $2,701 random, 1.70x, $45/hr vs $26/hr); direct wins top-10% (1.55x); P(error)-alone worst (… UT4: PASS — calibrated P(error) AUC 0.7308 (balanced arm, per UT2's ranking verdict); top-20% lift 1.47x; riskiest half catches 74.2% of errors; no small-dollar skew in caught…
 - If UT2's finding transfer is weak, the staged lever is re-scoping
   (NY2's MIXED pattern), not more calibration — it3 already shows the
   saturation curve.
+  - **Resolved (not needed) →** [UT2](ut2_ut_transfer.md): UT2: PASS — finding AUC 0.724 vs 0.649 national avg (6/6 seed×setting comparisons, largest finding edge of any state); element marginal pass (9/12 comparisons, thin seed-depen…
 
 ## UT2 API (copy-paste)
 

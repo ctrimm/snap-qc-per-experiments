@@ -64,5 +64,7 @@ expected small).
 ## Next steps
 
 - UT5 puts dollars on this ranking (the CIO's real metric).
+  - **Done →** [UT5](ut5_dollar_ranking.md): UT5: PASS — the SD non-replication: two-part P(error)×E[$] wins (top-20% $4,604 vs $2,701 random, 1.70x, $45/hr vs $26/hr); direct wins top-10% (1.55x); P(error)-alone worst (…
 - UT8 replaces the provisional 0.723 reference with the pristine number;
   if pristine AUC holds, the CONDITIONAL becomes a full PASS.
+  - **Done →** [UT8](ut8_ut_pristine_rerun.md): UT8: PASS — pristine finding AUC 0.728 vs 0.678 national (+0.050/+0.052); UT arm absolute AUC unchanged-to-better pristine (no contamination premium; balanced-gap narrowing fu…

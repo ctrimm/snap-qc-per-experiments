@@ -59,6 +59,8 @@ Net: the dollar distribution is now the closest it has ever been, but the findin
 
 ### Next steps
 1. **(Recommended next run)** Recode mechanism 2 as earned-income zeroing → (element 311, nature 35), matching how the real file codes whole-unit overs, *and* subtract the whole-unit mass from the empirical direction targets so it is not double-counted. Expected to repair both the over excess and the element-L1 regression.
+   - **Done →** [exp26](exp26_combine_dollar.md): Whole-unit recoded as earned-income zeroing (element 311, nature 35).
 2. Make the phase-1 coin direction-aware (separate over/under injection targets) so the mechanical unit over-contribution can be offset instead of baked in.
+   - **Done →** [exp26](exp26_combine_dollar.md): Phase-1 coin made direction-aware.
 3. Revisit the small-error mode's magnitude for 97-unders (real median $14 vs small-mode $1–9) to repair the collapsed under median without re-breaking the ≤$56 share.
 4. Minor: fix the effectiveness measurement to draw buckets from the applicable mix (matches the injector); verified low-impact but removes a known bias.

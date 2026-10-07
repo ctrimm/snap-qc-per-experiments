@@ -59,9 +59,12 @@ What changed in the plan: the medical re-slice moved from "adopt" to "save for t
 
 ### Next steps
 1. **Sampler senior-rate experiment (recommended next run, exp29's lane or follow-up):** close the 36.2% vs 49.6% senior-rate gap. Then re-trial the re-sliced mixes from `experiments/exp28_resliced_mixes.json` — medical should land >= 0.75x without the hhcomp/arithmetic blowup.
+   - **Done →** [exp32](exp32_medical_senior.md): Sampler senior rate raised 0.365 → 0.403 (medical 0.64x → 0.71x); remaining gap traced to household size mix.
 2. **Re-measure `_DEPCARE_KID_WEIGHT` if the sampler's kid rates change** (the table bakes in P_synth(kid|s) from the committed sampler; values are in the delimited comment).
+   - **Done →** [exp32](exp32_medical_senior.md), [exp44](exp44_size_mix.md): _DEPCARE_KID_WEIGHT re-measured after each sampler change.
 3. **exp29 coordination:** `experiments/exp28_exp29_matrix_backup.json` holds exp29's uncommitted matrix re-measurement (for their sampler); the working tree now carries exp24's cells + 3 exp28 cells. If exp29's sampler is adopted, their matrix should be re-applied wholesale and the 3 exp28 cells re-measured under it.
 4. **Committed-file applications (coordinator):** apply `experiments/exp28_resliced_mixes.json` to `dist.json` only after step 1 lands. Do not apply it now.
+   - **Done →** [exp44](exp44_size_mix.md): Re-sliced mixes re-trialled and retired (a clean negative).
 
 ### Files
 - `experiments/exp28_shares_game.py` — the full pipeline (baseline, measurements, trials, apply, verify).

@@ -181,17 +181,22 @@ for training, exp19's arm-(g) direction), not from generator distortion.
    generation-time oversampling of rare buckets for the *training* mix
    recover macroF1 without touching the generator? The retry loop's edge
    is gone, so the recipe question is open again.
+   - **Done →** [exp25](exp25_training_recipe.md): Recipe re-derived: faithful persistent + balanced remains best.
 2. **(staged)** Combine with exp23's dollar-mechanism flag once it lands:
    re-baseline dollar marginals (mean 97 vs 71, share <= $56 0.36 vs 0.70,
    flipped over/under medians) on the new defaults.
+   - **Done →** [exp26](exp26_combine_dollar.md), [exp31](exp31_adopt_dollar.md): Dollar mechanisms combined (exp26) and adopted as default (exp31).
 3. Earned ~0.8x stickiness: separate audit — not draw-side (exp21); likely
    keep-rate or nature-mix.
+   - **Partly done →** [exp27](exp27_earned_audit.md): Earned audit done; fix staged pending exp45.
 4. Medical/depcare relative deflation and nature-57 inflation: revisit
    whether the empirical mixes or the exp13 57-weights need re-measurement
    under the corrected draw.
+   - **Done →** [exp28](exp28_shares_game.md): Nature-57 and depcare re-measured under the corrected draw.
 5. Re-measure the tiny-sample matrix cells (depcare senior strata: 3–4
    draws; hhcomp/earner_senior: 22) with a larger measurement run, or pool
    them with the exp20 values.
 6. Household sampler base-positivity gaps from exp21 (shelter/sua for
    senior strata, sua for no_earner_nonsenior) — sampler follow-up,
    independent of this change.
+   - **Done →** [exp29](exp29_sampler_positivity.md): Sampler base-positivity gaps fixed.

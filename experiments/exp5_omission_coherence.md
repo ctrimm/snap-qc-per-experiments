@@ -43,6 +43,8 @@ materialize* — which motivated exp 6's eligibility-screen redesign.
 1. (Recommended) Condition injection on earners vs non-earners: measure
    P(error | earner) and P(bucket | earner) from the real file, inject
    accordingly (→ exp 6).
+   - **Done →** [exp6](exp6_eligibility_screen.md): Injection conditioned on earner status via the eligibility screen: finding-mix L1 0.009.
 2. Calibrate the injection coin against the *realized* post-retry error rate
    per stratum, not the injection-time rate — the retry loop's attrition is
    stratum-dependent (→ the inject.json phase-1 calibration).
+   - **Done →** [exp6b](exp6_calibration_methodology.md): Per-stratum calibration against realized rates adopted (phase-1 coins, two-level effectiveness).

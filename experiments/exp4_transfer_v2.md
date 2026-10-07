@@ -59,8 +59,10 @@ Hypothesis **held, with a surprise**:
 1. (Recommended) Exp 7: per-bucket persistence in the retry loop — the
    hhcomp/arithmetic selection bias is now the binding constraint on
    element transfer.
+   - **Done →** [exp7](exp7_per_bucket_persistence.md): Per-bucket persistence cut hhcomp 2.86x → 1.27x and arithmetic 3.47x → 1.42x.
 2. Prefer v1-style raw features for any downstream classifier; treat
    derived features as suspect until validated.
 3. Re-run this transfer battery after exp 7 and the sua/medical/depcare
    mechanics fixes; the element macroF1 (0.276 vs 0.422 ceiling) is the
    metric to watch.
+   - **Done →** [exp4b](exp4_transfer_v3.md): Transfer re-run on the persistent generator: element accuracy fell 0.493 → 0.442 (class starvation), binary improved.

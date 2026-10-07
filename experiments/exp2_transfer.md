@@ -51,10 +51,14 @@ keep the synthetic-first approach, fix the mechanics.
 1. (Recommended) Richer shared features — add review-timing, reporting-status,
    and variance-history features the real QC file carries; re-run to see how
    much of the 0.422→0.614 gap is features vs generator fidelity.
+   - **Done →** [exp4](exp4_transfer_v2.md): Richer shared features tested: binary macroF1 0.616, but derived v2 features underperformed raw v1 on element (0.451 vs 0.493).
 2. Fix exp1's over-issuance calibration, then re-run transfer: the finding
    task should improve as the synthetic prior matches real (24% over).
+   - **Done →** [exp6](exp6_eligibility_screen.md), [exp4](exp4_transfer_v2.md): The over-issuance prior was fixed (exp6) and transfer re-run with it (exp4).
 3. Strengthen sua/medical/depcare error mechanics in the generator
    (lowest transfer F1s), then confirm the per-bucket F1s move.
+   - **Partly done →** [exp11](exp11_senior_bucket_mix.md), [exp12](exp12_kid_depcare.md), [exp42](exp42_depcare_medical_deepdive.md): Medical/depcare mechanics improved; SUA still open.
 4. Longer-term: replace GBM with the actual small-LM continued-pretraining
    run once the calibration gate is tighter — transfer at the LM level is
    the gate that greenlights model training.
+   - **Done →** [exp52](exp52_rlvr_synthetic.md): An LM was trained on synthetic cases: SFT-600 gemma-4-e4b reached real test composite 0.238 (5/5 wins vs base).

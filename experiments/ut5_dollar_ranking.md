@@ -85,6 +85,7 @@ over-share residual is calibrated out at the margin (winner's over/under
 
 - UT8 reruns the battery pristine; the winner declaration should survive
   (the contamination premium was ~+0.02 AUC in NY8/SD8).
+  - **Done →** [UT8](ut8_ut_pristine_rerun.md): UT8: PASS — pristine finding AUC 0.728 vs 0.678 national (+0.050/+0.052); UT arm absolute AUC unchanged-to-better pristine (no contamination premium; balanced-gap narrowing fu…
 - The fairness check (review-to-risk by household type) runs on the
   **two-part winner** — the risk-regressivity caveat is currently scoped
   to dollar-maximizing rankers; UT confirms or updates that scoping.

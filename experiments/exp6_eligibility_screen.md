@@ -63,10 +63,13 @@ rework. None of these move the finding mix materially.
 ## Next steps
 1. (Recommended) Re-run transfer (exp 4) on this generator — the finding and
    binary tasks should improve substantially with the prior fixed.
+   - **Done →** [exp4b](exp4_transfer_v3.md): Transfer re-run on this generator.
 2. Exp 7: per-bucket persistence in the retry loop (draw the bucket once
    from the empirical mix, retry natures within it) to kill the
    hhcomp/arithmetic selection bias now binding element transfer.
+   - **Done →** [exp7](exp7_per_bucket_persistence.md): Per-bucket persistence adopted (hybrid single-draw-and-drop).
 3. Senior-conditioned bucket mixes (earner × senior cells) for medical;
    kid-conditioned mixes for depcare.
+   - **Done →** [exp11](exp11_senior_bucket_mix.md), [exp12](exp12_kid_depcare.md): Senior-conditioned medical mixes and kid-conditioned depcare landed.
 4. SUA mechanics rework (flat-grant vs expense choice) and the unearned /
    shelter error-gradient work.

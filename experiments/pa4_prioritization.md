@@ -122,6 +122,7 @@ error-count gains overstate dollars-recovered gains.
   keep two-thirds of errors), never as a risk score for individual-case
   action. The 50%-precision top-decile number is the guardrail against
   over-claiming.
+  - **Done →** [PA5](pa5_dollar_ranking.md): PA5: Conditional PASS (weak) — two-part P(error)×E[dollars] wins: lift 1.40x/1.42x/1.28x at top-10/20/30% (current defaults); top-20% recovers $5,483 vs $3,851 random ($67/hr…
 - **Open question — feature timing (not solved):** the v1 features
   (household size, earnings, shelter costs, SUA, medical, depcare,
   senior/disabled flag, issued benefit) are all known at certification time,

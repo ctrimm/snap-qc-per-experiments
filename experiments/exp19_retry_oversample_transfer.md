@@ -177,11 +177,14 @@ recipe needs its justification re-derived, not inherited from exp9.
    cases restricted to single-variance errors, and separately upsample
    persistent 2-variance cases to the retry rate. If the gap moves, the
    residual edge is case structure, not household selection.
+   - **Done →** [exp22](exp22_second_variance_transfer.md): Multi-variance structure ablated: it explains little; household selection explains 89.3% of the gap.
 2. Test household selection directly: reweight the retry-loop training set
    to the persistent generator's household-feature distribution (or vice
    versa). If the gap survives, selection isn't the mechanism either.
+   - **Done →** [exp22](exp22_second_variance_transfer.md): Household selection tested directly: it is the mechanism.
 3. Re-derive the classifier-training recipe from the current generator
    rather than exp9's: with starvation largely fixed, check whether the
    retry loop's 0.014 macroF1 margin over persistent-unbalanced justifies
    training on the distorted mix, or whether the faithful mix + balancing
    is now the simpler recommendation.
+   - **Done →** [exp25](exp25_training_recipe.md): Recipe re-derived: faithful persistent + balanced is best; the retry loop has no remaining role.

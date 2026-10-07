@@ -82,6 +82,7 @@ decaying buckets, both small-n); and stratify any cause-mix work by FY
 ## Next steps
 
 - **TX8** (pristine rerun) is the remaining temporal confound to close.
+  - **Done →** [TX8](tx8_tx_pristine_rerun.md): TX8: PASS — the MIXED verdict is not a contamination artifact: pristine refit excluding all 865 holdout rows confirms finding edge, contamination premium +0.003 on finding AUC…
 - The FY2024 97-cause labeling break (1.0 → 0.0 blank rate) should be
   verified against the FY2024 QC documentation — if TX changed its
   reviewer instructions, the generator's 0.7995 pooled blank rate needs a

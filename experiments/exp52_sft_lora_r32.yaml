@@ -1,0 +1,5 @@
+# Exp52 SFT LoRA, rank 32 (scale kept at 20)
+lora_parameters:
+  rank: 32
+  scale: 20.0
+  dropout: 0.05

@@ -132,6 +132,7 @@ directions, which causes) is faithful.
   Suggested PA2 checks: transfer experiment (train on PA synth, test on real
   PA microdata); seed-robustness (n=20k seeds 8, 9); sensitivity to the
   FY2024-outlier question on a FY2020–2023-only fit.
+  - **Done →** [PA2](pa2_pa_transfer.md): PA2: PASS (conditional) — PA synth predicts real PA errors: element acc 0.567 vs 0.453 baseline, macroF1 0.208 vs 0.062; PA-conditioning beats national on element (+0.03–0.09)…
 - If the materialization model becomes state-conditional, revisit the coin
   ceiling and the bucket calibration (both are workarounds for a national
   draw correction applied under a PA nature mix).

@@ -104,3 +104,4 @@ and top-30% plus simplicity, not a clean sweep.
   ($2,644/$6,395), over/under $1,884/$760.
 - SD6/SD8 proceed unchanged; SD8's pristine rerun should confirm the
   (a)-rule economics (P(error) AUC is the load-bearing metric).
+  - **Done →** [SD6](sd6_temporal.md), [SD8](sd8_sd_pristine_rerun.md): SD6: PASS with a shifting mix — no element decay across the FY2023–24 boundary, but +7.9pp case-error-rate shift and an FY2024 coding-regime flip on 97-causes → refit annually… SD8: PASS — pristine finding AUC 0.750 vs national 0.680 (+0.071), the strongest finding transfer of the three states; pristine scores *higher* than contaminated (+0.023, with…

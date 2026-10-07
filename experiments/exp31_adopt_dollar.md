@@ -194,6 +194,7 @@ restores the stock injector for reproducing old chronicles.
 
 ### Next steps
 1. **(recommended)** Re-derive the classifier-training recipe on the adopted defaults (exp24's next step #1, now urgent with the new mix): the arm-(b) F1 redistribution (shelter/earned down, unearned/sua/hhcomp/depcare up) wants a recipe check — does generation-time rare-bucket oversampling for the *training* mix recover the shelter/earned F1 without touching the generator?
+   - **Done →** [exp37](exp37_transfer_model_classes.md), [exp43](exp43_transformer_transfer_probe.md): Recipe checked across model classes on the adopted mix; the transformer probe locked persistent pool + uniform loss.
 2. Over-instrument inelasticity: per-stratum direction fit or more boost iterations (exp26's open question; residual over 0.269 vs 0.2295 target persists on both refits).
 3. 52-under: revisit the 52 scale (0.587) or the non-97 small-mode residual — seed-8 overshoot (70 vs 59) persists while seed 7 is fixed (58 vs 59).
 4. Optional (exp26's next step #5, p10 headroom 4 vs the 8 bar): small bump to the 97-over small-mode range to lift medO (28 vs 38 real) — trades p10 for the over median, gate on the same four bars.

@@ -189,6 +189,7 @@ Concrete apply + recalibrate plan for the follow-up (recommended first):
    synthetic generator, and rerun the current calibration metric to measure the
    marginal shift — that single number tests the materiality judgment above.
    Do NOT touch the benefit-math parameters; the audit cleared them.
+   - **Done:** Applied in commit 19414d0 ("Exp10 apply: FY2024 limits, p_earn retune, 97 blank-cause").
 2. Add the **$179.66 homeless-shelter deduction** and **child-support deduction**
    as documented unmodeled rules (either model them or record the exclusion in
    the future-features list with the population-share rationale).

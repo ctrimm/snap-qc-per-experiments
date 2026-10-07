@@ -58,7 +58,9 @@ Hypothesis **holds**. Finding L1 = 0.016 ≤ 0.030 (per-seed 0.011–0.023 — a
 
 ### Next steps
 1. (Staged, coordinator's call) Adopt the exp26 mechanism set + recalibrated dist as the generator's dollar baseline (currently flag-gated in `dollar_mech`; `generate.py` has no `--dollar-mechanisms` flag — wiring one in is the adoption step).
+   - **Done →** [exp31](exp31_adopt_dollar.md): Adopted: `--dollar-mechanisms` on by default, recalibration baked in.
 2. Resolve the forced-vs-coined direction-measurement gap: run more boost iterations and/or fit the direction balance per stratum (earner cases are far more over-prone: 0.423 vs 0.205 residual).
 3. Re-run the transfer battery (exp19/exp24 arms) on the treatment dist — the label priors shifted (many more small errors, recoded unit cases as earned/35); check element accuracy/macroF1 before any LM pretraining consumes this mix.
+   - **Done →** [exp31](exp31_adopt_dollar.md): Transfer battery re-run on the adopted mix: macroF1 cost −0.003 (acceptable).
 4. 52-under median overshoots (75 vs 59 real): revisit the 52 scale (0.587) or the non-97 small-mode residual on 52s.
 5. Optional, now that p10 has headroom (4 vs the 8 bar): a small bump to the 97-over small-mode range to lift medO (28 vs 38 real) — trades p10 for the over median, so gate it on the same four bars.

@@ -152,6 +152,7 @@ are out of scope for a payment-error copilot.
    `--state-mix` input — per-state error-rate multiplier from pooled
    microdata + caseload-weighted state sampling — and measure the per-state
    L1 drop vs the constant-rate baseline. Small, directly tests this verdict.
+   - **Done →** [PA1](pa1_pa_generator.md), [NY1](ny1_ny_generator.md): State-conditioned generators built per state (PA, NY, then TX/SD/UT/ID); a national `--state-mix` is still open.
 2. **Test the administration hypothesis:** decompose each state's errors
    into agency-caused vs client-caused using the microdata AGENCY cause
    field; if high-rate states skew agency-caused, the offset should apply to
@@ -160,3 +161,4 @@ are out of scope for a payment-error copilot.
    with known procedural-error episodes (Alaska, NJ FY2023); document which
    of the two rate definitions the copilot is actually trained to predict
    before any transfer evaluation is run.
+   - **Done →** [exp40](exp40_published_rate_calibration.md): Rate definition settled: train on the microdata-implied substance rate, not published rates.

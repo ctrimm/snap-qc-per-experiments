@@ -133,6 +133,7 @@ question below is a fidelity choice, not a failure.
    probability, ~5 lines in `inject()`. Value: the pretraining labels match
    the real file's missingness pattern exactly, so the LM never learns to
    invent a cause where reviewers record none. Staged for a go-ahead.
+   - **Done:** Implemented in commit 19414d0: the national generator blanks cause on 32% of nature-97 variances (exp52 training data: 36% "other" among nature-97 primaries).
 2. Do nothing (acceptable alternative): keep the generator always recording
    a cause and document the 12.5% definitional gap; consumers can drop cause
    on nature-97 variances themselves.

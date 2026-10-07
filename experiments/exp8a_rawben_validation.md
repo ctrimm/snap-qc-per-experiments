@@ -103,6 +103,7 @@ reporting anomalies — so exp8b must fit on a cleaned observation set:
    benefit) from (facts → RAWBEN) on the cleaned PA set (3,268 cases),
    then compare fitted values against statute/PA policy docs to flag
    deviations.
+   - **Done →** [exp8b](exp8b_parameter_fitting.md): Parameter fitting done nationally (effective params match FY2024 statute); PA-specific fitting followed in exp8c.
 2. Decide the tolerance handling for near-misses: exclude |diff| ≤ $1 or
    model rounding explicitly.
 3. Check whether the recoupment-type cases (STATUS=1, RAWBEN < FSBEN, no

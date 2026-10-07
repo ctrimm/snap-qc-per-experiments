@@ -36,5 +36,7 @@ corruption mechanics directly, would be the next step.
 
 ## Next steps
 1. Per-(bucket, stratum) materialization matrix instead of the scalar eff_b.
+   - **Done →** [exp20](exp20_materialization_matrix.md): Per-(bucket, stratum) matrix built; mechanism works, exposed the zero-base double-count.
 2. The remaining calibration residuals (hhcomp 1.59x, arithmetic ~1.5x) are
    now the binding constraints; medical/depcare/57 are resolved.
+   - **Done →** [exp21](exp21_zerobase_audit.md): Zero-base audit fixed the residuals: hhcomp 1.59 → 1.11x, arithmetic 1.51 → 1.10x.

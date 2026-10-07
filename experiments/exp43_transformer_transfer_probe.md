@@ -146,6 +146,8 @@ there anyway. Staging it there is the right call, not a shortcut.
 
 ### Next steps
 1. LM pretraining recipe: persistent pool, uniform loss.
+   - **Done →** [exp52](exp52_rlvr_synthetic.md): exp52's LM training used the persistent pool with uniform loss.
 2. Follow-up probe on resampling (oversample rare buckets in the training
    mix) as the cross-entropy-safe alternative for rare-bucket recall — do
    not assume it ports either.
+   - **Partly done →** [exp52](exp52_rlvr_synthetic.md): Training-mix rebalancing tested for SFT: an error-heavy mix hurt, a correct-heavy mix helped modestly.

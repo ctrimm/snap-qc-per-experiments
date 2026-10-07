@@ -34,6 +34,8 @@ Attribution limit: the public-use file identifies states, not eligibility-system
 ## Next steps
 
 - The human/process layer is now the live hypothesis for PA's error mix: extend exp8b's unexplained-residual analysis (household-composition and arithmetic residuals) to PA specifically.
+  - **Partly done →** [PA3](pa3_pa_anatomy.md): PA's process-layer error anatomy was characterized (shelter ~2x national); the residual analysis itself wasn't extended.
 - The uncapped-shelter pattern works as a cross-state engine fingerprint: PA is clean, so the follow-up is which states are not, and whether the pattern clusters by known system geography.
+  - **Done →** [NY 8c](ny8c_ny_engine_cleanliness.md), [TX 8c](tx8c_tx_engine_cleanliness.md), [SD 8c](sd8c_sd_engine_cleanliness.md), [UT 8c](ut8c_ut_engine_cleanliness.md), [ID 8c](id8c_id_engine_cleanliness.md): Engine-cleanliness checks ran for NY, TX, SD, UT and ID; all engines are clean.
 - PA's single FY2024 uncapped-shelter case is worth one verification pass against the raw file (a single case can be a recording artifact, not an engine behavior).
 - Methodological lesson carried forward: when a sample window straddles a mid-year policy change (the January 2021 15% increase), use the window-specific parameter table (technical-documentation Appendix F), not the October COLA memo. The fleet-comparison design caught both table errors in this run; keep it.

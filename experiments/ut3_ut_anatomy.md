@@ -88,5 +88,6 @@ small?).
   attention order for the whitepaper: wage timing first, shelter
   deduction verification second.
 - UT7's feature audit should show earned/shelter on top (cross-check).
+  - **Done →** [UT7](ut7_feature_audit.md): UT7: PASS — clean-8 adopted; only leakage feature issued_benefit/RAWBEN, removal *improves* acc +0.021/macroF1 +0.017; top features (earned/shelter/unearned) match UT3's anato…
 - The client-coding tilt (1.56x) vs SD's agency-coding is a panel
   contrast to name in the whitepaper's limitations.

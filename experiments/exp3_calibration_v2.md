@@ -43,7 +43,10 @@ also partially addressed exp 2's prior-mismatch note.
 1. (Recommended) Diagnose the under-issuance shortfall — suspected cause:
    omission-type variances drawn on zero-base households no-op because the
    sampler draws truth and variance independently (→ exp 5).
+   - **Done →** [exp5](exp5_omission_coherence.md): Under-issuance shortfall diagnosed as an omission/zero-base coherence problem; under share moved 9.4% → 10.9%.
 2. Recalibrate injection rates against the realized (post-retry) error rate
    rather than the injection-time rate.
+   - **Done →** [exp6b](exp6_calibration_methodology.md): Attrition-corrected injection: phase-1 coins calibrated against realized post-retry rates.
 3. Re-run transfer (exp 2) on the fixed generator — the finding task should
    improve as the synthetic prior matches real.
+   - **Done →** [exp4](exp4_transfer_v2.md): Transfer re-run on the fixed generator.

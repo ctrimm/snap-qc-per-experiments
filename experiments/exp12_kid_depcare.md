@@ -39,5 +39,7 @@ than the bucket draw.
 
 ## Next steps
 1. Exp13: per-nature weights for the 57 residual (0.50x).
+   - **Done →** [exp13](exp13_nature57_weights.md): Per-nature weights for 57: 0.50x → 1.04x.
 2. Exp14: SUA mechanics rework (sua is at 0.99x — may not need it; re-scope
    to arithmetic 1.54x / hhcomp 1.56x overproduction instead).
+   - **Done →** [exp14](exp14_materialization_correction.md): Re-scoped to the hhcomp/arithmetic overproduction (materialization correction).

@@ -92,8 +92,10 @@ anatomy paragraph.
 - SD4/SD5 ranker features should lean on timing-adjacent signals
   (earned-income presence, shelter/SUA status, senior/disabled medical)
   rather than computation signals — SD7's feature audit will confirm.
+  - **Done →** [SD4](sd4_prioritization.md), [SD5](sd5_dollar_ranking.md), [SD7](sd7_feature_audit.md): SD4: PASS — calibrated AUC 0.7239; top-20% lift 1.35x (34.7 errors/100 reviews); riskiest half catches 75.7% of errors; caught errors balanced (21 over / 20 under), no small-d… SD5: PASS — the PA/NY reversal: P(error)-alone wins (top-10% 1.95x, top-20% 2.07x, top-30% 2.12x): top-20% $2,644 vs $1,275 random ($45/hr vs $22/hr, 30-min review assumption)…
 - SD6 temporal stability: watch the FY2024 no-fault coding shift — a
   refit on 2020–22 tested on 2023–24 straddles the shift.
+  - **Done →** [SD6](sd6_temporal.md): SD6: PASS with a shifting mix — no element decay across the FY2023–24 boundary, but +7.9pp case-error-rate shift and an FY2024 coding-regime flip on 97-causes → refit annually…
 - The FY2020→2024 microdata error-rate rise (21.7%→30.6%) vs the flat
   3.28% published payment rate is a documented basis divergence, not an
   SD program deterioration claim — the whitepaper must carry the same

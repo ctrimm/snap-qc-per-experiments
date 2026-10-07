@@ -236,11 +236,14 @@ scoring choices, not polish.
    (prompt/output format) — then build the pilot sampler: 1,200-item frozen
    sample + 200-item dev slice from `snap-qc-data/raw/` (beside the repo checkout)
    (FY2021–2023 ± FY2024), with the exclusion denylist.
+   - **Done →** [exp30](exp30_eval_pilot.md): Pilot built: 1,400 frozen items (1,200 test + 200 dev), FY2021–2024.
 2. Write the label pipeline (primary-variance rule, leakage field
    exclusion) and the scorer (per-task metrics + composite + paired
    bootstrap).
+   - **Done →** [exp30](exp30_eval_pilot.md): Label pipeline and scorer (per-task metrics, composite, paired bootstrap) delivered.
 3. Run dummy baselines + one base LM through the pilot; check the
    discrimination ladder (dummy < base < reference).
+   - **Done →** [exp30](exp30_eval_pilot.md), [exp52](exp52_rlvr_synthetic.md): Dummy baselines plus gemma-4-31b (4 conditions) and gemma-4-e4b runs; the discrimination ladder held.
 4. Line up the human label audit (open question 1) — start recruiting the
    reviewer now; it has the longest lead time.
 5. CalFresh MCQ stays the parallel half of gate 3; this eval does not

@@ -67,7 +67,9 @@ the raw faithful mix.
    does the persistent generator's *cleaner feature→bucket mapping* beat
    the old generator once starvation is removed? That isolates fidelity
    from sampling.
+   - **Done →** [exp9](exp9_class_balanced_transfer.md): Class-balanced transfer tested: retry-loop + balanced (0.274 macroF1) beat persistent + balanced (0.252).
 2. Prefer v1-style raw features (confirmed again: v2's derived features
    don't help element, 0.447 vs 0.442).
 3. The sua/medical/depcare mechanics gaps remain (F1s 0.090/0.062/0.000) —
    generator mechanics work, not a sampling artifact.
+   - **Partly done →** [exp11](exp11_senior_bucket_mix.md), [exp12](exp12_kid_depcare.md), [exp42](exp42_depcare_medical_deepdive.md): Medical/depcare mechanics improved; SUA still open.

@@ -122,6 +122,9 @@ artifact or real.
 ## Next steps
 
 - **TX7** (feature audit) runs with `--balanced` OFF (no-cw won).
+  - **Done →** [TX7](tx7_feature_audit.md): TX7: PASS — audit completed; see chronicle for the leakage check and top-feature/anatomy consistency
 - **TX4/TX5** use the TX-synth no-cw arm's finding signal, calibrated.
+  - **Done →** [TX4](tx4_prioritization.md), [TX5](tx5_dollar_ranking.md): TX4: Conditional PASS — calibrated AUC 0.6999; top-20% precision 0.572 (lift 1.29x); riskiest half catches 65.3% of errors. Caught errors skew small-dollar ($21 vs $30 median)… TX5: Conditional PASS (weak) — winner is (b) two-part P(error)×E[dollars] (PA-style, not NY's direct): top-20% $5,798 vs $4,634 random (1.25x; $67/hr vs $54/hr, 30-min review…
 - **TX8** (pristine rerun) is decisive for whether the 2/6 AUC edge is
   contamination or signal.
+  - **Done →** [TX8](tx8_tx_pristine_rerun.md): TX8: PASS — the MIXED verdict is not a contamination artifact: pristine refit excluding all 865 holdout rows confirms finding edge, contamination premium +0.003 on finding AUC…

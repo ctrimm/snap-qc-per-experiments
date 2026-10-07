@@ -78,5 +78,6 @@ basis when FY2025 lands (the FY2024 cause-recording shift).
 
 - UT8's pristine refit follows UT1's FY2022–2024 convention (the
   production recommendation).
+  - **Done →** [UT8](ut8_ut_pristine_rerun.md): UT8: PASS — pristine finding AUC 0.728 vs 0.678 national (+0.050/+0.052); UT arm absolute AUC unchanged-to-better pristine (no contamination premium; balanced-gap narrowing fu…
 - The FY2024 cause-blank shift (0.98→0.61) goes in the whitepaper's
   limitations as a known labeling break.

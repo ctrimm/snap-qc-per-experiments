@@ -19,3 +19,4 @@ google_drive/results/
 experiments/eval_pilot/invalid_server_adapter/*
 !experiments/eval_pilot/invalid_server_adapter/README.txt
 experiments/eval_pilot/*.ids
+.DS_Store

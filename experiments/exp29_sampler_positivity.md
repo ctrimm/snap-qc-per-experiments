@@ -155,3 +155,4 @@ experiment.
 3. Stratum share mismatch (no_earner_nonsenior 0.385 vs real 0.331,
    no_earner_senior 0.346 vs 0.396) is a sampler composition question
    for a future experiment, not this one.
+   - **Partly done →** [exp44](exp44_size_mix.md): Household size mix fitted to real (hhcomp/arithmetic → 1.0x); stratum composition via the earner×senior joint is still open.

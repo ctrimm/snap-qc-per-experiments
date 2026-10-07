@@ -106,6 +106,8 @@ v1 runs rescored under the v1.1 composite (T1–T5): zero/jargon 0.088, zero/pla
 ### Next steps
 1. ~~Eval v1.1~~ adopted (above).
 2. T6 redesign as its own task (out of the composite meanwhile).
+   - **Done →** [exp52](exp52_rlvr_synthetic.md): T6 dropped from the composite in eval v1.1 (`run_lm.py --kinds class`); redesign still open.
 3. Re-derive the T3 floor (31b 0.034–0.062, e4b 0.005 vs 0.214).
 4. Full 1,200-item e4b base run under v1.1 once T6 and the T3 floor are settled.
+   - **Done →** [exp52](exp52_rlvr_synthetic.md): Full 1,200-item e4b base run under v1.1: composite 0.014.
 5. Human label audit (Q1) on a dev-set sample; T6 band calibration (Q4).

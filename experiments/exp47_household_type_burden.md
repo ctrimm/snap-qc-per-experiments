@@ -147,9 +147,11 @@ experiment rather than promising it as future work.
   (dollars + error-rate equity), or an under-issuance-weighted arm targeted
   at elderly/disabled types. Evaluate each on both $/hr and per-type
   review-rate parity.
+  - **Done →** [exp49](exp49_equity_objective.md), [exp51](exp51_underissuance_floors.md): Blended equity floors (exp49) and under-issuance-keyed floors (exp51) tested.
 - **For the post:** replace the "next one on the list" paragraph with these
   numbers; the uncomfortable finding belongs in the piece, not under it.
 - Revisit after the FY2025 microdata lands (watch: `fy2025-qc-microdata-watch`):
   the type mixes and the elderly/disabled error-rate gaps may have moved.
 - Optional: per-type over/under split (are the missed elderly errors
   disproportionately under-issuances? the pilot-relevant question).
+  - **Done →** [exp48](exp48_overunder_by_household.md): Over/under split by household type measured: the ranker doesn't hide underpayments.

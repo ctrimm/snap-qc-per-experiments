@@ -48,5 +48,7 @@ materialization-rate problem, not a draw problem.
 1. hhcomp materialization audit: why do 0.056-drawn hhcomp attempts
    materialize at 1.91x? Likely the persistent single-apply over-converts
    vs the retry loop's feasibility filter.
+   - **Done →** [exp14](exp14_materialization_correction.md), [exp21](exp21_zerobase_audit.md): hhcomp over-materialization traced to the zero-base double-count; removing it took hhcomp 1.59x → 1.11x.
 2. Exp12 (depcare 0.03x) and exp13 (57 residual) remain queued; exp14 (SUA)
    may interact with the shelter/sua bucket weights.
+   - **Done →** [exp12](exp12_kid_depcare.md), [exp13](exp13_nature57_weights.md): Depcare 0.03x → 0.56x (exp12) and nature-57 0.50x → 1.04x (exp13).

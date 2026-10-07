@@ -146,14 +146,17 @@ more in-script scaling.
    `eff.json`, `dir_weight`, and the 97 coin under the new attrition
    profile — replacing this experiment's in-script scaling. Re-check the
    finding L1 after the re-derive.
+   - **Done →** [exp23](exp23_merge_recalibrate.md): Mechanisms merged behind a flag; dollar marginal fixed.
 2. Fourth mechanism for the p90 asymmetry: rescale coarse **under**
    magnitudes against the real per-nature medians above (nature 44
    +10–40% → +5–25%; nature 57 −15–40% → −8–25%; audit the shelter
    `_typical_amount` against the nature-52 median of $59).
+   - **Done →** [exp23](exp23_merge_recalibrate.md): p90 over/under inversion fixed.
 3. Re-run the exp16 script plus the golden eval after the merge — the
    dollar marginal and the retrieval ranking must move together
    (exp16 next-step 3). Also verify the transfer gate: the small mode
    keeps (element, nature) labels, but the label priors shift.
+   - **Done →** [exp23](exp23_merge_recalibrate.md), [exp26](exp26_combine_dollar.md): Dollar marginal and finding mix re-checked after the merge (finding L1 0.016 in exp26).
 4. `generate.py` was not touched; the `--no-persistent-buckets` path is
    unaffected (this experiment calls `inject()` with
    `persistent_buckets=True` explicitly).

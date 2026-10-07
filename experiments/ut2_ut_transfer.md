@@ -105,10 +105,13 @@ claims modest. The contamination caveat is UT8's to quantify.
 
 - **UT7** audits the no-cw element model (UT2's best element arm,
   reproduced to ~4 decimals), then the leakage check.
+  - **Done →** [UT7](ut7_feature_audit.md): UT7: PASS — clean-8 adopted; only leakage feature issued_benefit/RAWBEN, removal *improves* acc +0.021/macroF1 +0.017; top features (earned/shelter/unearned) match UT3's anato…
 - **UT4/UT5** use the **balanced** P(error) model (best ranking arm) with
   real-train calibration; clean-8 features pending UT7.
+  - **Done →** [UT4](ut4_prioritization.md), [UT5](ut5_dollar_ranking.md), [UT7](ut7_feature_audit.md): UT4: PASS — calibrated P(error) AUC 0.7308 (balanced arm, per UT2's ranking verdict); top-20% lift 1.47x; riskiest half catches 74.2% of errors; no small-dollar skew in caught… UT5: PASS — the SD non-replication: two-part P(error)×E[$] wins (top-20% $4,604 vs $2,701 random, 1.70x, $45/hr vs $26/hr); direct wins top-10% (1.55x); P(error)-alone worst (…
 - **UT8** reruns this battery pristine (holdout rows excluded from every
   tuning step).
+  - **Done →** [UT8](ut8_ut_pristine_rerun.md): UT8: PASS — pristine finding AUC 0.728 vs 0.678 national (+0.050/+0.052); UT arm absolute AUC unchanged-to-better pristine (no contamination premium; balanced-gap narrowing fu…
 
 ## Reproduction
 

@@ -166,6 +166,7 @@ n; treat their exact ranks as noisy.
    mostly the derived-feature consistency artifact (finding 2) and the
    fix belongs in the feature recipe / benefit recomputation, not the
    generator. If it stays high, the leak is in the raw facts.
+   - **Partly done:** Staged as exp46 (shelter-deduction audit, design only).
 2. Shelter deep-dive: compare the generator's shelter marginal, cap
    behavior, and shelter|income joint against real FY2024 (dist.json
    audit; follows exp16/exp18).

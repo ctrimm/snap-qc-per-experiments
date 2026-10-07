@@ -145,6 +145,7 @@ the mechanics gap exp4_v3 already flagged, not a sampling artifact).
   on a real-PA validation slice, or train the P(error) head on real PA
   directly (real→real finding is 0.708/0.648). Gate PA4 on calibrated AUC,
   not accuracy.
+  - **Done →** [PA4](pa4_prioritization.md): PA4: Conditional PASS — calibrated ranking beats random review but only at triage margins: precision@10% 0.50 (lift 1.17x), precision@20% 0.48 (1.14x); reviewing the riskiest…
 - If the macroF1 tail matters for the copilot, the lever is generator
   mechanics for medical/sua (per-bucket F1s near zero), not more sampling
   tricks — exp4_v3's next step 3 stands.

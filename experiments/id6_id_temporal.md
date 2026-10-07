@@ -76,3 +76,4 @@ already guards this via period-specific rebasing).
 - ID1's pooled fit remains the production basis. Name shelter as the
   bucket to watch in the whitepaper's limitations.
 - ID8's pristine rerun follows the same FY2022-24 convention as ID1.
+  - **Done →** [ID8](id8_id_pristine_rerun.md): ID8: MIXED stands with qualification — pristine element accuracy edge persists (+0.054 over national) but macroF1 ties (−0.002); finding AUC margin unchanged (+0.017). Contami…

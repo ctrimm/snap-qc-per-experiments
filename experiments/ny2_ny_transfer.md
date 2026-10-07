@@ -179,9 +179,11 @@ lever is mechanics for medical/sua/hhcomp — the same tail PA2 flagged.
 - **NY4** proceeds on the calibrated-ranking plan with the NY-synth arm's
   binary AUC 0.648 as the reference (replaces PA4's 0.645/PA8's 0.691 for
   the NY track).
+  - **Done →** [NY4](ny4_prioritization.md): NY4: Conditional PASS — calibrated AUC 0.669; precision@10% 0.51 (lift 1.40x), precision@20% 0.49 (1.34x); riskiest half catches 66.2% of errors with half the reviews (49 vs 3…
 - **NY8** will test whether the finding-task NY edge survives pristine
   fitting (the contamination caveat above); on element it can only confirm
   the negative — the NY arms had the small optimism and still lost.
+  - **Done →** [NY8](ny8_ny_pristine_rerun.md): NY8: PASS — NY2's verdict stands under pristine fitting (2,442 rows, holdout excluded): element gap −0.007/−0.000 (no NY advantage, unchanged); finding AUC 0.626 vs national 0…
 - Optional: the medical/sua/hhcomp mechanics question is now NY's version
   of PA2's open lever; a generator extension (97-vs-non97 dollar scales were
   NY1's defined lever) is staged but not started.

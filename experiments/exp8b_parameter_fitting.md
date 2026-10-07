@@ -146,6 +146,7 @@ and the earned-income deduction rounds to nearest (95.8%), not down.
    and policy docs; the national script already handles the size/BENMAX
    subtlety. The New England uncapped-shelter cluster is the one concrete
    anomaly to chase — check whether PA shows anything similar.
+   - **Done →** [exp8c](exp8c_pa_deviations.md): PA fit: every parameter equals statute every FY; statutory formula predicts RAWBEN 99.7–100%.
 2. Per-state max-allotment check (complement to the rate scan): median
    RAWBEN at RAWNET==0 by state×BENMAX would catch a state running last
    year's COLA table; needs n≥30 per cell, so only large states qualify.

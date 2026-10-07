@@ -104,5 +104,6 @@ this experiment's it2b-style recomputation does).
 - SD8's pristine refit uses the pooled convention (mirroring SD1),
   excluding holdout rows; the temporal result says an annual refit
   cadence on full-year files is the production posture.
+  - **Done →** [SD8](sd8_sd_pristine_rerun.md): SD8: PASS — pristine finding AUC 0.750 vs national 0.680 (+0.071), the strongest finding transfer of the three states; pristine scores *higher* than contaminated (+0.023, with…
 - The whitepaper's limitations section carries the mix-shift note and
   the shelter bucket watch.
