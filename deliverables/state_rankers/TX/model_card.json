@@ -1,0 +1,84 @@
+{
+ "state": "TX",
+ "state_code": "48",
+ "built": "2026-10-07",
+ "training_rows": 3457,
+ "training_years": "FY2020-2024 QC public-use",
+ "error_rows": 1530,
+ "features": [
+  "hh_size_cert",
+  "hh_size_reported",
+  "gross_income",
+  "net_income",
+  "earned_deduction",
+  "earned_est",
+  "unearned_est",
+  "shelter_deduction",
+  "rent",
+  "utilities",
+  "sua_used",
+  "medical_claimed",
+  "depcare_claimed",
+  "child_support_claimed",
+  "homeless",
+  "issued_benefit",
+  "income_per_person",
+  "earned_share",
+  "shelter_to_income",
+  "net_to_gross"
+ ],
+ "feature_note": "agency-side fields only (what the agency had before QC review)",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores (exp57)",
+ "config": {
+  "clf": {
+   "learning_rate": 0.05,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 80,
+   "l2_regularization": 1.0,
+   "max_iter": 100
+  },
+  "reg": {
+   "learning_rate": 0.05,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 40,
+   "l2_regularization": 1.0,
+   "max_iter": 400
+  }
+ },
+ "chosen": "tuned",
+ "evaluation": {
+  "nested_cv_top20_lift": {
+   "untuned": 2.394,
+   "tuned": 2.462
+  },
+  "time_split_top20_lift": {
+   "untuned": 2.423,
+   "tuned": 2.321
+  },
+  "holdout": {
+   "top10": {
+    "lift": 3.598,
+    "per_hour_$": 193.9,
+    "random_per_hour_$": 53.9,
+    "expected_over_actual": 0.929
+   },
+   "top20": {
+    "lift": 2.696,
+    "per_hour_$": 144.4,
+    "random_per_hour_$": 53.6,
+    "expected_over_actual": 0.887
+   },
+   "top30": {
+    "lift": 2.105,
+    "per_hour_$": 112.5,
+    "random_per_hour_$": 53.5,
+    "expected_over_actual": 0.946
+   }
+  },
+  "n_train": 2592,
+  "n_holdout": 865
+ },
+ "review_minutes_assumed": 30,
+ "sklearn_version": "1.9.1",
+ "source": "snap-qc-per-experiments exp58 (experiments/exp58_agency_rankers.py)"
+}
