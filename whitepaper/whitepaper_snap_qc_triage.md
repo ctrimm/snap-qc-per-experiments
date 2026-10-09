@@ -12,6 +12,8 @@ Over ten days and more than 100 experiments (including pilots for six states), u
 2. **Realistic synthetic cases can teach a model real skills.** We built a generator that produces fake SNAP cases with known errors, calibrated to the federal data. Models trained only on these synthetic cases predict errors in real cases well above chance.
 3. **A small language model can learn part of the QC task from synthetic data alone.** An open model of about 4 billion parameters, trained only on synthetic cases, went from guessing to passing all three of our quality checks on 1,200 fresh real QC cases, under rules fixed before the cases were drawn. It outperformed a conventional classifier trained on the same data and, on our original test set, an untrained model eight times its size. It spots errors, their direction and their location well above chance, but can barely tell the type of mistake and can't tell whose mistake it was.
 
+**The ranker does the heavy lifting.** It is the tool that decides which cases a state reviews before the federal QC sample ever happens, and it is the part ready to use. The language model is, at most, a helper for the reviewer once a case is open.
+
 **Recommendation:** pilot the ranking tool in one state (Pennsylvania or New York, where it is strongest and most accurate). Keep the language model as a research track until it adds something the ranking tool can't, such as written explanations for reviewers.
 
 ## The problem
@@ -21,6 +23,20 @@ Every year, each state's QC staff review a random sample of SNAP cases and recor
 Beyond the official sample, states run their own internal reviews to catch errors early. Reviewer time is the scarce resource. If reviewers could start with the cases most likely to hold large errors, the same staff would find more dollars of error and fix the causes sooner.
 
 The federal government publishes the QC review data each year with personal details removed. It shows each sampled household's reported income, deductions, household makeup and benefit, plus what the reviewer found. That is enough to learn from, but with limits: up to about 45,000 cases a year nationally, only about 470–820 a year per state, and no written reasoning.
+
+## How the pieces fit
+
+The federal QC sample is random by law, and no tool should touch it. The opportunity is everything a state does **before** that sample is drawn: its own second-party and supervisory reviews of active cases. That is where the ranker works.
+
+| Step | Who or what | What happens |
+|---|---|---|
+| 1. Every month | **The ranker** | Scores every active case using only what the agency has on file, and estimates its expected error dollars |
+| 2. Choose cases | **The ranker** | Puts the cases most likely to hold large errors at the top of the state's review queue |
+| 3. Review | **State reviewers** (optionally helped by the language model) | Work the top of the queue, correct errors, and log their causes |
+| 4. Fix causes | **State program staff** | Fix the policies, notices or system issues behind repeated errors |
+| 5. Federal QC | **Federal and state QC staff** | Review the usual random sample. Errors already corrected early, and causes already fixed, are errors that sample is less likely to find |
+
+The ranker carries steps 1 and 2, which is where the dollars-per-hour gains in this paper come from. The language model has no role in choosing cases. Its possible role is in step 3, explaining a case to the reviewer who opens it.
 
 ## Approach
 
