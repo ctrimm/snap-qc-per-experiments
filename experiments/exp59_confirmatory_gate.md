@@ -36,6 +36,10 @@ PASS = all three. The FY2024-only slice, the classifier's scores on the new set,
 - Whatever the outcome, the whitepaper and README are updated to match: PASS removes "provisional"; failing only leg 3 becomes "passes two of three checks"; failing leg 1 or 2 means the exp52 result did not replicate.
 - The original 1,200 test items are retired to development use from here on.
 
+## Draw note (recorded before any scoring)
+
+The draw ran as specified: 1,200 items (1,000 FY2021–23, 200 FY2024), zero overlap with the original 1,400, and the same finding mix (333 / 375 / 292 and 67 / 75 / 58). Because exp30 took every available case for some element buckets, the FY2021–23 part has fewer of those: arithmetic 15 (was 50), hhcomp 40 (52), other 17 (52), standard 9 (50), and none left for assets, income_total or reporting. Under v1.2 the rare buckets fold into "other" anyway. T3 is scored on 642 items (was 733), with a heavier share of earned, unearned, shelter and SUA. This follows from the pre-registered sampler; nothing was changed.
+
 ## Results
 
 _Pending._

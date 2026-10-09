@@ -1,0 +1,99 @@
+{
+  "seed": 59,
+  "n_items": 1200,
+  "plan": {
+    "test_main": {
+      "n": 1000,
+      "finding": {
+        "correct": 333,
+        "overissuance": 375,
+        "underissuance": 292
+      },
+      "bucket_quota": 50
+    },
+    "test_2024": {
+      "n": 200,
+      "finding": {
+        "correct": 67,
+        "overissuance": 75,
+        "underissuance": 58
+      },
+      "bucket_quota": 8
+    }
+  },
+  "excluded_cases": 1400,
+  "actual_finding": {
+    "test_main": {
+      "overissuance": 375,
+      "underissuance": 292,
+      "correct": 333
+    },
+    "test_2024": {
+      "overissuance": 75,
+      "underissuance": 58,
+      "correct": 67
+    }
+  },
+  "actual_bucket_test": {
+    "earned": 90,
+    "unearned": 82,
+    "depcare": 60,
+    "shelter": 96,
+    "sua": 69,
+    "medical": 63,
+    "childsupport": 60,
+    "hhcomp": 48,
+    "arithmetic": 23,
+    "standard": 17,
+    "other": 26,
+    "null": 558,
+    "reporting": 8
+  },
+  "actual_bucket_test_main": {
+    "earned": 75,
+    "unearned": 70,
+    "depcare": 52,
+    "shelter": 81,
+    "sua": 61,
+    "medical": 55,
+    "childsupport": 51,
+    "hhcomp": 40,
+    "arithmetic": 15,
+    "standard": 9,
+    "other": 17,
+    "null": 474
+  },
+  "actual_bucket_test_2024": {
+    "earned": 15,
+    "unearned": 12,
+    "depcare": 8,
+    "shelter": 15,
+    "sua": 8,
+    "medical": 8,
+    "childsupport": 9,
+    "hhcomp": 8,
+    "arithmetic": 8,
+    "reporting": 8,
+    "standard": 8,
+    "other": 9,
+    "null": 84
+  },
+  "actual_bucket_dev": {},
+  "nature97_test": 107,
+  "state_share_test_max": 0.0375,
+  "rule_agreement": {
+    "n_multi_reportable_test": 91,
+    "largest_dollar_vs_first_recorded": 0.7692307692307693
+  },
+  "dollar_error_test": {
+    "n": 800,
+    "p10": 5,
+    "p25": 15,
+    "p50": 37,
+    "p75": 92,
+    "p90": 196,
+    "p99": 474,
+    "max": 955,
+    "mean": 72.6875
+  }
+}
