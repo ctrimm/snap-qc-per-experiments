@@ -63,6 +63,7 @@ def synthetic_check(model, tok, generate, spec):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--model", default=MODEL, help="exp60: mlx-community/gemma-4-e2b-it-bf16")
     ap.add_argument("--adapter", default=None)
     ap.add_argument("--out", required=True)
     ap.add_argument("--base-preds", default=None)
@@ -76,7 +77,7 @@ def main():
     args = ap.parse_args()
 
     from mlx_lm import generate, load
-    model, tok = load(MODEL, adapter_path=args.adapter) if args.adapter else load(MODEL)
+    model, tok = load(args.model, adapter_path=args.adapter) if args.adapter else load(args.model)
     if args.synthetic:
         synthetic_check(model, tok, generate, args.synthetic)
     items, examples = dev_items_and_examples()
