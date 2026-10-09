@@ -6,8 +6,9 @@ the same record fields the LLM sees, and scores it on the exp30 v1.1 test
 set with the same scorer (incl. chance-corrected skill). Real cases are only
 used for scoring. CPU only.
 
-Usage: python3 experiments/exp53_classifier_vs_llm.py
+Usage: python3 experiments/exp53_classifier_vs_llm.py [--items ITEMS.json --out PREDS.jsonl]
 """
+import argparse
 import json
 import random
 import sys
@@ -36,6 +37,10 @@ def vec(f):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--items", default=None, help="default: eval_pilot/items.json")
+    ap.add_argument("--out", default=None, help="default: eval_pilot/preds_exp53_gbm_synthetic_class.jsonl")
+    args = ap.parse_args()
     rng = random.Random(53)
     cases = E.gen_synth(30000, 52)
     rows = [(E.case_fields(c), E.case_labels(c)) for c in cases]
@@ -43,7 +48,7 @@ def main():
     by = {f: [r for r in rows if r[1]["t2"] == f] for f in E.FINDING.values()}
     rows = sum((rng.sample(v, min(len(v), 4000)) for v in by.values()), [])  # balanced like exp52
     X = np.array([vec(f) for f, _ in rows])
-    items = [i for i in json.loads((E.EVAL / "items.json").read_text())
+    items = [i for i in json.loads(Path(args.items or E.EVAL / "items.json").read_text())
              if i["split"] in ("test_main", "test_2024")]
     Xt = np.array([vec(i["fields"]) for i in items])
     preds = {i["item_id"]: {} for i in items}
@@ -53,7 +58,7 @@ def main():
         clf = HistGradientBoostingClassifier(random_state=53).fit(X[idx], y)
         for it, p in zip(items, clf.predict(Xt)):
             preds[it["item_id"]][t] = str(p)
-    out = E.EVAL / "preds_exp53_gbm_synthetic_class.jsonl"
+    out = Path(args.out or E.EVAL / "preds_exp53_gbm_synthetic_class.jsonl")
     with open(out, "w") as fh:
         for iid, p in preds.items():
             fh.write(json.dumps({"item_id": iid, "kind": "class", "parsed": p, "parse_ok": True}) + "\n")

@@ -68,6 +68,9 @@ def main():
     ap.add_argument("--base-preds", default=None)
     ap.add_argument("--split", default="dev", choices=["dev", "test"],
                     help="test = the 1,200 locked test items (final gate only)")
+    ap.add_argument("--items", default=str(EVAL / "items.json"),
+                    help="test items file for --split test (exp59: items_confirm.json); "
+                         "few-shot examples always come from items.json dev")
     ap.add_argument("--synthetic", default=None,
                     help="also score this many records of a synthetic valid.jsonl: PATH[:N]")
     args = ap.parse_args()
@@ -78,7 +81,7 @@ def main():
         synthetic_check(model, tok, generate, args.synthetic)
     items, examples = dev_items_and_examples()
     if args.split == "test":  # direct load: mlx_lm.server drops adapters for "default_model"
-        items = [d for d in json.loads((EVAL / "items.json").read_text())
+        items = [d for d in json.loads(Path(args.items).read_text())
                  if d["split"] in ("test_main", "test_2024")]
     with open(args.out, "w") as fh:
         for it in items:
@@ -92,7 +95,8 @@ def main():
 
     ids = Path(args.out).with_suffix(".ids")
     ids.write_text("\n".join(it["item_id"] for it in items) + "\n")
-    res = subprocess.run([sys.executable, str(EVAL / "score.py"), "--items", str(EVAL / "items.json"),
+    res = subprocess.run([sys.executable, str(EVAL / "score.py"),
+                          "--items", args.items if args.split == "test" else str(EVAL / "items.json"),
                           "--preds", args.out, "--split", args.split, "--ids", str(ids)],
                          capture_output=True, text=True)
     print(res.stdout.strip())

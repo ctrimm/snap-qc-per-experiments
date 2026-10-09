@@ -27,6 +27,8 @@ Writes (into this directory):
       dollar-error distribution (open questions 2 and 4).
 
 Usage: python3 sample.py [--seed 30] [--smoke]
+       python3 sample.py --seed 59 --exclude items.json --splits test_main,test_2024 \
+           --out-name items_confirm.json --prefix c   (exp59 fresh confirmation set)
   --smoke: 20-item dry run to /tmp (for pipeline verification only).
 
 Deterministic: fixed seed; all draws via random.Random(seed).
@@ -107,6 +109,12 @@ def main():
     ap.add_argument("--seed", type=int, default=30)
     ap.add_argument("--smoke", action="store_true",
                     help="20-item dry run to /tmp (pipeline verification)")
+    ap.add_argument("--exclude", action="append", default=[],
+                    help="items JSON whose cases may not be drawn again (repeatable)")
+    ap.add_argument("--splits", default="test_main,test_2024,dev")
+    ap.add_argument("--out-name", default="items.json",
+                    help="items file name; denylist/report names follow its stem")
+    ap.add_argument("--prefix", default="", help="item_id prefix, e.g. 'c' -> c-test_main-0001")
     args = ap.parse_args()
     rng = random.Random(args.seed)
 
@@ -154,6 +162,10 @@ def main():
     assert len(by_id) == len(recs), "case_id_hash collision!"
 
     used = set()
+    for ex in args.exclude:
+        used |= {it["case_id_hash"] for it in json.loads(Path(ex).read_text())}
+    if args.exclude:
+        print(f"excluding {len(used)} previously used cases", flush=True)
     items = []
 
     def draw(pool, k, split):
@@ -170,7 +182,7 @@ def main():
             fields = L.extract_fields(rc["_row"])
             lab = dict(rc["labels"])
             item = {
-                "item_id": f"{split}-{start_idx + j:04d}",
+                "item_id": f"{args.prefix + '-' if args.prefix else ''}{split}-{start_idx + j:04d}",
                 "fiscal_year": rc["fiscal_year"],
                 "case_id_hash": rc["case_id_hash"],
                 "split": split,
@@ -191,6 +203,8 @@ def main():
 
     # ---- draw each split --------------------------------------------------
     for split, plan in PLAN.items():
+        if split not in args.splits.split(","):
+            continue
         pool = [rc for rc in recs if rc["fiscal_year"] in plan["years"]]
         if args.smoke:
             pool = pool[:500]
@@ -251,13 +265,17 @@ def main():
         items += finalize(chosen, split, {"test_main": 1, "test_2024": 1, "dev": 1}[split])
 
     # ---- write -------------------------------------------------------------
-    with open(outdir / "items.json", "w") as fh:
+    stem = Path(args.out_name).stem
+    suffix = "" if stem == "items" else stem[len("items"):]
+    with open(outdir / args.out_name, "w") as fh:
         json.dump(items, fh)
-    with open(outdir / "denylist.txt", "w") as fh:
+    with open(outdir / f"denylist{suffix}.txt", "w") as fh:
         for it in items:
             fh.write(f"{it['fiscal_year']} {it['case_id_hash']}\n")
 
     # ---- sampling report ----------------------------------------------------
+    PLAN_RUN = {s: p for s, p in PLAN.items() if s in args.splits.split(",")}
+
     def tab(key, splits=("test_main", "test_2024", "dev")):
         c = Counter()
         for it in items:
@@ -277,8 +295,9 @@ def main():
         "n_items": len(items),
         "plan": {s: {"n": p["n"], "finding": p["finding"],
                      "bucket_quota": p["bucket_quota"]}
-                 for s, p in PLAN.items()},
-        "actual_finding": {s: tab("finding", (s,)) for s in PLAN},
+                 for s, p in PLAN_RUN.items()},
+        "excluded_cases": sum(len(json.loads(Path(ex).read_text())) for ex in args.exclude),
+        "actual_finding": {s: tab("finding", (s,)) for s in PLAN_RUN},
         "actual_bucket_test": tab("element_bucket", ("test_main", "test_2024")),
         "actual_bucket_test_main": tab("element_bucket", ("test_main",)),
         "actual_bucket_test_2024": tab("element_bucket", ("test_2024",)),
@@ -305,7 +324,7 @@ def main():
             "mean": statistics.mean(amterrs),
         },
     }
-    with open(outdir / "sampling_report.json", "w") as fh:
+    with open(outdir / f"sampling_report{suffix}.json", "w") as fh:
         json.dump(report, fh, indent=2)
     print(json.dumps({k: v for k, v in report.items()
                       if k not in ("plan",)}, indent=2)[:3000])
