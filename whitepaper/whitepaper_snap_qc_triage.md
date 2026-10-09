@@ -1,6 +1,6 @@
 # Finding SNAP Payment Errors Faster: Synthetic Data, Language Models and Triage Rankers
 
-**October 7, 2026 · Executive whitepaper · Cory Trimm**
+**October 9, 2026 · Executive whitepaper · Cory Trimm**
 
 ## Executive summary
 
@@ -10,7 +10,7 @@ Over ten days and more than 100 experiments (including pilots for six states), u
 
 1. **A ranking tool is ready to pilot.** For each of six states (Pennsylvania, New York, Texas, South Dakota, Utah and Idaho), we built a model that ranks cases by expected error dollars. On cases it never saw, reviewing the top 20% of its queue finds **2.6 to 3.5 times the error dollars of random selection**. In New York that is about $199 of errors found per review hour, against $56 at random. It uses only information the agency has before review, and its dollar forecasts land within about 13% of actual in four of the six states.
 2. **Realistic synthetic cases can teach a model real skills.** We built a generator that produces fake SNAP cases with known errors, calibrated to the federal data. Models trained only on these synthetic cases predict errors in real cases well above chance.
-3. **A small language model can learn part of the QC task from synthetic data alone.** An open model of about 4 billion parameters, trained only on synthetic cases, went from guessing to passing all three of our quality checks on real QC cases (provisionally; see Results). It outperformed an untrained model eight times its size and a conventional classifier trained on the same data. It spots errors and their direction well above chance, but can't yet tell the type of mistake or whose mistake it was.
+3. **A small language model can learn part of the QC task from synthetic data alone.** An open model of about 4 billion parameters, trained only on synthetic cases, went from guessing to passing all three of our quality checks on 1,200 fresh real QC cases, under rules fixed before the cases were drawn. It outperformed a conventional classifier trained on the same data and, on our original test set, an untrained model eight times its size. It spots errors, their direction and their location well above chance, but can barely tell the type of mistake and can't tell whose mistake it was.
 
 **Recommendation:** pilot the ranking tool in one state (Pennsylvania or New York, where it is strongest and most accurate). Keep the language model as a research track until it adds something the ranking tool can't, such as written explanations for reviewers.
 
@@ -47,7 +47,7 @@ The original goal was a small, specialized language model that reads a case the 
 | T5 | Whose mistake (agency or client)? |
 | T6 | How many dollars? |
 
-We set three pass/fail checks before training anything (one was later revised; see Results). The trained model must (1) beat the untrained model by a clear statistical margin, (2) beat it on at least four of the five category questions, and (3) identify the error's location (T3) at least as well as a conventional classifier trained on the same synthetic data. The dollar question proved nearly unanswerable from case text for every model and was dropped from scoring.
+We set three pass/fail checks before training anything. One was revised after early results, so the final test was rerun on fresh cases under rules committed in advance (see Results). The trained model must (1) beat the untrained model by a clear statistical margin, (2) beat it on at least four of the five category questions, and (3) identify the error's location (T3) at least as well as a conventional classifier trained on the same synthetic data. The dollar question proved nearly unanswerable from case text for every model and was dropped from scoring.
 
 We fine-tuned Google's Gemma 4 E4B (about 4 billion parameters) on a Mac Studio. The method that worked was supervised fine-tuning: showing the model synthetic cases with correct answers, and stopping training early. Reinforcement learning on its own taught the model only to guess the most common answers. With supervised fine-tuning first, it learned real skill.
 
@@ -61,16 +61,17 @@ We trained these rankers on each state's own QC records and tuned them with stan
 
 ### The language model learned the task from synthetic data alone
 
-Scores on 1,200 real test cases. "Skill" is the average score above what lucky guessing would get, where 0% means no better than guessing:
+Scores on 1,200 fresh real QC cases that no model had been tested on, under pass/fail rules written down and committed before the cases were drawn. "Skill" is the average score above what lucky guessing would get, where 0% means no better than guessing:
 
 | Model | Overall score | Skill above chance | Finds error location (T3) | Passes all checks? |
 |---|---|---|---|---|
-| Gemma 4, 4B, untrained | 1% | 1% | 1% | — |
-| Gemma 4, 31B (8× larger), untrained | 13% | 7% | 8% | — |
-| Conventional classifier, same synthetic data | 24% | 16% | 21% | (the bar) |
-| **Gemma 4, 4B, trained on synthetic cases** | **30%** | **24%** | **23%** | **Yes (provisional)** |
+| Gemma 4, 4B, untrained | 0.5% | 0.5% | 1% | — |
+| Conventional classifier, same synthetic data | 24% | 15% | 18% | — |
+| **Gemma 4, 4B, trained on synthetic cases** | **33%** | **28%** | **24%** | **Yes** |
 
-The trained small model went from essentially zero to clearly above both the larger untrained model and the classifier trained on the same data. It also passed on the most recent fiscal year on its own. "Provisional" because the location check's scoring rule was finalized after these results were in, so the pass should be confirmed on a fresh run. It is still well short of a human reviewer. It is clearly better than chance at spotting an error, its direction and its location, but no better than chance at naming the type of mistake (T4) or whose mistake it was (T5).
+The bar for the location check was 21%, fixed in advance. The trained model beat the untrained one on all five questions (overall gain +33 points, 95% interval +31 to +35), and passed on the most recent fiscal year on its own (overall 38%). On the original test set it had scored 30%, so the fresh result is slightly higher. On that original set, an untrained Gemma 4 eight times larger scored 13%.
+
+It is still well short of a human reviewer. It is clearly better than chance at spotting an error, its direction and its location. It is only slightly better than chance at naming the type of mistake (T4), and no better at saying whose mistake it was (T5).
 
 ### The rankers find two to three and a half times more error dollars
 
@@ -106,13 +107,13 @@ Three things make these numbers usable:
 - **Synthetic generator:** a household sampler, the federal benefit formula, and an error injector whose rates come from the real data. Calibration and transfer were checked after every change, with each experiment recorded as hypothesis, method, result, verdict.
 - **Language model:** Gemma 4 E4B (about 4 billion parameters), fine-tuned with LoRA adapters on synthetic cases only (supervised fine-tuning, about 400 steps). Reinforcement learning (GRPO) was tested and set aside. Training ran locally on a Mac Studio; a Google Colab version was also built. Scoring used macro-averaged F1 relative to guessing, with bootstrap confidence intervals and chance-corrected agreement (Cohen's kappa).
 - **Rankers:** two-part gradient-boosted models (scikit-learn), probability of error times expected dollars, tuned by nested cross-validation. Expected dollars are calibrated with isotonic regression on out-of-fold predictions. They are evaluated on held-out cases and on a later time period.
-- **Rigor:** pass/fail criteria were set before training (the one later revision is disclosed above), the real test cases were never used for training or tuning, and every result, including failures, is recorded in the project's experiment log.
+- **Rigor:** pass/fail criteria were set before training, the one later revision was confirmed on fresh cases under rules committed before they were drawn, the real test cases were never used for training or tuning, and every result, including failures, is recorded in the project's experiment log.
 
 ## Limitations
 
 - **Public data only.** The models were built from the federal public-use files, which omit some case detail and identifiers. A state's own case-management data would likely do better, and would need a short adaptation step.
 - **Small per-state samples.** With a few thousand cases per state, results for smaller states (South Dakota, Utah, Idaho) carry wider uncertainty, which shows in their dollar forecasts.
-- **The language model is a research result, not a product.** It passes our checks provisionally, it has been tested on one evaluation set, and the same test cases have now been scored several times. A fresh evaluation set should come before any claims about it.
+- **The language model is a research result, not a product.** It passed a pre-registered test on fresh cases, but only on one kind of task (classifying public-use case records), and it is well short of a human reviewer on the details of an error.
 - **The rankers prioritize; they don't decide.** They rank cases for human review. They don't make determinations about any household.
 
 ## Recommendations
@@ -120,7 +121,7 @@ Three things make these numbers usable:
 1. **Pilot the ranker in one state.** Start with Pennsylvania or New York, where results and dollar forecasts are strongest. Score a current month's cases, have reviewers work the top of the queue, and compare the dollars found against the forecast.
 2. **Refresh annually** with the latest QC year.
 3. **Include the fairness floor** so elderly and disabled households keep a proportionate share of reviews.
-4. **Continue the language model as research** aimed at what the ranker can't do: plain-language explanations of why a case looks risky. First, confirm its results on a fresh evaluation set.
+4. **Continue the language model as research** aimed at what the ranker can't do: plain-language explanations of why a case looks risky.
 
 ## Project timeline
 
@@ -130,4 +131,5 @@ Three things make these numbers usable:
 | Oct 2–3 | Fairness analysis: how dollar-focused ranking affects elderly, disabled and other household types, and a review floor that fixes it. |
 | Oct 4 | Pilots for Texas, South Dakota, Utah and Idaho, each with its own whitepaper. Language model evaluation run on two Gemma 4 models: the untrained small model scored near zero; the larger one only slightly better. |
 | Oct 5–6 | Small model trained on synthetic cases: reinforcement learning alone failed; supervised fine-tuning worked. A conventional classifier on the same data scored similarly. |
-| Oct 7 | Training data made consistent with how the evaluation labels cases; best language model passes all checks (provisional). Triage rankers tuned for six states, dollar forecasts calibrated, rebuilt on pre-review data only, and packaged for a pilot. |
+| Oct 7 | Training data made consistent with how the evaluation labels cases; best language model passes all checks on the original test set. Triage rankers tuned for six states, dollar forecasts calibrated, rebuilt on pre-review data only, and packaged for a pilot. |
+| Oct 9 | Pre-registered confirmation on 1,200 fresh real cases: the language model passes all three checks (overall 33%, location 24% vs a 21% bar). |

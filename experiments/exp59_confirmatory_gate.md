@@ -42,4 +42,27 @@ The draw ran as specified: 1,200 items (1,000 FY2021–23, 200 FY2024), zero ove
 
 ## Results
 
-_Pending._
+Run 2026-10-09 05:17–06:29, one pass, no deviations. Adapter hash re-checked at start (matches).
+
+| Model (1,200 fresh items, eval v1.2) | composite | skill | T1 | T2 | T3 (9-class, n=642) | T4 | T5 |
+|---|---|---|---|---|---|---|---|
+| e4b untrained | 0.005 | 0.005 | 0.293 | 0.198 | 0.009 | 0.000 | 0.020 |
+| exp53 classifier (same synthetic data) | 0.240 | 0.154 | 0.617 | 0.404 | 0.184 | 0.059 | 0.224 |
+| **e4b SFT step 400** | **0.334** | **0.276** | **0.750** | **0.516** | **0.244** | **0.053** | **0.137** |
+
+Chance-corrected κ for the tuned model: T1 0.505, T2 0.265, T3 0.212, T4 0.041 (p < 0.001), T5 −0.003 (p 0.64).
+
+**Gate (all 1,200):** composite diff **+0.328 [+0.309, +0.347]**, wins **5/5**, T3 **0.244 ≥ 0.210** → **PASS**.
+**FY2024 slice (200, informational):** composite 0.377 vs base 0.011, diff +0.362 [+0.317, +0.406], 5/5, T3 0.259 → PASS.
+
+For comparison, the original test set gave composite 0.302 and T3 0.229. The classifier's T3 on the fresh set is 0.184, so a bar re-derived from it would have been lower; the fixed 0.210 was the stricter test.
+
+### Verdict
+
+Confirmed. The exp52 step-400 model passes all three gate legs on 1,200 real QC cases it had never been scored on, under rules committed before the draw, with larger margins than on the original set. "Provisional" is removed everywhere. Remaining weaknesses: T4 (type of mistake) is barely above chance and T5 (whose mistake) is at chance, as on the original set.
+
+### Next steps
+
+1. `items_confirm.json` is now the reference test set and is also spent for selection: further models are compared on dev / the retired original test set, and only a frozen final candidate is scored here.
+2. T4/T5 remain the language-model gap; the lever is likely label fidelity in the generator (exp54/55 line), not training length.
+
