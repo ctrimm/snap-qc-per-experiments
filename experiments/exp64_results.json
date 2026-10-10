@@ -1,0 +1,205 @@
+{
+ "US": {
+  "school_meals": {
+   "share": 0.262,
+   "households": 5664008
+  },
+  "wic": {
+   "share": 0.134,
+   "households": 2892891
+  },
+  "liheap": {
+   "share": 0.724,
+   "households": 15636705
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 21594587
+  },
+  "medicare_help": {
+   "share": 0.221,
+   "households": 4770355
+  },
+  "medicaid_adult": {
+   "share": 0.662,
+   "households": 14296683
+  },
+  "_snap_households": 21594587,
+  "_sample": 44891,
+  "_school_age_children": 10398362
+ },
+ "PA": {
+  "school_meals": {
+   "share": 0.252,
+   "households": 264245
+  },
+  "wic": {
+   "share": 0.121,
+   "households": 127168
+  },
+  "liheap": {
+   "share": 0.868,
+   "households": 909521
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 1047956
+  },
+  "medicare_help": {
+   "share": 0.201,
+   "households": 210621
+  },
+  "medicaid_adult": {
+   "share": 0.7,
+   "households": 733058
+  },
+  "_snap_households": 1047956,
+  "_sample": 814,
+  "_school_age_children": 468827
+ },
+ "NY": {
+  "school_meals": {
+   "share": 0.206,
+   "households": 334946
+  },
+  "wic": {
+   "share": 0.104,
+   "households": 168682
+  },
+  "liheap": {
+   "share": 0.878,
+   "households": 1428145
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 1626560
+  },
+  "medicare_help": {
+   "share": 0.3,
+   "households": 488490
+  },
+  "medicaid_adult": {
+   "share": 0.618,
+   "households": 1005850
+  },
+  "_snap_households": 1626560,
+  "_sample": 885,
+  "_school_age_children": 626395
+ },
+ "TX": {
+  "school_meals": {
+   "share": 0.363,
+   "households": 524052
+  },
+  "wic": {
+   "share": 0.2,
+   "households": 287822
+  },
+  "liheap": {
+   "share": 0.67,
+   "households": 966605
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 1441846
+  },
+  "medicare_help": {
+   "share": 0.219,
+   "households": 316226
+  },
+  "medicaid_adult": {
+   "share": 0.0,
+   "households": 0
+  },
+  "_snap_households": 1441846,
+  "_sample": 955,
+  "_school_age_children": 1006283
+ },
+ "SD": {
+  "school_meals": {
+   "share": 0.303,
+   "households": 11154
+  },
+  "wic": {
+   "share": 0.136,
+   "households": 5027
+  },
+  "liheap": {
+   "share": 0.663,
+   "households": 24455
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 36860
+  },
+  "medicare_help": {
+   "share": 0.175,
+   "households": 6434
+  },
+  "medicaid_adult": {
+   "share": 0.818,
+   "households": 30160
+  },
+  "_snap_households": 36860,
+  "_sample": 667,
+  "_school_age_children": 21483
+ },
+ "UT": {
+  "school_meals": {
+   "share": 0.285,
+   "households": 23295
+  },
+  "wic": {
+   "share": 0.167,
+   "households": 13611
+  },
+  "liheap": {
+   "share": 0.568,
+   "households": 46399
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 81628
+  },
+  "medicare_help": {
+   "share": 0.138,
+   "households": 11231
+  },
+  "medicaid_adult": {
+   "share": 0.861,
+   "households": 70281
+  },
+  "_snap_households": 81628,
+  "_sample": 1065,
+  "_school_age_children": 47808
+ },
+ "ID": {
+  "school_meals": {
+   "share": 0.305,
+   "households": 19804
+  },
+  "wic": {
+   "share": 0.159,
+   "households": 10319
+  },
+  "liheap": {
+   "share": 0.77,
+   "households": 50085
+  },
+  "lifeline": {
+   "share": 1.0,
+   "households": 65016
+  },
+  "medicare_help": {
+   "share": 0.194,
+   "households": 12606
+  },
+  "medicaid_adult": {
+   "share": 0.802,
+   "households": 52113
+  },
+  "_snap_households": 65016,
+  "_sample": 1130,
+  "_school_age_children": 38423
+ }
+}
