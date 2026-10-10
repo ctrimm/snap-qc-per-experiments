@@ -65,6 +65,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default=MODEL, help="exp60: mlx-community/gemma-4-e2b-it-bf16")
     ap.add_argument("--adapter", default=None)
+    ap.add_argument("--max-tokens", type=int, default=64, help="exp71: 200 for rationale + answers")
     ap.add_argument("--out", required=True)
     ap.add_argument("--base-preds", default=None)
     ap.add_argument("--split", default="dev", choices=["dev", "test"],
@@ -89,7 +90,7 @@ def main():
             prompt = tok.apply_chat_template(
                 [{"role": "user", "content": run_lm.build_class_prompt(it["fields"], "jargon", examples)}],
                 add_generation_prompt=True, tokenize=False, enable_thinking=False)
-            raw = generate(model, tok, prompt=prompt, max_tokens=64, verbose=False)
+            raw = generate(model, tok, prompt=prompt, max_tokens=args.max_tokens, verbose=False)
             parsed, ok = run_lm.parse_class(raw)
             fh.write(json.dumps({"item_id": it["item_id"], "kind": "class", "raw": raw,
                                  "parsed": parsed, "parse_ok": ok}) + "\n")
