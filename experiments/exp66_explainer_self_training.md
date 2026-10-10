@@ -24,6 +24,8 @@ Can the exp62 student (E2B fine-tuned on filtered 31B notes) improve itself with
 2. Does faithfulness stay at 100%?
 3. Does diversity fall (notes converging on one phrasing)? A fall with no pass-rate gain is a reason to stop the loop even if the rule hasn't triggered.
 
-## Results
+## Cancelled before running (2026-10-10 06:48)
 
-_Pending._
+exp62's student scored 100% on the 100 selection cards at every checkpoint (and 100% on the 200 eval cards). The loop's only signal is that pass rate, and its stop rule needs a gain of at least 1 point, which is impossible from 100%. Running it would spend about 1.5 hours of GPU time to trigger the stop rule after one round, so it was cancelled while still queued, before any sampling or training.
+
+**What this says about loop 1:** the automatic checker is saturated. It can stop a model from inventing facts, but it can no longer tell good notes from better ones. Further improvement needs a signal that measures usefulness: the reviewer A/B ratings from exp65. A useful version of this loop would use reviewer preferences (or a model trained on them) as the keep/discard rule. That is a later experiment, after real ratings exist.

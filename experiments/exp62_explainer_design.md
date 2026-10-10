@@ -1,6 +1,6 @@
 # Experiment 62 (design) — plain-language flag cards for reviewers
 
-**Date:** 2026-10-09 · **Status:** design; build and first test next · **Builds on:** exp58 (ranker), exp61 (where-to-look), exp52/59/60 (language models)
+**Date:** 2026-10-09 · **Status:** steps 1–2 done; reviewer comparison in exp65 · **Builds on:** exp58 (ranker), exp61 (where-to-look), exp52/59/60 (language models)
 
 ## Goal
 
@@ -88,6 +88,19 @@ Neither is acceptable (≥ 95% pass); both fail only on reading level. No invent
 - **Student:** E2B, answer-only SFT with the exp52 LoRA recipe, lr 1e-5, 500 steps, checkpoint every 100.
 - **Checkpoint choice:** highest pass rate on the 100 held-out training cards; ties to the earlier step.
 - **Final:** the chosen checkpoint writes notes for the 200 eval cards once; same acceptance rule as step 1 (faithful 100%, pass ≥ 95%).
+
+## Step 2 result (2026-10-10 06:44)
+
+Teacher (31B) notes on 2,535 training cards: 2,513 (99%) passed every check. SFT on 2,292 (121 validation), 500 steps, 0.73 it/s, val loss 0.137 → 0.086. Every checkpoint scored 100% on the 100 selection cards; the rule picked step 100.
+
+| 200 eval cards | pass all | faithful | leads | short | readable | words | grade |
+|---|---|---|---|---|---|---|---|
+| template | 100% | 100% | 100% | 100% | 100% | 63 | 6.3 |
+| E2B zero-shot | 40% | 100% | 100% | 100% | 40% | 55 | 9.1 |
+| E4B zero-shot | 46% | 100% | 100% | 100% | 46% | 49 | 8.9 |
+| **E2B distilled (step 2)** | **100%** | **100%** | **100%** | **100%** | **100%** | **42** | **4.2** |
+
+**Verdict: acceptable** under the frozen rule. The distilled E2B notes are shorter and plainer than the template, with no invented facts. Two things for the reviewer comparison: they drop the "about N in 10" likelihoods and the monthly benefit (the teacher omitted them and the student learned that), and every note follows the same five-sentence pattern ("Top 10% priority. Expected error is $70. … First, check … Next, check …"). Per the decision rule, the template vs model choice goes to a blind reviewer comparison (exp65's packet).
 
 ## What it isn't
 
