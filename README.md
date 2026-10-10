@@ -105,6 +105,9 @@ transfer, LM eval) every experiment here must move.
 | 73 | [Cost-share sensitivity](experiments/exp73_cost_sensitivity.md) | Production | Informative — review volume (0.5–5%: $1.3–9.9B) and error lifetime (2–12 months: $1.7–9.0B) drive the range; ranker accuracy least ($3.9–5.3B). Ranker beats random 3–15× at every setting |
 | 74 | [Flag-card odds calibration](experiments/exp74_odds_calibration.md) | Production | Held, adopted — raw 'N in 10' odds overconfident (ECE 0.12–0.22; '9 in 10' right 50–71%). Temperature scaling (T ≈ 2.9) cuts ECE to 0.05–0.07 in PA, NY, ID without changing the listed parts |
 | 75 | [Pooling for small jurisdictions](experiments/exp75_small_state_pooling.md) | Production | Held (pre-registered rule) — 5 of 12 small jurisdictions adopt a pooled model: Wyoming 1.72× → 3.47×, Alaska 1.26× → 2.87×, Virgin Islands, Delaware, Montana. All 53 now ≥ 2.5× on held-out cases (lowest 2.61×). Repackaged; dashboard updated |
+| 76–77 | [v2 flag cards; model that keeps the odds](experiments/exp76_77_cards_v2.md) | Production | Running overnight |
+| 78 | [Cost share with the fairness floor](experiments/exp78_cost_with_floor.md) | Production | Informative — on the top-20% basis the floor costs ~9% of the avoided cost share (central $3.85B → $3.49B/yr); still 3.4× random |
+| 79 | [Underpayment-focused ranker](experiments/exp79_underpayment_ranker.md) | Production / equity | Held — finds 3.36× the underpayment dollars of random (vs 1.55× for the total-dollar ranker; better in 53 of 53), at 1.29× on total dollars. Two tools for two goals |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
