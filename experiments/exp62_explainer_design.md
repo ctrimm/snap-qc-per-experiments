@@ -1,6 +1,6 @@
 # Experiment 62 (design) — plain-language flag cards for reviewers
 
-**Date:** 2026-10-10 · **Status:** design; build and first test next · **Builds on:** exp58 (ranker), exp61 (where-to-look), exp52/59/60 (language models)
+**Date:** 2026-10-09 · **Status:** design; build and first test next · **Builds on:** exp58 (ranker), exp61 (where-to-look), exp52/59/60 (language models)
 
 ## Goal
 
