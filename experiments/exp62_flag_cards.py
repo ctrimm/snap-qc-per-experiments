@@ -83,8 +83,7 @@ def fact(name, label, x, med):
     return f"{label}: {money(v)} a month (state typical {money(med[E61.FIDX[name]])})"
 
 
-def build_state(st, qc_dir, cfg):
-    from sklearn.ensemble import HistGradientBoostingClassifier
+def load_labels(st, qc_dir):
     code, hfile, _, _ = E56.STATES[st]
     real = E58.load_state(qc_dir, code)
     lab = {}
@@ -102,6 +101,30 @@ def build_state(st, qc_dir, cfg):
     hold = {tuple(k) for k in json.loads((ROOT / "experiments" / hfile).read_text())["holdout_keys"]}
     tr = [k for k in sorted(real) if k not in hold]
     te = [k for k in sorted(real) if k in hold]
+    return real, lab, tr, te
+
+
+def build_state(st, qc_dir, cfg):
+    real, lab, tr, te = load_labels(st, qc_dir)
+    return make_cards(st, real, lab, tr, te, cfg, prefix="")
+
+
+def build_train_cards(st, qc_dir, cfg, folds=5):
+    """Cross-fitted cards for non-holdout rows (training data for step 2):
+    fit on 4/5 of the non-holdout rows, card the top 20% of the other 1/5."""
+    real, lab, tr, _ = load_labels(st, qc_dir)
+    rng = np.random.RandomState(62)
+    fold = rng.randint(0, folds, len(tr))
+    cards = []
+    for k in range(folds):
+        fit = [t for t, g in zip(tr, fold) if g != k]
+        tgt = [t for t, g in zip(tr, fold) if g == k]
+        cards += make_cards(st, real, lab, fit, tgt, cfg, prefix="T")
+    return cards
+
+
+def make_cards(st, real, lab, tr, te, cfg, prefix=""):
+    from sklearn.ensemble import HistGradientBoostingClassifier
     X, y, a = E58.arrays(real, tr)
     Xh, yh, ah = E58.arrays(real, te)
     f, _ = E56.fit_two_part(X, y, a, cfg["clf"], cfg["reg"])
@@ -139,7 +162,7 @@ def build_state(st, qc_dir, cfg):
                 s = fact(name, label, Xh[i], med)
                 if s not in facts:
                     facts.append(s)
-        card = {"card_id": f"{st}-{k[0]}-{k[1]}", "state": st,
+        card = {"card_id": f"{prefix}{st}-{k[0]}-{k[1]}", "state": st,
                 "why": {"priority": "top 10%" if score[i] >= q90 else "top 20%",
                         "expected_error_dollars": int(round(float(iso.predict([score[i]])[0]) / 10) * 10),
                         "monthly_benefit": int(round(Xh[i, E61.FIDX["issued_benefit"]])),
@@ -172,9 +195,20 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--qc-dir", default=str(ROOT.parent / "snap-qc-data/raw"))
     ap.add_argument("--states", default="PA,NY")
+    ap.add_argument("--train-cards", action="store_true",
+                    help="cross-fitted cards for non-holdout rows -> exp62_train_cards.jsonl")
     args = ap.parse_args()
     cfgs = {r["state"]: r["cfg"] for r in json.loads((ROOT / "experiments" / "exp58_results.json").read_text())}
     allc = []
+    if args.train_cards:
+        for st in args.states.split(","):
+            cs = build_train_cards(st, args.qc_dir, cfgs[st])
+            print(f"{st}: {len(cs)} training cards", flush=True)
+            allc += cs
+        out = ROOT / "experiments" / "exp62_train_cards.jsonl"
+        out.write_text("".join(json.dumps(c) + "\n" for c in allc))
+        print(f"wrote {out} ({len(allc)} cards)")
+        return
     for st in args.states.split(","):
         cards = build_state(st, args.qc_dir, cfgs[st])
         err = [c for c in cards if c["truth"]["error"] and c["truth"]["t3"]]

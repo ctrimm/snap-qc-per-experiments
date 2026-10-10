@@ -70,6 +70,25 @@ Human check at every step: 15–20 cards rated by a QC reviewer for clarity and 
 - **Step 1 (no training):** E2B and E4B, greedy, thinking off, max 200 tokens, one fixed prompt (`exp62_rewrite.py`). A model's notes are **acceptable** if faithful on 100% of the 200 cards and passing all checks on ≥ 95%.
 - **Decision rule:** the smallest acceptable model goes to a blind reviewer comparison against the template (15–20 cards). If neither is acceptable, step 2 (distillation with filtering) runs. If the reviewer doesn't prefer the model's notes, ship the template.
 
+## Step 1 result (2026-10-10 00:45)
+
+| 200 eval cards | pass all | faithful | leads | short | readable | words | grade |
+|---|---|---|---|---|---|---|---|
+| template | 100% | 100% | 100% | 100% | 100% | 63 | 6.3 |
+| E2B zero-shot | 40% | 100% | 100% | 100% | 40% | 55 | 9.1 |
+| E4B zero-shot | 46% | 100% | 100% | 100% | 46% | 49 | 8.9 |
+
+Neither is acceptable (≥ 95% pass); both fail only on reading level. No invented facts, numbers or accusations in 400 notes. Per the decision rule, step 2 runs.
+
+## Step 2 procedure (fixed before running, 2026-10-10)
+
+- **Training cards:** `exp62_flag_cards.py --train-cards --states PA,NY,ID,UT,SD`: 2,535 cross-fitted cards from non-holdout rows (5 folds; fit on 4/5, card the top 20% of the other 1/5). No overlap with the 200 eval cards (those are holdout cases).
+- **Teacher:** Gemma 4 31B with the student prompt plus short-sentence style guidance (`--teacher`); the guidance was tuned on 6 training cards only.
+- **Filter:** keep teacher notes passing every frozen check against their own card (`exp62_step2_data.py`); 100 passing cards held out (seed 62) for checkpoint choice; the rest as SFT pairs with the **student** prompt (95/5 train/valid).
+- **Student:** E2B, answer-only SFT with the exp52 LoRA recipe, lr 1e-5, 500 steps, checkpoint every 100.
+- **Checkpoint choice:** highest pass rate on the 100 held-out training cards; ties to the earlier step.
+- **Final:** the chosen checkpoint writes notes for the 200 eval cards once; same acceptance rule as step 1 (faithful 100%, pass ≥ 95%).
+
 ## What it isn't
 
 It doesn't decide anything about a household, and it doesn't touch the federal QC sample. It explains why the state's own review queue put a case where it did, and suggests where to start.
