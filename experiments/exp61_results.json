@@ -1,0 +1,297 @@
+[
+ {
+  "state": "PA",
+  "flagged_error_cases_with_t3": 127,
+  "reason_top1_hit": 0.394,
+  "reason_top2_hit": 0.535,
+  "where_to_look_top1_hit": 0.614,
+  "where_to_look_top2_hit": 0.78,
+  "prior_top1_hit": 0.307,
+  "prior_top2_hit": 0.661,
+  "prior_buckets": [
+   "shelter",
+   "earned"
+  ],
+  "most_common_first_reason": [
+   [
+    "total income",
+    51
+   ],
+   [
+    "shelter costs",
+    37
+   ],
+   [
+    "earned income",
+    11
+   ],
+   [
+    "household size",
+    9
+   ]
+  ],
+  "issued_benefit_share_of_flag_score": 0.361,
+  "t3_mix_flagged": [
+   [
+    "earned",
+    45
+   ],
+   [
+    "shelter",
+    39
+   ],
+   [
+    "unearned",
+    22
+   ],
+   [
+    "sua",
+    7
+   ],
+   [
+    "hhcomp",
+    6
+   ],
+   [
+    "medical",
+    3
+   ]
+  ]
+ },
+ {
+  "state": "NY",
+  "flagged_error_cases_with_t3": 127,
+  "reason_top1_hit": 0.567,
+  "reason_top2_hit": 0.669,
+  "where_to_look_top1_hit": 0.575,
+  "where_to_look_top2_hit": 0.74,
+  "prior_top1_hit": 0.165,
+  "prior_top2_hit": 0.394,
+  "prior_buckets": [
+   "shelter",
+   "unearned"
+  ],
+  "most_common_first_reason": [
+   [
+    "total income",
+    82
+   ],
+   [
+    "shelter costs",
+    25
+   ],
+   [
+    "earned income",
+    15
+   ],
+   [
+    "utility allowance",
+    3
+   ]
+  ],
+  "issued_benefit_share_of_flag_score": 0.335,
+  "t3_mix_flagged": [
+   [
+    "earned",
+    48
+   ],
+   [
+    "unearned",
+    29
+   ],
+   [
+    "shelter",
+    21
+   ],
+   [
+    "sua",
+    11
+   ],
+   [
+    "medical",
+    7
+   ],
+   [
+    "hhcomp",
+    3
+   ]
+  ]
+ },
+ {
+  "state": "ID",
+  "flagged_error_cases_with_t3": 82,
+  "reason_top1_hit": 0.402,
+  "reason_top2_hit": 0.585,
+  "where_to_look_top1_hit": 0.451,
+  "where_to_look_top2_hit": 0.768,
+  "prior_top1_hit": 0.293,
+  "prior_top2_hit": 0.549,
+  "prior_buckets": [
+   "shelter",
+   "earned"
+  ],
+  "most_common_first_reason": [
+   [
+    "total income",
+    35
+   ],
+   [
+    "earned income",
+    23
+   ],
+   [
+    "shelter costs",
+    17
+   ],
+   [
+    "unearned income",
+    5
+   ]
+  ],
+  "issued_benefit_share_of_flag_score": 0.423,
+  "t3_mix_flagged": [
+   [
+    "shelter",
+    24
+   ],
+   [
+    "unearned",
+    23
+   ],
+   [
+    "earned",
+    21
+   ],
+   [
+    "sua",
+    4
+   ],
+   [
+    "childsupport",
+    3
+   ],
+   [
+    "medical",
+    2
+   ]
+  ]
+ },
+ {
+  "state": "UT",
+  "flagged_error_cases_with_t3": 46,
+  "reason_top1_hit": 0.304,
+  "reason_top2_hit": 0.543,
+  "where_to_look_top1_hit": 0.391,
+  "where_to_look_top2_hit": 0.609,
+  "prior_top1_hit": 0.261,
+  "prior_top2_hit": 0.587,
+  "prior_buckets": [
+   "shelter",
+   "earned"
+  ],
+  "most_common_first_reason": [
+   [
+    "total income",
+    16
+   ],
+   [
+    "earned income",
+    14
+   ],
+   [
+    "shelter costs",
+    9
+   ],
+   [
+    "medical deduction",
+    3
+   ]
+  ],
+  "issued_benefit_share_of_flag_score": 0.189,
+  "t3_mix_flagged": [
+   [
+    "earned",
+    15
+   ],
+   [
+    "shelter",
+    12
+   ],
+   [
+    "unearned",
+    7
+   ],
+   [
+    "sua",
+    4
+   ],
+   [
+    "medical",
+    3
+   ],
+   [
+    "arithmetic",
+    2
+   ]
+  ]
+ },
+ {
+  "state": "SD",
+  "flagged_error_cases_with_t3": 27,
+  "reason_top1_hit": 0.37,
+  "reason_top2_hit": 0.704,
+  "where_to_look_top1_hit": 0.519,
+  "where_to_look_top2_hit": 0.593,
+  "prior_top1_hit": 0.444,
+  "prior_top2_hit": 0.704,
+  "prior_buckets": [
+   "earned",
+   "unearned"
+  ],
+  "most_common_first_reason": [
+   [
+    "earned income",
+    19
+   ],
+   [
+    "total income",
+    4
+   ],
+   [
+    "unearned income",
+    3
+   ],
+   [
+    "shelter costs",
+    1
+   ]
+  ],
+  "issued_benefit_share_of_flag_score": 0.15,
+  "t3_mix_flagged": [
+   [
+    "earned",
+    12
+   ],
+   [
+    "unearned",
+    7
+   ],
+   [
+    "sua",
+    3
+   ],
+   [
+    "shelter",
+    2
+   ],
+   [
+    "medical",
+    1
+   ],
+   [
+    "childsupport",
+    1
+   ]
+  ]
+ }
+]
