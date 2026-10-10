@@ -25,9 +25,22 @@ Top-2 coverage of the real error location on flagged holdout errors (mean of 10 
 
 Subset-to-subset spread is ±2–5 points from 100 cases on.
 
+**Flagged-only feedback (`--flagged-only`, added 2026-10-10).** In a pilot, reviewers only report on cases the ranker flagged. Restricting the label pool to training errors the ranker would flag (top 20%):
+
+| labelled error cases | PA model / generic | NY model / generic | ID model / generic |
+|---|---|---|---|
+| 25 | 66% / 65% | 55% / 54% | 54% / 54% |
+| 50 | 68% / 65% | 67% / 59% | 58% / 54% |
+| 100 | 74% / 66% | 68% / 59% | 70% / 55% |
+| 200 | 74% / 66% | 70% / 60% | 69% / 54% |
+| 400 | 78% / 66% | 69% / 61% | — |
+| all (260–484) | 76% / 66% | 70% / 61% | 65% / 54% |
+
+The model still clears generic advice by 8–15 points from about 100 findings, but it levels off lower in NY and ID (about 70% vs 74–77% with all records), and generic advice built from flagged feedback is stronger (NY 59–61% vs 39–49%), because those labels already come from the right kind of case. ID's last row (65%) is a single fit on 260 cases and sits within the subset spread.
+
 ### Verdict
 
-Held. About 100 labelled error cases give most of the gain over generic advice, and about 200 come within a few points of a model trained on five years of records. At pilot volumes (a few hundred flagged reviews a month, roughly half of them errors), reviewer feedback could train a usable where-to-look model for a state like TX in two to four months. Until then, its cards would show generic advice.
+Held. About 100 labelled error cases give most of the gain over generic advice, and about 200 come within a few points of a model trained on five years of records. With realistic flagged-only feedback the gain over generic advice is 8–15 points from about 100 findings, and more feedback adds little after 200. At pilot volumes (a few hundred flagged reviews a month, roughly half of them errors), reviewer feedback could train a usable where-to-look model for a state like TX in two to four months. Until then, its cards would show generic advice.
 
 ### Next steps
 

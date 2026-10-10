@@ -8,7 +8,11 @@ random subsets of n labelled training error cases, and score top-2 coverage
 on the same flagged holdout errors as exp61/62. Baseline per subset: the two
 most common locations in that subset (generic advice from the same labels).
 
-Usage: OMP_NUM_THREADS=8 python3 experiments/exp63_feedback_learning_curve.py
+--flagged-only: the label pool is restricted to training error cases the
+ranker would have flagged (top 20% of training rows by its score), which is
+all a pilot's reviewer feedback would cover.
+
+Usage: OMP_NUM_THREADS=8 python3 experiments/exp63_feedback_learning_curve.py [--flagged-only]
 """
 import json
 import random
@@ -29,7 +33,9 @@ REPEATS = 10
 
 
 def main():
+    import argparse
     from sklearn.ensemble import HistGradientBoostingClassifier
+    ap = argparse.ArgumentParser(); ap.add_argument("--flagged-only", action="store_true"); args = ap.parse_args()
     qc_dir = str(ROOT.parent / "snap-qc-data/raw")
     cfgs = {r["state"]: r["cfg"] for r in json.loads((ROOT / "experiments" / "exp58_results.json").read_text())}
     out = {}
@@ -47,6 +53,9 @@ def main():
         ev = [i for i, k in enumerate(te) if s[i] >= np.quantile(s, 0.8) and yh[i] and t3[k]]
         truth = [t3[te[i]] for i in ev]
         pool = [i for i, k in enumerate(tr) if y[i] and t3[k]]
+        if args.flagged_only:
+            s_tr = f(X)
+            pool = [i for i in pool if s_tr[i] >= np.quantile(s_tr, 0.8)]
         rows = {}
         for n in [m for m in SIZES if m < len(pool)] + [len(pool)]:
             model_hits, base_hits = [], []
@@ -65,7 +74,8 @@ def main():
             print(f"{st} n={n:4d}: where-to-look {rows[n]['model_top2']:.0%} (±{rows[n]['model_sd']:.0%}) "
                   f"vs generic {rows[n]['generic_top2']:.0%}", flush=True)
         out[st] = {"flagged_eval_errors": len(ev), "label_pool": len(pool), "curve": rows}
-    (ROOT / "experiments" / "exp63_results.json").write_text(json.dumps(out, indent=1))
+    name = "exp63_results_flagged_only.json" if args.flagged_only else "exp63_results.json"
+    (ROOT / "experiments" / name).write_text(json.dumps(out, indent=1))
 
 
 if __name__ == "__main__":
