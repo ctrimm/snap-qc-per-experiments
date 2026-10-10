@@ -61,6 +61,15 @@ Human check at every step: 15–20 cards rated by a QC reviewer for clarity and 
 - "Check first" covers the real error in its top two for at least 70% of flagged error cases in PA and NY (exp61 level).
 - Reviewer rating: most cards judged clear and useful.
 
+## Frozen before any language model output (2026-10-10)
+
+- **Cards:** `exp62_flag_cards.py` → `exp62_cards.jsonl`, 327 cards (PA 164, NY 163; top 20% of each holdout). Check-first top-2 covers the real error location for 78% (PA) and 74% (NY) of flagged errors with a location label: **design criterion 2 met.**
+- **Evaluation set:** 200 cards, 100 per state, `random.Random(62)` → `exp62_eval_ids.txt`.
+- **Checker:** `exp62_check.py` (faithful numbers and topics, no forbidden claims; leads with the first check-first part; ≤ 70 words; Flesch-Kincaid ≤ 9). Verified on planted mistakes (wrong number, accusation, "overpaid", topic not on card, wrong order, too long): all caught. Two checker/card bugs were fixed before freezing, found on the template baseline: the instruction-word match caught "review" in "review queue", and likelihoods could read "10 in 10", now capped at 9.
+- **Baseline:** the deterministic template passes 100% of checks (63 words, grade 6.3). A language model can therefore only match it on automatic checks; its possible gain is clarity to a human reader.
+- **Step 1 (no training):** E2B and E4B, greedy, thinking off, max 200 tokens, one fixed prompt (`exp62_rewrite.py`). A model's notes are **acceptable** if faithful on 100% of the 200 cards and passing all checks on ≥ 95%.
+- **Decision rule:** the smallest acceptable model goes to a blind reviewer comparison against the template (15–20 cards). If neither is acceptable, step 2 (distillation with filtering) runs. If the reviewer doesn't prefer the model's notes, ship the template.
+
 ## What it isn't
 
 It doesn't decide anything about a household, and it doesn't touch the federal QC sample. It explains why the state's own review queue put a case where it did, and suggests where to start.
