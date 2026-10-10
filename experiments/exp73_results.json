@@ -1,0 +1,137 @@
+{
+ "central": {
+  "R": 0.02,
+  "lift": "top10",
+  "hair": 1.0,
+  "f": 0.8,
+  "m": 6
+ },
+ "rows": [
+  {
+   "factor": "R",
+   "value": "0.5%",
+   "avoided_ranker": 1324809931,
+   "avoided_random": 156071294,
+   "under_6pct": 12
+  },
+  {
+   "factor": "R",
+   "value": "1.0%",
+   "avoided_ranker": 2984854668,
+   "avoided_random": 206875683,
+   "under_6pct": 16
+  },
+  {
+   "factor": "R",
+   "value": "2.0%",
+   "avoided_ranker": 5275913123,
+   "avoided_random": 1025043637,
+   "under_6pct": 19
+  },
+  {
+   "factor": "R",
+   "value": "3.0%",
+   "avoided_ranker": 7440584134,
+   "avoided_random": 1516423262,
+   "under_6pct": 33
+  },
+  {
+   "factor": "R",
+   "value": "5.0%",
+   "avoided_ranker": 9867704103,
+   "avoided_random": 2840621624,
+   "under_6pct": 43
+  },
+  {
+   "factor": "lift",
+   "value": "top20",
+   "avoided_ranker": 3850948739,
+   "avoided_random": 1025043637,
+   "under_6pct": 16
+  },
+  {
+   "factor": "lift",
+   "value": "top10",
+   "avoided_ranker": 5275913123,
+   "avoided_random": 1025043637,
+   "under_6pct": 19
+  },
+  {
+   "factor": "lift",
+   "value": "top10 x0.75",
+   "avoided_ranker": 4561911772,
+   "avoided_random": 1025043637,
+   "under_6pct": 16
+  },
+  {
+   "factor": "f",
+   "value": "0.5",
+   "avoided_ranker": 3515321384,
+   "avoided_random": 206875683,
+   "under_6pct": 16
+  },
+  {
+   "factor": "f",
+   "value": "0.6",
+   "avoided_ranker": 4561911772,
+   "avoided_random": 206875683,
+   "under_6pct": 16
+  },
+  {
+   "factor": "f",
+   "value": "0.8",
+   "avoided_ranker": 5275913123,
+   "avoided_random": 1025043637,
+   "under_6pct": 19
+  },
+  {
+   "factor": "f",
+   "value": "0.9",
+   "avoided_ranker": 5750189045,
+   "avoided_random": 1202524475,
+   "under_6pct": 22
+  },
+  {
+   "factor": "f",
+   "value": "1.0",
+   "avoided_ranker": 6374803700,
+   "avoided_random": 1227685115,
+   "under_6pct": 26
+  },
+  {
+   "factor": "m",
+   "value": "2",
+   "avoided_ranker": 1728085805,
+   "avoided_random": 156071294,
+   "under_6pct": 14
+  },
+  {
+   "factor": "m",
+   "value": "4",
+   "avoided_ranker": 3892984752,
+   "avoided_random": 206875683,
+   "under_6pct": 16
+  },
+  {
+   "factor": "m",
+   "value": "6",
+   "avoided_ranker": 5275913123,
+   "avoided_random": 1025043637,
+   "under_6pct": 19
+  },
+  {
+   "factor": "m",
+   "value": "8",
+   "avoided_ranker": 6868347119,
+   "avoided_random": 1379408624,
+   "under_6pct": 28
+  },
+  {
+   "factor": "m",
+   "value": "12",
+   "avoided_ranker": 8976385987,
+   "avoided_random": 2389278629,
+   "under_6pct": 38
+  }
+ ]
+}
