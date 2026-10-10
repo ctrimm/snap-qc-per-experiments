@@ -32,6 +32,15 @@ Sentence 1: the priority and the expected error in dollars. Sentence 2: the main
 """
 
 
+WORDING = "v1"  # exp76: "v2" card wording (set by --wording)
+
+
+TEACHER_EXTRA_V2 = """
+Style: write 4 or 5 short sentences. Keep every sentence under 15 words. Use everyday words (say "pay stubs", not "verification of earnings").
+Sentence 1: the priority, the expected error in dollars, and the monthly benefit. Sentence 2: the main reasons it stands out. Then one sentence for each thing to check, with what to ask for, and say how often similar cases with an error had it there, using the card's "N of 10". If the card lists a most common issue for the first check, mention it briefly.
+"""
+
+
 def card_text(c):
     w = c["why"]
     lines = [f"Priority: {w['priority']} of the review queue",
@@ -40,7 +49,9 @@ def card_text(c):
              "Why it stands out: " + (", ".join(w["risk_factors"]) or "overall profile")]
     lines += [f"  - {f}" for f in w["facts"]]
     for n, (cf, ask) in enumerate(zip(c["check_first"], c["ask_for"]), 1):
-        line = f"Check {['first', 'second', 'third', 'fourth'][n - 1]}: {cf['name']} (about {cf['in_10']} in 10 similar flagged cases). Ask for: {ask['ask_for']}."
+        odds = (f"in about {cf['in_10']} of 10 similar cases with an error, that's where it was" if WORDING == "v2"
+                else f"about {cf['in_10']} in 10 similar flagged cases")
+        line = f"Check {['first', 'second', 'third', 'fourth'][n - 1]}: {cf['name']} ({odds}). Ask for: {ask['ask_for']}."
         if ask["common_mistake"]:
             line += f" Most common issue here: {ask['common_mistake']}."
         lines.append(line)
@@ -56,6 +67,8 @@ def main():
     ap.add_argument("--cards", default=str(ROOT / "experiments" / "exp62_cards.jsonl"))
     ap.add_argument("--teacher", action="store_true", help="add short-sentence style guidance (step-2 teacher)")
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--wording", default="v1", choices=["v1", "v2"])
+    ap.add_argument("--teacher-style", default="v1", choices=["v1", "v2"], help="exp77: keep odds and benefit")
     ap.add_argument("--temp", type=float, default=0.0, help="exp66: sampling temperature (default greedy)")
     ap.add_argument("--samples", type=int, default=1, help="exp66: notes per card (sample index in 'k')")
     ap.add_argument("--seed", type=int, default=66)
@@ -71,7 +84,10 @@ def main():
     cards = {c["card_id"]: c for c in map(json.loads, open(args.cards))}
     ids = list(cards) if args.ids == "all" else Path(args.ids).read_text().split()
     ids = ids[: args.limit] if args.limit else ids
-    prompt = PROMPT.replace("Flag card:", TEACHER_EXTRA.strip() + "\n\nFlag card:") if args.teacher else PROMPT
+    global WORDING
+    WORDING = args.wording
+    extra = TEACHER_EXTRA_V2 if args.teacher_style == "v2" else TEACHER_EXTRA
+    prompt = PROMPT.replace("Flag card:", extra.strip() + "\n\nFlag card:") if args.teacher else PROMPT
     done = set()
     if Path(args.out).exists():  # resume
         done = {(r["card_id"], r.get("k", 0)) for r in map(json.loads, open(args.out))}

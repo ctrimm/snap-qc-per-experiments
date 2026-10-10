@@ -68,6 +68,9 @@ GROUP_FACTS = {  # group -> (feature, plain label) facts to show
     "household size": [("hh_size_cert", "household size")],
 }
 TOP_K = 2  # parts of the case on the card; exp65 uses 3 (--top-k)
+TEMPERATURE = None  # exp76: exp74 temperature scaling of the where-to-look odds (--calibrate)
+EXP74_T = {"PA": 2.9, "NY": 2.9, "ID": 2.8}  # measured in exp74; other states use 2.9 (pre-registered in exp76)
+WORDING = "v1"  # exp76 "v2": "in about N of 10 similar cases with an error"
 COUNT_FEATS = {"hh_size_cert", "hh_size_reported", "sua_used"}
 
 
@@ -144,6 +147,11 @@ def make_cards(st, real, lab, tr, te, cfg, prefix=""):
     D = E61.reasons(f, Xh, med)
     names = list(E61.GROUPS)
     proba = wl.predict_proba(Xh)
+    if TEMPERATURE:
+        T = EXP74_T.get(st, 2.9)
+        lp = np.log(np.clip(proba, 1e-9, 1)) / T
+        lp -= lp.max(axis=1, keepdims=True)
+        proba = np.exp(lp) / np.exp(lp).sum(axis=1, keepdims=True)
     cards = []
     for i, k in enumerate(te):
         if score[i] < q80:
@@ -182,8 +190,13 @@ def render_template(c):
           f"in expected error, on a {money(w['monthly_benefit'])} monthly benefit.")
     s2 = "It stands out for " + " and ".join(w["risk_factors"][:2]) + "." if w["risk_factors"] else ""
     a = c["ask_for"][0]
-    s3 = (f"Check {a['name']} first (about {c['check_first'][0]['in_10']} in 10 similar cases): {a['ask_for']}.")
-    rest = [f"Then check {b['name']} (about {cf['in_10']} in 10)." for b, cf in zip(c["ask_for"][1:], c["check_first"][1:])]
+    if WORDING == "v2":
+        s3 = (f"Check {a['name']} first (in about {c['check_first'][0]['in_10']} of 10 similar cases with an error, "
+              f"that's where it was): {a['ask_for']}.")
+        rest = [f"Then check {b['name']} (about {cf['in_10']} of 10)." for b, cf in zip(c["ask_for"][1:], c["check_first"][1:])]
+    else:
+        s3 = (f"Check {a['name']} first (about {c['check_first'][0]['in_10']} in 10 similar cases): {a['ask_for']}.")
+        rest = [f"Then check {b['name']} (about {cf['in_10']} in 10)." for b, cf in zip(c["ask_for"][1:], c["check_first"][1:])]
     return " ".join(x for x in (s1, s2, s3, *rest) if x)
 
 
@@ -197,12 +210,16 @@ def main():
     ap.add_argument("--qc-dir", default=str(ROOT.parent / "snap-qc-data/raw"))
     ap.add_argument("--states", default="PA,NY")
     ap.add_argument("--top-k", type=int, default=2, help="parts of the case on each card (exp65: 3)")
+    ap.add_argument("--calibrate", action="store_true", help="exp76: exp74 temperature scaling of the odds")
+    ap.add_argument("--wording", default="v1", choices=["v1", "v2"])
     ap.add_argument("--out", default=None, help="default experiments/exp62_cards.jsonl")
     ap.add_argument("--train-cards", action="store_true",
                     help="cross-fitted cards for non-holdout rows -> exp62_train_cards.jsonl")
     args = ap.parse_args()
-    global TOP_K
+    global TOP_K, TEMPERATURE, WORDING
     TOP_K = args.top_k
+    TEMPERATURE = args.calibrate
+    WORDING = args.wording
     cfgs = {r["state"]: r["cfg"] for r in json.loads((ROOT / "experiments" / "exp58_results.json").read_text())}
     allc = []
     if args.train_cards:
@@ -210,7 +227,7 @@ def main():
             cs = build_train_cards(st, args.qc_dir, cfgs[st])
             print(f"{st}: {len(cs)} training cards", flush=True)
             allc += cs
-        out = ROOT / "experiments" / "exp62_train_cards.jsonl"
+        out = Path(args.out) if args.out else ROOT / "experiments" / "exp62_train_cards.jsonl"
         out.write_text("".join(json.dumps(c) + "\n" for c in allc))
         print(f"wrote {out} ({len(allc)} cards)")
         return
