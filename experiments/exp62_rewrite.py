@@ -40,7 +40,7 @@ def card_text(c):
              "Why it stands out: " + (", ".join(w["risk_factors"]) or "overall profile")]
     lines += [f"  - {f}" for f in w["facts"]]
     for n, (cf, ask) in enumerate(zip(c["check_first"], c["ask_for"]), 1):
-        line = f"Check {'first' if n == 1 else 'second'}: {cf['name']} (about {cf['in_10']} in 10 similar flagged cases). Ask for: {ask['ask_for']}."
+        line = f"Check {['first', 'second', 'third', 'fourth'][n - 1]}: {cf['name']} (about {cf['in_10']} in 10 similar flagged cases). Ask for: {ask['ask_for']}."
         if ask["common_mistake"]:
             line += f" Most common issue here: {ask['common_mistake']}."
         lines.append(line)

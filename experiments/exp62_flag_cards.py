@@ -67,6 +67,7 @@ GROUP_FACTS = {  # group -> (feature, plain label) facts to show
     "child support": [("child_support_claimed", "child support claimed")],
     "household size": [("hh_size_cert", "household size")],
 }
+TOP_K = 2  # parts of the case on the card; exp65 uses 3 (--top-k)
 COUNT_FEATS = {"hh_size_cert", "hh_size_reported", "sua_used"}
 
 
@@ -148,7 +149,7 @@ def make_cards(st, real, lab, tr, te, cfg, prefix=""):
         if score[i] < q80:
             continue
         order = [names[j] for j in np.argsort(-D[i]) if D[i, j] > 0][:3]
-        top = np.argsort(-proba[i])[:2]
+        top = np.argsort(-proba[i])[:TOP_K]
         check = [{"part": str(wl.classes_[j]), "name": PART_NAME[str(wl.classes_[j])],
                   "in_10": min(9, max(1, int(round(10 * proba[i, j]))))} for j in top]
         ask = []
@@ -180,10 +181,10 @@ def render_template(c):
     s1 = (f"This case is in the {w['priority']} of the review queue: about {money(w['expected_error_dollars'])} "
           f"in expected error, on a {money(w['monthly_benefit'])} monthly benefit.")
     s2 = "It stands out for " + " and ".join(w["risk_factors"][:2]) + "." if w["risk_factors"] else ""
-    a, b = c["ask_for"][0], c["ask_for"][1]
+    a = c["ask_for"][0]
     s3 = (f"Check {a['name']} first (about {c['check_first'][0]['in_10']} in 10 similar cases): {a['ask_for']}.")
-    s4 = f"Then check {b['name']} (about {c['check_first'][1]['in_10']} in 10)."
-    return " ".join(x for x in (s1, s2, s3, s4) if x)
+    rest = [f"Then check {b['name']} (about {cf['in_10']} in 10)." for b, cf in zip(c["ask_for"][1:], c["check_first"][1:])]
+    return " ".join(x for x in (s1, s2, s3, *rest) if x)
 
 
 def card_for_model(c):
@@ -195,9 +196,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--qc-dir", default=str(ROOT.parent / "snap-qc-data/raw"))
     ap.add_argument("--states", default="PA,NY")
+    ap.add_argument("--top-k", type=int, default=2, help="parts of the case on each card (exp65: 3)")
+    ap.add_argument("--out", default=None, help="default experiments/exp62_cards.jsonl")
     ap.add_argument("--train-cards", action="store_true",
                     help="cross-fitted cards for non-holdout rows -> exp62_train_cards.jsonl")
     args = ap.parse_args()
+    global TOP_K
+    TOP_K = args.top_k
     cfgs = {r["state"]: r["cfg"] for r in json.loads((ROOT / "experiments" / "exp58_results.json").read_text())}
     allc = []
     if args.train_cards:
@@ -215,7 +220,7 @@ def main():
         top2 = sum(c["truth"]["t3"] in {x["part"] for x in c["check_first"]} for c in err)
         print(f"{st}: {len(cards)} cards, {len(err)} error cases with a location; check-first top-2 covers {top2 / len(err):.0%}")
         allc += cards
-    out = ROOT / "experiments" / "exp62_cards.jsonl"
+    out = Path(args.out) if args.out else ROOT / "experiments" / "exp62_cards.jsonl"
     out.write_text("".join(json.dumps(c) + "\n" for c in allc))
     print(f"wrote {out} ({len(allc)} cards)")
 

@@ -35,6 +35,8 @@ TOPICS = {  # topic -> regex; a topic in the note must also be on the card
     "assets": r"\bassets?\b|bank account|savings",
     "benefit math": r"calculation|math|computation",
 }
+MAX_WORDS = 70  # exp65 (three-part cards) sets 80
+
 FORBIDDEN = r"fraud|\blie[sd]?\b|lying|intentional|penalt|disqualif|\bden(y|ied)\b|terminat|guilt|" \
             r"overpaid|underpaid|overpayment|underpayment|over-?issu|under-?issu|" \
             r"made (a |an )?(mistake|error)|has (a |an )?(mistake|error)|is wrong|was wrong|did something wrong|cheat"
@@ -96,8 +98,8 @@ def check(c, note):
     words = len(re.findall(r"\S+", note))
     grade = fk_grade(note)
     faithful = not bad_nums and not bad_topics and not forbidden
-    return {"faithful": faithful, "leads": leads, "short": words <= 70, "readable": grade <= 9.0,
-            "pass": faithful and leads and words <= 70 and grade <= 9.0,
+    return {"faithful": faithful, "leads": leads, "short": words <= MAX_WORDS, "readable": grade <= 9.0,
+            "pass": faithful and leads and words <= MAX_WORDS and grade <= 9.0,
             "bad_numbers": bad_nums, "bad_topics": bad_topics, "forbidden": forbidden,
             "words": words, "grade": round(grade, 1)}
 
