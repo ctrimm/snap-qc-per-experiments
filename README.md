@@ -100,6 +100,7 @@ transfer, LM eval) every experiment here must move.
 | 68 | All-state rankers | Production | Running — exp58 pipeline for all 53 jurisdictions |
 | 69 | Cost-share scenarios | Production | Pre-registered, waiting on exp68 |
 | 70 | [CalFresh policy quiz](experiments/exp70_calfresh_mcq.md) | LM gate | Held (pre-registered) — 500 CalFresh questions: E4B untrained 72.6%, QC-fine-tuned 74.4% (+1.8 [−0.4, +3.8]): no knowledge lost. 31B untrained 84.8% (published 85.8%, setup check passes). Both halves of the LM gate now met |
+| 71 | [Differences-first rationale](experiments/exp71_rationale.md) | LM gate | Did not hold (pre-registered) — training E4B to list agency-vs-verified differences before answering collapsed T1 to 'error' for every case: fresh-set composite 0.072 vs 0.334 answer-only (−0.260 [−0.279, −0.241]); −0.179 even on the 148 visible-difference items. Answer-only stays the recipe |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
