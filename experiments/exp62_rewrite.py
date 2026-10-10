@@ -56,8 +56,17 @@ def main():
     ap.add_argument("--cards", default=str(ROOT / "experiments" / "exp62_cards.jsonl"))
     ap.add_argument("--teacher", action="store_true", help="add short-sentence style guidance (step-2 teacher)")
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--temp", type=float, default=0.0, help="exp66: sampling temperature (default greedy)")
+    ap.add_argument("--samples", type=int, default=1, help="exp66: notes per card (sample index in 'k')")
+    ap.add_argument("--seed", type=int, default=66)
     args = ap.parse_args()
     from mlx_lm import generate, load
+    sampler = None
+    if args.temp > 0:
+        import mlx.core as mx
+        from mlx_lm.sample_utils import make_sampler
+        mx.random.seed(args.seed)
+        sampler = make_sampler(temp=args.temp, top_p=0.95)
     model, tok = load(args.model, adapter_path=args.adapter) if args.adapter else load(args.model)
     cards = {c["card_id"]: c for c in map(json.loads, open(args.cards))}
     ids = list(cards) if args.ids == "all" else Path(args.ids).read_text().split()
@@ -65,16 +74,21 @@ def main():
     prompt = PROMPT.replace("Flag card:", TEACHER_EXTRA.strip() + "\n\nFlag card:") if args.teacher else PROMPT
     done = set()
     if Path(args.out).exists():  # resume
-        done = {json.loads(l)["card_id"] for l in open(args.out)}
+        done = {(r["card_id"], r.get("k", 0)) for r in map(json.loads, open(args.out))}
     with open(args.out, "a") as fh:
         for i in ids:
-            if i in done:
-                continue
             p = tok.apply_chat_template([{"role": "user", "content": prompt.format(card=card_text(cards[i]))}],
                                         add_generation_prompt=True, tokenize=False, enable_thinking=False)
-            note = generate(model, tok, prompt=p, max_tokens=200, verbose=False).strip()
-            fh.write(json.dumps({"card_id": i, "note": note}) + "\n")
-            fh.flush()
+            for k in range(args.samples):
+                if (i, k) in done:
+                    continue
+                kw = {"sampler": sampler} if sampler else {}
+                note = generate(model, tok, prompt=p, max_tokens=200, verbose=False, **kw).strip()
+                rec = {"card_id": i, "note": note}
+                if args.samples > 1:
+                    rec["k"] = k
+                fh.write(json.dumps(rec) + "\n")
+                fh.flush()
 
 
 if __name__ == "__main__":
