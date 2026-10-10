@@ -97,6 +97,9 @@ transfer, LM eval) every experiment here must move.
 | 65 | [Three-part flag cards](experiments/exp65_three_part_cards.md) | Production | Held — top-3 'check first' covers 88% (PA) / 86% (NY) of flagged errors (vs 78/74% top-2). Template 100% pass (71 words); distilled E2B 99% (54 words, grade 5.1; its 2 misses are checker strictness), untrained on three-part cards; E4B zero-shot 66%. Blind A/B reviewer packet ready |
 | 66 | [Explanation self-training loop](experiments/exp66_explainer_self_training.md) | Production | Cancelled before running — exp62's student already passes 100% of automatic checks, so the checker has no signal left; further gains need reviewer preferences |
 | 67 | [Pilot feedback-loop simulation](experiments/exp67_feedback_loop_sim.md) | Production | Held — retraining only on flagged reviews degrades the ranker (2024 lift 2.60× vs 3.05× with all labels; −4 pts of dollars found). A 10% random slice helps a little (2.73×) at almost no cost. Best design: retrain yearly on the state's federal QC sample (already random and fully reviewed) plus pilot findings |
+| 68 | All-state rankers | Production | Running — exp58 pipeline for all 53 jurisdictions |
+| 69 | Cost-share scenarios | Production | Pre-registered, waiting on exp68 |
+| 70 | [CalFresh policy quiz](experiments/exp70_calfresh_mcq.md) | LM gate | Held (pre-registered) — 500 CalFresh questions: E4B untrained 72.6%, QC-fine-tuned 74.4% (+1.8 [−0.4, +3.8]): no knowledge lost. 31B untrained 84.8% (published 85.8%, setup check passes). Both halves of the LM gate now met |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
