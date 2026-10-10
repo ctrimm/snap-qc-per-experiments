@@ -1,0 +1,84 @@
+{
+ "state": "ND",
+ "state_code": "38",
+ "built": "2026-10-10",
+ "training_rows": 1691,
+ "training_years": "FY2020-2024 QC public-use",
+ "error_rows": 645,
+ "features": [
+  "hh_size_cert",
+  "hh_size_reported",
+  "gross_income",
+  "net_income",
+  "earned_deduction",
+  "earned_est",
+  "unearned_est",
+  "shelter_deduction",
+  "rent",
+  "utilities",
+  "sua_used",
+  "medical_claimed",
+  "depcare_claimed",
+  "child_support_claimed",
+  "homeless",
+  "issued_benefit",
+  "income_per_person",
+  "earned_share",
+  "shelter_to_income",
+  "net_to_gross"
+ ],
+ "feature_note": "agency-side fields only (what the agency had before QC review)",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores (exp57)",
+ "config": {
+  "clf": {
+   "learning_rate": 0.1,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 20,
+   "l2_regularization": 0.0,
+   "max_iter": 100
+  },
+  "reg": {
+   "learning_rate": 0.1,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 20,
+   "l2_regularization": 0.0,
+   "max_iter": 100
+  }
+ },
+ "chosen": "untuned",
+ "evaluation": {
+  "nested_cv_top20_lift": {
+   "untuned": 2.875,
+   "tuned": 2.51
+  },
+  "time_split_top20_lift": {
+   "untuned": 2.719,
+   "tuned": 2.719
+  },
+  "holdout": {
+   "top10": {
+    "lift": 4.161,
+    "per_hour_$": 182.7,
+    "random_per_hour_$": 43.9,
+    "expected_over_actual": 0.955
+   },
+   "top20": {
+    "lift": 2.881,
+    "per_hour_$": 125.0,
+    "random_per_hour_$": 43.4,
+    "expected_over_actual": 0.964
+   },
+   "top30": {
+    "lift": 2.448,
+    "per_hour_$": 106.6,
+    "random_per_hour_$": 43.6,
+    "expected_over_actual": 0.897
+   }
+  },
+  "n_train": 1268,
+  "n_holdout": 423
+ },
+ "review_minutes_assumed": 30,
+ "sklearn_version": "1.9.1",
+ "source": "snap-qc-per-experiments exp58 (experiments/exp58_agency_rankers.py)"
+}

@@ -1,0 +1,84 @@
+{
+ "state": "CO",
+ "state_code": "8",
+ "built": "2026-10-10",
+ "training_rows": 3595,
+ "training_years": "FY2020-2024 QC public-use",
+ "error_rows": 1271,
+ "features": [
+  "hh_size_cert",
+  "hh_size_reported",
+  "gross_income",
+  "net_income",
+  "earned_deduction",
+  "earned_est",
+  "unearned_est",
+  "shelter_deduction",
+  "rent",
+  "utilities",
+  "sua_used",
+  "medical_claimed",
+  "depcare_claimed",
+  "child_support_claimed",
+  "homeless",
+  "issued_benefit",
+  "income_per_person",
+  "earned_share",
+  "shelter_to_income",
+  "net_to_gross"
+ ],
+ "feature_note": "agency-side fields only (what the agency had before QC review)",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores (exp57)",
+ "config": {
+  "clf": {
+   "learning_rate": 0.1,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 20,
+   "l2_regularization": 0.0,
+   "max_iter": 100
+  },
+  "reg": {
+   "learning_rate": 0.1,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 20,
+   "l2_regularization": 0.0,
+   "max_iter": 100
+  }
+ },
+ "chosen": "untuned",
+ "evaluation": {
+  "nested_cv_top20_lift": {
+   "untuned": 3.486,
+   "tuned": 3.378
+  },
+  "time_split_top20_lift": {
+   "untuned": 3.295,
+   "tuned": 3.227
+  },
+  "holdout": {
+   "top10": {
+    "lift": 5.552,
+    "per_hour_$": 281.0,
+    "random_per_hour_$": 50.6,
+    "expected_over_actual": 1.048
+   },
+   "top20": {
+    "lift": 3.445,
+    "per_hour_$": 174.3,
+    "random_per_hour_$": 50.6,
+    "expected_over_actual": 1.047
+   },
+   "top30": {
+    "lift": 2.561,
+    "per_hour_$": 129.6,
+    "random_per_hour_$": 50.6,
+    "expected_over_actual": 1.047
+   }
+  },
+  "n_train": 2696,
+  "n_holdout": 899
+ },
+ "review_minutes_assumed": 30,
+ "sklearn_version": "1.9.1",
+ "source": "snap-qc-per-experiments exp58 (experiments/exp58_agency_rankers.py)"
+}

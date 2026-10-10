@@ -1,0 +1,84 @@
+{
+ "state": "CT",
+ "state_code": "9",
+ "built": "2026-10-10",
+ "training_rows": 3818,
+ "training_years": "FY2020-2024 QC public-use",
+ "error_rows": 1515,
+ "features": [
+  "hh_size_cert",
+  "hh_size_reported",
+  "gross_income",
+  "net_income",
+  "earned_deduction",
+  "earned_est",
+  "unearned_est",
+  "shelter_deduction",
+  "rent",
+  "utilities",
+  "sua_used",
+  "medical_claimed",
+  "depcare_claimed",
+  "child_support_claimed",
+  "homeless",
+  "issued_benefit",
+  "income_per_person",
+  "earned_share",
+  "shelter_to_income",
+  "net_to_gross"
+ ],
+ "feature_note": "agency-side fields only (what the agency had before QC review)",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores (exp57)",
+ "config": {
+  "clf": {
+   "learning_rate": 0.1,
+   "max_leaf_nodes": 15,
+   "min_samples_leaf": 80,
+   "l2_regularization": 0.0,
+   "max_iter": 200
+  },
+  "reg": {
+   "learning_rate": 0.03,
+   "max_leaf_nodes": 15,
+   "min_samples_leaf": 10,
+   "l2_regularization": 0.1,
+   "max_iter": 400
+  }
+ },
+ "chosen": "tuned",
+ "evaluation": {
+  "nested_cv_top20_lift": {
+   "untuned": 3.657,
+   "tuned": 3.666
+  },
+  "time_split_top20_lift": {
+   "untuned": 3.607,
+   "tuned": 3.498
+  },
+  "holdout": {
+   "top10": {
+    "lift": 6.044,
+    "per_hour_$": 326.9,
+    "random_per_hour_$": 54.1,
+    "expected_over_actual": 0.904
+   },
+   "top20": {
+    "lift": 3.73,
+    "per_hour_$": 202.8,
+    "random_per_hour_$": 54.4,
+    "expected_over_actual": 0.949
+   },
+   "top30": {
+    "lift": 2.935,
+    "per_hour_$": 159.9,
+    "random_per_hour_$": 54.5,
+    "expected_over_actual": 0.935
+   }
+  },
+  "n_train": 2863,
+  "n_holdout": 955
+ },
+ "review_minutes_assumed": 30,
+ "sklearn_version": "1.9.1",
+ "source": "snap-qc-per-experiments exp58 (experiments/exp58_agency_rankers.py)"
+}

@@ -1,0 +1,84 @@
+{
+ "state": "NM",
+ "state_code": "35",
+ "built": "2026-10-10",
+ "training_rows": 3845,
+ "training_years": "FY2020-2024 QC public-use",
+ "error_rows": 1838,
+ "features": [
+  "hh_size_cert",
+  "hh_size_reported",
+  "gross_income",
+  "net_income",
+  "earned_deduction",
+  "earned_est",
+  "unearned_est",
+  "shelter_deduction",
+  "rent",
+  "utilities",
+  "sua_used",
+  "medical_claimed",
+  "depcare_claimed",
+  "child_support_claimed",
+  "homeless",
+  "issued_benefit",
+  "income_per_person",
+  "earned_share",
+  "shelter_to_income",
+  "net_to_gross"
+ ],
+ "feature_note": "agency-side fields only (what the agency had before QC review)",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores (exp57)",
+ "config": {
+  "clf": {
+   "learning_rate": 0.03,
+   "max_leaf_nodes": 7,
+   "min_samples_leaf": 20,
+   "l2_regularization": 1.0,
+   "max_iter": 200
+  },
+  "reg": {
+   "learning_rate": 0.03,
+   "max_leaf_nodes": 31,
+   "min_samples_leaf": 40,
+   "l2_regularization": 0.1,
+   "max_iter": 200
+  }
+ },
+ "chosen": "tuned",
+ "evaluation": {
+  "nested_cv_top20_lift": {
+   "untuned": 3.443,
+   "tuned": 3.5
+  },
+  "time_split_top20_lift": {
+   "untuned": 3.443,
+   "tuned": 3.413
+  },
+  "holdout": {
+   "top10": {
+    "lift": 5.175,
+    "per_hour_$": 269.4,
+    "random_per_hour_$": 52.1,
+    "expected_over_actual": 1.136
+   },
+   "top20": {
+    "lift": 3.377,
+    "per_hour_$": 175.8,
+    "random_per_hour_$": 52.1,
+    "expected_over_actual": 1.1
+   },
+   "top30": {
+    "lift": 2.673,
+    "per_hour_$": 138.7,
+    "random_per_hour_$": 51.9,
+    "expected_over_actual": 1.06
+   }
+  },
+  "n_train": 2883,
+  "n_holdout": 962
+ },
+ "review_minutes_assumed": 30,
+ "sklearn_version": "1.9.1",
+ "source": "snap-qc-per-experiments exp58 (experiments/exp58_agency_rankers.py)"
+}

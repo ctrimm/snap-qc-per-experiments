@@ -1,0 +1,377 @@
+<style>
+  /* Layout: header + takeaway, map card (metric switch, legend, state detail), then a full table and notes. */
+  .tr-wrap { display: grid; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); max-width: 78rem; margin-inline: auto; }
+  .tr-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .tr-take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: var(--cds-gap-xs) 0 0; max-width: 62ch; }
+  .tr-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+  .tr-tile, .tr-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+  .tr-tile .lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .tr-tile .num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; margin-top: var(--cds-gap-xs); }
+  .tr-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .tr-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: var(--cds-gap-xs) 0 var(--cds-gap-md); }
+  .tr-mapgrid { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(min(100%, 16rem), 1fr); gap: var(--cds-gap-lg); align-items: start; }
+  @media (max-width: 760px) { .tr-mapgrid { grid-template-columns: 1fr; } }
+  .tr-switch { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); margin-bottom: var(--cds-gap-md); }
+  .tr-switch button { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-radius: 999px; border: 1px solid var(--color-border-line); background: transparent; color: var(--color-fg); cursor: pointer; }
+  .tr-switch button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+  .tr-switch button:focus-visible, .tr-table th button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .tr-map { position: relative; min-height: 18rem; }
+  .tr-map svg { display: block; width: 100%; height: auto; }
+  .tr-map path.st { stroke: var(--color-bg); stroke-width: 0.8; cursor: pointer; }
+  .tr-map path.st.sel { stroke: var(--color-fg); stroke-width: 2; }
+  .tr-map path.st:focus-visible { outline: none; stroke: var(--color-fg); stroke-width: 2; }
+  .tr-legend { display: flex; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); flex-wrap: wrap; }
+  .tr-legend .bar { width: 10rem; max-width: 40%; height: 0.6rem; border-radius: 999px; }
+  .tr-legend .sw { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 3px; vertical-align: -1px; margin-right: 4px; }
+  .tr-terr { display: flex; gap: var(--cds-gap-sm); flex-wrap: wrap; margin-top: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+  .tr-terr button { font: inherit; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); color: var(--color-fg); cursor: pointer; }
+  .tr-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; }
+  .tr-tip .t { color: var(--cds-text-secondary); }
+  .tr-detail h3 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+  .tr-detail dl { display: grid; grid-template-columns: 1fr auto; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: 0; font-size: var(--cds-font-size-body); }
+  .tr-detail dt { color: var(--color-fg-muted); }
+  .tr-detail dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  .tr-detail .grp { grid-column: 1 / -1; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-gap-sm); }
+  .tr-flag { font-size: var(--cds-font-size-caption); color: var(--color-warn); margin-top: var(--cds-gap-sm); }
+  .tr-tools { display: flex; gap: var(--cds-gap-md); align-items: center; flex-wrap: wrap; margin-bottom: var(--cds-gap-sm); }
+  .tr-tools input { font: inherit; padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 0; }
+  .tr-tablebox { max-height: 34rem; overflow: auto; }
+  .tr-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+  .tr-table th { position: sticky; top: 0; background: var(--color-panel); text-align: right; font-weight: var(--cds-font-weight-medium); border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm); white-space: nowrap; }
+  .tr-table th:first-child, .tr-table td:first-child { text-align: left; }
+  .tr-table th button { font: inherit; background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
+  .tr-table td { text-align: right; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .tr-table tr { cursor: pointer; }
+  .tr-table tr.sel td { background: var(--cds-chart-grid); }
+  .tr-table .hide-n { }
+  @media (max-width: 640px) { .tr-table .hide-n { display: none; } }
+  .tr-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .tr-notes p, .tr-notes li { font-size: var(--cds-font-size-body); max-width: 65ch; }
+  .tr-notes ul { padding-left: 1.1rem; margin: var(--cds-gap-xs) 0 0; }
+  .tr-assump td, .tr-assump th { text-align: left; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="tr-wrap">
+  <header class="tr-head" id="top">
+    <h1>SNAP triage rankers by state</h1>
+    <p class="tr-take" data-source="summary">—</p>
+  </header>
+
+  <section class="tr-tiles" id="headline" aria-label="Headline figures">
+    <div class="tr-tile"><div class="lab">Jurisdictions with a ranker</div><div class="num dash-skeleton" data-source="summary" data-field="n_states">—</div></div>
+    <div class="tr-tile"><div class="lab">Median top-20% lift over random review</div><div class="num dash-skeleton" data-source="summary" data-field="median_lift">—</div></div>
+    <div class="tr-tile"><div class="lab">Jurisdictions at 2.5× or better</div><div class="num dash-skeleton" data-source="summary" data-field="n_ge_25">—</div></div>
+    <div class="tr-tile"><div class="lab">FY2028 cost share avoided, all states (central scenario)</div><div class="num dash-skeleton" data-source="summary" data-field="saving_central_total">—</div></div>
+  </section>
+
+  <section class="tr-card" id="map-card">
+    <h2>Where the ranker helps most</h2>
+    <p class="tr-note">Click a state for its numbers. Lift and dollars come from each state's held-out QC cases; error rates are USDA's official FY2025 figures.</p>
+    <div class="tr-switch" role="group" aria-label="Map metric" id="metric-switch">
+      <button type="button" data-m="lift_top20" aria-pressed="true">Top-20% lift</button>
+      <button type="button" data-m="per_hour">Dollars per review hour</button>
+      <button type="button" data-m="per_fy2025">FY2025 error rate</button>
+      <button type="button" data-m="share_now">FY2028 cost share, now</button>
+      <button type="button" data-m="share_central">With ranker reviews</button>
+    </div>
+    <div class="tr-mapgrid">
+      <div>
+        <div class="tr-map" id="map" data-source="state_shapes state_results"></div>
+        <div class="tr-legend" id="legend" data-source="state_results"></div>
+        <div class="tr-terr" id="territories" data-source="state_results"></div>
+      </div>
+      <aside class="tr-detail" id="detail" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="tr-card" id="table-card">
+    <h2>All jurisdictions</h2>
+    <p class="tr-note">Sort by any column; search by name or code. Click a row to show it on the map.</p>
+    <div class="tr-tools"><label for="tr-q" class="tr-note" style="margin:0">Search</label><input id="tr-q" type="search" placeholder="e.g. Ohio or OH"></div>
+    <div class="tr-tablebox">
+      <table class="tr-table" id="tr-table" data-source="state_results" data-row-key="state">
+        <thead><tr>
+          <th data-field="state"><button type="button" data-k="state">State</button></th>
+          <th data-field="lift_top20"><button type="button" data-k="lift_top20">Top-20% lift</button></th>
+          <th data-field="lift_top10" class="hide-n"><button type="button" data-k="lift_top10">Top-10% lift</button></th>
+          <th data-field="per_hour"><button type="button" data-k="per_hour">$ per review hour</button></th>
+          <th data-field="random_per_hour" class="hide-n"><button type="button" data-k="random_per_hour">Random review</button></th>
+          <th data-field="time_split_lift" class="hide-n"><button type="button" data-k="time_split_lift">2020–22 → 2023–24</button></th>
+          <th data-field="exp_over_act" class="hide-n"><button type="button" data-k="exp_over_act">Forecast ÷ actual</button></th>
+          <th data-field="per_fy2025"><button type="button" data-k="per_fy2025">FY2025 error rate</button></th>
+          <th data-field="share_central"><button type="button" data-k="share_central">Cost share with ranker</button></th>
+          <th data-field="n_rows" class="hide-n"><button type="button" data-k="n_rows">QC cases</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="tr-notes" id="notes">
+    <div class="tr-card">
+      <h2>How the rankers were built</h2>
+      <ul>
+        <li>One model per jurisdiction from FY2020–2024 federal QC public-use data, using only what the agency has before review (reported income, deductions, rent and utilities, household size, issued benefit).</li>
+        <li>It estimates each case's chance of an error times the likely error dollars, then ranks cases by that.</li>
+        <li>"Lift" is error dollars found in the top 20% (or 10%) of the ranked list, divided by what reviewing the same number of random cases finds, on cases held out from training.</li>
+        <li>"2020–22 → 2023–24" trains on the earlier years and tests on the later ones. "Forecast ÷ actual" compares the model's expected dollars with the dollars found in its top 20%.</li>
+        <li>Review time is assumed to be 30 minutes a case.</li>
+      </ul>
+    </div>
+    <div class="tr-card">
+      <h2>Cost-share scenarios</h2>
+      <p class="tr-note" style="margin-bottom:0">From FY2028, states pay part of SNAP benefits if their error rate is 6% or more: 5% of benefits at 6–8%, 10% at 8–10%, 15% at 10% or more. The scenarios estimate how far ranker-guided reviews of active cases could lower the rate. They're the size of the opportunity, not a forecast.</p>
+      <div style="overflow-x:auto">
+        <table class="tr-table tr-assump" id="assumptions" data-source="scenario_assumptions" data-row-key="scenario">
+          <thead><tr><th data-field="scenario">Scenario</th><th data-field="review_share">Cases reviewed a month</th><th data-field="lift_basis">Lift used</th><th data-field="fix_rate">Errors fixed</th><th data-field="error_months">Months an error lasts</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tr-card">
+      <h2>Read with care</h2>
+      <ul>
+        <li>Small samples make small jurisdictions noisy. Those with fewer than 1,500 QC cases are flagged.</li>
+        <li>The scenarios don't model whether corrections land before the federal sample month, procedural errors outside the public file, or the option to delay the cost share.</li>
+        <li>The ranker orders a state's own reviews. It doesn't touch the federal QC sample or decide anything about a household.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+  dash.calc('summary', {
+    title: 'Headline figures',
+    description: 'Count of jurisdictions, median top-20% lift, how many reach 2.5x, and total FY2028 cost share avoided in the central scenario.',
+    inputs: ['state_results'],
+    fn: (state_results) => {
+      const lifts = state_results.map((r) => Number(r.lift_top20)).sort((a, b) => a - b);
+      const mid = lifts.length / 2;
+      const median = lifts.length % 2 ? lifts[Math.floor(mid)] : (lifts[mid - 1] + lifts[mid]) / 2;
+      return {
+        n_states: state_results.length,
+        median_lift: median,
+        n_ge_25: lifts.filter((x) => x >= 2.5).length,
+        saving_central_total: state_results.reduce((s, r) => s + Number(r.saving_central), 0),
+      };
+    },
+  });
+</script>
+
+<script>
+  const fmtX = (v) => d3.format('.2f')(v) + '×';
+  const fmt$ = (v) => '$' + d3.format(',.0f')(v);
+  const fmtPct = (v) => d3.format('.2f')(v) + '%';
+  const fmtShare = (v) => d3.format('.0%')(v);
+  const fmtBig = (v) => '$' + new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
+  const METRICS = {
+    lift_top20: { label: 'Top-20% lift over random review', fmt: fmtX, kind: 'ramp' },
+    per_hour: { label: 'Error dollars found per review hour', fmt: fmt$, kind: 'ramp' },
+    per_fy2025: { label: 'Official FY2025 payment error rate', fmt: fmtPct, kind: 'ramp-bad' },
+    share_now: { label: 'FY2028 state share of benefits at the FY2025 rate', fmt: fmtShare, kind: 'share' },
+    share_central: { label: 'FY2028 share with ranker reviews (central scenario)', fmt: fmtShare, kind: 'share' },
+  };
+  const SHARES = [0, 0.05, 0.10, 0.15];
+  window.trState = { metric: 'lift_top20', sel: 'PA', sortKey: 'lift_top20', sortDir: -1, q: '' };
+
+  const cssVar = (name) => getComputedStyle(document.getElementById('dash-root')).getPropertyValue(name).trim();
+  const shareColor = (s) => [cssVar('--cds-chart-muted'), dash.colors[2], dash.colors[1], cssVar('--cds-chart-status-critical')][SHARES.indexOf(Number(s))] || cssVar('--cds-chart-muted');
+
+  function colorFor(rows, metric) {
+    const m = METRICS[metric];
+    if (m.kind === 'share') return (r) => shareColor(r[metric]);
+    const vals = rows.map((r) => Number(r[metric]));
+    const lo = cssVar('--cds-chart-grid') || '#ddd';
+    const hi = m.kind === 'ramp-bad' ? cssVar('--cds-chart-status-critical') : dash.colors[0];
+    const sc = d3.scaleLinear([d3.min(vals), d3.max(vals)], [0, 1]).clamp(true);
+    const ip = d3.interpolateRgb(lo, hi);
+    return (r) => ip(sc(Number(r[metric])));
+  }
+
+  function drawLegend(rows) {
+    const el = document.getElementById('legend');
+    el.replaceChildren();
+    if (!rows) return;
+    const m = METRICS[trState.metric];
+    if (m.kind === 'share') {
+      SHARES.forEach((s) => {
+        const span = document.createElement('span');
+        const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = shareColor(s);
+        span.append(sw, document.createTextNode(s === 0 ? 'No share (under 6%)' : fmtShare(s) + ' of benefits'));
+        el.append(span);
+      });
+      return;
+    }
+    const vals = rows.map((r) => Number(r[trState.metric]));
+    const lo = document.createElement('span'); lo.textContent = m.fmt(d3.min(vals));
+    const bar = document.createElement('span'); bar.className = 'bar';
+    const c0 = cssVar('--cds-chart-grid'), c1 = m.kind === 'ramp-bad' ? cssVar('--cds-chart-status-critical') : dash.colors[0];
+    bar.style.background = `linear-gradient(90deg, ${c0}, ${c1})`;
+    const hi = document.createElement('span'); hi.textContent = m.fmt(d3.max(vals));
+    const lab = document.createElement('span'); lab.textContent = m.label;
+    el.append(lo, bar, hi, lab);
+  }
+
+  function drawDetail(rows) {
+    const el = document.getElementById('detail');
+    el.replaceChildren();
+    const r = rows && rows.find((x) => x.state === trState.sel);
+    if (!r) return;
+    const h = document.createElement('h3'); h.textContent = r.name; el.append(h);
+    const dl = document.createElement('dl');
+    const item = (label, field, fmt) => {
+      const dt = document.createElement('dt'); dt.textContent = label;
+      const dd = document.createElement('dd'); dd.textContent = fmt(r[field]);
+      dd.dataset.source = 'state_results'; dd.dataset.field = field; dd.dataset.where = 'state=' + r.state;
+      dl.append(dt, dd);
+    };
+    const grp = (t) => { const g = document.createElement('div'); g.className = 'grp'; g.textContent = t; dl.append(g); };
+    grp('Ranker, held-out cases');
+    item('Top-20% lift', 'lift_top20', fmtX);
+    item('Top-10% lift', 'lift_top10', fmtX);
+    item('$ per review hour', 'per_hour', fmt$);
+    item('Random review', 'random_per_hour', fmt$);
+    item('Train 2020–22, test 2023–24', 'time_split_lift', fmtX);
+    item('Forecast ÷ actual (top 20%)', 'exp_over_act', (v) => d3.format('.2f')(v));
+    item('QC cases, FY2020–24', 'n_rows', d3.format(','));
+    grp('Error rate and FY2028 cost share');
+    item('FY2025 error rate', 'per_fy2025', fmtPct);
+    item('Cost share now', 'share_now', fmtShare);
+    item('Annual benefits', 'annual_benefits', fmtBig);
+    item('Rate with ranker reviews (central)', 'per_central', fmtPct);
+    item('Rate with random reviews (central)', 'per_central_random', fmtPct);
+    item('Cost share with ranker reviews', 'share_central', fmtShare);
+    item('Cost share avoided, low', 'saving_low', fmtBig);
+    item('Cost share avoided, central', 'saving_central', fmtBig);
+    item('Cost share avoided, high', 'saving_high', fmtBig);
+    item('Reviews a month (central)', 'reviews_per_month', d3.format(','));
+    item('Reviewer FTEs (central)', 'fte', d3.format(',.1f'));
+    el.append(dl);
+    if (String(r.low_sample) === 'true') {
+      const f = document.createElement('div'); f.className = 'tr-flag';
+      f.textContent = 'Small sample: fewer than 1,500 QC cases, so treat these numbers as rough.';
+      el.append(f);
+    }
+  }
+
+  function drawMap(rows, shapes) {
+    const box = document.getElementById('map');
+    box.replaceChildren();
+    if (!rows || !shapes) { box.classList.add('dash-skeleton'); return; }
+    box.classList.remove('dash-skeleton');
+    const byState = new Map(rows.map((r) => [r.state, r]));
+    const color = colorFor(rows, trState.metric);
+    const svg = d3.select(box).append('svg').attr('viewBox', '0 0 975 610').attr('width', '100%').attr('role', 'img')
+      .attr('aria-label', METRICS[trState.metric].label + ' by state');
+    const tip = d3.select(box).append('div').attr('class', 'tr-tip').style('opacity', 0);
+    svg.selectAll('path').data(shapes.filter((s) => byState.has(s.state))).join('path')
+      .attr('class', (s) => 'st' + (s.state === trState.sel ? ' sel' : ''))
+      .attr('d', (s) => s.d)
+      .attr('fill', (s) => color(byState.get(s.state)))
+      .attr('tabindex', 0)
+      .attr('aria-label', (s) => s.name + ': ' + METRICS[trState.metric].fmt(byState.get(s.state)[trState.metric]))
+      .on('click keydown', (event, s) => {
+        if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
+        trState.sel = s.state; redraw();
+      })
+      .on('mousemove', (event, s) => {
+        const r = byState.get(s.state);
+        const [x, y] = d3.pointer(event, box);
+        tip.replaceChildren();
+        tip.append('div').attr('class', 't').text(s.name);
+        tip.append('div').text(METRICS[trState.metric].fmt(r[trState.metric]));
+        const w = box.clientWidth, tw = tip.node().offsetWidth;
+        tip.style('left', Math.min(Math.max(0, x + 12), w - tw) + 'px').style('top', Math.max(0, y - 36) + 'px').style('opacity', 1);
+      })
+      .on('mouseleave', () => tip.style('opacity', 0));
+    svg.selectAll('path.st.sel').raise();
+    const terr = document.getElementById('territories');
+    terr.replaceChildren();
+    rows.filter((r) => !shapes.some((s) => s.state === r.state)).forEach((r) => {
+      const b = document.createElement('button'); b.type = 'button';
+      b.style.background = color(r);
+      b.textContent = r.name + ' · ' + METRICS[trState.metric].fmt(r[trState.metric]);
+      b.addEventListener('click', () => { trState.sel = r.state; redraw(); });
+      terr.append(b);
+    });
+  }
+
+  const COLS = [['state', (r) => r.name + ' (' + r.state + ')'], ['lift_top20', (r) => fmtX(r.lift_top20)], ['lift_top10', (r) => fmtX(r.lift_top10)],
+    ['per_hour', (r) => fmt$(r.per_hour)], ['random_per_hour', (r) => fmt$(r.random_per_hour)], ['time_split_lift', (r) => fmtX(r.time_split_lift)],
+    ['exp_over_act', (r) => d3.format('.2f')(r.exp_over_act)], ['per_fy2025', (r) => fmtPct(r.per_fy2025)], ['share_central', (r) => fmtShare(r.share_central)],
+    ['n_rows', (r) => d3.format(',')(r.n_rows) + (String(r.low_sample) === 'true' ? ' ⚑' : '')]];
+
+  function drawTable(rows) {
+    const tb = document.querySelector('#tr-table tbody');
+    tb.replaceChildren();
+    if (!rows) return;
+    const q = trState.q.trim().toLowerCase();
+    const list = rows.filter((r) => !q || r.name.toLowerCase().includes(q) || r.state.toLowerCase() === q)
+      .slice().sort((a, b) => {
+        const k = trState.sortKey;
+        const va = k === 'state' ? a.name : Number(a[k]), vb = k === 'state' ? b.name : Number(b[k]);
+        return (va < vb ? -1 : va > vb ? 1 : 0) * trState.sortDir;
+      });
+    list.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.state;
+      if (r.state === trState.sel) tr.className = 'sel';
+      COLS.forEach(([k, f], i) => { const td = document.createElement('td'); td.textContent = f(r); if (i >= 2 && [2, 4, 5, 6, 9].includes(i)) td.className = 'hide-n'; tr.append(td); });
+      tb.append(tr);
+    });
+    document.querySelectorAll('#tr-table th').forEach((th) => {
+      const k = th.querySelector('button').dataset.k;
+      th.setAttribute('aria-sort', k === trState.sortKey ? (trState.sortDir > 0 ? 'ascending' : 'descending') : 'none');
+    });
+  }
+
+  function drawAssumptions() {
+    const a = dash.data('scenario_assumptions');
+    const tb = document.querySelector('#assumptions tbody');
+    tb.replaceChildren();
+    if (a.status !== 'ok') return;
+    a.data.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.scenario;
+      [r.scenario, d3.format('.0%')(r.review_share), r.lift_basis, d3.format('.0%')(r.fix_rate), String(r.error_months)].forEach((v) => {
+        const td = document.createElement('td'); td.textContent = v; tr.append(td);
+      });
+      tb.append(tr);
+    });
+  }
+
+  function redraw() {
+    const res = dash.data('state_results'), shp = dash.data('state_shapes'), sum = dash.data('summary');
+    const rows = res.status === 'ok' ? res.data : null;
+    const shapes = shp.status === 'ok' ? shp.data : null;
+    document.querySelectorAll('#metric-switch button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.m === trState.metric)));
+    drawMap(rows, shapes); drawLegend(rows); drawDetail(rows); drawTable(rows); drawAssumptions();
+    const s = sum.status === 'ok' ? sum.data : null;
+    const tiles = document.querySelectorAll('#headline [data-field]');
+    tiles.forEach((el) => {
+      el.classList.toggle('dash-skeleton', !s);
+      if (!s) { el.textContent = '—'; return; }
+      const f = el.dataset.field;
+      el.textContent = f === 'median_lift' ? fmtX(s[f]) : f === 'saving_central_total' ? fmtBig(s[f]) : d3.format(',')(s[f]);
+    });
+    const take = document.querySelector('.tr-take');
+    take.textContent = s ? `Reviewing the top fifth of each state's ranked cases finds a median ${fmtX(s.median_lift)} the error dollars of random review, and ${d3.format(',')(s.n_ge_25)} of ${d3.format(',')(s.n_states)} jurisdictions reach 2.5× or better.` : '—';
+  }
+
+  document.getElementById('metric-switch').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-m]'); if (!b) return;
+    trState.metric = b.dataset.m; redraw();
+  });
+  document.querySelector('#tr-table thead').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-k]'); if (!b) return;
+    trState.sortDir = trState.sortKey === b.dataset.k ? -trState.sortDir : (b.dataset.k === 'state' ? 1 : -1);
+    trState.sortKey = b.dataset.k; redraw();
+  });
+  document.querySelector('#tr-table tbody').addEventListener('click', (e) => {
+    const tr = e.target.closest('tr[data-key]'); if (!tr) return;
+    trState.sel = tr.dataset.key; redraw();
+    document.getElementById('map-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  document.getElementById('tr-q').addEventListener('input', (e) => { trState.q = e.target.value; redraw(); });
+  dash.onData(redraw);
+</script>

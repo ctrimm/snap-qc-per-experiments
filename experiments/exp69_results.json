@@ -1,0 +1,3051 @@
+{
+ "scenarios": {
+  "low": {
+   "R": 0.01,
+   "lift": "top20",
+   "f": 0.6,
+   "m": 4
+  },
+  "central": {
+   "R": 0.02,
+   "lift": "top10",
+   "f": 0.8,
+   "m": 6
+  },
+  "high": {
+   "R": 0.03,
+   "lift": "top10",
+   "f": 0.9,
+   "m": 8
+  }
+ },
+ "states": {
+  "AL": {
+   "per_fy2025": 9.52,
+   "annual_benefits": 1708014734,
+   "households": 367135,
+   "cost_share_now": 0.1,
+   "cost_now": 170801473,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.8,
+      "cost_share": 0.1,
+      "annual_cost": 170801473,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.3,
+      "cost_share": 0.1,
+      "annual_cost": 170801473,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3671,
+     "fte": 13.1
+    },
+    "central": {
+     "ranker": {
+      "per": 6.3,
+      "cost_share": 0.05,
+      "annual_cost": 85400737,
+      "saving_vs_now": 85400737
+     },
+     "random": {
+      "per": 8.69,
+      "cost_share": 0.1,
+      "annual_cost": 170801473,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 7343,
+     "fte": 26.2
+    },
+    "high": {
+     "ranker": {
+      "per": 4.43,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 170801473
+     },
+     "random": {
+      "per": 7.83,
+      "cost_share": 0.05,
+      "annual_cost": 85400737,
+      "saving_vs_now": 85400737
+     },
+     "reviews_per_month": 11014,
+     "fte": 39.3
+    }
+   }
+  },
+  "AK": {
+   "per_fy2025": 23.15,
+   "annual_benefits": 213862419,
+   "households": 25544,
+   "cost_share_now": 0.15,
+   "cost_now": 32079363,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 22.47,
+      "cost_share": 0.15,
+      "annual_cost": 32079363,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 22.61,
+      "cost_share": 0.15,
+      "annual_cost": 32079363,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 255,
+     "fte": 0.9
+    },
+    "central": {
+     "ranker": {
+      "per": 20.7,
+      "cost_share": 0.15,
+      "annual_cost": 32079363,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 21.12,
+      "cost_share": 0.15,
+      "annual_cost": 32079363,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 511,
+     "fte": 1.8
+    },
+    "high": {
+     "ranker": {
+      "per": 18.28,
+      "cost_share": 0.15,
+      "annual_cost": 32079363,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 19.04,
+      "cost_share": 0.15,
+      "annual_cost": 32079363,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 766,
+     "fte": 2.7
+    }
+   }
+  },
+  "AZ": {
+   "per_fy2025": 10.8,
+   "annual_benefits": 1955000573,
+   "households": 442368,
+   "cost_share_now": 0.15,
+   "cost_now": 293250086,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 9.95,
+      "cost_share": 0.1,
+      "annual_cost": 195500057,
+      "saving_vs_now": 97750029
+     },
+     "random": {
+      "per": 10.55,
+      "cost_share": 0.15,
+      "annual_cost": 293250086,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4424,
+     "fte": 15.8
+    },
+    "central": {
+     "ranker": {
+      "per": 6.9,
+      "cost_share": 0.05,
+      "annual_cost": 97750029,
+      "saving_vs_now": 195500057
+     },
+     "random": {
+      "per": 9.85,
+      "cost_share": 0.1,
+      "annual_cost": 195500057,
+      "saving_vs_now": 97750029
+     },
+     "reviews_per_month": 8847,
+     "fte": 31.6
+    },
+    "high": {
+     "ranker": {
+      "per": 4.75,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 293250086
+     },
+     "random": {
+      "per": 8.88,
+      "cost_share": 0.1,
+      "annual_cost": 195500057,
+      "saving_vs_now": 97750029
+     },
+     "reviews_per_month": 13271,
+     "fte": 47.4
+    }
+   }
+  },
+  "AR": {
+   "per_fy2025": 8.81,
+   "annual_benefits": 481512060,
+   "households": 119462,
+   "cost_share_now": 0.1,
+   "cost_now": 48151206,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.29,
+      "cost_share": 0.1,
+      "annual_cost": 48151206,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.6,
+      "cost_share": 0.1,
+      "annual_cost": 48151206,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1195,
+     "fte": 4.3
+    },
+    "central": {
+     "ranker": {
+      "per": 6.4,
+      "cost_share": 0.05,
+      "annual_cost": 24075603,
+      "saving_vs_now": 24075603
+     },
+     "random": {
+      "per": 8.04,
+      "cost_share": 0.1,
+      "annual_cost": 48151206,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2389,
+     "fte": 8.5
+    },
+    "high": {
+     "ranker": {
+      "per": 4.77,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 48151206
+     },
+     "random": {
+      "per": 7.25,
+      "cost_share": 0.05,
+      "annual_cost": 24075603,
+      "saving_vs_now": 24075603
+     },
+     "reviews_per_month": 3584,
+     "fte": 12.8
+    }
+   }
+  },
+  "CA": {
+   "per_fy2025": 10.93,
+   "annual_benefits": 11916812204,
+   "households": 3080470,
+   "cost_share_now": 0.15,
+   "cost_now": 1787521831,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 10.11,
+      "cost_share": 0.15,
+      "annual_cost": 1787521831,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 10.67,
+      "cost_share": 0.15,
+      "annual_cost": 1787521831,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 30805,
+     "fte": 110.0
+    },
+    "central": {
+     "ranker": {
+      "per": 7.28,
+      "cost_share": 0.05,
+      "annual_cost": 595840610,
+      "saving_vs_now": 1191681220
+     },
+     "random": {
+      "per": 9.97,
+      "cost_share": 0.1,
+      "annual_cost": 1191681220,
+      "saving_vs_now": 595840610
+     },
+     "reviews_per_month": 61609,
+     "fte": 220.0
+    },
+    "high": {
+     "ranker": {
+      "per": 5.14,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 1787521831
+     },
+     "random": {
+      "per": 8.99,
+      "cost_share": 0.1,
+      "annual_cost": 1191681220,
+      "saving_vs_now": 595840610
+     },
+     "reviews_per_month": 92414,
+     "fte": 330.1
+    }
+   }
+  },
+  "CO": {
+   "per_fy2025": 10.09,
+   "annual_benefits": 1265236194,
+   "households": 304610,
+   "cost_share_now": 0.15,
+   "cost_now": 189785429,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 9.32,
+      "cost_share": 0.1,
+      "annual_cost": 126523619,
+      "saving_vs_now": 63261810
+     },
+     "random": {
+      "per": 9.85,
+      "cost_share": 0.1,
+      "annual_cost": 126523619,
+      "saving_vs_now": 63261810
+     },
+     "reviews_per_month": 3046,
+     "fte": 10.9
+    },
+    "central": {
+     "ranker": {
+      "per": 6.58,
+      "cost_share": 0.05,
+      "annual_cost": 63261810,
+      "saving_vs_now": 126523619
+     },
+     "random": {
+      "per": 9.21,
+      "cost_share": 0.1,
+      "annual_cost": 126523619,
+      "saving_vs_now": 63261810
+     },
+     "reviews_per_month": 6092,
+     "fte": 21.8
+    },
+    "high": {
+     "ranker": {
+      "per": 4.59,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 189785429
+     },
+     "random": {
+      "per": 8.3,
+      "cost_share": 0.1,
+      "annual_cost": 126523619,
+      "saving_vs_now": 63261810
+     },
+     "reviews_per_month": 9138,
+     "fte": 32.6
+    }
+   }
+  },
+  "CT": {
+   "per_fy2025": 9.08,
+   "annual_benefits": 895848709,
+   "households": 226491,
+   "cost_share_now": 0.1,
+   "cost_now": 89584871,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.33,
+      "cost_share": 0.1,
+      "annual_cost": 89584871,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.87,
+      "cost_share": 0.1,
+      "annual_cost": 89584871,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2265,
+     "fte": 8.1
+    },
+    "central": {
+     "ranker": {
+      "per": 5.75,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 89584871
+     },
+     "random": {
+      "per": 8.28,
+      "cost_share": 0.1,
+      "annual_cost": 89584871,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4530,
+     "fte": 16.2
+    },
+    "high": {
+     "ranker": {
+      "per": 3.94,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 89584871
+     },
+     "random": {
+      "per": 7.47,
+      "cost_share": 0.05,
+      "annual_cost": 44792435,
+      "saving_vs_now": 44792435
+     },
+     "reviews_per_month": 6795,
+     "fte": 24.3
+    }
+   }
+  },
+  "DE": {
+   "per_fy2025": 16.0,
+   "annual_benefits": 240902184,
+   "households": 56725,
+   "cost_share_now": 0.15,
+   "cost_now": 36135328,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 14.87,
+      "cost_share": 0.15,
+      "annual_cost": 36135328,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 15.62,
+      "cost_share": 0.15,
+      "annual_cost": 36135328,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 567,
+     "fte": 2.0
+    },
+    "central": {
+     "ranker": {
+      "per": 11.18,
+      "cost_share": 0.15,
+      "annual_cost": 36135328,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 14.6,
+      "cost_share": 0.15,
+      "annual_cost": 36135328,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1134,
+     "fte": 4.1
+    },
+    "high": {
+     "ranker": {
+      "per": 8.12,
+      "cost_share": 0.1,
+      "annual_cost": 24090218,
+      "saving_vs_now": 12045109
+     },
+     "random": {
+      "per": 13.16,
+      "cost_share": 0.15,
+      "annual_cost": 36135328,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1702,
+     "fte": 6.1
+    }
+   }
+  },
+  "DC": {
+   "per_fy2025": 18.66,
+   "annual_benefits": 304674143,
+   "households": 81707,
+   "cost_share_now": 0.15,
+   "cost_now": 45701121,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 17.1,
+      "cost_share": 0.15,
+      "annual_cost": 45701121,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 18.22,
+      "cost_share": 0.15,
+      "annual_cost": 45701121,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 817,
+     "fte": 2.9
+    },
+    "central": {
+     "ranker": {
+      "per": 12.27,
+      "cost_share": 0.15,
+      "annual_cost": 45701121,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 17.03,
+      "cost_share": 0.15,
+      "annual_cost": 45701121,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1634,
+     "fte": 5.8
+    },
+    "high": {
+     "ranker": {
+      "per": 8.59,
+      "cost_share": 0.1,
+      "annual_cost": 30467414,
+      "saving_vs_now": 15233707
+     },
+     "random": {
+      "per": 15.35,
+      "cost_share": 0.15,
+      "annual_cost": 45701121,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2451,
+     "fte": 8.8
+    }
+   }
+  },
+  "FL": {
+   "per_fy2025": 12.97,
+   "annual_benefits": 6493567218,
+   "households": 1595334,
+   "cost_share_now": 0.15,
+   "cost_now": 974035083,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 11.97,
+      "cost_share": 0.15,
+      "annual_cost": 974035083,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.67,
+      "cost_share": 0.15,
+      "annual_cost": 974035083,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 15953,
+     "fte": 57.0
+    },
+    "central": {
+     "ranker": {
+      "per": 8.43,
+      "cost_share": 0.1,
+      "annual_cost": 649356722,
+      "saving_vs_now": 324678361
+     },
+     "random": {
+      "per": 11.83,
+      "cost_share": 0.15,
+      "annual_cost": 974035083,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 31907,
+     "fte": 114.0
+    },
+    "high": {
+     "ranker": {
+      "per": 5.86,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 974035083
+     },
+     "random": {
+      "per": 10.67,
+      "cost_share": 0.15,
+      "annual_cost": 974035083,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 47860,
+     "fte": 170.9
+    }
+   }
+  },
+  "GA": {
+   "per_fy2025": 15.21,
+   "annual_benefits": 3030374021,
+   "households": 659041,
+   "cost_share_now": 0.15,
+   "cost_now": 454556103,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 14.11,
+      "cost_share": 0.15,
+      "annual_cost": 454556103,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 14.85,
+      "cost_share": 0.15,
+      "annual_cost": 454556103,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6590,
+     "fte": 23.5
+    },
+    "central": {
+     "ranker": {
+      "per": 10.18,
+      "cost_share": 0.15,
+      "annual_cost": 454556103,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 13.88,
+      "cost_share": 0.15,
+      "annual_cost": 454556103,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 13181,
+     "fte": 47.1
+    },
+    "high": {
+     "ranker": {
+      "per": 7.2,
+      "cost_share": 0.05,
+      "annual_cost": 151518701,
+      "saving_vs_now": 303037402
+     },
+     "random": {
+      "per": 12.51,
+      "cost_share": 0.15,
+      "annual_cost": 454556103,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 19771,
+     "fte": 70.6
+    }
+   }
+  },
+  "GU": {
+   "per_fy2025": 11.7,
+   "annual_benefits": 119280210,
+   "households": 11587,
+   "cost_share_now": 0.15,
+   "cost_now": 17892031,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 11.0,
+      "cost_share": 0.15,
+      "annual_cost": 17892031,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 11.43,
+      "cost_share": 0.15,
+      "annual_cost": 17892031,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 116,
+     "fte": 0.4
+    },
+    "central": {
+     "ranker": {
+      "per": 8.52,
+      "cost_share": 0.1,
+      "annual_cost": 11928021,
+      "saving_vs_now": 5964010
+     },
+     "random": {
+      "per": 10.68,
+      "cost_share": 0.15,
+      "annual_cost": 17892031,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 232,
+     "fte": 0.8
+    },
+    "high": {
+     "ranker": {
+      "per": 6.36,
+      "cost_share": 0.05,
+      "annual_cost": 5964010,
+      "saving_vs_now": 11928021
+     },
+     "random": {
+      "per": 9.62,
+      "cost_share": 0.1,
+      "annual_cost": 11928021,
+      "saving_vs_now": 5964010
+     },
+     "reviews_per_month": 348,
+     "fte": 1.2
+    }
+   }
+  },
+  "HI": {
+   "per_fy2025": 10.92,
+   "annual_benefits": 691503694,
+   "households": 83109,
+   "cost_share_now": 0.15,
+   "cost_now": 103725554,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 10.26,
+      "cost_share": 0.15,
+      "annual_cost": 103725554,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 10.66,
+      "cost_share": 0.15,
+      "annual_cost": 103725554,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 831,
+     "fte": 3.0
+    },
+    "central": {
+     "ranker": {
+      "per": 8.43,
+      "cost_share": 0.1,
+      "annual_cost": 69150369,
+      "saving_vs_now": 34575185
+     },
+     "random": {
+      "per": 9.96,
+      "cost_share": 0.1,
+      "annual_cost": 69150369,
+      "saving_vs_now": 34575185
+     },
+     "reviews_per_month": 1662,
+     "fte": 5.9
+    },
+    "high": {
+     "ranker": {
+      "per": 6.56,
+      "cost_share": 0.05,
+      "annual_cost": 34575185,
+      "saving_vs_now": 69150369
+     },
+     "random": {
+      "per": 8.98,
+      "cost_share": 0.1,
+      "annual_cost": 69150369,
+      "saving_vs_now": 34575185
+     },
+     "reviews_per_month": 2493,
+     "fte": 8.9
+    }
+   }
+  },
+  "ID": {
+   "per_fy2025": 3.85,
+   "annual_benefits": 282366843,
+   "households": 65016,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 3.61,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.76,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 650,
+     "fte": 2.3
+    },
+    "central": {
+     "ranker": {
+      "per": 2.76,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.51,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1300,
+     "fte": 4.6
+    },
+    "high": {
+     "ranker": {
+      "per": 2.04,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.17,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1950,
+     "fte": 7.0
+    }
+   }
+  },
+  "IL": {
+   "per_fy2025": 14.67,
+   "annual_benefits": 4424255966,
+   "households": 1045326,
+   "cost_share_now": 0.15,
+   "cost_now": 663638395,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 13.54,
+      "cost_share": 0.15,
+      "annual_cost": 663638395,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 14.33,
+      "cost_share": 0.15,
+      "annual_cost": 663638395,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 10453,
+     "fte": 37.3
+    },
+    "central": {
+     "ranker": {
+      "per": 9.5,
+      "cost_share": 0.1,
+      "annual_cost": 442425597,
+      "saving_vs_now": 221212798
+     },
+     "random": {
+      "per": 13.39,
+      "cost_share": 0.15,
+      "annual_cost": 663638395,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 20907,
+     "fte": 74.7
+    },
+    "high": {
+     "ranker": {
+      "per": 6.59,
+      "cost_share": 0.05,
+      "annual_cost": 221212798,
+      "saving_vs_now": 442425597
+     },
+     "random": {
+      "per": 12.06,
+      "cost_share": 0.15,
+      "annual_cost": 663638395,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 31360,
+     "fte": 112.0
+    }
+   }
+  },
+  "IN": {
+   "per_fy2025": 9.77,
+   "annual_benefits": 1399812702,
+   "households": 285004,
+   "cost_share_now": 0.1,
+   "cost_now": 139981270,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 9.07,
+      "cost_share": 0.1,
+      "annual_cost": 139981270,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.54,
+      "cost_share": 0.1,
+      "annual_cost": 139981270,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2850,
+     "fte": 10.2
+    },
+    "central": {
+     "ranker": {
+      "per": 6.64,
+      "cost_share": 0.05,
+      "annual_cost": 69990635,
+      "saving_vs_now": 69990635
+     },
+     "random": {
+      "per": 8.91,
+      "cost_share": 0.1,
+      "annual_cost": 139981270,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 5700,
+     "fte": 20.4
+    },
+    "high": {
+     "ranker": {
+      "per": 4.74,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 139981270
+     },
+     "random": {
+      "per": 8.03,
+      "cost_share": 0.1,
+      "annual_cost": 139981270,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 8550,
+     "fte": 30.5
+    }
+   }
+  },
+  "IA": {
+   "per_fy2025": 5.34,
+   "annual_benefits": 518525670,
+   "households": 126886,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 4.91,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.21,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1269,
+     "fte": 4.5
+    },
+    "central": {
+     "ranker": {
+      "per": 3.4,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.87,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2538,
+     "fte": 9.1
+    },
+    "high": {
+     "ranker": {
+      "per": 2.34,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.39,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3807,
+     "fte": 13.6
+    }
+   }
+  },
+  "KS": {
+   "per_fy2025": 9.44,
+   "annual_benefits": 376837461,
+   "households": 87034,
+   "cost_share_now": 0.1,
+   "cost_now": 37683746,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.85,
+      "cost_share": 0.1,
+      "annual_cost": 37683746,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.22,
+      "cost_share": 0.1,
+      "annual_cost": 37683746,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 870,
+     "fte": 3.1
+    },
+    "central": {
+     "ranker": {
+      "per": 6.62,
+      "cost_share": 0.05,
+      "annual_cost": 18841873,
+      "saving_vs_now": 18841873
+     },
+     "random": {
+      "per": 8.61,
+      "cost_share": 0.1,
+      "annual_cost": 37683746,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1741,
+     "fte": 6.2
+    },
+    "high": {
+     "ranker": {
+      "per": 4.82,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 37683746
+     },
+     "random": {
+      "per": 7.76,
+      "cost_share": 0.05,
+      "annual_cost": 18841873,
+      "saving_vs_now": 18841873
+     },
+     "reviews_per_month": 2611,
+     "fte": 9.3
+    }
+   }
+  },
+  "KY": {
+   "per_fy2025": 4.7,
+   "annual_benefits": 1178614382,
+   "households": 265060,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 4.37,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.59,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2651,
+     "fte": 9.5
+    },
+    "central": {
+     "ranker": {
+      "per": 3.2,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.29,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 5301,
+     "fte": 18.9
+    },
+    "high": {
+     "ranker": {
+      "per": 2.29,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.87,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 7952,
+     "fte": 28.4
+    }
+   }
+  },
+  "LA": {
+   "per_fy2025": 8.14,
+   "annual_benefits": 1856189690,
+   "households": 413628,
+   "cost_share_now": 0.1,
+   "cost_now": 185618969,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 7.59,
+      "cost_share": 0.05,
+      "annual_cost": 92809485,
+      "saving_vs_now": 92809485
+     },
+     "random": {
+      "per": 7.95,
+      "cost_share": 0.05,
+      "annual_cost": 92809485,
+      "saving_vs_now": 92809485
+     },
+     "reviews_per_month": 4136,
+     "fte": 14.8
+    },
+    "central": {
+     "ranker": {
+      "per": 5.63,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 185618969
+     },
+     "random": {
+      "per": 7.43,
+      "cost_share": 0.05,
+      "annual_cost": 92809485,
+      "saving_vs_now": 92809485
+     },
+     "reviews_per_month": 8273,
+     "fte": 29.5
+    },
+    "high": {
+     "ranker": {
+      "per": 4.07,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 185618969
+     },
+     "random": {
+      "per": 6.69,
+      "cost_share": 0.05,
+      "annual_cost": 92809485,
+      "saving_vs_now": 92809485
+     },
+     "reviews_per_month": 12409,
+     "fte": 44.3
+    }
+   }
+  },
+  "ME": {
+   "per_fy2025": 10.81,
+   "annual_benefits": 347447883,
+   "households": 97965,
+   "cost_share_now": 0.15,
+   "cost_now": 52117182,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 9.96,
+      "cost_share": 0.1,
+      "annual_cost": 34744788,
+      "saving_vs_now": 17372394
+     },
+     "random": {
+      "per": 10.56,
+      "cost_share": 0.15,
+      "annual_cost": 52117182,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 980,
+     "fte": 3.5
+    },
+    "central": {
+     "ranker": {
+      "per": 6.93,
+      "cost_share": 0.05,
+      "annual_cost": 17372394,
+      "saving_vs_now": 34744788
+     },
+     "random": {
+      "per": 9.86,
+      "cost_share": 0.1,
+      "annual_cost": 34744788,
+      "saving_vs_now": 17372394
+     },
+     "reviews_per_month": 1959,
+     "fte": 7.0
+    },
+    "high": {
+     "ranker": {
+      "per": 4.78,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 52117182
+     },
+     "random": {
+      "per": 8.89,
+      "cost_share": 0.1,
+      "annual_cost": 34744788,
+      "saving_vs_now": 17372394
+     },
+     "reviews_per_month": 2939,
+     "fte": 10.5
+    }
+   }
+  },
+  "MD": {
+   "per_fy2025": 13.08,
+   "annual_benefits": 1461728197,
+   "households": 362623,
+   "cost_share_now": 0.15,
+   "cost_now": 219259230,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 12.13,
+      "cost_share": 0.15,
+      "annual_cost": 219259230,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.77,
+      "cost_share": 0.15,
+      "annual_cost": 219259230,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3626,
+     "fte": 13.0
+    },
+    "central": {
+     "ranker": {
+      "per": 9.15,
+      "cost_share": 0.1,
+      "annual_cost": 146172820,
+      "saving_vs_now": 73086410
+     },
+     "random": {
+      "per": 11.93,
+      "cost_share": 0.15,
+      "annual_cost": 219259230,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 7252,
+     "fte": 25.9
+    },
+    "high": {
+     "ranker": {
+      "per": 6.65,
+      "cost_share": 0.05,
+      "annual_cost": 73086410,
+      "saving_vs_now": 146172820
+     },
+     "random": {
+      "per": 10.76,
+      "cost_share": 0.15,
+      "annual_cost": 219259230,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 10879,
+     "fte": 38.9
+    }
+   }
+  },
+  "MA": {
+   "per_fy2025": 12.49,
+   "annual_benefits": 2578894646,
+   "households": 662123,
+   "cost_share_now": 0.15,
+   "cost_now": 386834197,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 11.39,
+      "cost_share": 0.15,
+      "annual_cost": 386834197,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.2,
+      "cost_share": 0.15,
+      "annual_cost": 386834197,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6621,
+     "fte": 23.6
+    },
+    "central": {
+     "ranker": {
+      "per": 7.55,
+      "cost_share": 0.05,
+      "annual_cost": 128944732,
+      "saving_vs_now": 257889465
+     },
+     "random": {
+      "per": 11.4,
+      "cost_share": 0.15,
+      "annual_cost": 386834197,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 13242,
+     "fte": 47.3
+    },
+    "high": {
+     "ranker": {
+      "per": 5.05,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 386834197
+     },
+     "random": {
+      "per": 10.27,
+      "cost_share": 0.15,
+      "annual_cost": 386834197,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 19864,
+     "fte": 70.9
+    }
+   }
+  },
+  "MI": {
+   "per_fy2025": 9.89,
+   "annual_benefits": 2991196280,
+   "households": 762124,
+   "cost_share_now": 0.1,
+   "cost_now": 299119628,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 9.14,
+      "cost_share": 0.1,
+      "annual_cost": 299119628,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.66,
+      "cost_share": 0.1,
+      "annual_cost": 299119628,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 7621,
+     "fte": 27.2
+    },
+    "central": {
+     "ranker": {
+      "per": 6.68,
+      "cost_share": 0.05,
+      "annual_cost": 149559814,
+      "saving_vs_now": 149559814
+     },
+     "random": {
+      "per": 9.02,
+      "cost_share": 0.1,
+      "annual_cost": 299119628,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 15242,
+     "fte": 54.4
+    },
+    "high": {
+     "ranker": {
+      "per": 4.76,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 299119628
+     },
+     "random": {
+      "per": 8.13,
+      "cost_share": 0.1,
+      "annual_cost": 299119628,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 22864,
+     "fte": 81.7
+    }
+   }
+  },
+  "MN": {
+   "per_fy2025": 12.58,
+   "annual_benefits": 862658859,
+   "households": 233004,
+   "cost_share_now": 0.15,
+   "cost_now": 129398829,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 11.63,
+      "cost_share": 0.15,
+      "annual_cost": 129398829,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.29,
+      "cost_share": 0.15,
+      "annual_cost": 129398829,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2330,
+     "fte": 8.3
+    },
+    "central": {
+     "ranker": {
+      "per": 8.28,
+      "cost_share": 0.1,
+      "annual_cost": 86265886,
+      "saving_vs_now": 43132943
+     },
+     "random": {
+      "per": 11.48,
+      "cost_share": 0.15,
+      "annual_cost": 129398829,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4660,
+     "fte": 16.6
+    },
+    "high": {
+     "ranker": {
+      "per": 5.81,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 129398829
+     },
+     "random": {
+      "per": 10.35,
+      "cost_share": 0.15,
+      "annual_cost": 129398829,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6990,
+     "fte": 25.0
+    }
+   }
+  },
+  "MS": {
+   "per_fy2025": 9.51,
+   "annual_benefits": 794913695,
+   "households": 183515,
+   "cost_share_now": 0.1,
+   "cost_now": 79491370,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.78,
+      "cost_share": 0.1,
+      "annual_cost": 79491370,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.29,
+      "cost_share": 0.1,
+      "annual_cost": 79491370,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1835,
+     "fte": 6.6
+    },
+    "central": {
+     "ranker": {
+      "per": 6.31,
+      "cost_share": 0.05,
+      "annual_cost": 39745685,
+      "saving_vs_now": 39745685
+     },
+     "random": {
+      "per": 8.68,
+      "cost_share": 0.1,
+      "annual_cost": 79491370,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3670,
+     "fte": 13.1
+    },
+    "high": {
+     "ranker": {
+      "per": 4.45,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 79491370
+     },
+     "random": {
+      "per": 7.82,
+      "cost_share": 0.05,
+      "annual_cost": 39745685,
+      "saving_vs_now": 39745685
+     },
+     "reviews_per_month": 5505,
+     "fte": 19.7
+    }
+   }
+  },
+  "MO": {
+   "per_fy2025": 8.67,
+   "annual_benefits": 1452594719,
+   "households": 305683,
+   "cost_share_now": 0.1,
+   "cost_now": 145259472,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.05,
+      "cost_share": 0.1,
+      "annual_cost": 145259472,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.47,
+      "cost_share": 0.1,
+      "annual_cost": 145259472,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3057,
+     "fte": 10.9
+    },
+    "central": {
+     "ranker": {
+      "per": 5.94,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 145259472
+     },
+     "random": {
+      "per": 7.91,
+      "cost_share": 0.05,
+      "annual_cost": 72629736,
+      "saving_vs_now": 72629736
+     },
+     "reviews_per_month": 6114,
+     "fte": 21.8
+    },
+    "high": {
+     "ranker": {
+      "per": 4.26,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 145259472
+     },
+     "random": {
+      "per": 7.13,
+      "cost_share": 0.05,
+      "annual_cost": 72629736,
+      "saving_vs_now": 72629736
+     },
+     "reviews_per_month": 9170,
+     "fte": 32.8
+    }
+   }
+  },
+  "MT": {
+   "per_fy2025": 8.86,
+   "annual_benefits": 160161015,
+   "households": 40162,
+   "cost_share_now": 0.1,
+   "cost_now": 16016102,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.29,
+      "cost_share": 0.1,
+      "annual_cost": 16016102,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.65,
+      "cost_share": 0.1,
+      "annual_cost": 16016102,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 402,
+     "fte": 1.4
+    },
+    "central": {
+     "ranker": {
+      "per": 6.2,
+      "cost_share": 0.05,
+      "annual_cost": 8008051,
+      "saving_vs_now": 8008051
+     },
+     "random": {
+      "per": 8.08,
+      "cost_share": 0.1,
+      "annual_cost": 16016102,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 803,
+     "fte": 2.9
+    },
+    "high": {
+     "ranker": {
+      "per": 4.51,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 16016102
+     },
+     "random": {
+      "per": 7.29,
+      "cost_share": 0.05,
+      "annual_cost": 8008051,
+      "saving_vs_now": 8008051
+     },
+     "reviews_per_month": 1205,
+     "fte": 4.3
+    }
+   }
+  },
+  "NE": {
+   "per_fy2025": 5.9,
+   "annual_benefits": 329559450,
+   "households": 74463,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 5.55,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.76,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 745,
+     "fte": 2.7
+    },
+    "central": {
+     "ranker": {
+      "per": 4.37,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.38,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1489,
+     "fte": 5.3
+    },
+    "high": {
+     "ranker": {
+      "per": 3.3,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.85,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2234,
+     "fte": 8.0
+    }
+   }
+  },
+  "NV": {
+   "per_fy2025": 6.22,
+   "annual_benefits": 1016087779,
+   "households": 263899,
+   "cost_share_now": 0.05,
+   "cost_now": 50804389,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 5.73,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 50804389
+     },
+     "random": {
+      "per": 6.07,
+      "cost_share": 0.05,
+      "annual_cost": 50804389,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2639,
+     "fte": 9.4
+    },
+    "central": {
+     "ranker": {
+      "per": 4.04,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 50804389
+     },
+     "random": {
+      "per": 5.68,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 50804389
+     },
+     "reviews_per_month": 5278,
+     "fte": 18.8
+    },
+    "high": {
+     "ranker": {
+      "per": 2.81,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 50804389
+     },
+     "random": {
+      "per": 5.12,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 50804389
+     },
+     "reviews_per_month": 7917,
+     "fte": 28.3
+    }
+   }
+  },
+  "NH": {
+   "per_fy2025": 8.85,
+   "annual_benefits": 151433008,
+   "households": 41414,
+   "cost_share_now": 0.1,
+   "cost_now": 15143301,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.23,
+      "cost_share": 0.1,
+      "annual_cost": 15143301,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.64,
+      "cost_share": 0.1,
+      "annual_cost": 15143301,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 414,
+     "fte": 1.5
+    },
+    "central": {
+     "ranker": {
+      "per": 6.23,
+      "cost_share": 0.05,
+      "annual_cost": 7571650,
+      "saving_vs_now": 7571650
+     },
+     "random": {
+      "per": 8.07,
+      "cost_share": 0.1,
+      "annual_cost": 15143301,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 828,
+     "fte": 3.0
+    },
+    "high": {
+     "ranker": {
+      "per": 4.55,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 15143301
+     },
+     "random": {
+      "per": 7.28,
+      "cost_share": 0.05,
+      "annual_cost": 7571650,
+      "saving_vs_now": 7571650
+     },
+     "reviews_per_month": 1242,
+     "fte": 4.4
+    }
+   }
+  },
+  "NJ": {
+   "per_fy2025": 6.86,
+   "annual_benefits": 1844444047,
+   "households": 419828,
+   "cost_share_now": 0.05,
+   "cost_now": 92222202,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 6.41,
+      "cost_share": 0.05,
+      "annual_cost": 92222202,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 6.7,
+      "cost_share": 0.05,
+      "annual_cost": 92222202,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4198,
+     "fte": 15.0
+    },
+    "central": {
+     "ranker": {
+      "per": 4.88,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 92222202
+     },
+     "random": {
+      "per": 6.26,
+      "cost_share": 0.05,
+      "annual_cost": 92222202,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 8397,
+     "fte": 30.0
+    },
+    "high": {
+     "ranker": {
+      "per": 3.59,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 92222202
+     },
+     "random": {
+      "per": 5.64,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 92222202
+     },
+     "reviews_per_month": 12595,
+     "fte": 45.0
+    }
+   }
+  },
+  "NM": {
+   "per_fy2025": 16.81,
+   "annual_benefits": 971346108,
+   "households": 233070,
+   "cost_share_now": 0.15,
+   "cost_now": 145701916,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 15.55,
+      "cost_share": 0.15,
+      "annual_cost": 145701916,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 16.42,
+      "cost_share": 0.15,
+      "annual_cost": 145701916,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2331,
+     "fte": 8.3
+    },
+    "central": {
+     "ranker": {
+      "per": 11.23,
+      "cost_share": 0.15,
+      "annual_cost": 145701916,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 15.34,
+      "cost_share": 0.15,
+      "annual_cost": 145701916,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4661,
+     "fte": 16.6
+    },
+    "high": {
+     "ranker": {
+      "per": 7.94,
+      "cost_share": 0.05,
+      "annual_cost": 48567305,
+      "saving_vs_now": 97134611
+     },
+     "random": {
+      "per": 13.82,
+      "cost_share": 0.15,
+      "annual_cost": 145701916,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6992,
+     "fte": 25.0
+    }
+   }
+  },
+  "NY": {
+   "per_fy2025": 13.18,
+   "annual_benefits": 7205819469,
+   "households": 1626560,
+   "cost_share_now": 0.15,
+   "cost_now": 1080872920,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 12.15,
+      "cost_share": 0.15,
+      "annual_cost": 1080872920,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.87,
+      "cost_share": 0.15,
+      "annual_cost": 1080872920,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 16266,
+     "fte": 58.1
+    },
+    "central": {
+     "ranker": {
+      "per": 8.79,
+      "cost_share": 0.1,
+      "annual_cost": 720581947,
+      "saving_vs_now": 360290973
+     },
+     "random": {
+      "per": 12.03,
+      "cost_share": 0.15,
+      "annual_cost": 1080872920,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 32531,
+     "fte": 116.2
+    },
+    "high": {
+     "ranker": {
+      "per": 6.21,
+      "cost_share": 0.05,
+      "annual_cost": 360290973,
+      "saving_vs_now": 720581947
+     },
+     "random": {
+      "per": 10.84,
+      "cost_share": 0.15,
+      "annual_cost": 1080872920,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 48797,
+     "fte": 174.3
+    }
+   }
+  },
+  "NC": {
+   "per_fy2025": 7.36,
+   "annual_benefits": 2813722089,
+   "households": 692905,
+   "cost_share_now": 0.05,
+   "cost_now": 140686104,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 6.81,
+      "cost_share": 0.05,
+      "annual_cost": 140686104,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 7.19,
+      "cost_share": 0.05,
+      "annual_cost": 140686104,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6929,
+     "fte": 24.7
+    },
+    "central": {
+     "ranker": {
+      "per": 4.79,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 140686104
+     },
+     "random": {
+      "per": 6.72,
+      "cost_share": 0.05,
+      "annual_cost": 140686104,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 13858,
+     "fte": 49.5
+    },
+    "high": {
+     "ranker": {
+      "per": 3.34,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 140686104
+     },
+     "random": {
+      "per": 6.05,
+      "cost_share": 0.05,
+      "annual_cost": 140686104,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 20787,
+     "fte": 74.2
+    }
+   }
+  },
+  "ND": {
+   "per_fy2025": 9.89,
+   "annual_benefits": 108698058,
+   "households": 24304,
+   "cost_share_now": 0.1,
+   "cost_now": 10869806,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 9.25,
+      "cost_share": 0.1,
+      "annual_cost": 10869806,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.66,
+      "cost_share": 0.1,
+      "annual_cost": 10869806,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 243,
+     "fte": 0.9
+    },
+    "central": {
+     "ranker": {
+      "per": 7.07,
+      "cost_share": 0.05,
+      "annual_cost": 5434903,
+      "saving_vs_now": 5434903
+     },
+     "random": {
+      "per": 9.02,
+      "cost_share": 0.1,
+      "annual_cost": 10869806,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 486,
+     "fte": 1.7
+    },
+    "high": {
+     "ranker": {
+      "per": 5.21,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 10869806
+     },
+     "random": {
+      "per": 8.13,
+      "cost_share": 0.1,
+      "annual_cost": 10869806,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 729,
+     "fte": 2.6
+    }
+   }
+  },
+  "OH": {
+   "per_fy2025": 6.76,
+   "annual_benefits": 3034470183,
+   "households": 696205,
+   "cost_share_now": 0.05,
+   "cost_now": 151723509,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 6.27,
+      "cost_share": 0.05,
+      "annual_cost": 151723509,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 6.6,
+      "cost_share": 0.05,
+      "annual_cost": 151723509,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6962,
+     "fte": 24.9
+    },
+    "central": {
+     "ranker": {
+      "per": 4.46,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 151723509
+     },
+     "random": {
+      "per": 6.17,
+      "cost_share": 0.05,
+      "annual_cost": 151723509,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 13924,
+     "fte": 49.7
+    },
+    "high": {
+     "ranker": {
+      "per": 3.13,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 151723509
+     },
+     "random": {
+      "per": 5.56,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 151723509
+     },
+     "reviews_per_month": 20886,
+     "fte": 74.6
+    }
+   }
+  },
+  "OK": {
+   "per_fy2025": 11.04,
+   "annual_benefits": 1499998934,
+   "households": 324804,
+   "cost_share_now": 0.15,
+   "cost_now": 224999840,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 10.22,
+      "cost_share": 0.15,
+      "annual_cost": 224999840,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 10.78,
+      "cost_share": 0.15,
+      "annual_cost": 224999840,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3248,
+     "fte": 11.6
+    },
+    "central": {
+     "ranker": {
+      "per": 7.54,
+      "cost_share": 0.05,
+      "annual_cost": 74999947,
+      "saving_vs_now": 149999893
+     },
+     "random": {
+      "per": 10.07,
+      "cost_share": 0.15,
+      "annual_cost": 224999840,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6496,
+     "fte": 23.2
+    },
+    "high": {
+     "ranker": {
+      "per": 5.4,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 224999840
+     },
+     "random": {
+      "per": 9.08,
+      "cost_share": 0.1,
+      "annual_cost": 149999893,
+      "saving_vs_now": 74999947
+     },
+     "reviews_per_month": 9744,
+     "fte": 34.8
+    }
+   }
+  },
+  "OR": {
+   "per_fy2025": 14.14,
+   "annual_benefits": 1572244369,
+   "households": 418932,
+   "cost_share_now": 0.15,
+   "cost_now": 235836655,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 12.99,
+      "cost_share": 0.15,
+      "annual_cost": 235836655,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 13.81,
+      "cost_share": 0.15,
+      "annual_cost": 235836655,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4189,
+     "fte": 15.0
+    },
+    "central": {
+     "ranker": {
+      "per": 9.17,
+      "cost_share": 0.1,
+      "annual_cost": 157224437,
+      "saving_vs_now": 78612218
+     },
+     "random": {
+      "per": 12.9,
+      "cost_share": 0.15,
+      "annual_cost": 235836655,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 8379,
+     "fte": 29.9
+    },
+    "high": {
+     "ranker": {
+      "per": 6.37,
+      "cost_share": 0.05,
+      "annual_cost": 78612218,
+      "saving_vs_now": 157224437
+     },
+     "random": {
+      "per": 11.63,
+      "cost_share": 0.15,
+      "annual_cost": 235836655,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 12568,
+     "fte": 44.9
+    }
+   }
+  },
+  "PA": {
+   "per_fy2025": 9.21,
+   "annual_benefits": 4175812798,
+   "households": 1047956,
+   "cost_share_now": 0.1,
+   "cost_now": 417581280,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.5,
+      "cost_share": 0.1,
+      "annual_cost": 417581280,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.99,
+      "cost_share": 0.1,
+      "annual_cost": 417581280,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 10480,
+     "fte": 37.4
+    },
+    "central": {
+     "ranker": {
+      "per": 6.06,
+      "cost_share": 0.05,
+      "annual_cost": 208790640,
+      "saving_vs_now": 208790640
+     },
+     "random": {
+      "per": 8.4,
+      "cost_share": 0.1,
+      "annual_cost": 417581280,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 20959,
+     "fte": 74.9
+    },
+    "high": {
+     "ranker": {
+      "per": 4.24,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 417581280
+     },
+     "random": {
+      "per": 7.57,
+      "cost_share": 0.05,
+      "annual_cost": 208790640,
+      "saving_vs_now": 208790640
+     },
+     "reviews_per_month": 31439,
+     "fte": 112.3
+    }
+   }
+  },
+  "RI": {
+   "per_fy2025": 12.42,
+   "annual_benefits": 338637722,
+   "households": 88589,
+   "cost_share_now": 0.15,
+   "cost_now": 50795658,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 11.46,
+      "cost_share": 0.15,
+      "annual_cost": 50795658,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.13,
+      "cost_share": 0.15,
+      "annual_cost": 50795658,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 886,
+     "fte": 3.2
+    },
+    "central": {
+     "ranker": {
+      "per": 8.39,
+      "cost_share": 0.1,
+      "annual_cost": 33863772,
+      "saving_vs_now": 16931886
+     },
+     "random": {
+      "per": 11.33,
+      "cost_share": 0.15,
+      "annual_cost": 50795658,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1772,
+     "fte": 6.3
+    },
+    "high": {
+     "ranker": {
+      "per": 5.97,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 50795658
+     },
+     "random": {
+      "per": 10.21,
+      "cost_share": 0.15,
+      "annual_cost": 50795658,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2658,
+     "fte": 9.5
+    }
+   }
+  },
+  "SC": {
+   "per_fy2025": 8.8,
+   "annual_benefits": 1256511748,
+   "households": 272590,
+   "cost_share_now": 0.1,
+   "cost_now": 125651175,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.19,
+      "cost_share": 0.1,
+      "annual_cost": 125651175,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 8.59,
+      "cost_share": 0.1,
+      "annual_cost": 125651175,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2726,
+     "fte": 9.7
+    },
+    "central": {
+     "ranker": {
+      "per": 6.17,
+      "cost_share": 0.05,
+      "annual_cost": 62825587,
+      "saving_vs_now": 62825587
+     },
+     "random": {
+      "per": 8.03,
+      "cost_share": 0.1,
+      "annual_cost": 125651175,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 5452,
+     "fte": 19.5
+    },
+    "high": {
+     "ranker": {
+      "per": 4.49,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 125651175
+     },
+     "random": {
+      "per": 7.24,
+      "cost_share": 0.05,
+      "annual_cost": 62825587,
+      "saving_vs_now": 62825587
+     },
+     "reviews_per_month": 8178,
+     "fte": 29.2
+    }
+   }
+  },
+  "SD": {
+   "per_fy2025": 2.47,
+   "annual_benefits": 176194527,
+   "households": 36860,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 2.32,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 2.41,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 369,
+     "fte": 1.3
+    },
+    "central": {
+     "ranker": {
+      "per": 1.93,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 2.25,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 737,
+     "fte": 2.6
+    },
+    "high": {
+     "ranker": {
+      "per": 1.52,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 2.03,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1106,
+     "fte": 3.9
+    }
+   }
+  },
+  "TN": {
+   "per_fy2025": 9.44,
+   "annual_benefits": 1528037246,
+   "households": 333396,
+   "cost_share_now": 0.1,
+   "cost_now": 152803725,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.79,
+      "cost_share": 0.1,
+      "annual_cost": 152803725,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.22,
+      "cost_share": 0.1,
+      "annual_cost": 152803725,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3334,
+     "fte": 11.9
+    },
+    "central": {
+     "ranker": {
+      "per": 6.62,
+      "cost_share": 0.05,
+      "annual_cost": 76401862,
+      "saving_vs_now": 76401862
+     },
+     "random": {
+      "per": 8.61,
+      "cost_share": 0.1,
+      "annual_cost": 152803725,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 6668,
+     "fte": 23.8
+    },
+    "high": {
+     "ranker": {
+      "per": 4.82,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 152803725
+     },
+     "random": {
+      "per": 7.76,
+      "cost_share": 0.05,
+      "annual_cost": 76401862,
+      "saving_vs_now": 76401862
+     },
+     "reviews_per_month": 10002,
+     "fte": 35.7
+    }
+   }
+  },
+  "TX": {
+   "per_fy2025": 9.34,
+   "annual_benefits": 6852329086,
+   "households": 1441846,
+   "cost_share_now": 0.1,
+   "cost_now": 685232909,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 8.77,
+      "cost_share": 0.1,
+      "annual_cost": 685232909,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 9.12,
+      "cost_share": 0.1,
+      "annual_cost": 685232909,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 14418,
+     "fte": 51.5
+    },
+    "central": {
+     "ranker": {
+      "per": 6.94,
+      "cost_share": 0.05,
+      "annual_cost": 342616454,
+      "saving_vs_now": 342616454
+     },
+     "random": {
+      "per": 8.52,
+      "cost_share": 0.1,
+      "annual_cost": 685232909,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 28837,
+     "fte": 103.0
+    },
+    "high": {
+     "ranker": {
+      "per": 5.26,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 685232909
+     },
+     "random": {
+      "per": 7.68,
+      "cost_share": 0.05,
+      "annual_cost": 342616454,
+      "saving_vs_now": 342616454
+     },
+     "reviews_per_month": 43255,
+     "fte": 154.5
+    }
+   }
+  },
+  "UT": {
+   "per_fy2025": 5.54,
+   "annual_benefits": 371684547,
+   "households": 81628,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 5.21,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.41,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 816,
+     "fte": 2.9
+    },
+    "central": {
+     "ranker": {
+      "per": 4.08,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.05,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1633,
+     "fte": 5.8
+    },
+    "high": {
+     "ranker": {
+      "per": 3.06,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.56,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2449,
+     "fte": 8.7
+    }
+   }
+  },
+  "VT": {
+   "per_fy2025": 5.38,
+   "annual_benefits": 150112898,
+   "households": 38748,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 4.96,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.25,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 387,
+     "fte": 1.4
+    },
+    "central": {
+     "ranker": {
+      "per": 3.62,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.91,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 775,
+     "fte": 2.8
+    },
+    "high": {
+     "ranker": {
+      "per": 2.57,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.42,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1162,
+     "fte": 4.2
+    }
+   }
+  },
+  "VI": {
+   "per_fy2025": 5.36,
+   "annual_benefits": 65604169,
+   "households": 10734,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 4.96,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.23,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 107,
+     "fte": 0.4
+    },
+    "central": {
+     "ranker": {
+      "per": 3.61,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.89,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 215,
+     "fte": 0.8
+    },
+    "high": {
+     "ranker": {
+      "per": 2.56,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.41,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 322,
+     "fte": 1.2
+    }
+   }
+  },
+  "VA": {
+   "per_fy2025": 12.32,
+   "annual_benefits": 1713430760,
+   "households": 411949,
+   "cost_share_now": 0.15,
+   "cost_now": 257014614,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 11.51,
+      "cost_share": 0.15,
+      "annual_cost": 257014614,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 12.03,
+      "cost_share": 0.15,
+      "annual_cost": 257014614,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 4119,
+     "fte": 14.7
+    },
+    "central": {
+     "ranker": {
+      "per": 8.54,
+      "cost_share": 0.1,
+      "annual_cost": 171343076,
+      "saving_vs_now": 85671538
+     },
+     "random": {
+      "per": 11.24,
+      "cost_share": 0.15,
+      "annual_cost": 257014614,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 8239,
+     "fte": 29.4
+    },
+    "high": {
+     "ranker": {
+      "per": 6.17,
+      "cost_share": 0.05,
+      "annual_cost": 85671538,
+      "saving_vs_now": 171343076
+     },
+     "random": {
+      "per": 10.13,
+      "cost_share": 0.15,
+      "annual_cost": 257014614,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 12358,
+     "fte": 44.1
+    }
+   }
+  },
+  "WA": {
+   "per_fy2025": 6.98,
+   "annual_benefits": 1901882109,
+   "households": 504462,
+   "cost_share_now": 0.05,
+   "cost_now": 95094105,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 6.39,
+      "cost_share": 0.05,
+      "annual_cost": 95094105,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 6.82,
+      "cost_share": 0.05,
+      "annual_cost": 95094105,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 5045,
+     "fte": 18.0
+    },
+    "central": {
+     "ranker": {
+      "per": 4.29,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 95094105
+     },
+     "random": {
+      "per": 6.37,
+      "cost_share": 0.05,
+      "annual_cost": 95094105,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 10089,
+     "fte": 36.0
+    },
+    "high": {
+     "ranker": {
+      "per": 2.89,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 95094105
+     },
+     "random": {
+      "per": 5.74,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 95094105
+     },
+     "reviews_per_month": 15134,
+     "fte": 54.0
+    }
+   }
+  },
+  "WV": {
+   "per_fy2025": 6.69,
+   "annual_benefits": 503212802,
+   "households": 140849,
+   "cost_share_now": 0.05,
+   "cost_now": 25160640,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 6.3,
+      "cost_share": 0.05,
+      "annual_cost": 25160640,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 6.53,
+      "cost_share": 0.05,
+      "annual_cost": 25160640,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 1408,
+     "fte": 5.0
+    },
+    "central": {
+     "ranker": {
+      "per": 4.9,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 25160640
+     },
+     "random": {
+      "per": 6.1,
+      "cost_share": 0.05,
+      "annual_cost": 25160640,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 2817,
+     "fte": 10.1
+    },
+    "high": {
+     "ranker": {
+      "per": 3.67,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 25160640
+     },
+     "random": {
+      "per": 5.5,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 25160640
+     },
+     "reviews_per_month": 4225,
+     "fte": 15.1
+    }
+   }
+  },
+  "WI": {
+   "per_fy2025": 5.72,
+   "annual_benefits": 1318984789,
+   "households": 366474,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 5.28,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.59,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 3665,
+     "fte": 13.1
+    },
+    "central": {
+     "ranker": {
+      "per": 3.76,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 5.22,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 7329,
+     "fte": 26.2
+    },
+    "high": {
+     "ranker": {
+      "per": 2.63,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 4.7,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 10994,
+     "fte": 39.3
+    }
+   }
+  },
+  "WY": {
+   "per_fy2025": 3.96,
+   "annual_benefits": 60428904,
+   "households": 13388,
+   "cost_share_now": 0.0,
+   "cost_now": 0,
+   "scenarios": {
+    "low": {
+     "ranker": {
+      "per": 3.8,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.87,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 134,
+     "fte": 0.5
+    },
+    "central": {
+     "ranker": {
+      "per": 3.59,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.61,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 268,
+     "fte": 1.0
+    },
+    "high": {
+     "ranker": {
+      "per": 3.22,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "random": {
+      "per": 3.26,
+      "cost_share": 0.0,
+      "annual_cost": 0,
+      "saving_vs_now": 0
+     },
+     "reviews_per_month": 402,
+     "fte": 1.4
+    }
+   }
+  }
+ },
+ "totals": {
+  "cost_now": 10555832617.131464,
+  "cost_low": 10233834511.168531,
+  "cost_central": 5279919493.694394,
+  "cost_high": 1146136135.1597114
+ }
+}

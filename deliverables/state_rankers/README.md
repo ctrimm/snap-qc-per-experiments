@@ -1,16 +1,19 @@
 # SNAP QC triage rankers, per state
 
-A model per POC state that ranks SNAP cases by **expected payment-error dollars**, so QC or second-party reviewers spend their hours on the cases most likely to hold large errors. Built in exp58 (`experiments/exp58_agency_rankers.md`) from FY2020–2024 QC public-use data.
+A model per jurisdiction (all 50 states, DC, Guam and the Virgin Islands; exp68) that ranks SNAP cases by **expected payment-error dollars**, so QC or second-party reviewers spend their hours on the cases most likely to hold large errors. Built in exp58 (`experiments/exp58_agency_rankers.md`) from FY2020–2024 QC public-use data.
 
 ## What's here
 
 | path | contents |
 |---|---|
-| `<ST>/model.joblib` | P(error) classifier, log-dollar regressor, and dollar calibrator (PA, NY, TX, SD, UT, ID) |
+| `<ST>/model.joblib` | P(error) classifier, log-dollar regressor, and dollar calibrator, one folder per USPS code (53) |
+| `map/` | Map dashboard source: page, dataset builder, and the datasets it shows (`experiments/exp68_*`, `exp69_*`) |
 | `<ST>/model_card.json` | training rows, features, configuration, and held-out evaluation |
 | `score_cases.py` | ranks a CSV of cases with one state's model |
 
 ## How well it works (held-out cases)
+
+All 53 jurisdictions: median top-20% lift 3.25×, 51 at 2.5× or better; per-state numbers in each `model_card.json` and the map dashboard. Alaska, Guam, the Virgin Islands and Wyoming have fewer than 1,500 QC cases: treat them as rough (Alaska 1.26×, Wyoming 1.72×). The six POC states:
 
 | state | top 20% finds | $/review-hour, top 20% (random) | top 10% finds | expected ÷ actual $, top 20% |
 |---|---|---|---|---|
