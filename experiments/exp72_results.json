@@ -1,0 +1,1867 @@
+[
+ {
+  "state": "AK",
+  "n_holdout": 341,
+  "types": {
+   "elderly": 117,
+   "disabled": 40,
+   "single_parent": 41,
+   "married_with_kids": 36,
+   "childless_adult": 84,
+   "other": 23
+  },
+  "baseline": {
+   "lift": 1.256,
+   "ratio": {
+    "elderly": 0.771,
+    "disabled": 1.096,
+    "single_parent": 0.976,
+    "married_with_kids": 1.06,
+    "childless_adult": 1.157,
+    "other": 1.578
+   }
+  },
+  "floor": {
+   "lift": 1.38,
+   "ratio": {
+    "elderly": 0.887,
+    "disabled": 1.461,
+    "single_parent": 0.976,
+    "married_with_kids": 0.771,
+    "childless_adult": 1.157,
+    "other": 0.947
+   }
+  }
+ },
+ {
+  "state": "AL",
+  "n_holdout": 1041,
+  "types": {
+   "elderly": 269,
+   "disabled": 235,
+   "single_parent": 282,
+   "married_with_kids": 47,
+   "multiadult_with_kids": 29,
+   "childless_adult": 160,
+   "other": 19
+  },
+  "baseline": {
+   "lift": 3.433,
+   "ratio": {
+    "elderly": 0.397,
+    "disabled": 0.726,
+    "single_parent": 1.568,
+    "married_with_kids": 2.517,
+    "multiadult_with_kids": 1.498,
+    "childless_adult": 1.07,
+    "other": 1.284
+   }
+  },
+  "floor": {
+   "lift": 3.196,
+   "ratio": {
+    "elderly": 1.131,
+    "disabled": 0.967,
+    "single_parent": 0.784,
+    "married_with_kids": 0.906,
+    "multiadult_with_kids": 0.856,
+    "childless_adult": 1.712,
+    "other": 1.712
+   }
+  }
+ },
+ {
+  "state": "AR",
+  "n_holdout": 857,
+  "types": {
+   "elderly": 232,
+   "disabled": 259,
+   "single_parent": 143,
+   "married_with_kids": 34,
+   "child_only": 29,
+   "childless_adult": 149,
+   "other": 11
+  },
+  "baseline": {
+   "lift": 2.617,
+   "ratio": {
+    "elderly": 0.643,
+    "disabled": 0.697,
+    "single_parent": 1.762,
+    "married_with_kids": 1.734,
+    "child_only": 1.305,
+    "childless_adult": 1.282,
+    "other": 1.088
+   }
+  },
+  "floor": {
+   "lift": 2.327,
+   "ratio": {
+    "elderly": 1.218,
+    "disabled": 0.89,
+    "single_parent": 0.848,
+    "married_with_kids": 1.02,
+    "child_only": 0.653,
+    "childless_adult": 1.165,
+    "other": 3.263
+   }
+  }
+ },
+ {
+  "state": "AZ",
+  "n_holdout": 838,
+  "types": {
+   "elderly": 192,
+   "disabled": 103,
+   "single_parent": 187,
+   "married_with_kids": 60,
+   "multiadult_with_kids": 31,
+   "childless_adult": 250,
+   "other": 15
+  },
+  "baseline": {
+   "lift": 3.542,
+   "ratio": {
+    "elderly": 0.384,
+    "disabled": 0.848,
+    "single_parent": 1.489,
+    "married_with_kids": 1.56,
+    "multiadult_with_kids": 1.56,
+    "childless_adult": 0.624,
+    "other": 1.56
+   }
+  },
+  "floor": {
+   "lift": 3.588,
+   "ratio": {
+    "elderly": 1.176,
+    "disabled": 0.915,
+    "single_parent": 0.922,
+    "married_with_kids": 0.855,
+    "multiadult_with_kids": 1.56,
+    "childless_adult": 0.891,
+    "other": 0.78
+   }
+  }
+ },
+ {
+  "state": "CA",
+  "n_holdout": 778,
+  "types": {
+   "elderly": 295,
+   "disabled": 87,
+   "single_parent": 86,
+   "married_with_kids": 35,
+   "child_only": 45,
+   "childless_adult": 208,
+   "other": 22
+  },
+  "baseline": {
+   "lift": 3.385,
+   "ratio": {
+    "elderly": 0.693,
+    "disabled": 1.305,
+    "single_parent": 1.22,
+    "married_with_kids": 1.758,
+    "child_only": 1.188,
+    "childless_adult": 1.166,
+    "other": 1.538
+   }
+  },
+  "floor": {
+   "lift": 3.276,
+   "ratio": {
+    "elderly": 0.959,
+    "disabled": 0.839,
+    "single_parent": 0.998,
+    "married_with_kids": 1.465,
+    "child_only": 1.188,
+    "childless_adult": 1.026,
+    "other": 1.282
+   }
+  }
+ },
+ {
+  "state": "CO",
+  "n_holdout": 899,
+  "types": {
+   "elderly": 259,
+   "disabled": 94,
+   "single_parent": 164,
+   "married_with_kids": 52,
+   "multiadult_with_kids": 31,
+   "childless_adult": 280,
+   "other": 19
+  },
+  "baseline": {
+   "lift": 3.445,
+   "ratio": {
+    "elderly": 0.589,
+    "disabled": 1.01,
+    "single_parent": 1.486,
+    "married_with_kids": 1.546,
+    "multiadult_with_kids": 1.514,
+    "childless_adult": 0.978,
+    "other": 0.442
+   }
+  },
+  "floor": {
+   "lift": 3.309,
+   "ratio": {
+    "elderly": 0.971,
+    "disabled": 1.136,
+    "single_parent": 1.122,
+    "married_with_kids": 1.178,
+    "multiadult_with_kids": 1.01,
+    "childless_adult": 0.726,
+    "other": 1.104
+   }
+  }
+ },
+ {
+  "state": "CT",
+  "n_holdout": 955,
+  "types": {
+   "elderly": 329,
+   "disabled": 212,
+   "single_parent": 157,
+   "married_with_kids": 28,
+   "multiadult_with_kids": 27,
+   "childless_adult": 192,
+   "other": 10
+  },
+  "baseline": {
+   "lift": 3.73,
+   "ratio": {
+    "elderly": 0.55,
+    "disabled": 0.887,
+    "single_parent": 1.513,
+    "married_with_kids": 1.984,
+    "multiadult_with_kids": 1.852,
+    "childless_adult": 0.821,
+    "other": 1.984
+   }
+  },
+  "floor": {
+   "lift": 3.705,
+   "ratio": {
+    "elderly": 1.028,
+    "disabled": 0.823,
+    "single_parent": 0.918,
+    "married_with_kids": 0.992,
+    "multiadult_with_kids": 1.323,
+    "childless_adult": 1.437,
+    "other": 1.323
+   }
+  }
+ },
+ {
+  "state": "DC",
+  "n_holdout": 673,
+  "types": {
+   "elderly": 194,
+   "disabled": 91,
+   "single_parent": 118,
+   "childless_adult": 228,
+   "other": 42
+  },
+  "baseline": {
+   "lift": 3.796,
+   "ratio": {
+    "elderly": 0.56,
+    "disabled": 0.972,
+    "single_parent": 1.248,
+    "childless_adult": 1.424,
+    "other": 1.406
+   }
+  },
+  "floor": {
+   "lift": 3.453,
+   "ratio": {
+    "elderly": 0.912,
+    "disabled": 1.226,
+    "single_parent": 1.286,
+    "childless_adult": 0.693,
+    "other": 0.937
+   }
+  }
+ },
+ {
+  "state": "DE",
+  "n_holdout": 413,
+  "types": {
+   "elderly": 118,
+   "disabled": 65,
+   "single_parent": 109,
+   "childless_adult": 79,
+   "other": 42
+  },
+  "baseline": {
+   "lift": 3.166,
+   "ratio": {
+    "elderly": 0.608,
+    "disabled": 1.05,
+    "single_parent": 1.171,
+    "childless_adult": 0.692,
+    "other": 1.603
+   }
+  },
+  "floor": {
+   "lift": 2.93,
+   "ratio": {
+    "elderly": 1.053,
+    "disabled": 0.985,
+    "single_parent": 0.842,
+    "childless_adult": 1.558,
+    "other": 1.002
+   }
+  }
+ },
+ {
+  "state": "FL",
+  "n_holdout": 937,
+  "types": {
+   "elderly": 362,
+   "disabled": 146,
+   "single_parent": 126,
+   "married_with_kids": 58,
+   "child_only": 78,
+   "childless_adult": 146,
+   "other": 21
+  },
+  "baseline": {
+   "lift": 3.488,
+   "ratio": {
+    "elderly": 0.656,
+    "disabled": 1.185,
+    "single_parent": 1.484,
+    "married_with_kids": 1.573,
+    "child_only": 0.981,
+    "childless_adult": 0.653,
+    "other": 1.478
+   }
+  },
+  "floor": {
+   "lift": 3.392,
+   "ratio": {
+    "elderly": 1.029,
+    "disabled": 1.152,
+    "single_parent": 0.839,
+    "married_with_kids": 0.787,
+    "child_only": 1.191,
+    "childless_adult": 1.016,
+    "other": 0.739
+   }
+  }
+ },
+ {
+  "state": "GA",
+  "n_holdout": 976,
+  "types": {
+   "elderly": 306,
+   "disabled": 157,
+   "single_parent": 243,
+   "married_with_kids": 31,
+   "multiadult_with_kids": 43,
+   "childless_adult": 174,
+   "other": 22
+  },
+  "baseline": {
+   "lift": 3.245,
+   "ratio": {
+    "elderly": 0.568,
+    "disabled": 0.765,
+    "single_parent": 1.368,
+    "married_with_kids": 1.578,
+    "multiadult_with_kids": 1.434,
+    "childless_adult": 0.956,
+    "other": 2.549
+   }
+  },
+  "floor": {
+   "lift": 3.201,
+   "ratio": {
+    "elderly": 0.875,
+    "disabled": 1.274,
+    "single_parent": 0.975,
+    "married_with_kids": 0.85,
+    "multiadult_with_kids": 0.717,
+    "childless_adult": 1.211,
+    "other": 1.274
+   }
+  }
+ },
+ {
+  "state": "GU",
+  "n_holdout": 183,
+  "types": {
+   "elderly": 47,
+   "single_parent": 40,
+   "married_with_kids": 25,
+   "childless_adult": 44,
+   "other": 27
+  },
+  "baseline": {
+   "lift": 2.659,
+   "ratio": {
+    "elderly": 0.415,
+    "single_parent": 1.328,
+    "married_with_kids": 1.889,
+    "childless_adult": 0.872,
+    "other": 0.715
+   }
+  },
+  "floor": {
+   "lift": 2.8,
+   "ratio": {
+    "elderly": 0.913,
+    "single_parent": 0.664,
+    "married_with_kids": 1.307,
+    "childless_adult": 1.162,
+    "other": 1.252
+   }
+  }
+ },
+ {
+  "state": "HI",
+  "n_holdout": 502,
+  "types": {
+   "elderly": 187,
+   "disabled": 78,
+   "single_parent": 71,
+   "married_with_kids": 41,
+   "childless_adult": 103,
+   "other": 22
+  },
+  "baseline": {
+   "lift": 2.679,
+   "ratio": {
+    "elderly": 0.447,
+    "disabled": 0.407,
+    "single_parent": 2.537,
+    "married_with_kids": 2.122,
+    "childless_adult": 0.573,
+    "other": 2.652
+   }
+  },
+  "floor": {
+   "lift": 2.25,
+   "ratio": {
+    "elderly": 0.987,
+    "disabled": 1.047,
+    "single_parent": 1.31,
+    "married_with_kids": 0.707,
+    "childless_adult": 0.819,
+    "other": 1.326
+   }
+  }
+ },
+ {
+  "state": "IA",
+  "n_holdout": 973,
+  "types": {
+   "elderly": 234,
+   "disabled": 253,
+   "single_parent": 163,
+   "married_with_kids": 60,
+   "multiadult_with_kids": 42,
+   "childless_adult": 209,
+   "other": 12
+  },
+  "baseline": {
+   "lift": 3.613,
+   "ratio": {
+    "elderly": 0.451,
+    "disabled": 0.717,
+    "single_parent": 1.53,
+    "married_with_kids": 1.817,
+    "multiadult_with_kids": 1.187,
+    "childless_adult": 1.415,
+    "other": 0.332
+   }
+  },
+  "floor": {
+   "lift": 3.547,
+   "ratio": {
+    "elderly": 0.985,
+    "disabled": 0.892,
+    "single_parent": 1.108,
+    "married_with_kids": 0.883,
+    "multiadult_with_kids": 1.029,
+    "childless_adult": 1.231,
+    "other": 1.329
+   }
+  }
+ },
+ {
+  "state": "ID",
+  "n_holdout": 960,
+  "types": {
+   "elderly": 266,
+   "disabled": 253,
+   "single_parent": 163,
+   "married_with_kids": 70,
+   "multiadult_with_kids": 26,
+   "childless_adult": 160,
+   "other": 22
+  },
+  "baseline": {
+   "lift": 2.757,
+   "ratio": {
+    "elderly": 0.592,
+    "disabled": 0.957,
+    "single_parent": 1.495,
+    "married_with_kids": 1.411,
+    "multiadult_with_kids": 1.529,
+    "childless_adult": 0.841,
+    "other": 0.961
+   }
+  },
+  "floor": {
+   "lift": 2.699,
+   "ratio": {
+    "elderly": 1.109,
+    "disabled": 0.849,
+    "single_parent": 1.153,
+    "married_with_kids": 0.814,
+    "multiadult_with_kids": 1.223,
+    "childless_adult": 1.093,
+    "other": 0.961
+   }
+  }
+ },
+ {
+  "state": "IL",
+  "n_holdout": 811,
+  "types": {
+   "elderly": 228,
+   "disabled": 140,
+   "single_parent": 149,
+   "married_with_kids": 25,
+   "child_only": 36,
+   "childless_adult": 217,
+   "other": 16
+  },
+  "baseline": {
+   "lift": 3.49,
+   "ratio": {
+    "elderly": 0.927,
+    "disabled": 0.935,
+    "single_parent": 1.017,
+    "married_with_kids": 0.88,
+    "child_only": 1.218,
+    "childless_adult": 1.173,
+    "other": 1.539
+   }
+  },
+  "floor": {
+   "lift": 3.487,
+   "ratio": {
+    "elderly": 1.04,
+    "disabled": 0.77,
+    "single_parent": 0.962,
+    "married_with_kids": 0.88,
+    "child_only": 1.083,
+    "childless_adult": 1.368,
+    "other": 1.539
+   }
+  }
+ },
+ {
+  "state": "IN",
+  "n_holdout": 809,
+  "types": {
+   "elderly": 209,
+   "disabled": 209,
+   "single_parent": 165,
+   "married_with_kids": 30,
+   "multiadult_with_kids": 29,
+   "childless_adult": 162,
+   "other": 5
+  },
+  "baseline": {
+   "lift": 3.224,
+   "ratio": {
+    "elderly": 0.681,
+    "disabled": 0.738,
+    "single_parent": 1.62,
+    "married_with_kids": 1.926,
+    "multiadult_with_kids": 1.284,
+    "childless_adult": 0.856,
+    "other": 1.444
+   }
+  },
+  "floor": {
+   "lift": 3.061,
+   "ratio": {
+    "elderly": 1.08,
+    "disabled": 0.918,
+    "single_parent": 1.192,
+    "married_with_kids": 1.101,
+    "multiadult_with_kids": 0.642,
+    "childless_adult": 0.785,
+    "other": 0.963
+   }
+  }
+ },
+ {
+  "state": "KS",
+  "n_holdout": 925,
+  "types": {
+   "elderly": 231,
+   "disabled": 258,
+   "single_parent": 150,
+   "married_with_kids": 56,
+   "child_only": 52,
+   "childless_adult": 155,
+   "other": 23
+  },
+  "baseline": {
+   "lift": 2.799,
+   "ratio": {
+    "elderly": 0.796,
+    "disabled": 0.752,
+    "single_parent": 1.636,
+    "married_with_kids": 0.918,
+    "child_only": 1.363,
+    "childless_adult": 1.498,
+    "other": 2.517
+   }
+  },
+  "floor": {
+   "lift": 2.748,
+   "ratio": {
+    "elderly": 1.029,
+    "disabled": 0.897,
+    "single_parent": 1.174,
+    "married_with_kids": 0.852,
+    "child_only": 0.839,
+    "childless_adult": 0.974,
+    "other": 3.356
+   }
+  }
+ },
+ {
+  "state": "KY",
+  "n_holdout": 1019,
+  "types": {
+   "elderly": 302,
+   "disabled": 202,
+   "single_parent": 198,
+   "married_with_kids": 63,
+   "multiadult_with_kids": 41,
+   "childless_adult": 198,
+   "other": 15
+  },
+  "baseline": {
+   "lift": 3.12,
+   "ratio": {
+    "elderly": 0.385,
+    "disabled": 0.662,
+    "single_parent": 1.426,
+    "married_with_kids": 1.84,
+    "multiadult_with_kids": 2.367,
+    "childless_adult": 1.794,
+    "other": 4.485
+   }
+  },
+  "floor": {
+   "lift": 2.889,
+   "ratio": {
+    "elderly": 0.859,
+    "disabled": 0.984,
+    "single_parent": 0.989,
+    "married_with_kids": 1.265,
+    "multiadult_with_kids": 0.997,
+    "childless_adult": 1.271,
+    "other": 2.99
+   }
+  }
+ },
+ {
+  "state": "LA",
+  "n_holdout": 831,
+  "types": {
+   "elderly": 238,
+   "disabled": 152,
+   "single_parent": 228,
+   "multiadult_with_kids": 28,
+   "childless_adult": 167,
+   "other": 18
+  },
+  "baseline": {
+   "lift": 3.005,
+   "ratio": {
+    "elderly": 0.537,
+    "disabled": 0.636,
+    "single_parent": 1.475,
+    "multiadult_with_kids": 3.402,
+    "childless_adult": 1.027,
+    "other": 1.418
+   }
+  },
+  "floor": {
+   "lift": 3.098,
+   "ratio": {
+    "elderly": 0.934,
+    "disabled": 1.027,
+    "single_parent": 0.9,
+    "multiadult_with_kids": 1.701,
+    "childless_adult": 1.1,
+    "other": 1.654
+   }
+  }
+ },
+ {
+  "state": "MA",
+  "n_holdout": 871,
+  "types": {
+   "elderly": 297,
+   "disabled": 186,
+   "single_parent": 119,
+   "childless_adult": 212,
+   "other": 57
+  },
+  "baseline": {
+   "lift": 4.038,
+   "ratio": {
+    "elderly": 0.651,
+    "disabled": 0.947,
+    "single_parent": 1.388,
+    "childless_adult": 1.33,
+    "other": 1.666
+   }
+  },
+  "floor": {
+   "lift": 3.924,
+   "ratio": {
+    "elderly": 1.084,
+    "disabled": 0.925,
+    "single_parent": 0.964,
+    "childless_adult": 1.099,
+    "other": 0.802
+   }
+  }
+ },
+ {
+  "state": "MD",
+  "n_holdout": 570,
+  "types": {
+   "elderly": 188,
+   "disabled": 100,
+   "single_parent": 107,
+   "childless_adult": 119,
+   "other": 56
+  },
+  "baseline": {
+   "lift": 3.248,
+   "ratio": {
+    "elderly": 0.681,
+    "disabled": 0.814,
+    "single_parent": 1.594,
+    "childless_adult": 0.695,
+    "other": 1.558
+   }
+  },
+  "floor": {
+   "lift": 3.269,
+   "ratio": {
+    "elderly": 0.969,
+    "disabled": 0.779,
+    "single_parent": 1.32,
+    "childless_adult": 0.869,
+    "other": 1.133
+   }
+  }
+ },
+ {
+  "state": "ME",
+  "n_holdout": 859,
+  "types": {
+   "elderly": 288,
+   "disabled": 263,
+   "single_parent": 104,
+   "married_with_kids": 40,
+   "multiadult_with_kids": 35,
+   "childless_adult": 123,
+   "other": 6
+  },
+  "baseline": {
+   "lift": 3.542,
+   "ratio": {
+    "elderly": 0.493,
+    "disabled": 0.809,
+    "single_parent": 1.618,
+    "married_with_kids": 1.736,
+    "multiadult_with_kids": 1.656,
+    "childless_adult": 1.071,
+    "other": 0.0
+   }
+  },
+  "floor": {
+   "lift": 3.369,
+   "ratio": {
+    "elderly": 1.262,
+    "disabled": 0.941,
+    "single_parent": 0.866,
+    "married_with_kids": 0.868,
+    "multiadult_with_kids": 0.745,
+    "childless_adult": 0.856,
+    "other": 2.07
+   }
+  }
+ },
+ {
+  "state": "MI",
+  "n_holdout": 865,
+  "types": {
+   "elderly": 260,
+   "disabled": 191,
+   "single_parent": 131,
+   "married_with_kids": 40,
+   "multiadult_with_kids": 32,
+   "childless_adult": 197,
+   "other": 14
+  },
+  "baseline": {
+   "lift": 3.424,
+   "ratio": {
+    "elderly": 0.745,
+    "disabled": 0.929,
+    "single_parent": 1.024,
+    "married_with_kids": 1.788,
+    "multiadult_with_kids": 1.502,
+    "childless_adult": 1.214,
+    "other": 1.092
+   }
+  },
+  "floor": {
+   "lift": 3.41,
+   "ratio": {
+    "elderly": 0.982,
+    "disabled": 1.206,
+    "single_parent": 0.888,
+    "married_with_kids": 1.291,
+    "multiadult_with_kids": 0.956,
+    "childless_adult": 0.769,
+    "other": 0.728
+   }
+  }
+ },
+ {
+  "state": "MN",
+  "n_holdout": 1020,
+  "types": {
+   "elderly": 306,
+   "disabled": 206,
+   "single_parent": 170,
+   "married_with_kids": 52,
+   "multiadult_with_kids": 37,
+   "child_only": 39,
+   "childless_adult": 210
+  },
+  "baseline": {
+   "lift": 3.41,
+   "ratio": {
+    "elderly": 0.711,
+    "disabled": 0.868,
+    "single_parent": 1.552,
+    "married_with_kids": 2.172,
+    "multiadult_with_kids": 1.441,
+    "child_only": 0.961,
+    "childless_adult": 0.804
+   }
+  },
+  "floor": {
+   "lift": 3.261,
+   "ratio": {
+    "elderly": 0.974,
+    "disabled": 1.016,
+    "single_parent": 1.146,
+    "married_with_kids": 1.17,
+    "multiadult_with_kids": 0.769,
+    "child_only": 0.961,
+    "childless_adult": 0.894
+   }
+  }
+ },
+ {
+  "state": "MO",
+  "n_holdout": 734,
+  "types": {
+   "elderly": 193,
+   "disabled": 176,
+   "single_parent": 170,
+   "married_with_kids": 34,
+   "childless_adult": 125,
+   "other": 36
+  },
+  "baseline": {
+   "lift": 3.213,
+   "ratio": {
+    "elderly": 0.527,
+    "disabled": 0.759,
+    "single_parent": 1.746,
+    "married_with_kids": 1.909,
+    "childless_adult": 0.667,
+    "other": 1.0
+   }
+  },
+  "floor": {
+   "lift": 2.928,
+   "ratio": {
+    "elderly": 1.077,
+    "disabled": 1.034,
+    "single_parent": 1.048,
+    "married_with_kids": 0.455,
+    "childless_adult": 1.778,
+    "other": 0.636
+   }
+  }
+ },
+ {
+  "state": "MS",
+  "n_holdout": 1040,
+  "types": {
+   "elderly": 268,
+   "disabled": 243,
+   "single_parent": 208,
+   "married_with_kids": 26,
+   "multiadult_with_kids": 30,
+   "child_only": 79,
+   "childless_adult": 186
+  },
+  "baseline": {
+   "lift": 3.456,
+   "ratio": {
+    "elderly": 0.572,
+    "disabled": 0.698,
+    "single_parent": 1.434,
+    "married_with_kids": 1.55,
+    "multiadult_with_kids": 1.532,
+    "child_only": 1.686,
+    "childless_adult": 0.846
+   }
+  },
+  "floor": {
+   "lift": 3.331,
+   "ratio": {
+    "elderly": 0.984,
+    "disabled": 1.038,
+    "single_parent": 0.95,
+    "married_with_kids": 1.085,
+    "multiadult_with_kids": 1.423,
+    "child_only": 0.93,
+    "childless_adult": 0.846
+   }
+  }
+ },
+ {
+  "state": "MT",
+  "n_holdout": 605,
+  "types": {
+   "elderly": 210,
+   "disabled": 116,
+   "single_parent": 111,
+   "married_with_kids": 35,
+   "multiadult_with_kids": 25,
+   "childless_adult": 106,
+   "other": 2
+  },
+  "baseline": {
+   "lift": 2.857,
+   "ratio": {
+    "elderly": 0.562,
+    "disabled": 0.982,
+    "single_parent": 1.333,
+    "married_with_kids": 2.083,
+    "multiadult_with_kids": 2.221,
+    "childless_adult": 0.521,
+    "other": 0.0
+   }
+  },
+  "floor": {
+   "lift": 2.783,
+   "ratio": {
+    "elderly": 0.979,
+    "disabled": 1.218,
+    "single_parent": 0.833,
+    "married_with_kids": 0.858,
+    "multiadult_with_kids": 0.694,
+    "childless_adult": 1.432,
+    "other": 0.0
+   }
+  }
+ },
+ {
+  "state": "NC",
+  "n_holdout": 996,
+  "types": {
+   "elderly": 271,
+   "disabled": 199,
+   "single_parent": 218,
+   "married_with_kids": 44,
+   "multiadult_with_kids": 52,
+   "child_only": 34,
+   "childless_adult": 178
+  },
+  "baseline": {
+   "lift": 3.382,
+   "ratio": {
+    "elderly": 0.73,
+    "disabled": 0.713,
+    "single_parent": 1.196,
+    "married_with_kids": 1.64,
+    "multiadult_with_kids": 1.227,
+    "child_only": 0.984,
+    "childless_adult": 1.326
+   }
+  },
+  "floor": {
+   "lift": 3.3,
+   "ratio": {
+    "elderly": 1.034,
+    "disabled": 0.986,
+    "single_parent": 0.98,
+    "married_with_kids": 1.066,
+    "multiadult_with_kids": 0.649,
+    "child_only": 0.984,
+    "childless_adult": 1.22
+   }
+  }
+ },
+ {
+  "state": "ND",
+  "n_holdout": 423,
+  "types": {
+   "elderly": 101,
+   "disabled": 100,
+   "single_parent": 94,
+   "childless_adult": 91,
+   "other": 37
+  },
+  "baseline": {
+   "lift": 2.881,
+   "ratio": {
+    "elderly": 0.589,
+    "disabled": 0.734,
+    "single_parent": 1.473,
+    "childless_adult": 1.114,
+    "other": 1.894
+   }
+  },
+  "floor": {
+   "lift": 2.773,
+   "ratio": {
+    "elderly": 1.01,
+    "disabled": 0.928,
+    "single_parent": 0.947,
+    "childless_adult": 0.891,
+    "other": 1.488
+   }
+  }
+ },
+ {
+  "state": "NE",
+  "n_holdout": 935,
+  "types": {
+   "elderly": 233,
+   "disabled": 196,
+   "single_parent": 183,
+   "married_with_kids": 50,
+   "multiadult_with_kids": 25,
+   "childless_adult": 225,
+   "other": 23
+  },
+  "baseline": {
+   "lift": 2.618,
+   "ratio": {
+    "elderly": 0.442,
+    "disabled": 0.724,
+    "single_parent": 1.496,
+    "married_with_kids": 1.936,
+    "multiadult_with_kids": 3.206,
+    "childless_adult": 0.846,
+    "other": 1.311
+   }
+  },
+  "floor": {
+   "lift": 2.596,
+   "ratio": {
+    "elderly": 1.018,
+    "disabled": 0.904,
+    "single_parent": 0.966,
+    "married_with_kids": 0.999,
+    "multiadult_with_kids": 2.623,
+    "childless_adult": 0.903,
+    "other": 1.311
+   }
+  }
+ },
+ {
+  "state": "NH",
+  "n_holdout": 582,
+  "types": {
+   "elderly": 172,
+   "disabled": 184,
+   "single_parent": 105,
+   "married_with_kids": 25,
+   "childless_adult": 76,
+   "other": 20
+  },
+  "baseline": {
+   "lift": 3.166,
+   "ratio": {
+    "elderly": 0.676,
+    "disabled": 0.868,
+    "single_parent": 1.593,
+    "married_with_kids": 2.197,
+    "childless_adult": 0.422,
+    "other": 1.075
+   }
+  },
+  "floor": {
+   "lift": 3.062,
+   "ratio": {
+    "elderly": 1.042,
+    "disabled": 0.962,
+    "single_parent": 1.062,
+    "married_with_kids": 0.845,
+    "childless_adult": 1.267,
+    "other": 0.768
+   }
+  }
+ },
+ {
+  "state": "NJ",
+  "n_holdout": 582,
+  "types": {
+   "elderly": 244,
+   "disabled": 85,
+   "single_parent": 99,
+   "married_with_kids": 26,
+   "child_only": 39,
+   "childless_adult": 81,
+   "other": 8
+  },
+  "baseline": {
+   "lift": 2.952,
+   "ratio": {
+    "elderly": 0.485,
+    "disabled": 0.992,
+    "single_parent": 1.585,
+    "married_with_kids": 1.018,
+    "child_only": 1.755,
+    "childless_adult": 1.494,
+    "other": 2.444
+   }
+  },
+  "floor": {
+   "lift": 2.805,
+   "ratio": {
+    "elderly": 0.97,
+    "disabled": 1.346,
+    "single_parent": 0.925,
+    "married_with_kids": 0.916,
+    "child_only": 1.003,
+    "childless_adult": 0.679,
+    "other": 1.629
+   }
+  }
+ },
+ {
+  "state": "NM",
+  "n_holdout": 962,
+  "types": {
+   "elderly": 226,
+   "disabled": 125,
+   "single_parent": 180,
+   "married_with_kids": 59,
+   "multiadult_with_kids": 32,
+   "childless_adult": 328,
+   "other": 12
+  },
+  "baseline": {
+   "lift": 3.377,
+   "ratio": {
+    "elderly": 0.503,
+    "disabled": 0.548,
+    "single_parent": 1.571,
+    "married_with_kids": 1.797,
+    "multiadult_with_kids": 1.497,
+    "childless_adult": 1.118,
+    "other": 1.997
+   }
+  },
+  "floor": {
+   "lift": 3.336,
+   "ratio": {
+    "elderly": 0.854,
+    "disabled": 1.068,
+    "single_parent": 1.108,
+    "married_with_kids": 1.131,
+    "multiadult_with_kids": 0.699,
+    "childless_adult": 1.022,
+    "other": 1.997
+   }
+  }
+ },
+ {
+  "state": "NV",
+  "n_holdout": 1012,
+  "types": {
+   "elderly": 261,
+   "disabled": 115,
+   "single_parent": 204,
+   "married_with_kids": 42,
+   "multiadult_with_kids": 30,
+   "childless_adult": 340,
+   "other": 20
+  },
+  "baseline": {
+   "lift": 3.582,
+   "ratio": {
+    "elderly": 0.82,
+    "disabled": 1.065,
+    "single_parent": 1.116,
+    "married_with_kids": 1.394,
+    "multiadult_with_kids": 1.575,
+    "childless_adult": 0.778,
+    "other": 0.669
+   }
+  },
+  "floor": {
+   "lift": 3.527,
+   "ratio": {
+    "elderly": 1.148,
+    "disabled": 1.034,
+    "single_parent": 0.72,
+    "married_with_kids": 1.116,
+    "multiadult_with_kids": 1.181,
+    "childless_adult": 0.973,
+    "other": 1.506
+   }
+  }
+ },
+ {
+  "state": "NY",
+  "n_holdout": 815,
+  "types": {
+   "elderly": 341,
+   "disabled": 155,
+   "single_parent": 95,
+   "married_with_kids": 29,
+   "childless_adult": 162,
+   "other": 33
+  },
+  "baseline": {
+   "lift": 3.54,
+   "ratio": {
+    "elderly": 0.759,
+    "disabled": 0.847,
+    "single_parent": 1.211,
+    "married_with_kids": 3.118,
+    "childless_adult": 1.062,
+    "other": 1.192
+   }
+  },
+  "floor": {
+   "lift": 3.125,
+   "ratio": {
+    "elderly": 1.202,
+    "disabled": 0.875,
+    "single_parent": 0.844,
+    "married_with_kids": 1.467,
+    "childless_adult": 0.772,
+    "other": 0.825
+   }
+  }
+ },
+ {
+  "state": "OH",
+  "n_holdout": 869,
+  "types": {
+   "elderly": 256,
+   "disabled": 234,
+   "single_parent": 176,
+   "married_with_kids": 32,
+   "multiadult_with_kids": 29,
+   "childless_adult": 128,
+   "other": 14
+  },
+  "baseline": {
+   "lift": 3.228,
+   "ratio": {
+    "elderly": 0.345,
+    "disabled": 0.738,
+    "single_parent": 1.681,
+    "married_with_kids": 2.922,
+    "multiadult_with_kids": 2.036,
+    "childless_adult": 1.531,
+    "other": 1.261
+   }
+  },
+  "floor": {
+   "lift": 3.25,
+   "ratio": {
+    "elderly": 1.109,
+    "disabled": 1.026,
+    "single_parent": 0.814,
+    "married_with_kids": 0.859,
+    "multiadult_with_kids": 1.309,
+    "childless_adult": 0.9,
+    "other": 0.63
+   }
+  }
+ },
+ {
+  "state": "OK",
+  "n_holdout": 957,
+  "types": {
+   "elderly": 209,
+   "disabled": 185,
+   "single_parent": 187,
+   "married_with_kids": 71,
+   "childless_adult": 260,
+   "other": 45
+  },
+  "baseline": {
+   "lift": 3.328,
+   "ratio": {
+    "elderly": 0.434,
+    "disabled": 0.746,
+    "single_parent": 1.6,
+    "married_with_kids": 1.793,
+    "childless_adult": 0.833,
+    "other": 1.386
+   }
+  },
+  "floor": {
+   "lift": 3.14,
+   "ratio": {
+    "elderly": 0.999,
+    "disabled": 1.06,
+    "single_parent": 1.187,
+    "married_with_kids": 0.946,
+    "childless_adult": 0.792,
+    "other": 0.729
+   }
+  }
+ },
+ {
+  "state": "OR",
+  "n_holdout": 760,
+  "types": {
+   "elderly": 243,
+   "disabled": 103,
+   "single_parent": 106,
+   "married_with_kids": 38,
+   "childless_adult": 232,
+   "other": 38
+  },
+  "baseline": {
+   "lift": 3.684,
+   "ratio": {
+    "elderly": 0.795,
+    "disabled": 0.841,
+    "single_parent": 1.148,
+    "married_with_kids": 1.987,
+    "childless_adult": 0.937,
+    "other": 1.382
+   }
+  },
+  "floor": {
+   "lift": 3.655,
+   "ratio": {
+    "elderly": 0.921,
+    "disabled": 1.184,
+    "single_parent": 0.927,
+    "married_with_kids": 1.359,
+    "childless_adult": 0.975,
+    "other": 0.864
+   }
+  }
+ },
+ {
+  "state": "PA",
+  "n_holdout": 817,
+  "types": {
+   "elderly": 307,
+   "disabled": 168,
+   "single_parent": 122,
+   "married_with_kids": 30,
+   "multiadult_with_kids": 33,
+   "childless_adult": 148,
+   "other": 9
+  },
+  "baseline": {
+   "lift": 3.475,
+   "ratio": {
+    "elderly": 0.689,
+    "disabled": 0.918,
+    "single_parent": 1.294,
+    "married_with_kids": 1.998,
+    "multiadult_with_kids": 1.583,
+    "childless_adult": 1.46,
+    "other": 1.071
+   }
+  },
+  "floor": {
+   "lift": 3.181,
+   "ratio": {
+    "elderly": 0.895,
+    "disabled": 1.129,
+    "single_parent": 1.071,
+    "married_with_kids": 1.142,
+    "multiadult_with_kids": 0.838,
+    "childless_adult": 1.168,
+    "other": 0.535
+   }
+  }
+ },
+ {
+  "state": "RI",
+  "n_holdout": 859,
+  "types": {
+   "elderly": 297,
+   "disabled": 210,
+   "single_parent": 129,
+   "childless_adult": 158,
+   "other": 65
+  },
+  "baseline": {
+   "lift": 3.475,
+   "ratio": {
+    "elderly": 0.696,
+    "disabled": 0.909,
+    "single_parent": 1.717,
+    "childless_adult": 0.71,
+    "other": 1.748
+   }
+  },
+  "floor": {
+   "lift": 3.354,
+   "ratio": {
+    "elderly": 1.017,
+    "disabled": 1.012,
+    "single_parent": 0.998,
+    "childless_adult": 1.153,
+    "other": 0.777
+   }
+  }
+ },
+ {
+  "state": "SC",
+  "n_holdout": 935,
+  "types": {
+   "elderly": 301,
+   "disabled": 166,
+   "single_parent": 256,
+   "married_with_kids": 26,
+   "multiadult_with_kids": 26,
+   "childless_adult": 143,
+   "other": 17
+  },
+  "baseline": {
+   "lift": 3.118,
+   "ratio": {
+    "elderly": 0.68,
+    "disabled": 0.987,
+    "single_parent": 1.256,
+    "married_with_kids": 1.813,
+    "multiadult_with_kids": 1.813,
+    "childless_adult": 0.529,
+    "other": 2.719
+   }
+  },
+  "floor": {
+   "lift": 2.797,
+   "ratio": {
+    "elderly": 1.004,
+    "disabled": 1.101,
+    "single_parent": 0.897,
+    "married_with_kids": 1.154,
+    "multiadult_with_kids": 0.906,
+    "childless_adult": 0.906,
+    "other": 1.813
+   }
+  }
+ },
+ {
+  "state": "SD",
+  "n_holdout": 592,
+  "types": {
+   "elderly": 151,
+   "disabled": 112,
+   "single_parent": 102,
+   "multiadult_with_kids": 34,
+   "child_only": 51,
+   "childless_adult": 119,
+   "other": 23
+  },
+  "baseline": {
+   "lift": 2.745,
+   "ratio": {
+    "elderly": 0.373,
+    "disabled": 0.363,
+    "single_parent": 2.24,
+    "multiadult_with_kids": 2.061,
+    "child_only": 1.061,
+    "childless_adult": 1.073,
+    "other": 1.585
+   }
+  },
+  "floor": {
+   "lift": 2.445,
+   "ratio": {
+    "elderly": 1.085,
+    "disabled": 1.123,
+    "single_parent": 1.008,
+    "multiadult_with_kids": 0.644,
+    "child_only": 0.758,
+    "childless_adult": 0.966,
+    "other": 0.991
+   }
+  }
+ },
+ {
+  "state": "TN",
+  "n_holdout": 952,
+  "types": {
+   "elderly": 246,
+   "disabled": 234,
+   "single_parent": 202,
+   "married_with_kids": 25,
+   "childless_adult": 211,
+   "other": 34
+  },
+  "baseline": {
+   "lift": 3.068,
+   "ratio": {
+    "elderly": 0.54,
+    "disabled": 0.74,
+    "single_parent": 1.619,
+    "married_with_kids": 2.365,
+    "childless_adult": 1.08,
+    "other": 2.247
+   }
+  },
+  "floor": {
+   "lift": 2.998,
+   "ratio": {
+    "elderly": 0.817,
+    "disabled": 0.999,
+    "single_parent": 1.08,
+    "married_with_kids": 1.33,
+    "childless_adult": 1.08,
+    "other": 1.655
+   }
+  }
+ },
+ {
+  "state": "TX",
+  "n_holdout": 865,
+  "types": {
+   "elderly": 253,
+   "disabled": 155,
+   "single_parent": 207,
+   "married_with_kids": 49,
+   "child_only": 60,
+   "childless_adult": 118,
+   "other": 23
+  },
+  "baseline": {
+   "lift": 2.696,
+   "ratio": {
+    "elderly": 0.352,
+    "disabled": 0.803,
+    "single_parent": 1.719,
+    "married_with_kids": 1.679,
+    "child_only": 0.766,
+    "childless_adult": 0.922,
+    "other": 1.66
+   }
+  },
+  "floor": {
+   "lift": 2.478,
+   "ratio": {
+    "elderly": 0.952,
+    "disabled": 0.9,
+    "single_parent": 1.178,
+    "married_with_kids": 0.992,
+    "child_only": 1.022,
+    "childless_adult": 0.738,
+    "other": 1.291
+   }
+  }
+ },
+ {
+  "state": "UT",
+  "n_holdout": 1026,
+  "types": {
+   "elderly": 195,
+   "disabled": 204,
+   "single_parent": 212,
+   "married_with_kids": 81,
+   "multiadult_with_kids": 28,
+   "child_only": 30,
+   "childless_adult": 276
+  },
+  "baseline": {
+   "lift": 2.631,
+   "ratio": {
+    "elderly": 0.463,
+    "disabled": 0.802,
+    "single_parent": 1.3,
+    "married_with_kids": 1.728,
+    "multiadult_with_kids": 1.096,
+    "child_only": 0.822,
+    "childless_adult": 0.996
+   }
+  },
+  "floor": {
+   "lift": 2.505,
+   "ratio": {
+    "elderly": 1.088,
+    "disabled": 0.998,
+    "single_parent": 1.051,
+    "married_with_kids": 1.012,
+    "multiadult_with_kids": 0.639,
+    "child_only": 1.37,
+    "childless_adult": 0.797
+   }
+  }
+ },
+ {
+  "state": "VA",
+  "n_holdout": 736,
+  "types": {
+   "elderly": 234,
+   "disabled": 139,
+   "single_parent": 167,
+   "married_with_kids": 27,
+   "childless_adult": 123,
+   "other": 46
+  },
+  "baseline": {
+   "lift": 2.943,
+   "ratio": {
+    "elderly": 0.557,
+    "disabled": 0.833,
+    "single_parent": 1.662,
+    "married_with_kids": 0.846,
+    "childless_adult": 0.689,
+    "other": 1.303
+   }
+  },
+  "floor": {
+   "lift": 2.865,
+   "ratio": {
+    "elderly": 1.139,
+    "disabled": 1.034,
+    "single_parent": 0.793,
+    "married_with_kids": 1.058,
+    "childless_adult": 1.034,
+    "other": 1.024
+   }
+  }
+ },
+ {
+  "state": "VI",
+  "n_holdout": 249,
+  "types": {
+   "elderly": 84,
+   "single_parent": 71,
+   "childless_adult": 59,
+   "other": 35
+  },
+  "baseline": {
+   "lift": 3.315,
+   "ratio": {
+    "elderly": 0.488,
+    "single_parent": 1.359,
+    "childless_adult": 1.336,
+    "other": 1.359
+   }
+  },
+  "floor": {
+   "lift": 3.234,
+   "ratio": {
+    "elderly": 0.928,
+    "single_parent": 0.865,
+    "childless_adult": 1.336,
+    "other": 1.235
+   }
+  }
+ },
+ {
+  "state": "VT",
+  "n_holdout": 680,
+  "types": {
+   "elderly": 259,
+   "disabled": 189,
+   "single_parent": 90,
+   "childless_adult": 101,
+   "other": 41
+  },
+  "baseline": {
+   "lift": 3.483,
+   "ratio": {
+    "elderly": 0.65,
+    "disabled": 1.234,
+    "single_parent": 1.866,
+    "childless_adult": 0.72,
+    "other": 1.728
+   }
+  },
+  "floor": {
+   "lift": 3.237,
+   "ratio": {
+    "elderly": 0.981,
+    "disabled": 1.111,
+    "single_parent": 0.968,
+    "childless_adult": 0.72,
+    "other": 1.016
+   }
+  }
+ },
+ {
+  "state": "WA",
+  "n_holdout": 765,
+  "types": {
+   "elderly": 226,
+   "disabled": 153,
+   "single_parent": 97,
+   "married_with_kids": 30,
+   "childless_adult": 222,
+   "other": 37
+  },
+  "baseline": {
+   "lift": 3.838,
+   "ratio": {
+    "elderly": 0.685,
+    "disabled": 0.743,
+    "single_parent": 1.617,
+    "married_with_kids": 1.408,
+    "childless_adult": 1.314,
+    "other": 1.159
+   }
+  },
+  "floor": {
+   "lift": 3.905,
+   "ratio": {
+    "elderly": 0.933,
+    "disabled": 1.0,
+    "single_parent": 1.213,
+    "married_with_kids": 1.126,
+    "childless_adult": 0.815,
+    "other": 1.159
+   }
+  }
+ },
+ {
+  "state": "WI",
+  "n_holdout": 994,
+  "types": {
+   "elderly": 273,
+   "disabled": 186,
+   "single_parent": 166,
+   "married_with_kids": 49,
+   "multiadult_with_kids": 37,
+   "childless_adult": 262,
+   "other": 21
+  },
+  "baseline": {
+   "lift": 3.461,
+   "ratio": {
+    "elderly": 0.57,
+    "disabled": 0.708,
+    "single_parent": 1.549,
+    "married_with_kids": 1.699,
+    "multiadult_with_kids": 1.38,
+    "childless_adult": 1.105,
+    "other": 1.274
+   }
+  },
+  "floor": {
+   "lift": 3.458,
+   "ratio": {
+    "elderly": 0.89,
+    "disabled": 0.951,
+    "single_parent": 1.37,
+    "married_with_kids": 0.849,
+    "multiadult_with_kids": 0.948,
+    "childless_adult": 0.991,
+    "other": 0.91
+   }
+  }
+ },
+ {
+  "state": "WV",
+  "n_holdout": 816,
+  "types": {
+   "elderly": 260,
+   "disabled": 205,
+   "single_parent": 121,
+   "married_with_kids": 31,
+   "multiadult_with_kids": 30,
+   "childless_adult": 167,
+   "other": 2
+  },
+  "baseline": {
+   "lift": 2.605,
+   "ratio": {
+    "elderly": 0.531,
+    "disabled": 0.928,
+    "single_parent": 1.539,
+    "married_with_kids": 2.145,
+    "multiadult_with_kids": 1.656,
+    "childless_adult": 1.112,
+    "other": 0.0
+   }
+  },
+  "floor": {
+   "lift": 2.576,
+   "ratio": {
+    "elderly": 0.956,
+    "disabled": 0.99,
+    "single_parent": 0.939,
+    "married_with_kids": 1.609,
+    "multiadult_with_kids": 0.883,
+    "childless_adult": 1.043,
+    "other": 1.877
+   }
+  }
+ },
+ {
+  "state": "WY",
+  "n_holdout": 297,
+  "types": {
+   "elderly": 54,
+   "disabled": 79,
+   "single_parent": 64,
+   "childless_adult": 61,
+   "other": 39
+  },
+  "baseline": {
+   "lift": 1.715,
+   "ratio": {
+    "elderly": 0.541,
+    "disabled": 0.555,
+    "single_parent": 1.089,
+    "childless_adult": 1.284,
+    "other": 2.397
+   }
+  },
+  "floor": {
+   "lift": 1.017,
+   "ratio": {
+    "elderly": 1.351,
+    "disabled": 0.833,
+    "single_parent": 1.089,
+    "childless_adult": 0.856,
+    "other": 0.913
+   }
+  }
+ }
+]
