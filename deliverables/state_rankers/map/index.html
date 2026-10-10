@@ -70,7 +70,8 @@
     <h2>Where the ranker helps most</h2>
     <p class="tr-note">Click a state for its numbers. Lift and dollars come from each state's held-out QC cases; error rates are USDA's official FY2025 figures.</p>
     <div class="tr-switch" role="group" aria-label="Map metric" id="metric-switch">
-      <button type="button" data-m="lift_top20" aria-pressed="true">Top-20% lift</button>
+      <button type="button" data-m="lift_deployed" aria-pressed="true">Top-20% lift</button>
+      <button type="button" data-m="elderly_ratio">Elderly review vs risk</button>
       <button type="button" data-m="per_hour">Dollars per review hour</button>
       <button type="button" data-m="per_fy2025">FY2025 error rate</button>
       <button type="button" data-m="share_now">FY2028 cost share, now</button>
@@ -88,13 +89,15 @@
 
   <section class="tr-card" id="table-card">
     <h2>All jurisdictions</h2>
-    <p class="tr-note">Sort by any column; search by name or code. Click a row to show it on the map.</p>
+    <p class="tr-note">Sort by any column; search by name or code. Click a row to show it on the map. ◆ = pooled model; ⚑ = fewer than 1,500 QC cases.</p>
     <div class="tr-tools"><label for="tr-q" class="tr-note" style="margin:0">Search</label><input id="tr-q" type="search" placeholder="e.g. Ohio or OH"></div>
     <div class="tr-tablebox">
       <table class="tr-table" id="tr-table" data-source="state_results" data-row-key="state">
         <thead><tr>
           <th data-field="state"><button type="button" data-k="state">State</button></th>
-          <th data-field="lift_top20"><button type="button" data-k="lift_top20">Top-20% lift</button></th>
+          <th data-field="lift_deployed"><button type="button" data-k="lift_deployed">Top-20% lift</button></th>
+          <th data-field="lift_floor" class="hide-n"><button type="button" data-k="lift_floor">With fairness floor</button></th>
+          <th data-field="elderly_ratio" class="hide-n"><button type="button" data-k="elderly_ratio">Elderly review vs risk</button></th>
           <th data-field="lift_top10" class="hide-n"><button type="button" data-k="lift_top10">Top-10% lift</button></th>
           <th data-field="per_hour"><button type="button" data-k="per_hour">$ per review hour</button></th>
           <th data-field="random_per_hour" class="hide-n"><button type="button" data-k="random_per_hour">Random review</button></th>
@@ -118,6 +121,8 @@
         <li>"Lift" is error dollars found in the top 20% (or 10%) of the ranked list, divided by what reviewing the same number of random cases finds, on cases held out from training.</li>
         <li>"2020–22 → 2023–24" trains on the earlier years and tests on the later ones. "Forecast ÷ actual" compares the model's expected dollars with the dollars found in its top 20%.</li>
         <li>Review time is assumed to be 30 minutes a case.</li>
+        <li>The five smallest-sample jurisdictions where it helped on both tests (marked ◆) use a model trained on their own cases pooled with every other state's; the rest use their own cases only.</li>
+        <li>Ranking purely by dollars under-reviews elderly households for their risk almost everywhere. The "fairness floor" splits the review budget across household types by their share of errors; it costs a little lift and brings review into proportion.</li>
       </ul>
     </div>
     <div class="tr-card">
@@ -147,7 +152,7 @@
     description: 'Count of jurisdictions, median top-20% lift, how many reach 2.5x, and total FY2028 cost share avoided in the central scenario.',
     inputs: ['state_results'],
     fn: (state_results) => {
-      const lifts = state_results.map((r) => Number(r.lift_top20)).sort((a, b) => a - b);
+      const lifts = state_results.map((r) => Number(r.lift_deployed)).sort((a, b) => a - b);
       const mid = lifts.length / 2;
       const median = lifts.length % 2 ? lifts[Math.floor(mid)] : (lifts[mid - 1] + lifts[mid]) / 2;
       return {
@@ -167,14 +172,15 @@
   const fmtShare = (v) => d3.format('.0%')(v);
   const fmtBig = (v) => '$' + new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
   const METRICS = {
-    lift_top20: { label: 'Top-20% lift over random review', fmt: fmtX, kind: 'ramp' },
+    lift_deployed: { label: 'Top-20% lift over random review', fmt: fmtX, kind: 'ramp' },
+    elderly_ratio: { label: 'Elderly households: share reviewed ÷ share with an error, relative to all (1.0 = in proportion to risk)', fmt: (v) => v == null ? 'n/a' : d3.format('.2f')(v), kind: 'ratio' },
     per_hour: { label: 'Error dollars found per review hour', fmt: fmt$, kind: 'ramp' },
     per_fy2025: { label: 'Official FY2025 payment error rate', fmt: fmtPct, kind: 'ramp-bad' },
     share_now: { label: 'FY2028 state share of benefits at the FY2025 rate', fmt: fmtShare, kind: 'share' },
     share_central: { label: 'FY2028 share with ranker reviews (central scenario)', fmt: fmtShare, kind: 'share' },
   };
   const SHARES = [0, 0.05, 0.10, 0.15];
-  window.trState = { metric: 'lift_top20', sel: 'PA', sortKey: 'lift_top20', sortDir: -1, q: '' };
+  window.trState = { metric: 'lift_deployed', sel: 'PA', sortKey: 'lift_deployed', sortDir: -1, q: '' };
 
   const cssVar = (name) => getComputedStyle(document.getElementById('dash-root')).getPropertyValue(name).trim();
   const shareColor = (s) => [cssVar('--cds-chart-muted'), dash.colors[2], dash.colors[1], cssVar('--cds-chart-status-critical')][SHARES.indexOf(Number(s))] || cssVar('--cds-chart-muted');
@@ -182,6 +188,11 @@
   function colorFor(rows, metric) {
     const m = METRICS[metric];
     if (m.kind === 'share') return (r) => shareColor(r[metric]);
+    if (m.kind === 'ratio') {
+      const ip = d3.interpolateRgb(cssVar('--cds-chart-status-critical'), cssVar('--cds-chart-grid'));
+      const sc = d3.scaleLinear([0.3, 1], [0, 1]).clamp(true);
+      return (r) => (r[metric] == null ? cssVar('--cds-chart-muted') : ip(sc(Number(r[metric]))));
+    }
     const vals = rows.map((r) => Number(r[metric]));
     const lo = cssVar('--cds-chart-grid') || '#ddd';
     const hi = m.kind === 'ramp-bad' ? cssVar('--cds-chart-status-critical') : dash.colors[0];
@@ -202,6 +213,14 @@
         span.append(sw, document.createTextNode(s === 0 ? 'No share (under 6%)' : fmtShare(s) + ' of benefits'));
         el.append(span);
       });
+      return;
+    }
+    if (m.kind === 'ratio') {
+      const lo = document.createElement('span'); lo.textContent = 'Under-reviewed';
+      const bar = document.createElement('span'); bar.className = 'bar';
+      bar.style.background = `linear-gradient(90deg, ${cssVar('--cds-chart-status-critical')}, ${cssVar('--cds-chart-grid')})`;
+      const hi = document.createElement('span'); hi.textContent = 'In proportion (1.0 or more)';
+      el.append(lo, bar, hi);
       return;
     }
     const vals = rows.map((r) => Number(r[trState.metric]));
@@ -229,13 +248,20 @@
     };
     const grp = (t) => { const g = document.createElement('div'); g.className = 'grp'; g.textContent = t; dl.append(g); };
     grp('Ranker, held-out cases');
-    item('Top-20% lift', 'lift_top20', fmtX);
+    item('Model', 'model_type', (v) => v);
+    item('Top-20% lift', 'lift_deployed', fmtX);
+    if (r.model_type !== 'own cases only') item('Own-cases model (before pooling)', 'lift_top20', fmtX);
+    item('Top-20% lift with fairness floor', 'lift_floor', fmtX);
     item('Top-10% lift', 'lift_top10', fmtX);
     item('$ per review hour', 'per_hour', fmt$);
     item('Random review', 'random_per_hour', fmt$);
     item('Train 2020–22, test 2023–24', 'time_split_lift', fmtX);
     item('Forecast ÷ actual (top 20%)', 'exp_over_act', (v) => d3.format('.2f')(v));
     item('QC cases, FY2020–24', 'n_rows', d3.format(','));
+    grp('Who gets reviewed (1.0 = in proportion to error risk)');
+    item('Elderly households', 'elderly_ratio', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
+    item('Elderly, with fairness floor', 'elderly_ratio_floor', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
+    item('Disabled households', 'disabled_ratio', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
     grp('Error rate and FY2028 cost share');
     item('FY2025 error rate', 'per_fy2025', fmtPct);
     item('Cost share now', 'share_now', fmtShare);
@@ -298,7 +324,8 @@
     });
   }
 
-  const COLS = [['state', (r) => r.name + ' (' + r.state + ')'], ['lift_top20', (r) => fmtX(r.lift_top20)], ['lift_top10', (r) => fmtX(r.lift_top10)],
+  const COLS = [['state', (r) => r.name + ' (' + r.state + ')' + (r.model_type !== 'own cases only' ? ' ◆' : '')], ['lift_deployed', (r) => fmtX(r.lift_deployed)],
+    ['lift_floor', (r) => fmtX(r.lift_floor)], ['elderly_ratio', (r) => (r.elderly_ratio == null ? 'n/a' : d3.format('.2f')(r.elderly_ratio))], ['lift_top10', (r) => fmtX(r.lift_top10)],
     ['per_hour', (r) => fmt$(r.per_hour)], ['random_per_hour', (r) => fmt$(r.random_per_hour)], ['time_split_lift', (r) => fmtX(r.time_split_lift)],
     ['exp_over_act', (r) => d3.format('.2f')(r.exp_over_act)], ['per_fy2025', (r) => fmtPct(r.per_fy2025)], ['share_central', (r) => fmtShare(r.share_central)],
     ['n_rows', (r) => d3.format(',')(r.n_rows) + (String(r.low_sample) === 'true' ? ' ⚑' : '')]];
@@ -317,7 +344,7 @@
     list.forEach((r) => {
       const tr = document.createElement('tr'); tr.dataset.key = r.state;
       if (r.state === trState.sel) tr.className = 'sel';
-      COLS.forEach(([k, f], i) => { const td = document.createElement('td'); td.textContent = f(r); if (i >= 2 && [2, 4, 5, 6, 9].includes(i)) td.className = 'hide-n'; tr.append(td); });
+      COLS.forEach(([k, f], i) => { const td = document.createElement('td'); td.textContent = f(r); if ([2, 3, 4, 6, 7, 8, 11].includes(i)) td.className = 'hide-n'; tr.append(td); });
       tb.append(tr);
     });
     document.querySelectorAll('#tr-table th').forEach((th) => {

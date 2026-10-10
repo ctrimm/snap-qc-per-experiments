@@ -104,6 +104,7 @@ transfer, LM eval) every experiment here must move.
 | 72 | [Fairness of all 53 rankers](experiments/exp72_fairness_all_states.md) | Fairness | Held — elderly households under-reviewed for their risk in 51 of 53 jurisdictions (median ratio 0.57), disabled in 22 of 51. Per-type floor fixes it (0 and 2) at median lift 3.25× → 3.18×; largest costs NY −0.42×, WY −0.70× |
 | 73 | [Cost-share sensitivity](experiments/exp73_cost_sensitivity.md) | Production | Informative — review volume (0.5–5%: $1.3–9.9B) and error lifetime (2–12 months: $1.7–9.0B) drive the range; ranker accuracy least ($3.9–5.3B). Ranker beats random 3–15× at every setting |
 | 74 | [Flag-card odds calibration](experiments/exp74_odds_calibration.md) | Production | Held, adopted — raw 'N in 10' odds overconfident (ECE 0.12–0.22; '9 in 10' right 50–71%). Temperature scaling (T ≈ 2.9) cuts ECE to 0.05–0.07 in PA, NY, ID without changing the listed parts |
+| 75 | [Pooling for small jurisdictions](experiments/exp75_small_state_pooling.md) | Production | Held (pre-registered rule) — 5 of 12 small jurisdictions adopt a pooled model: Wyoming 1.72× → 3.47×, Alaska 1.26× → 2.87×, Virgin Islands, Delaware, Montana. All 53 now ≥ 2.5× on held-out cases (lowest 2.61×). Repackaged; dashboard updated |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix

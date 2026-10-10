@@ -35,6 +35,19 @@ for ab, r in sorted(r68.items()):
         "saving_high": sc["high"]["ranker"]["saving_vs_now"],
         "reviews_per_month": sc["central"]["reviews_per_month"], "fte": sc["central"]["fte"],
     })
+# exp72 fairness and exp75 pooled models for small jurisdictions
+r72 = {r["state"]: r for r in json.loads((EXP / "exp72_results.json").read_text())}
+r75 = json.loads((EXP / "exp75_results.json").read_text())
+for row in rows:
+    f = r72[row["state"]]
+    row["lift_floor"] = f["floor"]["lift"]
+    row["elderly_ratio"] = f["baseline"]["ratio"].get("elderly")
+    row["elderly_ratio_floor"] = f["floor"]["ratio"].get("elderly")
+    row["disabled_ratio"] = f["baseline"]["ratio"].get("disabled")
+    p = r75.get(row["state"])
+    pooled = p is not None and p["adopted"] != "A"
+    row["model_type"] = "pooled with other states" if pooled else "own cases only"
+    row["lift_deployed"] = p[p["adopted"]]["holdout"] if pooled else row["lift_top20"]
 (HERE / "state_results.json").write_text(json.dumps(rows, indent=1))
 ass = [{"scenario": k, "review_share": v["R"], "lift_basis": "top-20% lift" if v["lift"] == "top20" else "top-10% lift",
         "fix_rate": v["f"], "error_months": v["m"]} for k, v in r69["scenarios"].items()]

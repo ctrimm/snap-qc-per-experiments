@@ -20,7 +20,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 511,
-  "fte": 1.8
+  "fte": 1.8,
+  "lift_floor": 1.38,
+  "elderly_ratio": 0.771,
+  "elderly_ratio_floor": 0.887,
+  "disabled_ratio": 1.096,
+  "model_type": "pooled with other states",
+  "lift_deployed": 2.866
  },
  {
   "state": "AL",
@@ -43,7 +49,13 @@
   "saving_central": 85400737,
   "saving_high": 170801473,
   "reviews_per_month": 7343,
-  "fte": 26.2
+  "fte": 26.2,
+  "lift_floor": 3.196,
+  "elderly_ratio": 0.397,
+  "elderly_ratio_floor": 1.131,
+  "disabled_ratio": 0.726,
+  "model_type": "own cases only",
+  "lift_deployed": 3.433
  },
  {
   "state": "AR",
@@ -66,7 +78,13 @@
   "saving_central": 24075603,
   "saving_high": 48151206,
   "reviews_per_month": 2389,
-  "fte": 8.5
+  "fte": 8.5,
+  "lift_floor": 2.327,
+  "elderly_ratio": 0.643,
+  "elderly_ratio_floor": 1.218,
+  "disabled_ratio": 0.697,
+  "model_type": "own cases only",
+  "lift_deployed": 2.617
  },
  {
   "state": "AZ",
@@ -89,7 +107,13 @@
   "saving_central": 195500057,
   "saving_high": 293250086,
   "reviews_per_month": 8847,
-  "fte": 31.6
+  "fte": 31.6,
+  "lift_floor": 3.588,
+  "elderly_ratio": 0.384,
+  "elderly_ratio_floor": 1.176,
+  "disabled_ratio": 0.848,
+  "model_type": "own cases only",
+  "lift_deployed": 3.542
  },
  {
   "state": "CA",
@@ -112,7 +136,13 @@
   "saving_central": 1191681220,
   "saving_high": 1787521831,
   "reviews_per_month": 61609,
-  "fte": 220.0
+  "fte": 220.0,
+  "lift_floor": 3.276,
+  "elderly_ratio": 0.693,
+  "elderly_ratio_floor": 0.959,
+  "disabled_ratio": 1.305,
+  "model_type": "own cases only",
+  "lift_deployed": 3.385
  },
  {
   "state": "CO",
@@ -135,7 +165,13 @@
   "saving_central": 126523619,
   "saving_high": 189785429,
   "reviews_per_month": 6092,
-  "fte": 21.8
+  "fte": 21.8,
+  "lift_floor": 3.309,
+  "elderly_ratio": 0.589,
+  "elderly_ratio_floor": 0.971,
+  "disabled_ratio": 1.01,
+  "model_type": "own cases only",
+  "lift_deployed": 3.445
  },
  {
   "state": "CT",
@@ -158,7 +194,13 @@
   "saving_central": 89584871,
   "saving_high": 89584871,
   "reviews_per_month": 4530,
-  "fte": 16.2
+  "fte": 16.2,
+  "lift_floor": 3.705,
+  "elderly_ratio": 0.55,
+  "elderly_ratio_floor": 1.028,
+  "disabled_ratio": 0.887,
+  "model_type": "own cases only",
+  "lift_deployed": 3.73
  },
  {
   "state": "DC",
@@ -181,7 +223,13 @@
   "saving_central": 0,
   "saving_high": 15233707,
   "reviews_per_month": 1634,
-  "fte": 5.8
+  "fte": 5.8,
+  "lift_floor": 3.453,
+  "elderly_ratio": 0.56,
+  "elderly_ratio_floor": 0.912,
+  "disabled_ratio": 0.972,
+  "model_type": "own cases only",
+  "lift_deployed": 3.796
  },
  {
   "state": "DE",
@@ -204,7 +252,13 @@
   "saving_central": 0,
   "saving_high": 12045109,
   "reviews_per_month": 1134,
-  "fte": 4.1
+  "fte": 4.1,
+  "lift_floor": 2.93,
+  "elderly_ratio": 0.608,
+  "elderly_ratio_floor": 1.053,
+  "disabled_ratio": 1.05,
+  "model_type": "pooled with other states",
+  "lift_deployed": 3.383
  },
  {
   "state": "FL",
@@ -227,7 +281,13 @@
   "saving_central": 324678361,
   "saving_high": 974035083,
   "reviews_per_month": 31907,
-  "fte": 114.0
+  "fte": 114.0,
+  "lift_floor": 3.392,
+  "elderly_ratio": 0.656,
+  "elderly_ratio_floor": 1.029,
+  "disabled_ratio": 1.185,
+  "model_type": "own cases only",
+  "lift_deployed": 3.488
  },
  {
   "state": "GA",
@@ -250,7 +310,13 @@
   "saving_central": 0,
   "saving_high": 303037402,
   "reviews_per_month": 13181,
-  "fte": 47.1
+  "fte": 47.1,
+  "lift_floor": 3.201,
+  "elderly_ratio": 0.568,
+  "elderly_ratio_floor": 0.875,
+  "disabled_ratio": 0.765,
+  "model_type": "own cases only",
+  "lift_deployed": 3.245
  },
  {
   "state": "GU",
@@ -273,7 +339,13 @@
   "saving_central": 5964010,
   "saving_high": 11928021,
   "reviews_per_month": 232,
-  "fte": 0.8
+  "fte": 0.8,
+  "lift_floor": 2.8,
+  "elderly_ratio": 0.415,
+  "elderly_ratio_floor": 0.913,
+  "disabled_ratio": null,
+  "model_type": "own cases only",
+  "lift_deployed": 2.659
  },
  {
   "state": "HI",
@@ -296,7 +368,13 @@
   "saving_central": 34575185,
   "saving_high": 69150369,
   "reviews_per_month": 1662,
-  "fte": 5.9
+  "fte": 5.9,
+  "lift_floor": 2.25,
+  "elderly_ratio": 0.447,
+  "elderly_ratio_floor": 0.987,
+  "disabled_ratio": 0.407,
+  "model_type": "own cases only",
+  "lift_deployed": 2.679
  },
  {
   "state": "IA",
@@ -319,7 +397,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 2538,
-  "fte": 9.1
+  "fte": 9.1,
+  "lift_floor": 3.547,
+  "elderly_ratio": 0.451,
+  "elderly_ratio_floor": 0.985,
+  "disabled_ratio": 0.717,
+  "model_type": "own cases only",
+  "lift_deployed": 3.613
  },
  {
   "state": "ID",
@@ -342,7 +426,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 1300,
-  "fte": 4.6
+  "fte": 4.6,
+  "lift_floor": 2.699,
+  "elderly_ratio": 0.592,
+  "elderly_ratio_floor": 1.109,
+  "disabled_ratio": 0.957,
+  "model_type": "own cases only",
+  "lift_deployed": 2.757
  },
  {
   "state": "IL",
@@ -365,7 +455,13 @@
   "saving_central": 221212798,
   "saving_high": 442425597,
   "reviews_per_month": 20907,
-  "fte": 74.7
+  "fte": 74.7,
+  "lift_floor": 3.487,
+  "elderly_ratio": 0.927,
+  "elderly_ratio_floor": 1.04,
+  "disabled_ratio": 0.935,
+  "model_type": "own cases only",
+  "lift_deployed": 3.49
  },
  {
   "state": "IN",
@@ -388,7 +484,13 @@
   "saving_central": 69990635,
   "saving_high": 139981270,
   "reviews_per_month": 5700,
-  "fte": 20.4
+  "fte": 20.4,
+  "lift_floor": 3.061,
+  "elderly_ratio": 0.681,
+  "elderly_ratio_floor": 1.08,
+  "disabled_ratio": 0.738,
+  "model_type": "own cases only",
+  "lift_deployed": 3.224
  },
  {
   "state": "KS",
@@ -411,7 +513,13 @@
   "saving_central": 18841873,
   "saving_high": 37683746,
   "reviews_per_month": 1741,
-  "fte": 6.2
+  "fte": 6.2,
+  "lift_floor": 2.748,
+  "elderly_ratio": 0.796,
+  "elderly_ratio_floor": 1.029,
+  "disabled_ratio": 0.752,
+  "model_type": "own cases only",
+  "lift_deployed": 2.799
  },
  {
   "state": "KY",
@@ -434,7 +542,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 5301,
-  "fte": 18.9
+  "fte": 18.9,
+  "lift_floor": 2.889,
+  "elderly_ratio": 0.385,
+  "elderly_ratio_floor": 0.859,
+  "disabled_ratio": 0.662,
+  "model_type": "own cases only",
+  "lift_deployed": 3.12
  },
  {
   "state": "LA",
@@ -457,7 +571,13 @@
   "saving_central": 185618969,
   "saving_high": 185618969,
   "reviews_per_month": 8273,
-  "fte": 29.5
+  "fte": 29.5,
+  "lift_floor": 3.098,
+  "elderly_ratio": 0.537,
+  "elderly_ratio_floor": 0.934,
+  "disabled_ratio": 0.636,
+  "model_type": "own cases only",
+  "lift_deployed": 3.005
  },
  {
   "state": "MA",
@@ -480,7 +600,13 @@
   "saving_central": 257889465,
   "saving_high": 386834197,
   "reviews_per_month": 13242,
-  "fte": 47.3
+  "fte": 47.3,
+  "lift_floor": 3.924,
+  "elderly_ratio": 0.651,
+  "elderly_ratio_floor": 1.084,
+  "disabled_ratio": 0.947,
+  "model_type": "own cases only",
+  "lift_deployed": 4.038
  },
  {
   "state": "MD",
@@ -503,7 +629,13 @@
   "saving_central": 73086410,
   "saving_high": 146172820,
   "reviews_per_month": 7252,
-  "fte": 25.9
+  "fte": 25.9,
+  "lift_floor": 3.269,
+  "elderly_ratio": 0.681,
+  "elderly_ratio_floor": 0.969,
+  "disabled_ratio": 0.814,
+  "model_type": "own cases only",
+  "lift_deployed": 3.248
  },
  {
   "state": "ME",
@@ -526,7 +658,13 @@
   "saving_central": 34744788,
   "saving_high": 52117182,
   "reviews_per_month": 1959,
-  "fte": 7.0
+  "fte": 7.0,
+  "lift_floor": 3.369,
+  "elderly_ratio": 0.493,
+  "elderly_ratio_floor": 1.262,
+  "disabled_ratio": 0.809,
+  "model_type": "own cases only",
+  "lift_deployed": 3.542
  },
  {
   "state": "MI",
@@ -549,7 +687,13 @@
   "saving_central": 149559814,
   "saving_high": 299119628,
   "reviews_per_month": 15242,
-  "fte": 54.4
+  "fte": 54.4,
+  "lift_floor": 3.41,
+  "elderly_ratio": 0.745,
+  "elderly_ratio_floor": 0.982,
+  "disabled_ratio": 0.929,
+  "model_type": "own cases only",
+  "lift_deployed": 3.424
  },
  {
   "state": "MN",
@@ -572,7 +716,13 @@
   "saving_central": 43132943,
   "saving_high": 129398829,
   "reviews_per_month": 4660,
-  "fte": 16.6
+  "fte": 16.6,
+  "lift_floor": 3.261,
+  "elderly_ratio": 0.711,
+  "elderly_ratio_floor": 0.974,
+  "disabled_ratio": 0.868,
+  "model_type": "own cases only",
+  "lift_deployed": 3.41
  },
  {
   "state": "MO",
@@ -595,7 +745,13 @@
   "saving_central": 145259472,
   "saving_high": 145259472,
   "reviews_per_month": 6114,
-  "fte": 21.8
+  "fte": 21.8,
+  "lift_floor": 2.928,
+  "elderly_ratio": 0.527,
+  "elderly_ratio_floor": 1.077,
+  "disabled_ratio": 0.759,
+  "model_type": "own cases only",
+  "lift_deployed": 3.213
  },
  {
   "state": "MS",
@@ -618,7 +774,13 @@
   "saving_central": 39745685,
   "saving_high": 79491370,
   "reviews_per_month": 3670,
-  "fte": 13.1
+  "fte": 13.1,
+  "lift_floor": 3.331,
+  "elderly_ratio": 0.572,
+  "elderly_ratio_floor": 0.984,
+  "disabled_ratio": 0.698,
+  "model_type": "own cases only",
+  "lift_deployed": 3.456
  },
  {
   "state": "MT",
@@ -641,7 +803,13 @@
   "saving_central": 8008051,
   "saving_high": 16016102,
   "reviews_per_month": 803,
-  "fte": 2.9
+  "fte": 2.9,
+  "lift_floor": 2.783,
+  "elderly_ratio": 0.562,
+  "elderly_ratio_floor": 0.979,
+  "disabled_ratio": 0.982,
+  "model_type": "pooled with other states",
+  "lift_deployed": 3.441
  },
  {
   "state": "NC",
@@ -664,7 +832,13 @@
   "saving_central": 140686104,
   "saving_high": 140686104,
   "reviews_per_month": 13858,
-  "fte": 49.5
+  "fte": 49.5,
+  "lift_floor": 3.3,
+  "elderly_ratio": 0.73,
+  "elderly_ratio_floor": 1.034,
+  "disabled_ratio": 0.713,
+  "model_type": "own cases only",
+  "lift_deployed": 3.382
  },
  {
   "state": "ND",
@@ -687,7 +861,13 @@
   "saving_central": 5434903,
   "saving_high": 10869806,
   "reviews_per_month": 486,
-  "fte": 1.7
+  "fte": 1.7,
+  "lift_floor": 2.773,
+  "elderly_ratio": 0.589,
+  "elderly_ratio_floor": 1.01,
+  "disabled_ratio": 0.734,
+  "model_type": "own cases only",
+  "lift_deployed": 2.881
  },
  {
   "state": "NE",
@@ -710,7 +890,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 1489,
-  "fte": 5.3
+  "fte": 5.3,
+  "lift_floor": 2.596,
+  "elderly_ratio": 0.442,
+  "elderly_ratio_floor": 1.018,
+  "disabled_ratio": 0.724,
+  "model_type": "own cases only",
+  "lift_deployed": 2.618
  },
  {
   "state": "NH",
@@ -733,7 +919,13 @@
   "saving_central": 7571650,
   "saving_high": 15143301,
   "reviews_per_month": 828,
-  "fte": 3.0
+  "fte": 3.0,
+  "lift_floor": 3.062,
+  "elderly_ratio": 0.676,
+  "elderly_ratio_floor": 1.042,
+  "disabled_ratio": 0.868,
+  "model_type": "own cases only",
+  "lift_deployed": 3.166
  },
  {
   "state": "NJ",
@@ -756,7 +948,13 @@
   "saving_central": 92222202,
   "saving_high": 92222202,
   "reviews_per_month": 8397,
-  "fte": 30.0
+  "fte": 30.0,
+  "lift_floor": 2.805,
+  "elderly_ratio": 0.485,
+  "elderly_ratio_floor": 0.97,
+  "disabled_ratio": 0.992,
+  "model_type": "own cases only",
+  "lift_deployed": 2.952
  },
  {
   "state": "NM",
@@ -779,7 +977,13 @@
   "saving_central": 0,
   "saving_high": 97134611,
   "reviews_per_month": 4661,
-  "fte": 16.6
+  "fte": 16.6,
+  "lift_floor": 3.336,
+  "elderly_ratio": 0.503,
+  "elderly_ratio_floor": 0.854,
+  "disabled_ratio": 0.548,
+  "model_type": "own cases only",
+  "lift_deployed": 3.377
  },
  {
   "state": "NV",
@@ -802,7 +1006,13 @@
   "saving_central": 50804389,
   "saving_high": 50804389,
   "reviews_per_month": 5278,
-  "fte": 18.8
+  "fte": 18.8,
+  "lift_floor": 3.527,
+  "elderly_ratio": 0.82,
+  "elderly_ratio_floor": 1.148,
+  "disabled_ratio": 1.065,
+  "model_type": "own cases only",
+  "lift_deployed": 3.582
  },
  {
   "state": "NY",
@@ -825,7 +1035,13 @@
   "saving_central": 360290973,
   "saving_high": 720581947,
   "reviews_per_month": 32531,
-  "fte": 116.2
+  "fte": 116.2,
+  "lift_floor": 3.125,
+  "elderly_ratio": 0.759,
+  "elderly_ratio_floor": 1.202,
+  "disabled_ratio": 0.847,
+  "model_type": "own cases only",
+  "lift_deployed": 3.54
  },
  {
   "state": "OH",
@@ -848,7 +1064,13 @@
   "saving_central": 151723509,
   "saving_high": 151723509,
   "reviews_per_month": 13924,
-  "fte": 49.7
+  "fte": 49.7,
+  "lift_floor": 3.25,
+  "elderly_ratio": 0.345,
+  "elderly_ratio_floor": 1.109,
+  "disabled_ratio": 0.738,
+  "model_type": "own cases only",
+  "lift_deployed": 3.228
  },
  {
   "state": "OK",
@@ -871,7 +1093,13 @@
   "saving_central": 149999893,
   "saving_high": 224999840,
   "reviews_per_month": 6496,
-  "fte": 23.2
+  "fte": 23.2,
+  "lift_floor": 3.14,
+  "elderly_ratio": 0.434,
+  "elderly_ratio_floor": 0.999,
+  "disabled_ratio": 0.746,
+  "model_type": "own cases only",
+  "lift_deployed": 3.328
  },
  {
   "state": "OR",
@@ -894,7 +1122,13 @@
   "saving_central": 78612218,
   "saving_high": 157224437,
   "reviews_per_month": 8379,
-  "fte": 29.9
+  "fte": 29.9,
+  "lift_floor": 3.655,
+  "elderly_ratio": 0.795,
+  "elderly_ratio_floor": 0.921,
+  "disabled_ratio": 0.841,
+  "model_type": "own cases only",
+  "lift_deployed": 3.684
  },
  {
   "state": "PA",
@@ -917,7 +1151,13 @@
   "saving_central": 208790640,
   "saving_high": 417581280,
   "reviews_per_month": 20959,
-  "fte": 74.9
+  "fte": 74.9,
+  "lift_floor": 3.181,
+  "elderly_ratio": 0.689,
+  "elderly_ratio_floor": 0.895,
+  "disabled_ratio": 0.918,
+  "model_type": "own cases only",
+  "lift_deployed": 3.475
  },
  {
   "state": "RI",
@@ -940,7 +1180,13 @@
   "saving_central": 16931886,
   "saving_high": 50795658,
   "reviews_per_month": 1772,
-  "fte": 6.3
+  "fte": 6.3,
+  "lift_floor": 3.354,
+  "elderly_ratio": 0.696,
+  "elderly_ratio_floor": 1.017,
+  "disabled_ratio": 0.909,
+  "model_type": "own cases only",
+  "lift_deployed": 3.475
  },
  {
   "state": "SC",
@@ -963,7 +1209,13 @@
   "saving_central": 62825587,
   "saving_high": 125651175,
   "reviews_per_month": 5452,
-  "fte": 19.5
+  "fte": 19.5,
+  "lift_floor": 2.797,
+  "elderly_ratio": 0.68,
+  "elderly_ratio_floor": 1.004,
+  "disabled_ratio": 0.987,
+  "model_type": "own cases only",
+  "lift_deployed": 3.118
  },
  {
   "state": "SD",
@@ -986,7 +1238,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 737,
-  "fte": 2.6
+  "fte": 2.6,
+  "lift_floor": 2.445,
+  "elderly_ratio": 0.373,
+  "elderly_ratio_floor": 1.085,
+  "disabled_ratio": 0.363,
+  "model_type": "own cases only",
+  "lift_deployed": 2.745
  },
  {
   "state": "TN",
@@ -1009,7 +1267,13 @@
   "saving_central": 76401862,
   "saving_high": 152803725,
   "reviews_per_month": 6668,
-  "fte": 23.8
+  "fte": 23.8,
+  "lift_floor": 2.998,
+  "elderly_ratio": 0.54,
+  "elderly_ratio_floor": 0.817,
+  "disabled_ratio": 0.74,
+  "model_type": "own cases only",
+  "lift_deployed": 3.068
  },
  {
   "state": "TX",
@@ -1032,7 +1296,13 @@
   "saving_central": 342616454,
   "saving_high": 685232909,
   "reviews_per_month": 28837,
-  "fte": 103.0
+  "fte": 103.0,
+  "lift_floor": 2.478,
+  "elderly_ratio": 0.352,
+  "elderly_ratio_floor": 0.952,
+  "disabled_ratio": 0.803,
+  "model_type": "own cases only",
+  "lift_deployed": 2.696
  },
  {
   "state": "UT",
@@ -1055,7 +1325,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 1633,
-  "fte": 5.8
+  "fte": 5.8,
+  "lift_floor": 2.505,
+  "elderly_ratio": 0.463,
+  "elderly_ratio_floor": 1.088,
+  "disabled_ratio": 0.802,
+  "model_type": "own cases only",
+  "lift_deployed": 2.631
  },
  {
   "state": "VA",
@@ -1078,7 +1354,13 @@
   "saving_central": 85671538,
   "saving_high": 171343076,
   "reviews_per_month": 8239,
-  "fte": 29.4
+  "fte": 29.4,
+  "lift_floor": 2.865,
+  "elderly_ratio": 0.557,
+  "elderly_ratio_floor": 1.139,
+  "disabled_ratio": 0.833,
+  "model_type": "own cases only",
+  "lift_deployed": 2.943
  },
  {
   "state": "VI",
@@ -1101,7 +1383,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 215,
-  "fte": 0.8
+  "fte": 0.8,
+  "lift_floor": 3.234,
+  "elderly_ratio": 0.488,
+  "elderly_ratio_floor": 0.928,
+  "disabled_ratio": null,
+  "model_type": "pooled with other states",
+  "lift_deployed": 3.702
  },
  {
   "state": "VT",
@@ -1124,7 +1412,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 775,
-  "fte": 2.8
+  "fte": 2.8,
+  "lift_floor": 3.237,
+  "elderly_ratio": 0.65,
+  "elderly_ratio_floor": 0.981,
+  "disabled_ratio": 1.234,
+  "model_type": "own cases only",
+  "lift_deployed": 3.483
  },
  {
   "state": "WA",
@@ -1147,7 +1441,13 @@
   "saving_central": 95094105,
   "saving_high": 95094105,
   "reviews_per_month": 10089,
-  "fte": 36.0
+  "fte": 36.0,
+  "lift_floor": 3.905,
+  "elderly_ratio": 0.685,
+  "elderly_ratio_floor": 0.933,
+  "disabled_ratio": 0.743,
+  "model_type": "own cases only",
+  "lift_deployed": 3.838
  },
  {
   "state": "WI",
@@ -1170,7 +1470,13 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 7329,
-  "fte": 26.2
+  "fte": 26.2,
+  "lift_floor": 3.458,
+  "elderly_ratio": 0.57,
+  "elderly_ratio_floor": 0.89,
+  "disabled_ratio": 0.708,
+  "model_type": "own cases only",
+  "lift_deployed": 3.461
  },
  {
   "state": "WV",
@@ -1193,7 +1499,13 @@
   "saving_central": 25160640,
   "saving_high": 25160640,
   "reviews_per_month": 2817,
-  "fte": 10.1
+  "fte": 10.1,
+  "lift_floor": 2.576,
+  "elderly_ratio": 0.531,
+  "elderly_ratio_floor": 0.956,
+  "disabled_ratio": 0.928,
+  "model_type": "own cases only",
+  "lift_deployed": 2.605
  },
  {
   "state": "WY",
@@ -1216,6 +1528,12 @@
   "saving_central": 0,
   "saving_high": 0,
   "reviews_per_month": 268,
-  "fte": 1.0
+  "fte": 1.0,
+  "lift_floor": 1.017,
+  "elderly_ratio": 0.541,
+  "elderly_ratio_floor": 1.351,
+  "disabled_ratio": 0.555,
+  "model_type": "pooled with other states",
+  "lift_deployed": 3.47
  }
 ]
