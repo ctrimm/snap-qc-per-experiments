@@ -1,5 +1,7 @@
 # Experiment 62 (design) — plain-language flag cards for reviewers
 
+> **Status:** Paused 2026-10-10: template vs model decision waits on the exp65 reviewer A/B ratings.
+
 **Date:** 2026-10-09 · **Status:** steps 1–2 done; reviewer comparison in exp65 · **Builds on:** exp58 (ranker), exp61 (where-to-look), exp52/59/60 (language models)
 
 ## Goal

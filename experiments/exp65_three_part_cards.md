@@ -1,5 +1,7 @@
 # Experiment 65 — three-part flag cards
 
+> **Status:** Paused 2026-10-10: waiting on the reviewer A/B ratings. Nothing running.
+
 **Date:** 2026-10-10 · **Code:** `exp65_run.sh`, `exp65_check.py` (uses `exp62_flag_cards.py --top-k 3`, `exp62_rewrite.py`) · **Results:** `exp65_cards.jsonl`, `exp65_notes_*.jsonl`, `exp65_reviewer_packet.md`
 
 ## Pre-registration (committed before the run; queued behind exp62 step 2)
