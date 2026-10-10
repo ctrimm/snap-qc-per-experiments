@@ -1,0 +1,44 @@
+{
+ "low": {
+  "dollar_only": {
+   "avoided": 321998106,
+   "states_dropping_bracket": 5
+  },
+  "with_floor": {
+   "avoided": 304625712,
+   "states_dropping_bracket": 4
+  },
+  "random": {
+   "avoided": 156071294,
+   "states_dropping_bracket": 2
+  }
+ },
+ "central": {
+  "dollar_only": {
+   "avoided": 3850948739,
+   "states_dropping_bracket": 36
+  },
+  "with_floor": {
+   "avoided": 3490657765,
+   "states_dropping_bracket": 35
+  },
+  "random": {
+   "avoided": 1025043637,
+   "states_dropping_bracket": 8
+  }
+ },
+ "high": {
+  "dollar_only": {
+   "avoided": 7668078165,
+   "states_dropping_bracket": 41
+  },
+  "with_floor": {
+   "avoided": 7325461711,
+   "states_dropping_bracket": 41
+  },
+  "random": {
+   "avoided": 2389278629,
+   "states_dropping_bracket": 25
+  }
+ }
+}

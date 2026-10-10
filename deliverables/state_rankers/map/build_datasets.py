@@ -48,6 +48,12 @@ for row in rows:
     pooled = p is not None and p["adopted"] != "A"
     row["model_type"] = "pooled with other states" if pooled else "own cases only"
     row["lift_deployed"] = p[p["adopted"]]["holdout"] if pooled else row["lift_top20"]
+    if pooled:
+        # only what exp75 measured for the pooled model; $/hour scales exactly with lift at a fixed budget
+        row["per_hour"] = round(row["lift_deployed"] * row["random_per_hour"], 1)
+        row["time_split_lift"] = p[p["adopted"]]["time_split"]
+        for k in ("lift_top10", "exp_over_act", "lift_floor", "elderly_ratio", "elderly_ratio_floor", "disabled_ratio"):
+            row[k] = None
 (HERE / "state_results.json").write_text(json.dumps(rows, indent=1))
 ass = [{"scenario": k, "review_share": v["R"], "lift_basis": "top-20% lift" if v["lift"] == "top20" else "top-10% lift",
         "fix_rate": v["f"], "error_months": v["m"]} for k, v in r69["scenarios"].items()]

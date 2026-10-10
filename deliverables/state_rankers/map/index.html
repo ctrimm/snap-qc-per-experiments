@@ -48,7 +48,7 @@
   .tr-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
   .tr-notes p, .tr-notes li { font-size: var(--cds-font-size-body); max-width: 65ch; }
   .tr-notes ul { padding-left: 1.1rem; margin: var(--cds-gap-xs) 0 0; }
-  .tr-assump td, .tr-assump th { text-align: left; }
+  .tr-assump td, .tr-assump th { text-align: left; white-space: normal; }
   [data-dash-source-state=empty] { color: transparent; }
   [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 </style>
@@ -166,7 +166,7 @@
 </script>
 
 <script>
-  const fmtX = (v) => d3.format('.2f')(v) + '×';
+  const fmtX = (v) => (v == null ? 'n/a' : d3.format('.2f')(v) + '×');
   const fmt$ = (v) => '$' + d3.format(',.0f')(v);
   const fmtPct = (v) => d3.format('.2f')(v) + '%';
   const fmtShare = (v) => d3.format('.0%')(v);
@@ -256,8 +256,9 @@
     item('$ per review hour', 'per_hour', fmt$);
     item('Random review', 'random_per_hour', fmt$);
     item('Train 2020–22, test 2023–24', 'time_split_lift', fmtX);
-    item('Forecast ÷ actual (top 20%)', 'exp_over_act', (v) => d3.format('.2f')(v));
+    item('Forecast ÷ actual (top 20%)', 'exp_over_act', (v) => (v == null ? 'n/a' : d3.format('.2f')(v)));
     item('QC cases, FY2020–24', 'n_rows', d3.format(','));
+    if (r.model_type !== 'own cases only') { const n = document.createElement('div'); n.className = 'grp'; n.textContent = 'Pooled model: the top-10% lift, forecast check and fairness figures were measured for the earlier own-cases model only, so they show n/a.'; dl.append(n); }
     grp('Who gets reviewed (1.0 = in proportion to error risk)');
     item('Elderly households', 'elderly_ratio', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
     item('Elderly, with fairness floor', 'elderly_ratio_floor', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
@@ -327,7 +328,7 @@
   const COLS = [['state', (r) => r.name + ' (' + r.state + ')' + (r.model_type !== 'own cases only' ? ' ◆' : '')], ['lift_deployed', (r) => fmtX(r.lift_deployed)],
     ['lift_floor', (r) => fmtX(r.lift_floor)], ['elderly_ratio', (r) => (r.elderly_ratio == null ? 'n/a' : d3.format('.2f')(r.elderly_ratio))], ['lift_top10', (r) => fmtX(r.lift_top10)],
     ['per_hour', (r) => fmt$(r.per_hour)], ['random_per_hour', (r) => fmt$(r.random_per_hour)], ['time_split_lift', (r) => fmtX(r.time_split_lift)],
-    ['exp_over_act', (r) => d3.format('.2f')(r.exp_over_act)], ['per_fy2025', (r) => fmtPct(r.per_fy2025)], ['share_central', (r) => fmtShare(r.share_central)],
+    ['exp_over_act', (r) => (r.exp_over_act == null ? 'n/a' : d3.format('.2f')(r.exp_over_act))], ['per_fy2025', (r) => fmtPct(r.per_fy2025)], ['share_central', (r) => fmtShare(r.share_central)],
     ['n_rows', (r) => d3.format(',')(r.n_rows) + (String(r.low_sample) === 'true' ? ' ⚑' : '')]];
 
   function drawTable(rows) {
