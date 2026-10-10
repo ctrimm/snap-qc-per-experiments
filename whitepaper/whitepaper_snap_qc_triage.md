@@ -137,7 +137,7 @@ Three things make these numbers usable:
 ## Recommendations
 
 1. **Pilot the ranker in one state.** Start with Pennsylvania or New York, where results and dollar forecasts are strongest. Score a current month's cases, have reviewers work the top of the queue, and compare the dollars found against the forecast.
-2. **Refresh annually** with the latest QC year.
+2. **Refresh annually on the federal QC sample plus the pilot's own findings.** A simulation over FY2021–24 in six states showed that a ranker retrained only on the cases it flagged loses about 15% of its effectiveness within four years, because it never learns about errors it doesn't flag. The yearly federal QC sample is already a random, fully reviewed set of cases, and adding it closes most of that gap. Keep about 10% of pilot reviews on randomly chosen cases to watch for blind spots.
 3. **Include the fairness floor** so elderly and disabled households keep a proportionate share of reviews.
 4. **Continue the language model as research** aimed at what the ranker can't do: plain-language explanations of why a case looks risky.
 
