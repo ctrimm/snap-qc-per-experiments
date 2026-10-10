@@ -27,4 +27,26 @@ exp62's cards list two parts of the case to check, which covers the real error l
 
 ## Results
 
-_Pending — runs automatically after exp62 step 2._
+Run 2026-10-10 06:44–06:57, as specified.
+
+**Coverage (real location among the parts listed, flagged errors):** PA top-1 61%, top-2 78%, **top-3 88%**; NY 57%, 74%, **86%** → readout 1 met (≥ 85%).
+
+| 200 eval cards, three parts | pass all | faithful | leads | short (≤ 80) | readable | words | grade |
+|---|---|---|---|---|---|---|---|
+| template | **100%** | 100% | 100% | 100% | 100% | 71 | 5.5 |
+| E4B zero-shot | 66% | 100% | 100% | 100% | 66% | 47 | 8.2 |
+| **E2B distilled (exp62 student)** | **99%** | 100% | 99% | 100% | 100% | 54 | 5.1 |
+
+Readout 2 met (template 100%). Readout 3: the distilled E2B is acceptable (faithful 100%, pass 99% ≥ 95%), although it was trained only on two-part cards. Its two failures (PA-2024-281, PA-2024-705) are checker strictness: it wrote "case details" for the card's "other case details" and kept the right order. E4B zero-shot improved from 46% to 66% but is still not acceptable.
+
+**Reviewer packet:** `exp65_reviewer_packet.md` (20 cards, template vs distilled E2B, A/B order randomized; key in `exp65_reviewer_key.json`). Readout 4 is pending Cory's ratings.
+
+### Verdict
+
+Held. Three parts raise coverage by about 10 points (to 86–88%) with notes that stay accurate, short and readable. The distilled E2B handles the new format without retraining. Template vs model is now a human call.
+
+### Next steps
+
+1. Cory rates the packet; the winner becomes the pilot card format.
+2. If the model wins, its notes should keep the likelihoods ("about N in 10"): add them to the teacher's style and re-distill (an hour). If the template wins, ship the template and keep the model for later.
+

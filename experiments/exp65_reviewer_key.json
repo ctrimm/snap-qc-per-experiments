@@ -1,0 +1,82 @@
+{
+ "PA-2020-84": {
+  "A": "model",
+  "B": "template"
+ },
+ "PA-2024-743": {
+  "A": "template",
+  "B": "model"
+ },
+ "PA-2022-619": {
+  "A": "model",
+  "B": "template"
+ },
+ "PA-2023-365": {
+  "A": "model",
+  "B": "template"
+ },
+ "PA-2022-724": {
+  "A": "model",
+  "B": "template"
+ },
+ "PA-2022-463": {
+  "A": "model",
+  "B": "template"
+ },
+ "PA-2024-724": {
+  "A": "model",
+  "B": "template"
+ },
+ "PA-2023-624": {
+  "A": "template",
+  "B": "model"
+ },
+ "PA-2023-577": {
+  "A": "template",
+  "B": "model"
+ },
+ "PA-2021-103": {
+  "A": "template",
+  "B": "model"
+ },
+ "NY-2020-200": {
+  "A": "model",
+  "B": "template"
+ },
+ "NY-2024-651": {
+  "A": "model",
+  "B": "template"
+ },
+ "NY-2020-35": {
+  "A": "template",
+  "B": "model"
+ },
+ "NY-2023-268": {
+  "A": "template",
+  "B": "model"
+ },
+ "NY-2024-267": {
+  "A": "template",
+  "B": "model"
+ },
+ "NY-2024-74": {
+  "A": "model",
+  "B": "template"
+ },
+ "NY-2024-789": {
+  "A": "model",
+  "B": "template"
+ },
+ "NY-2022-100": {
+  "A": "model",
+  "B": "template"
+ },
+ "NY-2023-667": {
+  "A": "template",
+  "B": "model"
+ },
+ "NY-2022-222": {
+  "A": "template",
+  "B": "model"
+ }
+}
