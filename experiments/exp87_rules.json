@@ -1,0 +1,613 @@
+{
+ "about": "Hand-written exp87 rule questions. options[0] is correct (shuffled at build). evidence must appear in the cited text in force on as_of (or in the document at path). Written from the state-policy-docs corpus, not from the Cornell quiz.",
+ "questions": [
+  {
+   "topic": "students",
+   "as_of": "2025-03-01",
+   "citation": "7 CFR 273.5(a)",
+   "stem": "Under federal SNAP rules, a person in an institution of higher education is subject to the student eligibility restrictions when enrolled at what level?",
+   "options": [
+    "At least half-time",
+    "Full-time only",
+    "Any enrollment, even a single class",
+    "At least three-quarter time",
+    "Only in a four-year degree program"
+   ],
+   "evidence": "enrolled at least half-time in an institution of higher education"
+  },
+  {
+   "topic": "students",
+   "as_of": "2025-09-01",
+   "citation": "7 CFR 273.5(b)(5)",
+   "stem": "How many hours of paid work does a student need to meet the SNAP work exemption from the student rule?",
+   "options": [
+    "At least 20 hours per week",
+    "At least 10 hours per week",
+    "At least 15 hours per week",
+    "At least 30 hours per week",
+    "At least 40 hours per week"
+   ],
+   "evidence": "employed for a minimum of 20 hours per week"
+  },
+  {
+   "topic": "students",
+   "as_of": "2026-02-01",
+   "citation": "7 CFR 273.5(b)(1)",
+   "stem": "Which ages exempt a student from the SNAP student eligibility rule?",
+   "options": [
+    "Age 17 or younger, or 50 or older",
+    "Under 18, or 60 or older",
+    "Under 22, or 50 or older",
+    "Under 18, or 55 or older",
+    "Under 16, or 65 or older"
+   ],
+   "evidence": "be age 17 or younger or age 50 or older"
+  },
+  {
+   "topic": "abawd",
+   "as_of": "2025-06-01",
+   "citation": "Food and Nutrition Act Sec. 6(o)(3)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, above what age is an individual excepted from the ABAWD time limit in fiscal year 2025?",
+   "options": [
+    "Over 55",
+    "Over 49",
+    "Over 52",
+    "Over 60",
+    "Over 65"
+   ],
+   "evidence": "fiscal year 2025 and each fiscal year thereafter over 55 years of age"
+  },
+  {
+   "topic": "abawd",
+   "as_of": "2026-08-01",
+   "citation": "Food and Nutrition Act Sec. 6(o)(3)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, above what age is an individual excepted from the ABAWD time limit?",
+   "options": [
+    "Over 65",
+    "Over 55",
+    "Over 49",
+    "Over 59",
+    "Over 70"
+   ],
+   "evidence": "under 18, or over 65, years of age"
+  },
+  {
+   "topic": "abawd",
+   "as_of": "2025-06-01",
+   "citation": "Food and Nutrition Act Sec. 6(o)(3)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, is a homeless individual excepted from the ABAWD time limit?",
+   "options": [
+    "Yes, homeless individuals are excepted",
+    "No, homelessness is not an exception",
+    "Only in areas with a waiver",
+    "Only if the person is also a veteran",
+    "Only if the person is 24 or younger"
+   ],
+   "evidence": "(f) a homeless individual"
+  },
+  {
+   "topic": "abawd",
+   "as_of": "2026-08-01",
+   "citation": "Food and Nutrition Act Sec. 6(o)(3)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, a parent or household member is excepted from the ABAWD time limit for responsibility for a dependent child of what age?",
+   "options": [
+    "Under 14",
+    "Under 18",
+    "Under 6",
+    "Under 12",
+    "Any age"
+   ],
+   "evidence": "dependent child under 14 years of age"
+  },
+  {
+   "topic": "abawd",
+   "as_of": "2025-06-01",
+   "citation": "7 CFR 273.24(b)",
+   "stem": "Under federal SNAP rules, how many countable months can an ABAWD who is not meeting the work requirement receive benefits?",
+   "options": [
+    "3 months in any 36-month period",
+    "6 months in any 12-month period",
+    "3 months in any 12-month period",
+    "4 months in any 36-month period",
+    "12 months in any 36-month period"
+   ],
+   "evidence": "more than three countable months during any three-year period"
+  },
+  {
+   "topic": "abawd",
+   "as_of": "2025-11-01",
+   "citation": "7 CFR 273.24(a)(1)",
+   "stem": "How many hours of work satisfy the ABAWD work requirement?",
+   "options": [
+    "20 hours a week averaged monthly (80 hours a month)",
+    "30 hours a week",
+    "10 hours a week",
+    "40 hours a month",
+    "120 hours a month"
+   ],
+   "evidence": "20 hours a week averaged monthly means 80 hours a month"
+  },
+  {
+   "topic": "work requirements",
+   "as_of": "2025-01-15",
+   "citation": "7 CFR 273.7(b)(1)",
+   "stem": "Which ages are exempt from the general SNAP work requirements?",
+   "options": [
+    "Younger than 16, or 60 or older",
+    "Younger than 18, or 65 or older",
+    "Younger than 16, or 55 or older",
+    "Younger than 18, or 60 or older",
+    "Younger than 14, or 70 or older"
+   ],
+   "evidence": "a person younger than 16 years of age or a person 60 years of age or older"
+  },
+  {
+   "topic": "medical deduction",
+   "as_of": "2024-05-01",
+   "citation": "7 CFR 273.9(d)(3)",
+   "stem": "Above what monthly amount are an elderly or disabled member's medical expenses deductible?",
+   "options": [
+    "$35",
+    "$25",
+    "$50",
+    "$100",
+    "$0 (all medical costs are deductible)"
+   ],
+   "evidence": "medical expenses in excess of $35 per month"
+  },
+  {
+   "topic": "medical deduction",
+   "as_of": "2026-01-10",
+   "citation": "7 CFR 273.9(d)(3)",
+   "stem": "Whose medical expenses count toward the SNAP excess medical deduction?",
+   "options": [
+    "Household members who are elderly or disabled",
+    "Any household member",
+    "Only children under 18",
+    "Only the head of household",
+    "Only members enrolled in Medicaid"
+   ],
+   "evidence": "incurred by any household member who is elderly or disabled"
+  },
+  {
+   "topic": "expedited service",
+   "as_of": "2025-04-01",
+   "citation": "7 CFR 273.2(i)(1)",
+   "stem": "Which household is entitled to expedited service under the low-income test?",
+   "options": [
+    "Gross monthly income under $150 and liquid resources of $100 or less",
+    "Gross monthly income under $500 and resources under $1,000",
+    "Gross monthly income under $150 and resources under $500",
+    "Gross monthly income under $300 and resources of $100 or less",
+    "Gross monthly income under $100 and resources under $150"
+   ],
+   "evidence": "households with less than $150 in monthly gross income"
+  },
+  {
+   "topic": "expedited service",
+   "as_of": "2026-04-01",
+   "citation": "7 CFR 273.2(i)(3)",
+   "stem": "By when must benefits be available to a household entitled to expedited service?",
+   "options": [
+    "By the 7th calendar day after the application was filed",
+    "By the 3rd calendar day",
+    "By the 10th calendar day",
+    "By the 14th calendar day",
+    "By the 30th calendar day"
+   ],
+   "evidence": "not later than the seventh calendar day following the date an application was filed"
+  },
+  {
+   "topic": "application processing",
+   "as_of": "2024-08-01",
+   "citation": "7 CFR 273.2(g)",
+   "stem": "What is the normal processing standard for a SNAP application?",
+   "options": [
+    "No later than 30 calendar days after filing",
+    "No later than 7 calendar days",
+    "No later than 10 calendar days",
+    "No later than 45 calendar days",
+    "No later than 60 calendar days"
+   ],
+   "evidence": "no later than 30 calendar days following the date the application was filed"
+  },
+  {
+   "topic": "certification periods",
+   "as_of": "2025-02-01",
+   "citation": "7 CFR 273.10(f)",
+   "stem": "Apart from transitional benefits and the listed exceptions, what is the longest SNAP certification period?",
+   "options": [
+    "12 months",
+    "6 months",
+    "18 months",
+    "24 months",
+    "36 months"
+   ],
+   "evidence": "the certification period cannot exceed 12 months"
+  },
+  {
+   "topic": "certification periods",
+   "as_of": "2026-05-01",
+   "citation": "7 CFR 273.10(f)(1)",
+   "stem": "For a household in which all adult members are elderly or disabled, how long may the state certify it?",
+   "options": [
+    "Up to 24 months",
+    "Up to 12 months",
+    "Up to 18 months",
+    "Up to 36 months",
+    "Up to 48 months"
+   ],
+   "evidence": "may certify for up to 24 months households in which all adult members are elderly or disabled"
+  },
+  {
+   "topic": "household composition",
+   "as_of": "2024-11-01",
+   "citation": "7 CFR 273.1(b)(1)",
+   "stem": "A 20-year-old lives with a parent but buys and prepares food separately. How is the 20-year-old treated?",
+   "options": [
+    "Must be in the same SNAP household as the parent",
+    "May apply as a separate household",
+    "Must apply separately",
+    "Is included only if a student",
+    "Is included only if under 18"
+   ],
+   "evidence": "a person under 22 years of age who is living with his or her natural or adoptive parent(s)"
+  },
+  {
+   "topic": "elderly and disabled",
+   "as_of": "2025-05-01",
+   "citation": "Food and Nutrition Act Sec. 3(j)",
+   "stem": "At what age is a household member considered elderly for SNAP?",
+   "options": [
+    "60 or older",
+    "55 or older",
+    "62 or older",
+    "65 or older",
+    "50 or older"
+   ],
+   "evidence": "is sixty years of age or older"
+  },
+  {
+   "topic": "intentional program violation",
+   "as_of": "2024-07-01",
+   "citation": "7 CFR 273.16(b)(1)",
+   "stem": "What is the disqualification period for a first intentional Program violation (not involving trafficking or other special cases)?",
+   "options": [
+    "12 months",
+    "6 months",
+    "24 months",
+    "Permanent",
+    "3 months"
+   ],
+   "evidence": "for a period of twelve months for the first intentional program violation"
+  },
+  {
+   "topic": "fair hearings",
+   "as_of": "2025-10-15",
+   "citation": "7 CFR 273.15(g)",
+   "stem": "Within what period may a household request a fair hearing on a state agency action?",
+   "options": [
+    "Actions that occurred in the prior 90 days",
+    "Actions in the prior 30 days",
+    "Actions in the prior 60 days",
+    "Actions in the prior 10 days",
+    "Actions in the prior 180 days"
+   ],
+   "evidence": "which occurred in the prior 90 days"
+  },
+  {
+   "topic": "notices",
+   "as_of": "2026-03-01",
+   "citation": "7 CFR 273.13(a)(1)",
+   "stem": "How much advance notice must a notice of adverse action give at minimum?",
+   "options": [
+    "At least 10 days from the date it is mailed",
+    "At least 5 days",
+    "At least 15 days",
+    "At least 30 days",
+    "At least 3 days"
+   ],
+   "evidence": "includes at least 10 days from the date the notice is mailed"
+  },
+  {
+   "topic": "cost share",
+   "as_of": "2026-08-01",
+   "citation": "Food and Nutrition Act Sec. 4(a)(2)(B)(i)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, what share of benefit costs does a state with a payment error rate of 8.5% pay, once the cost share applies?",
+   "options": [
+    "10 percent",
+    "0 percent",
+    "5 percent",
+    "15 percent",
+    "25 percent"
+   ],
+   "evidence": "equal to or greater than 8 percent but less than 10 percent"
+  },
+  {
+   "topic": "cost share",
+   "as_of": "2026-09-15",
+   "citation": "Food and Nutrition Act Sec. 4(a)(2)(B)(i)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, what share of benefit costs does a state with a payment error rate of 6.7% pay, once the cost share applies?",
+   "options": [
+    "5 percent",
+    "0 percent",
+    "10 percent",
+    "15 percent",
+    "2.5 percent"
+   ],
+   "evidence": "equal to or greater than 6 percent but less than 8 percent"
+  },
+  {
+   "topic": "cost share",
+   "as_of": "2026-07-01",
+   "citation": "Food and Nutrition Act Sec. 4(a)(2)(B)(i)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, when does the state share of benefit costs based on payment error rates begin?",
+   "options": [
+    "Fiscal year 2028",
+    "Fiscal year 2026",
+    "Fiscal year 2027",
+    "Fiscal year 2030",
+    "Fiscal year 2025"
+   ],
+   "evidence": "beginning in fiscal year 2028"
+  },
+  {
+   "topic": "utility allowance",
+   "as_of": "2025-06-01",
+   "citation": "Food and Nutrition Act Sec. 5(e)(6)(C)(iv)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, which households must be given a heating and cooling standard utility allowance because they received a LIHEAP payment of more than $20?",
+   "options": [
+    "Any household that received such a payment in the current month or the prior 12 months",
+    "Only households with an elderly or disabled member that received such a payment",
+    "Any household that received any LIHEAP payment, regardless of amount",
+    "Only households that pay heating costs directly to a utility",
+    "None; LIHEAP receipt does not affect the utility allowance"
+   ],
+   "evidence": "shall be made available to households that received a payment"
+  },
+  {
+   "topic": "utility allowance",
+   "as_of": "2026-08-01",
+   "citation": "Food and Nutrition Act Sec. 5(e)(6)(C)(iv)",
+   "stem": "Under the Food and Nutrition Act as in force on that date, which households must be given a heating and cooling standard utility allowance because they received a LIHEAP payment of more than $20?",
+   "options": [
+    "Only households with an elderly or disabled member that received such a payment",
+    "Any household that received such a payment in the current month or the prior 12 months",
+    "Any household that received any LIHEAP payment, regardless of amount",
+    "Only households that pay heating costs directly to a utility",
+    "None; LIHEAP receipt does not affect the utility allowance"
+   ],
+   "evidence": "shall be made available to households with an elderly or disabled member that received a payment"
+  },
+  {
+   "topic": "benefit calculation",
+   "as_of": "2025-08-01",
+   "citation": "7 CFR 273.10(e)(2)(ii)(C)",
+   "stem": "How is the SNAP minimum benefit for eligible one- and two-person households set?",
+   "options": [
+    "8 percent of the maximum allotment for a household of one",
+    "10 percent of the maximum allotment for a household of one",
+    "5 percent of the maximum allotment for a household of two",
+    "25 percent of the standard deduction",
+    "A flat $10"
+   ],
+   "evidence": "8 percent of the maximum allotment for a household of one"
+  },
+  {
+   "topic": "proration",
+   "as_of": "2026-01-15",
+   "citation": "7 CFR 273.10(a)(1)",
+   "stem": "If a household's prorated benefit for its initial month comes to less than $10, what is issued for that month?",
+   "options": [
+    "Nothing for that month",
+    "$10",
+    "The minimum benefit",
+    "The amount, added to the next month",
+    "The amount rounded up to $10"
+   ],
+   "evidence": "allotment of less than $10, then no issuance shall be made for the initial month"
+  },
+  {
+   "topic": "shelter deduction",
+   "as_of": "2025-02-01",
+   "citation": "Food and Nutrition Act Sec. 5(e)(6)(A)",
+   "stem": "The excess shelter deduction covers shelter costs above what share of household income after other deductions?",
+   "options": [
+    "50 percent",
+    "30 percent",
+    "35 percent",
+    "25 percent",
+    "40 percent"
+   ],
+   "evidence": "exceeds an amount equal to 50 percent of monthly household income after all other applicable deductions"
+  },
+  {
+   "topic": "earned income deduction",
+   "as_of": "2025-07-15",
+   "citation": "7 CFR 273.9(d)(2)",
+   "stem": "What share of gross earned income is deducted as the earned income deduction?",
+   "options": [
+    "20 percent",
+    "30 percent",
+    "10 percent",
+    "25 percent",
+    "15 percent"
+   ],
+   "evidence": "twenty percent of gross earned income"
+  },
+  {
+   "topic": "dependent care",
+   "as_of": "2026-06-01",
+   "citation": "7 CFR 273.9(d)(4)",
+   "stem": "For the dependent care deduction, care for a child of what age can be deducted?",
+   "options": [
+    "Under 18",
+    "Under 13",
+    "Under 6",
+    "Under 21",
+    "Under 16"
+   ],
+   "evidence": "including care of a child under the age of 18"
+  },
+  {
+   "topic": "reporting",
+   "as_of": "2025-12-01",
+   "citation": "7 CFR 273.12(a)(5)(iii)",
+   "stem": "Under simplified reporting, when must a non-exempt household certified for longer than 6 months file a periodic report?",
+   "options": [
+    "Between 4 and 6 months into the certification period",
+    "Every month",
+    "Every 3 months",
+    "Only at recertification",
+    "Every 9 months"
+   ],
+   "evidence": "must file a periodic report between 4 months and 6 months"
+  },
+  {
+   "topic": "residency",
+   "as_of": "2024-10-15",
+   "citation": "7 CFR 273.3(a)",
+   "stem": "What residency rule applies to a SNAP applicant household?",
+   "options": [
+    "It must live in the state where it applies",
+    "It must have lived in the state for 30 days",
+    "It must have lived in the state for 6 months",
+    "It must have a permanent street address",
+    "It must be registered to vote in the state"
+   ],
+   "evidence": "a household shall live in the state in which it files an application"
+  },
+  {
+   "topic": "social security numbers",
+   "as_of": "2026-02-15",
+   "citation": "7 CFR 273.6(a)",
+   "stem": "What is required regarding Social Security numbers?",
+   "options": [
+    "Each household member must provide an SSN or apply for one before certification",
+    "Only the head of household must provide one",
+    "SSNs are optional",
+    "Only adults must provide one",
+    "SSNs must be provided within 90 days after certification"
+   ],
+   "evidence": "provide the state agency with the social security number (ssn) of each household member or apply for one before certification"
+  },
+  {
+   "topic": "income exclusions",
+   "as_of": "2025-03-15",
+   "citation": "7 CFR 273.9(c)(3)",
+   "stem": "How are educational grants and scholarships that meet the regulation's conditions treated?",
+   "options": [
+    "Excluded from income",
+    "Counted in full as unearned income",
+    "Counted as earned income",
+    "Counted only above $500 a month",
+    "Counted as a resource"
+   ],
+   "evidence": "educational assistance, including grants, scholarships, fellowships, work study"
+  },
+  {
+   "topic": "CA noncitizens",
+   "as_of": "2026-05-01",
+   "citation": "CDSS ACL 25-92",
+   "stem": "In California, from when do the H.R. 1 noncitizen eligibility rules apply to new CalFresh applications?",
+   "options": [
+    "Applications received on or after April 1, 2026",
+    "July 4, 2025, when H.R. 1 was enacted",
+    "November 1, 2025",
+    "October 1, 2025",
+    "January 1, 2026"
+   ],
+   "evidence": "the guidance set forth in this acl is effective april 1, 2026",
+   "path": "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+  },
+  {
+   "topic": "CA abawd",
+   "as_of": "2026-07-01",
+   "citation": "CDSS ACL 25-93",
+   "stem": "From when does California apply the H.R. 1 ABAWD time limit policy?",
+   "options": [
+    "June 1, 2026",
+    "July 4, 2025",
+    "January 1, 2026",
+    "November 1, 2025",
+    "October 1, 2026"
+   ],
+   "evidence": "the guidance provided via this letter is effective june 1, 2026",
+   "path": "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+  },
+  {
+   "topic": "CA abawd",
+   "as_of": "2026-07-01",
+   "citation": "CDSS ACIN I-14-26",
+   "stem": "In California, a CalFresh application is received on May 29, 2026 and approved in June 2026. Under which ABAWD exemption criteria is the applicant screened?",
+   "options": [
+    "The pre-H.R. 1 criteria, because the application was received before June 1, 2026",
+    "The H.R. 1 criteria, because it was approved after June 1, 2026",
+    "Whichever criteria favor the applicant",
+    "The criteria in effect on the day of the interview",
+    "None; ABAWDs are not screened for exemptions"
+   ],
+   "evidence": "applications received before june 1, 2026 must be screened under the pre- hr1 rules",
+   "path": "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+  },
+  {
+   "topic": "CA abawd",
+   "as_of": "2026-07-01",
+   "citation": "CDSS ACL 25-93",
+   "stem": "When does California's new statewide 36-month ABAWD clock start?",
+   "options": [
+    "January 1, 2026",
+    "June 1, 2026",
+    "July 4, 2025",
+    "October 1, 2025",
+    "January 1, 2027"
+   ],
+   "evidence": "beginning january 1, 2026, a new statewide 36-month abawd clock will start",
+   "path": "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+  },
+  {
+   "topic": "CA students",
+   "as_of": "2026-07-01",
+   "citation": "CDSS ACL 26-25",
+   "stem": "In California, which programs meet the Local Program that Increases Employability (LPIE) criteria for the student exemption, effective June 1, 2026?",
+   "options": [
+    "All undergraduate degree programs at CCC, CSU and UC campuses",
+    "Only programs approved one by one by CDSS",
+    "Only career technical certificate programs",
+    "Only programs that include work study",
+    "None; the LPIE exemption was eliminated"
+   ],
+   "evidence": "effective june 1, 2026, all undergraduate degree programs offered at the ccc, csu, or uc campus meet the lpie criteria",
+   "path": "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+  },
+  {
+   "topic": "CA medical deduction",
+   "as_of": "2026-03-01",
+   "citation": "CDSS ACL 26-04",
+   "stem": "Through when is California's CalFresh Standard Medical Deduction demonstration project authorized?",
+   "options": [
+    "September 30, 2029",
+    "September 30, 2026",
+    "September 30, 2027",
+    "September 30, 2025",
+    "September 30, 2031"
+   ],
+   "evidence": "effective october 1, 2025, through september 30, 2029",
+   "path": "benefits/ca/cdss-all-county-letter-26-04-calfresh-standard-medical-deduction-demonstration-p.md"
+  },
+  {
+   "topic": "quality control",
+   "as_of": "2025-03-01",
+   "citation": "Handbook 310 § 214.1",
+   "stem": "In a SNAP QC review, what is it called when the QC-verified allotment for the sample month is compared with the authorized allotment?",
+   "options": [
+    "Comparison I",
+    "Comparison II",
+    "The variance threshold test",
+    "A negative case review",
+    "Arbitration"
+   ],
+   "evidence": "the qc verified allotment for sample month is compared to the authorized allotment (comparison i)"
+  }
+ ]
+}
