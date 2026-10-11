@@ -25,27 +25,29 @@
   "income_per_person",
   "earned_share",
   "shelter_to_income",
-  "net_to_gross"
+  "net_to_gross",
+  "benefit_max",
+  "benefit_share_of_max"
  ],
- "feature_note": "agency-side fields only (what the agency had before QC review)",
- "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores (exp57)",
+ "feature_note": "agency-side fields only, plus the case's maximum allotment (BENMAX) and issued benefit as a share of it",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores; trained on this jurisdiction's rows (weight 1) pooled with all other jurisdictions' rows, with state-context features (exp80)",
  "config": {
   "clf": {
-   "learning_rate": 0.05,
+   "learning_rate": 0.1,
    "max_leaf_nodes": 31,
-   "min_samples_leaf": 80,
-   "l2_regularization": 1.0,
+   "min_samples_leaf": 20,
+   "l2_regularization": 0.0,
    "max_iter": 100
   },
   "reg": {
-   "learning_rate": 0.05,
+   "learning_rate": 0.1,
    "max_leaf_nodes": 31,
-   "min_samples_leaf": 40,
-   "l2_regularization": 1.0,
-   "max_iter": 400
+   "min_samples_leaf": 20,
+   "l2_regularization": 0.0,
+   "max_iter": 100
   }
  },
- "chosen": "tuned",
+ "chosen": "exp80 variant B_ctx",
  "evaluation": {
   "nested_cv_top20_lift": {
    "untuned": 2.394,
@@ -80,5 +82,16 @@
  },
  "review_minutes_assumed": 30,
  "sklearn_version": "1.9.1",
- "source": "snap-qc-per-experiments exp58 (experiments/exp58_agency_rankers.py)"
+ "source": "snap-qc-per-experiments exp80 (experiments/exp80_state_context.py)",
+ "exp80": {
+  "previous": {
+   "holdout": 2.696,
+   "time_split": 2.318
+  },
+  "adopted": {
+   "holdout": 3.615,
+   "time_split": 3.308
+  },
+  "rule": "beats the deployed model on holdout and time split"
+ }
 }

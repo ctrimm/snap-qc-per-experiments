@@ -23,7 +23,7 @@ As exp80 for the 41 jurisdictions not in it: B_ctx (pooled) and C_ctx (pooled, o
 | Washington | 3.84× / 3.25× | 4.54× / 4.31× |
 | Nebraska | 2.62× / 2.53× | 3.88× / 3.52× |
 
-Holdout gain: median +0.73×, smallest DC +0.15× and California +0.18×, largest Arkansas, Utah and Nebraska (about +1.25×). With exp80, all 53 jurisdictions now run context-aware pooled models: **median 4.0× on held-out cases (lowest 3.56×) and 3.8× on the later-years test (lowest 3.30×)**.
+Holdout gain: median +0.73×, smallest DC +0.15× and California +0.18×, largest Arkansas, Utah and Nebraska (about +1.25×). With exp80, all 53 jurisdictions now run context-aware pooled models: **median 3.97× on held-out cases (lowest Alaska 2.96×, then Guam and Maryland 3.47×) and 3.80× on the later-years test (lowest Wyoming 2.91×, then Hawaii and Arkansas 3.29–3.30×)**. (Corrected 2026-10-10: an earlier summary in this chronicle said lowest 3.56× / 3.30×; it had left out the exp80 jurisdictions.)
 
 ### Verdict
 

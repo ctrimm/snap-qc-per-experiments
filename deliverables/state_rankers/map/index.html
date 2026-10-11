@@ -89,7 +89,7 @@
 
   <section class="tr-card" id="table-card">
     <h2>All jurisdictions</h2>
-    <p class="tr-note">Sort by any column; search by name or code. Click a row to show it on the map. ◆ = pooled model; ⚑ = fewer than 1,500 QC cases.</p>
+    <p class="tr-note">Sort by any column; search by name or code. Click a row to show it on the map. ⚑ = fewer than 1,500 QC cases of its own.</p>
     <div class="tr-tools"><label for="tr-q" class="tr-note" style="margin:0">Search</label><input id="tr-q" type="search" placeholder="e.g. Ohio or OH"></div>
     <div class="tr-tablebox">
       <table class="tr-table" id="tr-table" data-source="state_results" data-row-key="state">
@@ -121,13 +121,13 @@
         <li>"Lift" is error dollars found in the top 20% (or 10%) of the ranked list, divided by what reviewing the same number of random cases finds, on cases held out from training.</li>
         <li>"2020–22 → 2023–24" trains on the earlier years and tests on the later ones. "Forecast ÷ actual" compares the model's expected dollars with the dollars found in its top 20%.</li>
         <li>Review time is assumed to be 30 minutes a case.</li>
-        <li>The five smallest-sample jurisdictions where it helped on both tests (marked ◆) use a model trained on their own cases pooled with every other state's; the rest use their own cases only.</li>
+        <li>Each jurisdiction's model is trained on its own cases pooled with every other state's, plus two inputs that tell it the state's benefit levels (the case's maximum allotment and the issued benefit's share of it). This beat a state-only model in all 53 jurisdictions on both tests.</li>
         <li>Ranking purely by dollars under-reviews elderly households for their risk almost everywhere. The "fairness floor" splits the review budget across household types by their share of errors; it costs a little lift and brings review into proportion.</li>
       </ul>
     </div>
     <div class="tr-card">
       <h2>Cost-share scenarios</h2>
-      <p class="tr-note" style="margin-bottom:0">From FY2028, states pay part of SNAP benefits if their error rate is 6% or more: 5% of benefits at 6–8%, 10% at 8–10%, 15% at 10% or more. The scenarios estimate how far ranker-guided reviews of active cases could lower the rate. They're the size of the opportunity, not a forecast.</p>
+      <p class="tr-note" style="margin-bottom:0">From FY2028, states pay part of SNAP benefits if their error rate is 6% or more: 5% of benefits at 6–8%, 10% at 8–10%, 15% at 10% or more. The scenarios estimate how far ranker-guided reviews of active cases could lower the rate. They're the size of the opportunity, not a forecast, and they use the earlier own-cases rankers' lifts, so they're conservative for the current models.</p>
       <div style="overflow-x:auto">
         <table class="tr-table tr-assump" id="assumptions" data-source="scenario_assumptions" data-row-key="scenario">
           <thead><tr><th data-field="scenario">Scenario</th><th data-field="review_share">Cases reviewed a month</th><th data-field="lift_basis">Lift used</th><th data-field="fix_rate">Errors fixed</th><th data-field="error_months">Months an error lasts</th></tr></thead>
@@ -250,7 +250,7 @@
     grp('Ranker, held-out cases');
     item('Model', 'model_type', (v) => v);
     item('Top-20% lift', 'lift_deployed', fmtX);
-    if (r.model_type !== 'own cases only') item('Own-cases model (before pooling)', 'lift_top20', fmtX);
+    item('Own-cases model (exp68, for reference)', 'lift_top20', fmtX);
     item('Top-20% lift with fairness floor', 'lift_floor', fmtX);
     item('Top-10% lift', 'lift_top10', fmtX);
     item('$ per review hour', 'per_hour', fmt$);
@@ -258,7 +258,6 @@
     item('Train 2020–22, test 2023–24', 'time_split_lift', fmtX);
     item('Forecast ÷ actual (top 20%)', 'exp_over_act', (v) => (v == null ? 'n/a' : d3.format('.2f')(v)));
     item('QC cases, FY2020–24', 'n_rows', d3.format(','));
-    if (r.model_type !== 'own cases only') { const n = document.createElement('div'); n.className = 'grp'; n.textContent = 'Pooled model: the top-10% lift, forecast check and fairness figures were measured for the earlier own-cases model only, so they show n/a.'; dl.append(n); }
     grp('Who gets reviewed (1.0 = in proportion to error risk)');
     item('Elderly households', 'elderly_ratio', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
     item('Elderly, with fairness floor', 'elderly_ratio_floor', (v) => v == null ? 'n/a' : d3.format('.2f')(v));
@@ -325,7 +324,7 @@
     });
   }
 
-  const COLS = [['state', (r) => r.name + ' (' + r.state + ')' + (r.model_type !== 'own cases only' ? ' ◆' : '')], ['lift_deployed', (r) => fmtX(r.lift_deployed)],
+  const COLS = [['state', (r) => r.name + ' (' + r.state + ')' + ], ['lift_deployed', (r) => fmtX(r.lift_deployed)],
     ['lift_floor', (r) => fmtX(r.lift_floor)], ['elderly_ratio', (r) => (r.elderly_ratio == null ? 'n/a' : d3.format('.2f')(r.elderly_ratio))], ['lift_top10', (r) => fmtX(r.lift_top10)],
     ['per_hour', (r) => fmt$(r.per_hour)], ['random_per_hour', (r) => fmt$(r.random_per_hour)], ['time_split_lift', (r) => fmtX(r.time_split_lift)],
     ['exp_over_act', (r) => (r.exp_over_act == null ? 'n/a' : d3.format('.2f')(r.exp_over_act))], ['per_fy2025', (r) => fmtPct(r.per_fy2025)], ['share_central', (r) => fmtShare(r.share_central)],

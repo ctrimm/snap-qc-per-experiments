@@ -35,25 +35,26 @@ for ab, r in sorted(r68.items()):
         "saving_high": sc["high"]["ranker"]["saving_vs_now"],
         "reviews_per_month": sc["central"]["reviews_per_month"], "fte": sc["central"]["fte"],
     })
-# exp72 fairness and exp75 pooled models for small jurisdictions
-r72 = {r["state"]: r for r in json.loads((EXP / "exp72_results.json").read_text())}
-r75 = json.loads((EXP / "exp75_results.json").read_text())
+# deployed models (exp80/82: context-aware pooled, all 53), measured in exp83 on each holdout;
+# the own-cases exp68 lift is kept as lift_top20 for reference. Cost scenarios (exp69) use the exp68 lifts.
+r83 = json.loads((EXP / "exp83_results.json").read_text())
+adopt = {}
+for f in ("exp80_results.json", "exp82_results.json"):
+    for k, v in json.loads((EXP / f).read_text()).items():
+        adopt[k] = v
 for row in rows:
-    f = r72[row["state"]]
-    row["lift_floor"] = f["floor"]["lift"]
-    row["elderly_ratio"] = f["baseline"]["ratio"].get("elderly")
-    row["elderly_ratio_floor"] = f["floor"]["ratio"].get("elderly")
-    row["disabled_ratio"] = f["baseline"]["ratio"].get("disabled")
-    p = r75.get(row["state"])
-    pooled = p is not None and p["adopted"] != "A"
-    row["model_type"] = "pooled with other states" if pooled else "own cases only"
-    row["lift_deployed"] = p[p["adopted"]]["holdout"] if pooled else row["lift_top20"]
-    if pooled:
-        # only what exp75 measured for the pooled model; $/hour scales exactly with lift at a fixed budget
-        row["per_hour"] = round(row["lift_deployed"] * row["random_per_hour"], 1)
-        row["time_split_lift"] = p[p["adopted"]]["time_split"]
-        for k in ("lift_top10", "exp_over_act", "lift_floor", "elderly_ratio", "elderly_ratio_floor", "disabled_ratio"):
-            row[k] = None
+    m = r83[row["state"]]; a = adopt[row["state"]]
+    row["model_type"] = "pooled with state context"
+    row["lift_deployed"] = m["top20"]["lift"]
+    row["lift_top10"] = m["top10"]["lift"]
+    row["per_hour"] = m["top20"]["per_hour_$"]
+    row["random_per_hour"] = m["top20"]["random_per_hour_$"]
+    row["exp_over_act"] = m["top20"]["expected_over_actual"]
+    row["time_split_lift"] = a[a["adopted"]]["time_split"]
+    row["lift_floor"] = m["fairness"]["floor_lift"]
+    row["elderly_ratio"] = m["fairness"]["baseline_ratio"].get("elderly")
+    row["elderly_ratio_floor"] = m["fairness"]["floor_ratio"].get("elderly")
+    row["disabled_ratio"] = m["fairness"]["baseline_ratio"].get("disabled")
 (HERE / "state_results.json").write_text(json.dumps(rows, indent=1))
 ass = [{"scenario": k, "review_share": v["R"], "lift_basis": "top-20% lift" if v["lift"] == "top20" else "top-10% lift",
         "fix_rate": v["f"], "error_months": v["m"]} for k, v in r69["scenarios"].items()]
