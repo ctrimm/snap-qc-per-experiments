@@ -113,6 +113,7 @@ transfer, LM eval) every experiment here must move.
 | 81b | [Generator calibration, multi-seed](experiments/exp81b_generator_autocal_multiseed.md) | Calibration | Did not hold — beats PA1 on fresh dev seeds (0.205 vs 0.197) but not on the locked holdout (0.181 vs 0.213). PA1 stays |
 | 82 | [Context-aware pooling, every jurisdiction](experiments/exp82_context_all_states.md) | Production | Held — adopted in 41 of 41 (median holdout gain +0.73×; PA 3.48× → 4.08×, TX 2.70× → 3.62×). All 53 now context-aware pooled: median 3.97× (lowest Alaska 2.96×), time split 3.80× (lowest Wyoming 2.91×) |
 | 83 | [Full evaluation of the context models](experiments/exp83_context_models_full_eval.md) | Production | Measured — median top-20% 3.97×, top-10% 6.38×; forecasts within ±20% in 52 of 53 (median 1.00); fairness floor now costs ~1% (3.97× → 3.93×) and moves elderly review 0.61 → 1.00 |
+| 84 | [MCP policy tools on the CalFresh quiz](experiments/exp84_mcq_mcp_tools.md) | LM gate | Running — E2B and E4B, with vs without the state-policy-docs tools |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
