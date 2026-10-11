@@ -60,6 +60,14 @@ Pre-registered (this docstring, committed before the scored runs):
   Contrasts with paired bootstrap CIs (2,000 resamples, seed 85): each arm -
   notools, and the H2/H3 pairs.
 
+  AMENDMENT 2 (2026-10-11, after the notools run, before any retrieval arm
+  was scored; the auto/old run was stopped partway and discarded): the
+  corpus gained the pre-H.R. 1 statute (7 U.S.C. ch. 51, U.S. Code 2024
+  edition, current through 2025-01-06, effective_to 2025-07-03), so dated
+  arms now include the Act as it stood. Undated arms are unaffected (the
+  current filter leaves out text whose effective_to has passed). The
+  notools run stands; the five retrieval arms run after this change.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv

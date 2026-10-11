@@ -24,7 +24,7 @@ The same 500 CalFresh questions and E4B build as exp84 (LM Studio, Q4_K_M, 128K 
 | 5 | agent | new | rules in force on 2025-06-01 (server default, so the model needn't pass it) |
 | 6 | agent | new | none |
 
-The same server code serves both corpora. The new corpus has no pre-H.R. 1 statute text (the Act compilation is as amended through P.L. 119-21), so dated arms rely on the CFR (mid-2024 versions where the text has changed since), the FY2025 FNS tables, Handbook 310 and MPP Division 63.
+The same server code serves both corpora. Dated arms see the CFR (mid-2024 versions where the text has changed since), the FY2025 FNS tables, Handbook 310, MPP Division 63, and the Food and Nutrition Act as it stood before H.R. 1. That last one was a second amendment, made before any retrieval arm was scored: the U.S. Code 2024 edition (current through January 6, 2025) was added, because the corpus first held only the post-H.R. 1 compilation. The no-tools run, done before this change, doesn't touch the corpus and stands.
 
 Readouts: accuracy per arm; paired differences with 95% bootstrap CIs; tool use; accuracy by the dataset's error-element topic (descriptive).
 
