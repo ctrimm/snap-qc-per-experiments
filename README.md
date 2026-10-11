@@ -115,6 +115,7 @@ transfer, LM eval) every experiment here must move.
 | 83 | [Full evaluation of the context models](experiments/exp83_context_models_full_eval.md) | Production | Measured — median top-20% 3.97×, top-10% 6.38×; forecasts within ±20% in 52 of 53 (median 1.00); fairness floor now costs ~1% (3.97× → 3.93×) and moves elderly review 0.61 → 1.00 |
 | 84 | [MCP policy tools on the CalFresh quiz](experiments/exp84_mcq_mcp_tools.md) | LM gate | Did not hold — with the state-policy-docs tools E4B 71.6% → 68.6% (−3.0 [−6.8, +0.6]), E2B 70.6% → 68.2% (−2.4 [−6.0, +1.4]). Models searched every question but opened a document on only 7–14%, answering from snippets |
 | 85 | [A fuller rulebook and auto-attached rule passages on the CalFresh quiz](experiments/exp85_mcq_rulebook_rag.md) | LM gate | Partly held: E4B no tools 73.4%; expanded rulebook beats exp84 corpus (+3.4 [0.0, 7.0]); best arm agent + new rule tools dated pre-H.R. 1, 76.0% (+2.6 [−1.4, +6.8] vs no tools; +7.4 [+3.6, +11.4] vs exp84 agent). Attached passages 71–75%, none above no tools; hard or soft dating removes CA letters that help |
+| 86 | [Rule tools on Gemma 4 31B](experiments/exp86_31b_rule_tools.md) | LM gate | Pending — 31B, 500 CalFresh questions: no tools vs exp85's best arm (agent + rule tools, dated pre-H.R. 1) |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
