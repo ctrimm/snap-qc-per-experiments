@@ -35,7 +35,32 @@ Pre-registered (this docstring, committed before the scored runs):
   (68.6%) and vs notools.
   Run order: notools, auto/old, auto/new, agent/new, agent/old.
 
-Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new
+  AMENDMENT (2026-10-11, before any scored run; only 3-question smoke tests
+  had run): the owner noted the question set predates H.R. 1 (P.L. 119-21,
+  July 4, 2025). Only 1 of the old corpus's 326 documents was in force on
+  2025-06-01 (it is almost entirely post-H.R. 1 letters), so an old-corpus
+  arm with a date filter would be empty, and an agent/old arm adds little
+  over exp84. Revised conditions (prompts identical within a mode):
+    notools
+    auto  / old / current       (what exp84's corpus offers, undated)
+    auto  / new / current
+    auto  / new / as_of 2025-06-01
+    agent / new / as_of 2025-06-01
+    agent / new / current
+  as_of 2025-06-01 (pre-H.R. 1, FY2025) applies to every retrieval: the
+  auto passages, and in agent runs the server's default
+  (STATE_POLICY_DEFAULT_AS_OF), so the model needn't pass it. Note the new
+  corpus has no pre-H.R. 1 statute text (the Act compilation is as amended
+  through P.L. 119-21), so dated arms rely on the CFR (2024-06-01 versions
+  where changed), FY2025 FNS tables, Handbook 310 and MPP Division 63.
+  Revised hypotheses: H1 auto/new/as_of beats notools (CI above 0).
+  H2 dating helps: auto/new/as_of beats auto/new/current, and agent likewise.
+  H3 the rulebook helps: auto/new/current beats auto/old/current.
+  H4 (descriptive) agent/new/as_of vs notools and vs exp84's agent (68.6%).
+  Contrasts with paired bootstrap CIs (2,000 resamples, seed 85): each arm -
+  notools, and the H2/H3 pairs.
+
+Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
 import os
@@ -67,6 +92,9 @@ AGENT = (BASE + "You have tools over a corpus of official federal and California
          "EXACTLY one letter: A, B, C, D or E. Nothing else.")
 
 
+AS_OF = "2025-06-01"
+
+
 def _passages_fn(corpus: str):
     os.environ["STATE_POLICY_CORPUS"] = str(CORPORA[corpus])
     sys.path.insert(0, str(SPD))
@@ -74,7 +102,7 @@ def _passages_fn(corpus: str):
     return server.get_passages
 
 
-def samples(mode: str, corpus: str):
+def samples(mode: str, corpus: str, dated: bool):
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
     get_passages = _passages_fn(corpus) if mode == "auto" else None
     out = []
@@ -83,7 +111,7 @@ def samples(mode: str, corpus: str):
         body = f"Client:\n{r['preamble_attributes'].strip()}\n\n{q}\n\nAnswer with one letter."
         meta = {"error_element": r.get("error_element", ""), "passages": []}
         if get_passages:
-            ps = get_passages(q, jurisdiction="ca", k=5)["passages"]
+            ps = get_passages(q, jurisdiction="ca", k=5, as_of=AS_OF if dated else "")["passages"]
             meta["passages"] = [p["citation"] for p in ps]
             ctx = "\n\n".join(f"[{i + 1}] {p['citation']} ({p['document']}; in force from {p['effective_from'] or 'n/a'})\n"
                               f"{p['text']}" for i, p in enumerate(ps))
@@ -103,15 +131,16 @@ def letter_match():
 
 
 @task
-def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new"):
+def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
                                   args=["mcp_server/server.py"], cwd=str(SPD),
-                                  env={"STATE_POLICY_CORPUS": str(CORPORA[corpus])})
+                                  env={"STATE_POLICY_CORPUS": str(CORPORA[corpus]),
+                                       "STATE_POLICY_DEFAULT_AS_OF": AS_OF if dated else ""})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         solver = react(prompt=AGENT, tools=[tools], attempts=1, submit=True)
     else:
         solver = [system_message(AUTO if mode == "auto" else BASE + ONE_LETTER), generate()]
-    return Task(dataset=samples(mode, corpus), solver=solver, scorer=letter_match(), message_limit=30,
+    return Task(dataset=samples(mode, corpus, dated), solver=solver, scorer=letter_match(), message_limit=30,
                 config=GenerateConfig(temperature=0.0))
