@@ -64,6 +64,10 @@ def run(args):
 def score(paths):
     import random
     res = [{r["question_id"]: r for r in map(json.loads, open(p))} for p in paths]
+    for d in res:  # committed copies keep only correct/incorrect (the answer key stays out of git: dataset licence)
+        for r in d.values():
+            if "correct" in r:
+                r.setdefault("pred", bool(r["correct"])); r.setdefault("gold", True)
     for p, d in zip(paths, res):
         acc = sum(r["pred"] == r["gold"] for r in d.values()) / len(d)
         by = {}
@@ -78,6 +82,9 @@ def score(paths):
         boots = sorted(sum(rng.choice(diff) for _ in diff) / len(diff) for _ in range(2000))
         print(f"paired {Path(paths[1]).name} - {Path(paths[0]).name}: {sum(diff) / len(diff):+.1%} "
               f"[{boots[50]:+.1%}, {boots[1949]:+.1%}]")
+# Licence note: cornellbgl/SNAP_scenarios is CC-BY-NC-ND-4.0 (evaluation only; no training use, no
+# redistribution). --out files carry predictions and gold letters: keep them outside git
+# (../snap-qc-data/derived/exp70_preds/); the committed exp70_*.jsonl keep question_id, correct, difficulty.
 
 
 if __name__ == "__main__":
