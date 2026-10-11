@@ -114,6 +114,7 @@ transfer, LM eval) every experiment here must move.
 | 82 | [Context-aware pooling, every jurisdiction](experiments/exp82_context_all_states.md) | Production | Held — adopted in 41 of 41 (median holdout gain +0.73×; PA 3.48× → 4.08×, TX 2.70× → 3.62×). All 53 now context-aware pooled: median 3.97× (lowest Alaska 2.96×), time split 3.80× (lowest Wyoming 2.91×) |
 | 83 | [Full evaluation of the context models](experiments/exp83_context_models_full_eval.md) | Production | Measured — median top-20% 3.97×, top-10% 6.38×; forecasts within ±20% in 52 of 53 (median 1.00); fairness floor now costs ~1% (3.97× → 3.93×) and moves elderly review 0.61 → 1.00 |
 | 84 | [MCP policy tools on the CalFresh quiz](experiments/exp84_mcq_mcp_tools.md) | LM gate | Did not hold — with the state-policy-docs tools E4B 71.6% → 68.6% (−3.0 [−6.8, +0.6]), E2B 70.6% → 68.2% (−2.4 [−6.0, +1.4]). Models searched every question but opened a document on only 7–14%, answering from snippets |
+| 85 | [A fuller rulebook and auto-attached rule passages on the CalFresh quiz](experiments/exp85_mcq_rulebook_rag.md) | LM gate | Pending — E4B, 500 questions: no tools vs {auto-attached passages, agent with the new rule tools} × {exp84 corpus, expanded rulebook corpus} |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
