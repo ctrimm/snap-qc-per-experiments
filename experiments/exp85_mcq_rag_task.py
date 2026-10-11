@@ -79,6 +79,15 @@ Pre-registered (this docstring, committed before the scored runs):
   documents may describe later changes. Readout: hint - auto/new and hint -
   notools, paired bootstrap as above. Exploratory, not confirmatory.
 
+  AMENDMENT 4 (2026-10-11, POST-HOC): state-policy-docs branch date-windows
+  adds hand-curated implementation windows for the 22 CA letters and a
+  label date mode (later guidance kept, down-weighted 0.7 if it restates
+  earlier policy and its law predates the date, else 0.4, and labeled;
+  weights fixed before this arm ran). Two arms, corpus "dates" (that
+  branch), as_of 2025-06-01, date_mode=label: without and with the hint.
+  Readouts vs auto/new/dated (filter), auto/new (undated) and notools.
+  Exploratory.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -97,7 +106,9 @@ from inspect_ai.tool import mcp_server_stdio, mcp_tools
 
 DATA = Path.home() / "datasets/snap_scenarios/snap_scenarios.csv"
 SPD = Path(__file__).resolve().parents[2] / "state-policy-docs"
-CORPORA = {"new": SPD / "corpus", "old": Path(__file__).resolve().parents[2] / "snap-qc-data/derived/exp85_spd_old/corpus"}
+SPD_DATES = Path(__file__).resolve().parents[2] / "state-policy-docs-dates"  # branch date-windows (amendment 4)
+CORPORA = {"new": SPD / "corpus", "old": Path(__file__).resolve().parents[2] / "snap-qc-data/derived/exp85_spd_old/corpus",
+           "dates": SPD_DATES / "corpus"}
 BASE = "You answer multiple-choice questions about CalFresh, California's SNAP program. "
 ONE_LETTER = "Respond with EXACTLY one letter: A, B, C, D or E. Nothing else — no explanation, no punctuation."
 AUTO = (BASE + "Excerpts from official federal and California policy documents that may be relevant are included with "
@@ -116,12 +127,12 @@ AS_OF = "2025-06-01"
 
 def _passages_fn(corpus: str):
     os.environ["STATE_POLICY_CORPUS"] = str(CORPORA[corpus])
-    sys.path.insert(0, str(SPD))
+    sys.path.insert(0, str(SPD_DATES if corpus == "dates" else SPD))
     from mcp_server import server  # imported after the env var so it indexes the chosen corpus
     return server.get_passages
 
 
-def samples(mode: str, corpus: str, dated: bool):
+def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter"):
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
     get_passages = _passages_fn(corpus) if mode == "auto" else None
     out = []
@@ -130,7 +141,8 @@ def samples(mode: str, corpus: str, dated: bool):
         body = f"Client:\n{r['preamble_attributes'].strip()}\n\n{q}\n\nAnswer with one letter."
         meta = {"error_element": r.get("error_element", ""), "passages": []}
         if get_passages:
-            ps = get_passages(q, jurisdiction="ca", k=5, as_of=AS_OF if dated else "")["passages"]
+            kw = {"date_mode": date_mode} if corpus == "dates" else {}
+            ps = get_passages(q, jurisdiction="ca", k=5, as_of=AS_OF if dated else "", **kw)["passages"]
             meta["passages"] = [p["citation"] for p in ps]
             ctx = "\n\n".join(f"[{i + 1}] {p['citation']} ({p['document']}; in force from {p['effective_from'] or 'n/a'})\n"
                               f"{p['text']}" for i, p in enumerate(ps))
@@ -155,7 +167,8 @@ HINT = (" The questions reflect federal and California rules before H.R. 1 (P.L.
 
 
 @task
-def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False):
+def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
+                     date_mode: str = "filter"):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
@@ -169,5 +182,5 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
         if hint:
             prompt = prompt.replace(ONE_LETTER, HINT.strip() + " " + ONE_LETTER)
         solver = [system_message(prompt), generate()]
-    return Task(dataset=samples(mode, corpus, dated), solver=solver, scorer=letter_match(), message_limit=30,
+    return Task(dataset=samples(mode, corpus, dated, date_mode), solver=solver, scorer=letter_match(), message_limit=30,
                 config=GenerateConfig(temperature=0.0))
