@@ -30,6 +30,77 @@ Readouts: accuracy per arm; paired differences with 95% bootstrap CIs; tool use;
 
 Hypotheses: H1, auto/new/dated beats no tools (CI above zero). H2, dating helps (arm 4 over 3, arm 5 over 6). H3, the rulebook helps (arm 3 over 2). H4 (descriptive), arm 5 vs no tools and vs exp84's agent (68.6%).
 
+Post-hoc additions (after the first results, recorded in the task docstring as amendments 3 and 4):
+
+- **Hint:** the undated attached-passage arm plus one prompt sentence saying the questions reflect pre-H.R. 1 rules.
+- **Label date mode, with and without the hint:** a softer date treatment on a branch of state-policy-docs (`date-windows`). Implementation windows were curated by hand for the 22 California letters. Later guidance is kept but down-weighted: ×0.7 if it restates earlier policy and its law predates the question date, otherwise ×0.4. Superseded regulation and statute versions still swap by date. The weights were fixed before the arms ran.
+
 ### Results
 
-Pending.
+E4B, 500 questions, no errors. Paired differences use a bootstrap (2,000 resamples, seed 85).
+
+| Arm | Accuracy | vs no tools (95% CI) | Gained / lost |
+|---|---|---|---|
+| No tools | 73.4% | — | — |
+| Auto, old corpus (exp84's) | 71.2% | −2.2 [−5.8, +1.6] | 38 / 49 |
+| Auto, new corpus | 74.6% | +1.2 [−2.8, +5.2] | 52 / 46 |
+| Auto, new, dated (filter, 2025-06-01) | 72.4% | −1.0 [−4.8, +2.6] | 43 / 48 |
+| Agent, new | 74.6% | +1.2 [−2.4, +5.4] | 52 / 46 |
+| **Agent, new, dated** | **76.0%** | **+2.6 [−1.4, +6.8]** | 62 / 49 |
+| Auto, new + hint (post-hoc) | 74.4% | +1.0 [−2.8, +4.8] | 51 / 46 |
+| Auto, label dates (post-hoc) | 72.0% | −1.4 [−5.2, +2.4] | 43 / 50 |
+| Auto, label dates + hint (post-hoc) | 72.4% | −1.0 [−4.8, +2.6] | 45 / 50 |
+
+Other contrasts:
+
+| Contrast | Difference (95% CI) |
+|---|---|
+| New vs old corpus (auto) | **+3.4 [0.0, +7.0]** (47 / 30) |
+| Dated vs undated (auto) | −2.2 [−4.8, +0.4] (16 / 27) |
+| Dated vs undated (agent) | +1.4 [−2.0, +4.8] (39 / 32) |
+| Agent vs auto (both dated) | +3.6 [−0.6, +8.0] |
+| Agent, new, dated vs exp84's agent (same 500 questions, paired) | **+7.4 [+3.6, +11.4]** (69 / 32) |
+| Label vs filter dating (auto) | −0.4 [−2.6, +1.8] |
+| Hint vs none (auto, undated) | −0.2 [−2.4, +1.8] |
+
+**Tool use (agent):** about 1.6 calls per question. `lookup_rule` 0.86–0.89 per question, `get_passages` 0.69–0.78, `get_section` about 0.01, `calculate_benefit` 0.
+
+**Passage sources (auto):**
+
+| Share of attached passages | Undated | Dated (filter) | Label |
+|---|---|---|---|
+| California letters/notices | 19% | 5% | 5% |
+| CFR | 36% | 45% | 45% |
+| MPP | 21% | 25% | 26% |
+| Handbook 310 | 21% | 24% | 25% |
+
+| Questions with at least one California letter attached | Undated | Dated (filter) | Label |
+|---|---|---|---|
+| Count | 284 | 103 | 109 |
+
+There were 32 questions that the undated arm answered correctly and the label arm missed. A California letter was among the undated arm's passages on 21 of them, and among the label arm's passages on only 5.
+
+### Verdict
+
+**Partly held.**
+
+- **H3 held (barely):** the expanded rulebook beat exp84's corpus, +3.4 points with a CI from 0.0.
+- **H1 did not hold:** no attached-passage arm beat no tools with a CI above zero. Every one of them sits between 71% and 75%.
+- **H2 was mixed:** dating helped the agent slightly (+1.4) and hurt attached passages (−2.2). Neither CI excludes zero.
+- **H4:** the dated agent is the best arm (76.0%, +2.6 over no tools, CI includes zero), and it clearly beats exp84's agent on the same questions: +7.4 [+3.6, +11.4].
+
+So the rebuild turned a tool setup that hurt into one that helps a little. Most of that comes from better content (the rulebook) and better tools (`lookup_rule` returns the governing text directly). E4B already knows most of what this quiz tests. Retrieval's main effect is to stop it from being led astray, plus a small gain on top.
+
+On dating:
+
+- **The label arm wasn't a real test of soft dating.** The weights were strong enough that California letters rarely made the top 5: 5% of passages, the same as the hard filter. So label and filter came out the same (−0.4).
+- **What the data does show:** the undated arm's edge over the dated arms lines up with California letters being in the prompt. On 21 of the 32 questions where undated beat label, undated had a letter and label mostly didn't.
+- **My reading:** even on a pre-H.R. 1 quiz, the 2025–26 California letters carry standing California practice the model uses. Cutting them out costs more than the date-mismatched content they bring. That's a post-hoc reading from one run, not a confirmed finding.
+- **The hint did nothing** (−0.2).
+
+### Next steps
+
+1. **A cleaner soft-dating test:** labels without down-weighting (letters kept at full weight, each tagged with its date status). Better still, attach the date status per passage and see whether the model uses it. A held-out question set is needed so the weights aren't tuned on this one.
+2. **Current California rules:** the 2011 MPP is the corpus's only California regulation. CDSS regulation packages adopted since then, or the ParaRegs series (one is already in the corpus, with per-rule effective dates), would give date-correct California practice without relying on letters.
+3. **The 31B model with the dated agent tools:** the sibling repo's original question.
+4. **Implementation dates for the federal FNS memos,** the same treatment the California letters got.
