@@ -19,7 +19,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SPD = HERE.parents[1] / "state-policy-docs"
+SPD = Path(__import__("os").environ.get("EXP87_SPD", HERE.parents[1] / "state-policy-docs"))
 sys.path.insert(0, str(SPD))
 from mcp_server import benefit_calc as bc  # noqa: E402
 from mcp_server.policy_index import get_index, resolve_citation  # noqa: E402
@@ -47,7 +47,7 @@ def mcq(stem, correct, distractors):
             opts.append(d)
     k = 1
     while len(opts) < 5:  # pad with near values when years coincide
-        cand = correct + 7 * k if isinstance(correct, (int, float)) else None
+        cand = correct + 7 * k * (1 if k % 2 else -1) if isinstance(correct, (int, float)) else None
         k += 1
         if cand is not None and cand not in opts and cand > 0:
             opts.append(cand)
@@ -133,6 +133,8 @@ def compute_part(n):
                                                  "medical_expenses": med or 120})["monthly_benefit"],
             max(0, correct - 30), correct + 25,
         ]
+        # states may round slightly differently (273.10(e)(1)(ii)): no distractor within $2 of the answer
+        variants = [v for v in variants if abs(v - correct) > 2]
         who = ("including a member who is 60 or older" if ed else "with no elderly or disabled members")
         inc = []
         if earned:
