@@ -1,6 +1,6 @@
 # Finding SNAP Payment Errors Faster: Synthetic Data, Language Models and Triage Rankers
 
-**October 10, 2026 · Executive whitepaper · Cory Trimm**
+**October 11, 2026 · Executive whitepaper · Cory Trimm**
 
 ## Executive summary
 
@@ -8,9 +8,9 @@ States lose money and federal standing when SNAP benefits are paid in the wrong 
 
 In under two weeks and more than 100 experiments (including rankers for every state), using five years of federal QC data (FY2020–2024, about 167,000 reviewed cases), we reached four findings:
 
-1. **A ranking tool is ready to pilot in any state.** We built a model for every state, DC, Guam and the Virgin Islands (53 jurisdictions) that ranks cases by expected error dollars, using only information the agency has before review. On cases it never saw, reviewing the top 20% of its queue finds a median **3.4 times the error dollars of random selection**, and at least 2.6 times in every jurisdiction. In New York that is about $199 of errors found per review hour, against $56 at random. Its dollar forecasts land within 20% of actual in 49 of 53 jurisdictions.
+1. **A ranking tool is ready to pilot in any state.** We built a model for every state, DC, Guam and the Virgin Islands (53 jurisdictions) that ranks cases by expected error dollars, using only information the agency has before review. Each model learns from every state's QC cases plus its own state's benefit levels, which beat state-only models everywhere. On cases it never saw, reviewing the top 20% of its queue finds a median **4.0 times the error dollars of random selection** (at least 3.0 times in every jurisdiction), and the top 10% finds 6.4 times. In Pennsylvania that is about $190 of errors found per review hour, against $47 at random. Its dollar forecasts land within 20% of actual in 52 of 53 jurisdictions.
 2. **Realistic synthetic cases can teach a model real skills.** We built a generator that produces fake SNAP cases with known errors, calibrated to the federal data. Models trained only on these synthetic cases predict errors in real cases well above chance.
-3. **A small language model can learn part of the QC task from synthetic data alone.** An open model of about 4 billion parameters, trained only on synthetic cases, went from guessing to passing all three of our quality checks on 1,200 fresh real QC cases, under rules fixed before the cases were drawn. It outperformed a conventional classifier trained on the same data and, on our original test set, an untrained model eight times its size. It spots errors, their direction and their location well above chance, but can barely tell the type of mistake and can't tell whose mistake it was. It also kept its SNAP policy knowledge: 74% on a 500-question CalFresh benchmark, against 73% before training.
+3. **A small language model can learn part of the QC task from synthetic data alone.** An open model of about 4 billion parameters, trained only on synthetic cases, went from guessing to passing all three of our quality checks on 1,200 fresh real QC cases, under rules fixed before the cases were drawn. It outperformed a conventional classifier trained on the same data and, on our original test set, an untrained model eight times its size. It spots errors, their direction and their location well above chance, but can barely tell the type of mistake and can't tell whose mistake it was. It also kept its SNAP policy knowledge: 74% on a 500-question CalFresh benchmark, against 73% before training. Giving small models search tools over a state policy corpus did not raise that score (about 2–3 points lower, within noise): they searched every question but rarely opened the policy documents.
 4. **It could matter a great deal under the new federal cost-sharing rules.** From FY2028, states with payment error rates of 6% or more pay 5–15% of their SNAP benefit costs. At FY2025's official rates, 43 jurisdictions would pay about $10.6 billion a year. In a central scenario (reviewing 2% of cases a month), ranker-guided reviews could avoid about $5.3 billion of that a year, five times what random reviews of the same volume would. The plausible range is $0.3–9.9 billion, set mostly by review volume and how long errors would otherwise last.
 
 **The ranker does the heavy lifting.** It is the tool that decides which cases a state reviews before the federal QC sample ever happens, and it is the part ready to use. The language model is, at most, a helper for the reviewer once a case is open.
@@ -92,19 +92,19 @@ A model half the size (Gemma 4 E2B), trained the same way and tested the same wa
 
 It is still well short of a human reviewer. It is clearly better than chance at spotting an error, its direction and its location. It is only slightly better than chance at naming the type of mistake (T4), and no better at saying whose mistake it was (T5).
 
-### Every state: a median 3.4 times the error dollars of random review
+### Every state: a median 4 times the error dollars of random review
 
 The same pipeline, run for all 53 jurisdictions on held-out cases, top 20% of each queue:
 
 | | Result |
 |---|---|
-| Median lift over random review | 3.4× (lowest 2.6×, highest 4.0× in Massachusetts) |
-| Jurisdictions at 2.5× or better | 53 of 53 |
-| Error dollars found per review hour | $60 (South Dakota) to $352 (DC), own-case models |
-| Train on 2020–22, test on 2023–24 | median 3.0× |
-| Dollar forecast within 20% of actual | 49 of 53 |
+| Median lift over random review | 4.0× (lowest Alaska 3.0×, highest Washington 4.5×); top 10% of the queue 6.4× |
+| Jurisdictions at 3.0× or better | 53 of 53 (Alaska 2.96× rounds to 3.0×) |
+| Error dollars found per review hour | $79 to $366 |
+| Train on 2020–22, test on 2023–24 | median 3.8× (lowest Wyoming 2.9×) |
+| Dollar forecast within 20% of actual | 52 of 53 |
 
-The five jurisdictions with the fewest cases where it helped (Wyoming, Alaska, the Virgin Islands, Delaware, Montana) use a model trained on their own cases pooled with every other state's. That lifted Wyoming from 1.7× to 3.5× and Alaska from 1.3× to 2.9×. The six original pilot states reproduced their earlier results exactly.
+Each jurisdiction's model is trained on its own cases pooled with every other state's, plus two inputs that tell it the state's benefit levels: the case's maximum allotment and the issued benefit as a share of it. Both are known to the agency before review. Five years of one state's QC sample is about 3,000 cases; pooling lets each state borrow the error patterns that are shared across states. This beat a state-only model in all 53 jurisdictions on both the held-out cases and the later-years test (for example Pennsylvania 3.5× → 4.1×, Texas 2.7× → 3.6×, Alaska 1.3× → 3.0×). The six original pilot states' state-only results are reproduced exactly in the tables below for comparison.
 
 ### What it could mean for FY2028 cost share
 
@@ -118,7 +118,7 @@ We modelled ranker-guided reviews of active cases as removing a share of the cas
 | **Central (2% a month)** | **$5.3B avoided** | **$1.0B** | about 1,540 |
 | High (3% a month) | $9.4B avoided | $2.4B | about 2,310 |
 
-In the central scenario Pennsylvania's rate falls from 9.21% to about 6.1% (cost share 10% → 5%, about $209 million a year), and New York's from 13.18% to about 8.8% (15% → 10%, about $360 million). How many cases get reviewed and how long a found error would otherwise have lasted drive the range; the ranker's own accuracy matters least. At every setting tried, ranker-guided reviews avoided 3–15 times what random reviews did. These are the size of the opportunity, not a forecast (see Limitations).
+In the central scenario Pennsylvania's rate falls from 9.21% to about 6.1% (cost share 10% → 5%, about $209 million a year), and New York's from 13.18% to about 8.8% (15% → 10%, about $360 million). How many cases get reviewed and how long a found error would otherwise have lasted drive the range; the ranker's own accuracy matters least. At every setting tried, ranker-guided reviews avoided 3–15 times what random reviews did. These are the size of the opportunity, not a forecast (see Limitations). They were computed with the earlier state-only models' lift, so they are conservative for the pooled models now in the package. With the fairness floor on, the central figure on a like-for-like basis is about $3.5 billion a year rather than $3.9 billion.
 
 ### The six pilot states in detail
 
@@ -145,7 +145,8 @@ Three things make these numbers usable:
 
 - **Each state's errors look different.** Pennsylvania's errors cluster in how deductions are calculated, especially shelter costs; New York's are mostly about timing. That's why each state needs its own model.
 - **Some states don't record dollar amounts per error.** In 22 of 53 states, most error cases leave that field blank (Texas almost all of them), while Pennsylvania and New York fill it in. Tools that explain *where* the error was depend on states that record it.
-- **Fairness can be built in cheaply.** Ranking purely by dollars gives elderly households less review than their share of errors in 51 of 53 jurisdictions, and disabled households in 22. A per-household-type floor brings review into proportion almost everywhere, for a median cost of about 2–3% of the lift (3.25× → 3.18×). In an earlier Pennsylvania and New York test, the same floor raised elderly and disabled coverage 1.4–1.9 times with no measurable loss in dollars found.
+- **Fairness can be built in cheaply.** Ranking purely by dollars gives elderly households less review than their share of errors in 49 of 53 jurisdictions, and disabled households in 30 of 51. A per-household-type floor brings review into proportion almost everywhere, for a median cost of about 1% of the lift with the current models (4.0× → 3.9×).
+- **A second ranker can find households being shorted.** The main ranker targets total error dollars, mostly overpayments, and finds underpayments at only about 1.5 times random. A ranker trained on underpayments finds 3.4 times the underpayment dollars of random review, better in all 53 jurisdictions, so a state can give part of its review budget to it.
 - **Ranking doesn't need a language model.** The conventional ranker already does the job well, trained on each state's own records, and costs almost nothing to run. The language model's potential lies in reading and explaining cases.
 
 ## Methodology notes
@@ -153,14 +154,14 @@ Three things make these numbers usable:
 - **Data:** federal SNAP QC public-use files, FY2020–2024, about 167,000 reviewed cases nationally. Rankers used each jurisdiction's own 732–4,163 cases (five small ones pooled with other states'). Error rates are USDA's official FY2025 figures. Each state set aside about a quarter of its cases for final testing.
 - **Synthetic generator:** a household sampler, the federal benefit formula, and an error injector whose rates come from the real data. Calibration and transfer were checked after every change, with each experiment recorded as hypothesis, method, result, verdict.
 - **Language model:** Gemma 4 E4B (about 4 billion parameters), fine-tuned with LoRA adapters on synthetic cases only (supervised fine-tuning, about 400 steps). Reinforcement learning (GRPO) was tested and set aside. Training ran locally on a Mac Studio; a Google Colab version was also built. Scoring used macro-averaged F1 relative to guessing, with bootstrap confidence intervals and chance-corrected agreement (Cohen's kappa).
-- **Rankers:** two-part gradient-boosted models (scikit-learn), probability of error times expected dollars, tuned by nested cross-validation. Expected dollars are calibrated with isotonic regression on out-of-fold predictions. They are evaluated on held-out cases and on a later time period.
+- **Rankers:** two-part gradient-boosted models (scikit-learn), probability of error times expected dollars, trained on each state's cases pooled with all others (own cases weighted 1× or 10×, chosen per state) with two state-context inputs; adopted only where they beat the state-only model on both held-out cases and a later-years test. Expected dollars are calibrated with isotonic regression on out-of-fold predictions. They are evaluated on held-out cases and on a later time period.
 - **Cost-share scenarios:** a stock-and-flow model of error dollars in the active caseload (errors last until recertification; reviews correct a share each month = cases reviewed × the state's measured lift × share fixed), applied proportionally to the official rate. Three scenarios plus one-factor sensitivity.
 - **Rigor:** pass/fail criteria were set before training, the one later revision was confirmed on fresh cases under rules committed before they were drawn, the real test cases were never used for training or tuning, and every result, including failures, is recorded in the project's experiment log.
 
 ## Limitations
 
 - **Public data only.** The models were built from the federal public-use files, which omit some case detail and identifiers. A state's own case-management data would likely do better, and would need a short adaptation step.
-- **Small per-state samples.** Results for the smallest jurisdictions carry wider uncertainty. Alaska and Wyoming still lose much of their lift on later years even with pooled models, so a pilot there should use the state's own data.
+- **Small per-state samples.** Pooling across states removed most of the small-sample weakness, but Alaska's dollar forecasts still run high (about 40% over) and its later-years lift is the lowest; a pilot there should use the state's own data.
 - **The cost-share figures are scenarios.** They don't model whether corrections land before the federal sample month, procedural errors outside the public file (published rates run 2–3 points above what the public file implies), behaviour changes, the option some states have to delay, or the full cost of reviews.
 - **The language model is a research result, not a product.** It passed a pre-registered test on fresh cases, but only on one kind of task (classifying public-use case records), and it is well short of a human reviewer on the details of an error.
 - **The rankers prioritize; they don't decide.** They rank cases for human review. They don't make determinations about any household.
@@ -171,7 +172,8 @@ Three things make these numbers usable:
 2. **Refresh annually on the federal QC sample plus the pilot's own findings.** A simulation over FY2021–24 in six states showed that a ranker retrained only on the cases it flagged loses about 15% of its effectiveness within four years, because it never learns about errors it doesn't flag. The yearly federal QC sample is already a random, fully reviewed set of cases, and adding it closes most of that gap. Keep about 10% of pilot reviews on randomly chosen cases to watch for blind spots.
 3. **Turn on the fairness floor by default** so elderly and disabled households keep a proportionate share of reviews; show each state the small cost in dollars found.
 4. **Measure what drives the cost-share estimate:** realistic review volume and how long a found error would otherwise have lasted. Those two numbers settle most of its range.
-5. **Continue the language model as research** aimed at what the ranker can't do: plain-language explanations of why a case looks risky. Flag cards built on the ranker are in testing: they name the part of the case to check first, and the real error is among their top three for 86–88% of flagged errors in Pennsylvania and New York.
+5. **Offer the underpayment ranker as a second queue** for states that want to find households being shorted, not only overpayments.
+6. **Continue the language model as research** aimed at what the ranker can't do: plain-language explanations of why a case looks risky. Flag cards built on the ranker are in testing: they name the part of the case to check first (the real error is among their top three for 86–88% of flagged errors in Pennsylvania and New York), with odds recalibrated to be honest. Model-written notes still need a check that they state those odds correctly.
 
 ## Project timeline
 
@@ -185,3 +187,4 @@ Three things make these numbers usable:
 | Oct 9 | Pre-registered confirmation on 1,200 fresh real cases: the language model passes all three checks (overall 33%, location 24% vs a 21% bar). |
 | Oct 9 | A half-size model (E2B) trained the same way scores 25% and misses the location check: the 4B model is the smallest that passes. |
 | Oct 10 | Rankers for all 53 jurisdictions, pooled models for the smallest, a fairness audit across all of them, and FY2028 cost-share scenarios on USDA's official FY2025 error rates. Policy knowledge check passed. |
+| Oct 10–11 | Pooled, state-context models beat state-only models in all 53 jurisdictions (median 4.0×); underpayment ranker; fairness floor now costs about 1%. Automatic generator tuning and policy-search tools for small models tested and set aside. |
