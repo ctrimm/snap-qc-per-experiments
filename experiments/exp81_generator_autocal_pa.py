@@ -27,7 +27,12 @@ Pre-registered (this docstring, committed before running):
   holds on the fresh seeds (mean > PA1). The loop never changes generator
   defaults: winning knobs are written to exp81_best_knobs.json for review.
 
-Usage: python3 experiments/exp81_generator_autocal_pa.py [--workers 6]
+exp81b (--seeds 3, pre-registered 2026-10-10 after exp81 chased single-seed
+noise): each candidate scored as the mean over seeds 7, 8, 9; a child must
+improve the parent by more than 0.005; the final check uses 5 fresh seeds
+(21-25) plus the locked holdout as before; results to exp81b_*.json.
+
+Usage: python3 experiments/exp81_generator_autocal_pa.py [--workers 6] [--seeds 3]
 """
 import argparse
 import copy
@@ -112,15 +117,27 @@ def evaluate(args):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--workers", type=int, default=6); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--seeds", type=int, default=1); args = ap.parse_args()
+    seeds = [7, 8, 9][: args.seeds]; thr = 0.002 if args.seeds == 1 else 0.005
+    fresh = (11, 12, 13) if args.seeds == 1 else (21, 22, 23, 24, 25)
+    tag = "exp81" if args.seeds == 1 else "exp81b"
+
+    def score_many(pool, kids):
+        flat = pool.map(evaluate, [(k, s, 8000, "dev") for k in kids for s in seeds])
+        out = []
+        for i in range(len(kids)):
+            rs = flat[i * len(seeds):(i + 1) * len(seeds)]
+            out.append({m: float(np.mean([r[m] for r in rs])) for m in rs[0]})
+        return out
     os.environ["OMP_NUM_THREADS"] = "2"
     from multiprocessing import get_context
     base_vals = knob_base(); names = list(base_vals)
     ones = {k: 1.0 for k in names}
     log = []
     with get_context("spawn").Pool(args.workers) as pool:
-        base = pool.apply(evaluate, ((ones, 7, 8000, "dev"),))
-        print(f"PA1 baseline (dev, seed 7): {base}", flush=True)
+        base = score_many(pool, [ones])[0]
+        print(f"PA1 baseline (dev, seeds {seeds}): {base}", flush=True)
         lim_f, lim_e = base["finding_L1"] + 0.01, base["element_L1"] + 0.02
         parent, pscore, sigma = dict(ones), base["element_macroF1"], 0.12
         rng = np.random.RandomState(81)
@@ -131,11 +148,11 @@ def main():
             for _ in range(args.workers):
                 kid = {k: float(np.clip(parent[k] * np.exp(sigma * rng.randn()), 1 / 3, 3)) for k in names}
                 kids.append(kid)
-            res = pool.map(evaluate, [(k, 7, 8000, "dev") for k in kids])
+            res = score_many(pool, kids)
             ok = [(r["element_macroF1"], k, r) for k, r in zip(kids, res)
                   if r["finding_L1"] <= lim_f and r["element_L1"] <= lim_e]
             best = max(ok, key=lambda t: t[0]) if ok else None
-            improved = best is not None and best[0] > pscore + 0.002
+            improved = best is not None and best[0] > pscore + thr
             if improved:
                 parent, pscore = best[1], best[0]
             sigma *= 1.22 if improved else 0.96
@@ -144,10 +161,10 @@ def main():
                         "parent_score": pscore, "sigma": sigma, "improved": improved})
             print(f"gen {gen:2d}: best child {log[-1]['best_child']:.4f} | feasible {len(ok)}/{len(kids)} | "
                   f"parent {pscore:.4f} | sigma {sigma:.3f}{' *' if improved else ''}", flush=True)
-            (ROOT / "experiments/exp81_log.json").write_text(json.dumps({"baseline": base, "log": log, "parent": parent}, indent=1))
+            (ROOT / f"experiments/{tag}_log.json").write_text(json.dumps({"baseline": base, "log": log, "parent": parent}, indent=1))
         print("final check", flush=True)
-        dev_b = pool.map(evaluate, [(ones, s, 8000, "dev") for s in (11, 12, 13)])
-        dev_p = pool.map(evaluate, [(parent, s, 8000, "dev") for s in (11, 12, 13)])
+        dev_b = pool.map(evaluate, [(ones, s, 8000, "dev") for s in fresh])
+        dev_p = pool.map(evaluate, [(parent, s, 8000, "dev") for s in fresh])
         hb, hp = pool.map(evaluate, [(ones, 7, 20000, "test"), (parent, 7, 20000, "test")])
     mean = lambda rs, k: float(np.mean([r[k] for r in rs]))
     verdict = (hp["element_macroF1"] >= hb["element_macroF1"] and hp["finding_acc"] >= hb["finding_acc"] - 0.01
@@ -156,9 +173,9 @@ def main():
            "best_knob_values": {k: base_vals[k] * parent[k] for k in names},
            "dev_fresh_seeds": {"PA1": dev_b, "best": dev_p}, "holdout": {"PA1": hb, "best": hp},
            "matches_or_beats_PA1": verdict, "generations": len(log)}
-    (ROOT / "experiments/exp81_results.json").write_text(json.dumps(out, indent=1))
+    (ROOT / f"experiments/{tag}_results.json").write_text(json.dumps(out, indent=1))
     if verdict:
-        (ROOT / "experiments/exp81_best_knobs.json").write_text(json.dumps(out["best_knob_values"], indent=1))
+        (ROOT / f"experiments/{tag}_best_knobs.json").write_text(json.dumps(out["best_knob_values"], indent=1))
     print(f"dev fresh seeds element macro-F1: PA1 {mean(dev_b, 'element_macroF1'):.4f} vs best {mean(dev_p, 'element_macroF1'):.4f}")
     print(f"HOLDOUT element macro-F1: PA1 {hb['element_macroF1']:.4f} vs best {hp['element_macroF1']:.4f} | "
           f"finding acc PA1 {hb['finding_acc']:.4f} vs best {hp['finding_acc']:.4f} | verdict {verdict}")

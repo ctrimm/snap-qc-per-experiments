@@ -2,7 +2,8 @@
 
 Input: a CSV with QC public-use column names for the agency-side fields
 (CERTHHSZ, RAWHSIZE, RAWGROSS, RAWNET, RAWERND, SHELDED, RENT, UTIL, SUA1,
-FSMEDEXP, FSDEPDED, FSCSEXP, HOMEDED, RAWBEN), one row per case, plus any
+FSMEDEXP, FSDEPDED, FSCSEXP, HOMEDED, RAWBEN; plus BENMAX, the case's maximum
+allotment, for models whose card lists benefit_max), one row per case, plus any
 ID column you want carried through. Missing numeric values count as 0.
 
 Output: the same rows, ranked, with
@@ -52,9 +53,17 @@ def agency_features(row):
             shelter / gross if gross > 0 else shelter, net / gross if gross > 0 else 0.0]
 
 
+def context_features(row):
+    """Two extra inputs for models trained with state context (exp80): the case's maximum
+    allotment (BENMAX) and the issued benefit as a share of it."""
+    bm, rb = fnum(row.get("BENMAX")), fnum(row.get("RAWBEN"))
+    return agency_features(row) + [bm, rb / bm if bm > 0 else 0.0]
+
+
 def score(state, rows):
     m = joblib.load(HERE / state / "model.joblib")
-    X = np.array([agency_features(r) for r in rows])
+    feat = context_features if len(m["features"]) > 20 else agency_features
+    X = np.array([feat(r) for r in rows])
     p = m["classifier"].predict_proba(X)[:, 1]
     raw = p * np.clip(np.expm1(m["dollar_regressor"].predict(X)), 0, None)
     return p, m["dollar_calibrator"].predict(raw)

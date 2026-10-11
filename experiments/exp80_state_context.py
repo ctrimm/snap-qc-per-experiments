@@ -87,5 +87,62 @@ def main():
     (ROOT / "experiments/exp80_results.json").write_text(json.dumps(out, indent=1))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and len(sys.argv) == 1:
     main()
+
+
+def package_adopted():
+    """Refit each adopted context variant on all target rows + all other rows, calibrate expected dollars on
+    out-of-fold scores of the target's own cases, and write deliverables/state_rankers/<ST>/."""
+    import datetime
+    import joblib
+    import sklearn
+    from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
+    from sklearn.isotonic import IsotonicRegression
+    from sklearn.model_selection import StratifiedKFold
+    qc_dir = str(ROOT.parent / "snap-qc-data/raw")
+    res = json.loads((ROOT / "experiments/exp80_results.json").read_text())
+    data = load_all(qc_dir)
+    hold = json.loads((ROOT / "experiments/exp68_holdouts.json").read_text())
+    D = E56.DEFAULT
+    for ab, r in res.items():
+        if r["adopted"] == "keep":
+            continue
+        wown = 10.0 if r["adopted"] == "C_ctx" else 1.0
+        code = hold[ab]["code"]; own = data[code]; keys = sorted(own)
+        X, y, a = E58.arrays(own, keys)
+        others = [(c, k) for c in data if c != code for k in data[c]]
+        Xo = np.array([data[c][k][0] for c, k in others]); yo = np.array([data[c][k][1] != "1" for c, k in others], int)
+        ao = np.array([data[c][k][2] for c, k in others])
+        s_oof = np.zeros(len(y))
+        for tr_i, te_i in StratifiedKFold(5, shuffle=True, random_state=80).split(X, y):
+            f = fit_w(np.vstack([X[tr_i], Xo]), np.concatenate([y[tr_i], yo]), np.concatenate([a[tr_i], ao]),
+                      np.concatenate([np.full(len(tr_i), wown), np.ones(len(yo))]), D, D)
+            s_oof[te_i] = f(X[te_i])
+        iso = IsotonicRegression(out_of_bounds="clip", y_min=0).fit(s_oof, a)
+        XX = np.vstack([X, Xo]); yy = np.concatenate([y, yo]); aa = np.concatenate([a, ao])
+        ww = np.concatenate([np.full(len(y), wown), np.ones(len(yo))])
+        clf = HistGradientBoostingClassifier(random_state=0, **D).fit(XX, yy, sample_weight=ww)
+        pos = aa > 0
+        reg = HistGradientBoostingRegressor(random_state=0, **D).fit(XX[pos], np.log1p(aa[pos]), sample_weight=ww[pos])
+        out = ROOT / "deliverables/state_rankers" / ab
+        feats = E58.FEATURES + CONTEXT
+        joblib.dump({"features": feats, "classifier": clf, "dollar_regressor": reg, "dollar_calibrator": iso,
+                     "state": ab}, out / "model.joblib")
+        card = json.loads((out / "model_card.json").read_text())
+        card.update({"built": datetime.date.today().isoformat(), "sklearn_version": sklearn.__version__, "features": feats,
+                     "feature_note": "agency-side fields only, plus the case's maximum allotment (BENMAX) and issued "
+                                     "benefit as a share of it",
+                     "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by "
+                              f"isotonic regression on out-of-fold scores; trained on this jurisdiction's rows (weight {wown:g}) "
+                              "pooled with all other jurisdictions' rows, with state-context features (exp80)",
+                     "chosen": f"exp80 variant {r['adopted']}", "config": {"clf": D, "reg": D},
+                     "exp80": {"previous": r["deployed"], "adopted": r[r["adopted"]],
+                               "rule": "beats the deployed model on holdout and time split"},
+                     "source": "snap-qc-per-experiments exp80 (experiments/exp80_state_context.py)"})
+        (out / "model_card.json").write_text(json.dumps(card, indent=1))
+        print(f"packaged {ab} ({r['adopted']})", flush=True)
+
+
+if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "--package":
+    package_adopted()

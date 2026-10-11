@@ -1,0 +1,96 @@
+{
+ "baseline_dev_seed7": {
+  "element_macroF1": 0.1782629286620801,
+  "finding_acc": 0.37658098735210116,
+  "finding_L1": 0.05520787433700522,
+  "element_L1": 0.08017987820252316
+ },
+ "best_multipliers": {
+  "COIN_CAL": 1.3653343411155119,
+  "COIN_earner": 1.1378664085889805,
+  "COIN_no_earner": 0.9593918156034476,
+  "S_OVER": 1.1421292669245913,
+  "S_UNDER": 0.8452268281877685,
+  "BUCKET_earned": 0.9848428521340661,
+  "BUCKET_unearned": 0.9549574133727089,
+  "BUCKET_shelter": 1.0053718588599012,
+  "BUCKET_sua": 1.3228908398802877,
+  "BUCKET_medical": 1.3063717176961218,
+  "BUCKET_depcare": 0.9937592241730158,
+  "BUCKET_hhcomp": 0.9576633419111973,
+  "BUCKET_arithmetic": 0.7201539319055406
+ },
+ "best_knob_values": {
+  "COIN_CAL": 1.4745610884047529,
+  "COIN_earner": 1.0963342846754827,
+  "COIN_no_earner": 1.0890056498914733,
+  "S_OVER": 1.0413934655818424,
+  "S_UNDER": 0.7244439144397363,
+  "BUCKET_earned": 0.9348128352456556,
+  "BUCKET_unearned": 0.6420178690104722,
+  "BUCKET_shelter": 1.5507860922913976,
+  "BUCKET_sua": 0.7101278028477385,
+  "BUCKET_medical": 2.0419896319308077,
+  "BUCKET_depcare": 0.9937592241730158,
+  "BUCKET_hhcomp": 0.5858026662470794,
+  "BUCKET_arithmetic": 0.7201539319055406
+ },
+ "dev_fresh_seeds": {
+  "PA1": [
+   {
+    "element_macroF1": 0.19586087409212705,
+    "finding_acc": 0.3818849449204406,
+    "finding_L1": 0.03845787433700529,
+    "element_L1": 0.11937260292323236
+   },
+   {
+    "element_macroF1": 0.2292211695305399,
+    "finding_acc": 0.42268461852305184,
+    "finding_L1": 0.03845787433700529,
+    "element_L1": 0.11340427051346137
+   },
+   {
+    "element_macroF1": 0.1942726168345093,
+    "finding_acc": 0.408812729498164,
+    "finding_L1": 0.045457874337005266,
+    "element_L1": 0.09220869021148817
+   }
+  ],
+  "best": [
+   {
+    "element_macroF1": 0.1983389322529589,
+    "finding_acc": 0.3880048959608323,
+    "finding_L1": 0.03177917176662581,
+    "element_L1": 0.0999751085543601
+   },
+   {
+    "element_macroF1": 0.1658594708454259,
+    "finding_acc": 0.4263565891472868,
+    "finding_L1": 0.03745787433700529,
+    "element_L1": 0.07212528564491223
+   },
+   {
+    "element_macroF1": 0.18413792933453696,
+    "finding_acc": 0.42268461852305184,
+    "finding_L1": 0.040029171766625876,
+    "element_L1": 0.11042368171084248
+   }
+  ]
+ },
+ "holdout": {
+  "PA1": {
+   "element_macroF1": 0.21252692994830752,
+   "finding_acc": 0.3623011015911873,
+   "finding_L1": 0.05792386780905742,
+   "element_L1": 0.11503717063457304
+  },
+  "best": {
+   "element_macroF1": 0.20199948199948198,
+   "finding_acc": 0.408812729498164,
+   "finding_L1": 0.058345165238678054,
+   "element_L1": 0.10142258570790914
+  }
+ },
+ "matches_or_beats_PA1": false,
+ "generations": 60
+}
