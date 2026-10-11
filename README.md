@@ -108,6 +108,8 @@ transfer, LM eval) every experiment here must move.
 | 76–77 | [v2 flag cards; model that keeps the odds](experiments/exp76_77_cards_v2.md) | Production | Running overnight |
 | 78 | [Cost share with the fairness floor](experiments/exp78_cost_with_floor.md) | Production | Informative — on the top-20% basis the floor costs ~9% of the avoided cost share (central $3.85B → $3.49B/yr); still 3.4× random |
 | 79 | [Underpayment-focused ranker](experiments/exp79_underpayment_ranker.md) | Production / equity | Held — finds 3.36× the underpayment dollars of random (vs 1.55× for the total-dollar ranker; better in 53 of 53), at 1.29× on total dollars. Two tools for two goals |
+| 80 | [State-context features for pooled models](experiments/exp80_state_context.md) | Production | Held — adding BENMAX and benefit share to pooled models beat the deployed model on both readouts in all 12 small jurisdictions (e.g., ND 2.88× → 4.19×, HI 2.68× → 3.61×, AK time split 1.85× → 3.40×). Repackaged |
+| 81 | [Automatic PA generator calibration (loop 3)](experiments/exp81_generator_autocal_pa.md) | Calibration | Did not hold — search improved its single-seed objective (0.178 → 0.239) but lost on fresh seeds (0.183 vs 0.207) and the locked holdout (0.202 vs 0.213): it chased seed noise. Multi-seed rerun queued (exp81b) |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
