@@ -68,6 +68,17 @@ Pre-registered (this docstring, committed before the scored runs):
   current filter leaves out text whose effective_to has passed). The
   notools run stands; the five retrieval arms run after this change.
 
+  AMENDMENT 3 (2026-10-11, POST-HOC, added after the three auto arms were
+  scored): the dated arm used a hard cutoff (statute text enacted after,
+  and letters issued after, 2025-06-01 were removed), which also removed
+  2025-26 California letters that restate standing practice; states
+  implement changes months after enactment. One added arm, labeled
+  post-hoc: auto / new / undated with hint=true: the same passages as
+  auto/new (each shows its in-force date), plus one prompt sentence saying
+  the questions reflect rules before H.R. 1 (July 4, 2025) and that newer
+  documents may describe later changes. Readout: hint - auto/new and hint -
+  notools, paired bootstrap as above. Exploratory, not confirmatory.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -138,8 +149,13 @@ def letter_match():
     return score
 
 
+HINT = (" The questions reflect federal and California rules before H.R. 1 (P.L. 119-21, July 4, 2025). Excerpts "
+        "dated later may describe changes made by that law; where they conflict with the earlier rule, answer with the "
+        "earlier rule.")
+
+
 @task
-def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False):
+def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
@@ -149,6 +165,9 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         solver = react(prompt=AGENT, tools=[tools], attempts=1, submit=True)
     else:
-        solver = [system_message(AUTO if mode == "auto" else BASE + ONE_LETTER), generate()]
+        prompt = AUTO if mode == "auto" else BASE + ONE_LETTER
+        if hint:
+            prompt = prompt.replace(ONE_LETTER, HINT.strip() + " " + ONE_LETTER)
+        solver = [system_message(prompt), generate()]
     return Task(dataset=samples(mode, corpus, dated), solver=solver, scorer=letter_match(), message_limit=30,
                 config=GenerateConfig(temperature=0.0))

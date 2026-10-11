@@ -10,10 +10,10 @@ from inspect_ai.log import read_eval_log
 
 LOGS = Path(__file__).resolve().parents[2] / "snap-qc-data/derived/exp85_logs"
 ARMS = {"notools": "notools_new_dated_false", "auto_old": "auto_old_dated_false", "auto_new": "auto_new_dated_false",
-        "auto_new_dated": "auto_new_dated_true", "agent_new_dated": "agent_new_dated_true", "agent_new": "agent_new_dated_false"}
+        "auto_new_dated": "auto_new_dated_true", "agent_new_dated": "agent_new_dated_true", "agent_new": "agent_new_dated_false", "auto_new_hint": "auto_new_dated_false_hint"}
 PAIRS = [("auto_old", "notools"), ("auto_new", "notools"), ("auto_new_dated", "notools"), ("agent_new_dated", "notools"),
          ("agent_new", "notools"), ("auto_new_dated", "auto_new"), ("agent_new_dated", "agent_new"),
-         ("auto_new", "auto_old"), ("agent_new_dated", "auto_new_dated")]
+         ("auto_new", "auto_old"), ("agent_new_dated", "auto_new_dated"), ("auto_new_hint", "auto_new"), ("auto_new_hint", "notools")]
 
 
 def load(d):
@@ -21,6 +21,8 @@ def load(d):
     if not fs:
         return None
     log = read_eval_log(fs[-1])
+    if log.status != "success" or not log.samples:  # still running or failed
+        return None
     res, tools, topic = {}, collections.Counter(), {}
     for s in log.samples:
         sc = list(s.scores.values())[0]
