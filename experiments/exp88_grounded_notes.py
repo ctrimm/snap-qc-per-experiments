@@ -39,7 +39,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 SPD = Path(os.environ.get("EXP88_SPD", HERE.parents[1] / "state-policy-docs"))
-OUT = HERE.parents[1] / "snap-qc-data" / "derived" / "exp88"
+OUT = Path(os.environ.get("EXP88_OUT", HERE.parents[1] / "snap-qc-data" / "derived" / "exp88"))
 API = os.environ.get("OPENAI_BASE_URL", "http://localhost:1234/v1")
 sys.path.insert(0, str(HERE))
 _argv = sys.argv; sys.argv = sys.argv[:1]
@@ -116,7 +116,10 @@ def write(arm):
     path = OUT / f"notes_{arm}.jsonl"
     done = {json.loads(l)["card_id"] for l in open(path)} if path.exists() else set()
     with open(path, "a") as fh:
-        for c in cards():
+        lim = int(os.environ.get("EXP88_LIMIT", "0"))
+        for i, c in enumerate(cards()):
+            if lim and i >= lim:
+                break
             if c["card_id"] in done:
                 continue
             ex = excerpts(c)
