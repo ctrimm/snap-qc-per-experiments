@@ -37,4 +37,33 @@ Hypotheses:
 
 ### Results
 
-Pending (queued after exp87's E4B arms).
+All 327 cards, both arms, no errors. Every judgment parsed.
+
+| E4B notes | Plain | Grounded |
+|---|---|---|
+| Citation coverage (checked elements whose rule is cited) | 0% | **97.3%** |
+| Notes with a citation not supplied in the prompt | 0% | **0%** |
+| Notes not faithful to the card (exp62 check: numbers or topics not on the card, blame words) | 0% | 0% |
+| Notes leading with the first check | 99.7% | 100% |
+| Notes passing all exp62 checks | 70.0% | 60.6% |
+| Mean words | 52.7 | 69.2 |
+| Rule claims per note (31B judge) | 0.02 | 0.63 |
+| Rule claims judged unsupported or contradicted | 16.7% (of 6) | 16.1% (of 205) |
+
+**Why fewer grounded notes pass the exp62 checks:** every failure in both arms is the reading-grade check (grade 9 or below): 129 grounded notes against 98 plain. The longer notes and the legal nouns that come with a citation raise the grade.
+
+**The judge's "unsupported" claims, adjudicated by hand:** of the 33 claims in grounded notes judged unsupported (none contradicted), 32 are the card's own instructions recast as rules. For example, "shelter costs are reviewed via the current lease or mortgage statement" restates the card's "ask for", not a rule claim. The remaining one ("unearned income includes Social Security, SSI, unemployment and child support") is correct per the full text of 7 CFR 273.9(b)(2). The judge's 900-character excerpt simply stopped before that list. So no grounded note was found to misstate a rule.
+
+### Verdict
+
+- **H1 held:** 97.3% coverage, and no unsupplied (likely made-up) citations.
+- **H2 failed as pre-registered:** 16.1% of claims were judged unsupported, against a bar of 10%. On inspection, the judge counted the card's instructions as rule claims, and none of the grounded notes misstates a rule. The judge prompt needs to exclude instructions taken from the card, and excerpts should not be truncated mid-list.
+- **H3 held on faithfulness:** no grounded note added a number or topic not on the card. It cost readability, though: 31 more notes exceed reading grade 9.
+
+Attaching the governing rule turns the notes into cited guidance with no invented citations. The remaining work is plainer wording around the citation.
+
+### Next steps
+
+1. **Fix the judge:** exclude instructions that come from the card, give it the full section text, and re-judge both arms. This is cheap, with no new notes needed.
+2. **Readability:** put the citation at the end of the note ("Rules: 7 CFR 273.9(b)(2); 273.9(d)(6)(ii)") instead of inline, and measure whether the reading grade recovers.
+3. **Reviewer study:** a cited vs uncited note packet, like exp77's, to see whether reviewers find the citations useful.

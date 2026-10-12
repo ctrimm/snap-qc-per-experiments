@@ -8,9 +8,11 @@ from pathlib import Path
 from inspect_ai.log import read_eval_log
 
 LOGS = Path(__file__).resolve().parents[2] / "snap-qc-data/derived/exp87_logs"
-ARMS = ["e4b_notools", "e4b_auto_undated", "e4b_auto_filter", "e4b_auto_label", "e4b_agent", "31b_notools", "31b_agent"]
+ARMS = ["e4b_notools", "e4b_auto_undated", "e4b_auto_filter", "e4b_auto_label", "e4b_auto_label_fixed", "e4b_agent",
+        "31b_notools", "31b_agent"]  # auto_label: label-mode bug (fixed 2026-10-12); auto_label_fixed: rerun
 PAIRS = [("e4b_auto_undated", "e4b_notools"), ("e4b_auto_filter", "e4b_notools"), ("e4b_auto_label", "e4b_notools"),
-         ("e4b_agent", "e4b_notools"), ("e4b_auto_filter", "e4b_auto_undated"), ("e4b_auto_label", "e4b_auto_filter"),
+         ("e4b_agent", "e4b_notools"), ("e4b_auto_filter", "e4b_auto_undated"), ("e4b_auto_label", "e4b_auto_filter"), ("e4b_auto_label_fixed", "e4b_auto_filter"),
+         ("e4b_auto_label_fixed", "e4b_auto_undated"), ("e4b_auto_label_fixed", "e4b_notools"),
          ("31b_agent", "31b_notools"), ("31b_notools", "e4b_notools")]
 
 

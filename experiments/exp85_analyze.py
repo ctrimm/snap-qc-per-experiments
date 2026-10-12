@@ -11,11 +11,13 @@ from inspect_ai.log import read_eval_log
 LOGS = Path(__file__).resolve().parents[2] / "snap-qc-data/derived/exp85_logs"
 ARMS = {"notools": "notools_new_dated_false", "auto_old": "auto_old_dated_false", "auto_new": "auto_new_dated_false",
         "auto_new_dated": "auto_new_dated_true", "agent_new_dated": "agent_new_dated_true", "agent_new": "agent_new_dated_false", "auto_new_hint": "auto_new_dated_false_hint",
-        "label": "auto_dates_label_hint_false", "label_hint": "auto_dates_label_hint_true"}
+        "label": "auto_dates_label_hint_false", "label_hint": "auto_dates_label_hint_true",
+        "label_fixed": "auto_dates_label_hint_false_fixed", "label_hint_fixed": "auto_dates_label_hint_true_fixed"}
 PAIRS = [("auto_old", "notools"), ("auto_new", "notools"), ("auto_new_dated", "notools"), ("agent_new_dated", "notools"),
          ("agent_new", "notools"), ("auto_new_dated", "auto_new"), ("agent_new_dated", "agent_new"),
          ("auto_new", "auto_old"), ("agent_new_dated", "auto_new_dated"), ("auto_new_hint", "auto_new"), ("auto_new_hint", "notools"),
-         ("label", "auto_new_dated"), ("label", "auto_new"), ("label", "notools"), ("label_hint", "label"), ("label_hint", "notools")]
+         ("label", "auto_new_dated"), ("label", "auto_new"), ("label", "notools"), ("label_hint", "label"), ("label_hint", "notools"),
+         ("label_fixed", "auto_new_dated"), ("label_fixed", "auto_new"), ("label_fixed", "notools"), ("label_hint_fixed", "notools")]
 
 
 def load(d):
