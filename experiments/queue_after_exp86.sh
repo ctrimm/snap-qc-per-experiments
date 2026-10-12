@@ -12,8 +12,11 @@ D=../../snap-qc-data/derived; OUT=$D/exp87_logs; mkdir -p $OUT
 while pgrep -f "exp86_run[.]sh" >/dev/null; do sleep 60; done
 echo "== $(date) exp86 done; merging ecfr-versions"
 [ -f $D/ecfr_versions_READY ] || { echo "branch not marked ready; stopping"; exit 1; }
-git -C $SPD merge --ff-only ecfr-versions || { echo "merge failed; stopping"; exit 1; }
-(cd $SPD && .venv/bin/python -m unittest discover -s tests 2>&1 | tail -1) | grep -q "^OK" || { echo "state-policy-docs tests failed; stopping"; exit 1; }
+git -C $SPD merge-base --is-ancestor ecfr-versions main || git -C $SPD merge --ff-only ecfr-versions || { echo "merge failed; stopping"; exit 1; }
+# whole output: the last line is a harmless DeprecationWarning (a tail -1 here stopped the first run)
+# (captured first: grep -q on a pipe exits early and, with pipefail, fails the pipeline)
+TESTS=$(cd $SPD && .venv/bin/python -m unittest discover -s tests 2>&1)
+echo "$TESTS" | grep -x "OK" >/dev/null || { echo "state-policy-docs tests failed; stopping"; echo "$TESTS" | tail -20; exit 1; }
 git -C $SPD push -q origin main
 load() { $L unload --all >/dev/null 2>&1; $L load "$1" --context-length 131072 --parallel 4 -y >/dev/null 2>&1; }
 run87() { echo "== $(date) exp87 $1 $2"; $I eval exp87_heldout_task.py@heldout --model openai/$1 -M responses_api=false \
