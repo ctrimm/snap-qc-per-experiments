@@ -118,6 +118,9 @@ transfer, LM eval) every experiment here must move.
 | 86 | [Rule tools on Gemma 4 31B](experiments/exp86_31b_rule_tools.md) | LM gate | **Held** — 31B no tools 84.0% → agent with rule tools (dated) 88.8%, +4.8 [+2.0, +7.6] (39 gained / 15 lost); 31B opens cited sections (get_section 0.59/q) where E4B didn't |
 | 87 | [Rule tools on our own held-out question set](experiments/exp87_heldout_rules.md) | LM gate | **Held** — 243 dated questions: E4B no tools 28.4% → passages dated 68.7% (undated 36.6%; dating +61.7 on table Qs) → agent 84.8%; 31B 35.0% → agent 99.6%. Open-book by design (table/compute gold from the same tables/calculator); rule Qs E4B 28%→86%, 31B 61%→98%. Label-mode bug found and fixed (rerun 69.1%) |
 | 88 | [Rule-grounded flag-card notes](experiments/exp88_grounded_notes.md) | Explainer | **Mostly held** — with rule excerpts E4B cites the governing rule for 97.3% of checks, 0 unsupplied citations, card faithfulness unchanged; judge's 16% 'unsupported' claims are card instructions (32/33) or a truncated excerpt (1/33): no rule misstatements found. Costs readability (pass 70%→61%, grade check) |
+| 89 | [Corrected judge for exp88; citations at the end of notes](experiments/exp89_rejudge_and_end_cites.md) | Explainer | Pending |
+| 90 | [Harder rule questions](experiments/exp90_hard_rule_questions.md) | LM gate | Pending — 75 applied/dated/combined rule questions, evidence-checked |
+| 91 | [Fixing the small model's tool calling without retraining](experiments/exp91_small_model_tool_calling.md) | LM gate | Pending — E4B: required as_of in tool schemas; fixed lookup recipe; on exp87, exp90 and Cornell sets |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix

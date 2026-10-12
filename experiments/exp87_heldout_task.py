@@ -55,8 +55,19 @@ AGENT = (BASE + "You have tools over official federal and California SNAP rules:
          "with EXACTLY one letter: A, B, C, D or E. Nothing else.")
 
 
-def samples(arm: str):
-    rows = [json.loads(l) for l in open(DATA)]
+RECIPE = (" Follow these steps for every question. "
+          "1. If it asks what benefit a household gets, call calculate_benefit with every fact the question gives "
+          "(household size, each income, rent or shelter costs, the utility allowance, medical costs, whether a member "
+          "is elderly or disabled) and as_of set to the question's date. "
+          "2. If it asks for a figure from the yearly tables (an allotment, a deduction, an income or asset limit), "
+          "call lookup_rule with that topic and as_of; the result includes that year's table. "
+          "3. Otherwise call lookup_rule with the topic and as_of, then call get_section on the citation that fits "
+          "best, with the same as_of, and read it. "
+          "4. Answer only from what the tools returned.")
+
+
+def samples(arm: str, data: str = ""):
+    rows = [json.loads(l) for l in open(HERE / data if data else DATA)]
     get_passages = None
     if arm.startswith("auto"):
         sys.path.insert(0, str(SPD))
@@ -90,15 +101,20 @@ def letter_match():
 
 
 @task
-def heldout(arm: str = "notools"):
-    assert arm in ("notools", "auto_undated", "auto_filter", "auto_label", "agent")
-    if arm == "agent":
+def heldout(arm: str = "notools", data: str = ""):
+    """data: a question file in experiments/ (default exp87_heldout.jsonl; exp90 uses exp90_hard.jsonl)."""
+    assert arm in ("notools", "auto_undated", "auto_filter", "auto_label", "agent", "agent_strict", "agent_recipe")
+    if arm.startswith("agent"):
+        env = {"STATE_POLICY_CORPUS": str(SPD / "corpus")}
+        if arm in ("agent_strict", "agent_recipe"):  # exp91: as_of listed as required in the tool schemas
+            env["STATE_POLICY_REQUIRE_AS_OF"] = "1"
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python") if (SPD / ".venv").exists()
                                   else str(HERE.parents[1] / "state-policy-docs/.venv/bin/python"),
-                                  args=["mcp_server/server.py"], cwd=str(SPD), env={"STATE_POLICY_CORPUS": str(SPD / "corpus")})
+                                  args=["mcp_server/server.py"], cwd=str(SPD), env=env)
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
-        solver = react(prompt=AGENT, tools=[tools], attempts=1, submit=True)
+        prompt = AGENT.replace(" Look up the rule", RECIPE + " Look up the rule") if arm == "agent_recipe" else AGENT
+        solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
     else:
         solver = [system_message(AUTO if arm.startswith("auto") else BASE + ONE_LETTER), generate()]
-    return Task(dataset=samples(arm), solver=solver, scorer=letter_match(), message_limit=30,
+    return Task(dataset=samples(arm, data), solver=solver, scorer=letter_match(), message_limit=30,
                 config=GenerateConfig(temperature=0.0))

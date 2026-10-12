@@ -166,9 +166,15 @@ HINT = (" The questions reflect federal and California rules before H.R. 1 (P.L.
         "earlier rule.")
 
 
+CORNELL_RECIPE = (" Follow these steps for every question: 1. call lookup_rule with the question's topic; "
+                  "2. call get_section on the citation in the result that fits the question best and read it; "
+                  "3. if the question turns on a California rule, call get_passages with the question; "
+                  "4. answer from what the tools returned.")
+
+
 @task
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
-                     date_mode: str = "filter"):
+                     date_mode: str = "filter", recipe: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
@@ -176,7 +182,8 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
                                   env={"STATE_POLICY_CORPUS": str(CORPORA[corpus]),
                                        "STATE_POLICY_DEFAULT_AS_OF": AS_OF if dated else ""})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
-        solver = react(prompt=AGENT, tools=[tools], attempts=1, submit=True)
+        prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
+        solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
     else:
         prompt = AUTO if mode == "auto" else BASE + ONE_LETTER
         if hint:
