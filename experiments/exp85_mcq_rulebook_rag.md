@@ -50,6 +50,8 @@ E4B, 500 questions, no errors. Paired differences use a bootstrap (2,000 resampl
 | Auto, new + hint (post-hoc) | 74.4% | +1.0 [−2.8, +4.8] | 51 / 46 |
 | Auto, label dates (post-hoc) | 72.0% | −1.4 [−5.2, +2.4] | 43 / 50 |
 | Auto, label dates + hint (post-hoc) | 72.4% | −1.0 [−4.8, +2.6] | 45 / 50 |
+| Auto, label dates, **rerun after bug fix** | 73.6% | +0.2 [−3.4, +3.8] | 44 / 43 |
+| Auto, label dates + hint, **rerun after bug fix** | 71.6% | −1.8 [−5.8, +2.0] | 42 / 51 |
 
 Other contrasts:
 
@@ -79,6 +81,8 @@ Other contrasts:
 | Count | 284 | 103 | 109 |
 
 There were 32 questions that the undated arm answered correctly and the label arm missed. A California letter was among the undated arm's passages on 21 of them, and among the label arm's passages on only 5.
+
+**Label-mode bug (found 2026-10-12 in exp87).** Label mode applied a "current" filter before weighting by date. That dropped every document version that ended before today, including the pre-H.R. 1 statute, the mid-2024 CFR versions and the FY2025 tables, so the original label arms saw current rules. After the fix, label is 73.6% against the hard filter's 72.4% (+1.2 [−1.2, +3.4]) and undated's 74.6% (−1.0 [−3.8, +1.6]). California letters were still only 5% of attached passages (on 105 questions), so the reading below is unchanged.
 
 ### Verdict
 
