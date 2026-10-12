@@ -49,4 +49,37 @@ If a large gap remains, the next step is exp92: fine-tune E4B on 31B tool-use tr
 
 ### Results
 
-Pending (queued after exp89).
+All E4B. Paired bootstrap against the plain agent run the same day.
+
+| Question set | Plain agent | Strict | Recipe | Recipe − plain (95% CI) | 31B agent |
+|---|---|---|---|---|---|
+| exp87 held-out (243) | 88.9% | 92.6% | **95.5%** | **+6.6 [+2.1, +10.7]** | 99.6% |
+| exp90 hard (75) | 82.7% | 84.0% | 86.7% | +4.0 [−2.7, +10.7] | 92.0% |
+| Cornell quiz (500, dated) | 75.6% | — | 74.6% | −1.0 [−4.6, +2.4] | 88.8% (exp86) |
+
+**exp87 set by part** (wrong answers, plain → strict → recipe):
+
+| Part | Plain | Strict | Recipe |
+|---|---|---|---|
+| Computation (of 80) | 17 | 4 | 3 |
+| Table (of 120) | 4 | 8 | 3 |
+| Rule (of 43) | 6 | 6 | 5 |
+
+**Dates in calls:** the share of calls carrying `as_of` didn't change (87%, 87%, 85%). The calls without it are all `calculate_benefit` calls, about 60 in every arm. With the date marked required, E4B usually follows the bad call with a second one that includes the date, so computation errors fall from 17 to 3–4 without the first call improving.
+
+**Reading the rule:** on the exp87 set, `get_section` calls went from 6 to 17 with the recipe. On the Cornell quiz the recipe barely moved it (0.01 → 0.07 calls per question), even though the procedure tells the model to read the cited section. 31B does this 0.59 times per question.
+
+### Verdict
+
+**Partly held.**
+
+- **H1 (strict):** half held. Computation accuracy reached 95% (≥ 90%), but through retries; the first call still omits the date about as often (`as_of` share stays about 86%).
+- **H2 (recipe beats the plain agent on all three sets):** held only on the exp87 set, where it closes about 62% of the gap to 31B (88.9% → 95.5% vs 99.6%). Not significant on exp90; slightly negative on Cornell.
+- **H3 (Cornell):** did not hold. The recipe didn't raise accuracy or make E4B read the cited rule.
+
+Schema and prompt fixes repair E4B's tool use where the right call is mechanical: the calculator with a date, or the table for a year. They don't make it do what the 31B does on open policy questions, which is to open and read the governing section before answering. That remaining gap is behavior a prompt didn't instill.
+
+### Next steps
+
+1. **exp92, the remaining gap:** fine-tune E4B on 31B tool-use trajectories (lookup, then read the section, then answer), generated on a separately built training set. Never use the Cornell quiz or the exp87/90 test sets. Evaluate once on Cornell and exp90.
+2. **In production:** use the recipe plus the required date for structured questions, and route open policy questions to 31B, or to E4B with attached, date-filtered passages, which did best on exp90's date questions.

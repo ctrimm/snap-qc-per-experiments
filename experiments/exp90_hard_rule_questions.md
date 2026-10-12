@@ -32,4 +32,35 @@ Hypotheses:
 
 ### Results
 
-Pending (queued after exp89).
+75 questions per arm, no errors. Bootstrap uses 2,000 resamples, seed 90.
+
+| Arm | All | Apply (40) | Date (17) | Combine (10) | Exception (5) | California (3) |
+|---|---|---|---|---|---|---|
+| E4B no tools | 60.0% | 67.5% | 35.3% | 60.0% | 80% | 2 of 3 |
+| E4B passages, date filter | 84.0% | 87.5% | **70.6%** | 90.0% | 80% | 3 of 3 |
+| E4B agent | 82.7% | 97.5% | 47.1% | 90.0% | 80% | 2 of 3 |
+| E4B agent, strict (exp91) | 84.0% | 95.0% | 58.8% | 80.0% | 100% | 2 of 3 |
+| E4B agent, recipe (exp91) | 86.7% | 95.0% | 58.8% | 100% | 100% | 2 of 3 |
+| 31B no tools | 72.0% | 80.0% | 58.8% | 70.0% | 100% | 0 of 3 |
+| **31B agent** | **92.0%** | 95.0% | 82.4% | 100% | 100% | 2 of 3 |
+
+| Paired contrast | Difference (95% CI) |
+|---|---|
+| E4B passages vs no tools | +24.0 [+13.3, +36.0] |
+| E4B agent vs no tools | +22.7 [+9.3, +36.0] |
+| 31B agent vs no tools | +20.0 [+9.3, +30.7] |
+| E4B recipe vs 31B agent | −5.3 [−13.3, +2.7] |
+
+### Verdict
+
+**Held.**
+
+- **H1:** the set is harder. The 31B agent scored 92.0% (exp87's rule part: 97.7%).
+- **H2:** every retrieval arm beats no tools for both models, by 20–24 points.
+
+The hardest questions are about **dates**, especially California's implementation lag: which rules apply to an application received before a cutoff, or a recertification due in a given month.
+- No tools: E4B 35%, 31B 59%.
+- With tools: the 31B agent reaches 82%. E4B's best is the date-filtered passages (71%), better than any of its agent arms (47–59%), because the passages are dated for it while the agent has to work the date out itself.
+- Applying a rule to a household's facts is nearly solved with tools (95–98%).
+
+Caveats: 75 questions (only 3 California items and 5 exceptions), written by the tools' author. A second reviewer and more questions would tighten this.
