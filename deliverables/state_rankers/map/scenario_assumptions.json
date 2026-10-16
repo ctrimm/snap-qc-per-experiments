@@ -2,21 +2,21 @@
  {
   "scenario": "low",
   "review_share": 0.01,
-  "lift_basis": "top-20% lift",
+  "lift_basis": "top-20% lift, fairness floor on",
   "fix_rate": 0.6,
   "error_months": 4
  },
  {
   "scenario": "central",
   "review_share": 0.02,
-  "lift_basis": "top-10% lift",
+  "lift_basis": "top-10% lift, fairness floor on",
   "fix_rate": 0.8,
   "error_months": 6
  },
  {
   "scenario": "high",
   "review_share": 0.03,
-  "lift_basis": "top-10% lift",
+  "lift_basis": "top-10% lift, fairness floor on",
   "fix_rate": 0.9,
   "error_months": 8
  }

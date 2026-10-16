@@ -63,7 +63,7 @@
     <div class="tr-tile"><div class="lab">Jurisdictions with a ranker</div><div class="num dash-skeleton" data-source="summary" data-field="n_states">—</div></div>
     <div class="tr-tile"><div class="lab">Median top-20% lift over random review</div><div class="num dash-skeleton" data-source="summary" data-field="median_lift">—</div></div>
     <div class="tr-tile"><div class="lab">Jurisdictions at 2.5× or better</div><div class="num dash-skeleton" data-source="summary" data-field="n_ge_25">—</div></div>
-    <div class="tr-tile"><div class="lab">FY2028 cost share avoided, all states (central scenario)</div><div class="num dash-skeleton" data-source="summary" data-field="saving_central_total">—</div></div>
+    <div class="tr-tile"><div class="lab">FY2028 cost share avoided, all states (central scenario, fairness floor on)</div><div class="num dash-skeleton" data-source="summary" data-field="saving_central_total">—</div></div>
   </section>
 
   <section class="tr-card" id="map-card">
@@ -127,7 +127,7 @@
     </div>
     <div class="tr-card">
       <h2>Cost-share scenarios</h2>
-      <p class="tr-note" style="margin-bottom:0">From FY2028, states pay part of SNAP benefits if their error rate is 6% or more: 5% of benefits at 6–8%, 10% at 8–10%, 15% at 10% or more. The scenarios estimate how far ranker-guided reviews of active cases could lower the rate. They're the size of the opportunity, not a forecast, and they use the earlier own-cases rankers' lifts, so they're conservative for the current models.</p>
+      <p class="tr-note" style="margin-bottom:0">From FY2028, states pay part of SNAP benefits if their error rate is 6% or more: 5% of benefits at 6–8%, 10% at 8–10%, 15% at 10% or more. The scenarios estimate how far ranker-guided reviews of active cases could lower the rate. They're the size of the opportunity, not a forecast. They use the current models' lifts with the fairness floor on (the recommended default).</p>
       <div style="overflow-x:auto">
         <table class="tr-table tr-assump" id="assumptions" data-source="scenario_assumptions" data-row-key="scenario">
           <thead><tr><th data-field="scenario">Scenario</th><th data-field="review_share">Cases reviewed a month</th><th data-field="lift_basis">Lift used</th><th data-field="fix_rate">Errors fixed</th><th data-field="error_months">Months an error lasts</th></tr></thead>

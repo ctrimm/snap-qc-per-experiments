@@ -104,7 +104,7 @@ def main():
     d3 = (HERE / "vendor/d3.v7.9.0.min.js").read_text()
     built = datetime.date.today().isoformat()
     foot = (f'<div class="sa-foot">Standalone copy built {built} from snap-qc-per-experiments '
-            '(experiments exp68, exp69, exp72, exp75; USDA FY2025 payment error rates). '
+            '(experiments exp68, exp69, exp72, exp75, exp83, exp93; USDA FY2025 payment error rates). '
             'Data files are in the data/ folder next to this page. d3 v7.9.0 © Mike Bostock (ISC license).</div>\n')
     html = HEAD + data_tags + f"<script>{d3}</script>\n" + SHIM + page + foot + "</div>\n</body>\n</html>\n"
     sm = OUT / "state_map"; (sm / "data").mkdir(parents=True, exist_ok=True)
