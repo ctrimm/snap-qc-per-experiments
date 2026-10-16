@@ -1,0 +1,2986 @@
+{
+ "about": "exp94 additional hard rule questions, hand-written from the state-policy-docs corpus (2026-10-16) to enlarge the exp90 set: weighted toward dates and implementation lag, California letters and regulations, and exceptions; arithmetic items cross-checked with mcp_server.benefit_calc and set so every 7 CFR 273.10(e)(1)(ii) rounding procedure gives the same answer. options[0] correct (shuffled at build). Every evidence phrase must appear in a source's text on as_of. Same author as exp90 and the tools: a second reviewer is still advised.",
+ "questions": [
+  {
+   "kind": "california",
+   "topic": "CA administrative cost share",
+   "as_of": "2026-11-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "A California county budget analyst asks what share of total allowable CalFresh administrative costs the counties now pay, given the federal change to administrative cost sharing and the state-county split in state law. What is it?",
+   "options": [
+    "22.5 percent",
+    "15 percent",
+    "25 percent",
+    "30 percent",
+    "52.5 percent"
+   ],
+   "evidence": [
+    "the counties will be responsible for 22.5 percent of the total cost",
+    "Effective beginning FFY 2027 (October 1, 2026)"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA administrative cost share",
+   "as_of": "2026-08-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "In California, what share of total allowable CalFresh administrative costs does the state (not the counties) pay in this month?",
+   "options": [
+    "35 percent",
+    "52.5 percent",
+    "50 percent",
+    "70 percent",
+    "22.5 percent"
+   ],
+   "evidence": [
+    "the 50 percent state share is split between the state (35 percent) and the counties (15 percent)",
+    "Effective beginning FFY 2027 (October 1, 2026)"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "cost share start year",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "A state's FFY 2025 payment error rate was 14 percent and its FFY 2026 rate is not yet known. Under H.R. 1 as summarized for California counties, when does that state's benefit cost match begin, based on its FFY 2025 rate?",
+   "options": [
+    "FFY 2029, because 14 percent times 1.5 is at least 20 percent",
+    "FFY 2028, like every other state",
+    "FFY 2030, because the rate is above 10 percent",
+    "Never, because the rate is above 10 percent",
+    "FFY 2027, when the administrative share also changes"
+   ],
+   "evidence": [
+    "If, for FFY 2025, the PER of a state multiplied by 1.5 is equal to or above 20 percent, the initial implementation date of a state match shall be FFY 2029"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "cost share look-back year",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "Which fiscal year's payment error rate sets a state's benefit cost match for FFY 2030?",
+   "options": [
+    "FFY 2027",
+    "FFY 2029",
+    "FFY 2028",
+    "FFY 2025 or FFY 2026, at the state's choice",
+    "FFY 2030"
+   ],
+   "evidence": [
+    "states are required to use their PER from the third fiscal year prior",
+    "the FFY 2029 state match rate will be determined based on the FFY 2026 PER"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA SNAP-Ed",
+   "as_of": "2025-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "A community partner asks whether CalFresh Healthy Living (SNAP-Ed) still has federal funding this month. Under H.R. 1, what is the case?",
+   "options": [
+    "No: funding sunset at the end of FFY 2025, September 30, 2025",
+    "Yes: it runs until FFY 2028, when the cost share begins",
+    "Yes, but only through the four State Implementing Agencies",
+    "No: funding ended on July 4, 2025, when the Act was signed",
+    "Yes: the Act cut it to 25 percent federal funding"
+   ],
+   "evidence": [
+    "funding for the CalFresh Healthy Living (CFHL) program will sunset at the end of FFY 2025 (September 30, 2025)"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA Heat and Eat",
+   "as_of": "2025-07-14",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "What is California's Standard Utility Allowance Subsidy (SUAS)?",
+   "options": [
+    "An annual $20.01 LIHEAP payment so that every CalFresh household can claim the SUA",
+    "A monthly $20.01 credit added to the shelter deduction",
+    "The heating and cooling SUA value for households that pay utilities",
+    "A state-funded payment limited to elderly or disabled households",
+    "A one-time energy payment issued only in disasters"
+   ],
+   "evidence": [
+    "California provides an annual $20.01 Low Income Home Energy Assistance Program (LIHEAP) payment, known as the Standard Utility Allowance Subsidy (SUAS), to ensure that all CalFresh households can claim the Standard Utility Allowance"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "Thrifty Food Plan cap",
+   "as_of": "2025-07-14",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "Under H.R. 1, how are benefit amounts capped for very large households?",
+   "options": [
+    "Households of nine or more are capped at 200 percent of the Thrifty Food Plan for a household of four",
+    "Households of eight or more are capped at the maximum allotment for seven",
+    "Households of nine or more receive the household-of-eight maximum",
+    "Households of six or more are capped at 150 percent of the household-of-four amount",
+    "There is no cap; each additional member adds the same increment"
+   ],
+   "evidence": [
+    "it caps benefit amounts for households with nine or more members",
+    "The cap is equivalent to 200 percent of the TFP for a household of four"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "Thrifty Food Plan re-evaluation",
+   "as_of": "2026-04-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "Under H.R. 1, what is the earliest date the next Thrifty Food Plan re-evaluation may occur, and what condition applies to it?",
+   "options": [
+    "No earlier than October 1, 2027, and it must be cost neutral",
+    "October 1, 2026, with no limit on increases",
+    "No earlier than October 1, 2027, with increases capped at inflation",
+    "October 1, 2025, and it must be cost neutral",
+    "Every five years from 2022, as before the Act"
+   ],
+   "evidence": [
+    "may occur no earlier than October 1, 2027",
+    "any adjustment must be cost neutral"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA noncitizen resources",
+   "as_of": "2026-06-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "A CalFresh household includes a refugee who lost eligibility under H.R. 1. How are the refugee's financial resources treated?",
+   "options": [
+    "Still included in the household's eligibility and benefit determinations",
+    "Excluded entirely, since the refugee is no longer eligible",
+    "Included only if the refugee is the head of household",
+    "Counted at half value",
+    "Excluded for 12 months, then included"
+   ],
+   "evidence": [
+    "All non-eligible, noncitizen financial resources in any CalFresh household must continue to be included in eligibility and benefit determinations"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "ABAWD waivers",
+   "as_of": "2025-07-14",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-50-calfresh-snap-changes-in-h-r-1.md"
+   ],
+   "stem": "Under H.R. 1, on what basis may an area still be waived from the ABAWD time limit?",
+   "options": [
+    "Only an unemployment rate above 10 percent",
+    "An unemployment rate above 10 percent or a lack of sufficient jobs",
+    "Only a lack of sufficient jobs",
+    "An unemployment rate 20 percent above the national rate",
+    "Any area a state designates, up to 12 percent of its caseload"
+   ],
+   "evidence": [
+    "Limits ABAWD waivers to only be permissible if an area has an unemployment rate above 10 percent and removes the ability for waivers to be based on lack of sufficient jobs"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA benefit calculation FFY2027",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md",
+    "7 CFR 273.9(d)(2)",
+    "7 CFR 273.9(d)(6)(ii)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "A two-person California CalFresh household (both members under 60, neither disabled) has $1,500 a month in gross earnings and no other income. It pays $1,200 rent and pays for heating separately, so it gets the SUA. What is its monthly CalFresh benefit?",
+   "options": [
+    "$497",
+    "$471",
+    "$407",
+    "$267",
+    "$562"
+   ],
+   "evidence": [
+    "Twenty percent of gross earned income",
+    "$217 (HH size 1-3)",
+    "The SUA amount increased from $663 to $686",
+    "increased from $744 to $769",
+    "in excess of 50 percent of the household's income after all other deductions",
+    "reduced by 30 percent of the household's net monthly income"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "CA elderly shelter deduction FFY2027",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md",
+    "7 CFR 273.9(d)(2)",
+    "7 CFR 273.9(d)(6)(ii)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "Same as a two-person California household with $1,500 a month in gross earnings, $1,200 rent and the SUA, except that one member is 62. What is its monthly CalFresh benefit?",
+   "options": [
+    "$562 (the maximum: the shelter deduction is not capped, so net income is $0)",
+    "$497",
+    "$471",
+    "$25",
+    "$306"
+   ],
+   "evidence": [
+    "If the household does not contain an elderly or disabled member",
+    "the shelter deduction cannot exceed the maximum shelter deduction limit",
+    "$562",
+    "The SUA amount increased from $663 to $686"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "minimum benefit",
+   "as_of": "2026-09-15",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-minimum-allotments.md"
+   ],
+   "stem": "A one-person household in California qualifies for only the minimum benefit. What is the minimum monthly allotment for this month?",
+   "options": [
+    "$24",
+    "$25",
+    "$23",
+    "$31",
+    "$20"
+   ],
+   "evidence": [
+    "effective October 1, 2025, through September 30, 2026",
+    "| 1-2 | $24 |"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "minimum benefit",
+   "as_of": "2026-12-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "A two-person household in California qualifies for only the minimum benefit. What is the minimum monthly allotment for this month?",
+   "options": [
+    "$25",
+    "$24",
+    "$23",
+    "$31",
+    "$0 (two-person households have no minimum)"
+   ],
+   "evidence": [
+    "The minimum benefit allotment amount increased from $24 to $25"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "homeless shelter deduction",
+   "as_of": "2026-12-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "A homeless California CalFresh household that is not receiving free shelter gets the homeless shelter deduction. How much is it this month?",
+   "options": [
+    "$205.66",
+    "$198.99",
+    "$143",
+    "$769",
+    "$190.30"
+   ],
+   "evidence": [
+    "The homeless shelter deduction increased from $198.99 to $205.66"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "resource limit",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "A household subject to the resource limit (not categorically eligible) includes a 61-year-old and has $4,600 in countable resources. Does it pass the resource limit this month?",
+   "options": [
+    "Yes: the limit for households with a member 60 or older is $4,750",
+    "No: the limit is $4,500",
+    "No: the limit is $3,000 because the member is under 65",
+    "Yes: there is no resource limit for elderly households",
+    "No: the limit is $4,250"
+   ],
+   "evidence": [
+    "The resource limit for households where at least one person is age 60 or older or is disabled increased to $4,750"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "resource limit",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md"
+   ],
+   "stem": "A household subject to the resource limit (not categorically eligible) includes a 61-year-old and has $4,600 in countable resources. Does it pass the resource limit this month?",
+   "options": [
+    "No: the limit for households with a member 60 or older is $4,500",
+    "Yes: the limit is $4,750",
+    "No: the limit is $3,000 because the member is under 65",
+    "Yes: there is no resource limit for elderly households",
+    "Yes: the limit is $5,000"
+   ],
+   "evidence": [
+    "effective October 1, 2025, through September 30, 2026",
+    "| $4,500 | $3,000 |"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "substantial lottery winnings",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "In California, what amount of lottery or gambling winnings counts as substantial winnings this month?",
+   "options": [
+    "$4,750",
+    "$4,500",
+    "$3,000",
+    "$3,500",
+    "$5,000"
+   ],
+   "evidence": [
+    "the resource limit for elderly or disabled households also serves as the threshold for substantial lottery or gambling winnings",
+    "increased to $4,750"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA maximum allotment large household",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "What is the maximum monthly CalFresh allotment for a nine-person household this month?",
+   "options": [
+    "$2,066",
+    "$1,841",
+    "$2,046",
+    "$2,059",
+    "$3,887"
+   ],
+   "evidence": [
+    "$1,841",
+    "$225 per additional member"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA utility allowance",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "A California household's rent includes heating and cooling, but it pays separately for electricity and water. Which utility allowance does it get this month, and how much is it?",
+   "options": [
+    "The LUA, $176",
+    "The SUA, $686",
+    "The TUA, $21",
+    "The LUA, $170",
+    "None, because heating is included in the rent"
+   ],
+   "evidence": [
+    "A household that does not qualify for the SUA but incurs expenses for at least two separate utilities other than heating and cooling, is eligible for the LUA",
+    "The LUA amount increased from $170 to $176"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA gross income test BBCE",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "A four-person California household (no elderly or disabled members) is eligible under Modified/Broad-Based Categorical Eligibility and has $5,300 a month in gross income. How does it fare on the gross income standard that applies to it?",
+   "options": [
+    "It passes: the BBCE standard for four is $5,500 (200 percent of poverty)",
+    "It fails: the gross limit for four is $3,575 (130 percent of poverty)",
+    "It fails: the gross limit for four is $4,538 (165 percent of poverty)",
+    "It fails: net income limit for four is $2,750",
+    "It passes: BBCE households have no gross income standard"
+   ],
+   "evidence": [
+    "Modified Categorical Eligibility (MCE)/Broad-Based Categorical Eligibility (BBCE) (200% of Poverty Level)",
+    "|4|$5,500|"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA income reporting threshold",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-40-26-calfresh-cost-of-living-adjustments-e.md"
+   ],
+   "stem": "A three-person California household's income rises mid-period above its income reporting threshold (IRT). How is the IRT set, and when must the household report?",
+   "options": [
+    "At 130 percent of the federal poverty level ($2,960 for three); within 10 days after the change is known",
+    "At 100 percent of poverty ($2,277 for three); within 10 days",
+    "At 130 percent of poverty; at the next SAR 7 only",
+    "At 200 percent of poverty ($4,554 for three); within 30 days",
+    "At 165 percent of poverty; within 10 days"
+   ],
+   "evidence": [
+    "The IRT is set at 130 percent of the federal poverty level (FPL) per household size",
+    "The report must be made within 10 days after the change in income is known",
+    "|3|$2,960|"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA noncitizens",
+   "as_of": "2026-04-20",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "In California, a CalFresh application received on April 6, 2026 lists a mother who is a U.S. citizen and her husband, who was admitted as a refugee and has not become a lawful permanent resident. What must the county do?",
+   "options": [
+    "Approve the mother, deny the husband for ineligible noncitizen status, and send a notice saying which members were approved and which were denied",
+    "Approve both, because refugees stay eligible until their first recertification",
+    "Deny the whole household because one member is an ineligible noncitizen",
+    "Approve both, because refugees are exempt from the five-year waiting period",
+    "Pend the application until the husband becomes a lawful permanent resident"
+   ],
+   "evidence": [
+    "Effective April 1, 2026, at application, CWDs must deny CalFresh eligibility for household members who do not meet the updated noncitizen eligibility criteria",
+    "informing them which household members were approved, and which were denied due to ineligible noncitizen status",
+    "Refugees;"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA noncitizens",
+   "as_of": "2026-05-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "In California, an ongoing CalFresh household includes an asylee who is not a lawful permanent resident. The household's next recertification is due in July 2026. Does the asylee still get CalFresh in May 2026?",
+   "options": [
+    "Yes: for ongoing households the new rules are applied at recertification, so the asylee is reviewed at the July 2026 recertification",
+    "No: asylees lost eligibility on April 1, 2026 for all households",
+    "No: asylees lost eligibility on July 4, 2025, when H.R. 1 was signed",
+    "Yes, permanently, because asylees are exempt from the five-year waiting period",
+    "No: the county must act on the change at the household's next SAR 7"
+   ],
+   "evidence": [
+    "at recertification for ongoing households",
+    "This applies to recertifications due in April 2026 with an effective date of May 1, 2026, and onwards",
+    "Asylees;"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA noncitizens mid-period",
+   "as_of": "2026-06-10",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "In June 2026, a California household voluntarily tells the county, mid-certification, about a change in a member's immigration status that would lower its benefits. What must the county do?",
+   "options": [
+    "Issue a no-change notice, document the report without requesting verification, and follow up at the next recertification",
+    "Reduce benefits with a timely notice of action",
+    "Request verification within 10 days and then reduce benefits",
+    "Discontinue the member immediately",
+    "Refer the household for a SAVE secondary verification and suspend the member's benefits"
+   ],
+   "evidence": [
+    "must result in the issuance of a no-change notice",
+    "CWDs must not request verification and must document the voluntarily reported information",
+    "follow up at the household's next recertification"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CFAP after H.R. 1",
+   "as_of": "2026-06-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "Which group of lawfully present noncitizens who lost CalFresh eligibility because of H.R. 1 can get state-funded California Food Assistance Program (CFAP) benefits instead, without changing status?",
+   "options": [
+    "Battered noncitizens",
+    "Refugees",
+    "Asylees",
+    "All parolees",
+    "None of them: CFAP was also narrowed by H.R. 1"
+   ],
+   "evidence": [
+    "most lawfully present noncitizens who lose CalFresh eligibility due to H.R. 1 are not eligible for CFAP, with the exception of battered noncitizens"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA excluded noncitizen member",
+   "as_of": "2026-06-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "A California CalFresh household includes a member who is ineligible because of noncitizen status under H.R. 1. How are that member's income and deductible expenses treated?",
+   "options": [
+    "A pro rata share of the member's income is counted, and the member's deductible expenses are prorated",
+    "All of the member's income is counted and none of the expenses",
+    "None of the member's income is counted",
+    "All of the member's income and expenses are counted, as for an eligible member",
+    "Only the member's earned income is counted"
+   ],
+   "evidence": [
+    "a pro rata share of an ineligible household member's income must be included in the budget",
+    "The ineligible household member's allowable deductible expenses must also be prorated"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA excluded noncitizen resources",
+   "as_of": "2026-06-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "When are an ineligible noncitizen household member's resources NOT included in a California CalFresh household's budget?",
+   "options": [
+    "When the household is eligible under Categorical Eligibility or Modified Categorical Eligibility rules",
+    "Never: they are always included",
+    "When the member is a refugee",
+    "When the member's resources are under $3,000",
+    "When the household has an elderly member"
+   ],
+   "evidence": [
+    "An ineligible noncitizen household member's resources must be included in the budget when calculating the household's allotment, except households determined eligible under Categorical Eligibility (CE) or Modified Categorical Eligibility (MCE) rules"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "SAVE pending",
+   "as_of": "2026-05-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "A county has submitted a SAVE request to verify an applicant's immigration status, and the result is still pending. What may it do about the applicant's eligibility on the basis of immigration status in the meantime?",
+   "options": [
+    "Nothing adverse: it cannot delay, deny, reduce or terminate eligibility on that basis while verification is pending",
+    "Deny the application until SAVE responds",
+    "Approve only expedited benefits for one month",
+    "Suspend benefits pending the result",
+    "Count the applicant as an ineligible member until SAVE responds"
+   ],
+   "evidence": [
+    "verification is pending, the CWD cannot delay, deny, reduce or terminate the individual's eligibility for benefits on the basis of the individual's immigration status"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "SAVE secondary verification",
+   "as_of": "2026-05-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "A household disagrees with a SAVE result that would end a member's CalFresh. The county starts a secondary SAVE. For how long must it keep the household certified pending the result?",
+   "options": [
+    "Up to six months from the date of the original request for verification",
+    "Up to 90 days from the SAVE result",
+    "Until the next recertification only",
+    "It must not certify the household; benefits stop with timely notice",
+    "Up to 30 days"
+   ],
+   "evidence": [
+    "must certify the household pending the results of the secondary SAVE for up to six months from the date of the original request for verification"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "five-year waiting period",
+   "as_of": "2026-07-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "A woman admitted to the U.S. as a refugee lost CalFresh under H.R. 1. In June 2026 she adjusts to lawful permanent resident status. If she meets all other requirements, when can she get CalFresh?",
+   "options": [
+    "Immediately: refugees who become LPRs are exempt from the five-year waiting period",
+    "After five years as an LPR",
+    "After she has 40 qualifying work quarters",
+    "Never, because she was a refugee",
+    "Only after her household's next recertification"
+   ],
+   "evidence": [
+    "these humanitarian noncitizens continue to qualify for an exemption from the five-year waiting period, and, if all other eligibility requirements are met, are immediately eligible for CalFresh if and when they become LPRs",
+    "Noncitizens admitted to the U.S. as refugees"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "five-year waiting period",
+   "as_of": "2026-07-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "Two lawful permanent residents got their green cards through family sponsorship two years ago: a 16-year-old and her 40-year-old father, who has 12 qualifying work quarters and no disability or military connection. Neither entered on a humanitarian status. Who can get CalFresh now?",
+   "options": [
+    "Only the 16-year-old: LPRs under 18 are exempt from the five-year wait",
+    "Both: H.R. 1 made all LPRs immediately eligible",
+    "Neither, until five years pass",
+    "Only the father, because he has work quarters",
+    "Both, because the daughter's exemption extends to her parent"
+   ],
+   "evidence": [
+    "Certain LPRs are subject to a five-year waiting period",
+    "Are under 18 years old",
+    "Have 40 qualifying work quarters"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA noncitizens QC exclusion",
+   "as_of": "2026-03-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "Is the QC exclusionary period for the H.R. 1 noncitizen eligibility change still running on March 15, 2026, and why?",
+   "options": [
+    "Yes: a court's preliminary injunction extended it through April 9, 2026",
+    "No: it ended November 1, 2025, 120 days after enactment",
+    "No: it ended on December 31, 2025, when ACL 25-92 was issued",
+    "Yes: QC never reviews noncitizen eligibility",
+    "Yes: it runs through April 1, 2027"
+   ],
+   "evidence": [
+    "a preliminary injunction has been issued extending the QC exclusionary period through April 9, 2026",
+    "ended on November 1, 2025, 120 days after the law was enacted"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "Cuban Haitian entrants",
+   "as_of": "2026-06-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "After April 1, 2026, a Cuban national was paroled into the U.S., has not acquired any other immigration status, and has no final removal order. Can she be eligible for CalFresh under the noncitizen rules?",
+   "options": [
+    "Yes: she counts as a Cuban and Haitian Entrant, one of the eligible groups",
+    "No: parolees are no longer eligible",
+    "Only after she becomes an LPR and waits five years",
+    "Only through state-funded CFAP",
+    "Only if she applied before April 1, 2026"
+   ],
+   "evidence": [
+    "A national of Cuba or Haiti who is not subject to a final, non-appealable and legally enforceable removal order",
+    "Was paroled into the United States and has not acquired any other status",
+    "Parolees (unless they are CHEs)"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "COFA citizens",
+   "as_of": "2026-06-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-92-calfresh-implementation-of-h-r-1-changes-to-nonciti.md"
+   ],
+   "stem": "A citizen of the Republic of Palau lives lawfully in California under a Compact of Free Association. After April 1, 2026, can he be eligible for CalFresh?",
+   "options": [
+    "Yes: COFA citizens are one of the groups H.R. 1 kept eligible",
+    "No: only citizens, nationals and LPRs remain eligible",
+    "Only after five years as an LPR",
+    "Only through CFAP",
+    "Only if he is under 18"
+   ],
+   "evidence": [
+    "Individuals who reside in the U.S. in accordance with a Compact of Free Association (COFA) agreement",
+    "the Republic of Palau"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "CA ABAWD age 60-64",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "In California, a 62-year-old CalFresh applicant has no disability, no children and no other exemption. She applied in July 2026 and has been screened under the H.R. 1 criteria. Is she subject to the ABAWD time limit, and does she get the uncapped shelter deduction?",
+   "options": [
+    "Yes to both: she is subject to the time limit, and as an elderly person she still gets the uncapped shelter deduction",
+    "No to the time limit (60 or older is exempt from work registration), yes to the uncapped shelter deduction",
+    "Yes to the time limit, but she loses the uncapped shelter deduction because she is an ABAWD",
+    "No to both",
+    "Yes to the time limit; the shelter deduction is capped until she turns 65"
+   ],
+   "evidence": [
+    "individuals aged 60 through 64 who are exempt from work registration solely due to age, are still subject to",
+    "individuals 60 or older will continue to receive the excess medical deduction and an uncapped shelter deduction, regardless of whether they are also considered an ABAWD under HR1"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD turns 65",
+   "as_of": "2026-10-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "A California CalFresh recipient subject to the ABAWD time limit turns 65 on December 20, 2026. From when is he no longer subject to the time limit?",
+   "options": [
+    "December 1, 2026",
+    "December 20, 2026",
+    "January 1, 2027",
+    "At his next recertification after his birthday",
+    "He was never subject to it after age 59"
+   ],
+   "evidence": [
+    "Individuals are no longer considered ABAWDs starting the month of their 65th birthday"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA ABAWD dependent child",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md",
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "In California after June 1, 2026, a 30-year-old CalFresh recipient is responsible for the care of her 8-year-old son, who lives with her but is excluded from the CalFresh household. Can she get the dependent-child exemption from the ABAWD time limit?",
+   "options": [
+    "Yes: the child under 14 does not need to be receiving CalFresh, including children excluded from the household",
+    "No: the child must be a member of the CalFresh household",
+    "No: the exemption now requires a child under 6",
+    "Only if the child is receiving CalFresh in another household",
+    "Only until the child turns 12"
+   ],
+   "evidence": [
+    "a dependent child under age 14 does not need to be receiving CalFresh for an ABAWD to receive this exemption. This includes children who are excluded from the CalFresh household for any reason"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA ABAWD dependent child two adults",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "Two parents live together in California with their only child, age 9. Both are 30 and able-bodied. After June 1, 2026, how many of them can be exempt from the ABAWD time limit because of the child?",
+   "options": [
+    "Both, if each independently meets the definition of being responsible for the child's care",
+    "Only one, chosen by the household",
+    "Only the parent who is the primary caregiver",
+    "Neither: the exemption ended under H.R. 1",
+    "Both, but only for three months"
+   ],
+   "evidence": [
+    "A single dependent child under age 14 may exempt more than one adult",
+    "Two parents residing together with one mutual child under age 14 may both qualify"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA ABAWD tribal exemption",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "In California after June 1, 2026, a 40-year-old applicant says verbally that she is a California Indian under the Indian Health Care Improvement Act. Nothing in the case record conflicts. What verification of the ABAWD exemption may the county require?",
+   "options": [
+    "None: self-attestation is enough; the county notes it in the case record",
+    "A tribal enrollment card",
+    "A letter from the Indian Health Service",
+    "Proof of residence on a reservation",
+    "Verification through CalSAWS within 10 days"
+   ],
+   "evidence": [
+    "the county must note it in the case record and must not seek additional verification, unless questionable"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA ABAWD veterans",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "In California, a 35-year-old veteran applies for CalFresh in July 2026. He is able-bodied, has no children and meets no other exemption. Is he exempt from the ABAWD time limit because he is a veteran?",
+   "options": [
+    "No: H.R. 1 removed the veteran exemption, so on its own it no longer exempts him",
+    "Yes: the veteran exemption runs until October 1, 2030",
+    "Yes, but only if he is also experiencing homelessness",
+    "Yes: veterans are exempt from work registration",
+    "No: veterans were never exempt"
+   ],
+   "evidence": [
+    "HR1 removes the temporary exemptions added by the FRA of 2023",
+    "Veterans;",
+    "Meeting these criteria alone no longer qualifies someone for an exemption"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD statewide clock",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "California's statewide ABAWD clock that began January 1, 2026: what 36-month period does it cover, and which months in it can actually be countable months?",
+   "options": [
+    "January 1, 2026 to December 31, 2028; no countable months before June 1, 2026, and only after an H.R. 1 compliant screening",
+    "January 1, 2026 to December 31, 2028; any month from January 2026",
+    "June 1, 2026 to May 31, 2029; any month from June 2026",
+    "Each person's own 36 months from their first countable month",
+    "July 4, 2025 to July 3, 2028"
+   ],
+   "evidence": [
+    "three countable months to use between January 1, 2026 and December 31, 2028",
+    "no countable months may be assigned prior to June 1, 2026",
+    "countable months may only be applied after an individual completes a HR1 compliant exemption screening"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD work hours reporting",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "In California, a 58-year-old ongoing CalFresh recipient's next recertification is due in October 2026, so he has not yet had an H.R. 1 compliant exemption screening. In July 2026 his work hours drop to 10 a week. Must he report the drop mid-period?",
+   "options": [
+    "No: until he is screened he only has to report if household income goes over the IRT",
+    "Yes: anyone 18 to 64 must report hours below 20 a week",
+    "Yes, within 10 days, and the county applies a countable month",
+    "No: people over 54 never have to report work hours",
+    "Yes, at his next SAR 7"
+   ],
+   "evidence": [
+    "If an individual has not completed an HR 1 compliant exemption screening, they are only required to report mid-period if their household's gross monthly income goes over their IRT"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD new exemption mid-period",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "A California ABAWD subject to the time limit reports mid-period that she has become pregnant. The information is not questionable. How fast must the county apply the exemption?",
+   "options": [
+    "Promptly, but no later than 10 days after receiving the report",
+    "At the next recertification",
+    "Within 30 days",
+    "At the next SAR 7",
+    "Only after medical verification is received"
+   ],
+   "evidence": [
+    "the county must act promptly, but no later than 10 days beyond the date of receipt, to apply the exemption"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD volunteer hours",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "A California ABAWD meets the work requirement partly through volunteer hours at a food bank. What verification is needed for those hours?",
+   "options": [
+    "The hours must be verified and documented in the case record (the CF 888 form is available)",
+    "Self-attestation is enough, as for exemptions",
+    "No verification; volunteer hours do not count",
+    "Verification only if questionable",
+    "A letter from the county workforce board"
+   ],
+   "evidence": [
+    "Verification of volunteer or community service hours must be obtained and documented in the case record",
+    "CF 888"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD notices",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "A California ABAWD will be discontinued for failing the ABAWD work requirement. By when must the county send the CF 377.11 time limit notice?",
+   "options": [
+    "No later than ten days before discontinuance",
+    "No later than the 5th day of the month",
+    "At least 30 days before discontinuance",
+    "On the day benefits end",
+    "Within 10 days after discontinuance"
+   ],
+   "evidence": [
+    "The CF 377.11 must be sent no later than ten days prior to discontinuance of CalFresh benefits"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD partial month",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md"
+   ],
+   "stem": "A California applicant subject to the ABAWD time limit is approved for a prorated partial month of benefits in August 2026, after her H.R. 1 screening. Does August count toward her three countable months?",
+   "options": [
+    "No: a partial month of benefits does not count toward the 3 months",
+    "Yes: any month with benefits counts",
+    "Yes, but only if she worked under 20 hours that month",
+    "Only half a month counts",
+    "Only if she is in a waived county"
+   ],
+   "evidence": [
+    "a partial month of benefits does not count toward the 3 months in a 36-month limit"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA noncitizen opt-out",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California, a noncitizen father applies for CalFresh for his two U.S.-citizen children and chooses not to include himself on the application. May the county require him to verify his own immigration status, and how is his income treated?",
+   "options": [
+    "No verification may be required, but his income and resources are treated as available to the household",
+    "He must verify his status through SAVE before the children can be approved",
+    "No verification, and his income is excluded entirely",
+    "He must verify his status, and his income is prorated",
+    "The application must be denied unless he applies too"
+   ],
+   "evidence": [
+    "the CWD must not request verification of the individual's immigration status",
+    "must be treated as available to the household"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA battered noncitizen children",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California after April 1, 2026, a 12-year-old battered noncitizen who is not a citizen, national, LPR, Cuban-Haitian entrant or COFA resident applies for food benefits. What can she get?",
+   "options": [
+    "Not CalFresh, but she may be eligible for state-funded CFAP",
+    "CalFresh, because children under 18 are exempt from the noncitizen rules",
+    "CalFresh, because battered noncitizens kept federal eligibility",
+    "Neither CalFresh nor CFAP",
+    "CalFresh after a five-year wait"
+   ],
+   "evidence": [
+    "children under age 18 who are considered battered noncitizens and who do not fall within an eligible noncitizen group are not eligible for CalFresh",
+    "such children may be eligible for CFAP"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA parolee children",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California after H.R. 1, a 15-year-old parolee (not a Cuban-Haitian entrant) applies for food benefits. Which program can he get?",
+   "options": [
+    "Neither CalFresh nor CFAP",
+    "CFAP, like adult parolees",
+    "CalFresh, because children under 18 are exempt from the five-year wait",
+    "CalFresh through TCVAP",
+    "CFAP after one year of parole"
+   ],
+   "evidence": [
+    "parolees and conditional entrants under the age of 18 are ineligible for both CalFresh and CFAP"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA Afghan and Ukrainian parolees",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California, an Afghan Humanitarian Parolee who has not become an LPR loses CalFresh under H.R. 1 at recertification. Under the answer about AHPs and UHPs who lose CalFresh, is he eligible for CFAP?",
+   "options": [
+    "No: AHPs and UHPs who lose CalFresh under H.R. 1 are not eligible for CFAP; they regain CalFresh if they become LPRs",
+    "Yes: all parolees qualify for CFAP",
+    "Yes, but only after a one-year parole period",
+    "Yes, through TCVAP",
+    "No, and he cannot regain CalFresh even as an LPR"
+   ],
+   "evidence": [
+    "AHPs and UHPs who are no longer eligible for CalFresh due to HR 1 are not eligible for CFAP. They become eligible for CalFresh if they adjust their status to LPR"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA U visa",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California after H.R. 1, an adult who has filed for a U visa as a survivor of domestic violence applies for food benefits. What may she be eligible for?",
+   "options": [
+    "CFAP (through TCVAP), not CalFresh",
+    "CalFresh, as a battered noncitizen",
+    "CalFresh after a five-year waiting period",
+    "Neither program",
+    "CalFresh, because U visa holders are qualified immigrants"
+   ],
+   "evidence": [
+    "Individuals with T and U non-immigrant visa are not eligible for CalFresh under HR 1, regardless of age",
+    "Individuals who have applied for, or received, U visas, regardless of age, may be eligible for CFAP through TCVAP"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA certified trafficking survivors",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California after H.R. 1, a noncitizen with a T visa and ORR/OTIP certification as a trafficking survivor (not an LPR) applies for food benefits. What is she eligible for?",
+   "options": [
+    "Neither CalFresh nor CFAP",
+    "CalFresh, as a victim of trafficking",
+    "CFAP through TCVAP",
+    "CalFresh after the five-year wait",
+    "CFAP as a battered noncitizen"
+   ],
+   "evidence": [
+    "a federally certified trafficking survivor is not eligible for CFAP",
+    "noncitizens who have a T visa and ORR/OTIP certification are no longer eligible for CalFresh due to HR 1"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA SAVE from Medi-Cal",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "Mid-certification, a California county receives a SAVE result through Medi-Cal showing a CalFresh member's immigration status changed. The change would lower CalFresh benefits. Must the county act on it now?",
+   "options": [
+    "Yes: a SAVE result is verified upon receipt, so the county acts on it whether benefits go up or down",
+    "No: decreases from immigration status changes wait until recertification",
+    "No: SAVE results from another program cannot be used for CalFresh",
+    "Only if the household confirms it",
+    "Only if it would increase benefits"
+   ],
+   "evidence": [
+    "SAVE is considered verified upon receipt (VUR)",
+    "the county must act regardless of an increase or decrease in benefits"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA mid-period immigration documents",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "Mid-period, a California household gives the county documents showing a member's noncitizen status changed, and the change would lower benefits. Must the county run SAVE to confirm it?",
+   "options": [
+    "No: it must not request SAVE and follows up at the next periodic report or recertification, whichever comes first",
+    "Yes, within 10 days",
+    "Yes, and it reduces benefits once SAVE confirms",
+    "No, and it reduces benefits based on the documents",
+    "Yes, because SAVE is required for every status change"
+   ],
+   "evidence": [
+    "the CWD must not request SAVE, and follow up at the household's next periodic report or recertification, whichever comes first"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA cross-border Indians",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-29-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "After H.R. 1, an American Indian born in Canada lives in California and has LPR status since last year. Is he eligible for CalFresh if he meets all other criteria?",
+   "options": [
+    "Yes, immediately: he is not subject to the five-year waiting period",
+    "Only after five years as an LPR",
+    "No: only LPRs born in the U.S. territories qualify",
+    "Only through CFAP",
+    "Yes, but only without LPR status under the Jay Treaty"
+   ],
+   "evidence": [
+    "These individuals must have LPR status to qualify for CalFresh; however, they are immediately eligible and not subject to the five-year waiting period"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD screening another member",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "At a California CalFresh interview in July 2026, the applicant cannot say whether her adult brother in the household meets any ABAWD exemption. The county sends the CW2200 with the CF 377.11E to the brother, and he returns nothing within 10 days. What happens?",
+   "options": [
+    "The county applies the time limit to the brother; the application is processed for the other members on time",
+    "The whole application is denied for missing information",
+    "The brother is treated as exempt until his recertification",
+    "The county must wait 30 more days before acting",
+    "The brother is removed from the household"
+   ],
+   "evidence": [
+    "If the individual does not submit the required information within 10 days, the CWD must apply the time limit to the household member whose exemption status cannot be determined",
+    "Incomplete ABAWD information for another household member should not prevent the CWD from timely processing the application for any remaining household members"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD retroactive exemption",
+   "as_of": "2026-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California ABAWD was assigned countable months for August and September 2026. In October she reports facts showing she qualified for an exemption during those months. What can the county do about August and September?",
+   "options": [
+    "Apply the exemption retroactively to those months, since they are in the current 36-month period",
+    "Nothing: exemptions apply only from the date reported",
+    "Apply it only to September",
+    "Apply it from her next recertification",
+    "Restore the months only if she requests a state hearing"
+   ],
+   "evidence": [
+    "Exemptions may be applied retroactively to previously counted months during the current 36-month period"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD rescinded denial",
+   "as_of": "2026-07-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California CalFresh application was received May 12, 2026 and denied. On June 5, 2026 the denial is rescinded and the applicant is found eligible from May 12. Which ABAWD exemption criteria apply at application, and when is he next screened?",
+   "options": [
+    "Pre-H.R. 1 criteria; he is screened under the H.R. 1 criteria at his next recertification in 2027",
+    "H.R. 1 criteria, because eligibility was decided after June 1, 2026",
+    "H.R. 1 criteria from June 5, 2026",
+    "Pre-H.R. 1 criteria permanently",
+    "Pre-H.R. 1 criteria, then H.R. 1 criteria at his next SAR 7"
+   ],
+   "evidence": [
+    "the pre-HR1 rules apply because the application was received before June 1, 2026",
+    "the modified HR1 exemption criteria at their next recertification in 2027"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA ABAWD obviously unfit",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In California after June 1, 2026, can a county exempt a 63-year-old from the ABAWD time limit as obviously unfit for work because of his age alone?",
+   "options": [
+    "No: obvious unfitness cannot be based solely on age; it needs an observed physical or mental health issue",
+    "Yes: anyone over 60 is obviously unfit",
+    "Yes, if he is also exempt from work registration",
+    "No: people 60 to 64 can never be exempt",
+    "Yes, with a doctor's note"
+   ],
+   "evidence": [
+    "an individual may not be determined obviously unfit to work solely based on age"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD informing",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California county screens an ABAWD under the H.R. 1 criteria and finds him subject to the time limit. It explained the work rules orally in the interview but has not sent the CF 886. Can it start assigning countable months?",
+   "options": [
+    "No: he is informed only after both an oral explanation and the written CF 886",
+    "Yes: the oral explanation in the interview is enough",
+    "Yes, if he signed the application",
+    "No: it must first wait three months",
+    "Yes, once the CF 377.11B is sent"
+   ],
+   "evidence": [
+    "considered informed of the ABAWD time limit and work and community engagement requirements only after they have been provided both an oral explanation",
+    "an oral explanation during the interview alone does not meet the informing requirement"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD good faith contact",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California county cannot reach a household to give the oral explanation of ABAWD work rules. What must it do before making the member subject to the time limit?",
+   "options": [
+    "Document at least three contact attempts in the case record",
+    "Make one attempt by phone",
+    "Send the CF 886 by certified mail",
+    "Wait until the next recertification",
+    "Nothing: the CF 886 alone is enough"
+   ],
+   "evidence": [
+    "they must document at least three contact attempts in the case record before making them subject to the ABAWD time limit"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD countable month letter",
+   "as_of": "2026-04-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "In April 2026, can a California county send an ABAWD the CF 377.11B Countable Month Letter?",
+   "options": [
+    "No: there is no instance in which an ABAWD is sent the CF 377.11B before June 1, 2026",
+    "Yes, by the 5th of the month",
+    "Yes, if the ABAWD was screened under pre-H.R. 1 rules",
+    "Only in counties without a waiver",
+    "Only to ABAWDs aged 55 to 64"
+   ],
+   "evidence": [
+    "There is no instance in which an ABAWD will be sent the CF 377.11B prior to June 1, 2026"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "CA ESAP ABAWD",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California application received June 4, 2026 is eligible for the Elderly Simplified Application Project (ESAP). One member is subject to the ABAWD time limit after H.R. 1 screening. If he never reports meeting the work requirement, when do countable months begin to accrue?",
+   "options": [
+    "July 2026, because June is a prorated month",
+    "June 2026",
+    "At the end of the 36-month ESAP certification period",
+    "Never: ESAP households are exempt",
+    "January 2027"
+   ],
+   "evidence": [
+    "June 2026 is a prorated month",
+    "does not report meeting the ABAWD work and community engagement requirement by July 2026, countable months would begin to accrue"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA ESAP interview",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California ESAP household is due for recertification after June 1, 2026. The county lacks the information to complete its H.R. 1 ABAWD exemption screening. What must the county do?",
+   "options": [
+    "Make a good faith effort (at least three documented attempts) to contact it; if that fails, schedule an interview, and deny for missed interview if it is not completed",
+    "Require a recertification interview for every ESAP household",
+    "Treat everyone as exempt because ESAP households have no interview",
+    "Deny the recertification immediately",
+    "Apply the time limit to all adults in the household"
+   ],
+   "evidence": [
+    "A good faith effort means at least three separate contact attempts documented in the case record",
+    "If the ESAP household does not complete the interview, their recertification must be denied for missed interview"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA Urban Indian urban center",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-information-notice-i-14-26-calfresh-implementation-of-h-r-1-chan.md"
+   ],
+   "stem": "A California county finds an applicant's claim to the Urban Indian ABAWD exemption questionable. How does it decide whether she lives in an urban center?",
+   "options": [
+    "She qualifies if she lives in a county served by a federally funded Urban Indian Organization; she need not use its services",
+    "She must live in a city of over 50,000 people",
+    "She must be a patient of an Urban Indian Organization",
+    "She must live outside a reservation",
+    "The county may not question an Urban Indian attestation"
+   ],
+   "evidence": [
+    "if they live within a county served by a federally funded Urban Indian Organization (UIO)",
+    "Use of the UIO's services is not required"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "ABAWD waiver termination",
+   "as_of": "2025-10-20",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-waivers.md"
+   ],
+   "stem": "A state has an approved ABAWD waiver, based only on a lack of sufficient jobs, that runs through June 2026. Under FNS's October 3, 2025 implementation memo, what happens to it?",
+   "options": [
+    "FNS will terminate it 30 days after the memo was issued, if the state has not already",
+    "It stays in effect until June 2026",
+    "It stays in effect until the state's next waiver request",
+    "It ends on November 1, 2025, with the QC exclusion period",
+    "It converts to an unemployment-based waiver"
+   ],
+   "evidence": [
+    "FNS will terminate any such ABAWD waivers 30 days after issuance of this memorandum"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "ABAWD waiver criteria",
+   "as_of": "2025-12-01",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-waivers.md"
+   ],
+   "stem": "Under the OBBB and FNS's implementation memo, a state (not Alaska or Hawaii) asks for an ABAWD waiver for a county. Which evidence could support it, and how long can the waiver last?",
+   "options": [
+    "A recent three-month average unemployment rate over 10 percent; no more than 12 months",
+    "A lack of sufficient jobs; up to 24 months",
+    "Unemployment 20 percent above the national rate; up to 12 months",
+    "A recent 12-month average unemployment rate over 8 percent; up to 12 months",
+    "Unemployment 150 percent of the national average; no limit"
+   ],
+   "evidence": [
+    "A recent three-month average unemployment rate over 10 percent",
+    "FNS will not approve waivers with a duration exceeding 12 months"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "Alaska Hawaii ABAWD",
+   "as_of": "2026-01-15",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-waivers.md"
+   ],
+   "stem": "What special ABAWD options does the OBBB give Alaska and Hawaii that other states do not have?",
+   "options": [
+    "Waivers for areas with unemployment 150 percent above the national rate, and good faith exemptions that expire no later than December 31, 2028",
+    "Waivers based on a lack of sufficient jobs until 2030",
+    "A blanket exemption from the ABAWD time limit",
+    "Waivers for areas with unemployment over 6 percent",
+    "Good faith exemptions that never expire"
+   ],
+   "evidence": [
+    "unemployment rates 150 percent above the national unemployment rate",
+    "exemptions issued under this authority expire no later than December 31, 2028"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "ABAWD waiver QC exclusion",
+   "as_of": "2025-10-15",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-waivers.md"
+   ],
+   "stem": "Is there a 120-day QC variance exclusion period for the OBBB's changes to ABAWD waiver criteria?",
+   "options": [
+    "No: unlike some other OBBB provisions, there is none for the waiver changes",
+    "Yes: through November 1, 2025",
+    "Yes: through April 9, 2026",
+    "Yes: 120 days from each state's implementation date",
+    "Yes: through December 31, 2028"
+   ],
+   "evidence": [
+    "there is no Quality Control (QC) 120-day variance exclusion period for implementing these provisions related to ABAWD waivers"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "federal ABAWD exceptions implementation",
+   "as_of": "2025-10-15",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-exceptions.md"
+   ],
+   "stem": "Under FNS's October 3, 2025 memo on ABAWD exceptions, from when were state agencies required to apply the modified exception criteria, and to which cases?",
+   "options": [
+    "From enactment, July 4, 2025: immediately, to all initial applications and recertification applications",
+    "From October 1, 2025, to new applications only",
+    "From June 1, 2026, to recertifications only",
+    "From the date each state finished its system changes",
+    "From November 1, 2025, when the QC exclusion ended"
+   ],
+   "evidence": [
+    "These changes were effective upon enactment, July 4, 2025. State agencies must immediately screen for and apply the modified exception criteria to all initial applications and recertification applications"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "E&T age 60-64",
+   "as_of": "2025-12-01",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-exceptions.md"
+   ],
+   "stem": "After the OBBB, a 61-year-old SNAP participant is subject to the ABAWD time limit. Can the state require her to participate in SNAP Employment and Training (mandatory E&T)?",
+   "options": [
+    "No: people 60 through 64 remain exempt from the general work requirements, so mandatory E&T is prohibited",
+    "Yes: anyone subject to the time limit can be required to do E&T",
+    "Yes, if she has no other way to meet the work requirement",
+    "Only in areas without a waiver",
+    "Only after three countable months"
+   ],
+   "evidence": [
+    "State agencies are prohibited from requiring individuals aged 60 through 64 to participate in E&T (mandatory E&T)"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "late implementation QC exclusion",
+   "as_of": "2025-12-01",
+   "sources": [
+    "benefits/us/fns-implementation-memorandum-obbba-snap-provisions-abawd-exceptions.md",
+    "benefits/us/fns-q-a-quality-control-variance-exclusion-for-obbba-sections-10102-and-10103.md"
+   ],
+   "stem": "A state implemented the OBBB's ABAWD exception changes on September 15, 2025. Until when are QC variances from misapplying them excluded?",
+   "options": [
+    "November 1, 2025, the same end date as for every state",
+    "January 13, 2026, 120 days after its implementation",
+    "There is no exclusion because it implemented late",
+    "April 9, 2026",
+    "March 15, 2026"
+   ],
+   "evidence": [
+    "State agencies that implement a provision later than the required implementation date, but before the end date of the exclusionary period, will only be allowed a variance exclusion for the time remaining",
+    "The exclusionary period end date for all the above provisions is November 1, 2025"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "QC exclusion extension",
+   "as_of": "2025-12-01",
+   "sources": [
+    "benefits/us/fns-q-a-quality-control-variance-exclusion-for-obbba-sections-10102-and-10103.md"
+   ],
+   "stem": "A state asks FNS to extend the 120-day QC variance exclusion period for the OBBB's utility allowance change because its systems were late. Can FNS grant this?",
+   "options": [
+    "No: the law limits the variance exclusion period to 120 days",
+    "Yes, by up to 90 days",
+    "Yes, if the state submits a corrective action plan",
+    "Yes, until the state's implementation date",
+    "Only for states with error rates under 6 percent"
+   ],
+   "evidence": [
+    "No, the law limits the variance exclusion period to 120 days"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "Heat and Eat after OBBB",
+   "as_of": "2025-11-15",
+   "sources": [
+    "benefits/us/fns-information-memorandum-snap-provisions-of-the-one-big-beautiful-bill-act-of-.md"
+   ],
+   "stem": "Under the OBBB, which household is automatically eligible for the heating and cooling SUA because of a LIHEAP payment?",
+   "options": [
+    "A household with an elderly or disabled member that received more than $20 from LIHEAP in the application month or the previous 12 months",
+    "Any household that received any LIHEAP payment",
+    "Any household that received more than $20 from LIHEAP",
+    "A household with children under 6 that received LIHEAP",
+    "No household: the LIHEAP link was repealed for everyone"
+   ],
+   "evidence": [
+    "Only households with an elderly or disabled member which receive a payment of more than $20 under a LIHEAA program"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "third-party energy assistance",
+   "as_of": "2025-11-15",
+   "sources": [
+    "benefits/us/fns-information-memorandum-snap-provisions-of-the-one-big-beautiful-bill-act-of-.md"
+   ],
+   "stem": "After the OBBB, a household with no elderly or disabled members receives a third-party energy assistance payment under a state law that pays part of its heating bill. How is it treated?",
+   "options": [
+    "It still counts as income, and the household cannot count the expense it covers toward the excess shelter deduction",
+    "It is excluded from income, and the household counts the covered expense",
+    "It is excluded from income, and the household cannot count the covered expense",
+    "It counts as income, and the household still counts the covered expense",
+    "It makes the household automatically eligible for the SUA"
+   ],
+   "evidence": [
+    "If the household does not include an elderly or disabled member, the assistance would continue counting as income, however, the household could no longer count the expense covered by the assistance towards the excess shelter deduction"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "SNAP-Ed funds",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/fns-information-memorandum-snap-provisions-of-the-one-big-beautiful-bill-act-of-.md"
+   ],
+   "stem": "In February 2026 (fiscal year 2026), can a state still run SNAP-Ed activities with federal SNAP-Ed money?",
+   "options": [
+    "Yes, but only with unexpended fiscal year 2025 grant funds",
+    "Yes, with a new fiscal year 2026 allocation",
+    "No: all SNAP-Ed spending stopped on July 4, 2025",
+    "Yes, at a 25 percent federal share",
+    "No: unexpended funds had to be returned by September 30, 2025"
+   ],
+   "evidence": [
+    "Unexpended fiscal year 2025 SNAP-Ed grant funds may be used in FY 2026 to operate SNAP-Ed"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "Thrifty Food Plan annual adjustment",
+   "as_of": "2025-12-01",
+   "sources": [
+    "benefits/us/fns-information-memorandum-snap-provisions-of-the-one-big-beautiful-bill-act-of-.md"
+   ],
+   "stem": "Under the OBBB, how is the cost of the Thrifty Food Plan adjusted each October?",
+   "options": [
+    "By the change in the CPI for All Urban Consumers for the 12 months ending in June",
+    "By re-evaluating the market baskets each year",
+    "By the cost of the diet in the preceding June",
+    "By the change in the federal poverty level",
+    "It is frozen until October 1, 2027"
+   ],
+   "evidence": [
+    "requires annual adjustment of the cost of the Thrifty Food Plan each October to reflect changes in the Consumer Price Index for All Urban Consumers"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD waiver counties",
+   "as_of": "2026-08-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-63-calfresh-one-year-abawd-time-limit-waiver-for-colus.md",
+    "benefits/ca/cdss-all-county-letter-26-15-calfresh-one-year-abawd-time-limit-waiver-for-alpin.md"
+   ],
+   "stem": "Is Kings County, California covered by an ABAWD time limit waiver in August 2026?",
+   "options": [
+    "No: Kings is first covered by the waiver that starts November 1, 2026",
+    "Yes: through October 31, 2026",
+    "Yes: through October 31, 2027",
+    "No: California has no ABAWD waivers after H.R. 1",
+    "Yes: every county with unemployment over 6 percent is waived"
+   ],
+   "evidence": [
+    "Colusa, Imperial, Kings, Merced, Monterey, Plumas and Tulare counties effective November 1, 2026, through October 31, 2027",
+    "approved Alpine, Colusa, Imperial, Merced, Monterey, Plumas, and Tulare counties for an ABAWD time limit waiver effective November 1, 2025, through October 31, 2026"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD waiver counties",
+   "as_of": "2026-12-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-63-calfresh-one-year-abawd-time-limit-waiver-for-colus.md"
+   ],
+   "stem": "Is Kings County, California covered by an ABAWD time limit waiver in December 2026, and on what basis?",
+   "options": [
+    "Yes: its average unemployment was above 10 percent for January through March 2026",
+    "No: it is not one of the waived counties",
+    "Yes: it lacks sufficient jobs",
+    "Yes: its unemployment is 150 percent of the national rate",
+    "No: waivers ended under H.R. 1"
+   ],
+   "evidence": [
+    "Colusa, Imperial, Kings, Merced, Monterey, Plumas and Tulare counties effective November 1, 2026, through October 31, 2027",
+    "having an average unemployment rate above 10 percent for the 3-month period of January 2026 through March 2026"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA ABAWD waiver counties",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-15-calfresh-one-year-abawd-time-limit-waiver-for-alpin.md"
+   ],
+   "stem": "FNS approved the ABAWD waiver modification adding Monterey County on February 10, 2026. Over what period does Monterey's waiver run?",
+   "options": [
+    "November 1, 2025 through October 31, 2026",
+    "February 10, 2026 through February 9, 2027",
+    "March 1, 2026 through February 28, 2027",
+    "November 1, 2026 through October 31, 2027",
+    "February 10, 2026 through October 31, 2026"
+   ],
+   "evidence": [
+    "The one-year ABAWD time limit waiver for Alpine, Merced, Monterey, and Plumas counties is effective November 1, 2025, through October 31, 2026",
+    "CDSS received FNS approval on February 10, 2026"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "CA waiver and statewide clock",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-93-calfresh-implementation-of-h-r-1-changes-to-abawd-t.md",
+    "benefits/ca/cdss-all-county-letter-26-15-calfresh-one-year-abawd-time-limit-waiver-for-alpin.md"
+   ],
+   "stem": "An ABAWD lives in Tulare County, California, which is waived through October 31, 2026, and then moves to a non-waived county in November 2026. Did California's statewide 36-month ABAWD clock pause while he lived in the waived county?",
+   "options": [
+    "No: the fixed statewide clock runs uninterrupted, including months in a waived county",
+    "Yes: waived months extend his 36-month period",
+    "Yes: his own 36-month clock starts in November 2026",
+    "No, but his three countable months reset when he moves",
+    "Yes: the clock is paused for all counties with a waiver"
+   ],
+   "evidence": [
+    "Once started, the 36-month clock continues uninterrupted, regardless of whether an individual receives CalFresh benefits in any given month, lives in a county or geographic area within a county where the time-limit is waived"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA AB 42 scholarships",
+   "as_of": "2026-04-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-16-calworks-and-calfresh-implementation-of-new-income-.md"
+   ],
+   "stem": "A California CalFresh applicant in April 2026 has a privately funded merit scholarship paid to her for attending a state university, plus $300 a month in cash from her aunt to help with tuition. Under AB 42, what is counted as income?",
+   "options": [
+    "Only the aunt's cash; the scholarship is exempt",
+    "Both",
+    "Neither",
+    "Only the scholarship, because it is not need-based",
+    "Only the scholarship amount not paid to the university"
+   ],
+   "evidence": [
+    "AB 42 exempts any grant, award, scholarship, fellowship, and/or loan awarded for the purpose of attending an institution of higher learning",
+    "This exemption does not apply to cash payments made directly by friends or relatives for this purpose, which will continue to be counted as income"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA AB 42 resources",
+   "as_of": "2027-06-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-16-calworks-and-calfresh-implementation-of-new-income-.md"
+   ],
+   "stem": "A California CalFresh household received a $4,000 college grant in April 2026 and still had $1,500 of it unspent in June 2027. How is the $1,500 treated in June 2027?",
+   "options": [
+    "As a resource, because the 12-month resource exemption has passed",
+    "Still exempt as a resource for the length of the program of study",
+    "As income in June 2027",
+    "Exempt permanently",
+    "Half counted as a resource"
+   ],
+   "evidence": [
+    "These education-related funds are exempt from consideration as a resource for 12 months following the receipt of the funds",
+    "Any amount of these funds available after 12 months will be treated as a resource"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA AB 42 ongoing households",
+   "as_of": "2026-05-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-16-calworks-and-calfresh-implementation-of-new-income-.md"
+   ],
+   "stem": "An ongoing California CalFresh household has a private scholarship counted as income. Its next SAR 7 is in August 2026 and its recertification is in December 2026. Without a mid-period request, when must the county exclude the scholarship under AB 42?",
+   "options": [
+    "At the August 2026 SAR 7, whichever of the two comes sooner",
+    "At the December 2026 recertification",
+    "Retroactively from March 1, 2026",
+    "Immediately on March 1, 2026",
+    "At the first recertification after March 1, 2027"
+   ],
+   "evidence": [
+    "at the family's next Semi-Annual Report (SAR 7) or annual Recertification/Redetermination, whichever is sooner"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA AB 42 verification",
+   "as_of": "2026-04-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-16-calworks-and-calfresh-implementation-of-new-income-.md"
+   ],
+   "stem": "Under AB 42 in California, must a CalFresh-only household verify that a scholarship is for attending an institution of higher learning before it is excluded?",
+   "options": [
+    "No: verification of excluded income is not required for CalFresh unless questionable",
+    "Yes: it must provide the award letter",
+    "Yes, unless the funds go directly to the school",
+    "Yes: CalWORKs verification rules apply to all households",
+    "No, and the county may never ask for it"
+   ],
+   "evidence": [
+    "Verification of excluded income is not required for CalFresh, unless questionable"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA VA education benefits",
+   "as_of": "2026-04-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-16-calworks-and-calfresh-implementation-of-new-income-.md"
+   ],
+   "stem": "After AB 42, a California CalFresh recipient attends college on VA educational benefits that include a monthly housing allowance. How does CalFresh treat the housing allowance?",
+   "options": [
+    "It is counted as income; AB 42 did not change this",
+    "It is exempt under AB 42",
+    "It is exempt as a resource for 12 months",
+    "It is counted only if CalWORKs also counts it",
+    "It is treated as a shelter cost"
+   ],
+   "evidence": [
+    "CalFresh requires that VA housing allowance and subsistence payment portions of VA educational benefits be counted as income. These rules remain unchanged as a result of AB 42"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA AB 320 student board members",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-46-calworks-calfresh-and-capi-implementation-of-new-in.md"
+   ],
+   "stem": "In September 2026, an 18-year-old high school senior in a California CalFresh household is paid as a student member of the school district governing board. How does CalFresh treat the pay?",
+   "options": [
+    "It is counted: AB 320 does not change CalFresh, and the federal exclusion covers only students under 18",
+    "It is excluded under AB 320 for all means-tested programs",
+    "It is excluded because he attends high school",
+    "It is excluded as a resource but counted as income",
+    "It is excluded until he graduates"
+   ],
+   "evidence": [
+    "AB 320 does not change how income is counted for CalFresh purposes",
+    "remains excluded when the student is under age 18 and meets the criteria in 7 CFR 273.9(c)(7)"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA AB 320 student board members",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-46-calworks-calfresh-and-capi-implementation-of-new-in.md"
+   ],
+   "stem": "In September 2026, a 16-year-old in a California CalFresh household attends high school, lives with her mother and is paid as a student member of the county board of education. How does CalFresh treat the pay?",
+   "options": [
+    "It is excluded: earned income of a household member under 18 who attends school and lives with a parent is excluded",
+    "It is counted, because AB 320 does not apply to CalFresh",
+    "It is counted as unearned income",
+    "It is excluded only after July 1, 2027",
+    "It is counted, but half is excluded"
+   ],
+   "evidence": [
+    "CalFresh excludes the earned income of household members under age 18 who",
+    "remains excluded when the student is under age 18 and meets the criteria in 7 CFR 273.9(c)(7)"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA students LPIE",
+   "as_of": "2026-07-20",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "A 20-year-old applies for CalFresh in July 2026. She attends a California State University campus full-time in a bachelor's program in art history, does not work, and meets no other student exemption. Does she meet a student exemption?",
+   "options": [
+    "Yes: since June 1, 2026 every associate and bachelor's program at a CCC, CSU or UC campus is an approved LPIE",
+    "No: art history is not an employment-focused major",
+    "Only if her program appears individually on the List of Approved LPIEs",
+    "No: students must work 20 hours a week",
+    "Only if she is enrolled less than half-time"
+   ],
+   "evidence": [
+    "As of June 1, 2026, all associate and bachelor's degree programs offered at any California Community College (CCC), California State University (CSU), or University of California (UC)",
+    "Enrolled in an associate or bachelor's degree program in any major"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA students LPIE private",
+   "as_of": "2026-07-20",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "In July 2026, a full-time bachelor's student at a private California university claims the LPIE student exemption because of her degree program. Does the June 1, 2026 statewide approval of degree programs cover her?",
+   "options": [
+    "No: it covers only associate and bachelor's programs at CCC, CSU and UC campuses, not private institutions",
+    "Yes: it covers all accredited bachelor's programs in California",
+    "Yes, if her university participates in Cal Grant",
+    "No: private students can never be exempt",
+    "Yes, if she is a California resident"
+   ],
+   "evidence": [
+    "It does not apply to programs offered at private institutions"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA students graduate programs",
+   "as_of": "2026-07-20",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "After June 1, 2026, a full-time master's student at a UC campus claims the LPIE exemption based on his graduate program. What applies?",
+   "options": [
+    "Graduate programs are not automatically approved; the program must be submitted and approved as an LPIE",
+    "All UC programs are automatically approved LPIEs",
+    "Graduate students are not subject to the student rule",
+    "He qualifies if he declared a major",
+    "He qualifies only if the program is a certificate program"
+   ],
+   "evidence": [
+    "Programs that must be submitted for review include, but are not limited to, graduate/advanced degree programs"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA students non-regular curriculum",
+   "as_of": "2026-07-20",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "A CalFresh applicant takes only English as a Second Language classes through a community college's non-credit adult education program, full-time. Does he need a student exemption to get CalFresh?",
+   "options": [
+    "No: students enrolled exclusively in non-regular curriculums are not considered enrolled in an institution of higher education",
+    "Yes: any half-time community college enrollment needs an exemption",
+    "Yes, unless the program is on the LPIE list",
+    "No, but only if he works 20 hours a week",
+    "Yes, because ESL is a regular curriculum"
+   ],
+   "evidence": [
+    "students enrolled exclusively in non-regular curriculums are not considered enrolled in an institution of higher education. They do not require an exemption to qualify for CalFresh"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA students undeclared",
+   "as_of": "2026-08-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "In August 2026, a California Community College student enrolled more than half-time has not declared a major but is taking the general education courses for an associate degree. Does she qualify for the LPIE exemption?",
+   "options": [
+    "Yes: undeclared students in the required general education courses qualify",
+    "No: she must declare a major first",
+    "Only if she transfers to a CSU",
+    "No: general education is non-regular curriculum",
+    "Only if she is in an associate degree for transfer"
+   ],
+   "evidence": [
+    "A student that has not declared a major but is enrolled in the general education courses required to obtain an associate or bachelor's degree is eligible for this exemption"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA students LPIE before June 2026",
+   "as_of": "2026-04-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "In April 2026, a community college student says she is in an LPIE, but her associate degree program is not on the List of Approved LPIEs. What must the county do before finding her ineligible?",
+   "options": [
+    "Explore whether she is in another LPIE or meets another student exemption",
+    "Approve her anyway: all associate programs are LPIEs",
+    "Deny her immediately",
+    "Ask the college to submit the program and pend the case 90 days",
+    "Require her to work 20 hours a week"
+   ],
+   "evidence": [
+    "If a program does not appear on the List of Approved LPIEs, the county must explore if the student is enrolled in another LPIE or meets the criteria for another exemption before determining the student to be ineligible"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA students mid-period",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-25-calfresh-student-eligibility-local-programs-that-in.md"
+   ],
+   "stem": "A California CalFresh student exemption was established at certification. Mid-period, the student drops her qualifying job. Must she report this, and does her exemption end?",
+   "options": [
+    "She need not report it; the exemption typically lasts through the certification period",
+    "She must report within 10 days and is discontinued",
+    "She must report at the next SAR 7 and loses the exemption then",
+    "She need not report, but the county ends the exemption when it learns of it",
+    "She must report within 10 days, and the county rescreens her"
+   ],
+   "evidence": [
+    "Once an exemption has been established, the exemption typically applies through the length of the certification period",
+    "Students are not required to report a change in student status or exemptions mid-period"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA CDSS Exemption File",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-43-calfresh-work-registrants-and-abawds-establishing-e.md"
+   ],
+   "stem": "In California, the monthly CDSS Exemption File shows an ABAWD is exempt based on Department of Developmental Services data. What verification may the county request from the participant?",
+   "options": [
+    "None: the file is verified upon receipt, so additional verification must not be requested",
+    "A doctor's statement",
+    "A regional center letter within 10 days",
+    "Verification only at recertification",
+    "The CF 377.11E signed by the participant"
+   ],
+   "evidence": [
+    "when an exemption is established based on the CDSS Exemption File, additional verification must not be requested from the participant"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA CDSS Exemption File",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-43-calfresh-work-registrants-and-abawds-establishing-e.md"
+   ],
+   "stem": "A California ABAWD was exempt last month based on the CDSS Exemption File. This month the file no longer lists her. What does that do to her exemption?",
+   "options": [
+    "Nothing: the file does not remove an existing exemption or start an adverse action",
+    "Her exemption ends this month",
+    "Her exemption ends with 10-day notice",
+    "She must verify the exemption within 10 days",
+    "She becomes subject to the time limit next month"
+   ],
+   "evidence": [
+    "The CDSS Exemption File will not trigger the removal of an existing exemption or otherwise initiate an adverse action"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA ABAWD loss of exemption mid-period",
+   "as_of": "2026-09-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-43-calfresh-work-registrants-and-abawds-establishing-e.md"
+   ],
+   "stem": "Mid-period, a California county gets verified-upon-receipt information suggesting an ABAWD may no longer qualify for her exemption. What must it do?",
+   "options": [
+    "Hold the information until recertification and assess other exemptions then, before applying the time limit",
+    "End the exemption mid-period with timely notice",
+    "Request verification within 10 days",
+    "Apply a countable month starting next month",
+    "Rescreen her by phone this month"
+   ],
+   "evidence": [
+    "the CWD must hold that information until recertification to assess if the ABAWD is otherwise exempt before applying the time limit"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "Medi-Cal work requirements",
+   "as_of": "2026-10-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-43-calfresh-work-registrants-and-abawds-establishing-e.md"
+   ],
+   "stem": "A California adult in the Medi-Cal ACA expansion group is also on CalFresh. When do H.R. 1's Medi-Cal work and community engagement requirements begin to apply to her, compared with CalFresh's ABAWD changes?",
+   "options": [
+    "Medi-Cal: January 1, 2027; CalFresh ABAWD changes: June 1, 2026",
+    "Both: June 1, 2026",
+    "Medi-Cal: October 1, 2026; CalFresh: June 1, 2026",
+    "Both: January 1, 2027",
+    "Medi-Cal: July 4, 2025; CalFresh: June 1, 2026"
+   ],
+   "evidence": [
+    "For Medi-Cal, beginning January 1, 2027",
+    "Affordable Care Act (ACA) expansion group",
+    "In California, these changes became effective June 1, 2026"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "countable resources",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.8(e)",
+    "benefits/us/snap-cola-fy2025-maximum-allotments-deductions.md"
+   ],
+   "stem": "A household subject to the resource test (no elderly or disabled members, not categorically eligible) has $2,400 in savings, $12,000 in a 401(k), a $1,100 security deposit held by its landlord, and $900 of household goods. What are its countable resources, and does it pass the limit?",
+   "options": [
+    "$2,400; it passes the $3,000 limit",
+    "$3,500; it fails the $3,000 limit",
+    "$15,400; it fails",
+    "$3,300; it fails the $3,000 limit",
+    "$2,400; it fails the $2,250 limit"
+   ],
+   "evidence": [
+    "Section 401(a), which includes funds commonly known as",
+    "security deposits on rental property or utilities",
+    "Household goods, personal effects",
+    "| $4,500 | $3,000 |"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "earned income tax credit resource",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.8(e)(12)"
+   ],
+   "stem": "A SNAP household received a $3,200 federal earned income tax credit refund in March while participating, and it has participated every month since. In September, $2,000 of the refund is still in its savings. Is that $2,000 a countable resource?",
+   "options": [
+    "No: an EITC is excluded for 12 months if the household was participating at receipt and participates continuously",
+    "Yes: an EITC is excluded only in the month of receipt and the following month",
+    "Yes: refunds are always countable after 30 days",
+    "No: tax refunds are never resources",
+    "Only half of it"
+   ],
+   "evidence": [
+    "Any Federal, State or local earned income tax credit received by any household member shall be excluded for 12 months, provided the household was participating in SNAP at the time of receipt"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "vehicle exclusion disabled member",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.8(e)(3)"
+   ],
+   "stem": "A household's second car is used to drive its physically disabled son to appointments and school. It has no special equipment, and other family members also drive it to work. Is it excluded as a resource?",
+   "options": [
+    "Yes: one vehicle per physically disabled member is excluded regardless of the purpose of the trips, and it need not be specially equipped",
+    "No: it must have special equipment",
+    "No: it must be used mainly to transport the disabled member",
+    "Only its value above $4,650",
+    "Only if the son is the registered owner"
+   ],
+   "evidence": [
+    "Necessary to transport a physically disabled household member",
+    "regardless of the purpose of such transportation (limited to one vehicle per physically disabled household member). The vehicle need not have special equipment"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "rental property resource",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.8(e)(4)"
+   ],
+   "stem": "A household owns a small rental house that brings in rent consistent with its fair market value. Is the rental house a countable resource?",
+   "options": [
+    "No: property that annually produces income consistent with its fair market value is excluded",
+    "Yes, at its full equity value",
+    "Yes, unless it is the household's former home",
+    "Only if rented year-round",
+    "Yes, but only half its equity"
+   ],
+   "evidence": [
+    "Property which annually produces income consistent with its fair market value, even if only used on a seasonal basis. Such property shall include rental homes and vacation homes"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "property for sale",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.8(e)(8)"
+   ],
+   "stem": "A household inherited a vacant lot, listed it with a real estate broker at a reasonable price, and has not had any offers. Is the lot a countable resource while it is for sale?",
+   "options": [
+    "No: real property the household is making a good faith effort to sell at a reasonable price is excluded as inaccessible",
+    "Yes, at its listed price",
+    "Yes, after 6 months on the market",
+    "No, but only if the household intends to build on it",
+    "Yes, unless it is in probate"
+   ],
+   "evidence": [
+    "real property which the household is making a good faith effort to sell at a reasonable price and which has not been sold"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "SSI recipient resources",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.8(e)(17)"
+   ],
+   "stem": "A three-person household (not categorically eligible) includes a grandmother whose SSI has been authorized but not yet received. She has $4,000 in her own savings account. Are her savings counted toward the household's resources?",
+   "options": [
+    "No: resources of a member who receives SSI are excluded, and a member counts as a recipient once benefits are authorized",
+    "Yes: she is not a recipient until the first payment arrives",
+    "Yes, but only above $3,000",
+    "No, but only once she has received SSI for a full month",
+    "Yes: only Medicaid-only members are excluded"
+   ],
+   "evidence": [
+    "The resources of a household member who receives SSI or PA benefits",
+    "if the benefits have been authorized but not received"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "expedited service delivery",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.2(i)(3)(i)",
+    "7 CFR 273.2(i)(4)(i)"
+   ],
+   "stem": "A household entitled to expedited service files its application on a Monday. The agency has verified the applicant's identity but cannot verify her residency or her statement of no income in time. When must benefits be available?",
+   "options": [
+    "By the seventh calendar day after filing; benefits are not delayed because residency and income are unverified",
+    "Within 30 days, after residency and income are verified",
+    "By the seventh business day, once income is verified",
+    "Within 10 days",
+    "Immediately, without verifying identity"
+   ],
+   "evidence": [
+    "not later than the seventh calendar day following the date an application was filed",
+    "benefits shall not be delayed beyond the delivery standards prescribed in paragraph (i)(3) of this section, solely because these eligibility factors have not been verified"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "expedited identity",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.2(i)(4)(i)"
+   ],
+   "stem": "For a household entitled to expedited service, which eligibility factor must always be verified before benefits are issued?",
+   "options": [
+    "The applicant's identity",
+    "Income",
+    "Residency",
+    "Liquid resources",
+    "Social security numbers for every member"
+   ],
+   "evidence": [
+    "In all cases, the applicant's identity (i.e., the identity of the person making the application) shall be verified"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "application filing date",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.2(g)(1)"
+   ],
+   "stem": "On June 3, an applicant drops off a SNAP application that has his name and address and is signed, but most other questions are blank. He completes the rest at his interview on June 20. If the household is eligible (not expedited), by when must it get an opportunity to participate?",
+   "options": [
+    "By July 3: 30 calendar days from June 3, when the application with name, address and signature was filed",
+    "By July 20: 30 days from the interview",
+    "By June 10",
+    "By July 3 only if the interview happens within 10 days",
+    "Within 30 business days of June 20"
+   ],
+   "evidence": [
+    "no later than 30 calendar days following the date the application was filed",
+    "An application is filed the day the appropriate SNAP office receives an application containing the applicant's name and address, which is signed"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "IPV-disqualified member",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.11(c)(1)"
+   ],
+   "stem": "A three-person household includes a father disqualified for an intentional Program violation. He earns $1,200 a month; no one else has income. For the remaining members, what household size is used for the benefit level, and how much of his earnings counts?",
+   "options": [
+    "Two people; all $1,200 counts",
+    "Two people; $800 counts (his pro rata share removed)",
+    "Three people; all $1,200 counts",
+    "Two people; none of it counts",
+    "Three people; $800 counts"
+   ],
+   "evidence": [
+    "The income and resources of the ineligible household member(s) shall continue to count in their entirety",
+    "The ineligible member shall not be included when determining the household's size"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "ineligible ABAWD member",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.11(c)(2)"
+   ],
+   "stem": "A three-person household includes a father who is ineligible because he used up his ABAWD time-limit months. He earns $1,200 a month (no exclusions apply); no one else has income. How much of his earnings counts as income to the two remaining members?",
+   "options": [
+    "$800",
+    "$1,200",
+    "$400",
+    "$0",
+    "$600"
+   ],
+   "evidence": [
+    "for meeting the time limit for able-bodied adults without dependents",
+    "A pro rata share of the income of such ineligible members shall be counted as income to the remaining members",
+    "dividing the income evenly among the household members, including the ineligible members"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "dependent care by relative",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.9(d)(4)"
+   ],
+   "stem": "A working mother pays her own mother $400 a month to watch her 4-year-old while she works. Can the household deduct the $400 as dependent care?",
+   "options": [
+    "Yes, if the grandmother is not part of the same SNAP household as the child",
+    "No: care by a relative is never deductible",
+    "Yes, but only up to $200 a month",
+    "Only if the grandmother is a licensed provider",
+    "No: dependent care is only for children under 2"
+   ],
+   "evidence": [
+    "The costs of care provided by a relative may be deducted so long as the relative providing care is not part of the same SNAP household as the child or dependent adult receiving care"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "dependent care costs",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.9(d)(4)"
+   ],
+   "stem": "A parent in job training pays a day care center $500 a month and spends $60 a month on bus fare to take her child to and from the center. What dependent care deduction can she claim?",
+   "options": [
+    "$560: transportation to and from the care facility is deductible",
+    "$500: transportation is not deductible",
+    "$200: the dependent care cap",
+    "$0: training does not qualify",
+    "$530: half of transportation counts"
+   ],
+   "evidence": [
+    "attend training or pursue education that is preparatory to employment",
+    "Transportation costs to and from the care facility"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "elderly disabled separate household",
+   "as_of": "2025-09-10",
+   "sources": [
+    "7 CFR 273.1(b)(2)",
+    "benefits/us/snap-cola-fy2025-income-eligibility-standards.md"
+   ],
+   "stem": "A 72-year-old with a permanent disability who cannot buy and prepare meals lives with her son's family of three, whose income (excluding hers) is $4,200 a month. Can she be a separate SNAP household from them in FY2025?",
+   "options": [
+    "No: the others' $4,200 exceeds the 165 percent limit for three ($3,551)",
+    "Yes: anyone 60 or older who cannot prepare meals may be a separate household",
+    "Yes, if she buys her food separately",
+    "No: she must be 75 or older",
+    "Yes, because only her own income is compared to the limit"
+   ],
+   "evidence": [
+    "Separate household status under this provision must not be granted when the income of the others with whom the elderly disabled individual resides (excluding the income of the elderly and disabled individual and his or her spouse) exceeds 165 percent of the poverty line",
+    "| 3 | $3,551 |"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA state hearing deadline",
+   "as_of": "2025-06-01",
+   "sources": [
+    "benefits/ca/mpp-63-804.md"
+   ],
+   "stem": "Under California's CalFresh regulations, a household's benefits were cut 75 days ago and it now wants a state hearing on that action. Can it still request one?",
+   "options": [
+    "Yes: a household may request a hearing on any action within the prior 90 days",
+    "No: the limit is 30 days",
+    "No: the limit is 60 days",
+    "Only if it requested continued benefits",
+    "Only at its next recertification"
+   ],
+   "evidence": [
+    "A household shall be allowed to request a hearing on any action by the CWD or loss of benefits which occurred within the prior 90 days"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA continued benefits",
+   "as_of": "2025-06-01",
+   "sources": [
+    "benefits/ca/mpp-63-804.md"
+   ],
+   "stem": "A California CalFresh household gets a timely notice that its benefits will be reduced on the 1st of next month, and files a hearing request before that date without saying anything about continued benefits. What happens to its benefits?",
+   "options": [
+    "They continue at the prior level pending the decision, unless it waives continuation in writing",
+    "They are reduced, because it did not ask for continued benefits",
+    "They continue only if it asks in writing",
+    "They stop until the hearing",
+    "They continue for 30 days only"
+   ],
+   "evidence": [
+    "If the request for a hearing does not positively indicate that the household has waived continuation of benefits, the CWD shall assume that continuation of benefits is desired"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA continued benefits overissuance",
+   "as_of": "2025-06-01",
+   "sources": [
+    "benefits/ca/mpp-63-804.md"
+   ],
+   "stem": "A California household received continued CalFresh benefits pending a hearing, and the hearing decision upholds the county's reduction. What follows?",
+   "options": [
+    "A claim is established for the overissuances paid while benefits were continued",
+    "Nothing: continued benefits are never recovered",
+    "The household must reapply",
+    "The county reduces the next allotment by half",
+    "Only the last month is recovered"
+   ],
+   "evidence": [
+    "If CWD action is upheld by the hearing decision, a claim against the household shall be established for all overissuances"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA continued benefits expedited",
+   "as_of": "2025-06-01",
+   "sources": [
+    "benefits/ca/mpp-63-804.md"
+   ],
+   "stem": "A California household was terminated because it failed to provide verification that had been postponed for expedited service. It requests a hearing right away. Does it get continued benefits?",
+   "options": [
+    "No: that termination stays in effect pending the hearing decision",
+    "Yes, as with any timely hearing request",
+    "Yes, but only for one month",
+    "Only if the verification is provided at the hearing",
+    "Yes, unless it waives them"
+   ],
+   "evidence": [
+    "If a household requests a hearing due to a termination of benefits because the household failed to provide verification postponed for expedited service, the termination shall remain in effect pending the hearing decision"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA agency conference expedited denial",
+   "as_of": "2025-06-01",
+   "sources": [
+    "benefits/ca/mpp-63-804.md"
+   ],
+   "stem": "A California applicant contests a denial of expedited service and wants an agency conference. Within what time must the county schedule it, unless the household asks for later?",
+   "options": [
+    "Two working days",
+    "Five working days",
+    "Ten days",
+    "Seven calendar days",
+    "30 days"
+   ],
+   "evidence": [
+    "An agency conference for households contesting a denial of expedited service shall be scheduled within two working days"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA hearing decision",
+   "as_of": "2025-06-01",
+   "sources": [
+    "benefits/ca/mpp-63-804.md"
+   ],
+   "stem": "A California state hearing decision increases a household's CalFresh benefits. Generally, within how long must the increase be reflected in its allotment?",
+   "options": [
+    "Within 10 days of receipt of the decision",
+    "Within 30 days",
+    "At the next recertification",
+    "Within 5 working days",
+    "At the next SAR 7"
+   ],
+   "evidence": [
+    "Decisions which result in an increase in a household's benefits shall be reflected in the coupon allotment within 10 days of the receipt of the hearing decision"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA standard medical deduction",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-04-calfresh-standard-medical-deduction-demonstration-p.md"
+   ],
+   "stem": "A California CalFresh household with a 68-year-old member verifies $100 a month in medical expenses. What medical deduction does it get under the Standard Medical Deduction project?",
+   "options": [
+    "$150 (the standard medical deduction)",
+    "$65 (actual expenses over $35)",
+    "$100",
+    "$120",
+    "Nothing: expenses must exceed $185"
+   ],
+   "evidence": [
+    "Under the Project, households who verify medical expenses within the range of $35.01 to $185.00 per month will receive a standard medical deduction of $150"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA standard medical deduction",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-04-calfresh-standard-medical-deduction-demonstration-p.md"
+   ],
+   "stem": "A California CalFresh household with a disabled member verifies $250 a month in medical expenses. What medical deduction does it get?",
+   "options": [
+    "$215 (actual expenses over $35)",
+    "$150 (the standard medical deduction)",
+    "$250",
+    "$185",
+    "$100 (expenses over $150)"
+   ],
+   "evidence": [
+    "Households with medical expenses above $185.00 per month may verify and claim actual expenses over $35"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA standard medical deduction",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-04-calfresh-standard-medical-deduction-demonstration-p.md"
+   ],
+   "stem": "A California elderly household says it pays $300 a month in medical costs but can verify only $140 of them. What medical deduction does it get?",
+   "options": [
+    "$150, the standard deduction, based on the verified $140",
+    "$265 (claimed expenses over $35)",
+    "$105 (verified expenses over $35)",
+    "Nothing until all $300 is verified",
+    "$140"
+   ],
+   "evidence": [
+    "When a household claims medical expenses above $185.00 per month but does not provide verification of expenses above $185.00 per month, that household may receive the SMD based on verified expenses between $35.01 to $185.00"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA medical verification",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-04-calfresh-standard-medical-deduction-demonstration-p.md"
+   ],
+   "stem": "A California elderly CalFresh applicant does not verify her medical expenses. What can the county do?",
+   "options": [
+    "Approve the case without a medical deduction; failure to verify medical expenses is not a reason to deny",
+    "Deny the application for failure to verify",
+    "Give the $150 standard deduction anyway",
+    "Pend the case for 30 days",
+    "Discontinue the case at recertification"
+   ],
+   "evidence": [
+    "Failure to verify medical expenses is not a basis for denying or discontinuing a case. When a household does not verify medical expenses, they will not receive the deduction"
+   ]
+  },
+  {
+   "kind": "california",
+   "topic": "CA SMD cost neutrality",
+   "as_of": "2026-03-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-04-calfresh-standard-medical-deduction-demonstration-p.md"
+   ],
+   "stem": "To keep its Standard Medical Deduction project cost neutral to the federal government, what does California do?",
+   "options": [
+    "Reduces the standard utility allowance by $4 a month for all CalFresh households",
+    "Lowers the SMD for disabled members",
+    "Caps the shelter deduction for elderly households",
+    "Reduces maximum allotments by $4",
+    "Charges counties for the difference"
+   ],
+   "evidence": [
+    "The CDSS will continue to reduce the standard utility allowance (SUA) by $4 per month for all CalFresh households"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA weatherization SUA",
+   "as_of": "2025-10-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-68-calfresh-implementation-of-the-standard-utility-all.md"
+   ],
+   "stem": "A California household with a 70-year-old member lives in a 50-unit building. Six months ago, a weatherization program paid the landlord $2,000 for the building. Does that payment make the household eligible for the SUA?",
+   "options": [
+    "Yes: $2,000 divided by 50 units is $40, more than $20",
+    "No: weatherization payments never count",
+    "No: the payment went to the landlord, not the household",
+    "Yes, but only if the payment was in the current month",
+    "No: $2,000 must be divided by the number of residents"
+   ],
+   "evidence": [
+    "the CWD should divide the total value of the weatherization payment by the number of units in the multi-unit dwelling. If the resulting amount is greater than $20.00, it is a qualifying weatherization payment"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "CA weatherization SUA",
+   "as_of": "2025-10-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-68-calfresh-implementation-of-the-standard-utility-all.md"
+   ],
+   "stem": "A California household with a disabled member lives in a 150-unit building. A weatherization program paid the landlord $2,400 for the building three months ago. Does that payment qualify the household for the SUA?",
+   "options": [
+    "No: $2,400 divided by 150 units is $16, not more than $20",
+    "Yes: any weatherization payment on behalf of an elderly or disabled household qualifies",
+    "Yes: $2,400 is more than $20",
+    "No: only LIHEAP payments count",
+    "Yes, if the household pays any utility"
+   ],
+   "evidence": [
+    "divide the total value of the weatherization payment by the number of units in the multi-unit dwelling",
+    "If the resulting amount is greater than $20.00, it is a qualifying weatherization payment"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "CA SUAS excluded member",
+   "as_of": "2026-01-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-68-calfresh-implementation-of-the-standard-utility-all.md"
+   ],
+   "stem": "After H.R. 1, a California CalFresh household's only elderly member, a 66-year-old, is excluded from CalFresh as an ineligible member. Can the household still qualify for an SUAS payment on the basis of having an elderly member?",
+   "options": [
+    "Yes: an excluded or ineligible elderly or disabled member still qualifies the household, if otherwise eligible",
+    "No: the elderly member must be an eligible CalFresh member",
+    "No: SUAS ended for all households under H.R. 1",
+    "Yes, but only if he is also disabled",
+    "Only if he receives SSI"
+   ],
+   "evidence": [
+    "A CalFresh household that includes an elderly or disabled member who is excluded or ineligible for CalFresh qualifies the household for a SUAS payment, if otherwise eligible"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "SUA minimal heating costs",
+   "as_of": "2025-10-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-68-calfresh-implementation-of-the-standard-utility-all.md"
+   ],
+   "stem": "A California public housing resident is billed $8 a month for excess heating costs on top of her rent. Under the SUA final rule, which utility allowance must she get?",
+   "options": [
+    "The full SUA, because she incurs heating costs, even if minimal",
+    "The LUA, because she lives in public housing",
+    "None, because the costs are under $20",
+    "The TUA",
+    "Her actual $8"
+   ],
+   "evidence": [
+    "The State is now required to provide the SUA to all households that incur heating and cooling expenses, even if the costs are minimal"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "internet costs in SUA",
+   "as_of": "2025-11-01",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-25-68-calfresh-implementation-of-the-standard-utility-all.md"
+   ],
+   "stem": "The SUA final rule effective January 17, 2025 added basic internet costs to allowable shelter expenses. Does California's FFY 2026 SUA include basic internet costs?",
+   "options": [
+    "No: H.R. 1 prohibits including basic internet costs, and the approved FFY 2026 methodology excludes them",
+    "Yes: the final rule required it by October 1, 2025",
+    "Yes, but only for households with elderly members",
+    "Only through the LUA",
+    "Yes, until the rule is rescinded"
+   ],
+   "evidence": [
+    "Section 10104 (7 U.S.C. section 2014) of the Act now prohibits basic internet costs from being included in the calculation of SUA or qualification for LUA",
+    "which does not include basic internet costs"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "internet costs shelter",
+   "as_of": "2024-10-01",
+   "sources": [
+    "7 CFR 273.9(d)(6)(ii)"
+   ],
+   "stem": "Under 7 CFR 273.9 as in force on that date, can a household's monthly basic internet subscription fee be counted as a shelter cost for the excess shelter deduction?",
+   "options": [
+    "No: internet service fees are not among the listed utility costs",
+    "Yes: as a basic internet connection fee",
+    "Yes, but only through the LUA",
+    "Only for households with school-age children",
+    "Yes, up to $20 a month"
+   ],
+   "evidence": [
+    "all service fees required to provide service for one telephone"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "internet costs shelter",
+   "as_of": "2025-03-01",
+   "sources": [
+    "7 CFR 273.9(d)(6)(ii)"
+   ],
+   "stem": "Under 7 CFR 273.9 as in force on that date, can a household's monthly basic internet subscription fee be counted as a shelter cost for the excess shelter deduction?",
+   "options": [
+    "Yes: service fees for a basic internet connection are allowable utility costs",
+    "No: internet fees are never shelter costs",
+    "Only if the household pays no telephone bill",
+    "Only for households with an elderly member",
+    "No: only telephone fees are allowable"
+   ],
+   "evidence": [
+    "service fees associated with basic internet connection"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "internet costs shelter",
+   "as_of": "2025-11-01",
+   "sources": [
+    "Food and Nutrition Act Sec. 5(e)(6)"
+   ],
+   "stem": "Under the Food and Nutrition Act as in force on that date, can a household's internet service fee be used in computing the excess shelter deduction?",
+   "options": [
+    "No: the Act now bars any service fee for internet connection",
+    "Yes: the January 2025 regulation allows basic internet fees",
+    "Yes, but only through the SUA",
+    "Only for elderly or disabled households",
+    "Yes, up to the telephone allowance"
+   ],
+   "evidence": [
+    "Any service fee associated with internet connection shall not be used in computing the excess shelter expense deduction"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "LUA telephone",
+   "as_of": "2024-10-01",
+   "sources": [
+    "7 CFR 273.9(d)(6)(iii)"
+   ],
+   "stem": "Under 7 CFR 273.9 as in force on that date, which of these is listed as a cost included in the limited utility allowance (LUA)?",
+   "options": [
+    "Telephone",
+    "Heating fuel",
+    "Air conditioning",
+    "Internet service",
+    "Rent"
+   ],
+   "evidence": [
+    "limited utility allowance (LUA) that includes electricity and fuel for purposes other than heating or cooling, water, sewerage, well and septic tank installation and maintenance, telephone, and garbage or trash collection"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "federal administrative cost share",
+   "as_of": "2026-06-01",
+   "sources": [
+    "Food and Nutrition Act Sec. 16(a)"
+   ],
+   "stem": "Under the Food and Nutrition Act as in force on that date, what share of a state agency's SNAP administrative costs may the Secretary pay?",
+   "options": [
+    "50 percent",
+    "25 percent",
+    "75 percent",
+    "100 percent",
+    "35 percent"
+   ],
+   "evidence": [
+    "through fiscal year 2026, 50 percent, and for fiscal year 2027 and each fiscal year thereafter, 25 percent"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "federal administrative cost share",
+   "as_of": "2026-11-01",
+   "sources": [
+    "Food and Nutrition Act Sec. 16(a)"
+   ],
+   "stem": "Under the Food and Nutrition Act as in force on that date, what share of a state agency's SNAP administrative costs may the Secretary pay?",
+   "options": [
+    "25 percent",
+    "50 percent",
+    "75 percent",
+    "100 percent",
+    "15 percent"
+   ],
+   "evidence": [
+    "for fiscal year 2027 and each fiscal year thereafter, 25 percent"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "federal noncitizen eligibility",
+   "as_of": "2025-06-01",
+   "sources": [
+    "Food and Nutrition Act Sec. 6(f)"
+   ],
+   "stem": "Under Section 6(f) of the Food and Nutrition Act as in force on that date, which of these noncitizens is in a category the section lists as able to participate (if otherwise eligible)?",
+   "options": [
+    "A noncitizen whose deportation the Attorney General has withheld",
+    "A citizen of Palau living in the U.S. under a Compact of Free Association",
+    "A foreign student in the U.S. temporarily",
+    "A tourist",
+    "A diplomat"
+   ],
+   "evidence": [
+    "an alien within the United States as to whom the Attorney General has withheld deportation",
+    "No aliens other than the ones specifically described in clauses (B) through (F) of this subsection shall be eligible"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "federal noncitizen eligibility",
+   "as_of": "2026-01-15",
+   "sources": [
+    "Food and Nutrition Act Sec. 6(f)"
+   ],
+   "stem": "Under Section 6(f) of the Food and Nutrition Act as in force on that date, which of these noncitizens is in a category the section lists as able to participate (if otherwise eligible)?",
+   "options": [
+    "A citizen of the Marshall Islands lawfully living in the U.S. under a Compact of Free Association",
+    "A noncitizen whose deportation was withheld",
+    "A noncitizen paroled into the U.S. for humanitarian reasons (not a Cuban or Haitian entrant)",
+    "A conditional entrant",
+    "A refugee who is not a permanent resident"
+   ],
+   "evidence": [
+    "an individual who lawfully resides in the United States in accordance with a Compact of Free Association"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA early denial waiver",
+   "as_of": "2026-04-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-33-calfresh-waiver-modification-approval-deny-initial-.md"
+   ],
+   "stem": "In April 2026, a San Bernardino County CalFresh applicant does not return requested verification within ten days. Under the Early Denial Waiver, can San Bernardino deny the application before the 30th day?",
+   "options": [
+    "No: San Bernardino is authorized to use the waiver only from June 1, 2026",
+    "Yes: all counties have used it since May 1, 2024",
+    "Yes: it was added on April 20, 2026",
+    "No: no county may deny before the 30th day",
+    "Yes, after 20 days"
+   ],
+   "evidence": [
+    "Effective June 1, 2026, Alpine, San Benito, San Bernardino, Santa Barbara, and Sierra County are authorized to operate the Early Denial Waiver"
+   ]
+  },
+  {
+   "kind": "date",
+   "topic": "CA early denial waiver",
+   "as_of": "2026-07-15",
+   "sources": [
+    "benefits/ca/cdss-all-county-letter-26-33-calfresh-waiver-modification-approval-deny-initial-.md"
+   ],
+   "stem": "In July 2026, a Santa Barbara County CalFresh applicant does not return requested verification within ten days of the request. Can the county deny the application before the 30th day?",
+   "options": [
+    "Yes: Santa Barbara has operated the Early Denial Waiver since June 1, 2026",
+    "No: Santa Barbara is not a waiver county",
+    "No: denial must wait until the 30th day",
+    "Yes, but only after an agency conference",
+    "Only for expedited applications"
+   ],
+   "evidence": [
+    "Effective June 1, 2026, Alpine, San Benito, San Bernardino, Santa Barbara, and Sierra County are authorized to operate the Early Denial Waiver",
+    "deny an initial application prior to the 30th day when an applicant fails to provide the required verification within ten days of the request"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "benefit calculation FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "benefits/us/snap-cola-fy2026-income-eligibility-standards.md",
+    "7 CFR 273.9(a)",
+    "7 CFR 273.9(d)(2)",
+    "7 CFR 273.9(d)(6)(ii)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "A three-person household in one of the 48 states (no elderly or disabled members, not categorically eligible) has $2,700 a month in gross earnings and no other income. Its actual shelter costs, including utilities, are $1,102 a month. What is its monthly SNAP benefit?",
+   "options": [
+    "$237",
+    "$199",
+    "Ineligible: net income is over the limit",
+    "$785",
+    "$273"
+   ],
+   "evidence": [
+    "| 3 | $2,888 |",
+    "| 3 | $2,221 |",
+    "| 3 | $785 |",
+    "| 3 | $209 |",
+    "Twenty percent of gross earned income",
+    "in excess of 50 percent of the household's income after all other deductions",
+    "reduced by 30 percent of the household's net monthly income"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "elderly household income tests FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "benefits/us/snap-cola-fy2026-income-eligibility-standards.md",
+    "7 CFR 273.9(a)",
+    "7 CFR 273.9(d)(3)",
+    "7 CFR 273.9(d)(6)(ii)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "A two-person household in one of the 48 states (a 67-year-old and her 64-year-old husband, not categorically eligible) has $2,500 a month in Social Security, $300 a month in verified medical costs for the 67-year-old, and $1,400 a month in actual shelter costs. Is it eligible, and what is its monthly benefit?",
+   "options": [
+    "Eligible: $54",
+    "Ineligible: gross income is over $2,292",
+    "Ineligible: net income is over $1,763",
+    "Eligible: $24 (the minimum)",
+    "Eligible: $546"
+   ],
+   "evidence": [
+    "Households which contain an elderly or disabled member shall meet the net income eligibility standards",
+    "That portion of medical expenses in excess of $35 per month",
+    "If the household does not contain an elderly or disabled member",
+    "| 2 | $1,763 |",
+    "| 2 | $546 |"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "gross income test FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-income-eligibility-standards.md",
+    "7 CFR 273.9(a)"
+   ],
+   "stem": "A two-person household in one of the 48 states with no elderly or disabled members, not categorically eligible, has $2,400 a month in gross earnings and $1,500 in rent. Can it get SNAP?",
+   "options": [
+    "No: its gross income is over the $2,292 gross limit, whatever its deductions",
+    "Yes, because its net income after the shelter deduction is under $1,763",
+    "Yes: only the net income test applies",
+    "No: its net income is over $1,763",
+    "Yes, if it has under $3,000 in resources"
+   ],
+   "evidence": [
+    "Households which do not contain an elderly or disabled member shall meet both the net income eligibility standards and the gross income eligibility standards",
+    "| 2 | $2,292 |"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "minimum benefit FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "benefits/us/snap-cola-fy2026-minimum-allotments.md",
+    "benefits/us/snap-cola-fy2026-income-eligibility-standards.md",
+    "7 CFR 273.10(e)(2)(ii)(C)"
+   ],
+   "stem": "A 70-year-old living alone in one of the 48 states (not in an initial month) has $1,400 a month in Social Security and pays $700 rent, with no other expenses. Her net income is under the limit but 30 percent of it exceeds the one-person maximum. What benefit does she get?",
+   "options": [
+    "$24, the minimum allotment",
+    "$0",
+    "$298",
+    "$25",
+    "$12"
+   ],
+   "evidence": [
+    "except during an initial month, all eligible one-person and two-person households shall receive minimum monthly allotments",
+    "| 1-2 | $24 |",
+    "| 1 | $1,305 |",
+    "| 1 | $298 |"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "homeless shelter deduction FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "7 CFR 273.9(d)(2)",
+    "7 CFR 273.9(d)(6)(i)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "A homeless four-person household in one of the 48 states (not receiving free shelter; the state offers the homeless shelter deduction) has $1,500 a month in gross earnings and no shelter costs. What is its monthly SNAP benefit?",
+   "options": [
+    "$760",
+    "$700",
+    "$994",
+    "$759",
+    "$820"
+   ],
+   "evidence": [
+    "| 4 | $994 |",
+    "| 4 | $223 |",
+    "| $198.99 |",
+    "The deduction must be subtracted from net income",
+    "Twenty percent of gross earned income"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "dependent care benefit FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "7 CFR 273.9(d)(2)",
+    "7 CFR 273.9(d)(4)",
+    "7 CFR 273.9(d)(6)(ii)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "A single mother of two in one of the 48 states earns $2,000 a month and pays $400 a month in child care so she can work. Her rent, including utilities, is $1,002. No one is elderly or disabled. What is the household's monthly SNAP benefit?",
+   "options": [
+    "$639",
+    "$459",
+    "$785",
+    "$589",
+    "$695"
+   ],
+   "evidence": [
+    "Payments for dependent care when necessary for a household member to search for, accept or continue employment",
+    "| 3 | $785 |",
+    "| 3 | $209 |",
+    "in excess of 50 percent of the household's income after all other deductions"
+   ]
+  },
+  {
+   "kind": "combine",
+   "topic": "shelter cap FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "7 CFR 273.9(d)(2)",
+    "7 CFR 273.9(d)(6)(ii)",
+    "7 CFR 273.10(e)(2)(ii)(A)"
+   ],
+   "stem": "A four-person household in one of the 48 states (no elderly or disabled members) earns $2,500 a month and pays $1,800 a month in shelter costs including utilities. What is its monthly SNAP benefit?",
+   "options": [
+    "$684",
+    "$734",
+    "$994",
+    "$610",
+    "$655"
+   ],
+   "evidence": [
+    "| $744 |",
+    "| 4 | $994 |",
+    "| 4 | $223 |",
+    "the shelter deduction cannot exceed the maximum shelter deduction limit"
+   ]
+  },
+  {
+   "kind": "exception",
+   "topic": "medical deduction non-elderly",
+   "as_of": "2026-02-01",
+   "sources": [
+    "7 CFR 273.9(d)(3)"
+   ],
+   "stem": "A 45-year-old SNAP recipient who is not disabled has $300 a month in verified prescription costs. How much medical deduction does the household get?",
+   "options": [
+    "None: the excess medical deduction is only for elderly or disabled members",
+    "$265 (costs over $35)",
+    "$300",
+    "$150",
+    "$35"
+   ],
+   "evidence": [
+    "incurred by any household member who is elderly or disabled as defined in"
+   ]
+  },
+  {
+   "kind": "apply",
+   "topic": "net income test FY2026",
+   "as_of": "2026-02-01",
+   "sources": [
+    "benefits/us/snap-cola-fy2026-maximum-allotments-deductions.md",
+    "benefits/us/snap-cola-fy2026-income-eligibility-standards.md",
+    "7 CFR 273.9(a)",
+    "7 CFR 273.9(d)(6)(ii)"
+   ],
+   "stem": "A two-person household in one of the 48 states (no elderly or disabled members, not categorically eligible) has $2,200 a month in unemployment benefits and pays $500 a month rent including utilities. Is it eligible?",
+   "options": [
+    "No: it passes the gross test but its net income ($1,991) is over the $1,763 net limit",
+    "Yes: its gross income is under $2,292",
+    "No: its gross income is over the limit",
+    "Yes: its net income is $1,741",
+    "Yes, with the minimum benefit"
+   ],
+   "evidence": [
+    "| 2 | $2,292 |",
+    "| 2 | $1,763 |",
+    "| 2 | $209 |",
+    "shall meet both the net income eligibility standards and the gross income eligibility standards"
+   ]
+  }
+ ]
+}

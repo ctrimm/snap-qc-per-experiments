@@ -88,6 +88,12 @@ Pre-registered (this docstring, committed before the scored runs):
   Readouts vs auto/new/dated (filter), auto/new (undated) and notools.
   Exploratory.
 
+  AMENDMENT 5 (2026-10-16, exp95/exp96; before those runs): passages=true in agent mode attaches the same
+  top-5 get_passages excerpts as the auto arms (dated: as_of 2025-06-01, filter) to the question, with one
+  prompt sentence saying so (exp95: recipe + passages). guard=N (exp96): the react on_continue hook and
+  no-tools answer step from exp96_guard.py; message limit 40 for guarded runs. Defaults leave earlier arms
+  unchanged.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -97,7 +103,7 @@ import sys
 from pathlib import Path
 
 from inspect_ai import Task, task
-from inspect_ai.agent import react
+from inspect_ai.agent import AgentSubmit, as_solver, react
 from inspect_ai.dataset import Sample
 from inspect_ai.model import GenerateConfig
 from inspect_ai.scorer import Score, Target, mean, scorer, stderr
@@ -132,9 +138,9 @@ def _passages_fn(corpus: str):
     return server.get_passages
 
 
-def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter"):
+def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", passages: bool = False):
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
-    get_passages = _passages_fn(corpus) if mode == "auto" else None
+    get_passages = _passages_fn(corpus) if mode == "auto" or passages else None
     out = []
     for r in rows:
         q = r["question"].strip()
@@ -174,8 +180,9 @@ CORNELL_RECIPE = (" Follow these steps for every question: 1. call lookup_rule w
 
 @task
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
-                     date_mode: str = "filter", recipe: bool = False):
+                     date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
+    assert not (passages or guard) or mode == "agent"
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
                                   args=["mcp_server/server.py"], cwd=str(SPD),
@@ -183,11 +190,22 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
                                        "STATE_POLICY_DEFAULT_AS_OF": AS_OF if dated else ""})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
-        solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
+        if passages:
+            note = " Excerpts from official policy documents that may be relevant are included with the question; use them where they help."
+            prompt = prompt.replace(" Follow these steps", note + " Follow these steps") if recipe else prompt.replace(" If you are not certain", note + " If you are not certain")
+        if guard:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from exp96_guard import force_answer, guard_continue
+            solver = [as_solver(react(prompt=prompt, tools=[tools], attempts=1, submit=AgentSubmit(keep_in_messages=True),
+                                        on_continue=guard_continue(guard))),
+                      force_answer()]
+        else:
+            solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
     else:
         prompt = AUTO if mode == "auto" else BASE + ONE_LETTER
         if hint:
             prompt = prompt.replace(ONE_LETTER, HINT.strip() + " " + ONE_LETTER)
         solver = [system_message(prompt), generate()]
-    return Task(dataset=samples(mode, corpus, dated, date_mode), solver=solver, scorer=letter_match(), message_limit=30,
+    return Task(dataset=samples(mode, corpus, dated, date_mode, passages), solver=solver, scorer=letter_match(),
+                message_limit=40 if guard else 30,
                 config=GenerateConfig(temperature=0.0))

@@ -26,6 +26,12 @@ Pre-registered (this docstring, committed before the scored runs):
   questions. H3 auto arms beat notools overall.
   This set is ours: after this first run it may be used to tune retrieval (unlike the Cornell quiz).
 
+  AMENDMENT (2026-10-16, exp95/exp96; before those runs): arm agent_recipe_passages = agent_recipe plus the
+  auto_filter passages (top 5, as_of the question's date) attached to the question as in the auto arms (exp95).
+  Parameter guard=N (exp96): react on_continue hook from exp96_guard.py (budget message after N tool calls,
+  loop ends after N+2) and a final no-tools answer step when submit() was never called; message limit 40
+  for guarded runs so the answer step always runs. guard=0 (default) leaves every earlier arm unchanged.
+
 Run: inspect eval experiments/exp87_heldout_task.py@heldout --model openai/google/gemma-4-e4b -T arm=auto_filter
 """
 import json
@@ -35,7 +41,7 @@ import sys
 from pathlib import Path
 
 from inspect_ai import Task, task
-from inspect_ai.agent import react
+from inspect_ai.agent import AgentSubmit, as_solver, react
 from inspect_ai.dataset import Sample
 from inspect_ai.model import GenerateConfig
 from inspect_ai.scorer import Score, Target, mean, scorer, stderr
@@ -69,7 +75,7 @@ RECIPE = (" Follow these steps for every question. "
 def samples(arm: str, data: str = ""):
     rows = [json.loads(l) for l in open(HERE / data if data else DATA)]
     get_passages = None
-    if arm.startswith("auto"):
+    if arm.startswith("auto") or arm == "agent_recipe_passages":
         sys.path.insert(0, str(SPD))
         os.environ.setdefault("STATE_POLICY_CORPUS", str(SPD / "corpus"))
         from mcp_server import server
@@ -79,7 +85,7 @@ def samples(arm: str, data: str = ""):
         body = r["question"] + "\n\nAnswer with one letter."
         meta = {"category": r["category"], "as_of": r["as_of"], "gold_paths": r["gold_paths"], "retrieved": []}
         if get_passages:
-            kw = {} if arm == "auto_undated" else {"as_of": r["as_of"], "date_mode": "label" if arm == "auto_label" else "filter"}
+            kw = {} if arm == "auto_undated" else {"as_of": r["as_of"], "date_mode": "label" if arm == "auto_label" else "filter"}  # agent_recipe_passages: filter
             stem = r["question"].split("\nA. ")[0]
             ps = get_passages(stem, jurisdiction="ca", k=5, **kw)["passages"]
             meta["retrieved"] = [p["path"] for p in ps]
@@ -101,20 +107,31 @@ def letter_match():
 
 
 @task
-def heldout(arm: str = "notools", data: str = ""):
-    """data: a question file in experiments/ (default exp87_heldout.jsonl; exp90 uses exp90_hard.jsonl)."""
-    assert arm in ("notools", "auto_undated", "auto_filter", "auto_label", "agent", "agent_strict", "agent_recipe")
+def heldout(arm: str = "notools", data: str = "", guard: int = 0):
+    """data: a question file in experiments/ (default exp87_heldout.jsonl; exp90 uses exp90_hard.jsonl, exp94 exp94_hard.jsonl).
+    guard: exp96 answer guard (0 = off)."""
+    assert arm in ("notools", "auto_undated", "auto_filter", "auto_label", "agent", "agent_strict", "agent_recipe",
+                   "agent_recipe_passages")
     if arm.startswith("agent"):
         env = {"STATE_POLICY_CORPUS": str(SPD / "corpus")}
-        if arm in ("agent_strict", "agent_recipe"):  # exp91: as_of listed as required in the tool schemas
+        if arm in ("agent_strict", "agent_recipe", "agent_recipe_passages"):  # exp91: as_of required in the tool schemas
             env["STATE_POLICY_REQUIRE_AS_OF"] = "1"
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python") if (SPD / ".venv").exists()
                                   else str(HERE.parents[1] / "state-policy-docs/.venv/bin/python"),
                                   args=["mcp_server/server.py"], cwd=str(SPD), env=env)
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
-        prompt = AGENT.replace(" Look up the rule", RECIPE + " Look up the rule") if arm == "agent_recipe" else AGENT
-        solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
+        prompt = AGENT.replace(" Look up the rule", RECIPE + " Look up the rule") if arm.startswith("agent_recipe") else AGENT
+        if arm == "agent_recipe_passages":
+            prompt = prompt.replace(" Follow these steps", " Excerpts from official policy documents in force on the question's date are included with the question; use them where they help. Follow these steps")
+        if guard:
+            sys.path.insert(0, str(HERE))
+            from exp96_guard import force_answer, guard_continue
+            solver = [as_solver(react(prompt=prompt, tools=[tools], attempts=1, submit=AgentSubmit(keep_in_messages=True),
+                                        on_continue=guard_continue(guard))),
+                      force_answer()]
+        else:
+            solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
     else:
         solver = [system_message(AUTO if arm.startswith("auto") else BASE + ONE_LETTER), generate()]
-    return Task(dataset=samples(arm, data), solver=solver, scorer=letter_match(), message_limit=30,
+    return Task(dataset=samples(arm, data), solver=solver, scorer=letter_match(), message_limit=40 if guard else 30,
                 config=GenerateConfig(temperature=0.0))
