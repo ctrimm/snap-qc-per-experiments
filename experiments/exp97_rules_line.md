@@ -38,4 +38,35 @@ Texas was the first choice but can't be carded: in FY2022 only 1 of 866 Texas QC
 
 ### Results
 
-(pending)
+Run October 17, 01:05–02:05 (`snap-qc-data/derived/exp97/`, `exp97_results.json`). The 31B parsed all 1,034 judgments. Every citation resolved in the corpus on its case date.
+
+| 517 fresh cards | E2B (shipped, exp77) | E4B zero-shot |
+|---|---|---|
+| Pass all exp76 checks | **97.1%** | 76.4% |
+| Keeps odds and benefit | 100% | 0% |
+| Words | 70.6 | 47.4 |
+| Reading grade | 1.8 | 8.1 |
+| Detector found no part | 0% | 0% |
+| Filtered line, precision vs 31B | **100%** | 89.6% |
+| Filtered line, recall vs 31B | **100%** | 99.5% |
+| Filtered line, exact match | 100% | 74.9% |
+| Unfiltered ("All") line, precision | 100% | 73.8% |
+
+**Why E4B's filter over-lists:** E4B's notes open with the card's reason ("flagged because of earned income and shelter costs"), then tell the caseworker to check only one or two parts. The detector counts the reason sentence, so the line lists a part the note mentions but never says to check (shelter 60 times, earned 30, unearned 28). Misses are rare: 5, all child support. The E2B notes name every check part in its own sentence, so the filter and the full list agree.
+
+**Post-hoc (not pre-registered, same data):** running the detector only on the note's sentences that don't give the flag reason (no "flagged", "stand out" or "priority") gives:
+
+| Writer | Precision | Recall | Exact match |
+|---|---|---|---|
+| E4B | 97.8% | 99.1% | 93.6% |
+| E2B | 100% | 100% | 100% |
+
+It would need a fresh confirmation before it's adopted.
+
+### Verdict
+
+- **H1 held:** the shipped E2B passes all checks on 97.1% of fresh ID/UT/SD cards, above the 90% bar and above its PA/NY result (94%). It keeps the odds and benefit on every card.
+- **H2 held for E2B, failed for E4B:** E2B is at 100% / 100%. E4B's precision is 89.6% (recall 99.5%). The post-hoc sentence filter brings it to 97.8%.
+- **H3:** an unfiltered line cites a part the note never names on 26% of E4B's listed parts, and on none of E2B's.
+
+**For the pipeline:** with the shipped E2B writer, the code-appended "Rules:" line is correct on every fresh card, at grade-2 reading level, with no model-written rule text. That makes the cited flag card ready for the reviewer A/B. If another writer is ever used, add the reason-sentence filter and re-test it.

@@ -43,4 +43,54 @@ The guard is tested on 2–6 question smoke runs only. Two loop bugs were found 
 
 ### Results
 
-(pending)
+Both models passed the probe (`finish_reason=stop`). The unguarded rows are exp92's runs of the same model files. Bootstrap: 2,000 resamples, seed 96.
+
+**Cornell (500, agent, dated):**
+
+| E4B (bf16) | Accuracy | Unanswered | Answered by the forced step | Tool calls / q | get_section / q |
+|---|---|---|---|---|---|
+| Base, no guard (exp92) | 76.8% | 0 | — | 1.09 | 0.00 |
+| Base, guard 6 | 77.0% | 0 | 148 | 1.14 | 0.00 |
+| Fine-tuned, no guard (exp92) | 66.0% | 67 | — | 4.49 | 1.17 |
+| **Fine-tuned, guard 4** | **76.8%** | 0 | 500 | 3.34 | 0.69 |
+| Fine-tuned, guard 6 | 74.4% | 0 | 500 | 4.13 | 0.96 |
+| Fine-tuned, guard 8 | 75.2% | 0 | 500 | 4.68 | 1.24 |
+
+| Paired contrast | Difference (95% CI) |
+|---|---|
+| Fine-tuned guard 4 vs fine-tuned unguarded | +10.8 [+7.6, +14.4] |
+| Fine-tuned guard 6 vs fine-tuned unguarded | +8.4 [+5.0, +11.6] |
+| Fine-tuned guard 8 vs fine-tuned unguarded | +9.2 [+6.0, +12.6] |
+| Fine-tuned guard 4 vs base unguarded | 0.0 [−3.4, +3.4] |
+| Fine-tuned guard 6 vs base unguarded | −2.4 [−6.0, +1.2] |
+| Fine-tuned guard 8 vs base unguarded | −1.6 [−5.2, +1.8] |
+| Base guard 6 vs base unguarded | +0.2 [−2.4, +2.8] |
+
+**exp94 hard set (224, agent):**
+
+| E4B (bf16) | No guard | Guard 6 | Difference |
+|---|---|---|---|
+| Base | 78.1% (4 unanswered) | 79.0% | +0.9 [−4.0, +5.8] |
+| Fine-tuned | 75.0% (16 unanswered) | 77.2% | +2.2 [−2.2, +6.2] |
+
+Fine-tuned guard 6 vs base unguarded: −0.9 [−7.6, +5.8].
+
+**What the logs show:** the fine-tuned model never calls `submit()`. In all 1,724 guarded fine-tuned samples (three Cornell runs and one hard-set run) the forced step gave the answer; none has a submit call. It writes its answer as text ("B"), and react then urges it to call submit, again and again. That is exp92's whole failure mode.
+
+The cause is in exp92's training data:
+- `exp92_make_sft.py` built the training turns from the 31B's Inspect messages, and react removes the `submit()` call from those messages after it runs (`keep_in_messages` defaults to false).
+- So all 464 of the 1,028 training examples that end a trajectory teach a final answer in text. None teach a submit call, even though the submit tool is in every example's schema.
+
+The model learned exactly what it was shown. The base model calls submit on its own most of the time (forced on 148 of 500 Cornell questions).
+
+### Verdict
+
+- **H1 failed narrowly at the pre-registered N = 6:** −2.4 [−6.0, +1.2], against a bound of −2.
+- **At N = 4:** the fine-tuned model matches the base exactly (0.0 [−3.4, +3.4]), recovering the full 10.8 points.
+- **H2 held:** the guard doesn't hurt the base model (+0.2 on Cornell, +0.9 on the hard set).
+- **H3:** accuracy doesn't rise with a bigger budget. N = 4 is best, and N = 6 and 8 read more sections without scoring higher.
+
+**Conclusions:**
+- **exp92's verdict needs correcting.** Its loss came from a training-data conversion bug (submit calls stripped), not from the model looping while searching. With answers recovered, the fine-tuned model is as accurate as the base, and it still reads the cited sections more (0.69–1.24 per question vs 0.00).
+- **Reading is still not accuracy:** on these sets, opening the rule didn't make the 4B model more accurate. That part of exp92's conclusion stands.
+- **No re-distillation planned:** exp95's recipe + passages (no training) is far ahead on the hard set (88.8% vs 77.2% for the guarded fine-tune) and level on Cornell (76.4% vs 76.8%; different builds, Q4 vs bf16), so the fine-tune isn't worth redoing for now. If it is, rebuild the SFT data with `AgentSubmit(keep_in_messages=True)` so final turns are submit calls.

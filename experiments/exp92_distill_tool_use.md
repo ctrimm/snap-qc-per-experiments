@@ -100,3 +100,17 @@ The computation gain on exp87 (+41 points, with no calculator training) and the 
 3. Include trajectories that stop early with an answer.
 
 Then re-run the same pre-registered evaluation once.
+
+### Correction (2026-10-17, from exp96)
+
+The diagnosis above, search loops hitting the message limit, describes the symptom, not the cause.
+
+exp96 found that the fine-tuned model never calls `submit()`: it writes the answer as text, and react keeps urging it to submit until the message limit. The training data taught this.
+- `exp92_make_sft.py` read the 31B's Inspect messages, from which react had removed the submit call.
+- So none of the 1,028 training examples contains a submit call, and the 464 final turns are text answers.
+
+**With exp96's guard** (a forced one-letter answer after 4 tool calls), the fine-tuned model scores 76.8% on Cornell, exactly the base model's accuracy (0.0 [−3.4, +3.4]), and still reads the cited sections. The verdict changes:
+- **Old:** "did not hold because it loops."
+- **New:** "did not hold, because of a data-conversion bug. With answers recovered it matches the base, with no accuracy gain from reading."
+
+See [exp96](exp96_answer_guard.md).

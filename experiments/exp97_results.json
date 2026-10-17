@@ -1,0 +1,32 @@
+{
+ "cards": 517,
+ "citations_resolve": 1.0,
+ "e2b": {
+  "notes": 517,
+  "pass_all_checks": 0.971,
+  "keeps_odds_and_benefit": 1.0,
+  "words": 70.6,
+  "grade": 1.8,
+  "detector_found_nothing": 0.0,
+  "judged": 517,
+  "unparsed_judgments": 0,
+  "filtered_precision": 1.0,
+  "filtered_recall": 1.0,
+  "filtered_exact_match": 1.0,
+  "all_line_precision": 1.0
+ },
+ "e4b": {
+  "notes": 517,
+  "pass_all_checks": 0.764,
+  "keeps_odds_and_benefit": 0.0,
+  "words": 47.4,
+  "grade": 8.1,
+  "detector_found_nothing": 0.0,
+  "judged": 517,
+  "unparsed_judgments": 0,
+  "filtered_precision": 0.896,
+  "filtered_recall": 0.995,
+  "filtered_exact_match": 0.749,
+  "all_line_precision": 0.738
+ }
+}
