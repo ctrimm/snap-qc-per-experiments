@@ -94,6 +94,12 @@ Pre-registered (this docstring, committed before the scored runs):
   no-tools answer step from exp96_guard.py; message limit 40 for guarded runs. Defaults leave earlier arms
   unchanged.
 
+  AMENDMENT 6 (2026-10-17, exp98; before those runs): as_of=YYYY-MM-DD overrides the 2025-06-01 date for
+  passages and the server default (implies dated). verify=true adds one no-tools step after the agent: the
+  model is asked to check its answer once and reply with one letter; the pre-check letter is kept in
+  metadata["pre_verify"] so both are scored from the same run. Reasoning effort is set on the command line
+  (--reasoning-effort high). Defaults leave earlier arms unchanged.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -105,9 +111,9 @@ from pathlib import Path
 from inspect_ai import Task, task
 from inspect_ai.agent import AgentSubmit, as_solver, react
 from inspect_ai.dataset import Sample
-from inspect_ai.model import GenerateConfig
+from inspect_ai.model import ChatMessageUser, GenerateConfig, get_model
 from inspect_ai.scorer import Score, Target, mean, scorer, stderr
-from inspect_ai.solver import TaskState, generate, system_message
+from inspect_ai.solver import TaskState, generate, solver, system_message
 from inspect_ai.tool import mcp_server_stdio, mcp_tools
 
 DATA = Path.home() / "datasets/snap_scenarios/snap_scenarios.csv"
@@ -138,7 +144,7 @@ def _passages_fn(corpus: str):
     return server.get_passages
 
 
-def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", passages: bool = False):
+def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", passages: bool = False, as_of: str = AS_OF):
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
     get_passages = _passages_fn(corpus) if mode == "auto" or passages else None
     out = []
@@ -148,7 +154,7 @@ def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", pass
         meta = {"error_element": r.get("error_element", ""), "passages": []}
         if get_passages:
             kw = {"date_mode": date_mode} if corpus == "dates" else {}
-            ps = get_passages(q, jurisdiction="ca", k=5, as_of=AS_OF if dated else "", **kw)["passages"]
+            ps = get_passages(q, jurisdiction="ca", k=5, as_of=as_of if dated else "", **kw)["passages"]
             meta["passages"] = [p["citation"] for p in ps]
             ctx = "\n\n".join(f"[{i + 1}] {p['citation']} ({p['document']}; in force from {p['effective_from'] or 'n/a'})\n"
                               f"{p['text']}" for i, p in enumerate(ps))
@@ -178,16 +184,40 @@ CORNELL_RECIPE = (" Follow these steps for every question: 1. call lookup_rule w
                   "4. answer from what the tools returned.")
 
 
+VERIFY = ("Check your answer once before it is final. Re-read the client details and the question, and look again at "
+          "the rule text and tool results above. If they contradict the option you chose, or another option fits the "
+          "rules and the client's details better, choose that one; otherwise keep your answer. Reply with EXACTLY one "
+          "letter: A, B, C, D or E. Nothing else.")
+
+
+@solver
+def verify_answer():
+    async def solve(state: TaskState, generate):
+        found = re.findall(r"\b([A-E])\b", (state.output.completion or "").upper())
+        state.metadata["pre_verify"] = found[-1] if found else None
+        state.messages.append(ChatMessageUser(content=VERIFY))
+        out = await get_model().generate(state.messages, tools=[])
+        state.messages.append(out.message)
+        state.output = out
+        return state
+    return solve
+
+
 @task
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
-                     date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0):
+                     date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0,
+                     as_of: str = "", verify: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
-    assert not (passages or guard) or mode == "agent"
+    assert not (passages or guard or verify) or mode == "agent"
+    as_of = str(as_of) if as_of else ""  # -T as_of=2026-06-01 arrives as a date
+    if as_of:
+        dated = True
+    when = as_of or AS_OF
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
                                   args=["mcp_server/server.py"], cwd=str(SPD),
                                   env={"STATE_POLICY_CORPUS": str(CORPORA[corpus]),
-                                       "STATE_POLICY_DEFAULT_AS_OF": AS_OF if dated else ""})
+                                       "STATE_POLICY_DEFAULT_AS_OF": when if dated else ""})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
         if passages:
@@ -201,11 +231,13 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
                       force_answer()]
         else:
             solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
+        if verify:
+            solver = [*(solver if isinstance(solver, list) else [as_solver(solver)]), verify_answer()]
     else:
         prompt = AUTO if mode == "auto" else BASE + ONE_LETTER
         if hint:
             prompt = prompt.replace(ONE_LETTER, HINT.strip() + " " + ONE_LETTER)
         solver = [system_message(prompt), generate()]
-    return Task(dataset=samples(mode, corpus, dated, date_mode, passages), solver=solver, scorer=letter_match(),
+    return Task(dataset=samples(mode, corpus, dated, date_mode, passages, when), solver=solver, scorer=letter_match(),
                 message_limit=40 if guard else 30,
                 config=GenerateConfig(temperature=0.0))
