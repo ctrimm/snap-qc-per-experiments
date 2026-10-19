@@ -100,6 +100,11 @@ Pre-registered (this docstring, committed before the scored runs):
   metadata["pre_verify"] so both are scored from the same run. Reasoning effort is set on the command line
   (--reasoning-effort high). Defaults leave earlier arms unchanged.
 
+  AMENDMENT 7 (2026-10-19, exp100; before those runs): supersession=true serves the rule tools with the
+  supersession notes of state-policy-docs (STATE_POLICY_SUPERSESSION=1; every earlier run had none, so the
+  default passes 0); precedence=true adds one general prompt sentence (statute and newer state guidance
+  over an older regulation); subset=citizenship limits the data to the 34 citizenship questions.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -144,8 +149,11 @@ def _passages_fn(corpus: str):
     return server.get_passages
 
 
-def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", passages: bool = False, as_of: str = AS_OF):
+def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", passages: bool = False, as_of: str = AS_OF,
+            subset: str = ""):
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
+    if subset == "citizenship":
+        rows = [r for r in rows if r.get("error_element", "").startswith("Citizenship")]
     get_passages = _passages_fn(corpus) if mode == "auto" or passages else None
     out = []
     for r in rows:
@@ -206,20 +214,25 @@ def verify_answer():
 @task
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
                      date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0,
-                     as_of: str = "", verify: bool = False):
+                     as_of: str = "", verify: bool = False, supersession: bool = False, precedence: bool = False,
+                     subset: str = ""):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     assert not (passages or guard or verify) or mode == "agent"
     as_of = str(as_of) if as_of else ""  # -T as_of=2026-06-01 arrives as a date
     if as_of:
         dated = True
     when = as_of or AS_OF
+    os.environ["STATE_POLICY_SUPERSESSION"] = "1" if supersession else "0"  # in-process passages (auto/passages arms)
     if mode == "agent":
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python"),
                                   args=["mcp_server/server.py"], cwd=str(SPD),
                                   env={"STATE_POLICY_CORPUS": str(CORPORA[corpus]),
-                                       "STATE_POLICY_DEFAULT_AS_OF": when if dated else ""})
+                                       "STATE_POLICY_DEFAULT_AS_OF": when if dated else "",
+                                       "STATE_POLICY_SUPERSESSION": "1" if supersession else "0"})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
+        if precedence:
+            prompt = prompt.replace(" When you have the answer", " When a statute or newer state guidance conflicts with an older regulation, follow the newer rule: a regulation can stay out of date until it is amended, and tool results flag text that a statute has changed (superseded_in_part)." + " When you have the answer")
         if passages:
             note = " Excerpts from official policy documents that may be relevant are included with the question; use them where they help."
             prompt = prompt.replace(" Follow these steps", note + " Follow these steps") if recipe else prompt.replace(" If you are not certain", note + " If you are not certain")
@@ -238,6 +251,6 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
         if hint:
             prompt = prompt.replace(ONE_LETTER, HINT.strip() + " " + ONE_LETTER)
         solver = [system_message(prompt), generate()]
-    return Task(dataset=samples(mode, corpus, dated, date_mode, passages, when), solver=solver, scorer=letter_match(),
+    return Task(dataset=samples(mode, corpus, dated, date_mode, passages, when, subset), solver=solver, scorer=letter_match(),
                 message_limit=40 if guard else 30,
                 config=GenerateConfig(temperature=0.0))

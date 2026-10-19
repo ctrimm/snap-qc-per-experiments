@@ -32,6 +32,10 @@ Pre-registered (this docstring, committed before the scored runs):
   loop ends after N+2) and a final no-tools answer step when submit() was never called; message limit 40
   for guarded runs so the answer step always runs. guard=0 (default) leaves every earlier arm unchanged.
 
+  AMENDMENT (2026-10-19, exp100): supersession=true serves the tools with state-policy-docs' supersession notes
+  (default false passes STATE_POLICY_SUPERSESSION=0, as every earlier run had none); precedence=true adds one
+  general prompt sentence; category=A|B keeps only questions whose category contains A or B (case-insensitive).
+
 Run: inspect eval experiments/exp87_heldout_task.py@heldout --model openai/google/gemma-4-e4b -T arm=auto_filter
 """
 import json
@@ -72,8 +76,10 @@ RECIPE = (" Follow these steps for every question. "
           "4. Answer only from what the tools returned.")
 
 
-def samples(arm: str, data: str = ""):
+def samples(arm: str, data: str = "", category: str = ""):
     rows = [json.loads(l) for l in open(HERE / data if data else DATA)]
+    if category:
+        rows = [r for r in rows if any(c.strip().lower() in r["category"].lower() for c in category.split("|"))]
     get_passages = None
     if arm.startswith("auto") or arm == "agent_recipe_passages":
         sys.path.insert(0, str(SPD))
@@ -107,13 +113,15 @@ def letter_match():
 
 
 @task
-def heldout(arm: str = "notools", data: str = "", guard: int = 0):
+def heldout(arm: str = "notools", data: str = "", guard: int = 0, supersession: bool = False, precedence: bool = False,
+            category: str = ""):
     """data: a question file in experiments/ (default exp87_heldout.jsonl; exp90 uses exp90_hard.jsonl, exp94 exp94_hard.jsonl).
     guard: exp96 answer guard (0 = off)."""
     assert arm in ("notools", "auto_undated", "auto_filter", "auto_label", "agent", "agent_strict", "agent_recipe",
                    "agent_recipe_passages")
+    os.environ["STATE_POLICY_SUPERSESSION"] = "1" if supersession else "0"
     if arm.startswith("agent"):
-        env = {"STATE_POLICY_CORPUS": str(SPD / "corpus")}
+        env = {"STATE_POLICY_CORPUS": str(SPD / "corpus"), "STATE_POLICY_SUPERSESSION": "1" if supersession else "0"}
         if arm in ("agent_strict", "agent_recipe", "agent_recipe_passages"):  # exp91: as_of required in the tool schemas
             env["STATE_POLICY_REQUIRE_AS_OF"] = "1"
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python") if (SPD / ".venv").exists()
@@ -121,6 +129,8 @@ def heldout(arm: str = "notools", data: str = "", guard: int = 0):
                                   args=["mcp_server/server.py"], cwd=str(SPD), env=env)
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" Look up the rule", RECIPE + " Look up the rule") if arm.startswith("agent_recipe") else AGENT
+        if precedence:
+            prompt = prompt.replace(" Look up the rule", " When a statute or newer state guidance conflicts with an older regulation, follow the newer rule: a regulation can stay out of date until it is amended, and tool results flag text that a statute has changed (superseded_in_part)." + " Look up the rule")
         if arm == "agent_recipe_passages":
             prompt = prompt.replace(" Follow these steps", " Excerpts from official policy documents in force on the question's date are included with the question; use them where they help. Follow these steps")
         if guard:
@@ -133,5 +143,5 @@ def heldout(arm: str = "notools", data: str = "", guard: int = 0):
             solver = react(prompt=prompt, tools=[tools], attempts=1, submit=True)
     else:
         solver = [system_message(AUTO if arm.startswith("auto") else BASE + ONE_LETTER), generate()]
-    return Task(dataset=samples(arm, data), solver=solver, scorer=letter_match(), message_limit=40 if guard else 30,
+    return Task(dataset=samples(arm, data, category), solver=solver, scorer=letter_match(), message_limit=40 if guard else 30,
                 config=GenerateConfig(temperature=0.0))
