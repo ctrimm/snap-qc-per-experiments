@@ -10,7 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import exp94_96_analyze as A  # noqa: E402
-from exp99_analyze import fmt, pre_rows  # noqa: E402
+from exp99_analyze import EXP99_PARTS, fmt, load_parts, pre_rows  # noqa: E402
 
 VAULT = Path.home() / "Documents/Obsidian Vault/Labs/2026-10-19 snap-qc exp100 supersession notes.md"
 
@@ -20,11 +20,11 @@ def main():
             "Cornell 34 citizenship: baseline": "exp100_logs/cit_baseline",
             "Cornell 34 citizenship: notes + precedence": "exp100_logs/cit_notes",
             "Cornell 500: notes + precedence, after check": "exp100_logs/full_notes_verify",
-            "exp98-3: 31B agent 2026 (no notes)": "exp98_logs/31b_agent_2026",
-            "exp99: 31B agent 2026, after check": "exp99_logs/31b_agent_2026_verify"}
+            "exp98-3: 31B agent 2026 (no notes)": "exp98_logs/31b_agent_2026"}
     data = {k: A.load(v) for k, v in arms.items()}
+    data["exp99: 31B agent 2026, after check"] = load_parts(EXP99_PARTS)
     data["Cornell 500: notes + precedence, before check"] = pre_rows("exp100_logs/full_notes_verify")
-    data["exp99: before check"] = pre_rows("exp99_logs/31b_agent_2026_verify")
+    data["exp99: before check"] = load_parts(EXP99_PARTS, pre=True)
     t = ["| Arm | n | Accuracy |", "|---|---|---|"]
     res = {"arms": {}, "pairs": {}}
     for k, r in data.items():

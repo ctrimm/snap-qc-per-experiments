@@ -36,14 +36,41 @@
    "difficulty3": 81.3,
    "n": 500
   },
+  "exp99: 31B agent, 2026-06-01, after check": {
+   "accuracy": 92.6,
+   "citizenship": 77.8,
+   "difficulty3": 85.7,
+   "n": 270
+  },
   "exp98-4: before check": {
    "accuracy": 86.4,
    "citizenship": 76.5,
    "difficulty3": 77.3,
    "n": 500
+  },
+  "exp99: before check": {
+   "accuracy": 93.0,
+   "citizenship": 83.3,
+   "difficulty3": 88.1,
+   "n": 270
   }
  },
  "pairs": {
+  "exp99: 31B agent, 2026-06-01, after check \u2212 exp99: before check": [
+   -0.4,
+   -1.5,
+   0.7
+  ],
+  "exp99: 31B agent, 2026-06-01, after check \u2212 exp98-3: 31B agent, 2026-06-01": [
+   0.0,
+   -2.6,
+   2.6
+  ],
+  "exp99: 31B agent, 2026-06-01, after check \u2212 exp86: 31B agent, dated 2025-06-01": [
+   0.4,
+   -2.6,
+   3.0
+  ],
   "exp98-4: 31B agent + passages + thinking, 2026-06-01, after check \u2212 exp98-4: before check": [
    2.8,
    1.4,
@@ -71,6 +98,10 @@
   ]
  },
  "flips": {
+  "exp99": {
+   "wrong_to_right": 1,
+   "right_to_wrong": 2
+  },
   "exp98-4": {
    "wrong_to_right": 14,
    "right_to_wrong": 0
