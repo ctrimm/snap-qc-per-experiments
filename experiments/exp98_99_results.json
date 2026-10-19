@@ -1,0 +1,79 @@
+{
+ "arms": {
+  "exp86: 31B agent, dated 2025-06-01": {
+   "accuracy": 88.8,
+   "citizenship": 73.5,
+   "difficulty3": 73.3,
+   "n": 500
+  },
+  "exp86: 31B no tools": {
+   "accuracy": 84.0,
+   "citizenship": 67.6,
+   "difficulty3": 65.3,
+   "n": 500
+  },
+  "exp98-1: E4B recipe + passages, 2026-06-01": {
+   "accuracy": 77.0,
+   "citizenship": 70.6,
+   "difficulty3": 72.0,
+   "n": 500
+  },
+  "exp98-2: 31B no tools, thinking high": {
+   "accuracy": 85.8,
+   "citizenship": 67.6,
+   "difficulty3": 66.7,
+   "n": 500
+  },
+  "exp98-3: 31B agent, 2026-06-01": {
+   "accuracy": 89.6,
+   "citizenship": 70.6,
+   "difficulty3": 72.0,
+   "n": 500
+  },
+  "exp98-4: 31B agent + passages + thinking, 2026-06-01, after check": {
+   "accuracy": 89.2,
+   "citizenship": 85.3,
+   "difficulty3": 81.3,
+   "n": 500
+  },
+  "exp98-4: before check": {
+   "accuracy": 86.4,
+   "citizenship": 76.5,
+   "difficulty3": 77.3,
+   "n": 500
+  }
+ },
+ "pairs": {
+  "exp98-4: 31B agent + passages + thinking, 2026-06-01, after check \u2212 exp98-4: before check": [
+   2.8,
+   1.4,
+   4.2
+  ],
+  "exp98-4: 31B agent + passages + thinking, 2026-06-01, after check \u2212 exp98-3: 31B agent, 2026-06-01": [
+   -0.4,
+   -3.2,
+   2.4
+  ],
+  "exp98-3: 31B agent, 2026-06-01 \u2212 exp86: 31B agent, dated 2025-06-01": [
+   0.8,
+   -1.4,
+   2.8
+  ],
+  "exp98-2: 31B no tools, thinking high \u2212 exp86: 31B no tools": [
+   1.8,
+   -0.8,
+   4.4
+  ],
+  "exp98-1: E4B recipe + passages, 2026-06-01 \u2212 exp95 (2025-06-01)": [
+   0.6,
+   -2.8,
+   4.0
+  ]
+ },
+ "flips": {
+  "exp98-4": {
+   "wrong_to_right": 14,
+   "right_to_wrong": 0
+  }
+ }
+}

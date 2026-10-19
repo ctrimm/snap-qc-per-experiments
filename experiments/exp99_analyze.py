@@ -29,7 +29,7 @@ def pre_rows(logdir):
     log = read_eval_log(fs[-1])
     if log.status != "success":
         return None
-    return {str(s.id): {"ok": float(s.metadata.get("pre_verify") == s.target)} for s in log.samples}
+    return {str(s.id): {"ok": float((s.metadata or {}).get("pre_verify") == s.target)} for s in log.samples}
 
 
 def sub(r, key):

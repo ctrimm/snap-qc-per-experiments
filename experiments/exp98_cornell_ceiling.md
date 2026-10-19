@@ -63,7 +63,7 @@ Bootstrap: 2,000 resamples, seed 98, paired against the earlier runs named above
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-Scored 2026-10-19 08:21 by `exp99_analyze.py` (aggregate only). Reference: GPT-6 Astra, untuned baseline, 92.2% (Nava PBC).
+Scored 2026-10-19 10:14 by `exp99_analyze.py` (aggregate only). Reference: GPT-6 Astra, untuned baseline, 92.2% (Nava PBC).
 
 | Arm | Accuracy | Citizenship (34) | Difficulty 3 (75) |
 |---|---|---|---|
@@ -72,14 +72,18 @@ Scored 2026-10-19 08:21 by `exp99_analyze.py` (aggregate only). Reference: GPT-6
 | exp98-1: E4B recipe + passages, 2026-06-01 | 77.0% | 70.6% | 72.0% |
 | exp98-2: 31B no tools, thinking high | 85.8% | 67.6% | 66.7% |
 | exp98-3: 31B agent, 2026-06-01 | 89.6% | 70.6% | 72.0% |
+| exp98-4: 31B agent + passages + thinking, 2026-06-01, after check | 89.2% | 85.3% | 81.3% |
+| exp98-4: before check | 86.4% | 76.5% | 77.3% |
 
 | Paired contrast (95% CI, 2,000 resamples) | Difference |
 |---|---|
+| exp98-4: 31B agent + passages + thinking, 2026-06-01, after check − exp98-4: before check | +2.8 [+1.4, +4.2] |
+| exp98-4: 31B agent + passages + thinking, 2026-06-01, after check − exp98-3: 31B agent, 2026-06-01 | -0.4 [-3.2, +2.4] |
 | exp98-3: 31B agent, 2026-06-01 − exp86: 31B agent, dated 2025-06-01 | +0.8 [-1.4, +2.8] |
 | exp98-2: 31B no tools, thinking high − exp86: 31B no tools | +1.8 [-0.8, +4.4] |
 | exp98-1: E4B recipe + passages, 2026-06-01 − exp95 (2025-06-01) | +0.6 [-2.8, +4.0] |
 
-
+- **exp98-4:** the check changed 14 wrong answers to right and 0 right answers to wrong.
 
 Best arm: **exp98-3: 31B agent, 2026-06-01, 89.6%**.
 <!-- AUTO-RESULTS:END -->

@@ -31,6 +31,11 @@ def load(logdir):
         return None
     rows = {}
     for s in log.samples:
+        if not s.scores:  # sample ended in an error without a score: counts as wrong, unanswered
+            rows[str(s.id)] = {"ok": 0.0, "kind": (s.metadata or {}).get("category", "").split(":")[0], "answered": False,
+                               "limit": s.limit is not None, "forced": (s.metadata or {}).get("forced"), "calls": collections.Counter(),
+                               "errored": True}
+            continue
         sc = list(s.scores.values())[0]
         calls = collections.Counter(tc.function for m in s.messages if m.role == "assistant" for tc in (m.tool_calls or [])
                                     if tc.function != "submit")
