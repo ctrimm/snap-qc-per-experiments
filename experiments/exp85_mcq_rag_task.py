@@ -105,6 +105,10 @@ Pre-registered (this docstring, committed before the scored runs):
   default passes 0); precedence=true adds one general prompt sentence (statute and newer state guidance
   over an older regulation); subset=citizenship limits the data to the 34 citizenship questions.
 
+  AMENDMENT 8 (2026-10-20, exp101; before those runs): date_in_prompt=true adds "Answer under the rules in
+  force on <Month D, YYYY>." (the as_of date) to the system prompt. exp100 found the model reads dated
+  notes ("California applies from April 1, 2026") as the future because it is never told the date.
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -215,7 +219,7 @@ def verify_answer():
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
                      date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0,
                      as_of: str = "", verify: bool = False, supersession: bool = False, precedence: bool = False,
-                     subset: str = ""):
+                     subset: str = "", date_in_prompt: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     assert not (passages or guard or verify) or mode == "agent"
     as_of = str(as_of) if as_of else ""  # -T as_of=2026-06-01 arrives as a date
@@ -231,6 +235,9 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
                                        "STATE_POLICY_SUPERSESSION": "1" if supersession else "0"})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
+        if date_in_prompt:
+            from datetime import date as _d
+            prompt = prompt.replace(BASE, BASE + f"Answer under the rules in force on {_d.fromisoformat(when):%B %-d, %Y}. ", 1)
         if precedence:
             prompt = prompt.replace(" When you have the answer", " When a statute or newer state guidance conflicts with an older regulation, follow the newer rule: a regulation can stay out of date until it is amended, and tool results flag text that a statute has changed (superseded_in_part)." + " When you have the answer")
         if passages:

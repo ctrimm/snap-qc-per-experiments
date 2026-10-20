@@ -130,6 +130,7 @@ transfer, LM eval) every experiment here must move.
 | 98 | [How far can Gemma 4 go on the Cornell quiz?](experiments/exp98_cornell_ceiling.md) | LM gate | **Queued** — audit of the 22 always-wrong questions: 6 noncitizen keys follow post-H.R. 1 rules (the quiz isn't wholly pre-H.R. 1; its SUA is FFY2026's), 4 California rules not applied, 5 disputable keys (ceiling ≈ 99%). Arms: 31B thinking, date 2026-06-01 (post-hoc), passages + verify |
 | 99 | [The answer check on the plain dated 31B agent](experiments/exp99_verify_plain_agent.md) | LM gate | **Queued** — 31B agent dated 2026-06-01 + one no-tools check step (scored before and after the check in one run); target GPT-6's untuned 92.2% |
 | 100 | [Telling the model when a statute has overtaken the regulation](experiments/exp100_supersession_notes.md) | LM gate | **Queued** — state-policy-docs supersession notes (7 CFR 273.4 / MPP 63-405 after P.L. 119-21, plus ABAWD, LIHEAP SUA, internet) + a general precedence sentence; dev on our 28 noncitizen questions, then Cornell citizenship (34) and all 500 with the check step |
+| 101 | [Telling the model the date](experiments/exp101_date_in_prompt.md) | LM gate | **Queued** — exp100's notes were read as "the far future" (the prompt never states the date); one sentence with the as_of date, on the 34 citizenship questions and all 500 |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix
