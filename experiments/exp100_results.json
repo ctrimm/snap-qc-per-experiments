@@ -1,0 +1,67 @@
+{
+ "arms": {
+  "dev 28: baseline": {
+   "n": 28,
+   "accuracy": 96.4
+  },
+  "dev 28: notes + precedence": {
+   "n": 28,
+   "accuracy": 96.4
+  },
+  "Cornell 34 citizenship: baseline": {
+   "n": 34,
+   "accuracy": 70.6
+  },
+  "Cornell 34 citizenship: notes + precedence": {
+   "n": 34,
+   "accuracy": 67.6
+  },
+  "Cornell 500: notes + precedence, after check": {
+   "n": 500,
+   "accuracy": 89.0
+  },
+  "exp98-3: 31B agent 2026 (no notes)": {
+   "n": 500,
+   "accuracy": 89.6
+  },
+  "exp99: 31B agent 2026, after check": {
+   "n": 270,
+   "accuracy": 92.6
+  },
+  "Cornell 500: notes + precedence, before check": {
+   "n": 500,
+   "accuracy": 88.6
+  },
+  "exp99: before check": {
+   "n": 270,
+   "accuracy": 93.0
+  }
+ },
+ "pairs": {
+  "dev 28: notes + precedence \u2212 dev 28: baseline": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "Cornell 34 citizenship: notes + precedence \u2212 Cornell 34 citizenship: baseline": [
+   -2.9,
+   -11.8,
+   5.9
+  ],
+  "Cornell 500: notes + precedence, before check \u2212 exp98-3: 31B agent 2026 (no notes)": [
+   -1.0,
+   -3.0,
+   1.0
+  ],
+  "Cornell 500: notes + precedence, after check \u2212 exp99: 31B agent 2026, after check": [
+   -0.4,
+   -2.6,
+   2.2
+  ],
+  "Cornell 500: notes + precedence, after check \u2212 Cornell 500: notes + precedence, before check": [
+   0.4,
+   -0.4,
+   1.2
+  ]
+ }
+}

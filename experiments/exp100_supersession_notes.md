@@ -47,5 +47,27 @@ Bootstrap: 2,000 resamples, seed 100. Arms 1 and 2 are run the same day, so thei
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending: filled in by `exp100_analyze.py` when the runs finish)
+Scored 2026-10-20 17:39 by `exp100_analyze.py` (aggregate only).
+
+| Arm | n | Accuracy |
+|---|---|---|
+| dev 28: baseline | 28 | 96.4% |
+| dev 28: notes + precedence | 28 | 96.4% |
+| Cornell 34 citizenship: baseline | 34 | 70.6% |
+| Cornell 34 citizenship: notes + precedence | 34 | 67.6% |
+| Cornell 500: notes + precedence, after check | 500 | 89.0% |
+| exp98-3: 31B agent 2026 (no notes) | 500 | 89.6% |
+| exp99: 31B agent 2026, after check | 270 | 92.6% |
+| Cornell 500: notes + precedence, before check | 500 | 88.6% |
+| exp99: before check | 270 | 93.0% |
+
+| Paired contrast (95% CI) | Difference |
+|---|---|
+| dev 28: notes + precedence − dev 28: baseline (n = 28) | +0.0 [+0.0, +0.0] |
+| Cornell 34 citizenship: notes + precedence − Cornell 34 citizenship: baseline (n = 34) | -2.9 [-11.8, +5.9] |
+| Cornell 500: notes + precedence, before check − exp98-3: 31B agent 2026 (no notes) (n = 500) | -1.0 [-3.0, +1.0] |
+| Cornell 500: notes + precedence, after check − exp99: 31B agent 2026, after check (n = 270) | -0.4 [-2.6, +2.2] |
+| Cornell 500: notes + precedence, after check − Cornell 500: notes + precedence, before check (n = 500) | +0.4 [-0.4, +1.2] |
+
+For reference, exp98 arm 3 on the same 34 citizenship questions: 70.6%.
 <!-- AUTO-RESULTS:END -->
