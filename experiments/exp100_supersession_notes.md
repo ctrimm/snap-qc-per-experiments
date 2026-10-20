@@ -71,3 +71,16 @@ Scored 2026-10-20 17:39 by `exp100_analyze.py` (aggregate only).
 
 For reference, exp98 arm 3 on the same 34 citizenship questions: 70.6%.
 <!-- AUTO-RESULTS:END -->
+
+### Verdict
+
+- **H1 failed:** on Cornell's 34 citizenship questions, notes + precedence scored 67.6% against 70.6% for the same-day baseline (−2.9 [−11.8, +5.9]). On the six refugee and asylee questions keyed to post-H.R. 1 rules, both scored 0 of 6.
+
+  The model did see the notes, on 30 of the 34 questions, but treated California's April 2026 date as the future. On a refugee question it wrote that P.L. 119-21 "may impact eligibility in the far future (specifically for applications on or after April 1, 2026)." The prompt never states the date. Two other misses read were documentation and verification judgments the notes don't address.
+- **H2 held:** on our 28 noncitizen questions both arms scored 96.4% (27 of 28), with no changed answers. The 31B already handles our dated questions.
+- **H3:**
+  - **Before the check:** held. Notes + precedence scored 88.6% on all 500 against 89.6% for exp98 arm 3 (−1.0 [−3.0, +1.0], within the −1.5 bound).
+  - **After the check:** inconclusive. exp99 had finished 270 questions when this was scored, and on those the difference was −0.4 [−2.6, +2.2].
+- **The check step** added only +0.4 [−0.4, +1.2] here, against +2.8 in exp98's passages + thinking arm.
+
+The notes stay in state-policy-docs: they are correct and cost nothing. They only work if the model knows the current date, which exp101 tests.
