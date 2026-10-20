@@ -38,7 +38,7 @@ The decision came after interim numbers had been seen: at 126 questions, the che
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-Scored 2026-10-19 19:47 by `exp99_analyze.py` (aggregate only). Reference: GPT-6 Astra, untuned baseline, 92.2% (Nava PBC).
+Scored 2026-10-20 18:44 by `exp99_analyze.py` (aggregate only). Reference: GPT-6 Astra, untuned baseline, 92.2% (Nava PBC).
 
 | Arm | n | Accuracy | Citizenship | Difficulty 3 |
 |---|---|---|---|---|
@@ -48,15 +48,15 @@ Scored 2026-10-19 19:47 by `exp99_analyze.py` (aggregate only). Reference: GPT-6
 | exp98-2: 31B no tools, thinking high | 500 | 85.8% | 67.6% | 66.7% |
 | exp98-3: 31B agent, 2026-06-01 | 500 | 89.6% | 70.6% | 72.0% |
 | exp98-4: 31B agent + passages + thinking, 2026-06-01, after check | 500 | 89.2% | 85.3% | 81.3% |
-| exp99: 31B agent, 2026-06-01, after check | 270 | 92.6% | 77.8% | 85.7% |
+| exp99: 31B agent, 2026-06-01, after check | 294 | 91.8% | 75.0% | 82.6% |
 | exp98-4: before check | 500 | 86.4% | 76.5% | 77.3% |
-| exp99: before check | 270 | 93.0% | 83.3% | 88.1% |
+| exp99: before check | 294 | 92.2% | 80.0% | 84.8% |
 
 | Paired contrast (95% CI, 2,000 resamples) | Difference |
 |---|---|
-| exp99: 31B agent, 2026-06-01, after check − exp99: before check | -0.4 [-1.5, +0.7] |
-| exp99: 31B agent, 2026-06-01, after check − exp98-3: 31B agent, 2026-06-01 | +0.0 [-2.6, +2.6] |
-| exp99: 31B agent, 2026-06-01, after check − exp86: 31B agent, dated 2025-06-01 | +0.4 [-2.6, +3.0] |
+| exp99: 31B agent, 2026-06-01, after check − exp99: before check | -0.3 [-1.7, +0.7] |
+| exp99: 31B agent, 2026-06-01, after check − exp98-3: 31B agent, 2026-06-01 | +0.3 [-2.0, +2.7] |
+| exp99: 31B agent, 2026-06-01, after check − exp86: 31B agent, dated 2025-06-01 | +0.7 [-2.0, +3.4] |
 | exp98-4: 31B agent + passages + thinking, 2026-06-01, after check − exp98-4: before check | +2.8 [+1.4, +4.2] |
 | exp98-4: 31B agent + passages + thinking, 2026-06-01, after check − exp98-3: 31B agent, 2026-06-01 | -0.4 [-3.2, +2.4] |
 | exp98-3: 31B agent, 2026-06-01 − exp86: 31B agent, dated 2025-06-01 | +0.8 [-1.4, +2.8] |
@@ -68,3 +68,13 @@ Scored 2026-10-19 19:47 by `exp99_analyze.py` (aggregate only). Reference: GPT-6
 
 Best complete (500-question) arm: **exp98-3: 31B agent, 2026-06-01, 89.6%**. Arms with n < 500 are partial and not comparable on overall accuracy.
 <!-- AUTO-RESULTS:END -->
+
+### Verdict (stopped 2026-10-20 at 294 of 500 questions)
+
+**Stopped early.** The run was resumed after exp100 and then stopped at 294 questions, by decision, because two runs already answered the question:
+- **This run:** on the 294 questions, the check changed 1 wrong answer to right and 2 right answers to wrong (after − before: −0.3 [−1.7, +0.7]).
+- **exp100:** the same check on all 500 questions, with supersession notes, added +0.4 [−0.4, +1.2].
+
+**H1 failed:** the check doesn't help the plain dated agent. H2 and H3 can't be scored on a partial run. Before the check, accuracy on the 294 matched exp98 arm 3 on the same questions.
+
+The check only helped in exp98's combined arm (+2.8, 14 fixed, 0 broken), where the conversation held passages and thinking to check against. exp101 retests that arm with the date in the prompt and a larger context.

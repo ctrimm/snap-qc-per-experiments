@@ -37,10 +37,10 @@
    "n": 500
   },
   "exp99: 31B agent, 2026-06-01, after check": {
-   "accuracy": 92.6,
-   "citizenship": 77.8,
-   "difficulty3": 85.7,
-   "n": 270
+   "accuracy": 91.8,
+   "citizenship": 75.0,
+   "difficulty3": 82.6,
+   "n": 294
   },
   "exp98-4: before check": {
    "accuracy": 86.4,
@@ -49,27 +49,27 @@
    "n": 500
   },
   "exp99: before check": {
-   "accuracy": 93.0,
-   "citizenship": 83.3,
-   "difficulty3": 88.1,
-   "n": 270
+   "accuracy": 92.2,
+   "citizenship": 80.0,
+   "difficulty3": 84.8,
+   "n": 294
   }
  },
  "pairs": {
   "exp99: 31B agent, 2026-06-01, after check \u2212 exp99: before check": [
-   -0.4,
-   -1.5,
+   -0.3,
+   -1.7,
    0.7
   ],
   "exp99: 31B agent, 2026-06-01, after check \u2212 exp98-3: 31B agent, 2026-06-01": [
-   0.0,
-   -2.6,
-   2.6
+   0.3,
+   -2.0,
+   2.7
   ],
   "exp99: 31B agent, 2026-06-01, after check \u2212 exp86: 31B agent, dated 2025-06-01": [
-   0.4,
-   -2.6,
-   3.0
+   0.7,
+   -2.0,
+   3.4
   ],
   "exp98-4: 31B agent + passages + thinking, 2026-06-01, after check \u2212 exp98-4: before check": [
    2.8,

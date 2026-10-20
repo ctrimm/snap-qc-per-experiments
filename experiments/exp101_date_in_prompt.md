@@ -38,6 +38,33 @@ Arm 4's comparisons with earlier runs are also affected by the 16 added document
 - **H1:** the date in the prompt raises citizenship accuracy over the same-day baseline, and gets at least 3 of the 6 refugee and asylee questions right.
 - **H2:** on all 500, arm 4 before the check beats exp98 arm 3 (89.6%).
 
+### Amendment (2026-10-20, 18:50, before any exp101 run)
+
+**The full run (arm 4) is replaced.** exp100's notes didn't help, and the check step added only +0.4 on the plain agent (exp99, exp100). The one setup with a clear positive signal is exp98's combined arm:
+- **Citizenship:** 85.3% against 70.6% for the plain agent, and 5 of the 6 refugee and asylee questions right.
+- **Hardest questions:** 81.3% against 72.0%.
+- **The check step:** +2.8 [+1.4, +4.2], with 14 answers fixed and none broken.
+
+That arm's 5 errored questions were all context overflows ("Context size has been exceeded"). LM Studio divides the loaded context across its 4 slots, so each request had about 33k tokens.
+
+**New arm 4:** exp98's combined arm plus the date.
+- agent + date-filtered passages (as_of 2026-06-01) + thinking high + check step + date in the prompt;
+- no supersession notes;
+- 31B loaded with a 262,144-token context, about 65k a slot;
+- `--retry-on-error 2`.
+
+**Arms 1–3** run unchanged, on the same load.
+
+**Readouts for arm 4:**
+- vs exp98 arm 4 (paired);
+- vs exp98 arm 3, the best so far at 89.6%;
+- vs GPT-6 Astra's untuned 92.2%;
+- the six refugee and asylee questions, errors, and the check step's changes.
+
+**H2 is replaced:** arm 4 after the check beats exp98 arm 3 (89.6%).
+
+**Run time:** expected 30–40 hours. exp98 arm 4 took 37.5 hours.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->

@@ -20,25 +20,27 @@ def main():
     arms = {"citizenship 34: baseline (same day)": "exp101_logs/cit_baseline",
             "citizenship 34: date in prompt": "exp101_logs/cit_date",
             "citizenship 34: date + notes + precedence": "exp101_logs/cit_date_notes",
-            "500: date + notes + precedence, after check": "exp101_logs/full_date_notes_verify",
+            "500: combined + date, after check": "exp101_logs/full_combo_date",
+            "exp98-4: combined, after check": "exp98_logs/31b_combo_think_verify",
             "exp98-3: 31B agent 2026": "exp98_logs/31b_agent_2026",
             "exp100: notes + precedence, after check": "exp100_logs/full_notes_verify"}
     data = {k: A.load(v) for k, v in arms.items()}
-    data["500: date + notes + precedence, before check"] = pre_rows("exp101_logs/full_date_notes_verify")
+    data["500: combined + date, before check"] = pre_rows("exp101_logs/full_combo_date")
     data["exp100: notes + precedence, before check"] = pre_rows("exp100_logs/full_notes_verify")
-    t = ["| Arm | n | Accuracy | Refugee/asylee (6) |", "|---|---|---|---|"]
+    t = ["| Arm | n | Accuracy | Refugee/asylee (6) | Errored |", "|---|---|---|---|---|"]
     res = {"arms": {}, "pairs": {}}
     for k, r in data.items():
         if r:
             six = int(sum(r[i]["ok"] for i in SIX if i in r))
-            res["arms"][k] = {"n": len(r), "accuracy": A.acc(r), "six": six}
-            t.append(f"| {k} | {len(r)} | {A.acc(r)}% | {six} of 6 |")
+            err = sum(1 for x in r.values() if x.get("errored"))
+            res["arms"][k] = {"n": len(r), "accuracy": A.acc(r), "six": six, "errored": err}
+            t.append(f"| {k} | {len(r)} | {A.acc(r)}% | {six} of 6 | {err} |")
     p = ["| Paired contrast (95% CI) | Difference |", "|---|---|"]
     for a, b in [("citizenship 34: date in prompt", "citizenship 34: baseline (same day)"),
                  ("citizenship 34: date + notes + precedence", "citizenship 34: baseline (same day)"),
-                 ("500: date + notes + precedence, before check", "exp98-3: 31B agent 2026"),
-                 ("500: date + notes + precedence, before check", "exp100: notes + precedence, before check"),
-                 ("500: date + notes + precedence, after check", "500: date + notes + precedence, before check")]:
+                 ("500: combined + date, after check", "exp98-4: combined, after check"),
+                 ("500: combined + date, after check", "exp98-3: 31B agent 2026"),
+                 ("500: combined + date, after check", "500: combined + date, before check")]:
         if data.get(a) and data.get(b):
             ids = sorted(set(data[a]) & set(data[b]))
             ci = A.boot(data[a], data[b], ids, 101); res["pairs"][f"{a} − {b}"] = ci
