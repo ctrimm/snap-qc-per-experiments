@@ -110,6 +110,9 @@ Pre-registered (this docstring, committed before the scored runs):
   force on <Month D, YYYY>." (the as_of date) to the system prompt. exp100 found the model reads dated
   notes ("California applies from April 1, 2026") as the future because it is never told the date.
 
+  AMENDMENT 9 (2026-10-21, exp103): subset=ids:FILE runs only the question ids listed in FILE;
+  letter_decay=true serves the tools with STATE_POLICY_LETTER_DECAY=1 (older CDSS letters ranked lower).
+
 Run: inspect eval experiments/exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-e4b -T mode=auto -T corpus=new -T dated=true
 """
 import csv
@@ -159,6 +162,9 @@ def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", pass
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
     if subset == "citizenship":
         rows = [r for r in rows if r.get("error_element", "").startswith("Citizenship")]
+    elif subset.startswith("ids:"):  # exp103 screening: a file of question ids, one per line
+        keep = {l.strip() for l in open(Path(subset[4:]).expanduser()) if l.strip()}
+        rows = [r for r in rows if r["question_id"] in keep]
     elif subset.startswith("elements:"):  # exp102 diagnostic: elements:Wages and salaries|Shelter deduction|...
         keep = {e.strip() for e in subset.split(":", 1)[1].split("|")}
         rows = [r for r in rows if r.get("error_element", "").strip() in keep]
@@ -223,7 +229,7 @@ def verify_answer():
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
                      date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0,
                      as_of: str = "", verify: bool = False, supersession: bool = False, precedence: bool = False,
-                     subset: str = "", date_in_prompt: bool = False):
+                     subset: str = "", date_in_prompt: bool = False, letter_decay: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     assert not (passages or guard or verify) or mode == "agent"
     as_of = str(as_of) if as_of else ""  # -T as_of=2026-06-01 arrives as a date
@@ -236,7 +242,8 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
                                   args=["mcp_server/server.py"], cwd=str(SPD),
                                   env={"STATE_POLICY_CORPUS": str(CORPORA[corpus]),
                                        "STATE_POLICY_DEFAULT_AS_OF": when if dated else "",
-                                       "STATE_POLICY_SUPERSESSION": "1" if supersession else "0"})
+                                       "STATE_POLICY_SUPERSESSION": "1" if supersession else "0",
+                                       "STATE_POLICY_LETTER_DECAY": "1" if letter_decay else "0"})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
         if date_in_prompt:

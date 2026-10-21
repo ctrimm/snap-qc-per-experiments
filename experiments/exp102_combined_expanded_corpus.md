@@ -69,8 +69,30 @@ Compared with exp98 arm 3, it isolates the corpus effect; compared with arm 1, t
 (pending)
 <!-- DIAG:END -->
 
+### Amendment 3 (2026-10-21, 08:45): diagnostic stopped, arm 2 not run
+
+**The diagnostic was stopped at 10 questions.** A queue-script mistake had started it while arm 1 was still running, so the two runs shared the model's 4 slots with 8 connections. That forced the server to reprocess conversations of up to about 50,000 tokens from scratch, at about 190 tokens a second.
+
+**Arm 2 isn't run.** It would run on the same new corpus whose old letters may be the problem.
+
+Both are replaced by exp103: a 189-question screening set (hard questions plus controls) with three arms:
+- the new corpus as is;
+- with older letters down-weighted;
+- down-weighted + date + notes + precedence.
+
+Only a winner gets a full run. **Arm 1's full 500-question result stands.**
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending: filled in by `exp102_analyze.py` when the run finishes)
+Scored 2026-10-21 06:20 by `exp102_analyze.py` (aggregate only). GPT-6 Astra, untuned: 92.2%.
+
+| Arm | n | Accuracy | Citizenship | Difficulty 3 | Refugee/asylee (6) | Errored |
+|---|---|---|---|---|---|---|
+| exp98-4: combined, after check | 500 | 89.2% | 85.3% | 81.3% | 5 of 6 | 5 |
+| exp98-3: 31B agent 2026 (best so far) | 500 | 89.6% | 70.6% | 72.0% | 0 of 6 | 0 |
+| exp98-4: before check | 500 | 86.4% | 76.5% | 77.3% | 5 of 6 | 0 |
+
+| Paired contrast (95% CI) | Difference |
+|---|---|
 <!-- AUTO-RESULTS:END -->
