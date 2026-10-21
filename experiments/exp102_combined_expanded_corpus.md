@@ -85,14 +85,26 @@ Only a winner gets a full run. **Arm 1's full 500-question result stands.**
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-Scored 2026-10-21 06:20 by `exp102_analyze.py` (aggregate only). GPT-6 Astra, untuned: 92.2%.
+Scored 2026-10-21 09:01 by `exp102_analyze.py` (aggregate only). GPT-6 Astra, untuned: 92.2%.
 
 | Arm | n | Accuracy | Citizenship | Difficulty 3 | Refugee/asylee (6) | Errored |
 |---|---|---|---|---|---|---|
+| exp102-1: plain agent + date + notes + precedence | 500 | 86.2% | 91.2% | 74.7% | 6 of 6 | 0 |
 | exp98-4: combined, after check | 500 | 89.2% | 85.3% | 81.3% | 5 of 6 | 5 |
 | exp98-3: 31B agent 2026 (best so far) | 500 | 89.6% | 70.6% | 72.0% | 0 of 6 | 0 |
 | exp98-4: before check | 500 | 86.4% | 76.5% | 77.3% | 5 of 6 | 0 |
 
 | Paired contrast (95% CI) | Difference |
 |---|---|
+| exp102-1: plain agent + date + notes + precedence − exp98-3: 31B agent 2026 (best so far) (n = 500) | -3.4 [-6.0, -0.8] |
 <!-- AUTO-RESULTS:END -->
+
+### Verdict (arm 1)
+
+**Did not hold (H4 failed).** Arm 1 (plain agent + date + supersession notes + precedence sentence, on the expanded corpus) scored 86.2% on all 500 questions. That is 3.4 points below exp98 arm 3, the plain dated agent on the older corpus: [−6.0, −0.8].
+
+**Citizenship was fixed:** 91.2% against 70.6%, with all six refugee and asylee questions right.
+
+**Income and deduction questions were lost:** wages, child support received, shelter, SUA and other unearned income. On the broken answers the model often read the older letters just added.
+
+Corpus and prompt changed together, so the cause isn't separated here. exp103 screens the two on a hard subset (new corpus as is, older letters down-weighted, and down-weighted with the prompt changes). Arm 2 wasn't run (amendment 3).

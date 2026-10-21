@@ -1,0 +1,43 @@
+{
+ "arms": {
+  "exp102-1: plain agent + date + notes + precedence": {
+   "n": 500,
+   "accuracy": 86.2,
+   "citizenship": 91.2,
+   "difficulty3": 74.7,
+   "six": 6,
+   "errored": 0
+  },
+  "exp98-4: combined, after check": {
+   "n": 500,
+   "accuracy": 89.2,
+   "citizenship": 85.3,
+   "difficulty3": 81.3,
+   "six": 5,
+   "errored": 5
+  },
+  "exp98-3: 31B agent 2026 (best so far)": {
+   "n": 500,
+   "accuracy": 89.6,
+   "citizenship": 70.6,
+   "difficulty3": 72.0,
+   "six": 0,
+   "errored": 0
+  },
+  "exp98-4: before check": {
+   "n": 500,
+   "accuracy": 86.4,
+   "citizenship": 76.5,
+   "difficulty3": 77.3,
+   "six": 5,
+   "errored": 0
+  }
+ },
+ "pairs": {
+  "exp102-1: plain agent + date + notes + precedence \u2212 exp98-3: 31B agent 2026 (best so far)": [
+   -3.4,
+   -6.0,
+   -0.8
+  ]
+ }
+}
