@@ -103,7 +103,8 @@ Pre-registered (this docstring, committed before the scored runs):
   AMENDMENT 7 (2026-10-19, exp100; before those runs): supersession=true serves the rule tools with the
   supersession notes of state-policy-docs (STATE_POLICY_SUPERSESSION=1; every earlier run had none, so the
   default passes 0); precedence=true adds one general prompt sentence (statute and newer state guidance
-  over an older regulation); subset=citizenship limits the data to the 34 citizenship questions.
+  over an older regulation); subset=citizenship limits the data to the 34 citizenship questions;
+  subset=elements:A|B|C (exp102 diagnostic) keeps the questions whose error_element is one of those.
 
   AMENDMENT 8 (2026-10-20, exp101; before those runs): date_in_prompt=true adds "Answer under the rules in
   force on <Month D, YYYY>." (the as_of date) to the system prompt. exp100 found the model reads dated
@@ -158,6 +159,9 @@ def samples(mode: str, corpus: str, dated: bool, date_mode: str = "filter", pass
     rows = list(csv.DictReader(open(DATA, newline="", encoding="utf-8-sig")))
     if subset == "citizenship":
         rows = [r for r in rows if r.get("error_element", "").startswith("Citizenship")]
+    elif subset.startswith("elements:"):  # exp102 diagnostic: elements:Wages and salaries|Shelter deduction|...
+        keep = {e.strip() for e in subset.split(":", 1)[1].split("|")}
+        rows = [r for r in rows if r.get("error_element", "").strip() in keep]
     get_passages = _passages_fn(corpus) if mode == "auto" or passages else None
     out = []
     for r in rows:

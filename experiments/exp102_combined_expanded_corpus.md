@@ -54,6 +54,21 @@ The CI is wide: +5.9 [−8.8, +23.5] on 34 questions.
 
 **Run time:** arm 1 about 10–12 hours, arm 2 about 35–40.
 
+### Amendment 2 (2026-10-21, 06:30; post-hoc diagnostic before arm 2)
+
+At 462 of 500 questions, arm 1 scored 87.2% against 90.5% for exp98 arm 3 on the same questions.
+- **Citizenship rose:** 90.9% vs 69.7%, with all six refugee and asylee questions right.
+- **Income and deductions fell:** wages −6, child support received −3, shelter −2, SUA −2, other unearned income −2.
+- **Answers changed:** 13 fixed, 28 broken. On the broken ones the model often read newly added older letters (ACL 12-25, 21-13, 19-44, …).
+
+Arm 1 changed the corpus and the prompt together. So before arm 2, which uses the same corpus, one diagnostic arm runs: the plain agent on the new corpus with no date, notes or precedence, on the 177 questions in those five elements.
+
+Compared with exp98 arm 3, it isolates the corpus effect; compared with arm 1, the prompt effect. The element choice was made after seeing arm 1's results, so the diagnostic is labeled post-hoc. Arm 2 then runs as registered.
+
+<!-- DIAG:START -->
+(pending)
+<!-- DIAG:END -->
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
