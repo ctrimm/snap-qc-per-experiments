@@ -10,7 +10,12 @@ VAULT="$HOME/Documents/Obsidian Vault/Labs/2026-10-20 snap-qc exp102 combined se
 until [ "$(git -C $SPD rev-parse --short HEAD)" = "7a265f0" ]; do sleep 120; done
 echo "- $(date '+%b %-d, %H:%M'): started on state-policy-docs $(git -C $SPD log --oneline -1 | cut -c1-7) ($(python3 -c "import json;m=json.load(open('$SPD/manifest.json'));print(len(m.get('documents',m)))") documents)." >> "$VAULT"
 $L unload --all >/dev/null 2>&1; $L load google/gemma-4-31b --context-length 262144 --parallel 4 -y >/dev/null 2>&1
-echo "== $(date) exp102 full combined"
+echo "== $(date) exp102 arm 1: plain agent + date + notes + precedence"
+$I eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-31b -M responses_api=false -T mode=agent \
+  -T as_of=2026-06-01 -T date_in_prompt=true -T supersession=true -T precedence=true --max-connections 4 --no-fail-on-error \
+  --retry-on-error 2 --log-dir $D/full_plain_date_notes --display none 2>&1 | tail -2
+$PY exp102_analyze.py > /dev/null; echo "- $(date '+%b %-d, %H:%M'): arm 1 (plain agent + date + notes) done; tables filled; arm 2 (combined) started." >> "$VAULT"
+echo "== $(date) exp102 arm 2: full combined"
 $I eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-31b -M responses_api=false -T mode=agent \
   -T as_of=2026-06-01 -T passages=true -T verify=true --reasoning-effort high --max-connections 4 --no-fail-on-error \
   --retry-on-error 2 --log-dir $D/full_combo --display none 2>&1 | tail -2

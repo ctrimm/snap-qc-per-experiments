@@ -68,5 +68,20 @@ That arm's 5 errored questions were all context overflows ("Context size has bee
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending: filled in by `exp101_analyze.py` when the runs finish)
+Scored 2026-10-20 21:00 by `exp101_analyze.py` (aggregate only).
+
+| Arm | n | Accuracy | Refugee/asylee (6) | Errored |
+|---|---|---|---|---|
+| citizenship 34: baseline (same day) | 34 | 79.4% | 0 of 6 | 0 |
+| citizenship 34: date in prompt | 34 | 70.6% | 0 of 6 | 0 |
+| citizenship 34: date + notes + precedence | 34 | 85.3% | 5 of 6 | 0 |
+| exp98-4: combined, after check | 500 | 89.2% | 5 of 6 | 5 |
+| exp98-3: 31B agent 2026 | 500 | 89.6% | 0 of 6 | 0 |
+| exp100: notes + precedence, after check | 500 | 89.0% | 0 of 6 | 0 |
+| exp100: notes + precedence, before check | 500 | 88.6% | 0 of 6 | 0 |
+
+| Paired contrast (95% CI) | Difference |
+|---|---|
+| citizenship 34: date in prompt − citizenship 34: baseline (same day) (n = 34) | -8.8 [-17.6, +0.0] |
+| citizenship 34: date + notes + precedence − citizenship 34: baseline (same day) (n = 34) | +5.9 [-8.8, +23.5] |
 <!-- AUTO-RESULTS:END -->

@@ -19,7 +19,8 @@ rows = {r["question_id"]: r for r in csv.DictReader(open(A.CORNELL, encoding="ut
 
 
 def main():
-    data = {"exp102: combined, expanded corpus, after check": A.load("exp102_logs/full_combo"),
+    data = {"exp102-1: plain agent + date + notes + precedence": A.load("exp102_logs/full_plain_date_notes"),
+            "exp102: combined, expanded corpus, after check": A.load("exp102_logs/full_combo"),
             "exp98-4: combined, after check": A.load("exp98_logs/31b_combo_think_verify"),
             "exp98-3: 31B agent 2026 (best so far)": A.load("exp98_logs/31b_agent_2026")}
     data["exp102: before check"] = pre_rows("exp102_logs/full_combo")
@@ -36,7 +37,9 @@ def main():
         res["arms"][k] = {"n": len(r), "accuracy": A.acc(r), "citizenship": c, "difficulty3": h, "six": six, "errored": err}
         t.append(f"| {k} | {len(r)} | {A.acc(r)}% | {c}% | {h}% | {six} of 6 | {err} |")
     p = ["| Paired contrast (95% CI) | Difference |", "|---|---|"]
-    for a, b in [("exp102: combined, expanded corpus, after check", "exp98-4: combined, after check"),
+    for a, b in [("exp102-1: plain agent + date + notes + precedence", "exp98-3: 31B agent 2026 (best so far)"),
+                 ("exp102-1: plain agent + date + notes + precedence", "exp102: combined, expanded corpus, after check"),
+                 ("exp102: combined, expanded corpus, after check", "exp98-4: combined, after check"),
                  ("exp102: combined, expanded corpus, after check", "exp98-3: 31B agent 2026 (best so far)"),
                  ("exp102: combined, expanded corpus, after check", "exp102: before check")]:
         if data.get(a) and data.get(b):

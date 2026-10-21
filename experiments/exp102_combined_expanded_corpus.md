@@ -1,4 +1,4 @@
-# Experiment 102 — the combined 31B setup on the expanded corpus
+# Experiment 102 — two 31B setups on the expanded corpus
 
 **Date:** 2026-10-20 · **Code:** `exp85_mcq_rag_task.py` (existing options), `exp102_analyze.py`, `queue_exp102.sh` · **Logs:** `snap-qc-data/derived/exp102_logs/` · **Corpus:** state-policy-docs `7a265f0`
 
@@ -37,6 +37,22 @@ The corpus and context change together, so a gain over exp98 arm 4 can't be spli
 - **H3 (descriptive):** whether it reaches 92.2%.
 
 **Run time:** about 35–40 hours (exp98 arm 4: 37.5).
+
+### Amendment (2026-10-20, 21:05, before any exp102 run): arm 1 added
+
+exp101's last citizenship run, which finished after this file was written, scored 85.3% with 5 of 6 refugee and asylee questions right. That arm was the plain agent with the date in the prompt, supersession notes and the precedence sentence. The same-day baseline scored 79.4% (0 of 6), the date alone 70.6% (0 of 6), and in exp100 the notes alone 67.6% (0 of 6). So the date and the notes help only together, and the plain agent gets exp98's combined-arm citizenship result without thinking or passages.
+
+The CI is wide: +5.9 [−8.8, +23.5] on 34 questions.
+
+**Arm 1 (new, runs first):** the plain dated agent (exp98 arm 3) + date in the prompt + supersession notes + precedence sentence. No thinking, no passages, no check step.
+
+**Arm 2:** the combined arm, as registered above. Context, corpus and retries are the same for both arms.
+
+**Readouts for arm 1:** paired against exp98 arm 3 (old corpus, no date or notes) and against arm 2.
+
+**H4:** arm 1 beats exp98 arm 3 (89.6%).
+
+**Run time:** arm 1 about 10–12 hours, arm 2 about 35–40.
 
 ### Results
 

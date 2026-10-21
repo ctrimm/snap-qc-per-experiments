@@ -1,0 +1,58 @@
+{
+ "arms": {
+  "citizenship 34: baseline (same day)": {
+   "n": 34,
+   "accuracy": 79.4,
+   "six": 0,
+   "errored": 0
+  },
+  "citizenship 34: date in prompt": {
+   "n": 34,
+   "accuracy": 70.6,
+   "six": 0,
+   "errored": 0
+  },
+  "citizenship 34: date + notes + precedence": {
+   "n": 34,
+   "accuracy": 85.3,
+   "six": 5,
+   "errored": 0
+  },
+  "exp98-4: combined, after check": {
+   "n": 500,
+   "accuracy": 89.2,
+   "six": 5,
+   "errored": 5
+  },
+  "exp98-3: 31B agent 2026": {
+   "n": 500,
+   "accuracy": 89.6,
+   "six": 0,
+   "errored": 0
+  },
+  "exp100: notes + precedence, after check": {
+   "n": 500,
+   "accuracy": 89.0,
+   "six": 0,
+   "errored": 0
+  },
+  "exp100: notes + precedence, before check": {
+   "n": 500,
+   "accuracy": 88.6,
+   "six": 0,
+   "errored": 0
+  }
+ },
+ "pairs": {
+  "citizenship 34: date in prompt \u2212 citizenship 34: baseline (same day)": [
+   -8.8,
+   -17.6,
+   0.0
+  ],
+  "citizenship 34: date + notes + precedence \u2212 citizenship 34: baseline (same day)": [
+   5.9,
+   -8.8,
+   23.5
+  ]
+ }
+}
