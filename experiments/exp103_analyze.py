@@ -22,6 +22,7 @@ def main():
     cit = [i for i in hard if rows[i]["error_element"].startswith("Citizenship")]
     arms = {"A0: new corpus": "exp103_logs/A0", "A1: + letter weighting": "exp103_logs/A1",
             "A2: + weighting + date + notes + precedence": "exp103_logs/A2",
+            "A3: + weighting + date + notes (no precedence)": "exp103_logs/A3",
             "ref exp98-3: old corpus, plain": "exp98_logs/31b_agent_2026",
             "ref exp102-1: new corpus + date + notes, no weighting": "exp102_logs/full_plain_date_notes"}
     data = {k: A.load(v) for k, v in arms.items()}
@@ -42,8 +43,12 @@ def main():
     p = ["| Effect (95% CI) | Difference |", "|---|---|"]
     for lab, a, b in [("letter weighting: A1 − A0", "A1: + letter weighting", "A0: new corpus"),
                       ("prompt given weighting: A2 − A1", "A2: + weighting + date + notes + precedence", "A1: + letter weighting"),
+                      ("date + notes given weighting: A3 − A1", "A3: + weighting + date + notes (no precedence)", "A1: + letter weighting"),
+                      ("precedence sentence: A2 − A3", "A2: + weighting + date + notes + precedence", "A3: + weighting + date + notes (no precedence)"),
                       ("corpus: A0 − exp98-3", "A0: new corpus", "ref exp98-3: old corpus, plain"),
-                      ("A2 − exp98-3", "A2: + weighting + date + notes + precedence", "ref exp98-3: old corpus, plain")]:
+                      ("A2 − exp98-3", "A2: + weighting + date + notes + precedence", "ref exp98-3: old corpus, plain"),
+                      ("A3 − exp98-3", "A3: + weighting + date + notes (no precedence)", "ref exp98-3: old corpus, plain"),
+                      ("prompt, no weighting: exp102-1 − A0", "ref exp102-1: new corpus + date + notes, no weighting", "A0: new corpus")]:
         if data.get(a) and data.get(b):
             ids = [i for i in allids if i in data[a] and i in data[b]]
             ci = A.boot(data[a], data[b], ids, 103); res["pairs"][lab] = ci

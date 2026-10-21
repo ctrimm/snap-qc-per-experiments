@@ -39,8 +39,33 @@ The set is chosen from test results, so screening scores are optimistic about ab
 - **Which arm wins:** the arm with the highest overall screening accuracy goes to a full 500-question run, if it beats exp98 arm 3 on the screening set by at least 3 points and loses at most 2 of the 40 controls.
 - **If no arm qualifies:** no full run. The corpus mechanism is reworked first.
 
+### Amendment (2026-10-21, 15:35, after A0, before A1–A3 results): arm A3 added
+
+**What A0 showed:** the new corpus alone scored 2.6 points below exp98 arm 3 on the screening set ([−7.8, +2.1]). exp102 arm 1 (same corpus plus date + notes + precedence) scored 6.3 points below A0, so the prompt changes cost more than the corpus. The precedence sentence ("follow a statute or newer state guidance over an older regulation") may push the model toward letters on income questions.
+
+**A3:** letter weighting + date in the prompt + supersession notes, without the precedence sentence. It runs after A2.
+
+**New readouts:**
+- A3 − A1 (date + notes, given weighting);
+- A2 − A3 (the precedence sentence);
+- exp102 arm 1 − A0 (the prompt effect without weighting, from existing runs).
+
+A3 joins the decision rule on the same terms. This amendment was made after seeing A0, so the A3 comparison is labeled post-hoc.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending: filled in by `exp103_analyze.py` when the arms finish)
+Scored 2026-10-21 13:51 by `exp103_analyze.py` (aggregate only; screening set chosen from test results).
+
+| Arm | All (193) | Hard (153) | Controls (40) | Citizenship (34) | Refugee/asylee (6) |
+|---|---|---|---|---|---|
+| A0: new corpus | 70.5% | 62.7% | 40 of 40 | 70.6% | 0 of 6 |
+| ref exp98-3: old corpus, plain | 73.1% | 66.0% | 40 of 40 | 70.6% | 0 of 6 |
+| ref exp102-1: new corpus + date + notes, no weighting | 64.2% | 54.9% | 40 of 40 | 91.2% | 6 of 6 |
+
+| Effect (95% CI) | Difference |
+|---|---|
+| corpus: A0 − exp98-3 | -2.6 [-7.8, +2.1] |
+
+**Decision rule:** no arm qualifies (needs +3 over exp98-3 on this set and at most 2 controls lost).
 <!-- AUTO-RESULTS:END -->
