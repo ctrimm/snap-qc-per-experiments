@@ -7,7 +7,7 @@ L=~/.lmstudio/bin/lms; I=$SPD/.venv/bin/inspect; PY=$SPD/.venv/bin/python
 export OPENAI_BASE_URL=http://localhost:1234/v1 OPENAI_API_KEY=lm-studio
 D=../../snap-qc-data/derived/exp102_logs; mkdir -p $D
 VAULT="$HOME/Documents/Obsidian Vault/Labs/2026-10-20 snap-qc exp102 combined setup on the expanded corpus.md"
-until [ "$(git -C $SPD rev-parse --short HEAD)" = "7a265f0" ]; do sleep 120; done
+until git -C $SPD rev-parse HEAD | grep -q "^7a265f0"; do sleep 120; done
 echo "- $(date '+%b %-d, %H:%M'): started on state-policy-docs $(git -C $SPD log --oneline -1 | cut -c1-7) ($(python3 -c "import json;m=json.load(open('$SPD/manifest.json'));print(len(m.get('documents',m)))") documents)." >> "$VAULT"
 $L unload --all >/dev/null 2>&1; $L load google/gemma-4-31b --context-length 262144 --parallel 4 -y >/dev/null 2>&1
 echo "== $(date) exp102 arm 1: plain agent + date + notes + precedence"
