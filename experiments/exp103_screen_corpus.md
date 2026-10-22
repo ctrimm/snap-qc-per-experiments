@@ -79,3 +79,22 @@ Scored 2026-10-22 04:30 by `exp103_analyze.py` (aggregate only; screening set ch
 
 **Decision rule:** no arm qualifies (needs +3 over exp98-3 on this set and at most 2 controls lost).
 <!-- AUTO-RESULTS:END -->
+
+### Verdict
+
+**No arm qualified for a full run.** The rule needed +3 points over exp98 arm 3 on the screening set, with at most 2 controls lost. The old-corpus plain agent stays best on this set at 73.1%. The new corpus alone scored 70.5%; with letter weighting, 71.0%.
+
+**The letter weighting changes little on its own** (+0.5 [−3.6, +4.7]), but it **largely removes the date + notes prompt's cost:**
+- without weighting, exp102 arm 1 − A0 = −6.2 [−13.0, +0.5];
+- with weighting, A2 − A1 = −1.0 [−5.7, +3.6].
+
+A2 keeps the citizenship fix: 88.2%, 5 of 6 refugee and asylee questions.
+
+**The precedence sentence isn't the cost:** A2 − A3 = +1.0 [−4.1, +5.7]. A3 also lost 4 controls.
+
+**The corpus effect** (A0 − exp98 arm 3) is −2.6 [−7.8, +2.1].
+
+**Post-hoc lead, not part of the pre-registration** (computed from existing full runs, keyword list written knowing the questions):
+- **Router:** questions whose text names an immigration term (noncitizen, refugee, asylum, immigration, permanent resident, green card, LPR, parole, visa, qualified alien, sponsor, undocumented) take exp102 arm 1's answers, and the rest take exp98 arm 3's.
+- **Result:** 90.8% vs 89.6% (+1.2 [+0.2, +2.4]), with 33 questions routed, 30 of them citizenship-tagged.
+- **Caveat:** it mixes two corpus versions. A fresh pre-registered run on one corpus would test it.
