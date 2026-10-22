@@ -229,7 +229,8 @@ def verify_answer():
 def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = False, hint: bool = False,
                      date_mode: str = "filter", recipe: bool = False, passages: bool = False, guard: int = 0,
                      as_of: str = "", verify: bool = False, supersession: bool = False, precedence: bool = False,
-                     subset: str = "", date_in_prompt: bool = False, letter_decay: bool = False):
+                     subset: str = "", date_in_prompt: bool = False, letter_decay: bool = False,
+                     cite_only: bool = False, curated: bool = False):
     assert mode in ("notools", "auto", "agent") and corpus in CORPORA
     assert not (passages or guard or verify) or mode == "agent"
     as_of = str(as_of) if as_of else ""  # -T as_of=2026-06-01 arrives as a date
@@ -243,7 +244,9 @@ def calfresh_mcq_rag(mode: str = "notools", corpus: str = "new", dated: bool = F
                                   env={"STATE_POLICY_CORPUS": str(CORPORA[corpus]),
                                        "STATE_POLICY_DEFAULT_AS_OF": when if dated else "",
                                        "STATE_POLICY_SUPERSESSION": "1" if supersession else "0",
-                                       "STATE_POLICY_LETTER_DECAY": "1" if letter_decay else "0"})
+                                       "STATE_POLICY_LETTER_DECAY": "1" if letter_decay else "0",
+                                       "STATE_POLICY_CITED_LETTERS": "cite_only" if cite_only else "search",
+                                       "STATE_POLICY_CURATED_GUIDANCE": "1" if curated else "0"})
         tools = mcp_tools(server, tools=["get_passages", "lookup_rule", "get_section", "calculate_benefit"])
         prompt = AGENT.replace(" If you are not certain", CORNELL_RECIPE + " If you are not certain") if recipe else AGENT
         if date_in_prompt:

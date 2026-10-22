@@ -114,14 +114,16 @@ def letter_match():
 
 @task
 def heldout(arm: str = "notools", data: str = "", guard: int = 0, supersession: bool = False, precedence: bool = False,
-            category: str = ""):
+            category: str = "", cite_only: bool = False, curated: bool = False):
     """data: a question file in experiments/ (default exp87_heldout.jsonl; exp90 uses exp90_hard.jsonl, exp94 exp94_hard.jsonl).
     guard: exp96 answer guard (0 = off)."""
     assert arm in ("notools", "auto_undated", "auto_filter", "auto_label", "agent", "agent_strict", "agent_recipe",
                    "agent_recipe_passages")
     os.environ["STATE_POLICY_SUPERSESSION"] = "1" if supersession else "0"
     if arm.startswith("agent"):
-        env = {"STATE_POLICY_CORPUS": str(SPD / "corpus"), "STATE_POLICY_SUPERSESSION": "1" if supersession else "0"}
+        env = {"STATE_POLICY_CORPUS": str(SPD / "corpus"), "STATE_POLICY_SUPERSESSION": "1" if supersession else "0",
+               "STATE_POLICY_CITED_LETTERS": "cite_only" if cite_only else "search",  # exp105 prep
+               "STATE_POLICY_CURATED_GUIDANCE": "1" if curated else "0"}
         if arm in ("agent_strict", "agent_recipe", "agent_recipe_passages"):  # exp91: as_of required in the tool schemas
             env["STATE_POLICY_REQUIRE_AS_OF"] = "1"
         server = mcp_server_stdio(name="state-policy-docs", command=str(SPD / ".venv/bin/python") if (SPD / ".venv").exists()
