@@ -21,6 +21,13 @@
    "citizenship": 88.2,
    "six": 5
   },
+  "A3: + weighting + date + notes (no precedence)": {
+   "all": 68.9,
+   "hard": 63.4,
+   "controls_lost": 4,
+   "citizenship": 82.4,
+   "six": 5
+  },
   "ref exp98-3: old corpus, plain": {
    "all": 73.1,
    "hard": 66.0,
@@ -47,6 +54,16 @@
    -5.7,
    3.6
   ],
+  "date + notes given weighting: A3 \u2212 A1": [
+   -2.1,
+   -7.3,
+   3.1
+  ],
+  "precedence sentence: A2 \u2212 A3": [
+   1.0,
+   -4.1,
+   5.7
+  ],
   "corpus: A0 \u2212 exp98-3": [
    -2.6,
    -7.8,
@@ -56,6 +73,11 @@
    -3.1,
    -9.3,
    3.1
+  ],
+  "A3 \u2212 exp98-3": [
+   -4.1,
+   -9.8,
+   1.6
   ],
   "prompt, no weighting: exp102-1 \u2212 A0": [
    -6.2,
