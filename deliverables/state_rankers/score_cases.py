@@ -71,7 +71,7 @@ def score(state, rows):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--state", required=True, help="PA, NY, TX, SD, UT or ID")
+    ap.add_argument("--state", required=True, help="USPS code of a packaged model (any of the 53 folders here, e.g. PA, NY, WY)")
     ap.add_argument("--input", required=True)
     ap.add_argument("--output", required=True)
     ap.add_argument("--id-col", default=None)

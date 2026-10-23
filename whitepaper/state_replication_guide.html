@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Replicating the SNAP Error-Ranking Work for Your State</title>
+<style>
+@page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+  table { page-break-inside: avoid; }
+  code { font-family: Menlo, monospace; font-size: 9.5pt; }
+  pre { background: #f1f5f9; border-left: 3.5px solid #c9d4e0; padding: 0.3cm 0.4cm; font-size: 8.3pt; line-height: 1.4; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+  pre code { font-size: 8.3pt; }
+  ol { margin: 0.3cm 0; padding-left: 1.1cm; }
+  a { color: #0f2a44; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  h2, h3 { page-break-after: avoid; }
+</style>
+</head>
+<body>
+<h1>Replicating the SNAP Error-Ranking Work for Your State</h1>
+<div class="meta">October 23, 2026 · Replication guide · Cory Trimm</div>
+<h2>Who this is for</h2>
+<p>This guide is for a state SNAP team that wants to know what the error-ranking tool would do for their state, and then try it. It assumes one analyst comfortable running Python scripts, and a program or QC lead who can answer questions about case data and review practice. No machine-learning background is needed for levels 1 and 2.</p>
+<p>The work behind it is described in the <em>Project Summary</em> and in short briefs for Pennsylvania, New York and Wyoming. The code is open: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>.</p>
+<p><strong>What you get, in four levels:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Time</th>
+<th>What you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Look up your state</td>
+<td>An hour</td>
+<td>Your state's measured results and cost-share scenarios from the published models</td>
+</tr>
+<tr>
+<td>2. Reproduce from public data</td>
+<td>An afternoon</td>
+<td>The same numbers, recomputed on your machine from the federal files</td>
+</tr>
+<tr>
+<td>3. Score your own cases</td>
+<td>A few days</td>
+<td>A ranked review queue for your current caseload, using the packaged model</td>
+</tr>
+<tr>
+<td>4. Pilot and refit</td>
+<td>Three to six months</td>
+<td>Measured dollars found in your state, and a model refit on your own data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>In plain terms:</strong> the tool reads a few fields your agency already records for every active case (income, deductions, housing costs, household size, the benefit paid). From those it estimates how many error dollars each case is likely to hold. Reviewers start at the top of that list instead of choosing at random. Across all 53 jurisdictions, the top fifth of the list held a median of four times the error dollars of a random fifth. Nothing about a household is decided by the tool; it only orders the review queue.</p>
+<h2>What you need</h2>
+<ul>
+<li><strong>A computer:</strong> any laptop with Python 3.10 or newer. No GPU and no cloud service.</li>
+<li><strong>Software:</strong> the repository plus numpy, joblib and scikit-learn 1.9.1 (exactly that version: the saved models are pickles tied to it, and other versions may refuse to load them or score differently).</li>
+<li><strong>Public data (levels 2–4):</strong> the FY2020–2024 SNAP QC public-use CSV files from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>, unzipped beside the repository.</li>
+<li><strong>Your state's data (levels 3–4):</strong> an extract of active cases with the fields in <em>Level 3, Step 1</em>, and later your own review findings.</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/ctrimm/snap-qc-per-experiments.git
+cd snap-qc-per-experiments
+python3 -m pip install numpy joblib scikit-learn==1.9.1
+# data layout the code expects (a sibling of the repository):
+#   ../snap-qc-data/raw/qcfy2020_csv/qc_pub_fy2020.csv  ...  ../snap-qc-data/raw/qcfy2024_csv/qc_pub_fy2024.csv
+</code></pre>
+<h2>Level 1: look up your state</h2>
+<p>Every jurisdiction's results are committed in the repository. Replace <code>XX</code> with your state's USPS code:</p>
+<pre><code class="language-bash"># held-out results of your state's deployed model: lift, $ per review hour, forecast check, fairness
+python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_results.json'))['XX'], indent=1))&quot;
+# FY2028 cost-share scenarios, every step shown
+python3 experiments/cost_share_replicate.py --state XX
+</code></pre>
+<p>How to read the first output:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>top20.lift</code></td>
+<td>Error dollars found in the top 20% of the queue, as a multiple of random review. Typical: 3–4.5</td>
+</tr>
+<tr>
+<td><code>top10.lift</code></td>
+<td>The same for the top 10%. Typical: 5–7</td>
+</tr>
+<tr>
+<td><code>top20.per_hour_$</code> (<code>random_per_hour_$</code>)</td>
+<td>Error dollars found per review hour, assuming 30-minute reviews</td>
+</tr>
+<tr>
+<td><code>top20.expected_over_actual</code></td>
+<td>The model's dollar forecast divided by actual dollars; 1.0 is perfect</td>
+</tr>
+<tr>
+<td><code>fairness.baseline_ratio</code></td>
+<td>Each household type's share of reviews ÷ its share of error dollars, ranking by dollars only (1.0 = proportionate)</td>
+</tr>
+<tr>
+<td><code>fairness.floor_ratio</code>, <code>floor_lift</code></td>
+<td>The same with the fairness floor on, and the lift that remains</td>
+</tr>
+<tr>
+<td><code>variant</code></td>
+<td><code>B_ctx</code>: pooled with every state plus state context; <code>C_ctx</code>: the same with your own cases weighted ten times</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The cost-share script</strong> reads your state's official FY2025 error rate and annual benefits, then shows the low, central and high scenarios. It gives the rate after ranked reviews, the share owed, dollars avoided, and the reviews and FTEs needed. To try your own assumptions:</p>
+<pre><code class="language-bash">python3 experiments/cost_share_replicate.py --state XX --per 8.7          # a newer error rate
+python3 experiments/cost_share_replicate.py --state XX --R 0.015          # review 1.5% of cases a month
+python3 experiments/cost_share_replicate.py --state XX --benefits 2.1e9   # current annual benefits
+</code></pre>
+<p><strong>Find your break-even review rate.</strong> Savings happen only when the rate drops below a bracket line (6%, 8%, 10%). Raise <code>--R</code> until the central line's share drops: that's how much review it takes to cross the next line. <code>COST-SHARE-REPLICATE.md</code> explains the model and every parameter.</p>
+<h2>Level 2: reproduce from public data</h2>
+<p>This refits every jurisdiction's deployed model from the federal files and checks it against the committed results:</p>
+<pre><code class="language-bash">python3 experiments/exp83_context_models_full_eval.py --workers 8
+git diff --stat experiments/exp83_results.json     # empty = exact reproduction
+</code></pre>
+<p><strong>What the script does:</strong></p>
+<ul>
+<li><strong>Data split:</strong> for each jurisdiction it trains on 75% of that state's QC cases pooled with all other states' cases, and scores the 25% set aside. The held-out cases are fixed in <code>experiments/exp68_holdouts.json</code>, so everyone gets the same split.</li>
+<li><strong>Models:</strong> two gradient-boosted models, one for the chance of an error and one for its dollars. Expected dollars are calibrated by isotonic regression on out-of-fold predictions.</li>
+<li><strong>Reproducibility:</strong> results are deterministic.</li>
+</ul>
+<p>On a Mac Studio (M3 Ultra) it took about 8 minutes with 8 workers (about 2 CPU-hours in all) and reproduced <code>exp83_results.json</code> byte for byte on October 23, 2026. A laptop with 4 cores would take roughly half an hour.</p>
+<p><strong>Cost-share inputs too:</strong></p>
+<pre><code class="language-bash">python3 experiments/exp93_cost_share_current_models.py --workers 6   # refits and measures lifts with the floor; stops unless all match
+python3 experiments/cost_share_replicate.py
+</code></pre>
+<p><strong>Checking how a state's model was chosen:</strong> the adoption rule is in <code>experiments/exp82_context_all_states.py</code> (41 larger jurisdictions) and <code>exp80_state_context.py</code> (12 small ones). A pooled variant replaced the state-only model only if it was better on both held-out cases and a later-years test (train 2020–22, test 2023–24). The results are in <code>exp80_results.json</code> and <code>exp82_results.json</code>.</p>
+<h2>Level 3: score your own cases</h2>
+<h3>Step 1: build the input file</h3>
+<p>One row per active case, with these columns (QC public-use names). Blank values count as 0.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CERTHHSZ</code></td>
+<td>Certified household size (people in the SNAP unit)</td>
+</tr>
+<tr>
+<td><code>RAWHSIZE</code></td>
+<td>Number of people in the household</td>
+</tr>
+<tr>
+<td><code>RAWGROSS</code></td>
+<td>Gross countable monthly income</td>
+</tr>
+<tr>
+<td><code>RAWNET</code></td>
+<td>Net monthly income after deductions</td>
+</tr>
+<tr>
+<td><code>RAWERND</code></td>
+<td>Earned income deduction (20% of earnings)</td>
+</tr>
+<tr>
+<td><code>SHELDED</code></td>
+<td>Excess shelter deduction</td>
+</tr>
+<tr>
+<td><code>RENT</code></td>
+<td>Rent or mortgage</td>
+</tr>
+<tr>
+<td><code>UTIL</code></td>
+<td>Utility costs</td>
+</tr>
+<tr>
+<td><code>SUA1</code></td>
+<td>Standard utility allowance code; codes 3–8 mean an SUA was used</td>
+</tr>
+<tr>
+<td><code>FSMEDEXP</code></td>
+<td>Medical expense deduction</td>
+</tr>
+<tr>
+<td><code>FSDEPDED</code></td>
+<td>Dependent care deduction</td>
+</tr>
+<tr>
+<td><code>FSCSEXP</code></td>
+<td>Child support deduction</td>
+</tr>
+<tr>
+<td><code>HOMEDED</code></td>
+<td>1 if the homeless shelter deduction was used</td>
+</tr>
+<tr>
+<td><code>RAWBEN</code></td>
+<td>Monthly benefit issued</td>
+</tr>
+<tr>
+<td><code>BENMAX</code></td>
+<td>Maximum allotment for the household's size</td>
+</tr>
+</tbody>
+</table>
+<p>Add any case ID column you want carried through. All fields are monthly dollar amounts or counts as recorded <strong>before</strong> any review. Never include review findings or corrected values. The QC technical documentation in the data download defines each field exactly, and your eligibility system's field definitions may differ slightly. Note the differences.</p>
+<h3>Step 2: score</h3>
+<pre><code class="language-bash">python3 deliverables/state_rankers/score_cases.py --state XX --input cases.csv --output ranked.csv --id-col CASE_ID
+</code></pre>
+<p>The output adds four columns:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p_error</code></td>
+<td>Chance the case has an error</td>
+</tr>
+<tr>
+<td><code>expected_dollars</code></td>
+<td>Expected error dollars, calibrated</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>Position in the review queue</td>
+</tr>
+<tr>
+<td><code>in_top_pct</code></td>
+<td>Which top bucket the case is in: 10, 20, 30, 50 or 100</td>
+</tr>
+</tbody>
+</table>
+<p>The script also prints the total expected error dollars in the top 20%. Quote it with a ±15–20% band.</p>
+<h3>Step 3: sanity checks before anyone reviews</h3>
+<ul>
+<li><strong>Spot-check the inputs:</strong> compare the distribution of <code>RAWBEN</code>, <code>RAWGROSS</code> and household size with your caseload reports. A field mapped to the wrong unit (annual instead of monthly, cents instead of dollars) is the most common failure.</li>
+<li><strong>Look at the top 50 cases with a QC lead.</strong> Do they look like cases that deserve review?</li>
+<li><strong>Turn on the fairness floor.</strong> Check each household type's share of the top of the queue against its share of the caseload (see <em>Fairness</em> below).</li>
+</ul>
+<p><strong>About the packaged models:</strong> each <code>deliverables/state_rankers/XX/model.joblib</code> was refit on all five years of that state's cases plus every other state's, for the best possible model. Its held-out performance is the evaluation fit in <code>exp83_results.json</code>. The <code>evaluation</code> block inside <code>model_card.json</code> is from the earlier state-only model; use <code>exp83_results.json</code>.</p>
+<h2>Level 4: pilot and refit</h2>
+<h3>A three-month shadow pilot</h3>
+<ol>
+<li><strong>Each month,</strong> score active cases and give reviewers a sample from the top of the queue alongside their usual selection.</li>
+<li><strong>Keep about 10% of reviews on randomly chosen cases.</strong> This is your control, and it shows the model's blind spots.</li>
+<li><strong>For every review, record:</strong><ul>
+<li>error yes or no;</li>
+<li>over or under, and the dollars;</li>
+<li>which part of the case (element);</li>
+<li>roughly when the underlying change happened.</li>
+</ul>
+</li>
+<li><strong>Compare:</strong><ul>
+<li>dollars found per review hour, top of queue vs random slice vs usual selection;</li>
+<li>dollars found vs <code>expected_dollars</code>;</li>
+<li>each household type's share of reviews vs its share of errors.</li>
+</ul>
+</li>
+</ol>
+<h3>What to report</h3>
+<p>These are the two numbers that move the cost-share estimate most. Rerun <code>cost_share_replicate.py --state XX --lift &lt;your measured lift&gt;</code> with them in mind:</p>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>How</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lift</td>
+<td>Error dollars per review, top of queue ÷ random slice</td>
+<td>The tool's actual value in your state</td>
+</tr>
+<tr>
+<td>Error lifetime (m)</td>
+<td>How long found errors had lasted, and would have lasted until recertification</td>
+<td>Drives the cost-share range more than the lift</td>
+</tr>
+<tr>
+<td>Fix rate (f)</td>
+<td>Share of found errors corrected going forward</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Forecast accuracy</td>
+<td>Σ expected ÷ Σ actual dollars, top 20%</td>
+<td>Whether you can budget from the forecast</td>
+</tr>
+<tr>
+<td>Fairness</td>
+<td>Review share ÷ error share by household type</td>
+<td>Whether the floor is working</td>
+</tr>
+</tbody>
+</table>
+<h3>Fairness</h3>
+<p>Ranking purely by dollars under-reviews elderly households in 51 of 53 jurisdictions, and disabled households in many. The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. It costs a median of about 1% of the lift nationally; 3–6% in Pennsylvania and New York; 13% in Wyoming. Keep it on by default.</p>
+<h3>Underpayments</h3>
+<p>The main ranker mostly finds overpayments. A second ranker trained on underpayments (exp79) finds a median of 3.4 times the underpayment dollars of random review, against 1.5 times for the main ranker, and does better in every jurisdiction. States with many underpayments (Wyoming: 54% of error dollars) should run both queues.</p>
+<h3>Refitting on your own data</h3>
+<p>Your own review findings, from the pilot and from routine second-party reviews, can improve the model. Two rules, from a simulation over four years in six states (exp67):</p>
+<ul>
+<li><strong>Never retrain only on the cases the model flagged.</strong> It stops learning about errors it doesn't flag, and lost about 15% of its edge in four years in that simulation. Always include the yearly federal QC sample (random and fully reviewed) and the pilot's random slice.</li>
+<li><strong>Refresh once a year,</strong> when the new QC public-use file is released.</li>
+</ul>
+<p><strong>The code change:</strong> the training code reads cases in the QC public-use layout (<code>experiments/exp58_agency_rankers.py</code>, <code>load_state</code>; the year list <code>FY_FILES</code>). The input fields above plus <code>STATUS</code> (1 correct, 2 overpaid, 3 underpaid) and <code>AMTERR</code> (error dollars) are all it needs. Export your reviewed cases in that layout as an extra year's file, add it to <code>FY_FILES</code>, and rerun the fit for your state. This is a small change. Keep the federal years in, and hold out a recent slice of your own cases to test on before replacing the packaged model.</p>
+<h3>Flag cards (optional)</h3>
+<p>A flag card tells the reviewer why a case was flagged and which parts to check first. Its top three items included the real error for 86–88% of flagged errors in Pennsylvania and New York. The card logic is in <code>experiments/exp62_*</code>, <code>exp65_*</code> and <code>exp74_*</code>. The "check first" model needs about 100–200 labelled error cases from your state to beat generic advice (exp63), which a pilot produces in a few months.</p>
+<h3>Your state's policy library (optional)</h3>
+<p>Rule citations on flag cards, and any policy-lookup assistant, read from <strong>state-policy-docs</strong> (<a href="https://github.com/ctrimm/state-policy-docs">github.com/ctrimm/state-policy-docs</a>). It is thorough for federal rules and California but thin for most states (Pennsylvania 4 documents, New York 6, Wyoming 2).</p>
+<p><strong>To add your state's manual:</strong> follow <code>AGENTS.md</code> in that repository (<code>pipeline/ingest.py</code>). Each document becomes a Markdown file with front matter for jurisdiction and effective dates. Then link citations, check the links, and run the tests:</p>
+<pre><code class="language-bash">.venv/bin/python pipeline/link_citations.py
+.venv/bin/python pipeline/check_links.py
+.venv/bin/python -m unittest discover -s tests
+</code></pre>
+<p><strong>One lesson from California:</strong> keep superseded or older guidance reachable by citation rather than in search (<code>STATE_POLICY_CITED_LETTERS=cite_only</code>). Mixing hundreds of old letters into search pushed current rules out of the top results.</p>
+<h2>Checklist</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Done when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level 1</td>
+<td>You have your state's <code>exp83_results.json</code> entry and the cost-share output, and know your break-even review rate</td>
+</tr>
+<tr>
+<td>Level 2</td>
+<td><code>exp83_context_models_full_eval.py</code> reproduces <code>exp83_results.json</code> with an empty <code>git diff</code></td>
+</tr>
+<tr>
+<td>Level 3</td>
+<td><code>score_cases.py</code> ranks a month of your cases, the inputs pass the sanity checks, and a QC lead has looked at the top 50</td>
+</tr>
+<tr>
+<td>Level 4</td>
+<td>Three months of shadow reviews with a random slice; lift, forecast accuracy, error lifetime, fix rate and fairness measured; cost share rerun with your lift</td>
+</tr>
+<tr>
+<td>Refresh</td>
+<td>Yearly refit including the new federal QC sample and your random-slice reviews</td>
+</tr>
+</tbody>
+</table>
+<h2>Cautions</h2>
+<ul>
+<li><strong>The tool prioritizes; it doesn't decide.</strong> Every determination about a household stays with a person.</li>
+<li><strong>Cost-share figures are scenarios, not forecasts.</strong> They leave out:<ul>
+<li>timing relative to the federal sample month;</li>
+<li>procedural errors outside the public file;</li>
+<li>behavior changes;</li>
+<li>the delay option;</li>
+<li>the cost of reviews.</li>
+</ul>
+</li>
+<li><strong>Small states:</strong> with fewer than about 1,500 QC cases (Alaska, Guam, the Virgin Islands, Wyoming), held-out results are less certain. Check them against your own reviews before quoting forecasts.</li>
+<li><strong>Never touch the federal QC sample.</strong> The tool is for a state's own reviews of active cases; the federal sample stays random by law.</li>
+<li><strong><code>model.joblib</code> files are pickles.</strong> Load only copies from this repository.</li>
+</ul>
+</body>
+</html>

@@ -12,7 +12,8 @@ transfer, LM eval) every experiment here must move.
 
 - [Project summary](whitepaper/project_summary.pdf): the whole project (ranker, cost share, synthetic data, QC language model, flag cards, policy questions), with plain-language descriptions and technical reproduction.
 - [Policy-QA summary](whitepaper/policy_qa_summary.pdf): exp84–105, grounding Gemma 4 in SNAP policy on Cornell's CalFresh quiz.
-- Rebuild either PDF from its Markdown: `python whitepaper/build_pdf.py project_summary.md policy_qa_summary.md` (needs `markdown` and Google Chrome).
+- State briefs: [Pennsylvania](whitepaper/state_brief_pa.pdf), [New York](whitepaper/state_brief_ny.pdf), [Wyoming](whitepaper/state_brief_wy.pdf); and a [replication guide for other states](whitepaper/state_replication_guide.pdf).
+- Rebuild either PDF from its Markdown: `python whitepaper/build_pdf.py <name>.md ...` (needs `markdown` and Google Chrome).
 
 ## Repo map
 
