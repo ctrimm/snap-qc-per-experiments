@@ -72,3 +72,12 @@ Part-1 config: `P0-A 90.1% P0-C 93.4% -> -T cite_only=true -T curated=true`
 
 Minutes: plain 663 (1.33 per question); date + notes on the routed questions 46.
 <!-- AUTO-RESULTS:END -->
+
+### Verdict
+
+**H1 confirmed; the success bar was missed.**
+- **Router (H1):** the router beat this run's plain agent by +1.6 [+0.6, +2.8]. That's the first pre-registered gain from routing, and it comes almost entirely from citizenship (70.6% → 91.2%), for 35 extra 1.3-minute runs (46 minutes).
+- **Corpus:** the change didn't carry over to Cornell. The plain agent with cite-only letters and curated guidance scored 88.2%, vs 89.6% for exp98-3 on the old corpus (−1.4 [−3.6, +0.8]). It gained +3.3 on our own California hard set, so the two sets stress different things. On Cornell it's neutral to slightly negative, within noise.
+- **H2:** the router finished at 89.8%, +0.2 [−2.2, +2.6] vs exp98-3. That's below the pre-registered 91.0%.
+
+**What this means:** the routing layer is real, and should sit on whichever plain agent is strongest. The corpus change helps our own questions but isn't a Cornell gain. On these numbers the best untested setup is the router over the old-corpus plain agent; exp104 estimated 91.0% for it post hoc, but it isn't confirmed.
