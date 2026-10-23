@@ -43,5 +43,32 @@ Cornell rules as always: aggregate results only; no question text, answer keys o
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending)
+Scored 2026-10-23 02:47 by `exp105_analyze.py`.
+
+### Part 0: our 121 California hard-set questions (31B agent)
+
+| Arm | Accuracy |
+|---|---|
+| P0-A: current corpus defaults | 90.1% |
+| P0-C: cite-only letters + curated guidance | 93.4% |
+| C − A (95% CI) | +3.3 [+0.0, +7.4] |
+
+Part-1 config: `P0-A 90.1% P0-C 93.4% -> -T cite_only=true -T curated=true`
+
+### Part 1: Cornell (500)
+
+| Setup | Accuracy | Citizenship (34) |
+|---|---|---|
+| Plain (this run) | 88.2% | 70.6% |
+| **Router** (E4B `noncitizens` → date + notes; 35 questions, 9 answers changed) | **89.8%** | 91.2% |
+| ref exp98-3 (old corpus, plain) | 89.6% | 70.6% |
+| ref exp102-1 (new corpus, date + notes) | 86.2% | 91.2% |
+
+| Comparison (paired) | Difference, points (95% CI) |
+|---|---|
+| **H1:** router − plain (this run) | +1.6 [+0.6, +2.8] |
+| **H2:** router − exp98-3 | +0.2 [-2.2, +2.6] |
+| plain (this run) − exp98-3 | -1.4 [-3.6, +0.8] |
+
+Minutes: plain 663 (1.33 per question); date + notes on the routed questions 46.
 <!-- AUTO-RESULTS:END -->
