@@ -62,7 +62,7 @@
   <section class="tr-tiles" id="headline" aria-label="Headline figures">
     <div class="tr-tile"><div class="lab">Jurisdictions with a ranker</div><div class="num dash-skeleton" data-source="summary" data-field="n_states">—</div></div>
     <div class="tr-tile"><div class="lab">Median top-20% lift over random review</div><div class="num dash-skeleton" data-source="summary" data-field="median_lift">—</div></div>
-    <div class="tr-tile"><div class="lab">Jurisdictions at 2.5× or better</div><div class="num dash-skeleton" data-source="summary" data-field="n_ge_25">—</div></div>
+    <div class="tr-tile"><div class="lab">Jurisdictions at 3.0× or better</div><div class="num dash-skeleton" data-source="summary" data-field="n_ge_30">—</div></div>
     <div class="tr-tile"><div class="lab">FY2028 cost share avoided, all states (central scenario, fairness floor on)</div><div class="num dash-skeleton" data-source="summary" data-field="saving_central_total">—</div></div>
   </section>
 
@@ -149,7 +149,7 @@
 <script>
   dash.calc('summary', {
     title: 'Headline figures',
-    description: 'Count of jurisdictions, median top-20% lift, how many reach 2.5x, and total FY2028 cost share avoided in the central scenario.',
+    description: 'Count of jurisdictions, median top-20% lift, how many reach 3.0x, and total FY2028 cost share avoided in the central scenario.',
     inputs: ['state_results'],
     fn: (state_results) => {
       const lifts = state_results.map((r) => Number(r.lift_deployed)).sort((a, b) => a - b);
@@ -158,7 +158,7 @@
       return {
         n_states: state_results.length,
         median_lift: median,
-        n_ge_25: lifts.filter((x) => x >= 2.5).length,
+        n_ge_30: lifts.filter((x) => x >= 3.0).length,
         saving_central_total: state_results.reduce((s, r) => s + Number(r.saving_central), 0),
       };
     },
@@ -324,7 +324,7 @@
     });
   }
 
-  const COLS = [['state', (r) => r.name + ' (' + r.state + ')' + ], ['lift_deployed', (r) => fmtX(r.lift_deployed)],
+  const COLS = [['state', (r) => r.name + ' (' + r.state + ')'], ['lift_deployed', (r) => fmtX(r.lift_deployed)],
     ['lift_floor', (r) => fmtX(r.lift_floor)], ['elderly_ratio', (r) => (r.elderly_ratio == null ? 'n/a' : d3.format('.2f')(r.elderly_ratio))], ['lift_top10', (r) => fmtX(r.lift_top10)],
     ['per_hour', (r) => fmt$(r.per_hour)], ['random_per_hour', (r) => fmt$(r.random_per_hour)], ['time_split_lift', (r) => fmtX(r.time_split_lift)],
     ['exp_over_act', (r) => (r.exp_over_act == null ? 'n/a' : d3.format('.2f')(r.exp_over_act))], ['per_fy2025', (r) => fmtPct(r.per_fy2025)], ['share_central', (r) => fmtShare(r.share_central)],
@@ -382,7 +382,7 @@
       el.textContent = f === 'median_lift' ? fmtX(s[f]) : f === 'saving_central_total' ? fmtBig(s[f]) : d3.format(',')(s[f]);
     });
     const take = document.querySelector('.tr-take');
-    take.textContent = s ? `Reviewing the top fifth of each state's ranked cases finds a median ${fmtX(s.median_lift)} the error dollars of random review, and ${d3.format(',')(s.n_ge_25)} of ${d3.format(',')(s.n_states)} jurisdictions reach 2.5× or better.` : '—';
+    take.textContent = s ? `Reviewing the top fifth of each state's ranked cases finds a median ${fmtX(s.median_lift)} the error dollars of random review, and ${d3.format(',')(s.n_ge_30)} of ${d3.format(',')(s.n_states)} jurisdictions reach 3.0× or better.` : '—';
   }
 
   document.getElementById('metric-switch').addEventListener('click', (e) => {

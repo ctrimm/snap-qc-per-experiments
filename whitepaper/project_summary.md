@@ -308,3 +308,86 @@ cd experiments && inspect eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model op
 | Oct 15 | Cost share re-run on the deployed rankers with the fairness floor on: $6.05 billion central |
 | Oct 16–18 | Flag-card Rules line at scale; `COST-SHARE-REPLICATE.md` for national and per-state reproduction; quiz audit; best policy setup 89.6% |
 | Oct 19–23 | Policy-assistant plateau: supersession notes, the date, 458 CDSS letters, citation links, a routing layer confirmed in a pre-registered run (89.8%) |
+
+## Appendix: how concentrated are error dollars?
+
+**Why this table exists.** The October 4 state pilot papers said, for example, that "the top tenth of errors by dollar size holds 83% of all error dollars" (South Dakota), 75% (Utah) and 74% (Idaho). Rechecked on October 23, those figures are reproducible, but they measure something else: the share held by the top tenth of **all reviewed cases**, where most cases have no error and count as $0 (column B). Measured over **error cases only** (column A), the top tenth holds 38–53% of error dollars (median 47%; national 47.8%). Column A is what the papers' wording describes, so the current state briefs use neither old figure. Both are here.
+
+**Data source:** SNAP Quality Control public-use files, FY2020–2024, from [snapqcdata.net/datafiles](https://snapqcdata.net/datafiles), as distributed with the USDA Food and Nutrition Service's QC technical documentation (one file per fiscal year, 167,002 reviewed cases in all).
+
+**Fields:**
+- `STATUS` (1 correct, 2 overissuance, 3 underissuance);
+- `AMTERR` (the case's error amount in dollars, as the QC reviewer found it);
+- `STATENAME` (the jurisdiction).
+
+**Definitions:**
+- **Unit:** one reviewed case, unweighted, with all five years pooled.
+- **Error case:** `STATUS` 2 or 3.
+- **Top 10%:** the largest `AMTERR` values, round(n × 10%) of them.
+- **National:** all 53 jurisdictions pooled.
+- **Median and 90th percentile:** the `AMTERR` of error cases.
+- **Exclusions:** none.
+- **Weights:** the QC sampling weights (`FYWGT`) are not applied, so these describe the QC sample, not the caseload.
+
+**Reproduce:** `python3 whitepaper/concentration_table.py`. It reads the five files and rewrites this table.
+
+**How to read it:** A says how much of the error money sits in the biggest tenth of errors. B mixes in how rare errors are: a state where most reviewed cases are correct gets a high B even when its errors are no more concentrated. For prioritizing reviews, A is the relevant measure, and it is why ranking by expected dollars beats ranking by the chance of an error.
+
+<!-- CONCENTRATION:START -->
+| Jurisdiction | Reviewed cases | Error cases | A: top 10% of error cases | B: top 10% of all cases | Median error | 90th pct. |
+|---|---|---|---|---|---|---|
+| Alabama (AL) | 4,163 | 1,424 | 46.0% | 77.6% | $30 | $177 |
+| Alaska (AK) | 1,367 | 474 | 51.1% | 79.7% | $35 | $221 |
+| Arizona (AZ) | 3,352 | 1,046 | 46.3% | 82.3% | $35 | $258 |
+| Arkansas (AR) | 3,430 | 1,117 | 49.1% | 78.1% | $23 | $121 |
+| California (CA) | 3,108 | 1,278 | 44.9% | 73.7% | $29 | $209 |
+| Colorado (CO) | 3,595 | 1,271 | 49.3% | 79.6% | $28 | $184 |
+| Connecticut (CT) | 3,818 | 1,515 | 45.3% | 74.5% | $29 | $196 |
+| Delaware (DE) | 1,652 | 633 | 44.3% | 74.6% | $32 | $224 |
+| District of Columbia (DC) | 2,689 | 1,163 | 38.1% | 64.6% | $56 | $258 |
+| Florida (FL) | 3,745 | 1,518 | 44.8% | 72.7% | $29 | $184 |
+| Georgia (GA) | 3,902 | 1,987 | 45.6% | 66.6% | $35 | $230 |
+| Guam (GU) | 732 | 343 | 41.4% | 66.6% | $45 | $308 |
+| Hawaii (HI) | 2,009 | 884 | 49.6% | 71.4% | $30 | $168 |
+| Idaho (ID) | 3,839 | 1,292 | 48.9% | 74.9% | $17 | $67 |
+| Illinois (IL) | 3,246 | 1,140 | 40.4% | 73.3% | $42 | $226 |
+| Indiana (IN) | 3,237 | 1,248 | 46.4% | 75.8% | $30 | $196 |
+| Iowa (IA) | 3,892 | 1,297 | 50.8% | 81.3% | $26 | $183 |
+| Kansas (KS) | 3,698 | 1,550 | 45.4% | 67.7% | $22 | $99 |
+| Kentucky (KY) | 4,073 | 1,219 | 52.3% | 83.5% | $21 | $157 |
+| Louisiana (LA) | 3,325 | 1,411 | 49.8% | 70.8% | $27 | $140 |
+| Maine (ME) | 3,434 | 1,423 | 44.7% | 73.4% | $26 | $176 |
+| Maryland (MD) | 2,279 | 872 | 44.7% | 74.1% | $41 | $230 |
+| Massachusetts (MA) | 3,483 | 1,287 | 46.5% | 78.6% | $28 | $229 |
+| Michigan (MI) | 3,460 | 1,511 | 45.0% | 70.0% | $32 | $201 |
+| Minnesota (MN) | 4,077 | 1,566 | 43.9% | 73.9% | $27 | $167 |
+| Mississippi (MS) | 4,158 | 1,547 | 46.5% | 73.8% | $31 | $176 |
+| Missouri (MO) | 2,933 | 1,174 | 48.0% | 72.5% | $23 | $123 |
+| Montana (MT) | 2,421 | 1,008 | 49.0% | 74.3% | $23 | $165 |
+| Nebraska (NE) | 3,738 | 1,307 | 49.7% | 77.0% | $20 | $137 |
+| Nevada (NV) | 4,047 | 1,351 | 49.4% | 77.2% | $25 | $156 |
+| New Hampshire (NH) | 2,328 | 782 | 44.0% | 77.1% | $28 | $162 |
+| New Jersey (NJ) | 2,327 | 756 | 49.2% | 79.7% | $22 | $137 |
+| New Mexico (NM) | 3,845 | 1,838 | 48.9% | 73.0% | $25 | $202 |
+| New York (NY) | 3,257 | 1,194 | 46.2% | 78.6% | $30 | $230 |
+| North Carolina (NC) | 3,983 | 1,435 | 45.9% | 78.8% | $29 | $207 |
+| North Dakota (ND) | 1,691 | 645 | 49.0% | 77.3% | $24 | $170 |
+| Ohio (OH) | 3,475 | 1,317 | 50.8% | 77.6% | $21 | $143 |
+| Oklahoma (OK) | 3,829 | 1,562 | 47.9% | 73.0% | $30 | $169 |
+| Oregon (OR) | 3,037 | 1,207 | 45.0% | 74.0% | $33 | $230 |
+| Pennsylvania (PA) | 3,268 | 1,395 | 50.7% | 74.0% | $26 | $169 |
+| Rhode Island (RI) | 3,435 | 1,646 | 40.4% | 64.0% | $32 | $196 |
+| South Carolina (SC) | 3,737 | 1,355 | 44.7% | 74.6% | $29 | $166 |
+| South Dakota (SD) | 2,365 | 607 | 50.4% | 82.5% | $18 | $81 |
+| Tennessee (TN) | 3,807 | 1,348 | 45.9% | 75.7% | $26 | $148 |
+| Texas (TX) | 3,457 | 1,530 | 47.1% | 69.5% | $29 | $155 |
+| Utah (UT) | 4,101 | 1,347 | 50.2% | 76.0% | $21 | $106 |
+| Vermont (VT) | 2,720 | 939 | 52.6% | 78.0% | $19 | $111 |
+| Virgin Islands (VI) | 998 | 420 | 49.7% | 77.1% | $28 | $229 |
+| Virginia (VA) | 2,942 | 1,366 | 45.7% | 67.1% | $32 | $167 |
+| Washington (WA) | 3,060 | 805 | 45.5% | 84.5% | $32 | $213 |
+| West Virginia (WV) | 3,268 | 1,226 | 46.7% | 73.7% | $24 | $134 |
+| Wisconsin (WI) | 3,979 | 1,305 | 49.3% | 78.4% | $24 | $144 |
+| Wyoming (WY) | 1,191 | 405 | 46.2% | 74.0% | $21 | $97 |
+| **National** | 167,002 | 63,286 | 47.8% | 76.2% | $28 | $178 |
+<!-- CONCENTRATION:END -->

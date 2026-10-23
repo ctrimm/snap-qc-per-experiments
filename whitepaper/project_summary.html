@@ -548,5 +548,529 @@ cd experiments &amp;&amp; inspect eval exp85_mcq_rag_task.py@calfresh_mcq_rag --
 </tr>
 </tbody>
 </table>
+<h2>Appendix: how concentrated are error dollars?</h2>
+<p><strong>Why this table exists.</strong> The October 4 state pilot papers said, for example, that "the top tenth of errors by dollar size holds 83% of all error dollars" (South Dakota), 75% (Utah) and 74% (Idaho). Rechecked on October 23, those figures are reproducible, but they measure something else: the share held by the top tenth of <strong>all reviewed cases</strong>, where most cases have no error and count as $0 (column B). Measured over <strong>error cases only</strong> (column A), the top tenth holds 38–53% of error dollars (median 47%; national 47.8%). Column A is what the papers' wording describes, so the current state briefs use neither old figure. Both are here.</p>
+<p><strong>Data source:</strong> SNAP Quality Control public-use files, FY2020–2024, from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>, as distributed with the USDA Food and Nutrition Service's QC technical documentation (one file per fiscal year, 167,002 reviewed cases in all).</p>
+<p><strong>Fields:</strong></p>
+<ul>
+<li><code>STATUS</code> (1 correct, 2 overissuance, 3 underissuance);</li>
+<li><code>AMTERR</code> (the case's error amount in dollars, as the QC reviewer found it);</li>
+<li><code>STATENAME</code> (the jurisdiction).</li>
+</ul>
+<p><strong>Definitions:</strong></p>
+<ul>
+<li><strong>Unit:</strong> one reviewed case, unweighted, with all five years pooled.</li>
+<li><strong>Error case:</strong> <code>STATUS</code> 2 or 3.</li>
+<li><strong>Top 10%:</strong> the largest <code>AMTERR</code> values, round(n × 10%) of them.</li>
+<li><strong>National:</strong> all 53 jurisdictions pooled.</li>
+<li><strong>Median and 90th percentile:</strong> the <code>AMTERR</code> of error cases.</li>
+<li><strong>Exclusions:</strong> none.</li>
+<li><strong>Weights:</strong> the QC sampling weights (<code>FYWGT</code>) are not applied, so these describe the QC sample, not the caseload.</li>
+</ul>
+<p><strong>Reproduce:</strong> <code>python3 whitepaper/concentration_table.py</code>. It reads the five files and rewrites this table.</p>
+<p><strong>How to read it:</strong> A says how much of the error money sits in the biggest tenth of errors. B mixes in how rare errors are: a state where most reviewed cases are correct gets a high B even when its errors are no more concentrated. For prioritizing reviews, A is the relevant measure, and it is why ranking by expected dollars beats ranking by the chance of an error.</p>
+<!-- CONCENTRATION:START -->
+<table>
+<thead>
+<tr>
+<th>Jurisdiction</th>
+<th>Reviewed cases</th>
+<th>Error cases</th>
+<th>A: top 10% of error cases</th>
+<th>B: top 10% of all cases</th>
+<th>Median error</th>
+<th>90th pct.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alabama (AL)</td>
+<td>4,163</td>
+<td>1,424</td>
+<td>46.0%</td>
+<td>77.6%</td>
+<td>$30</td>
+<td>$177</td>
+</tr>
+<tr>
+<td>Alaska (AK)</td>
+<td>1,367</td>
+<td>474</td>
+<td>51.1%</td>
+<td>79.7%</td>
+<td>$35</td>
+<td>$221</td>
+</tr>
+<tr>
+<td>Arizona (AZ)</td>
+<td>3,352</td>
+<td>1,046</td>
+<td>46.3%</td>
+<td>82.3%</td>
+<td>$35</td>
+<td>$258</td>
+</tr>
+<tr>
+<td>Arkansas (AR)</td>
+<td>3,430</td>
+<td>1,117</td>
+<td>49.1%</td>
+<td>78.1%</td>
+<td>$23</td>
+<td>$121</td>
+</tr>
+<tr>
+<td>California (CA)</td>
+<td>3,108</td>
+<td>1,278</td>
+<td>44.9%</td>
+<td>73.7%</td>
+<td>$29</td>
+<td>$209</td>
+</tr>
+<tr>
+<td>Colorado (CO)</td>
+<td>3,595</td>
+<td>1,271</td>
+<td>49.3%</td>
+<td>79.6%</td>
+<td>$28</td>
+<td>$184</td>
+</tr>
+<tr>
+<td>Connecticut (CT)</td>
+<td>3,818</td>
+<td>1,515</td>
+<td>45.3%</td>
+<td>74.5%</td>
+<td>$29</td>
+<td>$196</td>
+</tr>
+<tr>
+<td>Delaware (DE)</td>
+<td>1,652</td>
+<td>633</td>
+<td>44.3%</td>
+<td>74.6%</td>
+<td>$32</td>
+<td>$224</td>
+</tr>
+<tr>
+<td>District of Columbia (DC)</td>
+<td>2,689</td>
+<td>1,163</td>
+<td>38.1%</td>
+<td>64.6%</td>
+<td>$56</td>
+<td>$258</td>
+</tr>
+<tr>
+<td>Florida (FL)</td>
+<td>3,745</td>
+<td>1,518</td>
+<td>44.8%</td>
+<td>72.7%</td>
+<td>$29</td>
+<td>$184</td>
+</tr>
+<tr>
+<td>Georgia (GA)</td>
+<td>3,902</td>
+<td>1,987</td>
+<td>45.6%</td>
+<td>66.6%</td>
+<td>$35</td>
+<td>$230</td>
+</tr>
+<tr>
+<td>Guam (GU)</td>
+<td>732</td>
+<td>343</td>
+<td>41.4%</td>
+<td>66.6%</td>
+<td>$45</td>
+<td>$308</td>
+</tr>
+<tr>
+<td>Hawaii (HI)</td>
+<td>2,009</td>
+<td>884</td>
+<td>49.6%</td>
+<td>71.4%</td>
+<td>$30</td>
+<td>$168</td>
+</tr>
+<tr>
+<td>Idaho (ID)</td>
+<td>3,839</td>
+<td>1,292</td>
+<td>48.9%</td>
+<td>74.9%</td>
+<td>$17</td>
+<td>$67</td>
+</tr>
+<tr>
+<td>Illinois (IL)</td>
+<td>3,246</td>
+<td>1,140</td>
+<td>40.4%</td>
+<td>73.3%</td>
+<td>$42</td>
+<td>$226</td>
+</tr>
+<tr>
+<td>Indiana (IN)</td>
+<td>3,237</td>
+<td>1,248</td>
+<td>46.4%</td>
+<td>75.8%</td>
+<td>$30</td>
+<td>$196</td>
+</tr>
+<tr>
+<td>Iowa (IA)</td>
+<td>3,892</td>
+<td>1,297</td>
+<td>50.8%</td>
+<td>81.3%</td>
+<td>$26</td>
+<td>$183</td>
+</tr>
+<tr>
+<td>Kansas (KS)</td>
+<td>3,698</td>
+<td>1,550</td>
+<td>45.4%</td>
+<td>67.7%</td>
+<td>$22</td>
+<td>$99</td>
+</tr>
+<tr>
+<td>Kentucky (KY)</td>
+<td>4,073</td>
+<td>1,219</td>
+<td>52.3%</td>
+<td>83.5%</td>
+<td>$21</td>
+<td>$157</td>
+</tr>
+<tr>
+<td>Louisiana (LA)</td>
+<td>3,325</td>
+<td>1,411</td>
+<td>49.8%</td>
+<td>70.8%</td>
+<td>$27</td>
+<td>$140</td>
+</tr>
+<tr>
+<td>Maine (ME)</td>
+<td>3,434</td>
+<td>1,423</td>
+<td>44.7%</td>
+<td>73.4%</td>
+<td>$26</td>
+<td>$176</td>
+</tr>
+<tr>
+<td>Maryland (MD)</td>
+<td>2,279</td>
+<td>872</td>
+<td>44.7%</td>
+<td>74.1%</td>
+<td>$41</td>
+<td>$230</td>
+</tr>
+<tr>
+<td>Massachusetts (MA)</td>
+<td>3,483</td>
+<td>1,287</td>
+<td>46.5%</td>
+<td>78.6%</td>
+<td>$28</td>
+<td>$229</td>
+</tr>
+<tr>
+<td>Michigan (MI)</td>
+<td>3,460</td>
+<td>1,511</td>
+<td>45.0%</td>
+<td>70.0%</td>
+<td>$32</td>
+<td>$201</td>
+</tr>
+<tr>
+<td>Minnesota (MN)</td>
+<td>4,077</td>
+<td>1,566</td>
+<td>43.9%</td>
+<td>73.9%</td>
+<td>$27</td>
+<td>$167</td>
+</tr>
+<tr>
+<td>Mississippi (MS)</td>
+<td>4,158</td>
+<td>1,547</td>
+<td>46.5%</td>
+<td>73.8%</td>
+<td>$31</td>
+<td>$176</td>
+</tr>
+<tr>
+<td>Missouri (MO)</td>
+<td>2,933</td>
+<td>1,174</td>
+<td>48.0%</td>
+<td>72.5%</td>
+<td>$23</td>
+<td>$123</td>
+</tr>
+<tr>
+<td>Montana (MT)</td>
+<td>2,421</td>
+<td>1,008</td>
+<td>49.0%</td>
+<td>74.3%</td>
+<td>$23</td>
+<td>$165</td>
+</tr>
+<tr>
+<td>Nebraska (NE)</td>
+<td>3,738</td>
+<td>1,307</td>
+<td>49.7%</td>
+<td>77.0%</td>
+<td>$20</td>
+<td>$137</td>
+</tr>
+<tr>
+<td>Nevada (NV)</td>
+<td>4,047</td>
+<td>1,351</td>
+<td>49.4%</td>
+<td>77.2%</td>
+<td>$25</td>
+<td>$156</td>
+</tr>
+<tr>
+<td>New Hampshire (NH)</td>
+<td>2,328</td>
+<td>782</td>
+<td>44.0%</td>
+<td>77.1%</td>
+<td>$28</td>
+<td>$162</td>
+</tr>
+<tr>
+<td>New Jersey (NJ)</td>
+<td>2,327</td>
+<td>756</td>
+<td>49.2%</td>
+<td>79.7%</td>
+<td>$22</td>
+<td>$137</td>
+</tr>
+<tr>
+<td>New Mexico (NM)</td>
+<td>3,845</td>
+<td>1,838</td>
+<td>48.9%</td>
+<td>73.0%</td>
+<td>$25</td>
+<td>$202</td>
+</tr>
+<tr>
+<td>New York (NY)</td>
+<td>3,257</td>
+<td>1,194</td>
+<td>46.2%</td>
+<td>78.6%</td>
+<td>$30</td>
+<td>$230</td>
+</tr>
+<tr>
+<td>North Carolina (NC)</td>
+<td>3,983</td>
+<td>1,435</td>
+<td>45.9%</td>
+<td>78.8%</td>
+<td>$29</td>
+<td>$207</td>
+</tr>
+<tr>
+<td>North Dakota (ND)</td>
+<td>1,691</td>
+<td>645</td>
+<td>49.0%</td>
+<td>77.3%</td>
+<td>$24</td>
+<td>$170</td>
+</tr>
+<tr>
+<td>Ohio (OH)</td>
+<td>3,475</td>
+<td>1,317</td>
+<td>50.8%</td>
+<td>77.6%</td>
+<td>$21</td>
+<td>$143</td>
+</tr>
+<tr>
+<td>Oklahoma (OK)</td>
+<td>3,829</td>
+<td>1,562</td>
+<td>47.9%</td>
+<td>73.0%</td>
+<td>$30</td>
+<td>$169</td>
+</tr>
+<tr>
+<td>Oregon (OR)</td>
+<td>3,037</td>
+<td>1,207</td>
+<td>45.0%</td>
+<td>74.0%</td>
+<td>$33</td>
+<td>$230</td>
+</tr>
+<tr>
+<td>Pennsylvania (PA)</td>
+<td>3,268</td>
+<td>1,395</td>
+<td>50.7%</td>
+<td>74.0%</td>
+<td>$26</td>
+<td>$169</td>
+</tr>
+<tr>
+<td>Rhode Island (RI)</td>
+<td>3,435</td>
+<td>1,646</td>
+<td>40.4%</td>
+<td>64.0%</td>
+<td>$32</td>
+<td>$196</td>
+</tr>
+<tr>
+<td>South Carolina (SC)</td>
+<td>3,737</td>
+<td>1,355</td>
+<td>44.7%</td>
+<td>74.6%</td>
+<td>$29</td>
+<td>$166</td>
+</tr>
+<tr>
+<td>South Dakota (SD)</td>
+<td>2,365</td>
+<td>607</td>
+<td>50.4%</td>
+<td>82.5%</td>
+<td>$18</td>
+<td>$81</td>
+</tr>
+<tr>
+<td>Tennessee (TN)</td>
+<td>3,807</td>
+<td>1,348</td>
+<td>45.9%</td>
+<td>75.7%</td>
+<td>$26</td>
+<td>$148</td>
+</tr>
+<tr>
+<td>Texas (TX)</td>
+<td>3,457</td>
+<td>1,530</td>
+<td>47.1%</td>
+<td>69.5%</td>
+<td>$29</td>
+<td>$155</td>
+</tr>
+<tr>
+<td>Utah (UT)</td>
+<td>4,101</td>
+<td>1,347</td>
+<td>50.2%</td>
+<td>76.0%</td>
+<td>$21</td>
+<td>$106</td>
+</tr>
+<tr>
+<td>Vermont (VT)</td>
+<td>2,720</td>
+<td>939</td>
+<td>52.6%</td>
+<td>78.0%</td>
+<td>$19</td>
+<td>$111</td>
+</tr>
+<tr>
+<td>Virgin Islands (VI)</td>
+<td>998</td>
+<td>420</td>
+<td>49.7%</td>
+<td>77.1%</td>
+<td>$28</td>
+<td>$229</td>
+</tr>
+<tr>
+<td>Virginia (VA)</td>
+<td>2,942</td>
+<td>1,366</td>
+<td>45.7%</td>
+<td>67.1%</td>
+<td>$32</td>
+<td>$167</td>
+</tr>
+<tr>
+<td>Washington (WA)</td>
+<td>3,060</td>
+<td>805</td>
+<td>45.5%</td>
+<td>84.5%</td>
+<td>$32</td>
+<td>$213</td>
+</tr>
+<tr>
+<td>West Virginia (WV)</td>
+<td>3,268</td>
+<td>1,226</td>
+<td>46.7%</td>
+<td>73.7%</td>
+<td>$24</td>
+<td>$134</td>
+</tr>
+<tr>
+<td>Wisconsin (WI)</td>
+<td>3,979</td>
+<td>1,305</td>
+<td>49.3%</td>
+<td>78.4%</td>
+<td>$24</td>
+<td>$144</td>
+</tr>
+<tr>
+<td>Wyoming (WY)</td>
+<td>1,191</td>
+<td>405</td>
+<td>46.2%</td>
+<td>74.0%</td>
+<td>$21</td>
+<td>$97</td>
+</tr>
+<tr>
+<td><strong>National</strong></td>
+<td>167,002</td>
+<td>63,286</td>
+<td>47.8%</td>
+<td>76.2%</td>
+<td>$28</td>
+<td>$178</td>
+</tr>
+</tbody>
+</table>
+<!-- CONCENTRATION:END -->
 </body>
 </html>

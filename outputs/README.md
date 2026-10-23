@@ -17,7 +17,7 @@ The finished product of this project, kept apart from the experiments, data and 
 
 ## Where the numbers come from
 
-Federal SNAP Quality Control public-use files, FY2020–2024; USDA's FY2025 payment error rates (June 24, 2026). Methods, assumptions and every experiment behind these figures are in the repository's `experiments/` folder (exp68 rankers, exp69/73/78 cost scenarios, exp72 fairness, exp75 small-state models) and summarized in the report. Cost-share figures are scenarios that show the size of the opportunity, not forecasts.
+Federal SNAP Quality Control public-use files, FY2020–2024; USDA's FY2025 payment error rates (June 24, 2026). Methods, assumptions and every experiment behind these figures are in the repository's `experiments/` folder (deployed rankers: exp80/82, evaluated in exp83; cost scenarios: exp69 design, run on the deployed models with the fairness floor on in exp93; fairness: exp72/exp83; the earlier state-only rankers of exp68 are kept for reference) and summarized in the report. Cost-share figures are scenarios that show the size of the opportunity, not forecasts.
 
 ## Rebuilding
 
