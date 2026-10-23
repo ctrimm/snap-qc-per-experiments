@@ -10,14 +10,14 @@ The project produced six findings, in order of how ready they are to use:
 
 1. **A ranking tool can triple or quadruple the error dollars a review finds, in every state.**
    - **What it does:** a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.
-   - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 4.0 times the error dollars of random selection (at least 3.0 times everywhere), and the top 10% holds 6.4 times. Its dollar forecasts are within 20% of actual in 52 of 53 jurisdictions.
-   - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate costs about 1% of that lift.
+   - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 4.0 times the error dollars of random selection (lowest: Alaska, 2.96 times), and the top 10% holds 6.4 times. Its dollar forecasts are within 20% of actual in 52 of 53 jurisdictions.
+   - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate lowers the median lift by about 1% (the median state gives up 1.5%; the most, Hawaii, 15%).
 2. **Under the FY2028 cost-sharing rules, that could be worth billions.**
    - **Exposure:** at FY2025 error rates, 43 jurisdictions would owe about $10.6 billion a year.
    - **Avoided:** in a central scenario, reviewing 2% of cases a month in ranker order (fairness floor on), states would avoid an estimated $6.05 billion of it a year, against $1.03 billion for random reviews of the same volume. The range across scenarios is $0.39–10.06 billion.
 3. **Realistic synthetic cases teach real skills.** A generator calibrated to the federal data produces fake cases with known errors. Models trained only on these fake cases predict errors in real cases well above chance, reaching about half to two-thirds of what models trained on real data achieve.
 4. **A small language model can learn part of a QC reviewer's job from synthetic data alone.**
-   - **Result:** Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Overall it scored 33% above chance, against 0.5% untrained and 24% for a conventional classifier.
+   - **Result:** Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Its overall score was 33% (28% above chance), against 0.5% untrained and 24% for a conventional classifier.
    - **Limits:** it spots errors, their direction and where they are well above chance, but not the type of mistake or whose mistake it was.
 5. **Plain-language flag cards can tell a reviewer where to look, with honest odds and correct citations.**
    - **Where to look:** the cards' top three "check first" items include the real error for 86–88% of flagged errors in Pennsylvania and New York.
@@ -40,7 +40,7 @@ The project produced six findings, in order of how ready they are to use:
 | Do fake cases teach anything real? | Models trained only on fake cases, tested on real ones | Yes, every time; about half to two-thirds as well as training on real data. More fake data stops helping past about 10,000 cases; realism matters more |
 | Can a small AI model read a case like a reviewer? | A 4-billion-parameter model trained on fake cases, tested on 1,200 real ones under rules set in advance | Partly. It finds that there's an error, which way and where; it can't yet say what kind or whose |
 | Which cases should reviewers look at first? | A ranking model per state that estimates each case's likely error dollars | The top fifth of the queue holds about 4 times the error dollars of a random fifth, in every state |
-| Does ranking by dollars shortchange anyone? | A fairness audit of review shares by household type, and a floor | Elderly households were under-reviewed almost everywhere; a floor fixes it for about 1% of the gain |
+| Does ranking by dollars shortchange anyone? | A fairness audit of review shares by household type, and a floor | Elderly households were under-reviewed almost everywhere; a floor fixes it for a median 1.5% of the gain per state |
 | What is it worth under the new cost-share rules? | A scenario model of error dollars in each state's caseload | About $6 billion a year avoided nationally in the central scenario ($0.4–10.1 billion range) |
 | Can we tell reviewers *why* a case was flagged? | Flag cards: why it was flagged, what to check first, the rule that applies | The top three checks catch 86–88% of errors; the odds are calibrated; citations are correct |
 | Can an AI model answer policy questions correctly? | A searchable, dated library of federal and state SNAP policy, and tools to search and open it | A mid-sized model goes from 84% to about 90% on a public CalFresh quiz; a small one doesn't gain |
@@ -69,14 +69,14 @@ The ranker carries steps 1 and 2, where the dollar gains come from. The language
 | Top 20% of the queue vs random review | median 4.0× (lowest Alaska 3.0×, highest Washington 4.5×) |
 | Top 10% of the queue | median 6.4× |
 | Train on 2020–22, test on 2023–24 | median 3.8× (lowest Wyoming 2.9×) |
-| Error dollars found per review hour | $79–366 (Pennsylvania about $190, against $47 at random) |
+| Error dollars found per review hour | $79–366 (Pennsylvania $193, against $47 at random) |
 | Dollar forecast within 20% of actual | 52 of 53 |
-| Cost of the fairness floor | about 1% of the lift (4.0× → 3.9×) |
+| Cost of the fairness floor | median lift 4.0× → 3.9× (about 1%); median state 1.5%, most 15% (Hawaii) |
 
 **How it works:**
 - **Two parts:** one estimates the chance a case has an error, the other the dollars if it does. Cases are ranked by the product.
 - **Pooled training:** each jurisdiction's model learns from every state's QC cases plus two inputs that describe its own benefit levels. This beat state-only models in all 53 jurisdictions; for example Pennsylvania 3.5× → 4.1×, Texas 2.7× → 3.6×, Alaska 1.3× → 3.0×.
-- **Pre-review inputs only:** an audit removed four fields that held the reviewer's corrected values, and the models did as well or better without them.
+- **Pre-review inputs only:** an audit removed four fields that held the reviewer's corrected values. Across the six pilot states the models did about as well or better without them (top-20% lift −0.03× to +0.31×).
 
 **Underpayments:** a second ranker trained on underpayments finds 3.4 times the underpayment dollars of random review, against 1.5 times for the main ranker. It's better in all 53 jurisdictions, so a state can give part of its review budget to finding households that are being shorted.
 

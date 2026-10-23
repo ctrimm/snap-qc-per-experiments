@@ -42,8 +42,8 @@
 <ol>
 <li><strong>A ranking tool can triple or quadruple the error dollars a review finds, in every state.</strong><ul>
 <li><strong>What it does:</strong> a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.</li>
-<li><strong>Accuracy:</strong> on cases it never saw, the top 20% of its queue holds a median 4.0 times the error dollars of random selection (at least 3.0 times everywhere), and the top 10% holds 6.4 times. Its dollar forecasts are within 20% of actual in 52 of 53 jurisdictions.</li>
-<li><strong>Fairness:</strong> a floor that keeps elderly and disabled households' share of reviews proportionate costs about 1% of that lift.</li>
+<li><strong>Accuracy:</strong> on cases it never saw, the top 20% of its queue holds a median 4.0 times the error dollars of random selection (lowest: Alaska, 2.96 times), and the top 10% holds 6.4 times. Its dollar forecasts are within 20% of actual in 52 of 53 jurisdictions.</li>
+<li><strong>Fairness:</strong> a floor that keeps elderly and disabled households' share of reviews proportionate lowers the median lift by about 1% (the median state gives up 1.5%; the most, Hawaii, 15%).</li>
 </ul>
 </li>
 <li><strong>Under the FY2028 cost-sharing rules, that could be worth billions.</strong><ul>
@@ -53,7 +53,7 @@
 </li>
 <li><strong>Realistic synthetic cases teach real skills.</strong> A generator calibrated to the federal data produces fake cases with known errors. Models trained only on these fake cases predict errors in real cases well above chance, reaching about half to two-thirds of what models trained on real data achieve.</li>
 <li><strong>A small language model can learn part of a QC reviewer's job from synthetic data alone.</strong><ul>
-<li><strong>Result:</strong> Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Overall it scored 33% above chance, against 0.5% untrained and 24% for a conventional classifier.</li>
+<li><strong>Result:</strong> Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Its overall score was 33% (28% above chance), against 0.5% untrained and 24% for a conventional classifier.</li>
 <li><strong>Limits:</strong> it spots errors, their direction and where they are well above chance, but not the type of mistake or whose mistake it was.</li>
 </ul>
 </li>
@@ -105,7 +105,7 @@
 <tr>
 <td>Does ranking by dollars shortchange anyone?</td>
 <td>A fairness audit of review shares by household type, and a floor</td>
-<td>Elderly households were under-reviewed almost everywhere; a floor fixes it for about 1% of the gain</td>
+<td>Elderly households were under-reviewed almost everywhere; a floor fixes it for a median 1.5% of the gain per state</td>
 </tr>
 <tr>
 <td>What is it worth under the new cost-share rules?</td>
@@ -192,7 +192,7 @@
 </tr>
 <tr>
 <td>Error dollars found per review hour</td>
-<td>$79–366 (Pennsylvania about $190, against $47 at random)</td>
+<td>$79–366 (Pennsylvania $193, against $47 at random)</td>
 </tr>
 <tr>
 <td>Dollar forecast within 20% of actual</td>
@@ -200,7 +200,7 @@
 </tr>
 <tr>
 <td>Cost of the fairness floor</td>
-<td>about 1% of the lift (4.0× → 3.9×)</td>
+<td>median lift 4.0× → 3.9× (about 1%); median state 1.5%, most 15% (Hawaii)</td>
 </tr>
 </tbody>
 </table>
@@ -208,7 +208,7 @@
 <ul>
 <li><strong>Two parts:</strong> one estimates the chance a case has an error, the other the dollars if it does. Cases are ranked by the product.</li>
 <li><strong>Pooled training:</strong> each jurisdiction's model learns from every state's QC cases plus two inputs that describe its own benefit levels. This beat state-only models in all 53 jurisdictions; for example Pennsylvania 3.5× → 4.1×, Texas 2.7× → 3.6×, Alaska 1.3× → 3.0×.</li>
-<li><strong>Pre-review inputs only:</strong> an audit removed four fields that held the reviewer's corrected values, and the models did as well or better without them.</li>
+<li><strong>Pre-review inputs only:</strong> an audit removed four fields that held the reviewer's corrected values. Across the six pilot states the models did about as well or better without them (top-20% lift −0.03× to +0.31×).</li>
 </ul>
 <p><strong>Underpayments:</strong> a second ranker trained on underpayments finds 3.4 times the underpayment dollars of random review, against 1.5 times for the main ranker. It's better in all 53 jurisdictions, so a state can give part of its review budget to finding households that are being shorted.</p>
 <p><strong>Keeping it working:</strong> a simulation over FY2021–24 showed that a ranker retrained only on the cases it flagged loses about 15% of its effectiveness in four years. Adding each year's federal QC sample, which is random and fully reviewed, closes most of that gap.</p>

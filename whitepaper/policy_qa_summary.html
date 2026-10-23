@@ -41,14 +41,14 @@
 <p>The benchmark is Cornell's 500-question CalFresh quiz. Nava PBC has published results on it for frontier and open models. We reached five findings:</p>
 <ol>
 <li><strong>Looking rules up helps the larger open model, but not the small one.</strong><ul>
-<li><strong>31B model:</strong> Gemma 4 31B, with search and lookup tools over a dated policy corpus, went from 84.0% to 88.8% (+4.8 points, 95% interval +2.0 to +7.6). Answering as of June 2026, it reached <strong>89.6%</strong>, our best single setup. That's about 4 points above Nava's published 85.8% for the same model without tools, or about 28% fewer wrong answers.</li>
+<li><strong>31B model:</strong> Gemma 4 31B, with search and lookup tools over a dated policy corpus, went from 84.0% to 88.8% (+4.8 points, 95% interval +2.0 to +7.6). Answering as of June 2026, it reached <strong>89.6%</strong>, our best single setup. That's about 4 points above Nava's published 85.8% for the same model without tools, or about 27% fewer wrong answers (52 instead of 71).</li>
 <li><strong>4B model:</strong> Gemma 4 E4B, about 4 billion parameters, did not gain on the quiz from the same tools. It searched but rarely opened the documents it found.</li>
 </ul>
 </li>
-<li><strong>The score stopped rising after the first jump.</strong> Seven further changes over ten days each moved the score by less than the run-to-run noise (about ±2.5 points), or lowered it: supersession notes, an answer check, extended thinking, a larger corpus of state letters, letter weighting, curated rule pointers, and a routing layer.</li>
+<li><strong>The score stopped rising after the first jump.</strong> Seven further changes over ten days failed to lift the best score beyond the run-to-run noise (about ±2.5 points), and some lowered it: supersession notes, an answer check, extended thinking, a larger corpus of state letters, letter weighting, curated rule pointers, and a routing layer.</li>
 <li><strong>Sending each question to the right setup works, but adds little.</strong> A small model labels each question's topic, and immigration questions go to a setup that is told the date and that federal law has changed. In a fresh run committed in advance, this beat the plain agent by +1.6 points (+0.6 to +2.8). Citizenship questions went from 70.6% to 91.2%. The run's overall score was 89.8%, essentially the earlier best.</li>
 <li><strong>How the policy library is organized matters as much as what's in it.</strong> Adding 458 older California letters pushed the right document out of the top five search results for about 1 in 8 hard questions. Keeping those letters out of search but one citation link away, in the Open Knowledge Format, restored retrieval. Off-the-shelf embedding search did worse than plain keyword search on this legal text.</li>
-<li><strong>What's left is mostly reasoning, not missing information.</strong> Of the roughly 45 questions still wrong after routing, 27 were missed by every setup we tried. The model usually has the right rule and applies it wrong, for example in self-employment arithmetic, medical deductions or net income. A few answer keys are disputable.</li>
+<li><strong>What's left is mostly reasoning, not missing information.</strong> The post-hoc topic router estimated in exp104 still gets 45 questions wrong; 27 of those were missed by every setup we tried. The model usually has the right rule and applies it wrong, for example in self-employment arithmetic, medical deductions or net income. A few answer keys are disputable.</li>
 </ol>
 <p><strong>Bottom line:</strong> a free, open model on one workstation reaches about 90% on this benchmark with policy lookup, against about 86% without. Untuned GPT-6 scores 92.2% without tools, and a tuned GPT-6 with web search scores about 98%. Closing that gap locally looks unlikely with prompt and library changes alone. The likelier route is a stronger model, or a frontier model consulted only on the questions where local setups disagree.</p>
 <h2>What we tried, in plain terms</h2>
@@ -120,7 +120,7 @@
 </tbody>
 </table>
 <h2>The benchmark and the comparison</h2>
-<p><strong>The quiz.</strong> Cornell University's Benefits Gap Lab published 500 multiple-choice CalFresh questions, each a short client scenario (household, income, expenses, status) with five answer choices (<a href="https://huggingface.co/datasets/cornellbgl/SNAP_scenarios">cornellbgl/SNAP_scenarios</a>). The licence (CC BY-NC-ND 4.0) allows evaluation only. We never trained on it, and we never published its questions, answer key or per-question predictions. Everything here is aggregate.</p>
+<p><strong>The quiz.</strong> Cornell researchers published 500 multiple-choice CalFresh questions, written with SNAP quality-control auditors and with every answer checked by at least two of them. Each is a short client scenario (household, income, expenses, status) with five answer choices (<a href="https://huggingface.co/datasets/cornellbgl/SNAP_scenarios">cornellbgl/SNAP_scenarios</a>). The licence (CC BY-NC-ND 4.0) allows evaluation only. We never trained on it, and we never published its questions, answer key or per-question predictions. Everything here is aggregate.</p>
 <p><strong>When the quiz is set.</strong> Our audit found that the quiz uses the FFY2026 standard utility allowance ($663). Six of its noncitizen answer keys follow the post-H.R. 1 rules that California applied from April 1, 2026. So the right date to answer "as of" is mid-2026, not before H.R. 1, and every setup from exp98 on answers as of June 1, 2026.</p>
 <p><strong>Frontier results.</strong> Nava PBC benchmarked frontier and open models on the same 500 questions (<a href="https://fieldnotes.navapbc.com/p/accuracy-ai-models-snap-questions">Accuracy of AI models on SNAP questions</a>; <a href="https://fieldnotes.navapbc.com/p/what-ai-gets-wrong-about-snap-and">What AI gets wrong about SNAP</a>). We did not re-run their numbers. In their runs, with no tools and low reasoning effort, GPT-6 Astra scored 92.24% and Gemma 4 31B 85.8%, the best open model. Their roughly 98% result for GPT-6 used web search and a system prompt written after reviewing GPT-6's mistakes on these same questions. It shows what is possible, but it is partly tuned to the test.</p>
 <table>
@@ -183,12 +183,12 @@
 </tr>
 </tbody>
 </table>
-<p>Speed differs too. Our agent takes about 1.3 minutes a question, because it calls tools several times on a local machine. Nava's frontier runs take seconds.</p>
+<p>Speed differs too. Our agent takes about 1.3 minutes a question, because it calls tools several times on a local machine. Nava notes that open models didn't match frontier models on speed.</p>
 <h2>The policy library</h2>
 <p>The tools read from <strong>state-policy-docs</strong> (<a href="https://github.com/ctrimm/state-policy-docs">github.com/ctrimm/state-policy-docs</a>), a corpus built for this work and served to the model through the Model Context Protocol (MCP):</p>
 <ul>
 <li><strong>Contents:</strong> 4,461 documents in 20,843 searchable passages:<ul>
-<li>federal regulations (7 CFR 271–283);</li>
+<li>federal SNAP regulations (7 CFR 271–277), plus the parts for other nutrition programs;</li>
 <li>the Food and Nutrition Act;</li>
 <li>FNS guidance;</li>
 <li>California's regulations (MPP 63) and policy interpretations;</li>
@@ -425,7 +425,7 @@
 </table>
 <p>Legal text rewards exact terms ("7 CFR 273.9", "categorical eligibility"). A small general-purpose embedding model lost to keyword search in every case. Federal and other-state retrieval was unaffected by the California letters (98.6% and 97.7%).</p>
 <h3>5. What remains</h3>
-<p>After the topic router, about 45 questions are wrong:</p>
+<p>The topic router estimated after the fact from earlier runs (exp104: 31B topic labels; 91.0%) still gets 45 questions wrong. The pre-registered run (exp105) got 51 wrong. Of the 45:</p>
 <ul>
 <li>18 were answered correctly by some setup we ran, so better routing could recover them;</li>
 <li>27 were missed by every setup;</li>
@@ -451,7 +451,7 @@
 <ol>
 <li><strong>Use the 31B model with the policy tools, plus the topic router,</strong> as the local baseline (about 90%). For any caseworker-facing use, show the rule it cited: in our flag-card work, model notes grounded this way named the governing rule for 97% of checks, with no invented citations (exp88, exp97).</li>
 <li><strong>Stop tuning against Cornell.</strong> Further prompt and library changes are unlikely to move the score beyond noise, and each one risks fitting the test.</li>
-<li><strong>If accuracy above 92% matters, add a second opinion only where setups disagree.</strong> Disagreement is the one signal that flags mistakes. A frontier model, or a stronger open model, consulted on the 10–15% of disputed questions would cost cents per 500 questions. Its errors would differ from Gemma's, which is what routing needs.</li>
+<li><strong>If accuracy above 92% matters, add a second opinion only where setups disagree.</strong> Disagreement is the one signal that flags mistakes. A frontier model, or a stronger open model, consulted on the roughly 10% of questions where two setups disagree (50–55 of 500 in our runs), would add a small cost; we have not measured it. Its errors would differ from Gemma's, which is what routing needs.</li>
 <li><strong>Keep the library organized as a graph.</strong> Cite-only letters and citation links fixed retrieval without deleting anything. Use the same approach as more states' letters are added.</li>
 <li><strong>Build a held-out test of our own</strong> (new scenarios, other states, written answers) before claiming any further gain.</li>
 </ol>
@@ -481,7 +481,7 @@ $I eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-31b
 </code></pre>
 <ul>
 <li><strong><code>-T as_of</code>:</strong> in agent mode the task starts the MCP server (<code>mcp_server/server.py</code>) with <code>STATE_POLICY_DEFAULT_AS_OF</code> set, so tools return the rules in force on that date.</li>
-<li><strong>Our run</strong> used state-policy-docs at the corpus before the letters import (commit <code>34f2813</code>). Check that commit out in a separate worktree to match it exactly.</li>
+<li><strong>Our run</strong> (exp98-3, October 17) used state-policy-docs commit <code>af643b95</code> (October 12). Check that commit out in a separate worktree to match it exactly. Later commits add documents and options, all off by default except the documents themselves.</li>
 <li><strong>Run time:</strong> about 10.5 hours.</li>
 <li><strong>Expected result:</strong> 88.8–89.6% ± 2.5.</li>
 </ul>
