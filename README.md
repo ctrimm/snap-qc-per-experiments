@@ -8,6 +8,12 @@ Read [`NORTH_STAR.md`](NORTH_STAR.md) first: it defines the goal, the
 synthetic-first data strategy, and the three validation gates (calibration,
 transfer, LM eval) every experiment here must move.
 
+## Summaries (October 23, 2026)
+
+- [Project summary](whitepaper/project_summary.pdf): the whole project (ranker, cost share, synthetic data, QC language model, flag cards, policy questions), with plain-language descriptions and technical reproduction.
+- [Policy-QA summary](whitepaper/policy_qa_summary.pdf): exp84–105, grounding Gemma 4 in SNAP policy on Cornell's CalFresh quiz.
+- Rebuild either PDF from its Markdown: `python whitepaper/build_pdf.py project_summary.md policy_qa_summary.md` (needs `markdown` and Google Chrome).
+
 ## Repo map
 
 - `src/synth/` — synthetic QC case generator: household sampler, deterministic

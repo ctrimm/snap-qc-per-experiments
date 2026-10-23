@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Machine Learning for SNAP Payment Accuracy: Project Summary</title>
+<style>
+@page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+  table { page-break-inside: avoid; }
+  code { font-family: Menlo, monospace; font-size: 9.5pt; }
+  pre { background: #f1f5f9; border-left: 3.5px solid #c9d4e0; padding: 0.3cm 0.4cm; font-size: 8.3pt; line-height: 1.4; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+  pre code { font-size: 8.3pt; }
+  ol { margin: 0.3cm 0; padding-left: 1.1cm; }
+  a { color: #0f2a44; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  h2, h3 { page-break-after: avoid; }
+</style>
+</head>
+<body>
+<h1>Machine Learning for SNAP Payment Accuracy: Project Summary</h1>
+<div class="meta">October 23, 2026 · Project summary, September 28 – October 23 · Cory Trimm</div>
+<h2>Executive summary</h2>
+<p>States lose money, and from FY2028 will pay a share of benefit costs, when SNAP benefits are paid in the wrong amount. Quality control (QC) reviewers can examine only a small share of cases, and caseworkers have to apply a large, changing body of policy correctly. Over four weeks this project ran 105 numbered experiments, plus pilot tracks for six states. It asked where machine learning can actually help. The data was five years of federal QC records (FY2020–2024, about 167,000 reviewed cases), a synthetic case generator, and a policy library built for the purpose.</p>
+<p>The project produced six findings, in order of how ready they are to use:</p>
+<ol>
+<li><strong>A ranking tool can triple or quadruple the error dollars a review finds, in every state.</strong><ul>
+<li><strong>What it does:</strong> a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.</li>
+<li><strong>Accuracy:</strong> on cases it never saw, the top 20% of its queue holds a median 4.0 times the error dollars of random selection (at least 3.0 times everywhere), and the top 10% holds 6.4 times. Its dollar forecasts are within 20% of actual in 52 of 53 jurisdictions.</li>
+<li><strong>Fairness:</strong> a floor that keeps elderly and disabled households' share of reviews proportionate costs about 1% of that lift.</li>
+</ul>
+</li>
+<li><strong>Under the FY2028 cost-sharing rules, that could be worth billions.</strong><ul>
+<li><strong>Exposure:</strong> at FY2025 error rates, 43 jurisdictions would owe about $10.6 billion a year.</li>
+<li><strong>Avoided:</strong> in a central scenario, reviewing 2% of cases a month in ranker order (fairness floor on), states would avoid an estimated $6.05 billion of it a year, against $1.03 billion for random reviews of the same volume. The range across scenarios is $0.39–10.06 billion.</li>
+</ul>
+</li>
+<li><strong>Realistic synthetic cases teach real skills.</strong> A generator calibrated to the federal data produces fake cases with known errors. Models trained only on these fake cases predict errors in real cases well above chance, reaching about half to two-thirds of what models trained on real data achieve.</li>
+<li><strong>A small language model can learn part of a QC reviewer's job from synthetic data alone.</strong><ul>
+<li><strong>Result:</strong> Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Overall it scored 33% above chance, against 0.5% untrained and 24% for a conventional classifier.</li>
+<li><strong>Limits:</strong> it spots errors, their direction and where they are well above chance, but not the type of mistake or whose mistake it was.</li>
+</ul>
+</li>
+<li><strong>Plain-language flag cards can tell a reviewer where to look, with honest odds and correct citations.</strong><ul>
+<li><strong>Where to look:</strong> the cards' top three "check first" items include the real error for 86–88% of flagged errors in Pennsylvania and New York.</li>
+<li><strong>Honest odds:</strong> their odds were recalibrated so that "7 in 10" means about 7 in 10.</li>
+<li><strong>Citations:</strong> a small model writes the card text, and its rule citations matched a much larger model's 100% of the time on 517 fresh cards.</li>
+</ul>
+</li>
+<li><strong>Looking up policy helps a mid-sized open model answer policy questions, up to a point.</strong><ul>
+<li><strong>Result:</strong> on Cornell's 500-question CalFresh quiz, Gemma 4 31B went from 84.0% to 89.6% with lookup tools over a dated policy library. Nava PBC published 85.8% for the same model without tools.</li>
+<li><strong>The plateau:</strong> ten further days of changes, including a confirmed routing layer, held it at about 90%. Untuned GPT-6 scores 92.2% without tools (Nava's figure).</li>
+<li><strong>Details:</strong> a companion summary covers this track (<em>Grounding an Open Model in SNAP Policy</em>).</li>
+</ul>
+</li>
+</ol>
+<p><strong>What's ready:</strong> the ranker (with the fairness floor) and the cost-share model. The flag cards are ready for a reviewer trial. The language models are research results: useful as helpers that explain and cite, not as decision makers.</p>
+<p><strong>Recommendation:</strong> pilot the ranker in one state (Pennsylvania or New York), with the fairness floor on and flag cards attached. Measure dollars found against the forecast, and run the blind reviewer comparison of the flag cards in the same pilot.</p>
+<h2>What we tried, in plain terms</h2>
+<table>
+<thead>
+<tr>
+<th>Question we asked</th>
+<th>What we built</th>
+<th>What we found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can we make realistic fake SNAP cases?</td>
+<td>A generator: fake households, the federal benefit formula, and errors injected at the rates seen in real QC data</td>
+<td>Yes. The mix of errors matches the real data to within about 2%, and the dollar error rate to within about 1 point</td>
+</tr>
+<tr>
+<td>Do fake cases teach anything real?</td>
+<td>Models trained only on fake cases, tested on real ones</td>
+<td>Yes, every time; about half to two-thirds as well as training on real data. More fake data stops helping past about 10,000 cases; realism matters more</td>
+</tr>
+<tr>
+<td>Can a small AI model read a case like a reviewer?</td>
+<td>A 4-billion-parameter model trained on fake cases, tested on 1,200 real ones under rules set in advance</td>
+<td>Partly. It finds that there's an error, which way and where; it can't yet say what kind or whose</td>
+</tr>
+<tr>
+<td>Which cases should reviewers look at first?</td>
+<td>A ranking model per state that estimates each case's likely error dollars</td>
+<td>The top fifth of the queue holds about 4 times the error dollars of a random fifth, in every state</td>
+</tr>
+<tr>
+<td>Does ranking by dollars shortchange anyone?</td>
+<td>A fairness audit of review shares by household type, and a floor</td>
+<td>Elderly households were under-reviewed almost everywhere; a floor fixes it for about 1% of the gain</td>
+</tr>
+<tr>
+<td>What is it worth under the new cost-share rules?</td>
+<td>A scenario model of error dollars in each state's caseload</td>
+<td>About $6 billion a year avoided nationally in the central scenario ($0.4–10.1 billion range)</td>
+</tr>
+<tr>
+<td>Can we tell reviewers <em>why</em> a case was flagged?</td>
+<td>Flag cards: why it was flagged, what to check first, the rule that applies</td>
+<td>The top three checks catch 86–88% of errors; the odds are calibrated; citations are correct</td>
+</tr>
+<tr>
+<td>Can an AI model answer policy questions correctly?</td>
+<td>A searchable, dated library of federal and state SNAP policy, and tools to search and open it</td>
+<td>A mid-sized model goes from 84% to about 90% on a public CalFresh quiz; a small one doesn't gain</td>
+</tr>
+</tbody>
+</table>
+<h2>How the pieces fit</h2>
+<p>The federal QC sample is random by law, and no tool should touch it. The opportunity is everything a state does <strong>before</strong> that sample is drawn: its own reviews of active cases.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Who or what</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Every month</td>
+<td><strong>The ranker</strong></td>
+<td>Scores every active case from information on file and estimates its expected error dollars</td>
+</tr>
+<tr>
+<td>2. Choose cases</td>
+<td><strong>The ranker</strong>, with the fairness floor</td>
+<td>Puts the cases most likely to hold large errors at the top of the review queue, keeping each household type's share proportionate</td>
+</tr>
+<tr>
+<td>3. Review</td>
+<td><strong>State reviewers</strong>, with a <strong>flag card</strong> per case</td>
+<td>The card says why the case was flagged, what to check first, and which rule applies</td>
+</tr>
+<tr>
+<td>4. Policy questions</td>
+<td><strong>Reviewers and caseworkers</strong>, optionally with the <strong>policy assistant</strong></td>
+<td>Look up the rule in force on the case's date, with the citation</td>
+</tr>
+<tr>
+<td>5. Fix causes</td>
+<td><strong>State program staff</strong></td>
+<td>Fix the policies, notices or system issues behind repeated errors</td>
+</tr>
+<tr>
+<td>6. Federal QC</td>
+<td><strong>Federal and state QC staff</strong></td>
+<td>The usual random sample; errors already corrected are less likely to be found</td>
+</tr>
+</tbody>
+</table>
+<p>The ranker carries steps 1 and 2, where the dollar gains come from. The language models have no role in choosing cases. Their role is in steps 3 and 4, explaining and citing.</p>
+<h2>Results</h2>
+<h3>1. The ranker</h3>
+<table>
+<thead>
+<tr>
+<th>All 53 jurisdictions, held-out cases</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top 20% of the queue vs random review</td>
+<td>median 4.0× (lowest Alaska 3.0×, highest Washington 4.5×)</td>
+</tr>
+<tr>
+<td>Top 10% of the queue</td>
+<td>median 6.4×</td>
+</tr>
+<tr>
+<td>Train on 2020–22, test on 2023–24</td>
+<td>median 3.8× (lowest Wyoming 2.9×)</td>
+</tr>
+<tr>
+<td>Error dollars found per review hour</td>
+<td>$79–366 (Pennsylvania about $190, against $47 at random)</td>
+</tr>
+<tr>
+<td>Dollar forecast within 20% of actual</td>
+<td>52 of 53</td>
+</tr>
+<tr>
+<td>Cost of the fairness floor</td>
+<td>about 1% of the lift (4.0× → 3.9×)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How it works:</strong></p>
+<ul>
+<li><strong>Two parts:</strong> one estimates the chance a case has an error, the other the dollars if it does. Cases are ranked by the product.</li>
+<li><strong>Pooled training:</strong> each jurisdiction's model learns from every state's QC cases plus two inputs that describe its own benefit levels. This beat state-only models in all 53 jurisdictions; for example Pennsylvania 3.5× → 4.1×, Texas 2.7× → 3.6×, Alaska 1.3× → 3.0×.</li>
+<li><strong>Pre-review inputs only:</strong> an audit removed four fields that held the reviewer's corrected values, and the models did as well or better without them.</li>
+</ul>
+<p><strong>Underpayments:</strong> a second ranker trained on underpayments finds 3.4 times the underpayment dollars of random review, against 1.5 times for the main ranker. It's better in all 53 jurisdictions, so a state can give part of its review budget to finding households that are being shorted.</p>
+<p><strong>Keeping it working:</strong> a simulation over FY2021–24 showed that a ranker retrained only on the cases it flagged loses about 15% of its effectiveness in four years. Adding each year's federal QC sample, which is random and fully reviewed, closes most of that gap.</p>
+<h3>2. FY2028 cost share</h3>
+<p>H.R. 1 (2025) makes states with payment error rates of 6% or more pay 5–15% of their SNAP benefit costs from FY2028.</p>
+<table>
+<thead>
+<tr>
+<th>All jurisdictions, per year</th>
+<th>Ranker-guided reviews (floor on)</th>
+<th>Random reviews</th>
+<th>Reviewer FTEs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low (1% of cases reviewed a month)</td>
+<td>$0.39B avoided</td>
+<td>$0.16B</td>
+<td>about 770</td>
+</tr>
+<tr>
+<td><strong>Central (2% a month)</strong></td>
+<td><strong>$6.05B avoided</strong></td>
+<td><strong>$1.03B</strong></td>
+<td>about 1,540</td>
+</tr>
+<tr>
+<td>High (3% a month)</td>
+<td>$10.06B avoided</td>
+<td>$2.39B</td>
+<td>about 2,310</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Pennsylvania:</strong> in the central scenario its rate falls from 9.21% to about 5.7%, ending its cost share (about $418 million a year).</li>
+<li><strong>California:</strong> about $1.19 billion a year.</li>
+</ul>
+<p><strong>What drives the range:</strong> mostly review volume and how long a found error would otherwise have lasted; the ranker's accuracy matters least. These figures show the size of the opportunity; they are not a forecast. <code>COST-SHARE-REPLICATE.md</code> reproduces the national and any single state's figure.</p>
+<h3>3. Synthetic data</h3>
+<p><strong>Fit:</strong> after about 45 calibration experiments, the generator's error mix (which cases have errors, over vs under, which part of the case, why, how many dollars) matches the real data within about 2%, and the dollar error rate within about 1 point.</p>
+<p><strong>Transfer:</strong> models trained only on synthetic cases beat chance on real cases in every test, reaching about half to two-thirds of real-data performance.</p>
+<p><strong>Lessons:</strong></p>
+<ul>
+<li>Realism mattered more than volume.</li>
+<li>Some training choices helped one kind of model and hurt others.</li>
+<li>A classifier can still tell fake cases from real ones, mainly by how household traits combine. The generator is good enough to teach, but not indistinguishable.</li>
+</ul>
+<h3>4. A small language model for QC review</h3>
+<p>Scores on 1,200 fresh real QC cases, under pass/fail rules committed before the cases were drawn. "Skill" is the score above lucky guessing:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Overall</th>
+<th>Skill above chance</th>
+<th>Finds the error's location</th>
+<th>Passes all checks?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemma 4 E4B, untrained</td>
+<td>0.5%</td>
+<td>0.5%</td>
+<td>1%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Conventional classifier, same synthetic data</td>
+<td>24%</td>
+<td>15%</td>
+<td>18%</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Gemma 4 E4B, trained on synthetic cases</strong></td>
+<td><strong>33%</strong></td>
+<td><strong>28%</strong></td>
+<td><strong>24%</strong> (bar 21%)</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gain over untrained:</strong> +33 points (95% interval +31 to +35), and it won on all five category questions. A half-size model trained the same way (E2B) scored 25% and missed the location bar.</p>
+<p><strong>Training method:</strong> supervised fine-tuning worked; reinforcement learning alone taught the model only to guess the most common answer.</p>
+<p><strong>Side effects:</strong> training didn't cost policy knowledge. On the CalFresh quiz it scored 74.4%, against 72.6% before training.</p>
+<h3>5. Flag cards</h3>
+<p>A flag card has three parts:</p>
+<ul>
+<li>why the ranker flagged the case;</li>
+<li>the parts of the case to check first;</li>
+<li>the rule that applies.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real error among the top three "check first" items</td>
+<td>88% (Pennsylvania), 86% (New York)</td>
+</tr>
+<tr>
+<td>"N in 10" odds, before → after calibration</td>
+<td>expected calibration error 0.12–0.22 → 0.05–0.07</td>
+</tr>
+<tr>
+<td>Small model (E2B) writing the card, automatic checks</td>
+<td>97–99% pass</td>
+</tr>
+<tr>
+<td>Rules line on 517 fresh cards vs the 31B model</td>
+<td>100% precision and recall; every citation resolves</td>
+</tr>
+<tr>
+<td>Notes grounded in rule excerpts (E4B)</td>
+<td>cite the governing rule for 97% of checks; no invented citations</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What works best:</strong> the model writes the plain note and code appends the rule line. Asking the model to put citations at the end made notes much harder to read.</p>
+<p><strong>Labelled cases needed:</strong> the where-to-look model beats generic advice after about 100 labelled error cases.</p>
+<p><strong>Still to do:</strong> a blind reviewer comparison of template vs model-written cards is packaged, waiting for reviewers.</p>
+<h3>6. Policy questions</h3>
+<table>
+<thead>
+<tr>
+<th>Cornell CalFresh quiz, 500 questions</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemma 4 E4B, no tools / best tool setup</td>
+<td>72.6–73.4% / 77.0%</td>
+</tr>
+<tr>
+<td>Gemma 4 31B, no tools (ours / Nava's)</td>
+<td>84.0% / 85.8%</td>
+</tr>
+<tr>
+<td><strong>Gemma 4 31B with policy lookup, as of June 2026</strong></td>
+<td><strong>89.6%</strong></td>
+</tr>
+<tr>
+<td>Gemma 4 31B with lookup + topic router (pre-registered)</td>
+<td>89.8% (router +1.6 over its own plain run)</td>
+</tr>
+<tr>
+<td>GPT-6 Astra, no tools, untuned (Nava)</td>
+<td>92.24%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What's in the library:</strong></p>
+<ul>
+<li>4,461 documents in Open Knowledge Format: federal regulations and statute, FNS guidance, California's regulations and 458 county letters, and other states' manuals;</li>
+<li>dates in force on every document;</li>
+<li>citation links between documents (2,672).</li>
+</ul>
+<p>Organization mattered more than size. Adding old letters hurt search until they were made reachable only through citations. What remains wrong is mostly misapplied rules, not missing ones. Full results are in the companion summary.</p>
+<h2>What didn't work</h2>
+<p><strong>Approaches that failed:</strong></p>
+<ul>
+<li><strong>Reinforcement learning alone</strong> for the QC model. It learned to guess the majority answer.</li>
+<li><strong>Asking the QC model to explain first.</strong> Training it to list differences before answering made it call every case an error (overall 7%, against 33%).</li>
+<li><strong>Distilling the large model's tool use into the small one.</strong> It learned the habit, but stopped answering. The cause was a training-data defect: the recording tool drops the final "submit" step.</li>
+<li><strong>Asking models how confident they are.</strong> They were as confident when wrong as when right.</li>
+<li><strong>Automatic generator tuning.</strong> It chased random noise and lost on fresh data.</li>
+</ul>
+<p><strong>What we learned from them:</strong></p>
+<ul>
+<li><strong>Each lesson is recorded</strong> in the experiment that produced it.</li>
+<li><strong>The repeated one:</strong> check every result on fresh data under rules written down first. Several apparent gains (a tool recipe, generator auto-tuning, prompt changes) didn't survive that check.</li>
+</ul>
+<h2>Methodology notes</h2>
+<ul>
+<li><strong>Data:</strong><ul>
+<li><strong>QC records:</strong> federal SNAP QC public-use files, FY2020–2024 (about 167,000 cases). Each state set aside about a quarter of its cases for final testing (fixed in <code>exp68_holdouts.json</code>).</li>
+<li><strong>Error rates:</strong> USDA's official FY2025 rates.</li>
+<li><strong>The quiz:</strong> Cornell's CalFresh quiz is CC BY-NC-ND 4.0, used for evaluation only. It was never trained on, and no question text or per-question output was published.</li>
+</ul>
+</li>
+<li><strong>Rigor:</strong><ul>
+<li>every experiment was recorded as hypothesis, method, result and verdict, failures included;</li>
+<li>key tests were pre-registered, with pass/fail rules committed before running;</li>
+<li>confidence intervals come from paired bootstrap (2,000 resamples);</li>
+<li>real test cases were never used for training or tuning.</li>
+</ul>
+</li>
+<li><strong>Compute:</strong> one Mac Studio (M3 Ultra, 256 GB). Language models were trained with MLX and served with LM Studio. Every result here was produced on that machine.</li>
+</ul>
+<h2>Limitations</h2>
+<ul>
+<li><strong>Public data only.</strong> The models were built from federal public-use files, which omit detail a state's own case records hold. A state's data would likely do better, after a short adaptation step.</li>
+<li><strong>Scenarios, not forecasts.</strong> The cost-share model leaves out:<ul>
+<li>timing relative to the federal sample month;</li>
+<li>procedural errors outside the public file (published rates run 2–3 points above what the file implies);</li>
+<li>behavior changes;</li>
+<li>the delay option;</li>
+<li>the full cost of reviews.</li>
+</ul>
+</li>
+<li><strong>Small samples in small states.</strong> Pooling fixed most of this, but Alaska's dollar forecasts still run high.</li>
+<li><strong>The language models are research results.</strong> The QC model is well short of a human reviewer on the details of an error. The policy assistant was measured on one California multiple-choice benchmark, and many of its later changes were chosen after looking at that benchmark.</li>
+<li><strong>Rankers prioritize; they don't decide.</strong> Every determination stays with a person.</li>
+</ul>
+<h2>Recommendations</h2>
+<ol>
+<li><strong>Pilot the ranker in one state</strong> (Pennsylvania or New York), with the fairness floor on by default and the underpayment ranker as an optional second queue. Compare dollars found with the forecast.</li>
+<li><strong>Refresh yearly</strong> on the federal QC sample plus the pilot's own findings. Keep about 10% of pilot reviews on random cases to watch for blind spots.</li>
+<li><strong>Attach flag cards in the pilot,</strong> and run the packaged blind reviewer comparison (template vs model-written).</li>
+<li><strong>Measure the two numbers that settle the cost-share range:</strong> realistic review volume, and how long a found error would otherwise last.</li>
+<li><strong>Keep the language models as helpers.</strong><ul>
+<li><strong>Policy assistant:</strong> use it with citations shown, as a reference that points to the rule rather than an authority.</li>
+<li><strong>Accuracy:</strong> if accuracy above 92% matters, consult a stronger model only on the questions where local setups disagree.</li>
+<li><strong>Next test:</strong> build a held-out test of our own, with other states and written answers, before claiming further gains.</li>
+</ul>
+</li>
+</ol>
+<h2>Technical reproduction</h2>
+<p>All code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Policy library and MCP server: <a href="https://github.com/ctrimm/state-policy-docs">github.com/ctrimm/state-policy-docs</a>. Each experiment has a script and a write-up in <code>experiments/</code>, indexed in <code>README.md</code>.</p>
+<h3>Data</h3>
+<p>Download the FY2020–2024 SNAP QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a> into <code>../snap-qc-data/raw/qcfy20XX_csv/</code> (a sibling of the repo). The folder names are what the code expects. Python 3 with numpy, joblib and scikit-learn 1.9.1; other scikit-learn versions may load or score the saved models differently.</p>
+<h3>Finding 1: the ranker for every state</h3>
+<pre><code class="language-bash"># fit and package the context-aware pooled model for each jurisdiction (adoption rule pre-registered in the script)
+python3 experiments/exp82_context_all_states.py --workers 8 --package
+# full held-out evaluation: top-10%/20% lift, $ per review hour, forecast check, fairness floor
+python3 experiments/exp83_context_models_full_eval.py --workers 6
+# score a state's cases (pre-review fields only; see deliverables/state_rankers/README.md for the columns)
+python3 deliverables/state_rankers/score_cases.py --state PA --input cases.csv --output ranked.csv --id-col CASE_ID
+</code></pre>
+<ul>
+<li><strong>Expected:</strong> median top-20% lift 3.97×, top-10% 6.38×, forecasts within ±20% in 52 of 53 (<code>exp83_results.json</code>).</li>
+<li><strong>Holdouts:</strong> fixed per state in <code>exp68_holdouts.json</code> (25%, stratified, seed 68 + state code).</li>
+</ul>
+<h3>Finding 2: the cost-share figure</h3>
+<pre><code class="language-bash">python3 experiments/cost_share_replicate.py              # national: $6.05B central (no dependencies)
+python3 experiments/cost_share_replicate.py --state PA   # one state, every step shown
+# full rebuild from raw data: refits every ranker; stops unless every lift matches exp83 exactly
+python3 experiments/exp93_cost_share_current_models.py --workers 6
+</code></pre>
+<p><code>COST-SHARE-REPLICATE.md</code> explains the model, the parameters for each scenario, and how to run it with any state's own inputs.</p>
+<h3>Finding 3: synthetic data</h3>
+<pre><code class="language-bash">cd src &amp;&amp; python -m synth.generate --n 20000 --seed 7 --dist ../experiments/dist.json --out ../data/synth.jsonl
+</code></pre>
+<p><code>experiments/dist.json</code> holds the empirical distributions, so this runs without the raw data. The calibration and transfer checks are experiments 1–45 (see the index), and state-specific generators are in <code>src/synth/*_state.py</code>.</p>
+<h3>Finding 4: the QC language model</h3>
+<ul>
+<li><strong>Model:</strong> <code>mlx-community/gemma-4-e4b-it-bf16</code> with LoRA, in an mlx-lm virtualenv.</li>
+<li><strong>Training data:</strong> synthetic cases rendered by <code>experiments/exp52_rlvr_dataset.py</code> and <code>exp52_sft_data.py</code>.</li>
+</ul>
+<pre><code class="language-bash"># supervised fine-tuning (16 layers, lr 1e-5, batch 4, 600 steps; checkpoint 400 was frozen for the confirmatory test)
+experiments/exp52_sft_train.sh sft_lr1e-5_600 600 1e-5
+# pre-registered confirmatory test on 1,200 fresh real cases: classifier, base and tuned, then the v1.2 gate
+experiments/exp59_run.sh
+</code></pre>
+<ul>
+<li><strong>Frozen adapter:</strong> SHA-256 <code>a0bf35d7…5f5737e</code> (full hash in <code>exp59_confirmatory_gate.md</code>).</li>
+<li><strong>Fresh test items:</strong> <code>eval_pilot/sample.py --seed 59 --exclude items.json</code>.</li>
+<li><strong>Expected:</strong> composite 0.334 vs base 0.005 (+0.328 [+0.309, +0.347]), location 0.244 against a 0.210 bar.</li>
+</ul>
+<h3>Finding 5: flag cards</h3>
+<ul>
+<li><strong>Card design and coverage:</strong> exp62 and exp65.</li>
+<li><strong>Odds calibration:</strong> exp74 (temperature scaling, T ≈ 2.9).</li>
+<li><strong>The Rules line at scale:</strong> exp97, 517 fresh cards from Idaho, Utah and South Dakota.</li>
+</ul>
+<p>Each write-up lists its script and inputs.</p>
+<h3>Finding 6: policy questions</h3>
+<p>The companion summary, <em>Grounding an Open Model in SNAP Policy</em> (<code>whitepaper/policy_qa_summary.pdf</code>), gives the environment and the commands for:</p>
+<ul>
+<li>the tools result (exp86 / exp98-3);</li>
+<li>the pre-registered router (exp105);</li>
+<li>the retrieval comparison (exp104).</li>
+</ul>
+<p>The core run:</p>
+<pre><code class="language-bash">lms load google/gemma-4-31b --context-length 262144 --parallel 4 -y
+export OPENAI_BASE_URL=http://localhost:1234/v1 OPENAI_API_KEY=lm-studio
+cd experiments &amp;&amp; inspect eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model openai/google/gemma-4-31b \
+  -M responses_api=false -T mode=agent -T as_of=2026-06-01 --max-connections 4 --retry-on-error 2
+</code></pre>
+<h2>Project timeline</h2>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sept 28–29</td>
+<td>Project started. Synthetic generator built and calibrated over about 45 experiments; first proof that synthetic-trained models predict real errors. Pennsylvania and New York pilots</td>
+</tr>
+<tr>
+<td>Oct 2–4</td>
+<td>Fairness analysis and the review floor. Pilots for Texas, South Dakota, Utah and Idaho. Language-model evaluation designed and run on untrained models</td>
+</tr>
+<tr>
+<td>Oct 5–7</td>
+<td>Supervised fine-tuning works where reinforcement learning failed; state rankers tuned, calibrated and rebuilt on pre-review data only</td>
+</tr>
+<tr>
+<td>Oct 9</td>
+<td>Pre-registered confirmation on 1,200 fresh real cases: the QC model passes all three checks</td>
+</tr>
+<tr>
+<td>Oct 9–10</td>
+<td>Flag cards designed and their odds calibrated; rankers for all 53 jurisdictions; first FY2028 cost-share scenarios; CalFresh quiz baseline</td>
+</tr>
+<tr>
+<td>Oct 10–11</td>
+<td>Pooled, state-context rankers beat state-only models everywhere (median 4.0×); underpayment ranker; policy tools tested on small models</td>
+</tr>
+<tr>
+<td>Oct 11–12</td>
+<td>Policy lookup lifts Gemma 4 31B on the CalFresh quiz (+4.8); grounded flag-card notes</td>
+</tr>
+<tr>
+<td>Oct 15</td>
+<td>Cost share re-run on the deployed rankers with the fairness floor on: $6.05 billion central</td>
+</tr>
+<tr>
+<td>Oct 16–18</td>
+<td>Flag-card Rules line at scale; <code>COST-SHARE-REPLICATE.md</code> for national and per-state reproduction; quiz audit; best policy setup 89.6%</td>
+</tr>
+<tr>
+<td>Oct 19–23</td>
+<td>Policy-assistant plateau: supersession notes, the date, 458 CDSS letters, citation links, a routing layer confirmed in a pre-registered run (89.8%)</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
