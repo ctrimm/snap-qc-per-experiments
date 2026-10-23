@@ -103,11 +103,11 @@ python3 experiments/cost_share_replicate.py --state XX
 <tbody>
 <tr>
 <td><code>top20.lift</code></td>
-<td>Error dollars found in the top 20% of the queue, as a multiple of random review. Typical: 3–4.5</td>
+<td>Error dollars found in the top 20% of the queue, as a multiple of random review. 51 of 53 jurisdictions fall between 3 and 4.5 (median 3.97)</td>
 </tr>
 <tr>
 <td><code>top10.lift</code></td>
-<td>The same for the top 10%. Typical: 5–7</td>
+<td>The same for the top 10%. 52 of 53 fall between 5 and 8 (median 6.38)</td>
 </tr>
 <tr>
 <td><code>top20.per_hour_$</code> (<code>random_per_hour_$</code>)</td>
@@ -148,7 +148,7 @@ git diff --stat experiments/exp83_results.json     # empty = exact reproduction
 <li><strong>Models:</strong> two gradient-boosted models, one for the chance of an error and one for its dollars. Expected dollars are calibrated by isotonic regression on out-of-fold predictions.</li>
 <li><strong>Reproducibility:</strong> results are deterministic.</li>
 </ul>
-<p>On a Mac Studio (M3 Ultra) it took about 8 minutes with 8 workers (about 2 CPU-hours in all) and reproduced <code>exp83_results.json</code> byte for byte on October 23, 2026. A laptop with 4 cores would take roughly half an hour.</p>
+<p>On a Mac Studio (M3 Ultra) it took about 8 minutes with 8 workers (about 2 CPU-hours in all) and reproduced <code>exp83_results.json</code> byte for byte on October 23, 2026. We haven't timed it on a laptop; at about 2 CPU-hours, a 4-core machine should need roughly 30–60 minutes.</p>
 <p><strong>Cost-share inputs too:</strong></p>
 <pre><code class="language-bash">python3 experiments/exp93_cost_share_current_models.py --workers 6   # refits and measures lifts with the floor; stops unless all match
 python3 experiments/cost_share_replicate.py
@@ -324,7 +324,7 @@ python3 experiments/cost_share_replicate.py
 </tbody>
 </table>
 <h3>Fairness</h3>
-<p>Ranking purely by dollars under-reviews elderly households in 51 of 53 jurisdictions, and disabled households in many. The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. It costs a median of about 1% of the lift nationally; 3–6% in Pennsylvania and New York; 13% in Wyoming. Keep it on by default.</p>
+<p>Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their error share) in 49 of 53 jurisdictions, and disabled households in 30 of 51 (current models, exp83). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. The median lift falls from 3.97× to 3.93× (about 1%). State by state the cost varies: the median state gives up 1.5% of its lift; Pennsylvania 3%, New York 6%, Wyoming 13%, Hawaii 15%. In 11 states the floor's lift comes out slightly higher than without it, a chance effect on the held-out cases. Each state's figure is in the appendix. Keep it on by default.</p>
 <h3>Underpayments</h3>
 <p>The main ranker mostly finds overpayments. A second ranker trained on underpayments (exp79) finds a median of 3.4 times the underpayment dollars of random review, against 1.5 times for the main ranker, and does better in every jurisdiction. States with many underpayments (Wyoming: 54% of error dollars) should run both queues.</p>
 <h3>Refitting on your own data</h3>
@@ -337,7 +337,7 @@ python3 experiments/cost_share_replicate.py
 <h3>Flag cards (optional)</h3>
 <p>A flag card tells the reviewer why a case was flagged and which parts to check first. Its top three items included the real error for 86–88% of flagged errors in Pennsylvania and New York. The card logic is in <code>experiments/exp62_*</code>, <code>exp65_*</code> and <code>exp74_*</code>. The "check first" model needs about 100–200 labelled error cases from your state to beat generic advice (exp63), which a pilot produces in a few months.</p>
 <h3>Your state's policy library (optional)</h3>
-<p>Rule citations on flag cards, and any policy-lookup assistant, read from <strong>state-policy-docs</strong> (<a href="https://github.com/ctrimm/state-policy-docs">github.com/ctrimm/state-policy-docs</a>). It is thorough for federal rules and California but thin for most states (Pennsylvania 4 documents, New York 6, Wyoming 2).</p>
+<p>Rule citations on flag cards, and any policy-lookup assistant, read from <strong>state-policy-docs</strong> (<a href="https://github.com/ctrimm/state-policy-docs">github.com/ctrimm/state-policy-docs</a>). It is thorough for federal rules and California (755 California SNAP documents) but thin for most states (Pennsylvania 3 SNAP documents, New York 5, Wyoming 1).</p>
 <p><strong>To add your state's manual:</strong> follow <code>AGENTS.md</code> in that repository (<code>pipeline/ingest.py</code>). Each document becomes a Markdown file with front matter for jurisdiction and effective dates. Then link citations, check the links, and run the tests:</p>
 <pre><code class="language-bash">.venv/bin/python pipeline/link_citations.py
 .venv/bin/python pipeline/check_links.py
@@ -390,5 +390,650 @@ python3 experiments/cost_share_replicate.py
 <li><strong>Never touch the federal QC sample.</strong> The tool is for a state's own reviews of active cases; the federal sample stays random by law.</li>
 <li><strong><code>model.joblib</code> files are pickles.</strong> Load only copies from this repository.</li>
 </ul>
+<h2>Appendix: every jurisdiction</h2>
+<p>Generated from the committed results by <code>python3 whitepaper/state_numbers.py table</code>; rank 1 is best of 53.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top 20% / top 10% lift</td>
+<td>Held-out results (exp83)</td>
+</tr>
+<tr>
+<td>Later years</td>
+<td>Trained on 2020–22, tested on 2023–24 (exp80/exp82)</td>
+</tr>
+<tr>
+<td>With floor (cost)</td>
+<td>Top-20% lift with the fairness floor, and the share of lift it gives up; negative means the floor came out slightly ahead by chance</td>
+</tr>
+<tr>
+<td>QC cases</td>
+<td>FY2020–24 (exp68)</td>
+</tr>
+<tr>
+<td>Central: avoided a year</td>
+<td>The FY2028 cost-share scenario (exp93); "—" means no bracket change, or a rate already under 6%</td>
+</tr>
+</tbody>
+</table>
+<!-- STATE-TABLE:START -->
+<table>
+<thead>
+<tr>
+<th>Jurisdiction</th>
+<th>Top 20% lift (rank)</th>
+<th>Top 10% lift (rank)</th>
+<th>Later years (rank)</th>
+<th>With floor (cost)</th>
+<th>Forecast ÷ actual</th>
+<th>QC cases</th>
+<th>FY2025 rate</th>
+<th>Central: avoided a year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WA</td>
+<td>4.54× (1)</td>
+<td>7.84× (1)</td>
+<td>4.31× (1)</td>
+<td>4.51× (+0.7%)</td>
+<td>0.98</td>
+<td>3,060</td>
+<td>6.98%</td>
+<td>$95M</td>
+</tr>
+<tr>
+<td>IA</td>
+<td>4.35× (2)</td>
+<td>7.19× (2)</td>
+<td>3.81× (25)</td>
+<td>4.23× (+2.8%)</td>
+<td>0.94</td>
+<td>3,892</td>
+<td>5.34%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>4.33× (3)</td>
+<td>7.11× (3)</td>
+<td>4.21× (3)</td>
+<td>4.26× (+1.5%)</td>
+<td>0.90</td>
+<td>3,037</td>
+<td>14.14%</td>
+<td>$79M</td>
+</tr>
+<tr>
+<td>MA</td>
+<td>4.32× (4)</td>
+<td>7.01× (5)</td>
+<td>4.29× (2)</td>
+<td>4.20× (+2.9%)</td>
+<td>1.06</td>
+<td>3,483</td>
+<td>12.49%</td>
+<td>$258M</td>
+</tr>
+<tr>
+<td>AZ</td>
+<td>4.32× (5)</td>
+<td>7.02× (4)</td>
+<td>4.20× (4)</td>
+<td>4.29× (+0.6%)</td>
+<td>1.08</td>
+<td>3,352</td>
+<td>10.80%</td>
+<td>$196M</td>
+</tr>
+<tr>
+<td>CO</td>
+<td>4.23× (6)</td>
+<td>6.97× (6)</td>
+<td>3.91× (15)</td>
+<td>4.12× (+2.8%)</td>
+<td>1.09</td>
+<td>3,595</td>
+<td>10.09%</td>
+<td>$127M</td>
+</tr>
+<tr>
+<td>IL</td>
+<td>4.22× (7)</td>
+<td>6.54× (18)</td>
+<td>4.12× (5)</td>
+<td>4.14× (+1.9%)</td>
+<td>0.96</td>
+<td>3,246</td>
+<td>14.67%</td>
+<td>$221M</td>
+</tr>
+<tr>
+<td>MS</td>
+<td>4.22× (8)</td>
+<td>6.72× (14)</td>
+<td>3.88× (18)</td>
+<td>4.07× (+3.5%)</td>
+<td>0.97</td>
+<td>4,158</td>
+<td>9.51%</td>
+<td>$79M</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>4.21× (9)</td>
+<td>6.71× (15)</td>
+<td>3.99× (10)</td>
+<td>4.11× (+2.4%)</td>
+<td>1.05</td>
+<td>4,163</td>
+<td>9.52%</td>
+<td>$171M</td>
+</tr>
+<tr>
+<td>CT</td>
+<td>4.19× (10)</td>
+<td>6.72× (13)</td>
+<td>4.01× (8)</td>
+<td>4.16× (+0.8%)</td>
+<td>1.01</td>
+<td>3,818</td>
+<td>9.08%</td>
+<td>$90M</td>
+</tr>
+<tr>
+<td>ND</td>
+<td>4.19× (11)</td>
+<td>6.72× (12)</td>
+<td>3.74× (33)</td>
+<td>4.07× (+2.8%)</td>
+<td>0.99</td>
+<td>1,691</td>
+<td>9.89%</td>
+<td>$5M</td>
+</tr>
+<tr>
+<td>NY</td>
+<td>4.18× (12)</td>
+<td>6.96× (7)</td>
+<td>4.07× (6)</td>
+<td>3.94× (+5.8%)</td>
+<td>0.94</td>
+<td>3,257</td>
+<td>13.18%</td>
+<td>$360M</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>4.17× (13)</td>
+<td>6.84× (10)</td>
+<td>3.91× (16)</td>
+<td>4.15× (+0.5%)</td>
+<td>1.06</td>
+<td>3,983</td>
+<td>7.36%</td>
+<td>$141M</td>
+</tr>
+<tr>
+<td>OH</td>
+<td>4.17× (14)</td>
+<td>6.94× (8)</td>
+<td>3.88× (19)</td>
+<td>4.14× (+0.7%)</td>
+<td>0.96</td>
+<td>3,475</td>
+<td>6.76%</td>
+<td>$152M</td>
+</tr>
+<tr>
+<td>NJ</td>
+<td>4.17× (15)</td>
+<td>6.84× (11)</td>
+<td>3.80× (28)</td>
+<td>3.95× (+5.3%)</td>
+<td>0.94</td>
+<td>2,327</td>
+<td>6.86%</td>
+<td>$92M</td>
+</tr>
+<tr>
+<td>SD</td>
+<td>4.16× (16)</td>
+<td>6.38× (27)</td>
+<td>3.88× (17)</td>
+<td>3.96× (+5.0%)</td>
+<td>1.10</td>
+<td>2,365</td>
+<td>2.47%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>FL</td>
+<td>4.14× (17)</td>
+<td>6.49× (19)</td>
+<td>3.81× (24)</td>
+<td>4.11× (+0.7%)</td>
+<td>0.96</td>
+<td>3,745</td>
+<td>12.97%</td>
+<td>$325M</td>
+</tr>
+<tr>
+<td>WI</td>
+<td>4.09× (18)</td>
+<td>6.41× (26)</td>
+<td>3.95× (12)</td>
+<td>4.04× (+1.3%)</td>
+<td>1.11</td>
+<td>3,979</td>
+<td>5.72%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>KY</td>
+<td>4.08× (19)</td>
+<td>6.86× (9)</td>
+<td>3.73× (34)</td>
+<td>4.12× (-1.1%)</td>
+<td>0.98</td>
+<td>4,073</td>
+<td>4.70%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PA</td>
+<td>4.08× (20)</td>
+<td>6.55× (17)</td>
+<td>3.82× (23)</td>
+<td>3.96× (+2.8%)</td>
+<td>0.99</td>
+<td>3,268</td>
+<td>9.21%</td>
+<td>$418M</td>
+</tr>
+<tr>
+<td>NM</td>
+<td>4.07× (21)</td>
+<td>6.47× (21)</td>
+<td>3.94× (13)</td>
+<td>3.87× (+5.0%)</td>
+<td>1.02</td>
+<td>3,845</td>
+<td>16.81%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RI</td>
+<td>4.05× (22)</td>
+<td>6.28× (28)</td>
+<td>3.97× (11)</td>
+<td>3.98× (+1.5%)</td>
+<td>0.96</td>
+<td>3,435</td>
+<td>12.42%</td>
+<td>$34M</td>
+</tr>
+<tr>
+<td>ME</td>
+<td>4.04× (23)</td>
+<td>6.42× (24)</td>
+<td>3.85× (20)</td>
+<td>3.95× (+2.2%)</td>
+<td>1.02</td>
+<td>3,434</td>
+<td>10.81%</td>
+<td>$35M</td>
+</tr>
+<tr>
+<td>TN</td>
+<td>4.01× (24)</td>
+<td>6.22× (31)</td>
+<td>3.80× (27)</td>
+<td>4.12× (-2.8%)</td>
+<td>1.05</td>
+<td>3,807</td>
+<td>9.44%</td>
+<td>$153M</td>
+</tr>
+<tr>
+<td>OK</td>
+<td>4.00× (25)</td>
+<td>6.16× (33)</td>
+<td>3.85× (21)</td>
+<td>3.82× (+4.6%)</td>
+<td>1.07</td>
+<td>3,829</td>
+<td>11.04%</td>
+<td>$150M</td>
+</tr>
+<tr>
+<td>DE</td>
+<td>3.99× (26)</td>
+<td>6.45× (22)</td>
+<td>3.82× (22)</td>
+<td>4.05× (-1.6%)</td>
+<td>0.91</td>
+<td>1,652</td>
+<td>16.00%</td>
+<td>$12M</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>3.97× (27)</td>
+<td>6.12× (35)</td>
+<td>3.79× (29)</td>
+<td>3.75× (+5.5%)</td>
+<td>1.03</td>
+<td>3,237</td>
+<td>9.77%</td>
+<td>$70M</td>
+</tr>
+<tr>
+<td>VI</td>
+<td>3.96× (28)</td>
+<td>6.24× (29)</td>
+<td>3.38× (47)</td>
+<td>3.67× (+7.1%)</td>
+<td>1.15</td>
+<td>998</td>
+<td>5.36%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>DC</td>
+<td>3.94× (29)</td>
+<td>5.66× (45)</td>
+<td>3.92× (14)</td>
+<td>3.72× (+5.7%)</td>
+<td>0.99</td>
+<td>2,689</td>
+<td>18.66%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>GA</td>
+<td>3.94× (30)</td>
+<td>5.75× (43)</td>
+<td>3.99× (9)</td>
+<td>3.96× (-0.5%)</td>
+<td>0.94</td>
+<td>3,902</td>
+<td>15.21%</td>
+<td>$152M</td>
+</tr>
+<tr>
+<td>VT</td>
+<td>3.94× (31)</td>
+<td>6.22× (32)</td>
+<td>4.03× (7)</td>
+<td>3.93× (+0.3%)</td>
+<td>0.99</td>
+<td>2,720</td>
+<td>5.38%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MT</td>
+<td>3.93× (32)</td>
+<td>6.45× (23)</td>
+<td>3.50× (42)</td>
+<td>3.83× (+2.6%)</td>
+<td>1.06</td>
+<td>2,421</td>
+<td>8.86%</td>
+<td>$16M</td>
+</tr>
+<tr>
+<td>MN</td>
+<td>3.93× (33)</td>
+<td>6.48× (20)</td>
+<td>3.54× (40)</td>
+<td>4.03× (-2.5%)</td>
+<td>0.99</td>
+<td>4,077</td>
+<td>12.58%</td>
+<td>$86M</td>
+</tr>
+<tr>
+<td>MO</td>
+<td>3.92× (34)</td>
+<td>6.00× (37)</td>
+<td>3.79× (30)</td>
+<td>3.67× (+6.4%)</td>
+<td>1.02</td>
+<td>2,933</td>
+<td>8.67%</td>
+<td>$145M</td>
+</tr>
+<tr>
+<td>NH</td>
+<td>3.91× (35)</td>
+<td>5.88× (41)</td>
+<td>3.43× (44)</td>
+<td>3.92× (-0.3%)</td>
+<td>0.99</td>
+<td>2,328</td>
+<td>8.85%</td>
+<td>$15M</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>3.88× (36)</td>
+<td>6.23× (30)</td>
+<td>3.79× (31)</td>
+<td>3.87× (+0.2%)</td>
+<td>0.99</td>
+<td>3,737</td>
+<td>8.80%</td>
+<td>$126M</td>
+</tr>
+<tr>
+<td>NE</td>
+<td>3.88× (37)</td>
+<td>5.92× (39)</td>
+<td>3.52× (41)</td>
+<td>3.66× (+5.6%)</td>
+<td>1.00</td>
+<td>3,738</td>
+<td>5.90%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>UT</td>
+<td>3.88× (38)</td>
+<td>6.02× (36)</td>
+<td>3.61× (37)</td>
+<td>3.71× (+4.3%)</td>
+<td>1.00</td>
+<td>4,101</td>
+<td>5.54%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>AR</td>
+<td>3.85× (39)</td>
+<td>6.60× (16)</td>
+<td>3.30× (51)</td>
+<td>3.83× (+0.6%)</td>
+<td>0.93</td>
+<td>3,430</td>
+<td>8.81%</td>
+<td>$48M</td>
+</tr>
+<tr>
+<td>MI</td>
+<td>3.83× (40)</td>
+<td>5.88× (40)</td>
+<td>3.75× (32)</td>
+<td>3.78× (+1.4%)</td>
+<td>1.06</td>
+<td>3,460</td>
+<td>9.89%</td>
+<td>$150M</td>
+</tr>
+<tr>
+<td>NV</td>
+<td>3.83× (41)</td>
+<td>6.42× (25)</td>
+<td>3.81× (26)</td>
+<td>3.90× (-1.9%)</td>
+<td>1.12</td>
+<td>4,047</td>
+<td>6.22%</td>
+<td>$51M</td>
+</tr>
+<tr>
+<td>WY</td>
+<td>3.79× (42)</td>
+<td>5.35× (51)</td>
+<td>2.91× (53)</td>
+<td>3.28× (+13.3%)</td>
+<td>0.90</td>
+<td>1,191</td>
+<td>3.96%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LA</td>
+<td>3.77× (43)</td>
+<td>5.95× (38)</td>
+<td>3.66× (36)</td>
+<td>3.77× (-0.2%)</td>
+<td>1.01</td>
+<td>3,325</td>
+<td>8.14%</td>
+<td>$186M</td>
+</tr>
+<tr>
+<td>VA</td>
+<td>3.75× (44)</td>
+<td>5.76× (42)</td>
+<td>3.48× (43)</td>
+<td>3.55× (+5.4%)</td>
+<td>0.96</td>
+<td>2,942</td>
+<td>12.32%</td>
+<td>$86M</td>
+</tr>
+<tr>
+<td>TX</td>
+<td>3.62× (45)</td>
+<td>5.69× (44)</td>
+<td>3.31× (50)</td>
+<td>3.62× (-0.2%)</td>
+<td>1.03</td>
+<td>3,457</td>
+<td>9.34%</td>
+<td>$343M</td>
+</tr>
+<tr>
+<td>HI</td>
+<td>3.61× (46)</td>
+<td>5.25× (52)</td>
+<td>3.29× (52)</td>
+<td>3.06× (+15.4%)</td>
+<td>1.03</td>
+<td>2,009</td>
+<td>10.92%</td>
+<td>$69M</td>
+</tr>
+<tr>
+<td>WV</td>
+<td>3.61× (47)</td>
+<td>5.57× (46)</td>
+<td>3.58× (39)</td>
+<td>3.47× (+4.0%)</td>
+<td>1.13</td>
+<td>3,268</td>
+<td>6.69%</td>
+<td>$25M</td>
+</tr>
+<tr>
+<td>KS</td>
+<td>3.61× (48)</td>
+<td>5.40× (49)</td>
+<td>3.36× (48)</td>
+<td>3.67× (-1.7%)</td>
+<td>0.96</td>
+<td>3,698</td>
+<td>9.44%</td>
+<td>$19M</td>
+</tr>
+<tr>
+<td>CA</td>
+<td>3.56× (49)</td>
+<td>5.49× (48)</td>
+<td>3.61× (38)</td>
+<td>3.56× (+0.1%)</td>
+<td>1.05</td>
+<td>3,108</td>
+<td>10.93%</td>
+<td>$1192M</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>3.56× (50)</td>
+<td>5.53× (47)</td>
+<td>3.35× (49)</td>
+<td>3.52× (+0.9%)</td>
+<td>0.93</td>
+<td>3,839</td>
+<td>3.85%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MD</td>
+<td>3.47× (51)</td>
+<td>5.37× (50)</td>
+<td>3.42× (45)</td>
+<td>3.56× (-2.6%)</td>
+<td>1.08</td>
+<td>2,279</td>
+<td>13.08%</td>
+<td>$73M</td>
+</tr>
+<tr>
+<td>GU</td>
+<td>3.47× (52)</td>
+<td>6.15× (34)</td>
+<td>3.66× (35)</td>
+<td>3.47× (+0.0%)</td>
+<td>1.01</td>
+<td>732</td>
+<td>11.70%</td>
+<td>$12M</td>
+</tr>
+<tr>
+<td>AK</td>
+<td>2.96× (53)</td>
+<td>3.58× (53)</td>
+<td>3.40× (46)</td>
+<td>2.83× (+4.5%)</td>
+<td>1.39</td>
+<td>1,367</td>
+<td>23.15%</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Median</strong></td>
+<td>3.97×</td>
+<td>6.38×</td>
+<td>3.80×</td>
+<td>3.93× (+1.5%)</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- STATE-TABLE:END -->
 </body>
 </html>

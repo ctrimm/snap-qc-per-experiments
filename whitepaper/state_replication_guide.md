@@ -49,8 +49,8 @@ How to read the first output:
 
 | Field | Meaning |
 |---|---|
-| `top20.lift` | Error dollars found in the top 20% of the queue, as a multiple of random review. Typical: 3–4.5 |
-| `top10.lift` | The same for the top 10%. Typical: 5–7 |
+| `top20.lift` | Error dollars found in the top 20% of the queue, as a multiple of random review. 51 of 53 jurisdictions fall between 3 and 4.5 (median 3.97) |
+| `top10.lift` | The same for the top 10%. 52 of 53 fall between 5 and 8 (median 6.38) |
 | `top20.per_hour_$` (`random_per_hour_$`) | Error dollars found per review hour, assuming 30-minute reviews |
 | `top20.expected_over_actual` | The model's dollar forecast divided by actual dollars; 1.0 is perfect |
 | `fairness.baseline_ratio` | Each household type's share of reviews ÷ its share of error dollars, ranking by dollars only (1.0 = proportionate) |
@@ -81,7 +81,7 @@ git diff --stat experiments/exp83_results.json     # empty = exact reproduction
 - **Models:** two gradient-boosted models, one for the chance of an error and one for its dollars. Expected dollars are calibrated by isotonic regression on out-of-fold predictions.
 - **Reproducibility:** results are deterministic.
 
-On a Mac Studio (M3 Ultra) it took about 8 minutes with 8 workers (about 2 CPU-hours in all) and reproduced `exp83_results.json` byte for byte on October 23, 2026. A laptop with 4 cores would take roughly half an hour.
+On a Mac Studio (M3 Ultra) it took about 8 minutes with 8 workers (about 2 CPU-hours in all) and reproduced `exp83_results.json` byte for byte on October 23, 2026. We haven't timed it on a laptop; at about 2 CPU-hours, a 4-core machine should need roughly 30–60 minutes.
 
 **Cost-share inputs too:**
 
@@ -173,7 +173,7 @@ These are the two numbers that move the cost-share estimate most. Rerun `cost_sh
 
 ### Fairness
 
-Ranking purely by dollars under-reviews elderly households in 51 of 53 jurisdictions, and disabled households in many. The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. It costs a median of about 1% of the lift nationally; 3–6% in Pennsylvania and New York; 13% in Wyoming. Keep it on by default.
+Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their error share) in 49 of 53 jurisdictions, and disabled households in 30 of 51 (current models, exp83). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. The median lift falls from 3.97× to 3.93× (about 1%). State by state the cost varies: the median state gives up 1.5% of its lift; Pennsylvania 3%, New York 6%, Wyoming 13%, Hawaii 15%. In 11 states the floor's lift comes out slightly higher than without it, a chance effect on the held-out cases. Each state's figure is in the appendix. Keep it on by default.
 
 ### Underpayments
 
@@ -193,7 +193,7 @@ A flag card tells the reviewer why a case was flagged and which parts to check f
 
 ### Your state's policy library (optional)
 
-Rule citations on flag cards, and any policy-lookup assistant, read from **state-policy-docs** ([github.com/ctrimm/state-policy-docs](https://github.com/ctrimm/state-policy-docs)). It is thorough for federal rules and California but thin for most states (Pennsylvania 4 documents, New York 6, Wyoming 2).
+Rule citations on flag cards, and any policy-lookup assistant, read from **state-policy-docs** ([github.com/ctrimm/state-policy-docs](https://github.com/ctrimm/state-policy-docs)). It is thorough for federal rules and California (755 California SNAP documents) but thin for most states (Pennsylvania 3 SNAP documents, New York 5, Wyoming 1).
 
 **To add your state's manual:** follow `AGENTS.md` in that repository (`pipeline/ingest.py`). Each document becomes a Markdown file with front matter for jurisdiction and effective dates. Then link citations, check the links, and run the tests:
 
@@ -227,3 +227,74 @@ Rule citations on flag cards, and any policy-lookup assistant, read from **state
 - **Small states:** with fewer than about 1,500 QC cases (Alaska, Guam, the Virgin Islands, Wyoming), held-out results are less certain. Check them against your own reviews before quoting forecasts.
 - **Never touch the federal QC sample.** The tool is for a state's own reviews of active cases; the federal sample stays random by law.
 - **`model.joblib` files are pickles.** Load only copies from this repository.
+
+## Appendix: every jurisdiction
+
+Generated from the committed results by `python3 whitepaper/state_numbers.py table`; rank 1 is best of 53.
+
+| Column | Meaning |
+|---|---|
+| Top 20% / top 10% lift | Held-out results (exp83) |
+| Later years | Trained on 2020–22, tested on 2023–24 (exp80/exp82) |
+| With floor (cost) | Top-20% lift with the fairness floor, and the share of lift it gives up; negative means the floor came out slightly ahead by chance |
+| QC cases | FY2020–24 (exp68) |
+| Central: avoided a year | The FY2028 cost-share scenario (exp93); "—" means no bracket change, or a rate already under 6% |
+
+<!-- STATE-TABLE:START -->
+| Jurisdiction | Top 20% lift (rank) | Top 10% lift (rank) | Later years (rank) | With floor (cost) | Forecast ÷ actual | QC cases | FY2025 rate | Central: avoided a year |
+|---|---|---|---|---|---|---|---|---|
+| WA | 4.54× (1) | 7.84× (1) | 4.31× (1) | 4.51× (+0.7%) | 0.98 | 3,060 | 6.98% | $95M |
+| IA | 4.35× (2) | 7.19× (2) | 3.81× (25) | 4.23× (+2.8%) | 0.94 | 3,892 | 5.34% | — |
+| OR | 4.33× (3) | 7.11× (3) | 4.21× (3) | 4.26× (+1.5%) | 0.90 | 3,037 | 14.14% | $79M |
+| MA | 4.32× (4) | 7.01× (5) | 4.29× (2) | 4.20× (+2.9%) | 1.06 | 3,483 | 12.49% | $258M |
+| AZ | 4.32× (5) | 7.02× (4) | 4.20× (4) | 4.29× (+0.6%) | 1.08 | 3,352 | 10.80% | $196M |
+| CO | 4.23× (6) | 6.97× (6) | 3.91× (15) | 4.12× (+2.8%) | 1.09 | 3,595 | 10.09% | $127M |
+| IL | 4.22× (7) | 6.54× (18) | 4.12× (5) | 4.14× (+1.9%) | 0.96 | 3,246 | 14.67% | $221M |
+| MS | 4.22× (8) | 6.72× (14) | 3.88× (18) | 4.07× (+3.5%) | 0.97 | 4,158 | 9.51% | $79M |
+| AL | 4.21× (9) | 6.71× (15) | 3.99× (10) | 4.11× (+2.4%) | 1.05 | 4,163 | 9.52% | $171M |
+| CT | 4.19× (10) | 6.72× (13) | 4.01× (8) | 4.16× (+0.8%) | 1.01 | 3,818 | 9.08% | $90M |
+| ND | 4.19× (11) | 6.72× (12) | 3.74× (33) | 4.07× (+2.8%) | 0.99 | 1,691 | 9.89% | $5M |
+| NY | 4.18× (12) | 6.96× (7) | 4.07× (6) | 3.94× (+5.8%) | 0.94 | 3,257 | 13.18% | $360M |
+| NC | 4.17× (13) | 6.84× (10) | 3.91× (16) | 4.15× (+0.5%) | 1.06 | 3,983 | 7.36% | $141M |
+| OH | 4.17× (14) | 6.94× (8) | 3.88× (19) | 4.14× (+0.7%) | 0.96 | 3,475 | 6.76% | $152M |
+| NJ | 4.17× (15) | 6.84× (11) | 3.80× (28) | 3.95× (+5.3%) | 0.94 | 2,327 | 6.86% | $92M |
+| SD | 4.16× (16) | 6.38× (27) | 3.88× (17) | 3.96× (+5.0%) | 1.10 | 2,365 | 2.47% | — |
+| FL | 4.14× (17) | 6.49× (19) | 3.81× (24) | 4.11× (+0.7%) | 0.96 | 3,745 | 12.97% | $325M |
+| WI | 4.09× (18) | 6.41× (26) | 3.95× (12) | 4.04× (+1.3%) | 1.11 | 3,979 | 5.72% | — |
+| KY | 4.08× (19) | 6.86× (9) | 3.73× (34) | 4.12× (-1.1%) | 0.98 | 4,073 | 4.70% | — |
+| PA | 4.08× (20) | 6.55× (17) | 3.82× (23) | 3.96× (+2.8%) | 0.99 | 3,268 | 9.21% | $418M |
+| NM | 4.07× (21) | 6.47× (21) | 3.94× (13) | 3.87× (+5.0%) | 1.02 | 3,845 | 16.81% | — |
+| RI | 4.05× (22) | 6.28× (28) | 3.97× (11) | 3.98× (+1.5%) | 0.96 | 3,435 | 12.42% | $34M |
+| ME | 4.04× (23) | 6.42× (24) | 3.85× (20) | 3.95× (+2.2%) | 1.02 | 3,434 | 10.81% | $35M |
+| TN | 4.01× (24) | 6.22× (31) | 3.80× (27) | 4.12× (-2.8%) | 1.05 | 3,807 | 9.44% | $153M |
+| OK | 4.00× (25) | 6.16× (33) | 3.85× (21) | 3.82× (+4.6%) | 1.07 | 3,829 | 11.04% | $150M |
+| DE | 3.99× (26) | 6.45× (22) | 3.82× (22) | 4.05× (-1.6%) | 0.91 | 1,652 | 16.00% | $12M |
+| IN | 3.97× (27) | 6.12× (35) | 3.79× (29) | 3.75× (+5.5%) | 1.03 | 3,237 | 9.77% | $70M |
+| VI | 3.96× (28) | 6.24× (29) | 3.38× (47) | 3.67× (+7.1%) | 1.15 | 998 | 5.36% | — |
+| DC | 3.94× (29) | 5.66× (45) | 3.92× (14) | 3.72× (+5.7%) | 0.99 | 2,689 | 18.66% | — |
+| GA | 3.94× (30) | 5.75× (43) | 3.99× (9) | 3.96× (-0.5%) | 0.94 | 3,902 | 15.21% | $152M |
+| VT | 3.94× (31) | 6.22× (32) | 4.03× (7) | 3.93× (+0.3%) | 0.99 | 2,720 | 5.38% | — |
+| MT | 3.93× (32) | 6.45× (23) | 3.50× (42) | 3.83× (+2.6%) | 1.06 | 2,421 | 8.86% | $16M |
+| MN | 3.93× (33) | 6.48× (20) | 3.54× (40) | 4.03× (-2.5%) | 0.99 | 4,077 | 12.58% | $86M |
+| MO | 3.92× (34) | 6.00× (37) | 3.79× (30) | 3.67× (+6.4%) | 1.02 | 2,933 | 8.67% | $145M |
+| NH | 3.91× (35) | 5.88× (41) | 3.43× (44) | 3.92× (-0.3%) | 0.99 | 2,328 | 8.85% | $15M |
+| SC | 3.88× (36) | 6.23× (30) | 3.79× (31) | 3.87× (+0.2%) | 0.99 | 3,737 | 8.80% | $126M |
+| NE | 3.88× (37) | 5.92× (39) | 3.52× (41) | 3.66× (+5.6%) | 1.00 | 3,738 | 5.90% | — |
+| UT | 3.88× (38) | 6.02× (36) | 3.61× (37) | 3.71× (+4.3%) | 1.00 | 4,101 | 5.54% | — |
+| AR | 3.85× (39) | 6.60× (16) | 3.30× (51) | 3.83× (+0.6%) | 0.93 | 3,430 | 8.81% | $48M |
+| MI | 3.83× (40) | 5.88× (40) | 3.75× (32) | 3.78× (+1.4%) | 1.06 | 3,460 | 9.89% | $150M |
+| NV | 3.83× (41) | 6.42× (25) | 3.81× (26) | 3.90× (-1.9%) | 1.12 | 4,047 | 6.22% | $51M |
+| WY | 3.79× (42) | 5.35× (51) | 2.91× (53) | 3.28× (+13.3%) | 0.90 | 1,191 | 3.96% | — |
+| LA | 3.77× (43) | 5.95× (38) | 3.66× (36) | 3.77× (-0.2%) | 1.01 | 3,325 | 8.14% | $186M |
+| VA | 3.75× (44) | 5.76× (42) | 3.48× (43) | 3.55× (+5.4%) | 0.96 | 2,942 | 12.32% | $86M |
+| TX | 3.62× (45) | 5.69× (44) | 3.31× (50) | 3.62× (-0.2%) | 1.03 | 3,457 | 9.34% | $343M |
+| HI | 3.61× (46) | 5.25× (52) | 3.29× (52) | 3.06× (+15.4%) | 1.03 | 2,009 | 10.92% | $69M |
+| WV | 3.61× (47) | 5.57× (46) | 3.58× (39) | 3.47× (+4.0%) | 1.13 | 3,268 | 6.69% | $25M |
+| KS | 3.61× (48) | 5.40× (49) | 3.36× (48) | 3.67× (-1.7%) | 0.96 | 3,698 | 9.44% | $19M |
+| CA | 3.56× (49) | 5.49× (48) | 3.61× (38) | 3.56× (+0.1%) | 1.05 | 3,108 | 10.93% | $1192M |
+| ID | 3.56× (50) | 5.53× (47) | 3.35× (49) | 3.52× (+0.9%) | 0.93 | 3,839 | 3.85% | — |
+| MD | 3.47× (51) | 5.37× (50) | 3.42× (45) | 3.56× (-2.6%) | 1.08 | 2,279 | 13.08% | $73M |
+| GU | 3.47× (52) | 6.15× (34) | 3.66× (35) | 3.47× (+0.0%) | 1.01 | 732 | 11.70% | $12M |
+| AK | 2.96× (53) | 3.58× (53) | 3.40× (46) | 2.83× (+4.5%) | 1.39 | 1,367 | 23.15% | — |
+| **Median** | 3.97× | 6.38× | 3.80× | 3.93× (+1.5%) | 1.00 | | | |
+<!-- STATE-TABLE:END -->

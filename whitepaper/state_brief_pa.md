@@ -114,7 +114,7 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 - **Public data only.** The model was built from federal public-use files. Pennsylvania's own case records hold more detail and would likely do better after a short refit.
 - **Scenarios, not forecasts.** See the cost-share caveats above.
-- **The policy library is thin for Pennsylvania.** It holds 4 Pennsylvania documents, against 491 for California. Flag-card rule citations and policy lookups would need Pennsylvania's SNAP manual and operations memoranda added first.
+- **The policy library is thin for Pennsylvania.** It holds 3 Pennsylvania SNAP documents (DHS operations memoranda), against 755 for California. Flag-card rule citations and policy lookups would need Pennsylvania's SNAP manual and operations memoranda added first.
 - **The tool prioritizes; it doesn't decide.** Every determination stays with a reviewer.
 
 ## Technical reproduction

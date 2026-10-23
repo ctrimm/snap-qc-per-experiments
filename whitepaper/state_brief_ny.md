@@ -122,7 +122,7 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 - **Public data only.** The model was built from federal public-use files. New York's own case records, including report dates, would likely do better for timing errors after a short refit.
 - **Scenarios, not forecasts.** See the cost-share caveats above.
-- **The policy library is thin for New York.** It holds 6 New York documents (OTDA administrative directives and GIS messages), against 491 for California. Rule citations and policy lookups would need the SNAP Source Book and current directives added first.
+- **The policy library is thin for New York.** It holds 5 New York SNAP documents (an OTDA administrative directive and GIS messages), against 755 for California. Rule citations and policy lookups would need the SNAP Source Book and current directives added first.
 - **The tool prioritizes; it doesn't decide.** Every determination stays with a reviewer.
 
 ## Technical reproduction

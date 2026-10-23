@@ -4,7 +4,7 @@
 
 ## Summary
 
-Wyoming's FY2025 payment error rate was 3.96%, among the lowest in the country and below the 6% line where H.R. 1 cost sharing begins. Wyoming owes nothing under FY2028 rules at that rate. So for Wyoming, a case-ranking tool is not about avoiding a bill. It's about four other things:
+Wyoming's FY2025 payment error rate was 3.96%, the third lowest of 53 jurisdictions (after South Dakota and Idaho) and below the 6% line where H.R. 1 cost sharing begins. Wyoming owes nothing under FY2028 rules at that rate. So for Wyoming, a case-ranking tool is not about avoiding a bill. It's about four other things:
 - staying below 6%;
 - finding households that are being underpaid;
 - using a small review staff well;
@@ -118,7 +118,7 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 - **Small sample.** About 1,200 QC cases and 300 held-out cases. Pooling helps, but the later-years result (2.9×) is the lowest nationally, and forecasts should be checked against Wyoming's own reviews before they are quoted.
 - **Public data only.** Wyoming's own case records would likely do better after a short refit.
-- **The policy library barely covers Wyoming.** It holds 2 Wyoming documents. Rule citations would need Wyoming's SNAP manual added first.
+- **The policy library barely covers Wyoming.** It holds 1 Wyoming SNAP document (the FY2026 SNAP Employment and Training state plan). Rule citations would need Wyoming's SNAP manual added first.
 - **Flag-card coverage wasn't measured for Wyoming.** It was measured in Pennsylvania and New York (86–88%) and tested at scale in Idaho, Utah and South Dakota.
 - **The tool prioritizes; it doesn't decide.** Every determination stays with a reviewer.
 
