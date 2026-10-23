@@ -1,0 +1,819 @@
+{
+ "check_exp42_senior_dis_medexp": {
+  "n": 9514,
+  "med_error_pct": 24.153878494849696
+ },
+ "national": {
+  "elderly": {
+   "n": 49543,
+   "err_rate": 41.95950992067497,
+   "errors": 20788,
+   "over": 12214,
+   "under": 8574,
+   "under_dollar_share": 26.560668443265026,
+   "median_err": 18.0,
+   "p90_err": 119.0,
+   "timing_share": 47.267654416009236,
+   "el_dollars": [
+    [
+     "Shelter deduction",
+     31.3
+    ],
+    [
+     "RSDI benefits",
+     14.9
+    ],
+    [
+     "Standard utility allowance",
+     11.8
+    ],
+    [
+     "Wages and salaries",
+     10.1
+    ],
+    [
+     "Medical expense deductions",
+     9.1
+    ],
+    [
+     "Unit composition",
+     5.3
+    ]
+   ],
+   "el_count": [
+    [
+     "Shelter deduction",
+     48.0
+    ],
+    [
+     "RSDI benefits",
+     13.7
+    ],
+    [
+     "Medical expense deductions",
+     8.9
+    ],
+    [
+     "Standard utility allowance",
+     7.2
+    ],
+    [
+     "SSI",
+     4.8
+    ],
+    [
+     "Wages and salaries",
+     4.3
+    ]
+   ],
+   "income": {
+    "socsec": 74.06293522798377,
+    "ssi": 32.69684920170357,
+    "pension": 0.7851765133318531,
+    "wages": 4.583896816906526
+   }
+  },
+  "non_elderly": {
+   "n": 117459,
+   "err_rate": 36.18113554516895,
+   "errors": 42498,
+   "over": 26080,
+   "under": 16418,
+   "under_dollar_share": 28.035123302135027,
+   "median_err": 31.0,
+   "p90_err": 206.0,
+   "timing_share": 39.1712551178879,
+   "el_dollars": [
+    [
+     "Wages and salaries",
+     44.4
+    ],
+    [
+     "Shelter deduction",
+     11.7
+    ],
+    [
+     "Unit composition",
+     9.4
+    ],
+    [
+     "Child support received",
+     4.6
+    ],
+    [
+     "Standard utility allowance",
+     4.6
+    ],
+    [
+     "Self-employment",
+     4.2
+    ]
+   ],
+   "el_count": [
+    [
+     "Wages and salaries",
+     33.8
+    ],
+    [
+     "Shelter deduction",
+     22.8
+    ],
+    [
+     "Child support received",
+     6.5
+    ],
+    [
+     "Standard utility allowance",
+     5.5
+    ],
+    [
+     "Self-employment",
+     4.0
+    ],
+    [
+     "SSI",
+     3.9
+    ]
+   ],
+   "income": {
+    "socsec": 16.308669408048765,
+    "ssi": 18.849130334840243,
+    "pension": 0.016175857107586476,
+    "wages": 29.76187435615832
+   }
+  },
+  "all": {
+   "n": 167002,
+   "err_rate": 37.895354546652136,
+   "errors": 63286,
+   "over": 38294,
+   "under": 24992,
+   "under_dollar_share": 27.706719249201278,
+   "median_err": 28.0,
+   "p90_err": 178.0,
+   "timing_share": 41.83073665581645,
+   "el_dollars": [
+    [
+     "Wages and salaries",
+     36.8
+    ],
+    [
+     "Shelter deduction",
+     16.1
+    ],
+    [
+     "Unit composition",
+     8.5
+    ],
+    [
+     "Standard utility allowance",
+     6.2
+    ],
+    [
+     "RSDI benefits",
+     5.7
+    ],
+    [
+     "Child support received",
+     3.7
+    ]
+   ],
+   "el_count": [
+    [
+     "Shelter deduction",
+     31.1
+    ],
+    [
+     "Wages and salaries",
+     24.1
+    ],
+    [
+     "RSDI benefits",
+     7.1
+    ],
+    [
+     "Standard utility allowance",
+     6.0
+    ],
+    [
+     "Child support received",
+     4.6
+    ],
+    [
+     "SSI",
+     4.2
+    ]
+   ],
+   "income": {
+    "socsec": 33.44211446569502,
+    "ssi": 22.957210093292296,
+    "pension": 0.24430845139579166,
+    "wages": 22.292547394641982
+   }
+  }
+ },
+ "medical": {
+  "elderly_medexp_n": 7170,
+  "elderly_medexp_pct_of_elderly": 14.47227660819894,
+  "med_error_pct_with_medexp": 24.00278940027894,
+  "med_error_pct_without_medexp": 2.466193094659335,
+  "med_error_pct_nonelderly_nondisabled": 0.017905316685367774
+ },
+ "fy2024_share": {
+  "unweighted": 30.90597224387962,
+  "weighted": 33.43088572633234
+ },
+ "states": [
+  {
+   "state": "AL",
+   "elderly_share": 26.951717511410042,
+   "elderly_err": 44.02852049910874,
+   "all_err": 34.2061013692049,
+   "under_share": 13.904096658485935,
+   "ratio": 0.52,
+   "floor": 1.131,
+   "random": 0.821359956086181,
+   "holdout_elderly_n": 269
+  },
+  {
+   "state": "AK",
+   "elderly_share": 31.016825164594003,
+   "elderly_err": 39.386792452830186,
+   "all_err": 34.67446964155084,
+   "under_share": 43.19442362464398,
+   "ratio": 0.694,
+   "floor": 0.887,
+   "random": 0.8997067448680353,
+   "holdout_elderly_n": 117
+  },
+  {
+   "state": "AZ",
+   "elderly_share": 26.43198090692124,
+   "elderly_err": 33.182844243792324,
+   "all_err": 31.20525059665871,
+   "under_share": 30.535152151101784,
+   "ratio": 0.6,
+   "floor": 1.176,
+   "random": 0.923517532586745,
+   "holdout_elderly_n": 192
+  },
+  {
+   "state": "AR",
+   "elderly_share": 27.842565597667637,
+   "elderly_err": 34.659685863874344,
+   "all_err": 32.565597667638485,
+   "under_share": 34.26207185503299,
+   "ratio": 0.437,
+   "floor": 1.218,
+   "random": 1.0637829309579767,
+   "holdout_elderly_n": 232
+  },
+  {
+   "state": "CA",
+   "elderly_share": 36.22908622908623,
+   "elderly_err": 52.93072824156305,
+   "all_err": 41.11969111969112,
+   "under_share": 22.678128616300214,
+   "ratio": 0.679,
+   "floor": 0.959,
+   "random": 0.7879010449704538,
+   "holdout_elderly_n": 295
+  },
+  {
+   "state": "CO",
+   "elderly_share": 28.956884561891517,
+   "elderly_err": 41.4985590778098,
+   "all_err": 35.354659248956885,
+   "under_share": 21.668443496801707,
+   "ratio": 0.668,
+   "floor": 0.971,
+   "random": 0.8253615127919912,
+   "holdout_elderly_n": 259
+  },
+  {
+   "state": "CT",
+   "elderly_share": 35.33263488737559,
+   "elderly_err": 41.58636026686435,
+   "all_err": 39.680460974332114,
+   "under_share": 25.600371244054294,
+   "ratio": 0.666,
+   "floor": 1.028,
+   "random": 0.953040088661291,
+   "holdout_elderly_n": 329
+  },
+  {
+   "state": "DE",
+   "elderly_share": 28.692493946731236,
+   "elderly_err": 40.50632911392405,
+   "all_err": 38.31719128329298,
+   "under_share": 18.15292247925128,
+   "ratio": 0.608,
+   "floor": 1.053,
+   "random": 0.9604863221884499,
+   "holdout_elderly_n": 118
+  },
+  {
+   "state": "DC",
+   "elderly_share": 28.932688731870584,
+   "elderly_err": 49.61439588688946,
+   "all_err": 43.25027891409446,
+   "under_share": 47.07720448136575,
+   "ratio": 0.767,
+   "floor": 0.912,
+   "random": 0.8065778946165276,
+   "holdout_elderly_n": 194
+  },
+  {
+   "state": "FL",
+   "elderly_share": 39.279038718291055,
+   "elderly_err": 43.779741672331745,
+   "all_err": 40.53404539385848,
+   "under_share": 15.885453366780348,
+   "ratio": 0.643,
+   "floor": 1.029,
+   "random": 0.9291706631722573,
+   "holdout_elderly_n": 362
+  },
+  {
+   "state": "GA",
+   "elderly_share": 29.343926191696564,
+   "elderly_err": 52.838427947598255,
+   "all_err": 50.9226037929267,
+   "under_share": 19.216990788126918,
+   "ratio": 0.706,
+   "floor": 0.875,
+   "random": 0.9386850681414182,
+   "holdout_elderly_n": 306
+  },
+  {
+   "state": "GU",
+   "elderly_share": 27.049180327868854,
+   "elderly_err": 51.01010101010101,
+   "all_err": 46.85792349726776,
+   "under_share": 25.329555254404337,
+   "ratio": 0.664,
+   "floor": 0.913,
+   "random": 0.7888368462138955,
+   "holdout_elderly_n": 47
+  },
+  {
+   "state": "HI",
+   "elderly_share": 39.920358387257345,
+   "elderly_err": 46.25935162094763,
+   "all_err": 44.001991040318565,
+   "under_share": 31.556678244395325,
+   "ratio": 0.4,
+   "floor": 0.987,
+   "random": 0.8757946935661609,
+   "holdout_elderly_n": 187
+  },
+  {
+   "state": "ID",
+   "elderly_share": 28.913779630112007,
+   "elderly_err": 35.31531531531532,
+   "all_err": 33.65459755144569,
+   "under_share": 20.97652768148955,
+   "ratio": 0.592,
+   "floor": 1.109,
+   "random": 0.9834935897435898,
+   "holdout_elderly_n": 266
+  },
+  {
+   "state": "IL",
+   "elderly_share": 28.773875539125076,
+   "elderly_err": 41.32762312633833,
+   "all_err": 35.12014787430684,
+   "under_share": 11.276814575374669,
+   "ratio": 0.813,
+   "floor": 1.04,
+   "random": 0.8615409092717076,
+   "holdout_elderly_n": 228
+  },
+  {
+   "state": "IN",
+   "elderly_share": 24.250849552054373,
+   "elderly_err": 44.45859872611465,
+   "all_err": 38.55421686746988,
+   "under_share": 33.76645727562172,
+   "ratio": 0.423,
+   "floor": 1.08,
+   "random": 0.98296602249088,
+   "holdout_elderly_n": 209
+  },
+  {
+   "state": "IA",
+   "elderly_share": 24.511819116135662,
+   "elderly_err": 33.333333333333336,
+   "all_err": 33.32476875642343,
+   "under_share": 28.55293813098628,
+   "ratio": 0.472,
+   "floor": 0.985,
+   "random": 0.9619732785200411,
+   "holdout_elderly_n": 234
+  },
+  {
+   "state": "KS",
+   "elderly_share": 25.58139534883721,
+   "elderly_err": 46.300211416490484,
+   "all_err": 41.914548404543,
+   "under_share": 20.07442629729171,
+   "ratio": 0.621,
+   "floor": 1.029,
+   "random": 0.8971771771771772,
+   "holdout_elderly_n": 231
+  },
+  {
+   "state": "KY",
+   "elderly_share": 27.670022096734595,
+   "elderly_err": 31.94321206743567,
+   "all_err": 29.928799410753744,
+   "under_share": 37.85320774835614,
+   "ratio": 0.429,
+   "floor": 0.859,
+   "random": 0.8949756604708559,
+   "holdout_elderly_n": 302
+  },
+  {
+   "state": "LA",
+   "elderly_share": 26.526315789473685,
+   "elderly_err": 46.14512471655329,
+   "all_err": 42.43609022556391,
+   "under_share": 32.785517108557485,
+   "ratio": 0.537,
+   "floor": 0.934,
+   "random": 0.9448586884397809,
+   "holdout_elderly_n": 238
+  },
+  {
+   "state": "ME",
+   "elderly_share": 35.96389050669773,
+   "elderly_err": 40.5668016194332,
+   "all_err": 41.43855562026791,
+   "under_share": 23.32898231084305,
+   "ratio": 0.65,
+   "floor": 1.262,
+   "random": 1.1367370696823549,
+   "holdout_elderly_n": 288
+  },
+  {
+   "state": "MD",
+   "elderly_share": 32.86529179464677,
+   "elderly_err": 38.3177570093458,
+   "all_err": 38.262395787626154,
+   "under_share": 48.68916094356524,
+   "ratio": 0.707,
+   "floor": 0.969,
+   "random": 0.984955539533766,
+   "holdout_elderly_n": 188
+  },
+  {
+   "state": "MA",
+   "elderly_share": 35.917312661498705,
+   "elderly_err": 43.56514788169464,
+   "all_err": 36.950904392764855,
+   "under_share": 20.146225846623548,
+   "ratio": 0.68,
+   "floor": 1.084,
+   "random": 0.8577963547646383,
+   "holdout_elderly_n": 297
+  },
+  {
+   "state": "MI",
+   "elderly_share": 29.421965317919074,
+   "elderly_err": 49.70530451866405,
+   "all_err": 43.67052023121387,
+   "under_share": 24.144844517184943,
+   "ratio": 0.83,
+   "floor": 0.982,
+   "random": 0.8807635434870278,
+   "holdout_elderly_n": 260
+  },
+  {
+   "state": "MN",
+   "elderly_share": 28.91832229580574,
+   "elderly_err": 48.346055979643765,
+   "all_err": 38.41059602649007,
+   "under_share": 39.65068467312988,
+   "ratio": 0.671,
+   "floor": 0.974,
+   "random": 0.8054794520547945,
+   "holdout_elderly_n": 306
+  },
+  {
+   "state": "MS",
+   "elderly_share": 25.974025974025974,
+   "elderly_err": 37.96296296296296,
+   "all_err": 37.205387205387204,
+   "under_share": 26.75487192856677,
+   "ratio": 0.59,
+   "floor": 0.984,
+   "random": 0.9589127218934911,
+   "holdout_elderly_n": 268
+  },
+  {
+   "state": "MO",
+   "elderly_share": 27.446300715990454,
+   "elderly_err": 47.701863354037265,
+   "all_err": 40.0272758267985,
+   "under_share": 26.447357707027116,
+   "ratio": 0.549,
+   "floor": 1.077,
+   "random": 0.8495074407880947,
+   "holdout_elderly_n": 193
+  },
+  {
+   "state": "MT",
+   "elderly_share": 33.08550185873606,
+   "elderly_err": 49.438202247191015,
+   "all_err": 41.63568773234201,
+   "under_share": 28.625727521083263,
+   "ratio": 0.687,
+   "floor": 0.979,
+   "random": 0.874710743801653,
+   "holdout_elderly_n": 210
+  },
+  {
+   "state": "NE",
+   "elderly_share": 24.424826110219367,
+   "elderly_err": 40.08762322015334,
+   "all_err": 34.96522204387373,
+   "under_share": 33.379575285455125,
+   "ratio": 0.365,
+   "floor": 1.018,
+   "random": 0.8954692366457072,
+   "holdout_elderly_n": 233
+  },
+  {
+   "state": "NV",
+   "elderly_share": 26.266370150728935,
+   "elderly_err": 42.61523988711195,
+   "all_err": 33.38275265628861,
+   "under_share": 14.96490407112775,
+   "ratio": 0.541,
+   "floor": 1.148,
+   "random": 0.854626830969542,
+   "holdout_elderly_n": 261
+  },
+  {
+   "state": "NH",
+   "elderly_share": 30.84192439862543,
+   "elderly_err": 33.98328690807799,
+   "all_err": 33.59106529209622,
+   "under_share": 61.86485070717653,
+   "ratio": 0.732,
+   "floor": 1.042,
+   "random": 0.9654066437571592,
+   "holdout_elderly_n": 172
+  },
+  {
+   "state": "NJ",
+   "elderly_share": 42.715943274602495,
+   "elderly_err": 33.199195171026155,
+   "all_err": 32.4881822088526,
+   "under_share": 45.170011438078404,
+   "ratio": 0.504,
+   "floor": 0.97,
+   "random": 0.943298969072165,
+   "holdout_elderly_n": 244
+  },
+  {
+   "state": "NM",
+   "elderly_share": 23.06892067620286,
+   "elderly_err": 57.49718151071026,
+   "all_err": 47.802340702210664,
+   "under_share": 12.335646457268078,
+   "ratio": 0.586,
+   "floor": 0.854,
+   "random": 0.7557099864792173,
+   "holdout_elderly_n": 226
+  },
+  {
+   "state": "NY",
+   "elderly_share": 43.19926312557568,
+   "elderly_err": 37.73987206823028,
+   "all_err": 36.659502609763585,
+   "under_share": 29.254153411099328,
+   "ratio": 0.617,
+   "floor": 1.202,
+   "random": 1.078474719695367,
+   "holdout_elderly_n": 341
+  },
+  {
+   "state": "NC",
+   "elderly_share": 27.893547577203112,
+   "elderly_err": 32.76327632763277,
+   "all_err": 36.02811950790861,
+   "under_share": 27.331294332010152,
+   "ratio": 0.75,
+   "floor": 1.034,
+   "random": 1.0975249311854158,
+   "holdout_elderly_n": 271
+  },
+  {
+   "state": "ND",
+   "elderly_share": 25.19219396806623,
+   "elderly_err": 42.48826291079812,
+   "all_err": 38.1431105854524,
+   "under_share": 38.68558625840179,
+   "ratio": 0.589,
+   "floor": 1.01,
+   "random": 0.8542684528500131,
+   "holdout_elderly_n": 101
+  },
+  {
+   "state": "OH",
+   "elderly_share": 31.39568345323741,
+   "elderly_err": 41.338221814848765,
+   "all_err": 37.89928057553957,
+   "under_share": 31.40119597716771,
+   "ratio": 0.455,
+   "floor": 1.109,
+   "random": 0.9319288306630079,
+   "holdout_elderly_n": 256
+  },
+  {
+   "state": "OK",
+   "elderly_share": 21.415513188822146,
+   "elderly_err": 45.97560975609756,
+   "all_err": 40.79394097675633,
+   "under_share": 22.190389373616355,
+   "ratio": 0.608,
+   "floor": 0.999,
+   "random": 0.9060895084372708,
+   "holdout_elderly_n": 209
+  },
+  {
+   "state": "OR",
+   "elderly_share": 29.832071122818572,
+   "elderly_err": 45.36423841059602,
+   "all_err": 39.743167599604874,
+   "under_share": 9.449265250948415,
+   "ratio": 0.813,
+   "floor": 0.921,
+   "random": 0.8778229665071771,
+   "holdout_elderly_n": 243
+  },
+  {
+   "state": "PA",
+   "elderly_share": 35.09791921664627,
+   "elderly_err": 46.73060156931125,
+   "all_err": 42.686658506731945,
+   "under_share": 24.800966097146436,
+   "ratio": 0.645,
+   "floor": 0.895,
+   "random": 0.8982327593434047,
+   "holdout_elderly_n": 307
+  },
+  {
+   "state": "RI",
+   "elderly_share": 36.040756914119356,
+   "elderly_err": 56.30048465266559,
+   "all_err": 47.91848617176128,
+   "under_share": 21.777362534692642,
+   "ratio": 0.85,
+   "floor": 1.017,
+   "random": 0.8281939518639846,
+   "holdout_elderly_n": 297
+  },
+  {
+   "state": "SC",
+   "elderly_share": 31.576130586031574,
+   "elderly_err": 37.88135593220339,
+   "all_err": 36.25903130853626,
+   "under_share": 26.291129805132574,
+   "ratio": 0.518,
+   "floor": 1.004,
+   "random": 0.9743983957219251,
+   "holdout_elderly_n": 301
+  },
+  {
+   "state": "SD",
+   "elderly_share": 25.58139534883721,
+   "elderly_err": 26.94214876033058,
+   "all_err": 25.66596194503171,
+   "under_share": 40.95009019843656,
+   "ratio": 0.373,
+   "floor": 1.085,
+   "random": 1.0202702702702702,
+   "holdout_elderly_n": 151
+  },
+  {
+   "state": "TN",
+   "elderly_share": 25.45311268715524,
+   "elderly_err": 41.07327141382869,
+   "all_err": 35.408458103493565,
+   "under_share": 31.201936770150954,
+   "ratio": 0.524,
+   "floor": 0.817,
+   "random": 0.757234198027037,
+   "holdout_elderly_n": 246
+  },
+  {
+   "state": "TX",
+   "elderly_share": 29.216083309227653,
+   "elderly_err": 40.693069306930695,
+   "all_err": 44.258027191206246,
+   "under_share": 42.7660845893367,
+   "ratio": 0.414,
+   "floor": 0.952,
+   "random": 1.0469342553076548,
+   "holdout_elderly_n": 253
+  },
+  {
+   "state": "UT",
+   "elderly_share": 20.141428919775663,
+   "elderly_err": 36.68280871670702,
+   "all_err": 32.84564740307242,
+   "under_share": 26.705867940708075,
+   "ratio": 0.463,
+   "floor": 1.088,
+   "random": 0.9021085577794251,
+   "holdout_elderly_n": 195
+  },
+  {
+   "state": "VT",
+   "elderly_share": 38.419117647058826,
+   "elderly_err": 46.985645933014354,
+   "all_err": 34.52205882352941,
+   "under_share": 34.21266784212668,
+   "ratio": 0.622,
+   "floor": 0.981,
+   "random": 0.7160588235294117,
+   "holdout_elderly_n": 259
+  },
+  {
+   "state": "VI",
+   "elderly_share": 34.168336673346694,
+   "elderly_err": 48.38709677419355,
+   "all_err": 42.08416833667334,
+   "under_share": 26.785714285714285,
+   "ratio": 0.488,
+   "floor": 0.928,
+   "random": 0.8237601569066967,
+   "holdout_elderly_n": 84
+  },
+  {
+   "state": "VA",
+   "elderly_share": 31.101291638341266,
+   "elderly_err": 46.33879781420765,
+   "all_err": 46.430999320190345,
+   "under_share": 24.94844211582409,
+   "ratio": 0.606,
+   "floor": 1.139,
+   "random": 1.1326426630434783,
+   "holdout_elderly_n": 234
+  },
+  {
+   "state": "WA",
+   "elderly_share": 30.294117647058822,
+   "elderly_err": 28.478964401294498,
+   "all_err": 26.30718954248366,
+   "under_share": 23.291785553386394,
+   "ratio": 0.552,
+   "floor": 0.933,
+   "random": 0.860585393577721,
+   "holdout_elderly_n": 226
+  },
+  {
+   "state": "WV",
+   "elderly_share": 32.496940024479805,
+   "elderly_err": 38.79472693032015,
+   "all_err": 37.51529987760098,
+   "under_share": 21.613131233801933,
+   "ratio": 0.496,
+   "floor": 0.956,
+   "random": 0.9198113207547169,
+   "holdout_elderly_n": 260
+  },
+  {
+   "state": "WI",
+   "elderly_share": 27.092234229705955,
+   "elderly_err": 31.447124304267163,
+   "all_err": 32.797185222417696,
+   "under_share": 23.043194327829088,
+   "ratio": 0.641,
+   "floor": 0.89,
+   "random": 0.9732088181261481,
+   "holdout_elderly_n": 273
+  },
+  {
+   "state": "WY",
+   "elderly_share": 19.8992443324937,
+   "elderly_err": 40.92827004219409,
+   "all_err": 34.005037783375315,
+   "under_share": 50.57524160147262,
+   "ratio": 0.45,
+   "floor": 1.351,
+   "random": 0.9665071770334929,
+   "holdout_elderly_n": 54
+  }
+ ],
+ "state_summary": {
+  "ratio_below_random": 52,
+  "elderly_err_above_all": 48,
+  "median_ratio": 0.606,
+  "median_floor": 0.999,
+  "median_random": 0.9021085577794251,
+  "below_08": 49
+ }
+}

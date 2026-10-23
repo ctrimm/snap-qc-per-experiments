@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Older Adults in SNAP Error Review</title>
+<style>
+@page { size: letter; margin: 2.2cm 2.4cm; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
+  h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
+  h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
+  h3 { font-size: 11.5pt; margin-top: 0.6cm; margin-bottom: 0.15cm; }
+  .subtitle { font-size: 13pt; color: #4a5a6a; margin-bottom: 0.9cm; font-style: italic; }
+  .meta { font-size: 9.5pt; color: #6a7683; margin-bottom: 1cm; }
+  p { margin: 0.3cm 0; text-align: justify; }
+  ul { margin: 0.3cm 0; padding-left: 1.1cm; }
+  li { margin-bottom: 0.18cm; }
+  .callout { background: #f1f5f9; border-left: 3.5px solid #0f2a44; padding: 0.45cm 0.6cm; margin: 0.6cm 0; }
+  .callout p { margin: 0.15cm 0; text-align: left; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #b9c4d0; padding: 0.22cm 0.35cm; text-align: left; }
+  th { background: #0f2a44; color: white; }
+  .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
+  .kpi { font-weight: bold; color: #0f2a44; }
+  table { page-break-inside: avoid; }
+  code { font-family: Menlo, monospace; font-size: 9.5pt; }
+  pre { background: #f1f5f9; border-left: 3.5px solid #c9d4e0; padding: 0.3cm 0.4cm; font-size: 8.3pt; line-height: 1.4; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+  pre code { font-size: 8.3pt; }
+  ol { margin: 0.3cm 0; padding-left: 1.1cm; }
+  a { color: #0f2a44; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  h2, h3 { page-break-after: avoid; }
+</style>
+</head>
+<body>
+<h1>Older Adults in SNAP Error Review</h1>
+<div class="meta">October 23, 2026 · Whitepaper · Cory Trimm</div>
+<h2>Summary</h2>
+<p>About three in ten SNAP households include someone aged 60 or older. This paper looks at those households alone: how often their benefits are paid in error, what kind of errors they are, and how they fare when a state uses a data-driven tool to choose which cases to review. A companion paper covers older adults and people with disabilities together. Every figure here is computed from federal SNAP quality-control (QC) data, FY2020–2024, and checked against the experiment that produced it.</p>
+<ol>
+<li><strong>Older households have more payment errors than other households, but smaller ones.</strong><ul>
+<li><strong>How often:</strong> 42% of reviewed households with a member aged 60+ had an error, against 36% of other households.</li>
+<li><strong>How large:</strong> the typical (median) error was $18, against $31 for others.</li>
+<li><strong>What kind:</strong> most involve the shelter deduction, Social Security amounts, the utility allowance or medical deductions. Wages carry only 10% of older households' error dollars, against 44% for other households.</li>
+</ul>
+</li>
+<li><strong>A review tool that chases error dollars sends reviewers away from older households.</strong><ul>
+<li><strong>Today's models:</strong> in 49 of 53 jurisdictions they review older households at less than 0.8 of their share of the error risk (median 0.61). In 52 of 53 that is less than random selection would give them (median 0.90).</li>
+<li><strong>The cause is error size, not missed detection:</strong> when older households are reviewed, errors are found in most of them (66% of reviewed cases in the Pennsylvania test).</li>
+</ul>
+</li>
+<li><strong>A simple budget rule fixes it.</strong><ul>
+<li><strong>What it does:</strong> a fairness floor gives each household type a share of the review budget matching its share of errors, then picks the highest-dollar cases within each type.</li>
+<li><strong>Effect:</strong> it brings older households to a median of 1.00 and leaves no jurisdiction below 0.8.</li>
+<li><strong>Cost:</strong> about 1% of the tool's median effectiveness.</li>
+</ul>
+</li>
+<li><strong>Medical deductions are the error most specific to older households.</strong> Among older households with medical expenses on file (about one in seven), <strong>24%</strong> have a medical-deduction error, against 2.5% of older households without.</li>
+<li><strong>Underpayments owed to older households are not being hidden, but many go unreviewed.</strong> Their errors lean toward overpayments about as much as everyone else's. Underpayments are 27% of their error dollars, against 28% for other households, and the ranker's skipped errors follow that same mix.</li>
+<li><strong>Many older SNAP households likely qualify for Medicare cost help.</strong> About 22% of all SNAP households have a member aged 65+ with income low enough for Medicare Savings Programs or Extra Help.</li>
+</ol>
+<p>All of this is analysis of federal public-use QC data. No state has used the tool, and no household has been affected by it.</p>
+<h2>What we tried, in plain terms</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>What we did</th>
+<th>What we found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are older households' benefits paid correctly?</td>
+<td>Compared error rates and error sizes for households with and without a member aged 60+</td>
+<td>More errors, but smaller ones</td>
+</tr>
+<tr>
+<td>What goes wrong?</td>
+<td>Looked at which part of the case each error was in</td>
+<td>Housing costs, Social Security amounts, utility allowances and medical deductions, rarely wages</td>
+</tr>
+<tr>
+<td>Who gets reviewed when a tool picks the cases with the most likely error dollars?</td>
+<td>Compared older households' share of reviews with their share of errors, in every state</td>
+<td>Fewer reviews than their errors warrant, and fewer than random selection would give</td>
+</tr>
+<tr>
+<td>Is the tool missing their errors?</td>
+<td>Checked how often reviews of older households found an error</td>
+<td>No: two in three reviewed cases had one. Their errors are just smaller</td>
+</tr>
+<tr>
+<td>Can a simple rule fix it?</td>
+<td>Gave each household type a share of the review budget matching its share of errors</td>
+<td>Yes, in every state, for about 1% of the tool's effectiveness</td>
+</tr>
+<tr>
+<td>Are underpayments owed to older households being missed?</td>
+<td>Compared the over/under mix of reviewed and skipped errors</td>
+<td>Skipped errors aren't mostly underpayments</td>
+</tr>
+<tr>
+<td>Who might qualify for other help?</td>
+<td>Counted SNAP households with a low-income member aged 65+</td>
+<td>About 22% of all SNAP households likely qualify for Medicare cost help</td>
+</tr>
+</tbody>
+</table>
+<h2>Who older SNAP households are</h2>
+<p><strong>Who counts as elderly:</strong> SNAP counts a household member as elderly at <strong>60 or older</strong>. Medicare cost-help programs start at 65.</p>
+<p><strong>Different rules:</strong> households with an elderly (or disabled) member get different budget rules:</p>
+<ul>
+<li>a deduction for out-of-pocket medical costs above $35 a month;</li>
+<li>no cap on the shelter deduction;</li>
+<li>only the net income test.</li>
+</ul>
+<p><strong>In the QC data (FY2020–2024, 167,002 reviewed households):</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Households with a member aged 60+</th>
+<th>Other households</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Share of reviewed households</td>
+<td>30% (FY2024: 31%; 33% weighted to the caseload)</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Have Social Security income</td>
+<td>74%</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>Have SSI</td>
+<td>33%</td>
+<td>19%</td>
+</tr>
+<tr>
+<td>Have earnings</td>
+<td>5%</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>Have medical expenses on file</td>
+<td>14%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Older households live mostly on Social Security and SSI. That matters for the errors they have, and for how a review tool sees them.</p>
+<h2>Finding 1: more errors, but smaller ones</h2>
+<table>
+<thead>
+<tr>
+<th>FY2020–2024, reviewed households</th>
+<th>Members aged 60+</th>
+<th>Other households</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Households with a payment error</td>
+<td><strong>42%</strong></td>
+<td>36%</td>
+</tr>
+<tr>
+<td>Median error</td>
+<td><strong>$18</strong></td>
+<td>$31</td>
+</tr>
+<tr>
+<td>90th percentile error</td>
+<td>$119</td>
+<td>$206</td>
+</tr>
+<tr>
+<td>Error dollars that are underpayments</td>
+<td>27%</td>
+<td>28%</td>
+</tr>
+<tr>
+<td>Errors coded as reporting or timing issues</td>
+<td>47%</td>
+<td>39%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Where older households' errors are:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Part of the case</th>
+<th>Share of older households' error dollars</th>
+<th>Share of their error cases</th>
+<th>For comparison: other households' error dollars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shelter deduction</td>
+<td>31%</td>
+<td>48%</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>Social Security (RSDI) amounts</td>
+<td>15%</td>
+<td>14%</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>Standard utility allowance</td>
+<td>12%</td>
+<td>7%</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>Wages</td>
+<td>10%</td>
+<td>4%</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>Medical expense deductions</td>
+<td>9%</td>
+<td>9%</td>
+<td>1%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What this shows:</strong></p>
+<ul>
+<li><strong>The errors match the income.</strong> Older households' errors follow their income and expenses: housing costs, Social Security cost-of-living changes, utility allowances and medical costs.</li>
+<li><strong>Timing:</strong> nearly half carry the reporting or timing code: something changed and the case wasn't updated in time.</li>
+<li><strong>Size:</strong> these errors are frequent but small.</li>
+<li><strong>Other households are different:</strong> their largest errors are in earnings, which are larger and change more often.</li>
+</ul>
+<p><strong>It holds in almost every state.</strong> Older households' error rate is higher than the overall rate in 48 of 53 jurisdictions. It's equal in Maine and Virginia, and lower in North Carolina, Texas and Wisconsin (Appendix A).</p>
+<h2>Finding 2: a dollar-chasing review tool under-reviews older households</h2>
+<p>The triage ranker scores each case on information the agency already has: reported income, deductions, rent and utilities, household size and the benefit issued. It orders the review queue by expected error dollars. Its top 20% of cases holds a median <strong>3.97 times</strong> the error dollars of a random 20%, across 53 jurisdictions. Because older households' errors are small, their cases sit lower in that queue.</p>
+<p><strong>The measure:</strong> older households' share of reviews divided by their share of cases with an error. <strong>1.0</strong> means they are reviewed in proportion to their risk. Random selection gives the overall error rate divided by their error rate (below 1.0, because they have more errors than average).</p>
+<table>
+<thead>
+<tr>
+<th>Today's models, all 53 jurisdictions (exp83)</th>
+<th>Older households</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median review ratio, ranking by dollars</td>
+<td><strong>0.61</strong></td>
+</tr>
+<tr>
+<td>Median ratio random selection would give</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Jurisdictions below 0.8</td>
+<td><strong>49 of 53</strong></td>
+</tr>
+<tr>
+<td>Jurisdictions below what random selection would give</td>
+<td><strong>52 of 53</strong> (all but Rhode Island)</td>
+</tr>
+<tr>
+<td>Pennsylvania / New York</td>
+<td>0.65 / 0.62 (random: 0.90 / 1.08)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The same pattern appeared in the first tests,</strong> on early rankers trained on synthetic cases. They used a slightly different measure: a group's review rate divided by its error rate.</p>
+<ul>
+<li><strong>Pennsylvania:</strong> the tool reviewed older households at <strong>0.22</strong> of their error rate. Random review would have given 0.42, so it treated the highest-risk group worse than a lottery would. Childless adults, the lowest-risk group (15% error rate), were reviewed at 1.41.</li>
+<li><strong>New York:</strong> older households 0.34.</li>
+<li><strong>Utah:</strong> <strong>0.155</strong>, about one-sixth. Ranking on the chance of an error alone, without the dollar term, raised it to 0.37.</li>
+<li><strong>Idaho:</strong> a ranker using only the chance of an error gave 0.57.</li>
+</ul>
+<p><strong>This is not a detection failure.</strong> When older households' cases were reviewed, errors were found in 66% of them in Pennsylvania (44% in New York). The tool picks the right cases <em>within</em> each group. It deprioritizes older households because their errors are worth fewer dollars, not because it can't find them.</p>
+<h2>Finding 3: the fairness floor</h2>
+<p><strong>The fix:</strong> split the review budget across household types in proportion to each type's share of errors, then take the highest-dollar cases within each type. A second idea, giving older households' scores extra weight, was rejected: at higher weights it gave some other household types no reviews at all.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Early tests: Pennsylvania (exp49)</th>
+<th>Early tests: New York (exp49)</th>
+<th>Today's models, 53 jurisdictions (exp83)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Older households' review ratio, dollars only</td>
+<td>0.22</td>
+<td>0.34</td>
+<td>median 0.61</td>
+</tr>
+<tr>
+<td>With the floor</td>
+<td><strong>0.42</strong></td>
+<td><strong>0.66</strong></td>
+<td><strong>median 1.00</strong>; none below 0.8</td>
+</tr>
+<tr>
+<td>Dollars found per review hour</td>
+<td>$67.3 → $68.9</td>
+<td>$85.4 → $95.3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Cost to the tool's lift</td>
+<td>none measurable</td>
+<td>none measurable</td>
+<td>median 3.97× → 3.93× (about 1%); the median state gives up 1.5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it can be free:</strong> the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%).</p>
+<p><strong>The FY2028 cost share:</strong> from FY2028, under H.R. 1, states with error rates of 6% or more pay 5–15% of benefit costs.</p>
+<ul>
+<li><strong>With the floor on:</strong> ranker-guided reviews avoid an estimated <strong>$6.05 billion a year</strong> nationally in the central scenario, against $1.03 billion for random reviews of the same volume.</li>
+<li><strong>What the floor costs:</strong> the floor is the main reason that figure isn't $6.82 billion. Protecting older and disabled households' share of reviews costs about $0.77 billion a year in avoided cost share.</li>
+</ul>
+<p><strong>Default:</strong> we recommend the floor on by default. Age is never used to score a household. It is used only to check that each group gets its fair share of reviews.</p>
+<h2>Finding 4: medical deductions</h2>
+<table>
+<thead>
+<tr>
+<th>Older households (FY2020–2024)</th>
+<th>Share with a medical-deduction error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>With medical expenses on file (7,170 households, 14% of older households)</td>
+<td><strong>24.0%</strong></td>
+</tr>
+<tr>
+<td>Without medical expenses on file</td>
+<td>2.5%</td>
+</tr>
+<tr>
+<td>For comparison: households with no elderly or disabled member</td>
+<td>0.02%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The medical deduction is the error most specific to older households.</strong> It applies only to elderly and disabled members, it requires tracking out-of-pocket costs that change, and the costs must exceed $35 a month. Combined with disabled households, small claims are the most error-prone: 35% of claims of $35 a month or less had an error (exp42).</p>
+<p><strong>This is the biggest gap in our AI work:</strong></p>
+<ul>
+<li><strong>Training data:</strong> the synthetic cases used to train our models produce medical errors at only about 0.71–0.76 times the real rate (elderly and disabled households together). Two fixes are designed but not run.</li>
+<li><strong>Language model:</strong> in its first evaluation it couldn't identify medical errors at all.</li>
+<li><strong>Flag cards:</strong> they already tell reviewers to check "out-of-pocket medical costs for elderly or disabled members, with receipts or recurring bills" and "current award letters or data matches for Social Security, SSI, unemployment and child support received".</li>
+</ul>
+<h2>Finding 5: underpayments owed to older households</h2>
+<ul>
+<li><strong>No hidden underpayments:</strong> older households' errors are underpayments for 27% of error dollars, about the same as other households (28%). In the early Pennsylvania and New York tests, the errors the ranker skipped in older households followed that same mix (1.14 and 0.90 times their own mix, where 1.0 is the same).</li>
+<li><strong>Volume:</strong> because older households are under-reviewed, their underpayments go unreviewed with everything else. Older households held 25% (Pennsylvania) and 24% (New York) of all unreviewed underpayment dollars in those tests, while making up 38% and 42% of cases.</li>
+<li><strong>A separate underpayment ranker</strong> finds a median 3.36 times the underpayment dollars of random review, against 1.55 times for the main ranker (exp79). It hasn't been broken out by household type.</li>
+</ul>
+<h2>Finding 6: Medicare cost help (exp64)</h2>
+<p><strong>The test:</strong> a household member aged <strong>65+</strong> with gross income at or below 150% of poverty. That stands in for eligibility for Medicare Savings Programs and Extra Help. It uses FY2024 data, weighted to monthly caseloads.</p>
+<p><strong>The count:</strong> about <strong>22%</strong> of the 21.6 million SNAP households nationally fit that test, about 4.8 million households:</p>
+<table>
+<thead>
+<tr>
+<th>PA</th>
+<th>NY</th>
+<th>TX</th>
+<th>SD</th>
+<th>UT</th>
+<th>ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20%</td>
+<td>30%</td>
+<td>22%</td>
+<td>18%</td>
+<td>14%</td>
+<td>19%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What it means:</strong> these are counts of likely eligibility, not unmet need. The QC file doesn't show who is already enrolled.</p>
+<p><strong>Next step:</strong> match a state's SNAP cases against its Medicare Savings Program enrollment, which needs state data and a check of consent rules.</p>
+<h2>Open questions</h2>
+<ol>
+<li><strong>Age in a real deployment.</strong> The analysis groups households by the QC file's elderly flag (<code>FSELDER</code>). In a pilot, the floor needs the state's own record of each member's age, which is usually reliable at intake.</li>
+<li><strong>The early household tests on today's models.</strong> Rerun exp47–49's within-state detail, including the precision of reviews and the cost of the floor, on the current pooled models.</li>
+<li><strong>The underpayment ranker for older households.</strong> Does it reach them better than the main ranker?</li>
+<li><strong>The medical-data fixes,</strong> then a medical-specific score for the language model.</li>
+<li><strong>The FY2025 QC file,</strong> when it is released: rerun everything above.</li>
+<li><strong>A pilot:</strong> shadow mode in Pennsylvania or New York, with the floor on and older households' share of reviews reported every month.</li>
+</ol>
+<h2>Talking points</h2>
+<ul>
+<li>About three in ten SNAP households include someone 60 or older. Their benefits have errors more often than other households', but the errors are small: housing costs, Social Security changes, utilities, medical deductions.</li>
+<li>A review tool that chases error dollars sends reviewers elsewhere. In 52 of 53 states and territories, it reviews older households less than random selection would.</li>
+<li>When reviewers do look at older households, they find errors in most cases. The issue is where the tool points, not what reviewers can find.</li>
+<li>A simple budget rule fixes it everywhere, for about 1% of the tool's effectiveness. We recommend it on by default.</li>
+<li>Age is never used to score a household, only to check that older households get their fair share of reviews.</li>
+<li>One in four older households claiming medical expenses has a medical-deduction error. That's where our AI work is weakest.</li>
+<li>About one in five SNAP households likely qualifies for Medicare cost help; confirming who is enrolled needs a state partner.</li>
+</ul>
+<h2>Appendix A: older households in every jurisdiction</h2>
+<p>Columns, from left:</p>
+<ul>
+<li><strong>Elderly share:</strong> households with a member aged 60+, as a share of reviewed cases (FY2020–2024).</li>
+<li><strong>Elderly error rate and all households' error rate:</strong> the shares of those cases with a payment error.</li>
+<li><strong>Underpayment share:</strong> underpayments as a share of older households' error dollars.</li>
+<li><strong>Review ratio, dollars only and with the floor:</strong> from today's models on each jurisdiction's held-out cases (exp83).</li>
+<li><strong>Random review would give:</strong> the ratio random selection would give on the same held-out cases.</li>
+</ul>
+<!-- OLDER-TABLE:START -->
+<table>
+<thead>
+<tr>
+<th>Jurisdiction</th>
+<th>Elderly share of reviewed cases</th>
+<th>Elderly error rate</th>
+<th>All households' error rate</th>
+<th>Underpayment share of elderly error dollars</th>
+<th>Review ratio, dollars only</th>
+<th>With the floor</th>
+<th>Random review would give</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alabama (AL)</td>
+<td>27%</td>
+<td>44%</td>
+<td>34%</td>
+<td>14%</td>
+<td>0.52</td>
+<td>1.13</td>
+<td>0.82</td>
+</tr>
+<tr>
+<td>Alaska (AK)</td>
+<td>31%</td>
+<td>39%</td>
+<td>35%</td>
+<td>43%</td>
+<td>0.69</td>
+<td>0.89</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Arizona (AZ)</td>
+<td>26%</td>
+<td>33%</td>
+<td>31%</td>
+<td>31%</td>
+<td>0.60</td>
+<td>1.18</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>Arkansas (AR)</td>
+<td>28%</td>
+<td>35%</td>
+<td>33%</td>
+<td>34%</td>
+<td>0.44</td>
+<td>1.22</td>
+<td>1.06</td>
+</tr>
+<tr>
+<td>California (CA)</td>
+<td>36%</td>
+<td>53%</td>
+<td>41%</td>
+<td>23%</td>
+<td>0.68</td>
+<td>0.96</td>
+<td>0.79</td>
+</tr>
+<tr>
+<td>Colorado (CO)</td>
+<td>29%</td>
+<td>41%</td>
+<td>35%</td>
+<td>22%</td>
+<td>0.67</td>
+<td>0.97</td>
+<td>0.83</td>
+</tr>
+<tr>
+<td>Connecticut (CT)</td>
+<td>35%</td>
+<td>42%</td>
+<td>40%</td>
+<td>26%</td>
+<td>0.67</td>
+<td>1.03</td>
+<td>0.95</td>
+</tr>
+<tr>
+<td>Delaware (DE)</td>
+<td>29%</td>
+<td>41%</td>
+<td>38%</td>
+<td>18%</td>
+<td>0.61</td>
+<td>1.05</td>
+<td>0.96</td>
+</tr>
+<tr>
+<td>District of Columbia (DC)</td>
+<td>29%</td>
+<td>50%</td>
+<td>43%</td>
+<td>47%</td>
+<td>0.77</td>
+<td>0.91</td>
+<td>0.81</td>
+</tr>
+<tr>
+<td>Florida (FL)</td>
+<td>39%</td>
+<td>44%</td>
+<td>41%</td>
+<td>16%</td>
+<td>0.64</td>
+<td>1.03</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>Georgia (GA)</td>
+<td>29%</td>
+<td>53%</td>
+<td>51%</td>
+<td>19%</td>
+<td>0.71</td>
+<td>0.88</td>
+<td>0.94</td>
+</tr>
+<tr>
+<td>Guam (GU)</td>
+<td>27%</td>
+<td>51%</td>
+<td>47%</td>
+<td>25%</td>
+<td>0.66</td>
+<td>0.91</td>
+<td>0.79</td>
+</tr>
+<tr>
+<td>Hawaii (HI)</td>
+<td>40%</td>
+<td>46%</td>
+<td>44%</td>
+<td>32%</td>
+<td>0.40</td>
+<td>0.99</td>
+<td>0.88</td>
+</tr>
+<tr>
+<td>Idaho (ID)</td>
+<td>29%</td>
+<td>35%</td>
+<td>34%</td>
+<td>21%</td>
+<td>0.59</td>
+<td>1.11</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td>Illinois (IL)</td>
+<td>29%</td>
+<td>41%</td>
+<td>35%</td>
+<td>11%</td>
+<td>0.81</td>
+<td>1.04</td>
+<td>0.86</td>
+</tr>
+<tr>
+<td>Indiana (IN)</td>
+<td>24%</td>
+<td>44%</td>
+<td>39%</td>
+<td>34%</td>
+<td>0.42</td>
+<td>1.08</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td>Iowa (IA)</td>
+<td>25%</td>
+<td>33%</td>
+<td>33%</td>
+<td>29%</td>
+<td>0.47</td>
+<td>0.98</td>
+<td>0.96</td>
+</tr>
+<tr>
+<td>Kansas (KS)</td>
+<td>26%</td>
+<td>46%</td>
+<td>42%</td>
+<td>20%</td>
+<td>0.62</td>
+<td>1.03</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Kentucky (KY)</td>
+<td>28%</td>
+<td>32%</td>
+<td>30%</td>
+<td>38%</td>
+<td>0.43</td>
+<td>0.86</td>
+<td>0.89</td>
+</tr>
+<tr>
+<td>Louisiana (LA)</td>
+<td>27%</td>
+<td>46%</td>
+<td>42%</td>
+<td>33%</td>
+<td>0.54</td>
+<td>0.93</td>
+<td>0.94</td>
+</tr>
+<tr>
+<td>Maine (ME)</td>
+<td>36%</td>
+<td>41%</td>
+<td>41%</td>
+<td>23%</td>
+<td>0.65</td>
+<td>1.26</td>
+<td>1.14</td>
+</tr>
+<tr>
+<td>Maryland (MD)</td>
+<td>33%</td>
+<td>38%</td>
+<td>38%</td>
+<td>49%</td>
+<td>0.71</td>
+<td>0.97</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td>Massachusetts (MA)</td>
+<td>36%</td>
+<td>44%</td>
+<td>37%</td>
+<td>20%</td>
+<td>0.68</td>
+<td>1.08</td>
+<td>0.86</td>
+</tr>
+<tr>
+<td>Michigan (MI)</td>
+<td>29%</td>
+<td>50%</td>
+<td>44%</td>
+<td>24%</td>
+<td>0.83</td>
+<td>0.98</td>
+<td>0.88</td>
+</tr>
+<tr>
+<td>Minnesota (MN)</td>
+<td>29%</td>
+<td>48%</td>
+<td>38%</td>
+<td>40%</td>
+<td>0.67</td>
+<td>0.97</td>
+<td>0.81</td>
+</tr>
+<tr>
+<td>Mississippi (MS)</td>
+<td>26%</td>
+<td>38%</td>
+<td>37%</td>
+<td>27%</td>
+<td>0.59</td>
+<td>0.98</td>
+<td>0.96</td>
+</tr>
+<tr>
+<td>Missouri (MO)</td>
+<td>27%</td>
+<td>48%</td>
+<td>40%</td>
+<td>26%</td>
+<td>0.55</td>
+<td>1.08</td>
+<td>0.85</td>
+</tr>
+<tr>
+<td>Montana (MT)</td>
+<td>33%</td>
+<td>49%</td>
+<td>42%</td>
+<td>29%</td>
+<td>0.69</td>
+<td>0.98</td>
+<td>0.87</td>
+</tr>
+<tr>
+<td>Nebraska (NE)</td>
+<td>24%</td>
+<td>40%</td>
+<td>35%</td>
+<td>33%</td>
+<td>0.36</td>
+<td>1.02</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Nevada (NV)</td>
+<td>26%</td>
+<td>43%</td>
+<td>33%</td>
+<td>15%</td>
+<td>0.54</td>
+<td>1.15</td>
+<td>0.85</td>
+</tr>
+<tr>
+<td>New Hampshire (NH)</td>
+<td>31%</td>
+<td>34%</td>
+<td>34%</td>
+<td>62%</td>
+<td>0.73</td>
+<td>1.04</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>New Jersey (NJ)</td>
+<td>43%</td>
+<td>33%</td>
+<td>32%</td>
+<td>45%</td>
+<td>0.50</td>
+<td>0.97</td>
+<td>0.94</td>
+</tr>
+<tr>
+<td>New Mexico (NM)</td>
+<td>23%</td>
+<td>57%</td>
+<td>48%</td>
+<td>12%</td>
+<td>0.59</td>
+<td>0.85</td>
+<td>0.76</td>
+</tr>
+<tr>
+<td>New York (NY)</td>
+<td>43%</td>
+<td>38%</td>
+<td>37%</td>
+<td>29%</td>
+<td>0.62</td>
+<td>1.20</td>
+<td>1.08</td>
+</tr>
+<tr>
+<td>North Carolina (NC)</td>
+<td>28%</td>
+<td>33%</td>
+<td>36%</td>
+<td>27%</td>
+<td>0.75</td>
+<td>1.03</td>
+<td>1.10</td>
+</tr>
+<tr>
+<td>North Dakota (ND)</td>
+<td>25%</td>
+<td>42%</td>
+<td>38%</td>
+<td>39%</td>
+<td>0.59</td>
+<td>1.01</td>
+<td>0.85</td>
+</tr>
+<tr>
+<td>Ohio (OH)</td>
+<td>31%</td>
+<td>41%</td>
+<td>38%</td>
+<td>31%</td>
+<td>0.46</td>
+<td>1.11</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>Oklahoma (OK)</td>
+<td>21%</td>
+<td>46%</td>
+<td>41%</td>
+<td>22%</td>
+<td>0.61</td>
+<td>1.00</td>
+<td>0.91</td>
+</tr>
+<tr>
+<td>Oregon (OR)</td>
+<td>30%</td>
+<td>45%</td>
+<td>40%</td>
+<td>9%</td>
+<td>0.81</td>
+<td>0.92</td>
+<td>0.88</td>
+</tr>
+<tr>
+<td>Pennsylvania (PA)</td>
+<td>35%</td>
+<td>47%</td>
+<td>43%</td>
+<td>25%</td>
+<td>0.65</td>
+<td>0.90</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Rhode Island (RI)</td>
+<td>36%</td>
+<td>56%</td>
+<td>48%</td>
+<td>22%</td>
+<td>0.85</td>
+<td>1.02</td>
+<td>0.83</td>
+</tr>
+<tr>
+<td>South Carolina (SC)</td>
+<td>32%</td>
+<td>38%</td>
+<td>36%</td>
+<td>26%</td>
+<td>0.52</td>
+<td>1.00</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>South Dakota (SD)</td>
+<td>26%</td>
+<td>27%</td>
+<td>26%</td>
+<td>41%</td>
+<td>0.37</td>
+<td>1.08</td>
+<td>1.02</td>
+</tr>
+<tr>
+<td>Tennessee (TN)</td>
+<td>25%</td>
+<td>41%</td>
+<td>35%</td>
+<td>31%</td>
+<td>0.52</td>
+<td>0.82</td>
+<td>0.76</td>
+</tr>
+<tr>
+<td>Texas (TX)</td>
+<td>29%</td>
+<td>41%</td>
+<td>44%</td>
+<td>43%</td>
+<td>0.41</td>
+<td>0.95</td>
+<td>1.05</td>
+</tr>
+<tr>
+<td>Utah (UT)</td>
+<td>20%</td>
+<td>37%</td>
+<td>33%</td>
+<td>27%</td>
+<td>0.46</td>
+<td>1.09</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Vermont (VT)</td>
+<td>38%</td>
+<td>47%</td>
+<td>35%</td>
+<td>34%</td>
+<td>0.62</td>
+<td>0.98</td>
+<td>0.72</td>
+</tr>
+<tr>
+<td>Virgin Islands (VI)</td>
+<td>34%</td>
+<td>48%</td>
+<td>42%</td>
+<td>27%</td>
+<td>0.49</td>
+<td>0.93</td>
+<td>0.82</td>
+</tr>
+<tr>
+<td>Virginia (VA)</td>
+<td>31%</td>
+<td>46%</td>
+<td>46%</td>
+<td>25%</td>
+<td>0.61</td>
+<td>1.14</td>
+<td>1.13</td>
+</tr>
+<tr>
+<td>Washington (WA)</td>
+<td>30%</td>
+<td>28%</td>
+<td>26%</td>
+<td>23%</td>
+<td>0.55</td>
+<td>0.93</td>
+<td>0.86</td>
+</tr>
+<tr>
+<td>West Virginia (WV)</td>
+<td>32%</td>
+<td>39%</td>
+<td>38%</td>
+<td>22%</td>
+<td>0.50</td>
+<td>0.96</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>Wisconsin (WI)</td>
+<td>27%</td>
+<td>31%</td>
+<td>33%</td>
+<td>23%</td>
+<td>0.64</td>
+<td>0.89</td>
+<td>0.97</td>
+</tr>
+<tr>
+<td>Wyoming (WY)</td>
+<td>20%</td>
+<td>41%</td>
+<td>34%</td>
+<td>51%</td>
+<td>0.45</td>
+<td>1.35</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table>
+<!-- OLDER-TABLE:END -->
+
+<h2>Appendix B: data, definitions and reproduction</h2>
+<p><strong>Data:</strong> SNAP Quality Control public-use files, FY2020–2024, from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a> (167,002 reviewed households).</p>
+<p><strong>Definitions:</strong></p>
+<ul>
+<li><strong>Older household:</strong> <code>FSELDER</code> = 1, a member aged 60 or older. Elderly is checked before disability, as in exp47 and exp72.</li>
+<li><strong>Error case:</strong> <code>STATUS</code> 2 (overissuance) or 3 (underissuance).</li>
+<li><strong>Error dollars:</strong> <code>AMTERR</code>.</li>
+<li><strong>Part of the case:</strong> the first variance's element (<code>ELEMENT1</code>).</li>
+<li><strong>Timing:</strong> nature code 97.</li>
+<li><strong>Medical-deduction error:</strong> any variance with element 365. As a check, this method reproduces exp42's figure for elderly-or-disabled households with medical expenses on file exactly (n = 9,514, 24.15%).</li>
+<li><strong>Income sources:</strong> the verified income fields (<code>FSSOCSEC</code>, <code>FSSSI</code>, <code>FSWAGES</code>), used here only to describe households. The ranker never uses them.</li>
+<li><strong>Weighting:</strong> unweighted, five years pooled, except the FY2024 weighted share.</li>
+</ul>
+<p><strong>Fairness ratios:</strong></p>
+<ul>
+<li><strong>Today's models (exp83):</strong> a type's share of reviews ÷ its share of cases with an error, in the top 20% of each jurisdiction's held-out queue.</li>
+<li><strong>Random-review ratio:</strong> the overall error rate ÷ older households' error rate, on the same held-out cases (<code>experiments/exp68_holdouts.json</code>).</li>
+<li><strong>The early tests (exp47, exp49, Utah, Idaho):</strong> a group's review rate ÷ its error rate, on rankers trained on synthetic cases.</li>
+</ul>
+<p><strong>Reproduce:</strong></p>
+<pre><code class="language-bash">python3 whitepaper/older_adults_numbers.py                 # every figure in this paper, and Appendix A
+python3 experiments/exp83_context_models_full_eval.py --workers 8   # today's fairness ratios (reproduces exp83_results.json)
+python3 experiments/exp47_household_type_burden.py         # early household-type test
+python3 experiments/exp49_equity_objective.py              # the fairness floor, early test
+python3 experiments/cost_share_replicate.py                # FY2028 cost share, floor on
+</code></pre>
+<p><strong>Related:</strong></p>
+<ul>
+<li><em>Older Adults and People with Disabilities in SNAP Error Review</em> (<code>whitepaper/older_adults_disabled_whitepaper.pdf</code>), the combined paper with its corrections appendix.</li>
+<li>Experiments exp42, exp47–49, exp64, exp72, exp79, exp83 and exp93 in <code>experiments/</code>.</li>
+</ul>
+</body>
+</html>
