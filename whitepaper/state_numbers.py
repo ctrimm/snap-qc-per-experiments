@@ -52,34 +52,49 @@ def table():
     return "\n".join(rows)
 
 
+FILES = {"PA": "pa_pilot_whitepaper.md", "NY": "ny_pilot_whitepaper.md", "TX": "tx_pilot_whitepaper.md",
+         "SD": "sd_pilot_whitepaper.md", "UT": "ut_pilot_whitepaper.md", "ID": "id_pilot_whitepaper.md", "WY": "wy_state_brief.md"}
+
+
 def expected():
-    """(file, text that must appear) for every state figure quoted in the briefs."""
+    """(file, text that must appear) for every state figure quoted in the briefs and the PA-NY brief."""
     out = []
-    for s, f in (("PA", "state_brief_pa.md"), ("NY", "state_brief_ny.md"), ("WY", "state_brief_wy.md")):
-        v, sc, a = E83[s], E93[s]["scenarios"], ADOPT[s]
-        base = "deployed"
+    for s, f in FILES.items():
+        v, sc, owes = E83[s], E93[s]["scenarios"], E93[s]["cost_share_now"] > 0
+        cost = 100 * (1 - FL[s] / T20[s])
         out += [(f, f"{T20[s]:.1f}×"), (f, f"{T10[s]:.1f}×"), (f, f"{TS[s]:.1f}×"), (f, f"{FL[s]:.1f}×"),
                 (f, f"${v['top20']['per_hour_$']:.0f}"), (f, f"${v['top10']['per_hour_$']:.0f}"),
-                (f, f"{E93[s]['per_fy2025']:.2f}%"), (f, f"{E68[s]['n_rows']:,}"), (f, f"{E68[s]['n_holdout']}"),
+                (f, f"{E93[s]['per_fy2025']:.2f}%"), (f, f"{E68[s]['n_rows']:,}"), (f, f"{E68[s]['n_holdout']:,}"),
                 (f, f"{E79[s]['under']['under_lift']:.1f} times"), (f, f"{E79[s]['total']['under_lift']:.1f} times"),
-                (f, f"{round(100 * (1 - FL[s] / T20[s]))}%")]
+                (f, f"{E68[s]['holdout']['top20']['lift']:.1f}×"), (f, f"{sc['central']['ranker']['per']:.2f}%")]
+        if cost >= 0.5:
+            out.append((f, f"{round(cost)}%"))
         for k in ("elderly", "disabled", "single_parent", "childless_adult"):
-            out += [(f, f"{v['fairness']['baseline_ratio'][k]:.2f}"), (f, f"{v['fairness']['floor_ratio'][k]:.2f}")]
-        for name in (("central",) if s == "WY" else ("low", "central", "high")):  # WY's brief tabulates hypothetical rates instead
-            out.append((f, f"{sc[name]['ranker']['per']:.2f}%"))
-            if s != "WY":
-                out.append((f, f"{sc[name]['random']['per']:.2f}%"))
-        if s == "WY":
-            out += [(f, f"{E68[s]['holdout']['top20']['lift']:.1f}×"), (f, f"{E68[s]['time_split_top20_lift']['untuned']:.1f}×"),
-                    (f, "the lowest of the 53") if RTS[s] == 53 else (f, "__WY time split is not lowest__"),
-                    (f, "third lowest of 53") if RPER[s] == 3 else (f, "__WY rate rank changed__")]
-        else:
-            out += [(f, f"{a[base]['holdout']:.1f}× → {T20[s]:.1f}×"), (f, f"{a[base]['time_split']:.1f}× → {TS[s]:.1f}×")]
-    pilots = ["PA", "NY", "TX", "SD", "UT", "ID"]
-    if max(pilots, key=T10.get) == "NY":
-        out.append(("state_brief_ny.md", "highest top-10% result of our six pilot states"))
+            if k in v["fairness"]["baseline_ratio"]:
+                out += [(f, f"{v['fairness']['baseline_ratio'][k]:.2f}"), (f, f"{v['fairness']['floor_ratio'][k]:.2f}")]
+        if owes:
+            for name in ("low", "central", "high"):
+                out += [(f, f"{sc[name]['ranker']['per']:.2f}%"), (f, f"{sc[name]['random']['per']:.2f}%")]
+        elif s != "WY":
+            out.append((f, f"{sc['central']['random']['per']:.2f}%"))
+    out += [("pa_pilot_whitepaper.md", "3.1× → 3.8×"), ("ny_pilot_whitepaper.md", "3.3× → 4.1×"),
+            ("wy_state_brief.md", "the lowest of the 53") if RTS["WY"] == 53 else ("wy_state_brief.md", "__WY time split not lowest__"),
+            ("wy_state_brief.md", "third lowest of 53") if RPER["WY"] == 3 else ("wy_state_brief.md", "__WY rate rank__"),
+            ("sd_pilot_whitepaper.md", "the lowest of 53") if RPER["SD"] == 1 else ("sd_pilot_whitepaper.md", "__SD rate rank__"),
+            ("id_pilot_whitepaper.md", "second lowest of 53") if RPER["ID"] == 2 else ("id_pilot_whitepaper.md", "__ID rate rank__"),
+            ("ut_pilot_whitepaper.md", "eighth lowest of 53") if RPER["UT"] == 8 else ("ut_pilot_whitepaper.md", "__UT rate rank__")]
+    for s, rk in (("TX", R20), ("SD", R20), ("UT", R20), ("ID", R20)):
+        out.append((FILES[s], f"| {rk[s]} |"))
+    if max(["PA", "NY", "TX", "SD", "UT", "ID"], key=T10.get) == "NY":
+        out.append(("ny_pilot_whitepaper.md", "highest top-10% result of our six pilot states"))
     if R20["WY"] > 26:
-        out.append(("state_brief_wy.md", "a little below the 53-jurisdiction median"))
+        out.append(("wy_state_brief.md", "a little below the 53-jurisdiction median"))
+    c = "pa_ny_combined_brief.md"
+    for s in ("PA", "NY"):
+        v, sc = E83[s], E93[s]["scenarios"]["central"]
+        out += [(c, f"{T20[s]:.1f}×"), (c, f"{T10[s]:.1f}×"), (c, f"{TS[s]:.1f}×"), (c, f"{FL[s]:.1f}×"),
+                (c, f"${v['top20']['per_hour_$']:.0f}"), (c, f"{E93[s]['per_fy2025']:.2f}%"), (c, f"{sc['ranker']['per']:.2f}%"),
+                (c, f"{sc['reviews_per_month']:,}"), (c, f"{E68[s]['n_rows']:,} ({E68[s]['n_holdout']})")]
     return out
 
 

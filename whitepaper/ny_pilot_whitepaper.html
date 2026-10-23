@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Predicting SNAP Payment Errors: A Pilot Proposal for New York</title>
+<title>Finding SNAP Payment Errors Faster in New York</title>
 <style>
-  @page { size: letter; margin: 2.2cm 2.4cm; }
+@page { size: letter; margin: 2.2cm 2.4cm; }
   body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
   h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
   h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
@@ -21,80 +21,277 @@
   th { background: #0f2a44; color: white; }
   .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
   .kpi { font-weight: bold; color: #0f2a44; }
+  table { page-break-inside: avoid; }
+  code { font-family: Menlo, monospace; font-size: 9.5pt; }
+  pre { background: #f1f5f9; border-left: 3.5px solid #c9d4e0; padding: 0.3cm 0.4cm; font-size: 8.3pt; line-height: 1.4; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+  pre code { font-size: 8.3pt; }
+  ol { margin: 0.3cm 0; padding-left: 1.1cm; }
+  a { color: #0f2a44; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  h2, h3 { page-break-after: avoid; }
 </style>
 </head>
 <body>
-
-<h1>Predicting SNAP Payment Errors:<br>A Pilot Proposal for New York</h1>
-<div class="subtitle">Synthetic-data-validated case prioritization for quality-control review</div>
-<div class="meta">September 29, 2026 &nbsp;·&nbsp; Research whitepaper &nbsp;·&nbsp; Methods and validation artifacts are open-source at github.com/ctrimm/snap-qc-per-experiments</div>
-
-<h2>1. Executive summary</h2>
-<p>We have built and validated a synthetic data generator that reproduces how SNAP payment errors occur in New York's caseload, calibrated against five years of federal quality-control (QC) microdata. Machine-learning models trained <em>only</em> on this synthetic data rank real New York cases by error risk above chance (binary AUC 0.66 vs 0.61 for a nationally trained model, consistently across seeds) — proof the synthetic cases carry genuine signal about where errors happen.</p>
-<p>The operational finding: a direct expected-dollar ranking model, applied to prioritize QC review, recovers <span class="kpi">$6,958 vs $4,574 for random review</span> at a fixed review budget — <span class="kpi">$85 vs $56 per hour of reviewer time</span>. Reviewing the riskiest half of cases catches 66% of all errors with half the reviews.</p>
-<p>We propose a low-risk pilot: train the ranker on New York's own historical QC data, validate on a recent holdout, then run it in shadow alongside existing review. No production eligibility-system changes. No new data collection.</p>
-
-<h2>2. The problem</h2>
-<p>SNAP payment error rates remain stubbornly high nationwide, and every error is either taxpayer money over-issued or a household underpaid. Quality-control review is the corrective mechanism — but reviewer time is finite, and cases are currently selected for review without a data-driven sense of where errors concentrate. The result is expensive review effort spread thinly over a caseload where risk is highly uneven.</p>
-<p>New York is a strong candidate for a targeted approach. Our analysis of 3,257 New York QC cases (FY2020–2024) shows the state's benefit-calculation engine matches federal statute at fleet level (94–98% of cases) — New York's errors live in the <em>human process layer</em> (verification, timing, documentation), which is precisely where a prediction tool adds value. The pattern is distinctive: timing errors (cases the agency was not yet required to act on) run at 1.56x the national rate and make up nearly two-thirds of errors, while medical-deduction errors run 1.79x national and standard-utility-allowance errors 1.51x. <em>Basis note (exp50, October 2026):</em> the 1.79x figure is pooled FY2020–2024; excluding the partial FY2020 and collapsed FY2021 files, the medical ratio on FY2022–24 is 1.27x — the pandemic years materially inflate this signature.</p>
-
-<h2>3. What was built and validated</h2>
-<p><strong>A New York-conditioned synthetic generator.</strong> Starting from a nationally calibrated generator (error-type mix matching reality within ~1 percentage point), we fit New York-specific error-rate offsets and empirical error mixes. The NY-conditioned output reproduces New York's finding mix (L1 0.020), element mix (0.044), and cause mix (0.074), while leaving national output unchanged.</p>
-<p><strong>Validated predictive signal — with one honest qualification.</strong> Models trained only on NY-conditioned synthetic cases beat baseline and beat a nationally trained model at ranking error vs correct (AUC 0.657 vs 0.611, across all tested seeds), and the advantage survived a fully clean refit excluding the holdout rows. On the element-classification task, however, the NY-conditioned model beats the majority baseline (0.435 vs 0.274) but does <em>not</em> beat the nationally trained model (0.468): New York's distinctive signature sits in rare medical/SUA buckets the generator cannot yet place on features. The transferable signal is real, but it lives in the finding and dollar tasks, not in fine-grained element prediction.</p>
-<p><strong>A dollar-aware ranking.</strong> The set's most important surprise: ranking cases by error probability <em>alone</em> performs worse than random at the top slice (0.74x). Error probability and error size are nearly orthogonal in New York's mix — probability chases frequent small-dollar timing errors (median $10–$14) while the dollars live in the income-error tail (newly-employed wages, median $150). The product must therefore be a dollar-aware ranker: here, a direct expected-dollar model won, beating the two-part structure that won in Pennsylvania.</p>
-
-<div class="callout">
-<p><strong>Headline pilot economics (simulated on held-out NY cases, top-20% review budget):</strong></p>
+<h1>Finding SNAP Payment Errors Faster in New York</h1>
+<div class="meta">October 23, 2026 · State brief · Cory Trimm</div>
+<h2>Summary</h2>
+<p>New York's FY2025 payment error rate was 13.18%. Under the H.R. 1 cost-sharing rules that is the top bracket: from FY2028 the state would pay 15% of its SNAP benefit costs, about <strong>$1.08 billion a year</strong>. This brief shows what a case-ranking tool, built and tested on New York's own federal QC records, could do about that.</p>
+<ul>
+<li><strong>It finds over four times the error dollars of random review.</strong> Reviewers working the top 20% of the tool's queue would find 4.2 times the error dollars of a random selection, about <strong>$234 per review hour against $56</strong>. The top 10% finds 7.0 times, the highest top-10% result of our six pilot states.</li>
+<li><strong>It holds up over time.</strong> Trained on 2020–22 and tested on 2023–24, it kept a 4.1× edge. Expected error dollars for the top of the queue landed within 6% of actual.</li>
+<li><strong>It's fair by design.</strong> Ranking purely by dollars would under-review elderly households. A floor brings their share into proportion for about 6% of the gain (4.2× → 3.9×).</li>
+<li><strong>Cost share falls a bracket in the central scenario.</strong> Reviewing 2% of cases a month in the tool's order brings the rate to about 8.2%. That drops New York from the 15% share to 10%, avoiding about <strong>$360 million a year</strong>. Reviewing 3% a month brings it under 6%, avoiding the full $1.08 billion. Random reviews of the same volume leave New York at 15% in every scenario.</li>
+<li><strong>Effort:</strong> about 32,500 reviews a month, roughly 116 reviewer FTEs, in the central scenario.</li>
+</ul>
+<p><strong>Recommendation:</strong> a three-month shadow pilot. New York's errors are mostly about changes in income and circumstances not caught in time, so the pilot should test whether working the top of the queue each month catches them sooner.</p>
+<h2>New York's errors</h2>
+<p>Federal QC public-use files, FY2020–2024: 3,257 reviewed New York cases. Shares are of cases with any error found, including small ones, and are unweighted:</p>
 <table>
-<tr><th></th><th>Random review</th><th>Dollar ranker</th></tr>
-<tr><td>Error dollars recovered</td><td>$4,574</td><td><span class="kpi">$6,958</span></td></tr>
-<tr><td>Value per review hour</td><td>$56</td><td><span class="kpi">$85</span></td></tr>
-<tr><td>Share of all error dollars captured</td><td>—</td><td>30.4%</td></tr>
+<thead>
+<tr>
+<th></th>
+<th>New York</th>
+<th>National</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reviewed cases with an error found</td>
+<td>36.7%</td>
+<td>37.9%</td>
+</tr>
+<tr>
+<td>Error dollars that are underpayments</td>
+<td>28%</td>
+<td>28%</td>
+</tr>
+<tr>
+<td>Largest share of error dollars</td>
+<td>Wages and salaries 39%</td>
+<td>Wages and salaries 37%</td>
+</tr>
+<tr>
+<td>Next largest</td>
+<td>Shelter deduction 10.5%, household composition 9.6%, Social Security 8.1%</td>
+<td>Shelter deduction 16%</td>
+</tr>
+<tr>
+<td>Most frequent error</td>
+<td>Shelter deduction, 27% of error cases</td>
+<td>Shelter deduction, 31%</td>
+</tr>
+<tr>
+<td>Errors coded as reporting or timing issues (nature code 97)</td>
+<td><strong>63%</strong></td>
+<td>42%</td>
+</tr>
+<tr>
+<td>Arithmetic errors</td>
+<td>0.8%</td>
+<td>1.3%</td>
+</tr>
+</tbody>
 </table>
-<p>Of the $6,958: $4,751 is over-issuance (direct program savings); $2,207 is under-issuance (households underpaid — the correct QC outcome, but a make-whole cost). Savings-only value: $58/hr vs $56/hr.</p>
-</div>
-
-<h2>4. The pilot</h2>
-<h3>What New York provides</h3>
+<p><strong>New York's distinctive problem is timing.</strong> Nearly two-thirds of its errors carry the reporting and timing code, half again the national share. The facts changed, usually income or household members, and the case wasn't updated in time.</p>
+<p><strong>Its dollars are spread across sources.</strong> Wages carry the most error dollars. Social Security, unemployment benefits and household composition each carry more than their national share.</p>
+<p><strong>Implication for a pilot:</strong> a monthly ranked review fits this pattern. It looks at active cases every month, so it can catch changes between recertifications.</p>
+<h2>What the tool does</h2>
+<p>Each month the tool scores every active case using only information the agency already has before any review:</p>
 <ul>
-<li>Historical QC case extracts the state already holds (no new data collection, no new PII).</li>
-<li>A review team willing to work a ranked queue for a defined pilot period.</li>
+<li>reported income and earnings;</li>
+<li>deductions, housing and utility costs;</li>
+<li>household size;</li>
+<li>the benefit issued and the household's maximum allotment.</li>
 </ul>
-<h3>What changes — and what does not</h3>
+<p>It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.</p>
+<p>New York's model learns from every state's QC cases pooled together, plus inputs that describe New York's benefit levels. It beat a New York-only model on both tests (3.5× → 4.2× on held-out cases, 3.3× → 4.1× on later years).</p>
+<h3>Results on cases the model never saw</h3>
+<p>815 New York cases (25%) were set aside before training:</p>
+<table>
+<thead>
+<tr>
+<th>Review the top…</th>
+<th>Error dollars vs random</th>
+<th>Found per review hour (random)</th>
+<th>Forecast vs actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10% of the queue</td>
+<td><strong>7.0×</strong></td>
+<td>$388 ($56)</td>
+<td>8% under</td>
+</tr>
+<tr>
+<td>20% of the queue</td>
+<td><strong>4.2×</strong></td>
+<td>$234 ($56)</td>
+<td>6% under</td>
+</tr>
+<tr>
+<td>20%, trained 2020–22, tested 2023–24</td>
+<td>4.1×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>20%, with the fairness floor</td>
+<td>3.9×</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Reviews are assumed to take 30 minutes. A state can quote "the top fifth of this month's queue likely holds about $X of errors" with a ±15–20% band.</p>
+<h3>Fairness</h3>
+<p>The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:</p>
+<table>
+<thead>
+<tr>
+<th>Household type</th>
+<th>Dollars only</th>
+<th>With the floor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elderly</td>
+<td>0.62</td>
+<td>1.20</td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td>0.82</td>
+<td>0.88</td>
+</tr>
+<tr>
+<td>Single parent</td>
+<td>1.28</td>
+<td>0.84</td>
+</tr>
+<tr>
+<td>Childless adult</td>
+<td>1.50</td>
+<td>0.77</td>
+</tr>
+<tr>
+<td>Married with children</td>
+<td>2.57</td>
+<td>1.47</td>
+</tr>
+</tbody>
+</table>
+<p>The floor costs about 6% of the lift. We recommend it on by default.</p>
+<h3>Underpayments</h3>
+<p>28% of New York's error dollars are households paid too little. A second ranker trained on underpayments finds 4.1 times the underpayment dollars of random review, against 2.4 times for the main ranker. These figures come from the earlier New York-only models (exp79).</p>
+<h3>Flag cards for reviewers</h3>
+<p>Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In New York the card's top three "check first" items include the real error for <strong>86%</strong> of flagged errors. Its "N in 10" odds were recalibrated so they mean what they say.</p>
+<h2>FY2028 cost share</h2>
+<p>H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10% at 8–10%, and 15% at 10% or more. We modelled reviews as removing a share of the caseload's error dollars each month (cases reviewed × the tool's lift × the share fixed), with errors otherwise lasting until recertification. All assumptions were fixed before results existed (exp69, exp93).</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Reviewed a month</th>
+<th>Rate after</th>
+<th>State share</th>
+<th>Avoided a year</th>
+<th>Random reviews, same volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Today (FY2025 rate)</td>
+<td>—</td>
+<td>13.18%</td>
+<td>15%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>1% (16,266 reviews, 58 FTEs)</td>
+<td>12.04%</td>
+<td>15%</td>
+<td>$0</td>
+<td>12.87%, $0</td>
+</tr>
+<tr>
+<td><strong>Central</strong></td>
+<td><strong>2% (32,531 reviews, 116 FTEs)</strong></td>
+<td><strong>8.19%</strong></td>
+<td><strong>10%</strong></td>
+<td><strong>$360M</strong></td>
+<td>12.03%, $0</td>
+</tr>
+<tr>
+<td>High</td>
+<td>3% (48,796 reviews, 174 FTEs)</td>
+<td>5.56%</td>
+<td>0%</td>
+<td>$1,081M</td>
+<td>10.84%, $0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The three thresholds.</strong> With the central scenario's other assumptions, New York crosses:</p>
 <ul>
-<li><strong>Phase 0 (cold start, no NY data needed):</strong> the synthetic-trained ranker scores a sample of cases; rankings are validated against known outcomes.</li>
-<li><strong>Phase 1:</strong> the dollar ranker is trained on NY's historical QC data and validated on a recent holdout the model never saw.</li>
-<li><strong>Phase 2 (shadow):</strong> the ranker scores the live review caseload; reviewers work the top slice; outcomes are measured against the baseline selection method.</li>
-<li><strong>What does not change:</strong> no modifications to the eligibility system, no automated determinations (the model prioritizes review — it never decides a case), no data leaves the state's control.</li>
+<li>10% at about <strong>1.0%</strong> of cases reviewed a month;</li>
+<li>8% at about <strong>2.1%</strong>;</li>
+<li>6% at about <strong>3.9%</strong>.</li>
 </ul>
-<h3>Success metrics</h3>
+<p>Each bracket is worth about $360 million a year.</p>
+<p><strong>What drives the range:</strong> how many cases are reviewed and how long an error would otherwise have lasted matter more than the tool's accuracy. Both are worth measuring in a pilot.</p>
+<p>These figures show the size of the opportunity, not a forecast. The model leaves out:</p>
 <ul>
-<li>Precision in the reviewed slice vs baseline selection.</li>
-<li>Error dollars recovered per reviewer hour vs baseline.</li>
-<li>Reviewer time saved to reach a fixed error-capture target.</li>
+<li>timing relative to the federal sample month;</li>
+<li>procedural errors outside the public file;</li>
+<li>behavior changes;</li>
+<li>the cost of reviews.</li>
 </ul>
-<p>A reasonable pilot shape is 8–12 weeks from data handoff to shadow-readout.</p>
-
-<h2>5. Limitations and honest caveats</h2>
+<h2>A pilot in New York</h2>
+<ol>
+<li><strong>Month 0:</strong> map the case-management fields to the tool's inputs (14 fields plus the maximum allotment) and score a current month's active cases. The model runs on a laptop.</li>
+<li><strong>Months 1–3, shadow:</strong> reviewers work a sample from the top of the queue alongside current case selection, with the fairness floor on, flag cards attached and about 10% of reviews on randomly chosen cases. Record the dollars found, the error type, and when the underlying change happened.</li>
+<li><strong>Read-out:</strong><ul>
+<li>dollars found against the forecast;</li>
+<li>dollars per review hour against current selection;</li>
+<li>how long found errors had lasted, the key driver of the cost-share estimate, and especially telling for timing errors;</li>
+<li>reviewer ratings of the flag cards.</li>
+</ul>
+</li>
+<li><strong>Refresh yearly</strong> on the new federal QC sample plus the pilot's findings, keeping a random slice of reviews to watch for blind spots.</li>
+</ol>
+<h2>Limitations</h2>
 <ul>
-<li><strong>Headroom.</strong> The synthetic-trained ranker captures roughly half of the performance a model trained on real NY data is projected to reach (1.52x vs 2.72x lift). The pilot's Phase 1 exists to close exactly this gap.</li>
-<li><strong>NY-conditioning does not win everywhere.</strong> On fine-grained element prediction the nationally trained model matches or beats the NY-conditioned one; New York's most distinctive errors (medical, SUA) sit in the rare tail the generator's mechanics cannot yet place. Generator mechanics for medical/SUA is the open research lever.</li>
-<li><strong>Procedural errors are invisible.</strong> Published federal error rates for New York (12.68% FY2023, 14.09% FY2024) run above what case microdata implies (8.54%), in procedural errors the microdata cannot see. This tool targets substantive case errors, not procedural compliance.</li>
-<li><strong>Timing dominates.</strong> 62% of NY errors are timing variances; the dollar ranker's value comes from the smaller income-error tail. If review priorities shift toward timing compliance rather than dollars, the ranking rule should be re-tuned.</li>
-<li><strong>Stability.</strong> The signal is year-to-year stable in our tests, but the error-probability baseline should be re-tuned on recent data at pilot start; medical-deduction errors are the one bucket with measurable decay and should be watched.</li>
-<li><strong>Human judgment stays in the loop.</strong> This is a triage tool for reviewers, not an adjudication engine. Final determinations remain human — by design.</li>
+<li><strong>Public data only.</strong> The model was built from federal public-use files. New York's own case records, including report dates, would likely do better for timing errors after a short refit.</li>
+<li><strong>Scenarios, not forecasts.</strong> See the cost-share caveats above.</li>
+<li><strong>The policy library is thin for New York.</strong> It holds 5 New York SNAP documents (an OTDA administrative directive and GIS messages), against 755 for California. Rule citations and policy lookups would need the SNAP Source Book and current directives added first.</li>
+<li><strong>The tool prioritizes; it doesn't decide.</strong> Every determination stays with a reviewer.</li>
 </ul>
-
-<h3>Household-type review burden (exp47, October 2026)</h3>
-<p>A dollar-maximizing ranker is dollar-efficient and risk-regressive at the same time. Stratifying the holdout by household composition (elderly, disabled non-elderly, single-parent, married with kids, multi-adult with kids, childless adult), elderly and disabled households have the highest error rates (PA: 0.48 and 0.54; NY: 0.34 and 0.42) but the lowest review rates relative to their risk: review-to-risk ratios of <span class="kpi">0.22 and 0.33 in PA</span> — the elderly ratio worse than random allocation (0.42) — and <span class="kpi">0.34 and 0.35 in NY</span>. Childless adults, with the lowest error rates, are reviewed at 1.41x (PA) and 1.45x (NY) their risk.</p>
-<p>The mechanism is the dollar objective itself, not a ranking bug: elderly/disabled errors are frequent but small-dollar (medical deductions, timing), while dollars concentrate in income errors — so maximizing dollars per review hour rationally deprioritizes the highest-risk groups. Within each type the ranker is precise (0.62–0.73 precision on reviewed elderly/disabled cases in PA) and selects cases carrying 2–14x the predicted dollars of unselected cases of the same type. The pilot implication: if the goal includes finding underpayments owed to vulnerable households — elderly and disabled households carry high under-issuance exposure — the dollar ranker works against that goal while optimizing the headline $/hr. A type-aware review budget or a blended dollars-plus-equity objective is the honest next step for Phase 2 design.</p>
-
-<h2>6. The ask</h2>
-<p>We are looking for a New York partner to run this pilot: a data contact who can provide historical QC extracts, and a review team for the shadow phase. We bring the validated methodology, the synthetic cold-start model, and the open-source validation artifacts. All methods, experiments, and results are published openly; nothing about the approach is proprietary or black-box.</p>
-
-<div class="footer">
-<p>Methods, experiment chronicles (60+), and validation code: github.com/ctrimm/snap-qc-per-experiments (private research repo; access on request). This work is conducted in the open-source civic-technology lane. Contact: via the repository.</p>
-</div>
-
+<h2>Technical reproduction</h2>
+<p>Code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Data: FY2020–2024 QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>, in <code>../snap-qc-data/raw/qcfy20XX_csv/</code>. Python 3 with numpy, joblib and scikit-learn 1.9.1. For other states, see the companion <em>State Replication Guide</em>.</p>
+<pre><code class="language-bash"># New York's numbers as measured (top-10/20% lift, $/hour, forecast, fairness)
+python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_results.json'))['NY'], indent=1))&quot;
+# refit and re-evaluate every jurisdiction's deployed model (reproduces exp83_results.json exactly)
+python3 experiments/exp83_context_models_full_eval.py --workers 8
+# cost share, every step shown; the three thresholds
+python3 experiments/cost_share_replicate.py --state NY
+for r in 0.0106 0.0215 0.0395; do python3 experiments/cost_share_replicate.py --state NY --R $r | grep central; done
+# score a month of cases with the packaged New York model
+python3 deliverables/state_rankers/score_cases.py --state NY --input cases.csv --output ranked.csv --id-col CASE_ID
+</code></pre>
+<p><strong>Sources:</strong></p>
+<ul>
+<li><strong>Model and held-out cases:</strong> exp82 (adoption: New York uses variant B_ctx, pooled with state context) and exp83 (evaluation). The held-out cases are fixed in <code>experiments/exp68_holdouts.json</code>.</li>
+<li><strong>Fairness:</strong> exp72 and exp83.</li>
+<li><strong>Underpayments:</strong> exp79.</li>
+<li><strong>Flag cards:</strong> exp65 and exp74.</li>
+<li><strong>Cost share:</strong> exp93; method in <code>COST-SHARE-REPLICATE.md</code>.</li>
+<li><strong>Error pattern:</strong> computed from the five QC files (state code 36).</li>
+</ul>
 </body>
 </html>

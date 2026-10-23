@@ -6,7 +6,7 @@
 
 This guide is for a state SNAP team that wants to know what the error-ranking tool would do for their state, and then try it. It assumes one analyst comfortable running Python scripts, and a program or QC lead who can answer questions about case data and review practice. No machine-learning background is needed for levels 1 and 2.
 
-The work behind it is described in the *Project Summary* and in short briefs for Pennsylvania, New York and Wyoming. The code is open: [github.com/ctrimm/snap-qc-per-experiments](https://github.com/ctrimm/snap-qc-per-experiments).
+The work behind it is described in the *Project Summary* and in short briefs for Pennsylvania, New York, Texas, South Dakota, Utah, Idaho and Wyoming. The code is open: [github.com/ctrimm/snap-qc-per-experiments](https://github.com/ctrimm/snap-qc-per-experiments).
 
 **What you get, in four levels:**
 

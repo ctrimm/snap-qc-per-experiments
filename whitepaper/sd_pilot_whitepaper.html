@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Predicting SNAP Payment Errors: A Pilot Proposal for South Dakota</title>
+<title>Finding SNAP Payment Errors Faster in South Dakota</title>
 <style>
-  @page { size: letter; margin: 2.2cm 2.4cm; }
+@page { size: letter; margin: 2.2cm 2.4cm; }
   body { font-family: Georgia, 'Times New Roman', serif; font-size: 11.5pt; line-height: 1.55; color: #1a1a1a; }
   h1 { font-size: 21pt; line-height: 1.25; margin-bottom: 0.2cm; color: #0f2a44; }
   h2 { font-size: 13.5pt; color: #0f2a44; margin-top: 1.1cm; margin-bottom: 0.25cm; border-bottom: 1px solid #c9d4e0; padding-bottom: 0.15cm; }
@@ -21,79 +21,276 @@
   th { background: #0f2a44; color: white; }
   .footer { margin-top: 1.4cm; font-size: 9pt; color: #6a7683; border-top: 1px solid #c9d4e0; padding-top: 0.3cm; }
   .kpi { font-weight: bold; color: #0f2a44; }
+  table { page-break-inside: avoid; }
+  code { font-family: Menlo, monospace; font-size: 9.5pt; }
+  pre { background: #f1f5f9; border-left: 3.5px solid #c9d4e0; padding: 0.3cm 0.4cm; font-size: 8.3pt; line-height: 1.4; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+  pre code { font-size: 8.3pt; }
+  ol { margin: 0.3cm 0; padding-left: 1.1cm; }
+  a { color: #0f2a44; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  h2, h3 { page-break-after: avoid; }
 </style>
 </head>
 <body>
-
-<h1>Predicting SNAP Payment Errors:<br>A Pilot Proposal for South Dakota</h1>
-<div class="subtitle">Synthetic-data-validated case prioritization for quality-control review — tested where errors are rarest</div>
-<div class="meta">October 4, 2026 &nbsp;·&nbsp; Research whitepaper &nbsp;·&nbsp; Methods and validation artifacts are open-source at github.com/ctrimm/snap-qc-per-experiments</div>
-
-<h2>1. Executive summary</h2>
-<p>South Dakota has the lowest SNAP payment error rate in the nation (3.28% FY2024, federally published). That makes it the hardest and most valuable test of our approach: if synthetic-data-trained models can find errors <em>where errors are rare</em>, the method is robust. We built and validated a South Dakota-conditioned synthetic data generator, calibrated against five years of federal quality-control (QC) microdata (2,365 SD cases, FY2020–2024). Machine-learning models trained <em>only</em> on this synthetic data rank real South Dakota cases by error risk well above chance — finding AUC (a ranking metric where 0.5 is chance and 1.0 is perfect) of 0.750 vs 0.680 for a nationally trained model — and the advantage survived a fully clean refit that excluded every holdout row. Proof the synthetic cases carry genuine signal about where errors happen, even in the nation's cleanest caseload.</p>
-<p>The operational finding — and the track's biggest surprise: ranking cases by error probability <em>alone</em> is the winning rule, recovering <span class="kpi">$2,644 vs $1,275 for random review</span> at a fixed review budget — <span class="kpi">$45 vs $22 per hour of reviewer time</span>. This reverses the Pennsylvania and New York pattern, where probability-alone was worse than random and dollar-aware rankers won. Reviewing the riskiest half of cases catches 76% of all errors with half the reviews.</p>
-<p>We propose a low-risk pilot: train the ranker on South Dakota's own historical QC data, validate on a recent holdout, then run it in shadow alongside existing review. No production eligibility-system changes. No new data collection.</p>
-
-<h2>2. The problem</h2>
-<p>SNAP payment error rates remain stubbornly high nationwide, and every error is either taxpayer money over-issued or a household underpaid. Quality-control review is the corrective mechanism — but reviewer time is finite, and cases are currently selected for review without a data-driven sense of where errors concentrate. The result is expensive review effort spread thinly over a caseload where risk is highly uneven.</p>
-<p>South Dakota is the extreme test of a targeted approach. Our analysis of 2,365 South Dakota QC cases (FY2020–2024) shows the state's benefit-calculation engine is the cleanest of the three states studied (99.0–100% of cases match federal statute exactly, with zero computation variances in five years) — South Dakota's errors live entirely in the <em>human process layer</em> (verification, timing, documentation), which is precisely where a prediction tool adds value. The error signature is distinctive: timing errors — cases the agency was not yet required to act on — run at 1.89x the national rate and make up three-quarters of all errors, the most timing-heavy of the three states studied; earned-income errors run 1.45x and medical-deduction errors 1.40x, while shelter and utility-allowance errors run below national rates. Error dollars are small (median $17 vs $28 nationally) and hyper-concentrated: the top tenth of errors by dollar size holds 83% of all error dollars.</p>
-
-<h2>3. What was built and validated</h2>
-<p><strong>A South Dakota-conditioned synthetic generator.</strong> Starting from a nationally calibrated generator, we fit South Dakota-specific error-rate offsets and empirical error mixes. The SD-conditioned output reproduces South Dakota's finding mix (L1 0.004 — the tightest of the three states), element mix, and cause mix, while leaving national output byte-identical. A bespoke calibration fix (rebasing cause ratios against the generator's mixed cause basis) was needed because South Dakota records almost no agency-fault causes on income errors — a state-specific quirk the national recipe mishandled.</p>
-<p><strong>Validated predictive signal — the strongest of the three states.</strong> Models trained only on SD-conditioned synthetic cases predict real, held-out South Dakota errors better than the nationally trained model on every tested seed: finding AUC 0.728 vs 0.638 (seed 7), and on element classification the SD model wins macro-F1 (a per-class balanced accuracy metric) on all seeds. The honest threat — whether the generator had indirectly seen the holdout data — was tested with a fully clean refit on 1,773 rows excluding every holdout case: the advantage not only survived but measured slightly higher (AUC 0.750 vs 0.680). There is no contamination premium.</p>
-<p><strong>Probability-alone wins — the PA/NY reversal.</strong> In Pennsylvania and New York, ranking by error probability alone was <em>worse than random</em> at the top slice, because probability and error size were nearly orthogonal: the dollars lived in a big-dollar income tail that probability couldn't see. South Dakota has no big-dollar tail (90th percentile: $70), and the synthetic dollar regressors are miscalibrated (they predict more dollars than they recover) — so multiplying a good probability ranker by a bad dollar estimate <em>hurts</em>. Probability-alone is the best rule at the top-10% and top-30% review budgets and ties at top-20%. The lesson for deployment: the ranking rule must be re-fit to each state's error economics, not copied between states.</p>
-
-<div class="callout">
-<p><strong>Headline pilot economics (simulated on held-out SD cases, top-20% review budget):</strong></p>
+<h1>Finding SNAP Payment Errors Faster in South Dakota</h1>
+<div class="meta">October 23, 2026 · State brief · Cory Trimm</div>
+<h2>Summary</h2>
+<p>South Dakota's FY2025 payment error rate was 2.47%, the lowest of 53 jurisdictions and far below the 6% line where H.R. 1 cost sharing begins. South Dakota owes nothing under FY2028 rules at that rate. For South Dakota the tool is about staying there, finding the few errors there are efficiently, and finding underpayments.</p>
+<ul>
+<li><strong>It finds 4.2 times the error dollars of random review.</strong> Reviewers working the top 20% of the tool's queue would find about <strong>$90 per review hour against $22</strong>. The top 10% finds 6.4 times.</li>
+<li><strong>It holds up over time.</strong> Trained on 2020–22 and tested on 2023–24, it kept a 3.9× edge. Expected error dollars for the top fifth of the queue were 10% above actual.</li>
+<li><strong>It's fair by design.</strong> Ranking purely by dollars would review elderly households at 0.37 of their share of errors. A floor brings that to 1.08, at a cost of about 5% of the lift (4.2× → 4.0×).</li>
+<li><strong>Underpayments:</strong> 42% of South Dakota's error dollars are households paid too little (national 28%).</li>
+<li><strong>Cheap insurance:</strong> at its current rate South Dakota owes nothing. In the model, about 737 ranked reviews a month (2.6 FTEs) would bring a rate of 6.5% or 8.5% back under 6% (see <em>FY2028 cost share</em>).</li>
+</ul>
+<p><strong>Recommendation:</strong> a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.</p>
+<h2>South Dakota's errors</h2>
+<p>Federal QC public-use files, FY2020–2024: 2,365 reviewed South Dakota cases. Shares are of cases with any error found, including small ones, and are unweighted:</p>
 <table>
-<tr><th></th><th>Random review</th><th>P(error)-only ranker</th></tr>
-<tr><td>Error dollars recovered</td><td>$1,275</td><td><span class="kpi">$2,644</span></td></tr>
-<tr><td>Value per review hour</td><td>$22</td><td><span class="kpi">$45</span></td></tr>
-<tr><td>Share of all error dollars captured</td><td>—</td><td>41.3%</td></tr>
+<thead>
+<tr>
+<th></th>
+<th>South Dakota</th>
+<th>National</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reviewed cases with an error found</td>
+<td>25.7%</td>
+<td>37.9%</td>
+</tr>
+<tr>
+<td>Error cases: over / under</td>
+<td>304 / 303</td>
+<td>61% / 39%</td>
+</tr>
+<tr>
+<td>Error dollars that are underpayments</td>
+<td>42%</td>
+<td>28%</td>
+</tr>
+<tr>
+<td>Largest shares of error dollars</td>
+<td>Wages and salaries 46%, Shelter deduction 10%, RSDI benefits 7%</td>
+<td>Wages and salaries 37%, Shelter deduction 16%, Unit composition 8%</td>
+</tr>
+<tr>
+<td>Most frequent errors (share of error cases)</td>
+<td>Wages and salaries 36%, Shelter deduction 25%, RSDI benefits 7%</td>
+<td>Shelter deduction 31%, Wages and salaries 24%, RSDI benefits 7%</td>
+</tr>
+<tr>
+<td>Errors coded as reporting or timing issues (nature code 97)</td>
+<td>74%</td>
+<td>42%</td>
+</tr>
+<tr>
+<td>Errors coded "other" (nature code 99)</td>
+<td>0%</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>Error cases with no per-error dollar amount recorded</td>
+<td>75.1%</td>
+<td>50.4%</td>
+</tr>
+</tbody>
 </table>
-<p>Of the $2,644: $1,884 is over-issuance (direct program savings); $760 is under-issuance (households underpaid — the correct QC outcome, but a make-whole cost). Savings-only value: $31.93/hr vs $13.48/hr for random review. Absolute dollars are small — South Dakota's errors are rare <em>and</em> small — but the lift over random (2.07x) is the largest of the three states studied.</p>
-</div>
-
-<h2>4. The pilot</h2>
-<h3>What South Dakota provides</h3>
+<p><strong>South Dakota's errors are rarer, smaller and mostly about timing.</strong></p>
 <ul>
-<li>Historical QC case extracts the state already holds (no new data collection, no new PII).</li>
-<li>A review team willing to work a ranked queue for a defined pilot period.</li>
+<li><strong>Fewer errors:</strong> only about a quarter of reviewed cases have any error, against 38% nationally.</li>
+<li><strong>Timing:</strong> three in four errors carry the reporting or timing code (national 42%).</li>
+<li><strong>Wages:</strong> wage errors carry nearly half the error dollars.</li>
+<li><strong>Small amounts:</strong> the median error is $18, against $28 nationally.</li>
+<li><strong>A balanced split:</strong> over- and underpayment cases are evenly balanced.</li>
 </ul>
-<h3>What changes — and what does not</h3>
+<h2>What the tool does</h2>
+<p>Each month the tool scores every active case using only information the agency already has before any review:</p>
 <ul>
-<li><strong>Phase 0 (cold start, no SD data needed):</strong> the synthetic-trained ranker scores a sample of cases; rankings are validated against known outcomes.</li>
-<li><strong>Phase 1:</strong> the ranker is trained on SD's historical QC data and validated on a recent holdout the model never saw. Phase 1 also selects the ranking rule for SD's economics (probability-alone vs dollar-aware) rather than inheriting another state's.</li>
-<li><strong>Phase 2 (shadow):</strong> the ranker scores the live review caseload; reviewers work the top slice; outcomes are measured against the baseline selection method.</li>
-<li><strong>What does not change:</strong> no modifications to the eligibility system, no automated determinations (the model prioritizes review — it never decides a case), no data leaves the state's control.</li>
+<li>reported income and earnings;</li>
+<li>deductions, housing and utility costs;</li>
+<li>household size;</li>
+<li>the benefit issued and the household's maximum allotment.</li>
 </ul>
-<h3>Success metrics</h3>
+<p>It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.</p>
+<p>South Dakota's model learns from every state's QC cases plus inputs that describe South Dakota's benefit levels, with its own cases weighted ten times. Pooling lifted South Dakota's model the most of any pilot state: from 2.7× to 4.2× on held-out cases (16th of 53), and from 2.5× to 3.9× on later years.</p>
+<h3>Results on cases the model never saw</h3>
+<p>592 South Dakota cases (25%) were set aside before training:</p>
+<table>
+<thead>
+<tr>
+<th>Review the top…</th>
+<th>Error dollars vs random</th>
+<th>Found per review hour (random)</th>
+<th>Forecast vs actual</th>
+<th>Rank of 53</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10% of the queue</td>
+<td><strong>6.4×</strong></td>
+<td>$138 ($22)</td>
+<td>19% over</td>
+<td>27</td>
+</tr>
+<tr>
+<td>20% of the queue</td>
+<td><strong>4.2×</strong></td>
+<td>$90 ($22)</td>
+<td>10% over</td>
+<td>16</td>
+</tr>
+<tr>
+<td>20%, trained 2020–22, tested 2023–24</td>
+<td>3.9×</td>
+<td></td>
+<td></td>
+<td>17</td>
+</tr>
+<tr>
+<td>20%, with the fairness floor</td>
+<td>4.0×</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>For comparison, a South Dakota-only model found 2.7× on the same held-out cases. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 3.97× (top 20%).</p>
+<h3>Fairness</h3>
+<p>The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:</p>
+<table>
+<thead>
+<tr>
+<th>Household type</th>
+<th>Dollars only</th>
+<th>With the floor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elderly</td>
+<td>0.37</td>
+<td>1.08</td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td>0.79</td>
+<td>1.12</td>
+</tr>
+<tr>
+<td>Single parent</td>
+<td>1.85</td>
+<td>1.01</td>
+</tr>
+<tr>
+<td>Childless adult</td>
+<td>0.86</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table>
+<p>The floor costs about 5% of the lift. We recommend it on by default.</p>
+<h3>Underpayments</h3>
+<p>A second ranker trained on underpayments finds 1.9 times the underpayment dollars of random review, against 1.8 times for the main ranker. These figures come from the earlier South Dakota-only models (exp79). In South Dakota the gain is small, so a separate queue adds little there.</p>
+<h3>Flag cards for reviewers</h3>
+<p>Flag-card Rules lines were tested at scale on fresh South Dakota, Idaho and Utah cards (exp97): the small model's citations matched the large model's 100% of the time, and every citation resolved. "Check first" coverage hasn't been measured on South Dakota cases.</p>
+<h2>FY2028 cost share</h2>
+<p>H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10% at 8–10%, and 15% at 10% or more. We modelled reviews as removing a share of the caseload's error dollars each month (cases reviewed × the tool's lift × the share fixed), with errors otherwise lasting until recertification. All assumptions were fixed before results existed (exp69, exp93).</p>
+<p>At 2.47%, South Dakota pays nothing. <strong>How much a higher rate would cost:</strong> South Dakota's SNAP benefits are about $176 million a year. Assumptions are the same as the national model's central scenario: 2% of cases reviewed a month, 80% of found errors fixed, errors otherwise lasting 6 months.</p>
+<table>
+<thead>
+<tr>
+<th>If South Dakota's rate were…</th>
+<th>Share owed</th>
+<th>Cost a year</th>
+<th>Rate after ranked reviews (≈737 a month, 2.6 FTEs)</th>
+<th>Rate after random reviews</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.47% (FY2025)</td>
+<td>0%</td>
+<td>$0</td>
+<td>1.54%</td>
+<td>2.25%</td>
+</tr>
+<tr>
+<td>6.5%</td>
+<td>5%</td>
+<td>about $9M</td>
+<td>4.06%</td>
+<td>5.93%</td>
+</tr>
+<tr>
+<td>8.5%</td>
+<td>10%</td>
+<td>about $18M</td>
+<td>5.32%</td>
+<td>7.76%</td>
+</tr>
+</tbody>
+</table>
+<p>Ranked reviews bring both hypothetical rates back under 6%. Random reviews of the same volume bring 6.5% under too, but not 8.5%. The further the rate rises, the more the ranking matters.</p>
+<p>These figures show the size of the opportunity, not a forecast. The model leaves out:</p>
 <ul>
-<li>Precision in the reviewed slice vs baseline selection.</li>
-<li>Error dollars recovered per reviewer hour vs baseline.</li>
-<li>Reviewer time saved to reach a fixed error-capture target.</li>
+<li>timing relative to the federal sample month;</li>
+<li>procedural errors outside the public file;</li>
+<li>behavior changes;</li>
+<li>the cost of reviews.</li>
 </ul>
-<p>A reasonable pilot shape is 8–12 weeks from data handoff to shadow-readout.</p>
-
-<h2>5. Limitations and honest caveats</h2>
+<h2>A pilot in South Dakota</h2>
+<ol>
+<li><strong>Month 0:</strong> map the case-management fields to the tool's inputs (14 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.</li>
+<li><strong>Months 1–3, shadow:</strong><ul>
+<li><strong>Review:</strong> reviewers work a sample from the top of the queue alongside current case selection, with the fairness floor on.</li>
+<li><strong>Random slice:</strong> about 10% of reviews on randomly chosen cases.</li>
+<li><strong>Record:</strong> the dollars found and the error type. With so few errors, a quarterly ranking may be enough. Track whether the top of the queue finds errors sooner than current selection.</li>
+</ul>
+</li>
+<li><strong>Read-out:</strong><ul>
+<li>dollars found against the forecast;</li>
+<li>dollars per review hour against current selection;</li>
+<li>how long found errors had lasted and the share fixed (the two cost-share drivers).</li>
+</ul>
+</li>
+<li><strong>Refresh yearly</strong> on the new federal QC sample plus the pilot's findings.</li>
+</ol>
+<h2>Limitations</h2>
 <ul>
-<li><strong>Small samples, wide intervals.</strong> The holdout contains only 152 error cases; per-seed margins are thin and confidence intervals are wide. We report three seeds and prefer qualified claims — the finding-task transfer is consistent across seeds, but this is a small-sample result and should be re-validated on SD's own larger historical extract in Phase 1.</li>
-<li><strong>The ranking rule is state-specific.</strong> Probability-alone wins in South Dakota because there is no big-dollar tail and the dollar regressors are miscalibrated. If SD's error economics shift (a big-dollar tail emerging), the rule must be re-tuned — Phase 1 selects the rule per state rather than assuming transfer.</li>
-<li><strong>Refit annually.</strong> The transfer signal is year-to-year stable, but the underlying mix is shifting: the case-error rate rose from 21.6% to 29.4% (FY2020–22 vs FY2023–24), and FY2024 brought a coding-practice change (the state began recording causes on timing errors, shifting the cause mix sharply). Shelter-deduction errors showed measurable decay and should be watched. Partial-year files (FY2020–21) are excluded from refits.</li>
-<li><strong>Procedural errors are invisible.</strong> The federally published payment error rate (3.28% FY2024) and the case-microdata-implied case-error rate (24.75%) measure different things: the published rate is dollar-weighted and includes procedural errors the microdata cannot see. This tool targets substantive case errors, not procedural compliance.</li>
-<li><strong>Headroom.</strong> The synthetic-trained ranker captures roughly three-quarters of the performance a model trained on real SD data is projected to reach (2.07x vs 2.82x lift). The pilot's Phase 1 exists to close exactly this gap.</li>
-<li><strong>Human judgment stays in the loop.</strong> This is a triage tool for reviewers, not an adjudication engine. Final determinations remain human — by design.</li>
+<li><strong>Public data only.</strong> The model was built from federal public-use files. South Dakota's own case records would likely do better after a short refit.</li>
+<li><strong>Scenarios, not forecasts.</strong> See the cost-share caveats above.</li>
+<li><strong>Few errors to learn from.</strong> Five years of South Dakota QC data hold about 600 error cases. The top-10% forecast ran 19% high on held-out cases, so check forecasts against the state's own reviews before quoting them.</li>
+<li><strong>The policy library doesn't cover South Dakota yet.</strong> It holds 1 South Dakota SNAP document (an employment-and-training policy). Rule citations on flag cards would need South Dakota's SNAP manual added first.</li>
+<li><strong>The tool prioritizes; it doesn't decide.</strong> Every determination stays with a reviewer.</li>
 </ul>
-
-<h3>Review-burden note</h3>
-<p>In the Pennsylvania and New York tracks, dollar-maximizing rankers proved risk-regressive: they deprioritized elderly and disabled households (the highest-error groups) because their errors are frequent but small-dollar. South Dakota's winning rule is probability-alone, which does <em>not</em> chase dollars — so this particular regressivity mechanism does not apply to the recommended SD configuration. If a future Phase 1 selects a dollar-aware rule for SD, the type-stratified review-burden analysis from the PA/NY tracks should be re-run on SD data before deployment.</p>
-
-<h2>6. The ask</h2>
-<p>We are looking for a South Dakota partner to run this pilot: a data contact who can provide historical QC extracts, and a review team for the shadow phase. We bring the validated methodology, the synthetic cold-start model, and the open-source validation artifacts. All methods, experiments, and results are published openly; nothing about the approach is proprietary or black-box.</p>
-
-<div class="footer">
-<p>Methods, experiment chronicles, and validation code: github.com/ctrimm/snap-qc-per-experiments (private research repo; access on request). This work is conducted in the open-source civic-technology lane. Contact: via the repository.</p>
-</div>
-
+<h2>Technical reproduction</h2>
+<p>Code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Data: FY2020–2024 QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>, in <code>../snap-qc-data/raw/qcfy20XX_csv/</code>. Python 3 with numpy, joblib and scikit-learn 1.9.1. For other states, see the companion <em>State Replication Guide</em>.</p>
+<pre><code class="language-bash"># South Dakota's numbers as measured (top-10/20% lift, $/hour, forecast, fairness)
+python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_results.json'))['SD'], indent=1))&quot;
+# refit and re-evaluate every jurisdiction's deployed model (reproduces exp83_results.json exactly)
+python3 experiments/exp83_context_models_full_eval.py --workers 8
+# cost share, every step shown
+python3 experiments/cost_share_replicate.py --state SD
+python3 experiments/cost_share_replicate.py --state SD --per 6.5
+# regenerate this brief from the results (every figure is computed, not typed)
+python3 whitepaper/make_state_brief.py SD
+# score cases with the packaged South Dakota model
+python3 deliverables/state_rankers/score_cases.py --state SD --input cases.csv --output ranked.csv --id-col CASE_ID
+</code></pre>
+<p><strong>Sources:</strong></p>
+<ul>
+<li><strong>Model and held-out cases:</strong> exp82 (adoption: South Dakota uses variant C_ctx) and exp83 (evaluation). The held-out cases are fixed in <code>experiments/exp68_holdouts.json</code>.</li>
+<li><strong>State-only baseline:</strong> exp68.</li>
+<li><strong>Fairness:</strong> exp72 and exp83.</li>
+<li><strong>Underpayments:</strong> exp79.</li>
+<li><strong>Cost share:</strong> exp93; method in <code>COST-SHARE-REPLICATE.md</code>.</li>
+<li><strong>Error pattern:</strong> computed from the five QC files (state code 46).</li>
+</ul>
 </body>
 </html>
