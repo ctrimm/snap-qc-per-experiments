@@ -152,7 +152,7 @@ def brief(s, P):
     L += [f"# Finding SNAP Payment Errors Faster in {name}", "", "**October 23, 2026 · State brief · Cory Trimm**", "", "## Summary", "", n["lede"], ""]
     L += [f"- **It finds {v['top20']['lift']:.1f} times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **${v['top20']['per_hour_$']:.0f} per review hour against ${v['top20']['random_per_hour_$']:.0f}**. The top 10% finds {v['top10']['lift']:.1f} times.",
           f"- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a {TS[s]:.1f}× edge. Expected error dollars for the top fifth of the queue were {evs(v['top20']['expected_over_actual'])}.",
-          f"- **It's fair by design.** Ranking purely by dollars would review elderly households at {b['elderly']:.2f} of their share of errors. A floor brings that to {f['elderly']:.2f}, " +
+          f"- **It's fair by design.** Ranking purely by dollars would review elderly households at {b['elderly']:.2f} of their share of error cases. A floor brings that to {f['elderly']:.2f}, " +
           (f"at a cost of about {round(cost)}% of the lift ({v['top20']['lift']:.1f}× → {fl:.1f}×)." if cost >= 0.5 else "with no measurable cost to the lift."),
           f"- **Underpayments:** {round(ud)}% of {name}'s error dollars are households paid too little (national {round(usd)}%)."]
     if owes:
@@ -183,7 +183,7 @@ def brief(s, P):
           f"| 20%, trained 2020–22, tested 2023–24 | {TS[s]:.1f}× | | | {RTS[s]} |",
           f"| 20%, with the fairness floor | {fl:.1f}× | | | |", "",
           f"For comparison, a {name}-only model found {e68['holdout']['top20']['lift']:.1f}× on the same held-out cases. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 3.97× (top 20%).", "",
-          "### Fairness", "", "The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:", "",
+          "### Fairness", "", "The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:", "",
           "| Household type | Dollars only | With the floor |", "|---|---|---|"]
     for k, lab in (("elderly", "Elderly"), ("disabled", "Disabled"), ("single_parent", "Single parent"), ("childless_adult", "Childless adult")):
         if k in b:

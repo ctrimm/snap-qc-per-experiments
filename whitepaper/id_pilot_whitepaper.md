@@ -8,7 +8,7 @@ Idaho's FY2025 payment error rate was 3.85%, the second lowest of 53 jurisdictio
 
 - **It finds 3.6 times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **$79 per review hour against $22**. The top 10% finds 5.5 times.
 - **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.3× edge. Expected error dollars for the top fifth of the queue were 7% below actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.59 of their share of errors. A floor brings that to 1.11, at a cost of about 1% of the lift (3.6× → 3.5×).
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.59 of their share of error cases. A floor brings that to 1.11, at a cost of about 1% of the lift (3.6× → 3.5×).
 - **Underpayments:** 27% of Idaho's error dollars are households paid too little (national 28%).
 - **Cheap insurance:** at its current rate Idaho owes nothing. In the model, about 1,300 ranked reviews a month (4.6 FTEs) would bring a rate of 6.5% or 8.5% back under 6% (see *FY2028 cost share*).
 
@@ -62,7 +62,7 @@ For comparison, a Idaho-only model found 2.8× on the same held-out cases. Revie
 
 ### Fairness
 
-The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:
+The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:
 
 | Household type | Dollars only | With the floor |
 |---|---|---|

@@ -119,7 +119,7 @@ python3 experiments/cost_share_replicate.py --state XX
 </tr>
 <tr>
 <td><code>fairness.baseline_ratio</code></td>
-<td>Each household type's share of reviews ÷ its share of error dollars, ranking by dollars only (1.0 = proportionate)</td>
+<td>Each household type's share of reviews ÷ its share of cases with an error, ranking by dollars only (1.0 = reviewed in proportion to risk)</td>
 </tr>
 <tr>
 <td><code>fairness.floor_ratio</code>, <code>floor_lift</code></td>
@@ -324,7 +324,7 @@ python3 experiments/cost_share_replicate.py
 </tbody>
 </table>
 <h3>Fairness</h3>
-<p>Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their error share) in 49 of 53 jurisdictions, and disabled households in 30 of 51 (current models, exp83). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. The median lift falls from 3.97× to 3.93× (about 1%). State by state the cost varies: the median state gives up 1.5% of its lift; Pennsylvania 3%, New York 6%, Wyoming 13%, Hawaii 15%. In 11 states the floor's lift comes out slightly higher than without it, a chance effect on the held-out cases. Each state's figure is in the appendix. Keep it on by default.</p>
+<p>Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their share of error cases) in 49 of 53 jurisdictions, and disabled households in 30 of 51 (current models, exp83). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. The median lift falls from 3.97× to 3.93× (about 1%). State by state the cost varies: the median state gives up 1.5% of its lift; Pennsylvania 3%, New York 6%, Wyoming 13%, Hawaii 15%. In 11 states the floor's lift comes out slightly higher than without it, a chance effect on the held-out cases. Each state's figure is in the appendix. Keep it on by default.</p>
 <h3>Underpayments</h3>
 <p>The main ranker mostly finds overpayments. A second ranker trained on underpayments (exp79) finds a median of 3.4 times the underpayment dollars of random review, against 1.5 times for the main ranker, and does better in every jurisdiction. States with many underpayments (Wyoming: 54% of error dollars) should run both queues.</p>
 <h3>Refitting on your own data</h3>

@@ -53,7 +53,7 @@ How to read the first output:
 | `top10.lift` | The same for the top 10%. 52 of 53 fall between 5 and 8 (median 6.38) |
 | `top20.per_hour_$` (`random_per_hour_$`) | Error dollars found per review hour, assuming 30-minute reviews |
 | `top20.expected_over_actual` | The model's dollar forecast divided by actual dollars; 1.0 is perfect |
-| `fairness.baseline_ratio` | Each household type's share of reviews ÷ its share of error dollars, ranking by dollars only (1.0 = proportionate) |
+| `fairness.baseline_ratio` | Each household type's share of reviews ÷ its share of cases with an error, ranking by dollars only (1.0 = reviewed in proportion to risk) |
 | `fairness.floor_ratio`, `floor_lift` | The same with the fairness floor on, and the lift that remains |
 | `variant` | `B_ctx`: pooled with every state plus state context; `C_ctx`: the same with your own cases weighted ten times |
 
@@ -173,7 +173,7 @@ These are the two numbers that move the cost-share estimate most. Rerun `cost_sh
 
 ### Fairness
 
-Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their error share) in 49 of 53 jurisdictions, and disabled households in 30 of 51 (current models, exp83). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. The median lift falls from 3.97× to 3.93× (about 1%). State by state the cost varies: the median state gives up 1.5% of its lift; Pennsylvania 3%, New York 6%, Wyoming 13%, Hawaii 15%. In 11 states the floor's lift comes out slightly higher than without it, a chance effect on the held-out cases. Each state's figure is in the appendix. Keep it on by default.
+Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their share of error cases) in 49 of 53 jurisdictions, and disabled households in 30 of 51 (current models, exp83). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. The median lift falls from 3.97× to 3.93× (about 1%). State by state the cost varies: the median state gives up 1.5% of its lift; Pennsylvania 3%, New York 6%, Wyoming 13%, Hawaii 15%. In 11 states the floor's lift comes out slightly higher than without it, a chance effect on the held-out cases. Each state's figure is in the appendix. Keep it on by default.
 
 ### Underpayments
 

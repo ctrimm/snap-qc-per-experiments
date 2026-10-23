@@ -13,6 +13,7 @@ transfer, LM eval) every experiment here must move.
 - [Project summary](whitepaper/project_summary.pdf): the whole project (ranker, cost share, synthetic data, QC language model, flag cards, policy questions), with plain-language descriptions and technical reproduction.
 - [Policy-QA summary](whitepaper/policy_qa_summary.pdf): exp84–105, grounding Gemma 4 in SNAP policy on Cornell's CalFresh quiz.
 - State briefs: [Pennsylvania](whitepaper/pa_pilot_whitepaper.pdf), [New York](whitepaper/ny_pilot_whitepaper.pdf), [Texas](whitepaper/tx_pilot_whitepaper.pdf), [South Dakota](whitepaper/sd_pilot_whitepaper.pdf), [Utah](whitepaper/ut_pilot_whitepaper.pdf), [Idaho](whitepaper/id_pilot_whitepaper.pdf), [Wyoming](whitepaper/wy_state_brief.pdf), and the [Pennsylvania–New York brief](whitepaper/pa_ny_combined_brief.md); and a [replication guide for other states](whitepaper/state_replication_guide.pdf).
+- [Older adults and people with disabilities](whitepaper/older_adults_disabled_whitepaper.pdf): how review tools treat elderly and disabled households, the fairness floor, underpayments, medical deductions and Medicare cost help (validated October 23).
 - Rebuild either PDF from its Markdown: `python whitepaper/build_pdf.py <name>.md ...` (needs `markdown` and Google Chrome).
 
 ## Repo map

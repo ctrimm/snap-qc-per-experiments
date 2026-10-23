@@ -61,7 +61,7 @@ Reviews are assumed to take 30 minutes. A state can quote "the top fifth of this
 
 ### Fairness
 
-The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:
+The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:
 
 | Household type | Dollars only | With the floor |
 |---|---|---|

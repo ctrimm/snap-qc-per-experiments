@@ -63,7 +63,7 @@ Reviews are assumed to take 30 minutes. With so few held-out cases, these figure
 
 ### Fairness
 
-The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:
+The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
@@ -72,7 +72,7 @@ The measure is each household type's share of reviews compared with its share of
 | Single parent | 1.09 | 1.09 |
 | Childless adult | 1.28 | 0.86 |
 
-**Elderly and disabled households need the floor most.** Ranking purely by dollars would review them at half their share of errors, the strongest under-review among the three states in these briefs. That matters doubly in Wyoming, where medical-deduction errors (which mainly affect these households) are common.
+**Elderly and disabled households need the floor most.** Ranking purely by dollars would review them at about half their share of error cases; among the seven state briefs only South Dakota (0.37) and Texas (0.41) are lower for elderly households. That matters doubly in Wyoming, where medical-deduction errors (which mainly affect these households) are common.
 
 **The floor costs more here:** about 13% of the lift (3.8× → 3.3×), against 3–6% in Pennsylvania and New York. We still recommend it on by default.
 

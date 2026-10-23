@@ -8,7 +8,7 @@ Texas's FY2025 payment error rate was 9.34%. Under the H.R. 1 cost-sharing rules
 
 - **It finds 3.6 times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **$194 per review hour against $54**. The top 10% finds 5.7 times.
 - **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.3× edge. Expected error dollars for the top fifth of the queue were 3% above actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.41 of their share of errors. A floor brings that to 0.95, with no measurable cost to the lift.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.41 of their share of error cases. A floor brings that to 0.95, with no measurable cost to the lift.
 - **Underpayments:** 41% of Texas's error dollars are households paid too little (national 28%).
 - **Cost share:** in the central scenario (2% of cases reviewed a month, about 28,837 reviews and 103 FTEs), the rate falls to 6.13%, avoiding about **$343 million a year**. Random reviews of the same volume leave it at 8.52%.
 
@@ -61,7 +61,7 @@ For comparison, a Texas-only model found 2.7× on the same held-out cases. Revie
 
 ### Fairness
 
-The measure is each household type's share of reviews compared with its share of error dollars, where 1.0 means proportionate:
+The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
