@@ -51,7 +51,7 @@ def main():
     from multiprocessing import get_context
     with get_context("spawn").Pool(args.workers, initializer=init) as pool:
         res = {r["state"]: r for r in pool.imap_unordered(run_one, [(ab, hold[ab]["code"], adopted[ab]) for ab in sorted(adopted)])}
-    (ROOT / "experiments/exp107_timesplit_results.json").write_text(json.dumps(dict(sorted(res.items())), indent=1))
+    (ROOT / "experiments" / ("exp107_timesplit_official_results.json" if E58.OFFICIAL else "exp107_timesplit_results.json")).write_text(json.dumps(dict(sorted(res.items())), indent=1))
     print("median time split", float(np.median([r["time_split"] for r in res.values()])))
 
 

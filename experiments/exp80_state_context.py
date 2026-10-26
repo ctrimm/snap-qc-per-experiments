@@ -51,7 +51,7 @@ def load_all(qc_dir):
         with open(path, newline="") as fh:
             for row in csv.DictReader(fh):
                 c = row["STATE"].strip(); i = idx.get(c, 0); idx[c] = i + 1
-                out.setdefault(c, {})[(fy, i)] = (context_features(row), row["STATUS"].strip(), E58.fnum(row["AMTERR"]))
+                out.setdefault(c, {})[(fy, i)] = (context_features(row), *E58.label(row, fy))
     return out
 
 

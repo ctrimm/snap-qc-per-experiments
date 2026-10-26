@@ -60,9 +60,35 @@ if LEAKFREE:
     FEATURES = [f for f in FEATURES if f != "issued_benefit"]
 
 
+# Error label (exp110/exp111). SNAPQC_LABEL selects what the rankers learn and are scored on:
+#   official (DEFAULT)  the payment-error-rate definition: |RAWBEN - FSBEN| above the fiscal year's federal tolerance;
+#                       dollars = that difference; status "2" overpaid / "3" underpaid / "1" otherwise. The error rate
+#                       that sets the H.R. 1 cost share counts only these errors.
+#   any                 any error the reviewer found (STATUS 2 or 3), AMTERR dollars; the label of exp58-exp109.
+# RAWBEN and FSBEN enter the label only, never the inputs.
+SNAPQC_LABEL = os.environ.get("SNAPQC_LABEL", "official")
+if SNAPQC_LABEL not in ("official", "any"):
+    raise ValueError(f"SNAPQC_LABEL must be 'official' (default) or 'any', not {SNAPQC_LABEL!r}")
+OFFICIAL = SNAPQC_LABEL == "official"
+TOLERANCE = {2020: 38, 2021: 39, 2022: 48, 2023: 54, 2024: 56}  # federal tolerance by fiscal year (giannella year_data)
+
+
+def label(row, fy):
+    """(status, error dollars) for one QC row under SNAPQC_LABEL."""
+    if not OFFICIAL:
+        return row["STATUS"].strip(), fnum(row["AMTERR"])
+    d = fnum(row.get("RAWBEN")) - fnum(row.get("FSBEN"))
+    if abs(d) <= TOLERANCE[fy]:
+        return "1", 0.0
+    return ("2" if d > 0 else "3"), abs(d)
+
+
 def results_path(name):
-    """experiments/<name>_leakfree_results.json by default (exp107); the original name under SNAPQC_FEATURES=legacy."""
-    return ROOT / "experiments" / (name.replace("_results.json", "_leakfree_results.json") if LEAKFREE else name)
+    """Results file for the current settings: *_official_results.json by default (exp111: leak-free, official label);
+    *_leakfree_results.json for leak-free with SNAPQC_LABEL=any (exp107); the original name under SNAPQC_FEATURES=legacy."""
+    if not LEAKFREE:
+        return ROOT / "experiments" / name
+    return ROOT / "experiments" / name.replace("_results.json", "_official_results.json" if OFFICIAL else "_leakfree_results.json")
 DELIVER = ROOT / "deliverables" / "state_rankers"
 
 
@@ -103,7 +129,7 @@ def load_state(qc_dir, code):
             for row in csv.DictReader(fh):
                 if row["STATE"].strip() != code:
                     continue
-                rows[(fy, idx)] = (agency_features(row), row["STATUS"].strip(), fnum(row["AMTERR"]))
+                rows[(fy, idx)] = (agency_features(row), *label(row, fy))
                 idx += 1
     return rows
 

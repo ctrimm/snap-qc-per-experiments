@@ -57,7 +57,7 @@ def run_one(job):
                 out / "model.joblib")
     card = json.loads((out / "model_card.json").read_text())
     card.update({"built": datetime.date.today().isoformat(), "sklearn_version": sklearn.__version__, "features": feats,
-                 "feature_set": E58.SNAPQC_FEATURES,
+                 "feature_set": E58.SNAPQC_FEATURES, "error_label": E58.SNAPQC_LABEL,
                  "feature_note": "exp107 leak-free: QC case facts plus the case's maximum allotment (BENMAX); the issued benefit "
                                  "is NOT an input (exp106: the QC file's RAW* facts are reviewer values, so pairing them with "
                                  "RAWBEN leaked the error)",
@@ -65,7 +65,7 @@ def run_one(job):
                           f"regression on out-of-fold scores; trained on this jurisdiction's rows (weight {wown:g}) pooled with "
                           "all other jurisdictions' rows (exp80 design, exp107 leak-free features)",
                  "chosen": f"exp80/82 variant {adopted}", "config": {"clf": D, "reg": D},
-                 "evaluation_current": "experiments/exp83_leakfree_results.json (held-out); exp107_timesplit_results.json",
+                 "evaluation_current": ("experiments/exp83_official_results.json (held-out); exp107_timesplit_official_results.json" if E58.OFFICIAL else "experiments/exp83_leakfree_results.json (held-out); exp107_timesplit_results.json"),
                  "source": "snap-qc-per-experiments exp107 (experiments/exp107_package.py)"})
     (out / "model_card.json").write_text(json.dumps(card, indent=1))
     return ab
