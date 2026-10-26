@@ -100,29 +100,91 @@ Whatever it shows replaces the ranker figures in the papers, which carry an unde
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-Interim, 2026-10-26. Part B ran (2 min 57 s, 8 workers); part C has not run.
+Scored 2026-10-26 by `exp106_giannella_comparison.py` (part B, 2 min 57 s) and `exp106_leakfree.py` (amendments 1–2, 3 min 13 s), 8 workers.
 
-**Gate:** B0 reproduced exp83's top-20% lift in 53 of 53 jurisdictions, so the refit is the deployed recipe.
+**Gates:** the leaky refit reproduced exp83's top-20% lift, exp83's floor lift and exp93's top-10% floor lift in 53 of 53 jurisdictions each. The leak-free numbers therefore differ from the published ones by the two removed inputs only.
 
-**Same test frame:** our test frame matched theirs: median 847 FY2024 cases per state, 12.4% base rate, 49 states.
+**Same test frame:** our FY2024 frame matched giannella's (median 847 cases per state, 12.4% over-threshold base rate, 49 states).
 
-| Median of 49 states, FY2024 | Ours (B1) | Theirs (v2.5.0 lists) |
+### Part B: the published (leaky) model on their test
+
+| Median of 49 states, FY2024 | Ours, published features | Theirs (v2.5.0 lists) |
 |---|---|---|
 | Precision, 5% budget | **1.000** | 0.318 |
 | Precision, 10% budget | 0.800 | 0.298 |
-| Dollar recall, 5% | 0.593 | 0.141 |
-| Dollar recall, 10% | 0.805 | 0.265 |
+| Dollar recall, 5% / 10% | 0.593 / 0.805 | 0.141 / 0.265 |
 
-**These results are not credible; they show a leak in our features.**
+**Not credible, and the evidence shows why: our features leak.**
+- **The fields hold the reviewer's values.** The QC technical documentation says the raw file "is generated from the monthly reviews"; "reported" fields are the reviewer's.
+- **They equal the reviewer's calculations on error cases.** On 5,809 FY2024 over-threshold error cases: RAWGROSS = FSGRINC 98.9%, RAWERND = FSERNDED 98.1%, SHELDED = FSSLTDED 91.9%, RAWNET = FSNETINC 86.0%, CERTHHSZ = FSUSIZE 100%.
+- **The formula reproduces the reviewer's benefit.** The benefit formula on RAWNET reproduces the reviewer's benefit (FSBEN) in 79.8%, and the issued benefit (RAWBEN) in 0.8%.
+- **The mechanism:** our features put the issued benefit beside the reviewer's corrected facts. giannella's do not; their benefit feature is recomputed from the reported facts.
 
-**The evidence:**
-- **The fields hold the reviewer's values.** The QC technical documentation says the raw file "is generated from the monthly reviews"; "reported" (R) fields are what the QC reviewer recorded.
-- **They equal the reviewer's calculations on error cases.** On the 5,809 FY2024 over-threshold error cases, the "reported" fields our rankers use equal the reviewer's calculated values in most cases: RAWGROSS = FSGRINC 98.9%, RAWERND = FSERNDED 98.1%, SHELDED = FSSLTDED 91.9%, RAWNET = FSNETINC 86.0%, CERTHHSZ = FSUSIZE 100%.
-- **The formula reproduces the reviewer's benefit, not the agency's.** The benefit formula applied to RAWNET reproduces the reviewer's benefit (FSBEN) in 79.8% of them, and the issued benefit (RAWBEN) in 0.8%.
+### Amendment 2: leak-free (L1, without `issued_benefit` and `benefit_share_of_max`)
 
-**The mechanism:** our "agency-side" features (exp58 onward) put the issued benefit (RAWBEN, the agency's) beside the reviewer's corrected income, deductions and household size, so the model can see when they disagree.
+| Median of 53 jurisdictions (exp83 design) | Published (leaky) | Leak-free (L1) |
+|---|---|---|
+| Top-20% lift, all error dollars | 3.97× | **2.70×** (range 1.98–3.67; 52 of 53 at 2.0× or more) |
+| Top-10% lift | 6.38× | **3.31×** |
+| Top-20% lift, over-threshold dollars only | 4.68× | 2.95× |
+| Top-20% lift with the fairness floor | 3.93× | 2.42× |
+| Top-10% lift with the floor | 6.17× | 2.93× |
+| Share of top-20% reviews finding any error / an over-threshold error | 0.80 / 0.57 | 0.66 / 0.31 |
 
-**What it affects:** every ranker figure since exp58: the 53-jurisdiction lifts, the cost-share scenarios, the fairness ratios, and the state briefs and whitepapers built on them.
+**FY2028 cost share avoided, exp93's scenarios with the L1 floor-on lifts:**
 
-**Next (amendment 2, to be written before it runs):** a leak-resistant feature set, and the comparison re-run on it.
+| Scenario | Avoided a year |
+|---|---|
+| Low | $0.21B |
+| **Central** | **$3.42B** (published $6.05B) |
+| High | $6.63B |
+| Central, top-20% basis | $2.79B (published $4.06B) |
+
+**D1, their one-year-ahead test with L1, paired against their lists (49 states):**
+
+| | Ours (L1) | Theirs | Paired median difference | States where ours is higher / lower |
+|---|---|---|---|---|
+| Precision, 5% budget | 0.404 | 0.318 | +0.065 | 33 / 16 |
+| Precision, 10% budget | 0.319 | 0.298 | +0.041 | 33 / 14 |
+| Dollar recall, 5% | 0.260 | 0.141 | +0.109 | 39 / 10 |
+| Dollar recall, 10% | 0.410 | 0.265 | +0.132 | 39 / 10 |
+
+**Hypotheses:**
+- **H1 (ours higher dollar recall):** supported at both budgets.
+- **H2 (theirs higher precision):** not supported; ours is also higher on precision.
+- **H3 (over-threshold lift within 10% of any-error lift):** not supported. Over-threshold lift is higher, by 18% (leaky) and 9% (L1) at the median.
+- **Caveats:**
+  - Their lists are interpretable rules shipped as a workbook, and ours a score.
+  - Both use reviewer-recorded facts for error cases, so neither number is a deployment forecast.
+
+### Part C: elderly and disabled households (top 20%, median of jurisdictions)
+
+| | Leaky, any error | Leaky, over-threshold | **L1, any error** | **L1, over-threshold** |
+|---|---|---|---|---|
+| Elderly, ranking by dollars | 0.61 | 0.95 | **0.33** | **0.50** |
+| Elderly, below 0.8 | 49 of 53 | 12 of 52 | 53 of 53 | 47 of 52 |
+| Elderly, below random review | 52 | 51 | 53 | 52 |
+| Elderly, random review gives | 0.90 | 1.35 | 0.90 | 1.35 |
+| Elderly, with the floor | 1.00 | 1.51 | 1.00 | 1.51 |
+| Disabled, ranking by dollars | 0.78 | 1.01 | 0.63 | 0.82 |
+| Disabled, below random review | 34 of 51 | 34 | 48 | 48 |
+
+**What part C shows:**
+- **The leak hid the problem.** Without the leak, dollar ranking under-reviews elderly households more, not less: below random review in 52–53 jurisdictions under either error definition.
+- **The definition doesn't rescue it.** Under the official over-threshold definition elderly households have fewer errors (random review gives them 1.35), and dollar ranking still gives them 0.50.
+- **The floor still works.** It lifts them above proportional on both definitions.
+
+### Verdict
+
+**Our published ranker figures were inflated by a feature leak.**
+- **The cause:** our models paired the agency's issued benefit with the QC reviewer's corrected facts.
+- **Without the leak:** the ranker still finds about 2.7× the error dollars of random review in the top fifth of the queue (3.3× in the top tenth), and a central $3.42B a year of FY2028 cost share avoided, against $6.05B published.
+- **On the same leak-free footing it beats giannella's lists** on dollar recall (+0.11 to +0.13) and precision (+0.04 to +0.07), paired over 49 states.
+- **The fairness finding holds and is stronger:** dollar ranking under-reviews older households under both error definitions, and the floor fixes it.
+
+**What follows:**
+1. **Papers and dashboard:** every paper and the dashboard need their ranker figures replaced. They carry an under-review notice until then.
+2. **Packaged models:** the models in `deliverables/state_rankers/` use the leaky features and must be refit on L1.
+3. **Remaining limitation:** reviewer-recorded facts for error cases remain in both projects; only a state's own pre-review data can remove it.
+4. **Adopt from giannella:** their 2026-dollar conversion, which they found helps lists applied three years after their training data.
 <!-- AUTO-RESULTS:END -->
