@@ -74,6 +74,29 @@ Our fairness findings (exp47–49, exp72, exp83) measure each household type's r
 
 There is no hypothesis on direction; this is a measurement.
 
+### Amendment 2 (2026-10-26, before it ran): leak-free re-run
+
+**Why.** Part B showed our rankers' inputs combine the agency's issued benefit (`RAWBEN`) with the QC reviewer's recorded facts (`RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, household size, and the ratios built on them), which for error cases are the corrected values. giannella/snap_qc avoids this: its benefit feature is recomputed from the reported facts (`raw_benefit_amount = rawben_recreated`), never the issued amount.
+
+**Leak-free feature set (L1):** our 22 features minus the two that carry the issued benefit: `issued_benefit` (RAWBEN) and `benefit_share_of_max` (RAWBEN / BENMAX). The remaining inputs are all reviewer-recorded facts plus BENMAX, so they agree with one another and cannot reveal an error by disagreeing.
+
+**Limitation that remains:** for error cases these facts are still the corrected ones, while a deployed tool sees the agency's uncorrected facts. With public data this can't be removed, and it affects giannella's lists equally. L1 removes the direct leak; it does not make the held-out numbers a deployment forecast.
+
+**Runs** (same splits, seeds, engine and adopted variants as before; the variants were chosen on leaky features, a stated bias):
+- **D0:** exp83's design (exp68 holdouts): top-10% and top-20% lift on all error dollars and on over-threshold dollars, per jurisdiction.
+- **D1:** part B's one-year-ahead test with L1, paired against giannella's v2.5.0 lists.
+- **C:** part C's fairness ratios, on both the leaky (B0) and the L1 refit:
+  - review ratio of elderly and disabled households, any-error and over-threshold definitions;
+  - with and without the floor;
+  - against random review.
+- **Cost share:** exp93's central scenario recomputed with the L1 floor-on top-10% lift (and the top-20% basis).
+
+**Expectation, stated in advance:**
+- **D1:** L1 precision at the 5% budget should fall to roughly the range of giannella's (0.25–0.40).
+- **D0:** the top-20% lift should fall well below 3.97×.
+
+Whatever it shows replaces the ranker figures in the papers, which carry an under-review notice until then.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
