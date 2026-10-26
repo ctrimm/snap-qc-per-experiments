@@ -23,6 +23,10 @@ exp106 found that our ranker inputs paired the issued benefit (`RAWBEN`) with QC
 - **Papers and dashboard:** the state briefs (all generated from results), the replication guide appendix, the dashboard datasets, `cost_share_replicate.py`, and the older-adults numbers.
 - **Hand-written figures** in the triage whitepaper, the project summary and the PA–NY brief are updated by hand and re-checked with `whitepaper/state_numbers.py`.
 
+### Amendment 1 (2026-10-26, before it ran): the later-years test
+
+The briefs also quote each state's later-years result (train FY2020–22, test the state's FY2023–24), taken from exp80/exp82, which used the leaky features. `exp107_timesplit.py` recomputes it under the switch: the adopted variant, other jurisdictions' FY2020–22 rows pooled in, and exp82's procedure. Results go to `exp107_timesplit_results.json`. The state-only comparisons in the briefs (exp68, also leaky) are dropped rather than recomputed.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
