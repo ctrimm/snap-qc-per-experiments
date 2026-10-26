@@ -138,12 +138,12 @@ def main():
             print(f"{r['state']}: top10 {r['top10']['lift']:.3f} (floor {r['top10']['floor_lift']:.3f}) "
                   f"top20 {r['top20']['lift']:.3f} (floor {r['top20']['floor_lift']:.3f})", flush=True)
     # gate: reproduce exp83
-    r83 = json.loads((ROOT / "experiments/exp83_results.json").read_text())
+    r83 = json.loads(__import__("exp58_agency_rankers").results_path("exp83_results.json").read_text())
     bad = [ab for ab, r in meas.items() if (r["top10"]["lift"], r["top20"]["lift"], r["top20"]["floor_lift"])
            != (r83[ab]["top10"]["lift"], r83[ab]["top20"]["lift"], r83[ab]["fairness"]["floor_lift"])]
     print(f"GATE: {len(meas) - len(bad)} of {len(meas)} reproduce exp83" + (f"; mismatches {sorted(bad)}" if bad else ""))
     if bad or len(meas) != 53:
-        (ROOT / "experiments/exp93_results.json").write_text(json.dumps({"gate": "FAILED", "mismatch": sorted(bad), "measured": meas}, indent=1, default=_np))
+        (__import__("exp58_agency_rankers").results_path("exp93_results.json")).write_text(json.dumps({"gate": "FAILED", "mismatch": sorted(bad), "measured": meas}, indent=1, default=_np))
         sys.exit(1)
     floor_on = {ab: {"top10": r["top10"]["floor_lift"], "top20": r["top20"]["floor_lift"]} for ab, r in meas.items()}
     dollar = {ab: {"top10": r["top10"]["lift"], "top20": r["top20"]["lift"]} for ab, r in meas.items()}
@@ -153,7 +153,7 @@ def main():
                      "top20_lift": med([d["top20"] for d in dollar.values()]), "top20_floor_lift": med([d["top20"] for d in floor_on.values()]),
                      "top10_floor_elderly_ratio": med([r["top10"]["floor_elderly_ratio"] for r in meas.values() if r["top10"]["floor_elderly_ratio"] is not None])}
     sc["gate"] = "PASSED"; sc["measured"] = dict(sorted(meas.items()))
-    (ROOT / "experiments/exp93_results.json").write_text(json.dumps(sc, indent=1, default=_np))
+    (__import__("exp58_agency_rankers").results_path("exp93_results.json")).write_text(json.dumps(sc, indent=1, default=_np))
     for k in ("low", "central", "high"):
         print(k, " | ".join(f"{a}: ${v['avoided'] / 1e9:.2f}B ({v['states_dropping_bracket']} drop)" for a, v in sc["totals"][k].items()))
     print(f"central, floor on, top-20% basis: ${sc['totals']['central_top20_floor_on'] / 1e9:.2f}B; medians {sc['medians']}")

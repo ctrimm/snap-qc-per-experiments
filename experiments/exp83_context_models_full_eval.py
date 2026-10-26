@@ -105,7 +105,7 @@ def main():
             print(f"{r['state']}: top20 {r['top20']['lift']:.2f}x top10 {r['top10']['lift']:.2f}x exp/act {r['top20']['expected_over_actual']:.2f} "
                   f"| elderly {r['fairness']['baseline_ratio'].get('elderly')} -> {r['fairness']['floor_ratio'].get('elderly')} "
                   f"floor lift {r['fairness']['floor_lift']:.2f}x", flush=True)
-            (ROOT / "experiments/exp83_results.json").write_text(json.dumps(dict(sorted(out.items())), indent=1))
+            (__import__("exp58_agency_rankers").results_path("exp83_results.json")).write_text(json.dumps(dict(sorted(out.items())), indent=1))
     v = list(out.values()); med = lambda xs: float(np.median([x for x in xs if x is not None]))
     print(f"MEDIAN top20 {med([r['top20']['lift'] for r in v]):.2f}x | top10 {med([r['top10']['lift'] for r in v]):.2f}x | "
           f"exp/act {med([r['top20']['expected_over_actual'] for r in v]):.2f} (within +-20% in "

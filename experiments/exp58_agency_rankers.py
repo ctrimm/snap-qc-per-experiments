@@ -30,6 +30,7 @@ import argparse
 import csv
 import datetime
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -45,6 +46,16 @@ FEATURES = ["hh_size_cert", "hh_size_reported", "gross_income", "net_income", "e
             "earned_est", "unearned_est", "shelter_deduction", "rent", "utilities", "sua_used",
             "medical_claimed", "depcare_claimed", "child_support_claimed", "homeless",
             "issued_benefit", "income_per_person", "earned_share", "shelter_to_income", "net_to_gross"]
+# exp107: SNAPQC_FEATURES=leakfree drops the issued benefit. The QC file's RAW* income, deduction and size fields are
+# the QC reviewer's recorded values (exp106), so pairing them with RAWBEN (what the agency issued) leaks the error.
+LEAKFREE = os.environ.get("SNAPQC_FEATURES") == "leakfree"
+if LEAKFREE:
+    FEATURES = [f for f in FEATURES if f != "issued_benefit"]
+
+
+def results_path(name):
+    """experiments/<name>, or its *_leakfree_results.json twin under SNAPQC_FEATURES=leakfree (exp107)."""
+    return ROOT / "experiments" / (name.replace("_results.json", "_leakfree_results.json") if LEAKFREE else name)
 DELIVER = ROOT / "deliverables" / "state_rankers"
 
 
@@ -63,14 +74,17 @@ def agency_features(row):
     unearned = max(gross - earned, 0.0)
     size = fnum(row.get("CERTHHSZ"))
     shelter = fnum(row.get("SHELDED"))
-    return [size, fnum(row.get("RAWHSIZE")), gross, net, ernd, earned, unearned, shelter,
-            fnum(row.get("RENT")), fnum(row.get("UTIL")),
-            1.0 if (row.get("SUA1") or "").strip() in SUA_YES else 0.0,
-            fnum(row.get("FSMEDEXP")), fnum(row.get("FSDEPDED")), fnum(row.get("FSCSEXP")),
-            1.0 if (row.get("HOMEDED") or "").strip() == "1" else 0.0,
-            fnum(row.get("RAWBEN")),
-            gross / max(size, 1.0), earned / gross if gross > 0 else 0.0,
-            shelter / gross if gross > 0 else shelter, net / gross if gross > 0 else 0.0]
+    v = [size, fnum(row.get("RAWHSIZE")), gross, net, ernd, earned, unearned, shelter,
+         fnum(row.get("RENT")), fnum(row.get("UTIL")),
+         1.0 if (row.get("SUA1") or "").strip() in SUA_YES else 0.0,
+         fnum(row.get("FSMEDEXP")), fnum(row.get("FSDEPDED")), fnum(row.get("FSCSEXP")),
+         1.0 if (row.get("HOMEDED") or "").strip() == "1" else 0.0,
+         fnum(row.get("RAWBEN")),
+         gross / max(size, 1.0), earned / gross if gross > 0 else 0.0,
+         shelter / gross if gross > 0 else shelter, net / gross if gross > 0 else 0.0]
+    if LEAKFREE:
+        del v[15]  # issued_benefit
+    return v
 
 
 def load_state(qc_dir, code):

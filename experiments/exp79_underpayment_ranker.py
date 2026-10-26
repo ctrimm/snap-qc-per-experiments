@@ -63,7 +63,7 @@ def main():
     with get_context("spawn").Pool(args.workers) as pool:
         res = sorted(pool.map(run_one, [(ab, h["code"], h["keys"], cfg[ab], qc_dir) for ab, h in hold.items()]),
                      key=lambda r: r["state"])
-    (ROOT / "experiments/exp79_results.json").write_text(json.dumps(res, indent=1))
+    (__import__("exp58_agency_rankers").results_path("exp79_results.json")).write_text(json.dumps(res, indent=1))
     ok = [r for r in res if "skipped" not in r]
     med = lambda v: float(np.median(v))
     print(f"jurisdictions scored: {len(ok)} of {len(res)} (skipped: {[r['state'] for r in res if 'skipped' in r]})")

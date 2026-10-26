@@ -34,11 +34,13 @@ import exp58_agency_rankers as E58  # noqa: E402
 from exp75_small_state_pooling import fit_w, lift  # noqa: E402
 
 CONTEXT = ["benefit_max", "benefit_share_of_max"]
+if E58.LEAKFREE:  # exp107: benefit_share_of_max carries the issued benefit
+    CONTEXT = [c for c in CONTEXT if c != "benefit_share_of_max"]
 
 
 def context_features(row):
     bm = E58.fnum(row.get("BENMAX")); rb = E58.fnum(row.get("RAWBEN"))
-    return E58.agency_features(row) + [bm, rb / bm if bm > 0 else 0.0]
+    return E58.agency_features(row) + ([bm] if E58.LEAKFREE else [bm, rb / bm if bm > 0 else 0.0])
 
 
 def load_all(qc_dir):
@@ -131,7 +133,10 @@ def package_adopted():
                      "state": ab}, out / "model.joblib")
         card = json.loads((out / "model_card.json").read_text())
         card.update({"built": datetime.date.today().isoformat(), "sklearn_version": sklearn.__version__, "features": feats,
-                     "feature_note": "agency-side fields only, plus the case's maximum allotment (BENMAX) and issued "
+                     "feature_note": ("exp107 leak-free: QC case facts plus the case's maximum allotment (BENMAX); the issued "
+                                      "benefit is NOT an input (exp106 found the QC file's RAW* facts are reviewer values, so "
+                                      "pairing them with RAWBEN leaked the error)") if E58.LEAKFREE else
+                                     "agency-side fields only, plus the case's maximum allotment (BENMAX) and issued "
                                      "benefit as a share of it",
                      "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by "
                               f"isotonic regression on out-of-fold scores; trained on this jurisdiction's rows (weight {wown:g}) "

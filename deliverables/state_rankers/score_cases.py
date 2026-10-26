@@ -1,10 +1,11 @@
 """Rank SNAP cases for QC review with a packaged state triage model.
 
-Input: a CSV with QC public-use column names for the agency-side fields
+Input: a CSV with QC public-use column names for the case fields
 (CERTHHSZ, RAWHSIZE, RAWGROSS, RAWNET, RAWERND, SHELDED, RENT, UTIL, SUA1,
-FSMEDEXP, FSDEPDED, FSCSEXP, HOMEDED, RAWBEN; plus BENMAX, the case's maximum
-allotment, for models whose card lists benefit_max), one row per case, plus any
-ID column you want carried through. Missing numeric values count as 0.
+FSMEDEXP, FSDEPDED, FSCSEXP, HOMEDED, BENMAX; RAWBEN only for older models whose
+card lists issued_benefit), one row per case, plus any ID column you want carried
+through. Missing numeric values count as 0. Each model scores the features named
+in its model.joblib (since exp107 the packaged models do not use the issued benefit).
 
 Output: the same rows, ranked, with
   p_error            calibrated-enough probability the case has a payment error
@@ -53,17 +54,24 @@ def agency_features(row):
             shelter / gross if gross > 0 else shelter, net / gross if gross > 0 else 0.0]
 
 
-def context_features(row):
-    """Two extra inputs for models trained with state context (exp80): the case's maximum
-    allotment (BENMAX) and the issued benefit as a share of it."""
+FEATURE_NAMES = ["hh_size_cert", "hh_size_reported", "gross_income", "net_income", "earned_deduction",
+                 "earned_est", "unearned_est", "shelter_deduction", "rent", "utilities", "sua_used",
+                 "medical_claimed", "depcare_claimed", "child_support_claimed", "homeless",
+                 "issued_benefit", "income_per_person", "earned_share", "shelter_to_income", "net_to_gross"]
+
+
+def named_features(row):
+    """Every feature any packaged model may use, by name; each model picks its own list (model['features'])."""
+    f = dict(zip(FEATURE_NAMES, agency_features(row)))
     bm, rb = fnum(row.get("BENMAX")), fnum(row.get("RAWBEN"))
-    return agency_features(row) + [bm, rb / bm if bm > 0 else 0.0]
+    f["benefit_max"] = bm
+    f["benefit_share_of_max"] = rb / bm if bm > 0 else 0.0
+    return f
 
 
 def score(state, rows):
     m = joblib.load(HERE / state / "model.joblib")
-    feat = context_features if len(m["features"]) > 20 else agency_features
-    X = np.array([feat(r) for r in rows])
+    X = np.array([[named_features(r)[n] for n in m["features"]] for r in rows])
     p = m["classifier"].predict_proba(X)[:, 1]
     raw = p * np.clip(np.expm1(m["dollar_regressor"].predict(X)), 0, None)
     return p, m["dollar_calibrator"].predict(raw)
