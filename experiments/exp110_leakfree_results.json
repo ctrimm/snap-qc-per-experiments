@@ -1,0 +1,3981 @@
+{
+ "gate": 53,
+ "cost_share": {
+  "ANY_any": {
+   "low": 0.21,
+   "central": 3.42,
+   "high": 6.63
+  },
+  "ANY_over": {
+   "low": 0.21,
+   "central": 2.62,
+   "high": 6.48
+  },
+  "OVER_over": {
+   "low": 0.21,
+   "central": 3.15,
+   "high": 7.05
+  }
+ },
+ "states": {
+  "AK": {
+   "state": "AK",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.612,
+     "lift_over": 4.07,
+     "floor_lift_any": 2.657,
+     "floor_lift_over": 4.429,
+     "precision_any": 0.618,
+     "precision_over": 0.412
+    },
+    "top20": {
+     "lift_any": 2.212,
+     "lift_over": 3.221,
+     "floor_lift_any": 1.98,
+     "floor_lift_over": 2.569,
+     "precision_any": 0.662,
+     "precision_over": 0.426
+    },
+    "ratios_own_definition": {
+     "elderly": 0.54,
+     "disabled": 0.548,
+     "single_parent": 1.085,
+     "married_with_kids": 1.832,
+     "childless_adult": 1.157,
+     "other": 2.051
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.907,
+     "lift_over": 6.183,
+     "floor_lift_any": 1.329,
+     "floor_lift_over": 4.726,
+     "precision_any": 0.676,
+     "precision_over": 0.618
+    },
+    "top20": {
+     "lift_any": 2.499,
+     "lift_over": 3.365,
+     "floor_lift_any": 1.526,
+     "floor_lift_over": 3.122,
+     "precision_any": 0.647,
+     "precision_over": 0.426
+    },
+    "ratios_own_definition": {
+     "elderly": 0.462,
+     "disabled": 0.61,
+     "single_parent": 1.242,
+     "married_with_kids": 2.459,
+     "childless_adult": 0.699,
+     "other": 1.614
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 462,
+     "n_flagged": 23,
+     "precision": 0.2609,
+     "base_rate": 0.1255,
+     "lift": 2.078,
+     "dollar_recall": 0.1286
+    },
+    "budget10": {
+     "n_te": 462,
+     "n_flagged": 46,
+     "precision": 0.2609,
+     "base_rate": 0.1255,
+     "lift": 2.078,
+     "dollar_recall": 0.2173
+    }
+   }
+  },
+  "AL": {
+   "state": "AL",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.663,
+     "lift_over": 3.884,
+     "floor_lift_any": 2.778,
+     "floor_lift_over": 2.922,
+     "precision_any": 0.654,
+     "precision_over": 0.404
+    },
+    "top20": {
+     "lift_any": 2.805,
+     "lift_over": 2.818,
+     "floor_lift_any": 2.366,
+     "floor_lift_over": 2.327,
+     "precision_any": 0.606,
+     "precision_over": 0.317
+    },
+    "ratios_own_definition": {
+     "elderly": 0.153,
+     "disabled": 0.54,
+     "single_parent": 1.792,
+     "married_with_kids": 3.222,
+     "multiadult_with_kids": 2.139,
+     "childless_adult": 1.284,
+     "other": 1.284
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.178,
+     "lift_over": 3.408,
+     "floor_lift_any": 2.703,
+     "floor_lift_over": 2.831,
+     "precision_any": 0.529,
+     "precision_over": 0.346
+    },
+    "top20": {
+     "lift_any": 2.678,
+     "lift_over": 2.827,
+     "floor_lift_any": 2.091,
+     "floor_lift_over": 2.199,
+     "precision_any": 0.548,
+     "precision_over": 0.312
+    },
+    "ratios_own_definition": {
+     "elderly": 0.344,
+     "disabled": 0.465,
+     "single_parent": 1.492,
+     "married_with_kids": 2.2,
+     "multiadult_with_kids": 1.375,
+     "childless_adult": 0.63,
+     "other": 1.031
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 1039,
+     "n_flagged": 52,
+     "precision": 0.5385,
+     "base_rate": 0.1347,
+     "lift": 3.996,
+     "dollar_recall": 0.282
+    },
+    "budget10": {
+     "n_te": 1039,
+     "n_flagged": 104,
+     "precision": 0.4038,
+     "base_rate": 0.1347,
+     "lift": 2.997,
+     "dollar_recall": 0.4035
+    }
+   }
+  },
+  "AR": {
+   "state": "AR",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.928,
+     "lift_over": 2.409,
+     "floor_lift_any": 2.512,
+     "floor_lift_over": 2.122,
+     "precision_any": 0.558,
+     "precision_over": 0.209
+    },
+    "top20": {
+     "lift_any": 2.33,
+     "lift_over": 1.873,
+     "floor_lift_any": 2.149,
+     "floor_lift_over": 1.79,
+     "precision_any": 0.567,
+     "precision_over": 0.193
+    },
+    "ratios_own_definition": {
+     "elderly": 0.391,
+     "disabled": 0.712,
+     "single_parent": 1.795,
+     "married_with_kids": 2.753,
+     "child_only": 1.523,
+     "childless_adult": 0.699,
+     "other": 2.175
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.945,
+     "lift_over": 2.597,
+     "floor_lift_any": 2.526,
+     "floor_lift_over": 2.264,
+     "precision_any": 0.5,
+     "precision_over": 0.233
+    },
+    "top20": {
+     "lift_any": 2.521,
+     "lift_over": 2.331,
+     "floor_lift_any": 2.637,
+     "floor_lift_over": 2.687,
+     "precision_any": 0.485,
+     "precision_over": 0.211
+    },
+    "ratios_own_definition": {
+     "elderly": 1.029,
+     "disabled": 0.844,
+     "single_parent": 1.372,
+     "married_with_kids": 3.088,
+     "child_only": 1.115,
+     "childless_adult": 0.096,
+     "other": 0.618
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 855,
+     "n_flagged": 43,
+     "precision": 0.3023,
+     "base_rate": 0.0795,
+     "lift": 3.801,
+     "dollar_recall": 0.2575
+    },
+    "budget10": {
+     "n_te": 855,
+     "n_flagged": 86,
+     "precision": 0.2674,
+     "base_rate": 0.0795,
+     "lift": 3.363,
+     "dollar_recall": 0.3904
+    }
+   }
+  },
+  "AZ": {
+   "state": "AZ",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.642,
+     "lift_over": 4.05,
+     "floor_lift_any": 4.126,
+     "floor_lift_over": 3.538,
+     "precision_any": 0.714,
+     "precision_over": 0.417
+    },
+    "top20": {
+     "lift_any": 3.077,
+     "lift_over": 2.525,
+     "floor_lift_any": 2.977,
+     "floor_lift_over": 2.519,
+     "precision_any": 0.679,
+     "precision_over": 0.327
+    },
+    "ratios_own_definition": {
+     "elderly": 0.312,
+     "disabled": 0.678,
+     "single_parent": 1.607,
+     "married_with_kids": 1.66,
+     "multiadult_with_kids": 1.799,
+     "childless_adult": 0.624,
+     "other": 1.3
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.764,
+     "lift_over": 4.114,
+     "floor_lift_any": 4.189,
+     "floor_lift_over": 3.654,
+     "precision_any": 0.702,
+     "precision_over": 0.429
+    },
+    "top20": {
+     "lift_any": 3.039,
+     "lift_over": 2.612,
+     "floor_lift_any": 2.894,
+     "floor_lift_over": 2.401,
+     "precision_any": 0.631,
+     "precision_over": 0.327
+    },
+    "ratios_own_definition": {
+     "elderly": 0.422,
+     "disabled": 0.91,
+     "single_parent": 1.824,
+     "married_with_kids": 1.789,
+     "multiadult_with_kids": 1.72,
+     "childless_adult": 0.205,
+     "other": 0.774
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 863,
+     "n_flagged": 43,
+     "precision": 0.6047,
+     "base_rate": 0.1124,
+     "lift": 5.38,
+     "dollar_recall": 0.3806
+    },
+    "budget10": {
+     "n_te": 863,
+     "n_flagged": 86,
+     "precision": 0.4419,
+     "base_rate": 0.1124,
+     "lift": 3.931,
+     "dollar_recall": 0.5342
+    }
+   }
+  },
+  "CA": {
+   "state": "CA",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.115,
+     "lift_over": 2.672,
+     "floor_lift_any": 2.979,
+     "floor_lift_over": 2.482,
+     "precision_any": 0.628,
+     "precision_over": 0.359
+    },
+    "top20": {
+     "lift_any": 2.457,
+     "lift_over": 2.038,
+     "floor_lift_any": 2.417,
+     "floor_lift_over": 1.96,
+     "precision_any": 0.596,
+     "precision_over": 0.308
+    },
+    "ratios_own_definition": {
+     "elderly": 0.466,
+     "disabled": 1.119,
+     "single_parent": 1.608,
+     "married_with_kids": 3.81,
+     "child_only": 1.08,
+     "childless_adult": 1.072,
+     "other": 2.308
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.234,
+     "lift_over": 3.743,
+     "floor_lift_any": 2.946,
+     "floor_lift_over": 3.242,
+     "precision_any": 0.577,
+     "precision_over": 0.474
+    },
+    "top20": {
+     "lift_any": 2.246,
+     "lift_over": 2.477,
+     "floor_lift_any": 2.241,
+     "floor_lift_over": 2.446,
+     "precision_any": 0.545,
+     "precision_over": 0.372
+    },
+    "ratios_own_definition": {
+     "elderly": 0.598,
+     "disabled": 1.109,
+     "single_parent": 1.627,
+     "married_with_kids": 2.393,
+     "child_only": 1.01,
+     "childless_adult": 0.686,
+     "other": 1.683
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 814,
+     "n_flagged": 41,
+     "precision": 0.4878,
+     "base_rate": 0.1302,
+     "lift": 3.746,
+     "dollar_recall": 0.3077
+    },
+    "budget10": {
+     "n_te": 814,
+     "n_flagged": 81,
+     "precision": 0.3951,
+     "base_rate": 0.1302,
+     "lift": 3.034,
+     "dollar_recall": 0.4112
+    }
+   }
+  },
+  "CO": {
+   "state": "CO",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.104,
+     "lift_over": 4.077,
+     "floor_lift_any": 4.278,
+     "floor_lift_over": 4.16,
+     "precision_any": 0.611,
+     "precision_over": 0.389
+    },
+    "top20": {
+     "lift_any": 2.907,
+     "lift_over": 2.825,
+     "floor_lift_any": 2.858,
+     "floor_lift_over": 2.664,
+     "precision_any": 0.633,
+     "precision_over": 0.311
+    },
+    "ratios_own_definition": {
+     "elderly": 0.286,
+     "disabled": 0.631,
+     "single_parent": 1.486,
+     "married_with_kids": 2.356,
+     "multiadult_with_kids": 2.398,
+     "childless_adult": 1.293,
+     "other": 0.442
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.195,
+     "lift_over": 4.318,
+     "floor_lift_any": 4.263,
+     "floor_lift_over": 4.491,
+     "precision_any": 0.589,
+     "precision_over": 0.378
+    },
+    "top20": {
+     "lift_any": 2.831,
+     "lift_over": 2.811,
+     "floor_lift_any": 2.697,
+     "floor_lift_over": 2.698,
+     "precision_any": 0.556,
+     "precision_over": 0.294
+    },
+    "ratios_own_definition": {
+     "elderly": 0.349,
+     "disabled": 1.039,
+     "single_parent": 1.444,
+     "married_with_kids": 2.017,
+     "multiadult_with_kids": 1.176,
+     "childless_adult": 0.776,
+     "other": 0.134
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 803,
+     "n_flagged": 40,
+     "precision": 0.4,
+     "base_rate": 0.1208,
+     "lift": 3.311,
+     "dollar_recall": 0.2559
+    },
+    "budget10": {
+     "n_te": 803,
+     "n_flagged": 80,
+     "precision": 0.3,
+     "base_rate": 0.1208,
+     "lift": 2.484,
+     "dollar_recall": 0.3836
+    }
+   }
+  },
+  "CT": {
+   "state": "CT",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.167,
+     "lift_over": 4.608,
+     "floor_lift_any": 3.808,
+     "floor_lift_over": 4.102,
+     "precision_any": 0.75,
+     "precision_over": 0.51
+    },
+    "top20": {
+     "lift_any": 2.981,
+     "lift_over": 3.103,
+     "floor_lift_any": 2.762,
+     "floor_lift_over": 2.94,
+     "precision_any": 0.733,
+     "precision_over": 0.382
+    },
+    "ratios_own_definition": {
+     "elderly": 0.377,
+     "disabled": 0.697,
+     "single_parent": 1.687,
+     "married_with_kids": 2.646,
+     "multiadult_with_kids": 2.117,
+     "childless_adult": 1.437,
+     "other": 0.992
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.059,
+     "lift_over": 4.562,
+     "floor_lift_any": 4.092,
+     "floor_lift_over": 4.556,
+     "precision_any": 0.719,
+     "precision_over": 0.49
+    },
+    "top20": {
+     "lift_any": 2.985,
+     "lift_over": 3.153,
+     "floor_lift_any": 2.87,
+     "floor_lift_over": 3.078,
+     "precision_any": 0.681,
+     "precision_over": 0.377
+    },
+    "ratios_own_definition": {
+     "elderly": 0.466,
+     "disabled": 0.676,
+     "single_parent": 1.464,
+     "married_with_kids": 2.223,
+     "multiadult_with_kids": 1.05,
+     "childless_adult": 1.09,
+     "other": 0.77
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 899,
+     "n_flagged": 45,
+     "precision": 0.6,
+     "base_rate": 0.1446,
+     "lift": 4.149,
+     "dollar_recall": 0.2592
+    },
+    "budget10": {
+     "n_te": 899,
+     "n_flagged": 90,
+     "precision": 0.5111,
+     "base_rate": 0.1446,
+     "lift": 3.535,
+     "dollar_recall": 0.4044
+    }
+   }
+  },
+  "DC": {
+   "state": "DC",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.828,
+     "lift_over": 3.933,
+     "floor_lift_any": 2.863,
+     "floor_lift_over": 3.016,
+     "precision_any": 0.746,
+     "precision_over": 0.627
+    },
+    "top20": {
+     "lift_any": 2.704,
+     "lift_over": 2.783,
+     "floor_lift_any": 2.423,
+     "floor_lift_over": 2.458,
+     "precision_any": 0.719,
+     "precision_over": 0.511
+    },
+    "ratios_own_definition": {
+     "elderly": 0.725,
+     "disabled": 0.634,
+     "single_parent": 1.21,
+     "childless_adult": 1.501,
+     "other": 1.312
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.846,
+     "lift_over": 4.083,
+     "floor_lift_any": 3.458,
+     "floor_lift_over": 3.358,
+     "precision_any": 0.731,
+     "precision_over": 0.642
+    },
+    "top20": {
+     "lift_any": 2.798,
+     "lift_over": 2.977,
+     "floor_lift_any": 2.73,
+     "floor_lift_over": 2.829,
+     "precision_any": 0.719,
+     "precision_over": 0.563
+    },
+    "ratios_own_definition": {
+     "elderly": 0.513,
+     "disabled": 0.725,
+     "single_parent": 1.449,
+     "childless_adult": 1.096,
+     "other": 1.443
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 976,
+     "n_flagged": 49,
+     "precision": 0.7347,
+     "base_rate": 0.2193,
+     "lift": 3.351,
+     "dollar_recall": 0.2963
+    },
+    "budget10": {
+     "n_te": 976,
+     "n_flagged": 98,
+     "precision": 0.602,
+     "base_rate": 0.2193,
+     "lift": 2.746,
+     "dollar_recall": 0.4545
+    }
+   }
+  },
+  "DE": {
+   "state": "DE",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.482,
+     "lift_over": 3.153,
+     "floor_lift_any": 3.367,
+     "floor_lift_over": 3.037,
+     "precision_any": 0.634,
+     "precision_over": 0.415
+    },
+    "top20": {
+     "lift_any": 2.738,
+     "lift_over": 2.665,
+     "floor_lift_any": 2.597,
+     "floor_lift_over": 2.185,
+     "precision_any": 0.602,
+     "precision_over": 0.373
+    },
+    "ratios_own_definition": {
+     "elderly": 0.365,
+     "disabled": 0.722,
+     "single_parent": 1.354,
+     "childless_adult": 1.384,
+     "other": 1.803
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.538,
+     "lift_over": 3.227,
+     "floor_lift_any": 3.011,
+     "floor_lift_over": 2.787,
+     "precision_any": 0.61,
+     "precision_over": 0.415
+    },
+    "top20": {
+     "lift_any": 2.952,
+     "lift_over": 2.611,
+     "floor_lift_any": 2.577,
+     "floor_lift_over": 2.394,
+     "precision_any": 0.578,
+     "precision_over": 0.361
+    },
+    "ratios_own_definition": {
+     "elderly": 0.416,
+     "disabled": 0.767,
+     "single_parent": 1.398,
+     "childless_adult": 0.623,
+     "other": 1.663
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 741,
+     "n_flagged": 37,
+     "precision": 0.5135,
+     "base_rate": 0.1363,
+     "lift": 3.767,
+     "dollar_recall": 0.2599
+    },
+    "budget10": {
+     "n_te": 741,
+     "n_flagged": 74,
+     "precision": 0.4324,
+     "base_rate": 0.1363,
+     "lift": 3.173,
+     "dollar_recall": 0.3954
+    }
+   }
+  },
+  "FL": {
+   "state": "FL",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.747,
+     "lift_over": 2.84,
+     "floor_lift_any": 2.489,
+     "floor_lift_over": 2.524,
+     "precision_any": 0.702,
+     "precision_over": 0.372
+    },
+    "top20": {
+     "lift_any": 2.421,
+     "lift_over": 2.431,
+     "floor_lift_any": 2.166,
+     "floor_lift_over": 2.095,
+     "precision_any": 0.631,
+     "precision_over": 0.326
+    },
+    "ratios_own_definition": {
+     "elderly": 0.334,
+     "disabled": 0.914,
+     "single_parent": 1.806,
+     "married_with_kids": 2.229,
+     "child_only": 1.191,
+     "childless_adult": 1.234,
+     "other": 1.847
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.179,
+     "lift_over": 3.227,
+     "floor_lift_any": 2.875,
+     "floor_lift_over": 2.899,
+     "precision_any": 0.713,
+     "precision_over": 0.415
+    },
+    "top20": {
+     "lift_any": 2.56,
+     "lift_over": 2.629,
+     "floor_lift_any": 2.172,
+     "floor_lift_over": 2.166,
+     "precision_any": 0.636,
+     "precision_over": 0.353
+    },
+    "ratios_own_definition": {
+     "elderly": 0.414,
+     "disabled": 0.829,
+     "single_parent": 1.326,
+     "married_with_kids": 3.15,
+     "child_only": 0.765,
+     "childless_adult": 0.956,
+     "other": 1.658
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 898,
+     "n_flagged": 45,
+     "precision": 0.4,
+     "base_rate": 0.1637,
+     "lift": 2.444,
+     "dollar_recall": 0.1992
+    },
+    "budget10": {
+     "n_te": 898,
+     "n_flagged": 90,
+     "precision": 0.3444,
+     "base_rate": 0.1637,
+     "lift": 2.104,
+     "dollar_recall": 0.3071
+    }
+   }
+  },
+  "GA": {
+   "state": "GA",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.861,
+     "lift_over": 3.767,
+     "floor_lift_any": 3.884,
+     "floor_lift_over": 3.637,
+     "precision_any": 0.918,
+     "precision_over": 0.561
+    },
+    "top20": {
+     "lift_any": 2.69,
+     "lift_over": 2.594,
+     "floor_lift_any": 2.574,
+     "floor_lift_over": 2.45,
+     "precision_any": 0.851,
+     "precision_over": 0.456
+    },
+    "ratios_own_definition": {
+     "elderly": 0.338,
+     "disabled": 0.651,
+     "single_parent": 1.462,
+     "married_with_kids": 2.67,
+     "multiadult_with_kids": 1.912,
+     "childless_adult": 1.147,
+     "other": 1.699
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.159,
+     "lift_over": 4.137,
+     "floor_lift_any": 3.974,
+     "floor_lift_over": 3.886,
+     "precision_any": 0.878,
+     "precision_over": 0.622
+    },
+    "top20": {
+     "lift_any": 2.711,
+     "lift_over": 2.737,
+     "floor_lift_any": 2.673,
+     "floor_lift_over": 2.611,
+     "precision_any": 0.826,
+     "precision_over": 0.477
+    },
+    "ratios_own_definition": {
+     "elderly": 0.441,
+     "disabled": 0.759,
+     "single_parent": 1.242,
+     "married_with_kids": 2.585,
+     "multiadult_with_kids": 1.514,
+     "childless_adult": 0.555,
+     "other": 1.185
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 918,
+     "n_flagged": 46,
+     "precision": 0.6957,
+     "base_rate": 0.1895,
+     "lift": 3.67,
+     "dollar_recall": 0.3115
+    },
+    "budget10": {
+     "n_te": 918,
+     "n_flagged": 92,
+     "precision": 0.5761,
+     "base_rate": 0.1895,
+     "lift": 3.039,
+     "dollar_recall": 0.4458
+    }
+   }
+  },
+  "GU": {
+   "state": "GU",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.624,
+     "lift_over": 5.489,
+     "floor_lift_any": 3.117,
+     "floor_lift_over": 5.369,
+     "precision_any": 0.778,
+     "precision_over": 0.444
+    },
+    "top20": {
+     "lift_any": 2.301,
+     "lift_over": 3.311,
+     "floor_lift_any": 2.594,
+     "floor_lift_over": 3.398,
+     "precision_any": 0.73,
+     "precision_over": 0.378
+    },
+    "ratios_own_definition": {
+     "elderly": 0.415,
+     "single_parent": 1.328,
+     "married_with_kids": 1.889,
+     "childless_adult": 0.581,
+     "other": 0.894
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.405,
+     "lift_over": 5.484,
+     "floor_lift_any": 1.857,
+     "floor_lift_over": 5.165,
+     "precision_any": 0.778,
+     "precision_over": 0.556
+    },
+    "top20": {
+     "lift_any": 1.985,
+     "lift_over": 3.117,
+     "floor_lift_any": 2.461,
+     "floor_lift_over": 3.379,
+     "precision_any": 0.811,
+     "precision_over": 0.432
+    },
+    "ratios_own_definition": {
+     "elderly": 0.332,
+     "single_parent": 1.437,
+     "married_with_kids": 1.824,
+     "childless_adult": 0.0,
+     "other": 0.73
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 182,
+     "n_flagged": 9,
+     "precision": 0.5556,
+     "base_rate": 0.1813,
+     "lift": 3.064,
+     "dollar_recall": 0.1986
+    },
+    "budget10": {
+     "n_te": 182,
+     "n_flagged": 18,
+     "precision": 0.5,
+     "base_rate": 0.1813,
+     "lift": 2.758,
+     "dollar_recall": 0.3236
+    }
+   }
+  },
+  "HI": {
+   "state": "HI",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.016,
+     "lift_over": 2.743,
+     "floor_lift_any": 2.52,
+     "floor_lift_over": 2.143,
+     "precision_any": 0.68,
+     "precision_over": 0.42
+    },
+    "top20": {
+     "lift_any": 2.671,
+     "lift_over": 2.428,
+     "floor_lift_any": 1.911,
+     "floor_lift_over": 1.531,
+     "precision_any": 0.68,
+     "precision_over": 0.41
+    },
+    "ratios_own_definition": {
+     "elderly": 0.353,
+     "disabled": 0.64,
+     "single_parent": 2.21,
+     "married_with_kids": 2.475,
+     "childless_adult": 0.819,
+     "other": 1.989
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.191,
+     "lift_over": 2.881,
+     "floor_lift_any": 2.446,
+     "floor_lift_over": 1.94,
+     "precision_any": 0.66,
+     "precision_over": 0.42
+    },
+    "top20": {
+     "lift_any": 2.711,
+     "lift_over": 2.607,
+     "floor_lift_any": 2.099,
+     "floor_lift_over": 1.72,
+     "precision_any": 0.63,
+     "precision_over": 0.37
+    },
+    "ratios_own_definition": {
+     "elderly": 0.624,
+     "disabled": 1.027,
+     "single_parent": 1.475,
+     "married_with_kids": 1.106,
+     "childless_adult": 0.263,
+     "other": 3.16
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 539,
+     "n_flagged": 27,
+     "precision": 0.2963,
+     "base_rate": 0.1058,
+     "lift": 2.802,
+     "dollar_recall": 0.163
+    },
+    "budget10": {
+     "n_te": 539,
+     "n_flagged": 54,
+     "precision": 0.2593,
+     "base_rate": 0.1058,
+     "lift": 2.452,
+     "dollar_recall": 0.2464
+    }
+   }
+  },
+  "IA": {
+   "state": "IA",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.009,
+     "lift_over": 4.081,
+     "floor_lift_any": 2.622,
+     "floor_lift_over": 2.715,
+     "precision_any": 0.577,
+     "precision_over": 0.34
+    },
+    "top20": {
+     "lift_any": 2.76,
+     "lift_over": 2.569,
+     "floor_lift_any": 2.483,
+     "floor_lift_over": 2.392,
+     "precision_any": 0.564,
+     "precision_over": 0.262
+    },
+    "ratios_own_definition": {
+     "elderly": 0.287,
+     "disabled": 0.595,
+     "single_parent": 1.662,
+     "married_with_kids": 2.129,
+     "multiadult_with_kids": 1.266,
+     "childless_adult": 1.662,
+     "other": 0.0
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.778,
+     "lift_over": 3.644,
+     "floor_lift_any": 2.772,
+     "floor_lift_over": 2.677,
+     "precision_any": 0.598,
+     "precision_over": 0.34
+    },
+    "top20": {
+     "lift_any": 2.737,
+     "lift_over": 2.576,
+     "floor_lift_any": 2.45,
+     "floor_lift_over": 2.329,
+     "precision_any": 0.544,
+     "precision_over": 0.267
+    },
+    "ratios_own_definition": {
+     "elderly": 0.683,
+     "disabled": 0.849,
+     "single_parent": 1.346,
+     "married_with_kids": 2.027,
+     "multiadult_with_kids": 0.715,
+     "childless_adult": 0.509
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 936,
+     "n_flagged": 47,
+     "precision": 0.2979,
+     "base_rate": 0.0791,
+     "lift": 3.768,
+     "dollar_recall": 0.2739
+    },
+    "budget10": {
+     "n_te": 936,
+     "n_flagged": 94,
+     "precision": 0.2447,
+     "base_rate": 0.0791,
+     "lift": 3.095,
+     "dollar_recall": 0.3991
+    }
+   }
+  },
+  "ID": {
+   "state": "ID",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.378,
+     "lift_over": 1.841,
+     "floor_lift_any": 2.096,
+     "floor_lift_over": 1.468,
+     "precision_any": 0.573,
+     "precision_over": 0.302
+    },
+    "top20": {
+     "lift_any": 2.02,
+     "lift_over": 1.169,
+     "floor_lift_any": 1.766,
+     "floor_lift_over": 1.198,
+     "precision_any": 0.573,
+     "precision_over": 0.229
+    },
+    "ratios_own_definition": {
+     "elderly": 0.203,
+     "disabled": 0.556,
+     "single_parent": 1.838,
+     "married_with_kids": 2.659,
+     "multiadult_with_kids": 2.6,
+     "childless_adult": 1.262,
+     "other": 1.202
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 1.781,
+     "lift_over": 1.885,
+     "floor_lift_any": 1.691,
+     "floor_lift_over": 1.762,
+     "precision_any": 0.531,
+     "precision_over": 0.312
+    },
+    "top20": {
+     "lift_any": 1.692,
+     "lift_over": 1.491,
+     "floor_lift_any": 1.517,
+     "floor_lift_over": 1.362,
+     "precision_any": 0.469,
+     "precision_over": 0.286
+    },
+    "ratios_own_definition": {
+     "elderly": 0.461,
+     "disabled": 0.736,
+     "single_parent": 1.696,
+     "married_with_kids": 3.363,
+     "multiadult_with_kids": 1.885,
+     "childless_adult": 0.222,
+     "other": 0.0
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 936,
+     "n_flagged": 47,
+     "precision": 0.2128,
+     "base_rate": 0.0502,
+     "lift": 4.237,
+     "dollar_recall": 0.3586
+    },
+    "budget10": {
+     "n_te": 936,
+     "n_flagged": 94,
+     "precision": 0.1489,
+     "base_rate": 0.0502,
+     "lift": 2.966,
+     "dollar_recall": 0.4491
+    }
+   }
+  },
+  "IL": {
+   "state": "IL",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.469,
+     "lift_over": 3.446,
+     "floor_lift_any": 3.644,
+     "floor_lift_over": 3.626,
+     "precision_any": 0.654,
+     "precision_over": 0.346
+    },
+    "top20": {
+     "lift_any": 2.795,
+     "lift_over": 2.661,
+     "floor_lift_any": 2.708,
+     "floor_lift_over": 2.597,
+     "precision_any": 0.673,
+     "precision_over": 0.333
+    },
+    "ratios_own_definition": {
+     "elderly": 0.378,
+     "disabled": 0.797,
+     "single_parent": 1.649,
+     "married_with_kids": 1.539,
+     "child_only": 1.759,
+     "childless_adult": 1.108,
+     "other": 1.979
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.872,
+     "lift_over": 3.877,
+     "floor_lift_any": 3.651,
+     "floor_lift_over": 3.723,
+     "precision_any": 0.667,
+     "precision_over": 0.395
+    },
+    "top20": {
+     "lift_any": 2.69,
+     "lift_over": 2.635,
+     "floor_lift_any": 2.525,
+     "floor_lift_over": 2.639,
+     "precision_any": 0.611,
+     "precision_over": 0.327
+    },
+    "ratios_own_definition": {
+     "elderly": 0.353,
+     "disabled": 0.984,
+     "single_parent": 1.679,
+     "married_with_kids": 2.039,
+     "child_only": 3.078,
+     "childless_adult": 0.52,
+     "other": 1.079
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 818,
+     "n_flagged": 41,
+     "precision": 0.6585,
+     "base_rate": 0.165,
+     "lift": 3.99,
+     "dollar_recall": 0.3356
+    },
+    "budget10": {
+     "n_te": 818,
+     "n_flagged": 82,
+     "precision": 0.5854,
+     "base_rate": 0.165,
+     "lift": 3.547,
+     "dollar_recall": 0.5344
+    }
+   }
+  },
+  "IN": {
+   "state": "IN",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.904,
+     "lift_over": 3.868,
+     "floor_lift_any": 3.572,
+     "floor_lift_over": 3.508,
+     "precision_any": 0.654,
+     "precision_over": 0.432
+    },
+    "top20": {
+     "lift_any": 2.929,
+     "lift_over": 2.728,
+     "floor_lift_any": 2.815,
+     "floor_lift_over": 2.567,
+     "precision_any": 0.63,
+     "precision_over": 0.358
+    },
+    "ratios_own_definition": {
+     "elderly": 0.305,
+     "disabled": 0.684,
+     "single_parent": 1.712,
+     "married_with_kids": 2.476,
+     "multiadult_with_kids": 2.44,
+     "childless_adult": 1.141,
+     "other": 0.963
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.275,
+     "lift_over": 4.23,
+     "floor_lift_any": 3.853,
+     "floor_lift_over": 3.893,
+     "precision_any": 0.654,
+     "precision_over": 0.469
+    },
+    "top20": {
+     "lift_any": 2.785,
+     "lift_over": 2.916,
+     "floor_lift_any": 2.676,
+     "floor_lift_over": 2.645,
+     "precision_any": 0.556,
+     "precision_over": 0.364
+    },
+    "ratios_own_definition": {
+     "elderly": 0.461,
+     "disabled": 0.915,
+     "single_parent": 1.281,
+     "married_with_kids": 2.822,
+     "multiadult_with_kids": 1.307,
+     "childless_adult": 0.436,
+     "other": 0.392
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 875,
+     "n_flagged": 44,
+     "precision": 0.5909,
+     "base_rate": 0.144,
+     "lift": 4.104,
+     "dollar_recall": 0.2964
+    },
+    "budget10": {
+     "n_te": 875,
+     "n_flagged": 88,
+     "precision": 0.4432,
+     "base_rate": 0.144,
+     "lift": 3.078,
+     "dollar_recall": 0.3882
+    }
+   }
+  },
+  "KS": {
+   "state": "KS",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.713,
+     "lift_over": 2.036,
+     "floor_lift_any": 2.708,
+     "floor_lift_over": 2.072,
+     "precision_any": 0.685,
+     "precision_over": 0.163
+    },
+    "top20": {
+     "lift_any": 2.134,
+     "lift_over": 2.09,
+     "floor_lift_any": 2.239,
+     "floor_lift_over": 1.644,
+     "precision_any": 0.665,
+     "precision_over": 0.173
+    },
+    "ratios_own_definition": {
+     "elderly": 0.194,
+     "disabled": 0.521,
+     "single_parent": 2.391,
+     "married_with_kids": 2.228,
+     "child_only": 2.097,
+     "childless_adult": 1.049,
+     "other": 5.872
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 1.966,
+     "lift_over": 1.619,
+     "floor_lift_any": 2.362,
+     "floor_lift_over": 1.794,
+     "precision_any": 0.609,
+     "precision_over": 0.152
+    },
+    "top20": {
+     "lift_any": 1.786,
+     "lift_over": 2.02,
+     "floor_lift_any": 1.755,
+     "floor_lift_over": 1.357,
+     "precision_any": 0.53,
+     "precision_over": 0.173
+    },
+    "ratios_own_definition": {
+     "elderly": 0.3,
+     "disabled": 0.754,
+     "single_parent": 2.386,
+     "married_with_kids": 2.024,
+     "child_only": 1.591,
+     "childless_adult": 0.161,
+     "other": 1.504
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 872,
+     "n_flagged": 44,
+     "precision": 0.1136,
+     "base_rate": 0.1044,
+     "lift": 1.089,
+     "dollar_recall": 0.0512
+    },
+    "budget10": {
+     "n_te": 872,
+     "n_flagged": 87,
+     "precision": 0.1954,
+     "base_rate": 0.1044,
+     "lift": 1.872,
+     "dollar_recall": 0.2604
+    }
+   }
+  },
+  "KY": {
+   "state": "KY",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.382,
+     "lift_over": 3.137,
+     "floor_lift_any": 3.34,
+     "floor_lift_over": 2.226,
+     "precision_any": 0.588,
+     "precision_over": 0.284
+    },
+    "top20": {
+     "lift_any": 3.097,
+     "lift_over": 2.272,
+     "floor_lift_any": 2.782,
+     "floor_lift_over": 1.926,
+     "precision_any": 0.539,
+     "precision_over": 0.245
+    },
+    "ratios_own_definition": {
+     "elderly": 0.281,
+     "disabled": 0.454,
+     "single_parent": 1.794,
+     "married_with_kids": 2.53,
+     "multiadult_with_kids": 2.616,
+     "childless_adult": 1.196,
+     "other": 1.495
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.645,
+     "lift_over": 3.358,
+     "floor_lift_any": 4.08,
+     "floor_lift_over": 2.683,
+     "precision_any": 0.627,
+     "precision_over": 0.294
+    },
+    "top20": {
+     "lift_any": 3.058,
+     "lift_over": 2.363,
+     "floor_lift_any": 2.974,
+     "floor_lift_over": 2.311,
+     "precision_any": 0.485,
+     "precision_over": 0.245
+    },
+    "ratios_own_definition": {
+     "elderly": 0.346,
+     "disabled": 0.908,
+     "single_parent": 1.494,
+     "married_with_kids": 2.18,
+     "multiadult_with_kids": 1.635,
+     "childless_adult": 0.313,
+     "other": 0.711
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 841,
+     "n_flagged": 42,
+     "precision": 0.3095,
+     "base_rate": 0.082,
+     "lift": 3.773,
+     "dollar_recall": 0.2688
+    },
+    "budget10": {
+     "n_te": 841,
+     "n_flagged": 84,
+     "precision": 0.2381,
+     "base_rate": 0.082,
+     "lift": 2.902,
+     "dollar_recall": 0.3753
+    }
+   }
+  },
+  "LA": {
+   "state": "LA",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.031,
+     "lift_over": 2.582,
+     "floor_lift_any": 2.928,
+     "floor_lift_over": 2.407,
+     "precision_any": 0.687,
+     "precision_over": 0.289
+    },
+    "top20": {
+     "lift_any": 2.488,
+     "lift_over": 1.969,
+     "floor_lift_any": 2.564,
+     "floor_lift_over": 2.107,
+     "precision_any": 0.753,
+     "precision_over": 0.253
+    },
+    "ratios_own_definition": {
+     "elderly": 0.159,
+     "disabled": 0.66,
+     "single_parent": 1.628,
+     "multiadult_with_kids": 3.828,
+     "childless_adult": 1.54,
+     "other": 1.654
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.822,
+     "lift_over": 3.36,
+     "floor_lift_any": 3.066,
+     "floor_lift_over": 3.678,
+     "precision_any": 0.53,
+     "precision_over": 0.422
+    },
+    "top20": {
+     "lift_any": 2.188,
+     "lift_over": 2.503,
+     "floor_lift_any": 2.171,
+     "floor_lift_over": 2.258,
+     "precision_any": 0.584,
+     "precision_over": 0.319
+    },
+    "ratios_own_definition": {
+     "elderly": 0.353,
+     "disabled": 0.715,
+     "single_parent": 1.477,
+     "multiadult_with_kids": 7.096,
+     "childless_adult": 0.659,
+     "other": 1.992
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 873,
+     "n_flagged": 44,
+     "precision": 0.4318,
+     "base_rate": 0.11,
+     "lift": 3.927,
+     "dollar_recall": 0.2434
+    },
+    "budget10": {
+     "n_te": 873,
+     "n_flagged": 87,
+     "precision": 0.2874,
+     "base_rate": 0.11,
+     "lift": 2.613,
+     "dollar_recall": 0.3095
+    }
+   }
+  },
+  "MA": {
+   "state": "MA",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.516,
+     "lift_over": 4.657,
+     "floor_lift_any": 3.855,
+     "floor_lift_over": 3.871,
+     "precision_any": 0.747,
+     "precision_over": 0.483
+    },
+    "top20": {
+     "lift_any": 3.214,
+     "lift_over": 3.278,
+     "floor_lift_any": 2.897,
+     "floor_lift_over": 2.839,
+     "precision_any": 0.69,
+     "precision_over": 0.374
+    },
+    "ratios_own_definition": {
+     "elderly": 0.448,
+     "disabled": 0.705,
+     "single_parent": 1.851,
+     "childless_adult": 1.735,
+     "other": 2.036
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.395,
+     "lift_over": 4.644,
+     "floor_lift_any": 3.986,
+     "floor_lift_over": 4.052,
+     "precision_any": 0.713,
+     "precision_over": 0.471
+    },
+    "top20": {
+     "lift_any": 3.225,
+     "lift_over": 3.269,
+     "floor_lift_any": 3.009,
+     "floor_lift_over": 3.084,
+     "precision_any": 0.649,
+     "precision_over": 0.374
+    },
+    "ratios_own_definition": {
+     "elderly": 0.606,
+     "disabled": 0.948,
+     "single_parent": 1.357,
+     "childless_adult": 0.778,
+     "other": 1.564
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 764,
+     "n_flagged": 38,
+     "precision": 0.7632,
+     "base_rate": 0.1545,
+     "lift": 4.941,
+     "dollar_recall": 0.2788
+    },
+    "budget10": {
+     "n_te": 764,
+     "n_flagged": 76,
+     "precision": 0.6579,
+     "base_rate": 0.1545,
+     "lift": 4.26,
+     "dollar_recall": 0.5349
+    }
+   }
+  },
+  "MD": {
+   "state": "MD",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.737,
+     "lift_over": 3.009,
+     "floor_lift_any": 2.623,
+     "floor_lift_over": 2.712,
+     "precision_any": 0.474,
+     "precision_over": 0.351
+    },
+    "top20": {
+     "lift_any": 2.604,
+     "lift_over": 2.627,
+     "floor_lift_any": 2.328,
+     "floor_lift_over": 2.439,
+     "precision_any": 0.614,
+     "precision_over": 0.412
+    },
+    "ratios_own_definition": {
+     "elderly": 0.472,
+     "disabled": 0.602,
+     "single_parent": 1.958,
+     "childless_adult": 0.956,
+     "other": 1.771
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.888,
+     "lift_over": 2.897,
+     "floor_lift_any": 2.73,
+     "floor_lift_over": 2.914,
+     "precision_any": 0.544,
+     "precision_over": 0.404
+    },
+    "top20": {
+     "lift_any": 2.466,
+     "lift_over": 2.55,
+     "floor_lift_any": 2.287,
+     "floor_lift_over": 2.393,
+     "precision_any": 0.553,
+     "precision_over": 0.377
+    },
+    "ratios_own_definition": {
+     "elderly": 0.52,
+     "disabled": 0.917,
+     "single_parent": 1.351,
+     "childless_adult": 0.643,
+     "other": 1.473
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 677,
+     "n_flagged": 34,
+     "precision": 0.3824,
+     "base_rate": 0.1433,
+     "lift": 2.669,
+     "dollar_recall": 0.2068
+    },
+    "budget10": {
+     "n_te": 677,
+     "n_flagged": 68,
+     "precision": 0.3824,
+     "base_rate": 0.1433,
+     "lift": 2.669,
+     "dollar_recall": 0.3433
+    }
+   }
+  },
+  "ME": {
+   "state": "ME",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.706,
+     "lift_over": 2.58,
+     "floor_lift_any": 2.196,
+     "floor_lift_over": 2.066,
+     "precision_any": 0.64,
+     "precision_over": 0.256
+    },
+    "top20": {
+     "lift_any": 2.53,
+     "lift_over": 2.437,
+     "floor_lift_any": 1.943,
+     "floor_lift_over": 1.844,
+     "precision_any": 0.715,
+     "precision_over": 0.308
+    },
+    "ratios_own_definition": {
+     "elderly": 0.315,
+     "disabled": 0.621,
+     "single_parent": 1.693,
+     "married_with_kids": 2.003,
+     "multiadult_with_kids": 1.987,
+     "childless_adult": 1.642,
+     "other": 2.07
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.649,
+     "lift_over": 2.625,
+     "floor_lift_any": 2.354,
+     "floor_lift_over": 2.235,
+     "precision_any": 0.616,
+     "precision_over": 0.233
+    },
+    "top20": {
+     "lift_any": 2.762,
+     "lift_over": 2.718,
+     "floor_lift_any": 1.847,
+     "floor_lift_over": 1.773,
+     "precision_any": 0.698,
+     "precision_over": 0.331
+    },
+    "ratios_own_definition": {
+     "elderly": 0.495,
+     "disabled": 0.61,
+     "single_parent": 1.253,
+     "married_with_kids": 1.753,
+     "multiadult_with_kids": 1.611,
+     "childless_adult": 1.049
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 928,
+     "n_flagged": 46,
+     "precision": 0.3043,
+     "base_rate": 0.1239,
+     "lift": 2.456,
+     "dollar_recall": 0.1945
+    },
+    "budget10": {
+     "n_te": 928,
+     "n_flagged": 93,
+     "precision": 0.2688,
+     "base_rate": 0.1239,
+     "lift": 2.169,
+     "dollar_recall": 0.2913
+    }
+   }
+  },
+  "MI": {
+   "state": "MI",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.729,
+     "lift_over": 2.777,
+     "floor_lift_any": 2.639,
+     "floor_lift_over": 2.787,
+     "precision_any": 0.756,
+     "precision_over": 0.384
+    },
+    "top20": {
+     "lift_any": 2.252,
+     "lift_over": 2.252,
+     "floor_lift_any": 2.077,
+     "floor_lift_over": 2.069,
+     "precision_any": 0.717,
+     "precision_over": 0.341
+    },
+    "ratios_own_definition": {
+     "elderly": 0.322,
+     "disabled": 0.779,
+     "single_parent": 1.434,
+     "married_with_kids": 3.079,
+     "multiadult_with_kids": 1.775,
+     "childless_adult": 1.457,
+     "other": 0.364
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.848,
+     "lift_over": 2.954,
+     "floor_lift_any": 2.818,
+     "floor_lift_over": 2.996,
+     "precision_any": 0.779,
+     "precision_over": 0.43
+    },
+    "top20": {
+     "lift_any": 2.341,
+     "lift_over": 2.386,
+     "floor_lift_any": 2.159,
+     "floor_lift_over": 2.206,
+     "precision_any": 0.653,
+     "precision_over": 0.347
+    },
+    "ratios_own_definition": {
+     "elderly": 0.271,
+     "disabled": 0.948,
+     "single_parent": 1.437,
+     "married_with_kids": 1.896,
+     "multiadult_with_kids": 1.659,
+     "childless_adult": 1.213,
+     "other": 0.632
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 847,
+     "n_flagged": 42,
+     "precision": 0.381,
+     "base_rate": 0.1311,
+     "lift": 2.907,
+     "dollar_recall": 0.2478
+    },
+    "budget10": {
+     "n_te": 847,
+     "n_flagged": 85,
+     "precision": 0.3529,
+     "base_rate": 0.1311,
+     "lift": 2.693,
+     "dollar_recall": 0.4496
+    }
+   }
+  },
+  "MN": {
+   "state": "MN",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.166,
+     "lift_over": 2.757,
+     "floor_lift_any": 2.536,
+     "floor_lift_over": 2.256,
+     "precision_any": 0.657,
+     "precision_over": 0.343
+    },
+    "top20": {
+     "lift_any": 2.48,
+     "lift_over": 2.207,
+     "floor_lift_any": 2.097,
+     "floor_lift_over": 1.761,
+     "precision_any": 0.623,
+     "precision_over": 0.284
+    },
+    "ratios_own_definition": {
+     "elderly": 0.263,
+     "disabled": 0.499,
+     "single_parent": 2.365,
+     "married_with_kids": 3.091,
+     "multiadult_with_kids": 2.498,
+     "child_only": 2.402,
+     "childless_adult": 1.117
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.378,
+     "lift_over": 2.489,
+     "floor_lift_any": 2.371,
+     "floor_lift_over": 2.419,
+     "precision_any": 0.569,
+     "precision_over": 0.324
+    },
+    "top20": {
+     "lift_any": 2.361,
+     "lift_over": 2.365,
+     "floor_lift_any": 1.89,
+     "floor_lift_over": 1.907,
+     "precision_any": 0.549,
+     "precision_over": 0.324
+    },
+    "ratios_own_definition": {
+     "elderly": 0.23,
+     "disabled": 0.515,
+     "single_parent": 2.058,
+     "married_with_kids": 2.706,
+     "multiadult_with_kids": 1.954,
+     "child_only": 1.578,
+     "childless_adult": 0.649
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 799,
+     "n_flagged": 40,
+     "precision": 0.3,
+     "base_rate": 0.1339,
+     "lift": 2.24,
+     "dollar_recall": 0.154
+    },
+    "budget10": {
+     "n_te": 799,
+     "n_flagged": 80,
+     "precision": 0.2875,
+     "base_rate": 0.1339,
+     "lift": 2.147,
+     "dollar_recall": 0.2901
+    }
+   }
+  },
+  "MO": {
+   "state": "MO",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.075,
+     "lift_over": 2.448,
+     "floor_lift_any": 1.93,
+     "floor_lift_over": 1.416,
+     "precision_any": 0.822,
+     "precision_over": 0.315
+    },
+    "top20": {
+     "lift_any": 2.848,
+     "lift_over": 2.297,
+     "floor_lift_any": 1.939,
+     "floor_lift_over": 1.501,
+     "precision_any": 0.796,
+     "precision_over": 0.279
+    },
+    "ratios_own_definition": {
+     "elderly": 0.286,
+     "disabled": 0.644,
+     "single_parent": 1.905,
+     "married_with_kids": 2.364,
+     "childless_adult": 1.111,
+     "other": 1.364
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.358,
+     "lift_over": 3.992,
+     "floor_lift_any": 1.932,
+     "floor_lift_over": 2.241,
+     "precision_any": 0.808,
+     "precision_over": 0.342
+    },
+    "top20": {
+     "lift_any": 2.769,
+     "lift_over": 2.92,
+     "floor_lift_any": 2.372,
+     "floor_lift_over": 2.544,
+     "precision_any": 0.66,
+     "precision_over": 0.286
+    },
+    "ratios_own_definition": {
+     "elderly": 0.218,
+     "disabled": 0.762,
+     "single_parent": 1.613,
+     "married_with_kids": 1.536,
+     "childless_adult": 0.125,
+     "other": 2.503
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 756,
+     "n_flagged": 38,
+     "precision": 0.1842,
+     "base_rate": 0.0899,
+     "lift": 2.048,
+     "dollar_recall": 0.0992
+    },
+    "budget10": {
+     "n_te": 756,
+     "n_flagged": 76,
+     "precision": 0.2237,
+     "base_rate": 0.0899,
+     "lift": 2.487,
+     "dollar_recall": 0.266
+    }
+   }
+  },
+  "MS": {
+   "state": "MS",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.827,
+     "lift_over": 3.935,
+     "floor_lift_any": 3.212,
+     "floor_lift_over": 3.376,
+     "precision_any": 0.817,
+     "precision_over": 0.413
+    },
+    "top20": {
+     "lift_any": 2.799,
+     "lift_over": 2.8,
+     "floor_lift_any": 2.553,
+     "floor_lift_over": 2.505,
+     "precision_any": 0.745,
+     "precision_over": 0.351
+    },
+    "ratios_own_definition": {
+     "elderly": 0.286,
+     "disabled": 0.733,
+     "single_parent": 1.647,
+     "married_with_kids": 1.706,
+     "multiadult_with_kids": 1.97,
+     "child_only": 1.57,
+     "childless_adult": 0.846
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.869,
+     "lift_over": 3.908,
+     "floor_lift_any": 3.594,
+     "floor_lift_over": 3.673,
+     "precision_any": 0.779,
+     "precision_over": 0.423
+    },
+    "top20": {
+     "lift_any": 2.779,
+     "lift_over": 2.828,
+     "floor_lift_any": 2.674,
+     "floor_lift_over": 2.762,
+     "precision_any": 0.644,
+     "precision_over": 0.322
+    },
+    "ratios_own_definition": {
+     "elderly": 0.339,
+     "disabled": 1.16,
+     "single_parent": 1.315,
+     "married_with_kids": 1.423,
+     "multiadult_with_kids": 1.127,
+     "child_only": 1.423,
+     "childless_adult": 0.213
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 902,
+     "n_flagged": 45,
+     "precision": 0.5556,
+     "base_rate": 0.1408,
+     "lift": 3.946,
+     "dollar_recall": 0.205
+    },
+    "budget10": {
+     "n_te": 902,
+     "n_flagged": 90,
+     "precision": 0.4333,
+     "base_rate": 0.1408,
+     "lift": 3.078,
+     "dollar_recall": 0.3532
+    }
+   }
+  },
+  "MT": {
+   "state": "MT",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.936,
+     "lift_over": 2.443,
+     "floor_lift_any": 2.798,
+     "floor_lift_over": 2.343,
+     "precision_any": 0.683,
+     "precision_over": 0.333
+    },
+    "top20": {
+     "lift_any": 2.528,
+     "lift_over": 2.113,
+     "floor_lift_any": 2.032,
+     "floor_lift_over": 1.634,
+     "precision_any": 0.702,
+     "precision_over": 0.289
+    },
+    "ratios_own_definition": {
+     "elderly": 0.354,
+     "disabled": 0.511,
+     "single_parent": 1.583,
+     "married_with_kids": 2.573,
+     "multiadult_with_kids": 2.638,
+     "childless_adult": 1.562,
+     "other": 2.083
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.909,
+     "lift_over": 2.543,
+     "floor_lift_any": 2.875,
+     "floor_lift_over": 2.543,
+     "precision_any": 0.717,
+     "precision_over": 0.35
+    },
+    "top20": {
+     "lift_any": 2.438,
+     "lift_over": 2.047,
+     "floor_lift_any": 2.133,
+     "floor_lift_over": 1.838,
+     "precision_any": 0.636,
+     "precision_over": 0.281
+    },
+    "ratios_own_definition": {
+     "elderly": 0.333,
+     "disabled": 1.331,
+     "single_parent": 1.14,
+     "married_with_kids": 2.933,
+     "multiadult_with_kids": 1.313,
+     "childless_adult": 0.76
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 575,
+     "n_flagged": 29,
+     "precision": 0.2069,
+     "base_rate": 0.1113,
+     "lift": 1.859,
+     "dollar_recall": 0.1307
+    },
+    "budget10": {
+     "n_te": 575,
+     "n_flagged": 58,
+     "precision": 0.2069,
+     "base_rate": 0.1113,
+     "lift": 1.859,
+     "dollar_recall": 0.2621
+    }
+   }
+  },
+  "NC": {
+   "state": "NC",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.52,
+     "lift_over": 4.175,
+     "floor_lift_any": 4.299,
+     "floor_lift_over": 3.844,
+     "precision_any": 0.62,
+     "precision_over": 0.42
+    },
+    "top20": {
+     "lift_any": 2.979,
+     "lift_over": 2.595,
+     "floor_lift_any": 2.763,
+     "floor_lift_over": 2.473,
+     "precision_any": 0.648,
+     "precision_over": 0.296
+    },
+    "ratios_own_definition": {
+     "elderly": 0.426,
+     "disabled": 0.545,
+     "single_parent": 1.373,
+     "married_with_kids": 1.64,
+     "multiadult_with_kids": 1.443,
+     "child_only": 1.148,
+     "childless_adult": 1.857
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.907,
+     "lift_over": 3.552,
+     "floor_lift_any": 4.027,
+     "floor_lift_over": 3.718,
+     "precision_any": 0.59,
+     "precision_over": 0.34
+    },
+    "top20": {
+     "lift_any": 2.887,
+     "lift_over": 2.785,
+     "floor_lift_any": 2.759,
+     "floor_lift_over": 2.525,
+     "precision_any": 0.598,
+     "precision_over": 0.281
+    },
+    "ratios_own_definition": {
+     "elderly": 0.612,
+     "disabled": 0.921,
+     "single_parent": 1.223,
+     "married_with_kids": 1.721,
+     "multiadult_with_kids": 0.99,
+     "child_only": 0.808,
+     "childless_adult": 0.842
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 878,
+     "n_flagged": 44,
+     "precision": 0.4545,
+     "base_rate": 0.131,
+     "lift": 3.47,
+     "dollar_recall": 0.2571
+    },
+    "budget10": {
+     "n_te": 878,
+     "n_flagged": 88,
+     "precision": 0.3864,
+     "base_rate": 0.131,
+     "lift": 2.95,
+     "dollar_recall": 0.4194
+    }
+   }
+  },
+  "ND": {
+   "state": "ND",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.024,
+     "lift_over": 2.377,
+     "floor_lift_any": 2.978,
+     "floor_lift_over": 2.46,
+     "precision_any": 0.714,
+     "precision_over": 0.262
+    },
+    "top20": {
+     "lift_any": 2.757,
+     "lift_over": 2.232,
+     "floor_lift_any": 2.233,
+     "floor_lift_over": 1.783,
+     "precision_any": 0.671,
+     "precision_over": 0.294
+    },
+    "ratios_own_definition": {
+     "elderly": 0.253,
+     "disabled": 0.657,
+     "single_parent": 1.842,
+     "childless_adult": 1.114,
+     "other": 2.3
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.242,
+     "lift_over": 2.754,
+     "floor_lift_any": 3.161,
+     "floor_lift_over": 2.757,
+     "precision_any": 0.667,
+     "precision_over": 0.286
+    },
+    "top20": {
+     "lift_any": 2.65,
+     "lift_over": 2.404,
+     "floor_lift_any": 2.493,
+     "floor_lift_over": 2.472,
+     "precision_any": 0.635,
+     "precision_over": 0.306
+    },
+    "ratios_own_definition": {
+     "elderly": 0.219,
+     "disabled": 0.625,
+     "single_parent": 1.824,
+     "childless_adult": 0.319,
+     "other": 2.796
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 434,
+     "n_flagged": 22,
+     "precision": 0.4545,
+     "base_rate": 0.0968,
+     "lift": 4.697,
+     "dollar_recall": 0.4283
+    },
+    "budget10": {
+     "n_te": 434,
+     "n_flagged": 43,
+     "precision": 0.3023,
+     "base_rate": 0.0968,
+     "lift": 3.124,
+     "dollar_recall": 0.4768
+    }
+   }
+  },
+  "NE": {
+   "state": "NE",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.171,
+     "lift_over": 2.383,
+     "floor_lift_any": 2.685,
+     "floor_lift_over": 2.147,
+     "precision_any": 0.606,
+     "precision_over": 0.255
+    },
+    "top20": {
+     "lift_any": 2.505,
+     "lift_over": 2.169,
+     "floor_lift_any": 2.271,
+     "floor_lift_over": 1.786,
+     "precision_any": 0.567,
+     "precision_over": 0.219
+    },
+    "ratios_own_definition": {
+     "elderly": 0.173,
+     "disabled": 0.502,
+     "single_parent": 1.818,
+     "married_with_kids": 2.186,
+     "multiadult_with_kids": 4.08,
+     "childless_adult": 1.185,
+     "other": 0.874
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.752,
+     "lift_over": 3.554,
+     "floor_lift_any": 3.704,
+     "floor_lift_over": 3.383,
+     "precision_any": 0.532,
+     "precision_over": 0.319
+    },
+    "top20": {
+     "lift_any": 2.629,
+     "lift_over": 2.64,
+     "floor_lift_any": 2.539,
+     "floor_lift_over": 2.488,
+     "precision_any": 0.476,
+     "precision_over": 0.246
+    },
+    "ratios_own_definition": {
+     "elderly": 0.23,
+     "disabled": 0.577,
+     "single_parent": 1.981,
+     "married_with_kids": 1.339,
+     "multiadult_with_kids": 3.793,
+     "childless_adult": 0.192,
+     "other": 2.995
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 881,
+     "n_flagged": 44,
+     "precision": 0.2045,
+     "base_rate": 0.0613,
+     "lift": 3.337,
+     "dollar_recall": 0.3173
+    },
+    "budget10": {
+     "n_te": 881,
+     "n_flagged": 88,
+     "precision": 0.1705,
+     "base_rate": 0.0613,
+     "lift": 2.781,
+     "dollar_recall": 0.4328
+    }
+   }
+  },
+  "NH": {
+   "state": "NH",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.726,
+     "lift_over": 2.017,
+     "floor_lift_any": 2.798,
+     "floor_lift_over": 2.087,
+     "precision_any": 0.621,
+     "precision_over": 0.224
+    },
+    "top20": {
+     "lift_any": 2.212,
+     "lift_over": 1.672,
+     "floor_lift_any": 1.975,
+     "floor_lift_over": 1.389,
+     "precision_any": 0.586,
+     "precision_over": 0.198
+    },
+    "ratios_own_definition": {
+     "elderly": 0.225,
+     "disabled": 0.634,
+     "single_parent": 2.269,
+     "married_with_kids": 3.379,
+     "childless_adult": 0.845,
+     "other": 1.536
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.402,
+     "lift_over": 1.675,
+     "floor_lift_any": 2.899,
+     "floor_lift_over": 2.281,
+     "precision_any": 0.621,
+     "precision_over": 0.19
+    },
+    "top20": {
+     "lift_any": 2.076,
+     "lift_over": 1.668,
+     "floor_lift_any": 1.991,
+     "floor_lift_over": 1.549,
+     "precision_any": 0.534,
+     "precision_over": 0.19
+    },
+    "ratios_own_definition": {
+     "elderly": 0.265,
+     "disabled": 0.681,
+     "single_parent": 2.335,
+     "married_with_kids": 1.788,
+     "childless_adult": 0.248,
+     "other": 2.043
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 620,
+     "n_flagged": 31,
+     "precision": 0.2903,
+     "base_rate": 0.1113,
+     "lift": 2.609,
+     "dollar_recall": 0.1601
+    },
+    "budget10": {
+     "n_te": 620,
+     "n_flagged": 62,
+     "precision": 0.2258,
+     "base_rate": 0.1113,
+     "lift": 2.029,
+     "dollar_recall": 0.2073
+    }
+   }
+  },
+  "NJ": {
+   "state": "NJ",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.532,
+     "lift_over": 3.121,
+     "floor_lift_any": 2.679,
+     "floor_lift_over": 2.309,
+     "precision_any": 0.534,
+     "precision_over": 0.241
+    },
+    "top20": {
+     "lift_any": 2.735,
+     "lift_over": 2.596,
+     "floor_lift_any": 2.21,
+     "floor_lift_over": 1.915,
+     "precision_any": 0.526,
+     "precision_over": 0.224
+    },
+    "ratios_own_definition": {
+     "elderly": 0.33,
+     "disabled": 0.921,
+     "single_parent": 1.761,
+     "married_with_kids": 1.935,
+     "child_only": 1.253,
+     "childless_adult": 1.765,
+     "other": 1.629
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.563,
+     "lift_over": 3.503,
+     "floor_lift_any": 3.229,
+     "floor_lift_over": 3.134,
+     "precision_any": 0.586,
+     "precision_over": 0.259
+    },
+    "top20": {
+     "lift_any": 2.582,
+     "lift_over": 2.462,
+     "floor_lift_any": 2.406,
+     "floor_lift_over": 2.624,
+     "precision_any": 0.517,
+     "precision_over": 0.224
+    },
+    "ratios_own_definition": {
+     "elderly": 0.652,
+     "disabled": 0.621,
+     "single_parent": 1.232,
+     "married_with_kids": 1.552,
+     "child_only": 1.164,
+     "childless_adult": 0.776,
+     "other": 1.164
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 621,
+     "n_flagged": 31,
+     "precision": 0.3226,
+     "base_rate": 0.095,
+     "lift": 3.395,
+     "dollar_recall": 0.3046
+    },
+    "budget10": {
+     "n_te": 621,
+     "n_flagged": 62,
+     "precision": 0.2581,
+     "base_rate": 0.095,
+     "lift": 2.716,
+     "dollar_recall": 0.3901
+    }
+   }
+  },
+  "NM": {
+   "state": "NM",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.123,
+     "lift_over": 2.954,
+     "floor_lift_any": 2.934,
+     "floor_lift_over": 2.692,
+     "precision_any": 0.76,
+     "precision_over": 0.312
+    },
+    "top20": {
+     "lift_any": 2.845,
+     "lift_over": 2.892,
+     "floor_lift_any": 2.399,
+     "floor_lift_over": 2.132,
+     "precision_any": 0.786,
+     "precision_over": 0.354
+    },
+    "ratios_own_definition": {
+     "elderly": 0.201,
+     "disabled": 0.375,
+     "single_parent": 1.546,
+     "married_with_kids": 1.997,
+     "multiadult_with_kids": 1.897,
+     "childless_adult": 1.757,
+     "other": 1.198
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.798,
+     "lift_over": 3.633,
+     "floor_lift_any": 3.402,
+     "floor_lift_over": 3.275,
+     "precision_any": 0.781,
+     "precision_over": 0.427
+    },
+    "top20": {
+     "lift_any": 2.958,
+     "lift_over": 2.842,
+     "floor_lift_any": 2.736,
+     "floor_lift_over": 2.543,
+     "precision_any": 0.786,
+     "precision_over": 0.365
+    },
+    "ratios_own_definition": {
+     "elderly": 0.29,
+     "disabled": 0.708,
+     "single_parent": 1.225,
+     "married_with_kids": 1.583,
+     "multiadult_with_kids": 1.771,
+     "childless_adult": 0.952,
+     "other": 0.354
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 959,
+     "n_flagged": 48,
+     "precision": 0.3542,
+     "base_rate": 0.1575,
+     "lift": 2.249,
+     "dollar_recall": 0.164
+    },
+    "budget10": {
+     "n_te": 959,
+     "n_flagged": 96,
+     "precision": 0.4062,
+     "base_rate": 0.1575,
+     "lift": 2.58,
+     "dollar_recall": 0.3825
+    }
+   }
+  },
+  "NV": {
+   "state": "NV",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.765,
+     "lift_over": 2.77,
+     "floor_lift_any": 3.472,
+     "floor_lift_over": 2.475,
+     "precision_any": 0.614,
+     "precision_over": 0.257
+    },
+    "top20": {
+     "lift_any": 2.972,
+     "lift_over": 2.47,
+     "floor_lift_any": 2.607,
+     "floor_lift_over": 2.027,
+     "precision_any": 0.609,
+     "precision_over": 0.238
+    },
+    "ratios_own_definition": {
+     "elderly": 0.394,
+     "disabled": 0.791,
+     "single_parent": 1.313,
+     "married_with_kids": 1.859,
+     "multiadult_with_kids": 1.772,
+     "childless_adult": 1.401,
+     "other": 0.837
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.054,
+     "lift_over": 3.238,
+     "floor_lift_any": 3.933,
+     "floor_lift_over": 3.285,
+     "precision_any": 0.624,
+     "precision_over": 0.287
+    },
+    "top20": {
+     "lift_any": 2.992,
+     "lift_over": 2.552,
+     "floor_lift_any": 2.673,
+     "floor_lift_over": 2.083,
+     "precision_any": 0.599,
+     "precision_over": 0.238
+    },
+    "ratios_own_definition": {
+     "elderly": 0.513,
+     "disabled": 1.337,
+     "single_parent": 1.238,
+     "married_with_kids": 1.485,
+     "multiadult_with_kids": 2.139,
+     "childless_adult": 0.634,
+     "other": 0.713
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 911,
+     "n_flagged": 46,
+     "precision": 0.3913,
+     "base_rate": 0.0911,
+     "lift": 4.295,
+     "dollar_recall": 0.3206
+    },
+    "budget10": {
+     "n_te": 911,
+     "n_flagged": 91,
+     "precision": 0.2967,
+     "base_rate": 0.0911,
+     "lift": 3.257,
+     "dollar_recall": 0.4687
+    }
+   }
+  },
+  "NY": {
+   "state": "NY",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.275,
+     "lift_over": 4.16,
+     "floor_lift_any": 3.372,
+     "floor_lift_over": 3.132,
+     "precision_any": 0.829,
+     "precision_over": 0.512
+    },
+    "top20": {
+     "lift_any": 3.049,
+     "lift_over": 2.979,
+     "floor_lift_any": 2.549,
+     "floor_lift_over": 2.302,
+     "precision_any": 0.742,
+     "precision_over": 0.368
+    },
+    "ratios_own_definition": {
+     "elderly": 0.538,
+     "disabled": 0.706,
+     "single_parent": 1.431,
+     "married_with_kids": 4.586,
+     "childless_adult": 1.11,
+     "other": 1.559
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.528,
+     "lift_over": 4.528,
+     "floor_lift_any": 3.821,
+     "floor_lift_over": 4.1,
+     "precision_any": 0.72,
+     "precision_over": 0.476
+    },
+    "top20": {
+     "lift_any": 3.011,
+     "lift_over": 3.215,
+     "floor_lift_any": 2.789,
+     "floor_lift_over": 2.888,
+     "precision_any": 0.669,
+     "precision_over": 0.393
+    },
+    "ratios_own_definition": {
+     "elderly": 0.756,
+     "disabled": 0.931,
+     "single_parent": 1.194,
+     "married_with_kids": 2.721,
+     "childless_adult": 0.52,
+     "other": 1.058
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 673,
+     "n_flagged": 34,
+     "precision": 0.7647,
+     "base_rate": 0.1456,
+     "lift": 5.252,
+     "dollar_recall": 0.3671
+    },
+    "budget10": {
+     "n_te": 673,
+     "n_flagged": 67,
+     "precision": 0.5821,
+     "base_rate": 0.1456,
+     "lift": 3.997,
+     "dollar_recall": 0.5838
+    }
+   }
+  },
+  "OH": {
+   "state": "OH",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.634,
+     "lift_over": 3.587,
+     "floor_lift_any": 2.637,
+     "floor_lift_over": 2.625,
+     "precision_any": 0.621,
+     "precision_over": 0.264
+    },
+    "top20": {
+     "lift_any": 2.984,
+     "lift_over": 2.931,
+     "floor_lift_any": 2.451,
+     "floor_lift_over": 2.335,
+     "precision_any": 0.586,
+     "precision_over": 0.241
+    },
+    "ratios_own_definition": {
+     "elderly": 0.345,
+     "disabled": 0.666,
+     "single_parent": 1.707,
+     "married_with_kids": 3.61,
+     "multiadult_with_kids": 2.182,
+     "childless_adult": 1.441,
+     "other": 0.63
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.336,
+     "lift_over": 3.436,
+     "floor_lift_any": 3.09,
+     "floor_lift_over": 3.235,
+     "precision_any": 0.54,
+     "precision_over": 0.276
+    },
+    "top20": {
+     "lift_any": 2.702,
+     "lift_over": 2.748,
+     "floor_lift_any": 2.493,
+     "floor_lift_over": 2.56,
+     "precision_any": 0.511,
+     "precision_over": 0.236
+    },
+    "ratios_own_definition": {
+     "elderly": 0.502,
+     "disabled": 0.878,
+     "single_parent": 1.312,
+     "married_with_kids": 3.106,
+     "multiadult_with_kids": 1.08,
+     "childless_adult": 0.468,
+     "other": 1.08
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 895,
+     "n_flagged": 45,
+     "precision": 0.2667,
+     "base_rate": 0.1017,
+     "lift": 2.623,
+     "dollar_recall": 0.2
+    },
+    "budget10": {
+     "n_te": 895,
+     "n_flagged": 90,
+     "precision": 0.2667,
+     "base_rate": 0.1017,
+     "lift": 2.623,
+     "dollar_recall": 0.4246
+    }
+   }
+  },
+  "OK": {
+   "state": "OK",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.554,
+     "lift_over": 2.68,
+     "floor_lift_any": 3.628,
+     "floor_lift_over": 2.663,
+     "precision_any": 0.823,
+     "precision_over": 0.406
+    },
+    "top20": {
+     "lift_any": 2.529,
+     "lift_over": 1.924,
+     "floor_lift_any": 2.472,
+     "floor_lift_over": 1.958,
+     "precision_any": 0.764,
+     "precision_over": 0.33
+    },
+    "ratios_own_definition": {
+     "elderly": 0.195,
+     "disabled": 0.452,
+     "single_parent": 1.794,
+     "married_with_kids": 2.291,
+     "childless_adult": 1.208,
+     "other": 1.386
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.429,
+     "lift_over": 3.181,
+     "floor_lift_any": 3.304,
+     "floor_lift_over": 2.939,
+     "precision_any": 0.729,
+     "precision_over": 0.406
+    },
+    "top20": {
+     "lift_any": 2.525,
+     "lift_over": 2.436,
+     "floor_lift_any": 2.393,
+     "floor_lift_over": 2.431,
+     "precision_any": 0.681,
+     "precision_over": 0.361
+    },
+    "ratios_own_definition": {
+     "elderly": 0.273,
+     "disabled": 0.654,
+     "single_parent": 1.731,
+     "married_with_kids": 1.809,
+     "childless_adult": 0.403,
+     "other": 1.319
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 873,
+     "n_flagged": 44,
+     "precision": 0.6364,
+     "base_rate": 0.1592,
+     "lift": 3.997,
+     "dollar_recall": 0.3375
+    },
+    "budget10": {
+     "n_te": 873,
+     "n_flagged": 87,
+     "precision": 0.4713,
+     "base_rate": 0.1592,
+     "lift": 2.96,
+     "dollar_recall": 0.4155
+    }
+   }
+  },
+  "OR": {
+   "state": "OR",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.126,
+     "lift_over": 4.098,
+     "floor_lift_any": 3.968,
+     "floor_lift_over": 4.029,
+     "precision_any": 0.671,
+     "precision_over": 0.461
+    },
+    "top20": {
+     "lift_any": 2.946,
+     "lift_over": 2.883,
+     "floor_lift_any": 2.672,
+     "floor_lift_over": 2.557,
+     "precision_any": 0.671,
+     "precision_over": 0.382
+    },
+    "ratios_own_definition": {
+     "elderly": 0.47,
+     "disabled": 0.459,
+     "single_parent": 1.545,
+     "married_with_kids": 2.823,
+     "childless_adult": 1.237,
+     "other": 1.641
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.369,
+     "lift_over": 4.334,
+     "floor_lift_any": 4.057,
+     "floor_lift_over": 4.0,
+     "precision_any": 0.724,
+     "precision_over": 0.474
+    },
+    "top20": {
+     "lift_any": 3.03,
+     "lift_over": 3.004,
+     "floor_lift_any": 2.861,
+     "floor_lift_over": 2.797,
+     "precision_any": 0.658,
+     "precision_over": 0.382
+    },
+    "ratios_own_definition": {
+     "elderly": 0.464,
+     "disabled": 0.716,
+     "single_parent": 1.622,
+     "married_with_kids": 2.355,
+     "childless_adult": 0.812,
+     "other": 1.35
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 823,
+     "n_flagged": 41,
+     "precision": 0.5854,
+     "base_rate": 0.1507,
+     "lift": 3.885,
+     "dollar_recall": 0.2903
+    },
+    "budget10": {
+     "n_te": 823,
+     "n_flagged": 82,
+     "precision": 0.4878,
+     "base_rate": 0.1507,
+     "lift": 3.238,
+     "dollar_recall": 0.4715
+    }
+   }
+  },
+  "PA": {
+   "state": "PA",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.67,
+     "lift_over": 3.548,
+     "floor_lift_any": 3.336,
+     "floor_lift_over": 3.066,
+     "precision_any": 0.695,
+     "precision_over": 0.354
+    },
+    "top20": {
+     "lift_any": 2.696,
+     "lift_over": 2.582,
+     "floor_lift_any": 2.692,
+     "floor_lift_over": 2.458,
+     "precision_any": 0.681,
+     "precision_over": 0.27
+    },
+    "ratios_own_definition": {
+     "elderly": 0.425,
+     "disabled": 0.682,
+     "single_parent": 1.829,
+     "married_with_kids": 2.712,
+     "multiadult_with_kids": 2.048,
+     "childless_adult": 2.044,
+     "other": 1.071
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.552,
+     "lift_over": 3.427,
+     "floor_lift_any": 3.412,
+     "floor_lift_over": 3.275,
+     "precision_any": 0.695,
+     "precision_over": 0.341
+    },
+    "top20": {
+     "lift_any": 2.751,
+     "lift_over": 2.621,
+     "floor_lift_any": 2.285,
+     "floor_lift_over": 2.184,
+     "precision_any": 0.638,
+     "precision_over": 0.276
+    },
+    "ratios_own_definition": {
+     "elderly": 0.578,
+     "disabled": 0.824,
+     "single_parent": 1.866,
+     "married_with_kids": 1.974,
+     "multiadult_with_kids": 1.566,
+     "childless_adult": 0.718,
+     "other": 0.239
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 760,
+     "n_flagged": 38,
+     "precision": 0.5526,
+     "base_rate": 0.1434,
+     "lift": 3.853,
+     "dollar_recall": 0.3103
+    },
+    "budget10": {
+     "n_te": 760,
+     "n_flagged": 76,
+     "precision": 0.4211,
+     "base_rate": 0.1434,
+     "lift": 2.936,
+     "dollar_recall": 0.4613
+    }
+   }
+  },
+  "RI": {
+   "state": "RI",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.048,
+     "lift_over": 3.157,
+     "floor_lift_any": 3.048,
+     "floor_lift_over": 3.162,
+     "precision_any": 0.756,
+     "precision_over": 0.465
+    },
+    "top20": {
+     "lift_any": 2.513,
+     "lift_over": 2.497,
+     "floor_lift_any": 2.367,
+     "floor_lift_over": 2.35,
+     "precision_any": 0.738,
+     "precision_over": 0.401
+    },
+    "ratios_own_definition": {
+     "elderly": 0.265,
+     "disabled": 0.723,
+     "single_parent": 2.435,
+     "childless_adult": 1.774,
+     "other": 2.395
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.135,
+     "lift_over": 3.252,
+     "floor_lift_any": 3.218,
+     "floor_lift_over": 3.415,
+     "precision_any": 0.756,
+     "precision_over": 0.465
+    },
+    "top20": {
+     "lift_any": 2.517,
+     "lift_over": 2.535,
+     "floor_lift_any": 2.34,
+     "floor_lift_over": 2.459,
+     "precision_any": 0.692,
+     "precision_over": 0.407
+    },
+    "ratios_own_definition": {
+     "elderly": 0.307,
+     "disabled": 0.751,
+     "single_parent": 1.725,
+     "childless_adult": 0.994,
+     "other": 2.515
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 933,
+     "n_flagged": 47,
+     "precision": 0.7021,
+     "base_rate": 0.1801,
+     "lift": 3.899,
+     "dollar_recall": 0.2893
+    },
+    "budget10": {
+     "n_te": 933,
+     "n_flagged": 93,
+     "precision": 0.5376,
+     "base_rate": 0.1801,
+     "lift": 2.986,
+     "dollar_recall": 0.3939
+    }
+   }
+  },
+  "SC": {
+   "state": "SC",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.602,
+     "lift_over": 3.37,
+     "floor_lift_any": 3.464,
+     "floor_lift_over": 3.207,
+     "precision_any": 0.702,
+     "precision_over": 0.34
+    },
+    "top20": {
+     "lift_any": 2.626,
+     "lift_over": 2.461,
+     "floor_lift_any": 2.473,
+     "floor_lift_over": 2.059,
+     "precision_any": 0.647,
+     "precision_over": 0.31
+    },
+    "ratios_own_definition": {
+     "elderly": 0.275,
+     "disabled": 0.574,
+     "single_parent": 1.687,
+     "married_with_kids": 3.131,
+     "multiadult_with_kids": 2.946,
+     "childless_adult": 1.057,
+     "other": 2.266
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.592,
+     "lift_over": 3.767,
+     "floor_lift_any": 3.198,
+     "floor_lift_over": 3.047,
+     "precision_any": 0.67,
+     "precision_over": 0.372
+    },
+    "top20": {
+     "lift_any": 2.525,
+     "lift_over": 2.652,
+     "floor_lift_any": 2.712,
+     "floor_lift_over": 2.512,
+     "precision_any": 0.578,
+     "precision_over": 0.305
+    },
+    "ratios_own_definition": {
+     "elderly": 0.325,
+     "disabled": 0.789,
+     "single_parent": 1.446,
+     "married_with_kids": 2.804,
+     "multiadult_with_kids": 1.792,
+     "childless_adult": 0.311,
+     "other": 0.738
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 828,
+     "n_flagged": 41,
+     "precision": 0.4146,
+     "base_rate": 0.1329,
+     "lift": 3.121,
+     "dollar_recall": 0.237
+    },
+    "budget10": {
+     "n_te": 828,
+     "n_flagged": 83,
+     "precision": 0.3494,
+     "base_rate": 0.1329,
+     "lift": 2.63,
+     "dollar_recall": 0.3482
+    }
+   }
+  },
+  "SD": {
+   "state": "SD",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.59,
+     "lift_over": 1.572,
+     "floor_lift_any": 1.6,
+     "floor_lift_over": 0.711,
+     "precision_any": 0.525,
+     "precision_over": 0.102
+    },
+    "top20": {
+     "lift_any": 2.816,
+     "lift_over": 1.961,
+     "floor_lift_any": 2.504,
+     "floor_lift_over": 1.726,
+     "precision_any": 0.568,
+     "precision_over": 0.144
+    },
+    "ratios_own_definition": {
+     "elderly": 0.407,
+     "disabled": 0.595,
+     "single_parent": 1.904,
+     "multiadult_with_kids": 2.061,
+     "child_only": 0.985,
+     "childless_adult": 1.073,
+     "other": 1.486
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.218,
+     "lift_over": 2.345,
+     "floor_lift_any": 3.195,
+     "floor_lift_over": 2.714,
+     "precision_any": 0.492,
+     "precision_over": 0.136
+    },
+    "top20": {
+     "lift_any": 2.532,
+     "lift_over": 2.249,
+     "floor_lift_any": 2.353,
+     "floor_lift_over": 1.875,
+     "precision_any": 0.458,
+     "precision_over": 0.144
+    },
+    "ratios_own_definition": {
+     "elderly": 0.78,
+     "disabled": 0.668,
+     "single_parent": 1.276,
+     "multiadult_with_kids": 2.859,
+     "child_only": 0.947,
+     "childless_adult": 0.248,
+     "other": 2.079
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 590,
+     "n_flagged": 30,
+     "precision": 0.1,
+     "base_rate": 0.0492,
+     "lift": 2.034,
+     "dollar_recall": 0.0592
+    },
+    "budget10": {
+     "n_te": 590,
+     "n_flagged": 59,
+     "precision": 0.1186,
+     "base_rate": 0.0492,
+     "lift": 2.414,
+     "dollar_recall": 0.2302
+    }
+   }
+  },
+  "TN": {
+   "state": "TN",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.489,
+     "lift_over": 2.965,
+     "floor_lift_any": 2.741,
+     "floor_lift_over": 2.673,
+     "precision_any": 0.705,
+     "precision_over": 0.284
+    },
+    "top20": {
+     "lift_any": 2.388,
+     "lift_over": 2.111,
+     "floor_lift_any": 2.094,
+     "floor_lift_over": 1.786,
+     "precision_any": 0.611,
+     "precision_over": 0.226
+    },
+    "ratios_own_definition": {
+     "elderly": 0.37,
+     "disabled": 0.62,
+     "single_parent": 1.928,
+     "married_with_kids": 2.808,
+     "childless_adult": 1.234,
+     "other": 2.365
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.299,
+     "lift_over": 3.236,
+     "floor_lift_any": 2.956,
+     "floor_lift_over": 2.909,
+     "precision_any": 0.611,
+     "precision_over": 0.326
+    },
+    "top20": {
+     "lift_any": 2.232,
+     "lift_over": 2.019,
+     "floor_lift_any": 2.175,
+     "floor_lift_over": 2.026,
+     "precision_any": 0.511,
+     "precision_over": 0.216
+    },
+    "ratios_own_definition": {
+     "elderly": 0.453,
+     "disabled": 0.956,
+     "single_parent": 1.367,
+     "married_with_kids": 3.012,
+     "childless_adult": 0.287,
+     "other": 1.649
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 938,
+     "n_flagged": 47,
+     "precision": 0.4043,
+     "base_rate": 0.0991,
+     "lift": 4.077,
+     "dollar_recall": 0.2596
+    },
+    "budget10": {
+     "n_te": 938,
+     "n_flagged": 94,
+     "precision": 0.266,
+     "base_rate": 0.0991,
+     "lift": 2.682,
+     "dollar_recall": 0.3287
+    }
+   }
+  },
+  "TX": {
+   "state": "TX",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.904,
+     "lift_over": 2.679,
+     "floor_lift_any": 1.871,
+     "floor_lift_over": 1.477,
+     "precision_any": 0.826,
+     "precision_over": 0.349
+    },
+    "top20": {
+     "lift_any": 2.209,
+     "lift_over": 1.815,
+     "floor_lift_any": 1.827,
+     "floor_lift_over": 1.541,
+     "precision_any": 0.757,
+     "precision_over": 0.254
+    },
+    "ratios_own_definition": {
+     "elderly": 0.207,
+     "disabled": 0.608,
+     "single_parent": 1.79,
+     "married_with_kids": 2.061,
+     "child_only": 1.362,
+     "childless_adult": 0.738,
+     "other": 2.029
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.784,
+     "lift_over": 2.693,
+     "floor_lift_any": 1.749,
+     "floor_lift_over": 1.667,
+     "precision_any": 0.709,
+     "precision_over": 0.36
+    },
+    "top20": {
+     "lift_any": 2.437,
+     "lift_over": 2.404,
+     "floor_lift_any": 1.917,
+     "floor_lift_over": 1.751,
+     "precision_any": 0.728,
+     "precision_over": 0.329
+    },
+    "ratios_own_definition": {
+     "elderly": 0.166,
+     "disabled": 1.106,
+     "single_parent": 1.634,
+     "married_with_kids": 2.235,
+     "child_only": 0.813,
+     "childless_adult": 0.19,
+     "other": 1.761
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 832,
+     "n_flagged": 42,
+     "precision": 0.4048,
+     "base_rate": 0.149,
+     "lift": 2.716,
+     "dollar_recall": 0.2069
+    },
+    "budget10": {
+     "n_te": 832,
+     "n_flagged": 83,
+     "precision": 0.3012,
+     "base_rate": 0.149,
+     "lift": 2.021,
+     "dollar_recall": 0.2654
+    }
+   }
+  },
+  "UT": {
+   "state": "UT",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.105,
+     "lift_over": 1.385,
+     "floor_lift_any": 1.605,
+     "floor_lift_over": 1.071,
+     "precision_any": 0.631,
+     "precision_over": 0.126
+    },
+    "top20": {
+     "lift_any": 2.171,
+     "lift_over": 1.556,
+     "floor_lift_any": 1.621,
+     "floor_lift_over": 1.047,
+     "precision_any": 0.663,
+     "precision_over": 0.141
+    },
+    "ratios_own_definition": {
+     "elderly": 0.301,
+     "disabled": 0.548,
+     "single_parent": 1.548,
+     "married_with_kids": 1.981,
+     "multiadult_with_kids": 1.735,
+     "child_only": 0.822,
+     "childless_adult": 0.697
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.089,
+     "lift_over": 1.855,
+     "floor_lift_any": 1.59,
+     "floor_lift_over": 1.71,
+     "precision_any": 0.602,
+     "precision_over": 0.165
+    },
+    "top20": {
+     "lift_any": 2.583,
+     "lift_over": 2.006,
+     "floor_lift_any": 1.829,
+     "floor_lift_over": 1.509,
+     "precision_any": 0.6,
+     "precision_over": 0.18
+    },
+    "ratios_own_definition": {
+     "elderly": 0.448,
+     "disabled": 0.957,
+     "single_parent": 1.327,
+     "married_with_kids": 1.741,
+     "multiadult_with_kids": 1.279,
+     "child_only": 1.493,
+     "childless_adult": 0.151
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 982,
+     "n_flagged": 49,
+     "precision": 0.0816,
+     "base_rate": 0.0438,
+     "lift": 1.864,
+     "dollar_recall": 0.1053
+    },
+    "budget10": {
+     "n_te": 982,
+     "n_flagged": 98,
+     "precision": 0.102,
+     "base_rate": 0.0438,
+     "lift": 2.33,
+     "dollar_recall": 0.3086
+    }
+   }
+  },
+  "VA": {
+   "state": "VA",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.308,
+     "lift_over": 3.224,
+     "floor_lift_any": 2.412,
+     "floor_lift_over": 2.376,
+     "precision_any": 0.743,
+     "precision_over": 0.365
+    },
+    "top20": {
+     "lift_any": 2.634,
+     "lift_over": 2.615,
+     "floor_lift_any": 2.173,
+     "floor_lift_over": 2.107,
+     "precision_any": 0.735,
+     "precision_over": 0.34
+    },
+    "ratios_own_definition": {
+     "elderly": 0.485,
+     "disabled": 0.46,
+     "single_parent": 1.56,
+     "married_with_kids": 2.115,
+     "childless_adult": 0.862,
+     "other": 1.861
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.256,
+     "lift_over": 3.187,
+     "floor_lift_any": 2.834,
+     "floor_lift_over": 2.82,
+     "precision_any": 0.784,
+     "precision_over": 0.365
+    },
+    "top20": {
+     "lift_any": 2.525,
+     "lift_over": 2.526,
+     "floor_lift_any": 2.28,
+     "floor_lift_over": 2.306,
+     "precision_any": 0.694,
+     "precision_over": 0.32
+    },
+    "ratios_own_definition": {
+     "elderly": 0.577,
+     "disabled": 0.763,
+     "single_parent": 1.197,
+     "married_with_kids": 1.886,
+     "childless_adult": 0.513,
+     "other": 1.422
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 695,
+     "n_flagged": 35,
+     "precision": 0.4286,
+     "base_rate": 0.1698,
+     "lift": 2.524,
+     "dollar_recall": 0.1838
+    },
+    "budget10": {
+     "n_te": 695,
+     "n_flagged": 70,
+     "precision": 0.4286,
+     "base_rate": 0.1698,
+     "lift": 2.524,
+     "dollar_recall": 0.3257
+    }
+   }
+  },
+  "VI": {
+   "state": "VI",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.596,
+     "lift_over": 3.334,
+     "floor_lift_any": 4.775,
+     "floor_lift_over": 4.088,
+     "precision_any": 0.8,
+     "precision_over": 0.48
+    },
+    "top20": {
+     "lift_any": 3.004,
+     "lift_over": 2.366,
+     "floor_lift_any": 3.247,
+     "floor_lift_over": 2.588,
+     "precision_any": 0.7,
+     "precision_over": 0.36
+    },
+    "ratios_own_definition": {
+     "elderly": 0.244,
+     "single_parent": 1.915,
+     "childless_adult": 1.145,
+     "other": 0.988
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.58,
+     "lift_over": 3.374,
+     "floor_lift_any": 4.54,
+     "floor_lift_over": 3.374,
+     "precision_any": 0.84,
+     "precision_over": 0.48
+    },
+    "top20": {
+     "lift_any": 2.777,
+     "lift_over": 2.113,
+     "floor_lift_any": 3.234,
+     "floor_lift_over": 2.439,
+     "precision_any": 0.66,
+     "precision_over": 0.34
+    },
+    "ratios_own_definition": {
+     "elderly": 0.48,
+     "single_parent": 1.867,
+     "childless_adult": 0.667,
+     "other": 0.733
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 259,
+     "n_flagged": 13,
+     "precision": 0.3846,
+     "base_rate": 0.0811,
+     "lift": 4.744,
+     "dollar_recall": 0.362
+    },
+    "budget10": {
+     "n_te": 259,
+     "n_flagged": 26,
+     "precision": 0.2692,
+     "base_rate": 0.0811,
+     "lift": 3.321,
+     "dollar_recall": 0.4194
+    }
+   }
+  },
+  "VT": {
+   "state": "VT",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.091,
+     "lift_over": 2.765,
+     "floor_lift_any": 2.99,
+     "floor_lift_over": 2.551,
+     "precision_any": 0.618,
+     "precision_over": 0.191
+    },
+    "top20": {
+     "lift_any": 2.703,
+     "lift_over": 2.256,
+     "floor_lift_any": 2.477,
+     "floor_lift_over": 2.092,
+     "precision_any": 0.662,
+     "precision_over": 0.162
+    },
+    "ratios_own_definition": {
+     "elderly": 0.581,
+     "disabled": 1.111,
+     "single_parent": 1.797,
+     "childless_adult": 1.44,
+     "other": 2.236
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.541,
+     "lift_over": 2.337,
+     "floor_lift_any": 3.378,
+     "floor_lift_over": 3.149,
+     "precision_any": 0.574,
+     "precision_over": 0.221
+    },
+    "top20": {
+     "lift_any": 2.589,
+     "lift_over": 2.753,
+     "floor_lift_any": 2.58,
+     "floor_lift_over": 2.569,
+     "precision_any": 0.544,
+     "precision_over": 0.191
+    },
+    "ratios_own_definition": {
+     "elderly": 0.892,
+     "disabled": 1.311,
+     "single_parent": 0.989,
+     "childless_adult": 0.338,
+     "other": 1.498
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 631,
+     "n_flagged": 32,
+     "precision": 0.1562,
+     "base_rate": 0.0634,
+     "lift": 2.465,
+     "dollar_recall": 0.1251
+    },
+    "budget10": {
+     "n_te": 631,
+     "n_flagged": 63,
+     "precision": 0.2063,
+     "base_rate": 0.0634,
+     "lift": 3.255,
+     "dollar_recall": 0.3236
+    }
+   }
+  },
+  "WA": {
+   "state": "WA",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 4.773,
+     "lift_over": 4.567,
+     "floor_lift_any": 4.272,
+     "floor_lift_over": 4.053,
+     "precision_any": 0.671,
+     "precision_over": 0.434
+    },
+    "top20": {
+     "lift_any": 3.666,
+     "lift_over": 3.377,
+     "floor_lift_any": 3.314,
+     "floor_lift_over": 3.077,
+     "precision_any": 0.595,
+     "precision_over": 0.333
+    },
+    "ratios_own_definition": {
+     "elderly": 0.419,
+     "disabled": 0.543,
+     "single_parent": 1.92,
+     "married_with_kids": 1.877,
+     "childless_adult": 1.404,
+     "other": 1.777
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 4.732,
+     "lift_over": 4.565,
+     "floor_lift_any": 4.681,
+     "floor_lift_over": 4.389,
+     "precision_any": 0.618,
+     "precision_over": 0.395
+    },
+    "top20": {
+     "lift_any": 3.503,
+     "lift_over": 3.346,
+     "floor_lift_any": 3.217,
+     "floor_lift_over": 3.165,
+     "precision_any": 0.503,
+     "precision_over": 0.307
+    },
+    "ratios_own_definition": {
+     "elderly": 0.364,
+     "disabled": 0.756,
+     "single_parent": 2.888,
+     "married_with_kids": 2.355,
+     "childless_adult": 0.614,
+     "other": 1.613
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 678,
+     "n_flagged": 34,
+     "precision": 0.4412,
+     "base_rate": 0.09,
+     "lift": 4.904,
+     "dollar_recall": 0.3725
+    },
+    "budget10": {
+     "n_te": 678,
+     "n_flagged": 68,
+     "precision": 0.3382,
+     "base_rate": 0.09,
+     "lift": 3.759,
+     "dollar_recall": 0.509
+    }
+   }
+  },
+  "WI": {
+   "state": "WI",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.317,
+     "lift_over": 2.937,
+     "floor_lift_any": 3.286,
+     "floor_lift_over": 2.774,
+     "precision_any": 0.626,
+     "precision_over": 0.222
+    },
+    "top20": {
+     "lift_any": 2.804,
+     "lift_over": 2.54,
+     "floor_lift_any": 2.395,
+     "floor_lift_over": 2.101,
+     "precision_any": 0.623,
+     "precision_over": 0.201
+    },
+    "ratios_own_definition": {
+     "elderly": 0.285,
+     "disabled": 0.465,
+     "single_parent": 1.936,
+     "married_with_kids": 2.002,
+     "multiadult_with_kids": 1.811,
+     "childless_adult": 1.372,
+     "other": 0.91
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.487,
+     "lift_over": 2.982,
+     "floor_lift_any": 2.945,
+     "floor_lift_over": 2.58,
+     "precision_any": 0.606,
+     "precision_over": 0.212
+    },
+    "top20": {
+     "lift_any": 2.654,
+     "lift_over": 2.544,
+     "floor_lift_any": 2.857,
+     "floor_lift_over": 2.45,
+     "precision_any": 0.548,
+     "precision_over": 0.196
+    },
+    "ratios_own_definition": {
+     "elderly": 0.344,
+     "disabled": 0.91,
+     "single_parent": 1.006,
+     "married_with_kids": 3.899,
+     "multiadult_with_kids": 2.437,
+     "childless_adult": 0.678,
+     "other": 1.462
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 979,
+     "n_flagged": 49,
+     "precision": 0.1837,
+     "base_rate": 0.0603,
+     "lift": 3.048,
+     "dollar_recall": 0.3127
+    },
+    "budget10": {
+     "n_te": 979,
+     "n_flagged": 98,
+     "precision": 0.1224,
+     "base_rate": 0.0603,
+     "lift": 2.032,
+     "dollar_recall": 0.3852
+    }
+   }
+  },
+  "WV": {
+   "state": "WV",
+   "variant": "C_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 3.236,
+     "lift_over": 2.576,
+     "floor_lift_any": 2.174,
+     "floor_lift_over": 1.877,
+     "precision_any": 0.659,
+     "precision_over": 0.305
+    },
+    "top20": {
+     "lift_any": 2.49,
+     "lift_over": 2.108,
+     "floor_lift_any": 2.348,
+     "floor_lift_over": 1.77,
+     "precision_any": 0.613,
+     "precision_over": 0.264
+    },
+    "ratios_own_definition": {
+     "elderly": 0.354,
+     "disabled": 0.557,
+     "single_parent": 1.69,
+     "married_with_kids": 3.084,
+     "multiadult_with_kids": 2.209,
+     "childless_adult": 1.947,
+     "other": 0.0
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 3.506,
+     "lift_over": 4.127,
+     "floor_lift_any": 2.975,
+     "floor_lift_over": 3.657,
+     "precision_any": 0.573,
+     "precision_over": 0.415
+    },
+    "top20": {
+     "lift_any": 2.267,
+     "lift_over": 2.82,
+     "floor_lift_any": 2.411,
+     "floor_lift_over": 2.983,
+     "precision_any": 0.515,
+     "precision_over": 0.337
+    },
+    "ratios_own_definition": {
+     "elderly": 0.583,
+     "disabled": 0.531,
+     "single_parent": 1.505,
+     "married_with_kids": 2.181,
+     "multiadult_with_kids": 2.019,
+     "childless_adult": 0.982
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 643,
+     "n_flagged": 32,
+     "precision": 0.1875,
+     "base_rate": 0.0715,
+     "lift": 2.621,
+     "dollar_recall": 0.2306
+    },
+    "budget10": {
+     "n_te": 643,
+     "n_flagged": 64,
+     "precision": 0.1562,
+     "base_rate": 0.0715,
+     "lift": 2.184,
+     "dollar_recall": 0.2963
+    }
+   }
+  },
+  "WY": {
+   "state": "WY",
+   "variant": "B_ctx",
+   "ANY": {
+    "top10": {
+     "lift_any": 2.109,
+     "lift_over": 1.905,
+     "floor_lift_any": 1.904,
+     "floor_lift_over": 1.905,
+     "precision_any": 0.567,
+     "precision_over": 0.2
+    },
+    "top20": {
+     "lift_any": 1.982,
+     "lift_over": 1.635,
+     "floor_lift_any": 1.365,
+     "floor_lift_over": 0.953,
+     "precision_any": 0.492,
+     "precision_over": 0.153
+    },
+    "ratios_own_definition": {
+     "elderly": 0.27,
+     "disabled": 0.37,
+     "single_parent": 1.245,
+     "childless_adult": 0.856,
+     "other": 3.195
+    }
+   },
+   "OVER": {
+    "top10": {
+     "lift_any": 2.728,
+     "lift_over": 2.824,
+     "floor_lift_any": 1.285,
+     "floor_lift_over": 1.113,
+     "precision_any": 0.467,
+     "precision_over": 0.233
+    },
+    "top20": {
+     "lift_any": 1.864,
+     "lift_over": 1.635,
+     "floor_lift_any": 1.657,
+     "floor_lift_over": 1.376,
+     "precision_any": 0.441,
+     "precision_over": 0.153
+    },
+    "ratios_own_definition": {
+     "disabled": 0.424,
+     "single_parent": 1.029,
+     "childless_adult": 0.282,
+     "other": 1.589
+    }
+   },
+   "D1_OVER": {
+    "budget05": {
+     "n_te": 266,
+     "n_flagged": 13,
+     "precision": 0.1538,
+     "base_rate": 0.0752,
+     "lift": 2.046,
+     "dollar_recall": 0.1851
+    },
+    "budget10": {
+     "n_te": 266,
+     "n_flagged": 27,
+     "precision": 0.1852,
+     "base_rate": 0.0752,
+     "lift": 2.463,
+     "dollar_recall": 0.2847
+    }
+   }
+  }
+ }
+}
