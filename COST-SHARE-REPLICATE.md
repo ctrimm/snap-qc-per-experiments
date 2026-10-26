@@ -1,6 +1,8 @@
 # Replicating the FY2028 cost-share figure
 
-The headline: ranker-guided reviews, with the fairness floor on, would avoid an estimated **$6.05B a year** of FY2028 SNAP state cost share across all 53 jurisdictions. That is the central scenario. Random reviews of the same volume would avoid $1.03B. This guide shows how to reproduce that number, how to get one state's figure, and how to run the calculation for any state with its own inputs.
+> **Corrected October 26, 2026.** The figures below are from the leak-free rebuild (exp107). The earlier headline of $6.05B used ranking models whose inputs let them partly see errors: the issued benefit beside QC reviewers' recorded values (exp106).
+
+The headline: ranker-guided reviews, with the fairness floor on, would avoid an estimated **$3.42B a year** of FY2028 SNAP state cost share across all 53 jurisdictions. That is the central scenario. Random reviews of the same volume would avoid $1.03B. This guide shows how to reproduce that number, how to get one state's figure, and how to run the calculation for any state with its own inputs.
 
 Source experiment: [exp93](experiments/exp93_cost_share_current_models.md), which reran [exp69](experiments/exp69_cost_share_scenarios.md)'s scenario model on the deployed rankers. It is a scenario model, not a forecast. Quote the range, not the central figure alone.
 
@@ -17,15 +19,15 @@ Expected national output:
 
 | Scenario | Ranker, floor on | Random reviews |
 |---|---|---|
-| Low | $0.39B | $0.16B |
-| **Central** | **$6.05B** | $1.03B |
-| High | $10.06B | $2.39B |
-| Central, top-20% lift basis (conservative) | $4.06B | — |
+| Low | $0.21B | $0.16B |
+| **Central** | **$3.42B** | $1.03B |
+| High | $6.63B | $2.39B |
+| Central, top-20% lift basis (conservative) | $2.79B | — |
 
 That is out of **$10.56B a year** the 53 jurisdictions would owe at FY2028 rules on their FY2025 error rates.
 
 The script reads three committed files and fits no models:
-- `experiments/exp93_results.json`: per-state lifts, benefits and caseloads;
+- `experiments/exp93_leakfree_results.json`: per-state lifts, benefits and caseloads (leak-free, exp107; the published pre-exp106 version is `exp93_results.json`);
 - `experiments/exp69_published_per.json`: official FY2025 error rates;
 - the scenario parameters below.
 
@@ -98,7 +100,7 @@ Staffing is 30 minutes a review and 140 productive hours per FTE-month:
 | PER per state | Official FY2025 rates (national 10.62%) | USDA FNA, [FY2025 PER PDF](https://www.fna.usda.gov/sites/default/files/resource-files/snap-qcfy25-per.pdf) (dated June 24, 2026), transcribed in `experiments/exp69_published_per.json` |
 | Annual benefits | Σ FYWGT × RAWBEN × 12 over each state's FY2024 QC records ($91.0B nationally) | `qc_pub_fy2024.csv` from [snapqcdata.net/datafiles](https://snapqcdata.net/datafiles) |
 | Households | Σ FYWGT over the same records | same file |
-| Lift L | Each state's deployed ranker, fairness floor on, measured on its own held-out QC cases (exp93; median top-10% lift 6.17×, top-20% 3.93×) | `experiments/exp93_results.json` → `measured.<STATE>.top10.floor_lift` / `top20.floor_lift` |
+| Lift L | Each state's deployed ranker, fairness floor on, measured on its own held-out QC cases (exp93 design, leak-free; median top-10% lift 2.93×, top-20% 2.42×) | `experiments/exp93_leakfree_results.json` → `measured.<STATE>.top10.floor_lift` / `top20.floor_lift` |
 
 ## Worked example: Pennsylvania (central scenario)
 
@@ -108,15 +110,15 @@ Staffing is 30 minutes a review and 140 productive hours per FTE-month:
 | Share now | 8–10% bracket | 10% |
 | Annual benefits | FY2024 QC microdata | $4.18B |
 | Cost share now | 10% × $4.18B | $418M a year |
-| Lift (floor on, top 10%) | exp93 | 6.52× |
-| c | 0.02 × 6.52 × 0.8 | 0.1043 |
-| PER after | 9.21 / (1 + 0.1043 × 6) | 5.66% |
+| Lift (floor on, top 10%) | exp93 design, leak-free | 3.34× |
+| c | 0.02 × 3.34 × 0.8 | 0.0534 |
+| PER after | 9.21 / (1 + 0.0534 × 6) | 6.98% |
 | Share after | under 6% | 0% |
-| **Avoided** | (10% − 0%) × $4.18B | **$418M a year** |
+| **Avoided** | (10% − 5%) × $4.18B | **$209M a year** |
 | Random reviews, same volume | 9.21 / (1 + 0.02 × 1 × 0.8 × 6) = 8.40% | still 10%, $0 avoided |
 | Effort | 2% × 1.05M households | about 21,000 reviews a month, 75 FTEs |
 
-The same steps for California: 10.93% → 7.25%, the share drops from 15% to 5%, and it avoids **$1.19B a year**.
+The same steps for California: 10.93% → 8.50%, the share drops from 15% to 10%, and it avoids **$596M a year**. Random reviews of the same volume also take California just under 10% (9.97%), so in its central scenario the ranking adds nothing over random review; it matters at lower review volumes or for the next bracket.
 
 ## Any state
 
@@ -134,7 +136,7 @@ python3 experiments/cost_share_replicate.py --state PA --per 8.7 --benefits 4.3e
 
 Any flag left out keeps the committed value. `--R` overrides all three scenarios; the other scenario parameters stay as set.
 
-**Without a trained ranker.** The script uses the 53-jurisdiction median floor-on lift (6.17× top 10%, 3.93× top 20%):
+**Without a trained ranker.** The script uses the 53-jurisdiction median floor-on lift (2.93× top 10%, 2.42× top 20%):
 
 ```bash
 python3 experiments/cost_share_replicate.py --state XX --per 9.5 --benefits 2.0e9 --households 500000
@@ -152,7 +154,7 @@ avoided   = (share(PER) - share(PER_after)) * benefits
 
 ## Full rebuild from raw data
 
-This reproduces the lifts in `exp93_results.json` instead of reading them.
+This reproduces the lifts in `exp93_leakfree_results.json` instead of reading them (leak-free is the default; `SNAPQC_FEATURES=legacy` reproduces the published `exp93_results.json`).
 
 1. **Data:** download the FY2020–FY2024 SNAP QC public-use CSVs from [snapqcdata.net/datafiles](https://snapqcdata.net/datafiles) into `../snap-qc-data/raw/qcfy20XX_csv/`. The folder names are what the code expects.
 2. **Holdouts and rankers:** the held-out cases are fixed in `experiments/exp68_holdouts.json` (25% per state, stratified, seed 68 + state code). The adopted model per state is recorded in `exp80_results.json` and `exp82_results.json`.
@@ -164,14 +166,14 @@ This reproduces the lifts in `exp93_results.json` instead of reading them.
 
    This refits each jurisdiction's deployed ranker and measures its lift at top 10% and top 20%, with and without the fairness floor.
 
-   It has a gate: every lift must match `exp83_results.json` exactly, or the script stops. On October 15 all 53 matched.
+   It has a gate: every lift must match `exp83_leakfree_results.json` exactly, or the script stops. On October 26 all 53 matched.
 4. **Recompute:**
 
    ```bash
    python3 experiments/cost_share_replicate.py
    ```
 
-   It should print $6.05B central.
+   It should print $3.42B central.
 
 ## What the model leaves out
 
@@ -182,4 +184,4 @@ Treat the result as the size of the opportunity, not a forecast:
 - **The delay option.**
 - **Review costs** beyond the FTE count.
 
-The range across scenarios ($0.39B to $10.06B) is driven mostly by review volume and how long errors persist. Sensitivity analysis is in [exp73](experiments/exp73_cost_sensitivity.md). The fairness floor costs about $0.77B of the central figure at the top-10% basis ($6.82B without the floor).
+The range across scenarios ($0.21B to $6.63B) is driven mostly by review volume and how long errors persist. Sensitivity analysis is in [exp73](experiments/exp73_cost_sensitivity.md). The fairness floor costs about $0.13B of the central figure at the top-10% basis ($3.55B without the floor). The exp73 sensitivity runs used the earlier models; their ranking of what drives the range (review volume and error lifetime first) is unlikely to change, but their dollar figures are superseded.

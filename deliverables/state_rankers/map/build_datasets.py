@@ -1,4 +1,5 @@
-"""Build the map dashboard's datasets from exp68/exp83 (rankers) and exp93 (cost scenarios).
+"""Build the map dashboard's datasets from the leak-free rebuild (exp107): exp83_leakfree (rankers), exp107_timesplit
+(later-years test) and exp93_leakfree (cost scenarios); exp68 for sample sizes.
 
 Writes, next to this file:
   state_results.json         one row per jurisdiction (all fields the page reads)
@@ -14,7 +15,7 @@ EXP = HERE.parent.parent.parent / "experiments"
 r68 = {r["state"]: r for r in json.loads((EXP / "exp68_results.json").read_text())}
 # exp93: exp69's scenarios re-run on the deployed models (exp83) with the fairness floor on
 r69 = json.loads((EXP / "exp69_results.json").read_text())
-r93 = json.loads((EXP / "exp93_results.json").read_text())
+r93 = json.loads((EXP / "exp93_leakfree_results.json").read_text())  # leak-free (exp107)
 import sys  # noqa: E402
 sys.path.insert(0, str(EXP))
 from exp69_cost_share_scenarios import NAME_TO_USPS  # noqa: E402
@@ -26,7 +27,7 @@ for ab, r in sorted(r68.items()):
     sc = s["scenarios"]
     rows.append({
         "state": ab, "name": NAMES[ab], "n_rows": r["n_rows"], "low_sample": r["low_sample"],
-        "lift_top20": r["holdout"]["top20"]["lift"], "lift_top10": r["holdout"]["top10"]["lift"],
+        "lift_top10": r["holdout"]["top10"]["lift"],
         "per_hour": r["holdout"]["top20"]["per_hour_$"], "random_per_hour": r["holdout"]["top20"]["random_per_hour_$"],
         "time_split_lift": r["time_split_top20_lift"][r["chosen"]],
         "exp_over_act": r["holdout"]["top20"]["expected_over_actual"],
@@ -38,8 +39,9 @@ for ab, r in sorted(r68.items()):
         "reviews_per_month": sc["central"]["reviews_per_month"], "fte": sc["central"]["fte"],
     })
 # deployed models (exp80/82: context-aware pooled, all 53), measured in exp83 on each holdout;
-# the own-cases exp68 lift is kept as lift_top20 for reference. Cost scenarios come from exp93.
-r83 = json.loads((EXP / "exp83_results.json").read_text())
+# Cost scenarios come from exp93's leak-free run.
+r83 = json.loads((EXP / "exp83_leakfree_results.json").read_text())  # leak-free (exp107)
+ts107 = json.loads((EXP / "exp107_timesplit_results.json").read_text())
 adopt = {}
 for f in ("exp80_results.json", "exp82_results.json"):
     for k, v in json.loads((EXP / f).read_text()).items():
@@ -52,7 +54,7 @@ for row in rows:
     row["per_hour"] = m["top20"]["per_hour_$"]
     row["random_per_hour"] = m["top20"]["random_per_hour_$"]
     row["exp_over_act"] = m["top20"]["expected_over_actual"]
-    row["time_split_lift"] = a[a["adopted"]]["time_split"]
+    row["time_split_lift"] = ts107[row["state"]]["time_split"]
     row["lift_floor"] = m["fairness"]["floor_lift"]
     row["elderly_ratio"] = m["fairness"]["baseline_ratio"].get("elderly")
     row["elderly_ratio_floor"] = m["fairness"]["floor_ratio"].get("elderly")

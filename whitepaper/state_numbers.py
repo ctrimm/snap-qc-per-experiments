@@ -16,11 +16,12 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 EXP = HERE.parent / "experiments"
 load = lambda f: json.loads((EXP / f).read_text())  # noqa: E731
-E83, E93 = load("exp83_results.json"), load("exp93_results.json")["states"]
-E68 = {r["state"]: r for r in load("exp68_results.json")}
-E79 = {r["state"]: r for r in load("exp79_results.json")}
+# leak-free rebuild (exp107; SNAPQC_FEATURES=leakfree is the default)
+E83, E93 = load("exp83_leakfree_results.json"), load("exp93_leakfree_results.json")["states"]
+E68 = {r["state"]: r for r in load("exp68_results.json")}  # sample sizes only
+E79 = {r["state"]: r for r in load("exp79_leakfree_results.json")}
 ADOPT = {**load("exp80_results.json"), **load("exp82_results.json")}
-TS = {s: r[r["adopted"]]["time_split"] for s, r in ADOPT.items()}
+TS = {s: r["time_split"] for s, r in load("exp107_timesplit_results.json").items()}
 STATES = sorted(E83)
 
 
@@ -66,7 +67,7 @@ def expected():
                 (f, f"${v['top20']['per_hour_$']:.0f}"), (f, f"${v['top10']['per_hour_$']:.0f}"),
                 (f, f"{E93[s]['per_fy2025']:.2f}%"), (f, f"{E68[s]['n_rows']:,}"), (f, f"{E68[s]['n_holdout']:,}"),
                 (f, f"{E79[s]['under']['under_lift']:.1f} times"), (f, f"{E79[s]['total']['under_lift']:.1f} times"),
-                (f, f"{E68[s]['holdout']['top20']['lift']:.1f}×"), (f, f"{sc['central']['ranker']['per']:.2f}%")]
+                (f, f"{sc['central']['ranker']['per']:.2f}%"), (f, f"ranks {R20[s]} on the top-20% lift"), (f, f"{RTS[s]} on the later-years test")]
         if cost >= 0.5:
             out.append((f, f"{round(cost)}%"))
         for k in ("elderly", "disabled", "single_parent", "childless_adult"):
@@ -75,20 +76,12 @@ def expected():
         if owes:
             for name in ("low", "central", "high"):
                 out += [(f, f"{sc[name]['ranker']['per']:.2f}%"), (f, f"{sc[name]['random']['per']:.2f}%")]
-        elif s != "WY":
+        else:
             out.append((f, f"{sc['central']['random']['per']:.2f}%"))
-    out += [("pa_pilot_whitepaper.md", "3.1× → 3.8×"), ("ny_pilot_whitepaper.md", "3.3× → 4.1×"),
-            ("wy_state_brief.md", "the lowest of the 53") if RTS["WY"] == 53 else ("wy_state_brief.md", "__WY time split not lowest__"),
-            ("wy_state_brief.md", "third lowest of 53") if RPER["WY"] == 3 else ("wy_state_brief.md", "__WY rate rank__"),
-            ("sd_pilot_whitepaper.md", "the lowest of 53") if RPER["SD"] == 1 else ("sd_pilot_whitepaper.md", "__SD rate rank__"),
-            ("id_pilot_whitepaper.md", "second lowest of 53") if RPER["ID"] == 2 else ("id_pilot_whitepaper.md", "__ID rate rank__"),
-            ("ut_pilot_whitepaper.md", "eighth lowest of 53") if RPER["UT"] == 8 else ("ut_pilot_whitepaper.md", "__UT rate rank__")]
-    for s, rk in (("TX", R20), ("SD", R20), ("UT", R20), ("ID", R20)):
-        out.append((FILES[s], f"| {rk[s]} |"))
-    if max(["PA", "NY", "TX", "SD", "UT", "ID"], key=T10.get) == "NY":
-        out.append(("ny_pilot_whitepaper.md", "highest top-10% result of our six pilot states"))
-    if R20["WY"] > 26:
-        out.append(("wy_state_brief.md", "a little below the 53-jurisdiction median"))
+    for f, s, words in (("wy_state_brief.md", "WY", "third lowest of 53"), ("sd_pilot_whitepaper.md", "SD", "the lowest of 53"),
+                        ("id_pilot_whitepaper.md", "ID", "second lowest of 53"), ("ut_pilot_whitepaper.md", "UT", "eighth lowest of 53")):
+        n = {"WY": 3, "SD": 1, "ID": 2, "UT": 8}[s]
+        out.append((f, words) if RPER[s] == n else (f, f"__{s} rate rank changed__"))
     c = "pa_ny_combined_brief.md"
     for s in ("PA", "NY"):
         v, sc = E83[s], E93[s]["scenarios"]["central"]

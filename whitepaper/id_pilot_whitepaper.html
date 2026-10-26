@@ -35,18 +35,18 @@
 </head>
 <body>
 <h1>Finding SNAP Payment Errors Faster in Idaho</h1>
-<div class="meta">October 23, 2026 · State brief · Cory Trimm</div>
+<div class="meta">October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm</div>
 <blockquote>
-<p><strong>Under review (October 26, 2026).</strong> The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.</p>
+<p><strong>Corrected October 26, 2026.</strong> The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.</p>
 </blockquote>
 <h2>Summary</h2>
 <p>Idaho's FY2025 payment error rate was 3.85%, the second lowest of 53 jurisdictions and below the 6% line where H.R. 1 cost sharing begins. Idaho owes nothing under FY2028 rules at that rate. For Idaho the tool is about staying below the line and using a small review staff well.</p>
 <ul>
-<li><strong>It finds 3.6 times the error dollars of random review.</strong> Reviewers working the top 20% of the tool's queue would find about <strong>$79 per review hour against $22</strong>. The top 10% finds 5.5 times.</li>
-<li><strong>It holds up over time.</strong> Trained on 2020–22 and tested on 2023–24, it kept a 3.3× edge. Expected error dollars for the top fifth of the queue were 7% below actual.</li>
-<li><strong>It's fair by design.</strong> Ranking purely by dollars would review elderly households at 0.59 of their share of error cases. A floor brings that to 1.11, at a cost of about 1% of the lift (3.6× → 3.5×).</li>
+<li><strong>It finds 2.0 times the error dollars of random review.</strong> Reviewers working the top 20% of the tool's queue would find about <strong>$45 per review hour against $22</strong>. The top 10% finds 2.4 times.</li>
+<li><strong>It holds up over time.</strong> Trained on 2020–22 and tested on 2023–24, it kept a 2.2× edge. Expected error dollars for the top fifth of the queue were 19% above actual.</li>
+<li><strong>It's fair by design.</strong> Ranking purely by dollars would review elderly households at 0.20 of their share of error cases. A floor brings that to 1.11, at a cost of about 13% of the lift (2.0× → 1.8×).</li>
 <li><strong>Underpayments:</strong> 27% of Idaho's error dollars are households paid too little (national 28%).</li>
-<li><strong>Cheap insurance:</strong> at its current rate Idaho owes nothing. In the model, about 1,300 ranked reviews a month (4.6 FTEs) would bring a rate of 6.5% or 8.5% back under 6% (see <em>FY2028 cost share</em>).</li>
+<li><strong>Cheap insurance:</strong> at its current rate Idaho owes nothing. In the model, about 1,300 ranked reviews a month (4.6 FTEs) would bring a rate of 6.5% back under 6% (see <em>FY2028 cost share</em>).</li>
 </ul>
 <p><strong>Recommendation:</strong> a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.</p>
 <h2>Idaho's errors</h2>
@@ -115,10 +115,11 @@
 <li>reported income and earnings;</li>
 <li>deductions, housing and utility costs;</li>
 <li>household size;</li>
-<li>the benefit issued and the household's maximum allotment.</li>
+<li>the household's maximum allotment.</li>
 </ul>
+<p>It does not use the benefit the agency issued: in the federal QC data that would let it compare the issued amount with the reviewer's corrected facts (experiment 106).</p>
 <p>It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.</p>
-<p>Idaho's model learns from every state's QC cases plus inputs that describe Idaho's benefit levels. Idaho is near the bottom of the national range: top-20% lift 50th of 53, later-years test 49th, and the fewest error dollars per review hour of all 53 ($79), because its errors are small. Pooling still lifted it from 2.8× to 3.6× on held-out cases, and from 2.5× to 3.3× on later years.</p>
+<p>Idaho's model learns from every state's QC cases plus Idaho's maximum allotments. Among the 53 jurisdictions, Idaho ranks 52 on the top-20% lift, 51 on the top-10% lift and 46 on the later-years test (1 = best).</p>
 <h3>Results on cases the model never saw</h3>
 <p>960 Idaho cases (25%) were set aside before training:</p>
 <table>
@@ -134,35 +135,35 @@
 <tbody>
 <tr>
 <td>10% of the queue</td>
-<td><strong>5.5×</strong></td>
-<td>$124 ($22)</td>
-<td>12% under</td>
-<td>47</td>
+<td><strong>2.4×</strong></td>
+<td>$53 ($22)</td>
+<td>34% over</td>
+<td>51</td>
 </tr>
 <tr>
 <td>20% of the queue</td>
-<td><strong>3.6×</strong></td>
-<td>$79 ($22)</td>
-<td>7% under</td>
-<td>50</td>
+<td><strong>2.0×</strong></td>
+<td>$45 ($22)</td>
+<td>19% over</td>
+<td>52</td>
 </tr>
 <tr>
 <td>20%, trained 2020–22, tested 2023–24</td>
-<td>3.3×</td>
+<td>2.2×</td>
 <td></td>
 <td></td>
-<td>49</td>
+<td>46</td>
 </tr>
 <tr>
 <td>20%, with the fairness floor</td>
-<td>3.5×</td>
+<td>1.8×</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>For comparison, a Idaho-only model found 2.8× on the same held-out cases. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 3.97× (top 20%).</p>
+<p>Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.70× (top 20%).</p>
 <h3>Fairness</h3>
 <p>The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:</p>
 <table>
@@ -176,17 +177,17 @@
 <tbody>
 <tr>
 <td>Elderly</td>
-<td>0.59</td>
+<td>0.20</td>
 <td>1.11</td>
 </tr>
 <tr>
 <td>Disabled</td>
-<td>0.74</td>
+<td>0.56</td>
 <td>0.85</td>
 </tr>
 <tr>
 <td>Single parent</td>
-<td>1.53</td>
+<td>1.84</td>
 <td>1.15</td>
 </tr>
 <tr>
@@ -196,9 +197,9 @@
 </tr>
 </tbody>
 </table>
-<p>The floor costs about 1% of the lift. We recommend it on by default.</p>
+<p>The floor costs about 13% of the lift. We recommend it on by default.</p>
 <h3>Underpayments</h3>
-<p>A second ranker trained on underpayments finds 2.1 times the underpayment dollars of random review, against 1.2 times for the main ranker. These figures come from the earlier Idaho-only models (exp79).</p>
+<p>A second ranker trained on underpayments finds 1.4 times the underpayment dollars of random review, against 1.6 times for the main ranker (both trained on Idaho's own cases; exp79, leak-free). Here it does no better than the main ranker, so a separate queue adds little.</p>
 <h3>Flag cards for reviewers</h3>
 <p>Idaho is where the flag cards have been tested most outside Pennsylvania and New York:</p>
 <ul>
@@ -206,6 +207,7 @@
 <li><strong>Rules line:</strong> tested at scale on fresh Idaho, Utah and South Dakota cards (exp97), with 100% agreement with the large model.</li>
 <li><strong>Where to look:</strong> that model beat generic advice in Idaho after about 100 labelled error cases (exp63).</li>
 </ul>
+<p>The odds and where-to-look results were measured before experiment 106, on models using the same reviewer-recorded fields, and have not been rechecked.</p>
 <h2>FY2028 cost share</h2>
 <p>H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10% at 8–10%, and 15% at 10% or more. We modelled reviews as removing a share of the caseload's error dollars each month (cases reviewed × the tool's lift × the share fixed), with errors otherwise lasting until recertification. All assumptions were fixed before results existed (exp69, exp93).</p>
 <p>At 3.85%, Idaho pays nothing. <strong>How much a higher rate would cost:</strong> Idaho's SNAP benefits are about $282 million a year. Assumptions are the same as the national model's central scenario: 2% of cases reviewed a month, 80% of found errors fixed, errors otherwise lasting 6 months.</p>
@@ -224,26 +226,26 @@
 <td>3.85% (FY2025)</td>
 <td>0%</td>
 <td>$0</td>
-<td>2.55%</td>
+<td>3.21%</td>
 <td>3.51%</td>
 </tr>
 <tr>
 <td>6.5%</td>
 <td>5%</td>
 <td>about $14M</td>
-<td>4.30%</td>
+<td>5.41%</td>
 <td>5.93%</td>
 </tr>
 <tr>
 <td>8.5%</td>
 <td>10%</td>
 <td>about $28M</td>
-<td>5.62%</td>
+<td>7.08%</td>
 <td>7.76%</td>
 </tr>
 </tbody>
 </table>
-<p>Ranked reviews bring both hypothetical rates back under 6%. Random reviews of the same volume bring 6.5% under too, but not 8.5%. The further the rate rises, the more the ranking matters.</p>
+<p>Ranked reviews bring 6.5% back under 6%; random reviews of the same volume bring 6.5% back under.</p>
 <p>These figures show the size of the opportunity, not a forecast. The model leaves out:</p>
 <ul>
 <li>timing relative to the federal sample month;</li>
@@ -253,7 +255,7 @@
 </ul>
 <h2>A pilot in Idaho</h2>
 <ol>
-<li><strong>Month 0:</strong> map the case-management fields to the tool's inputs (14 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.</li>
+<li><strong>Month 0:</strong> map the case-management fields to the tool's inputs (13 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.</li>
 <li><strong>Months 1–3, shadow:</strong><ul>
 <li><strong>Review:</strong> reviewers work a sample from the top of the queue alongside current case selection, with the fairness floor on.</li>
 <li><strong>Random slice:</strong> about 10% of reviews on randomly chosen cases.</li>
@@ -270,17 +272,17 @@
 </ol>
 <h2>Limitations</h2>
 <ul>
-<li><strong>Public data only.</strong> The model was built from federal public-use files. Idaho's own case records would likely do better after a short refit.</li>
+<li><strong>Public data only.</strong> The model was built from federal public-use files, whose income and deduction fields are the QC reviewer's values; for error cases those are the corrected facts, while a deployed tool sees the agency's uncorrected ones. Validate on Idaho's own pre-review case records before relying on these numbers.</li>
 <li><strong>Scenarios, not forecasts.</strong> See the cost-share caveats above.</li>
-<li><strong>Small errors.</strong> Idaho's errors are small, so dollars found per review hour are the lowest of 53 jurisdictions even with a 3.6× lift. The case for a pilot rests on accuracy and staying below 6% more than on dollars.</li>
+<li><strong>Small errors.</strong> Idaho's errors are small (median $17), so dollars found per review hour are low even when the lift is good. The case for a pilot rests on accuracy and staying below 6% more than on dollars.</li>
 <li><strong>The policy library doesn't cover Idaho yet.</strong> It holds 1 Idaho SNAP document (the FY2026 SNAP Employment and Training state plan, amendment 1). Rule citations on flag cards would need Idaho's SNAP manual added first.</li>
 <li><strong>The tool prioritizes; it doesn't decide.</strong> Every determination stays with a reviewer.</li>
 </ul>
 <h2>Technical reproduction</h2>
 <p>Code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Data: FY2020–2024 QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>, in <code>../snap-qc-data/raw/qcfy20XX_csv/</code>. Python 3 with numpy, joblib and scikit-learn 1.9.1. For other states, see the companion <em>State Replication Guide</em>.</p>
 <pre><code class="language-bash"># Idaho's numbers as measured (top-10/20% lift, $/hour, forecast, fairness)
-python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_results.json'))['ID'], indent=1))&quot;
-# refit and re-evaluate every jurisdiction's deployed model (reproduces exp83_results.json exactly)
+python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_leakfree_results.json'))['ID'], indent=1))&quot;
+# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_leakfree_results.json)
 python3 experiments/exp83_context_models_full_eval.py --workers 8
 # cost share, every step shown
 python3 experiments/cost_share_replicate.py --state ID
@@ -293,7 +295,7 @@ python3 deliverables/state_rankers/score_cases.py --state ID --input cases.csv -
 <p><strong>Sources:</strong></p>
 <ul>
 <li><strong>Model and held-out cases:</strong> exp82 (adoption: Idaho uses variant B_ctx) and exp83 (evaluation). The held-out cases are fixed in <code>experiments/exp68_holdouts.json</code>.</li>
-<li><strong>State-only baseline:</strong> exp68.</li>
+<li><strong>Leak-free rebuild:</strong> exp106 (the leak), exp107 (the rebuild, later-years test).</li>
 <li><strong>Fairness:</strong> exp72 and exp83.</li>
 <li><strong>Underpayments:</strong> exp79.</li>
 <li><strong>Cost share:</strong> exp93; method in <code>COST-SHARE-REPLICATE.md</code>.</li>

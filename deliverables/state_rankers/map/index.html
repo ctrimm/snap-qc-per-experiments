@@ -56,15 +56,15 @@
 
 <div class="tr-wrap">
   <header class="tr-head" id="top">
-    <h1>SNAP triage rankers by state (under review)</h1>
-    <p class="tr-review" role="note"><strong>Under review (October 26, 2026).</strong> The lift, dollars-per-hour, forecast, fairness and cost-share figures on this page are inflated: the models' inputs included values recorded by QC reviewers, which a state would not have before a review. Don't cite them until corrected figures replace them. FY2025 error rates are USDA's official figures and are not affected.</p>
+    <h1>SNAP triage rankers by state</h1>
+    <p class="tr-review" role="note"><strong>Corrected October 26, 2026.</strong> Earlier versions of this page overstated the rankers: their inputs let them partly see errors (the issued benefit beside values recorded by QC reviewers). Every figure now comes from the leak-free rebuild, and the models no longer use the issued benefit.</p>
     <p class="tr-take" data-source="summary">—</p>
   </header>
 
   <section class="tr-tiles" id="headline" aria-label="Headline figures">
     <div class="tr-tile"><div class="lab">Jurisdictions with a ranker</div><div class="num dash-skeleton" data-source="summary" data-field="n_states">—</div></div>
     <div class="tr-tile"><div class="lab">Median top-20% lift over random review</div><div class="num dash-skeleton" data-source="summary" data-field="median_lift">—</div></div>
-    <div class="tr-tile"><div class="lab">Jurisdictions at 3.0× or better</div><div class="num dash-skeleton" data-source="summary" data-field="n_ge_30">—</div></div>
+    <div class="tr-tile"><div class="lab">Jurisdictions at 2.0× or better</div><div class="num dash-skeleton" data-source="summary" data-field="n_ge_20">—</div></div>
     <div class="tr-tile"><div class="lab">FY2028 cost share avoided, all states (central scenario, fairness floor on)</div><div class="num dash-skeleton" data-source="summary" data-field="saving_central_total">—</div></div>
   </section>
 
@@ -118,13 +118,13 @@
     <div class="tr-card">
       <h2>How the rankers were built</h2>
       <ul>
-        <li>One model per jurisdiction from FY2020–2024 federal QC public-use data, using only what the agency has before review (reported income, deductions, rent and utilities, household size, issued benefit).</li>
+        <li>One model per jurisdiction from FY2020–2024 federal QC public-use data, using case facts (income, deductions, rent and utilities, household size) and the household's maximum allotment, but not the benefit issued. In the federal QC data the income and deduction fields are what the QC reviewer recorded, so pairing them with the issued benefit would let a model see the error.</li>
         <li>It estimates each case's chance of an error times the likely error dollars, then ranks cases by that.</li>
         <li>"Lift" is error dollars found in the top 20% (or 10%) of the ranked list, divided by what reviewing the same number of random cases finds, on cases held out from training.</li>
         <li>"2020–22 → 2023–24" trains on the earlier years and tests on the later ones. "Forecast ÷ actual" compares the model's expected dollars with the dollars found in its top 20%.</li>
         <li>Review time is assumed to be 30 minutes a case.</li>
-        <li>Each jurisdiction's model is trained on its own cases pooled with every other state's, plus two inputs that tell it the state's benefit levels (the case's maximum allotment and the issued benefit's share of it). This beat a state-only model in all 53 jurisdictions on both tests.</li>
-        <li>Ranking purely by dollars under-reviews elderly households for their risk almost everywhere. The "fairness floor" splits the review budget across household types by their share of errors; it costs a little lift and brings review into proportion.</li>
+        <li>Each jurisdiction's model is trained on its own cases pooled with every other state's, plus the case's maximum allotment, which tells it the state's benefit levels. Pooling beat state-only models when it was adopted (that test used the earlier inputs).</li>
+        <li>Ranking purely by dollars under-reviews elderly households for their risk in every jurisdiction. The "fairness floor" splits the review budget across household types by their share of errors; it brings review into proportion at a cost of about a tenth of the lift in the median state.</li>
       </ul>
     </div>
     <div class="tr-card">
@@ -151,7 +151,7 @@
 <script>
   dash.calc('summary', {
     title: 'Headline figures',
-    description: 'Count of jurisdictions, median top-20% lift, how many reach 3.0x, and total FY2028 cost share avoided in the central scenario.',
+    description: 'Count of jurisdictions, median top-20% lift, how many reach 2.0x, and total FY2028 cost share avoided in the central scenario.',
     inputs: ['state_results'],
     fn: (state_results) => {
       const lifts = state_results.map((r) => Number(r.lift_deployed)).sort((a, b) => a - b);
@@ -160,7 +160,7 @@
       return {
         n_states: state_results.length,
         median_lift: median,
-        n_ge_30: lifts.filter((x) => x >= 3.0).length,
+        n_ge_20: lifts.filter((x) => x >= 2.0).length,
         saving_central_total: state_results.reduce((s, r) => s + Number(r.saving_central), 0),
       };
     },
@@ -252,7 +252,6 @@
     grp('Ranker, held-out cases');
     item('Model', 'model_type', (v) => v);
     item('Top-20% lift', 'lift_deployed', fmtX);
-    item('Own-cases model (exp68, for reference)', 'lift_top20', fmtX);
     item('Top-20% lift with fairness floor', 'lift_floor', fmtX);
     item('Top-10% lift', 'lift_top10', fmtX);
     item('$ per review hour', 'per_hour', fmt$);
@@ -384,7 +383,7 @@
       el.textContent = f === 'median_lift' ? fmtX(s[f]) : f === 'saving_central_total' ? fmtBig(s[f]) : d3.format(',')(s[f]);
     });
     const take = document.querySelector('.tr-take');
-    take.textContent = s ? `Reviewing the top fifth of each state's ranked cases finds a median ${fmtX(s.median_lift)} the error dollars of random review, and ${d3.format(',')(s.n_ge_30)} of ${d3.format(',')(s.n_states)} jurisdictions reach 3.0× or better.` : '—';
+    take.textContent = s ? `Reviewing the top fifth of each state's ranked cases finds a median ${fmtX(s.median_lift)} the error dollars of random review, and ${d3.format(',')(s.n_ge_20)} of ${d3.format(',')(s.n_states)} jurisdictions reach 2.0× or better.` : '—';
   }
 
   document.getElementById('metric-switch').addEventListener('click', (e) => {

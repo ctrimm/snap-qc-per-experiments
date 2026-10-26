@@ -1,18 +1,18 @@
 # Finding SNAP Payment Errors Faster in Texas
 
-**October 23, 2026 · State brief · Cory Trimm**
+**October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 Texas's FY2025 payment error rate was 9.34%. Under the H.R. 1 cost-sharing rules, that rate means the state would pay 10% of its SNAP benefit costs from FY2028, about **$685 million a year**. This brief shows what a case-ranking tool, built and tested on Texas's federal QC records, could do about that.
 
-- **It finds 3.6 times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **$194 per review hour against $54**. The top 10% finds 5.7 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.3× edge. Expected error dollars for the top fifth of the queue were 3% above actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.41 of their share of error cases. A floor brings that to 0.95, with no measurable cost to the lift.
+- **It finds 2.2 times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **$118 per review hour against $54**. The top 10% finds 2.9 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.2× edge. Expected error dollars for the top fifth of the queue were 8% below actual.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.21 of their share of error cases. A floor brings that to 0.95, at a cost of about 17% of the lift (2.2× → 1.8×).
 - **Underpayments:** 41% of Texas's error dollars are households paid too little (national 28%).
-- **Cost share:** in the central scenario (2% of cases reviewed a month, about 28,837 reviews and 103 FTEs), the rate falls to 6.13%, avoiding about **$343 million a year**. Random reviews of the same volume leave it at 8.52%.
+- **Cost share:** in the central scenario (2% of cases reviewed a month, about 28,837 reviews and 103 FTEs), the rate falls to 7.92%, avoiding about **$343 million a year**. Random reviews of the same volume leave it at 8.52%.
 
 **Recommendation:** a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.
 
@@ -42,11 +42,13 @@ Each month the tool scores every active case using only information the agency a
 - reported income and earnings;
 - deductions, housing and utility costs;
 - household size;
-- the benefit issued and the household's maximum allotment.
+- the household's maximum allotment.
+
+It does not use the benefit the agency issued: in the federal QC data that would let it compare the issued amount with the reviewer's corrected facts (experiment 106).
 
 It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-Texas's model learns from every state's QC cases plus inputs that describe Texas's benefit levels. Texas is in the lower part of the national range (top-20% lift 45th of 53, later-years test 50th), but pooling still lifted it substantially: from 2.7× to 3.6× on held-out cases, and from 2.3× to 3.3× on later years.
+Texas's model learns from every state's QC cases plus Texas's maximum allotments. Among the 53 jurisdictions, Texas ranks 49 on the top-20% lift, 41 on the top-10% lift and 49 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -54,12 +56,12 @@ Texas's model learns from every state's QC cases plus inputs that describe Texas
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **5.7×** | $306 ($54) | 1% over | 44 |
-| 20% of the queue | **3.6×** | $194 ($54) | 3% over | 45 |
-| 20%, trained 2020–22, tested 2023–24 | 3.3× | | | 50 |
-| 20%, with the fairness floor | 3.6× | | | |
+| 10% of the queue | **2.9×** | $156 ($54) | 18% under | 41 |
+| 20% of the queue | **2.2×** | $118 ($54) | 8% under | 49 |
+| 20%, trained 2020–22, tested 2023–24 | 2.2× | | | 49 |
+| 20%, with the fairness floor | 1.8× | | | |
 
-For comparison, a Texas-only model found 2.7× on the same held-out cases. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 3.97× (top 20%).
+Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.70× (top 20%).
 
 ### Fairness
 
@@ -67,16 +69,16 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Elderly | 0.41 | 0.95 |
-| Disabled | 0.63 | 0.90 |
-| Single parent | 1.60 | 1.18 |
-| Childless adult | 1.20 | 0.74 |
+| Elderly | 0.21 | 0.95 |
+| Disabled | 0.61 | 0.90 |
+| Single parent | 1.79 | 1.18 |
+| Childless adult | 0.74 | 0.74 |
 
-In Texas the floor came out with no measurable cost (a chance effect on the held-out cases). We recommend it on by default.
+The floor costs about 17% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 3.9 times the underpayment dollars of random review, against 2.0 times for the main ranker. These figures come from the earlier Texas-only models (exp79).
+A second ranker trained on underpayments finds 1.9 times the underpayment dollars of random review, against 1.4 times for the main ranker (both trained on Texas's own cases; exp79, leak-free).
 
 ### Flag cards for reviewers
 
@@ -89,11 +91,11 @@ H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10
 | Scenario | Reviewed a month | Rate after | State share | Avoided a year | Random reviews, same volume |
 |---|---|---|---|---|---|
 | Today (FY2025 rate) | — | 9.34% | 10% | — | — |
-| Low | 1% (14,418 reviews, 52 FTEs) | 8.59% | 10% | $0M | 9.12%, $0M |
-| **Central** | 2% (28,837 reviews, 103 FTEs) | 6.13% | 5% | $343M | 8.52%, $0M |
-| High | 3% (43,255 reviews, 154 FTEs) | 4.29% | 0% | $685M | 7.68%, $343M |
+| Low | 1% (14,418 reviews, 52 FTEs) | 8.95% | 10% | $0M | 9.12%, $0M |
+| **Central** | 2% (28,837 reviews, 103 FTEs) | 7.92% | 5% | $343M | 8.52%, $0M |
+| High | 3% (43,255 reviews, 154 FTEs) | 6.65% | 5% | $343M | 7.68%, $343M |
 
-**The two thresholds.** Under the central scenario's other assumptions, Texas crosses 8% at about **0.7%** of cases reviewed a month (to the 5% share, about $343 million a year avoided) and 6% at about **2.1%** (no share, $685 million a year).
+**The thresholds.** Under the central scenario's other assumptions, Texas crosses 8% at about **1.9%** of cases reviewed a month (5% share); 6% at about **6.2%** of cases reviewed a month (no share).
 
 These figures show the size of the opportunity, not a forecast. The model leaves out:
 - timing relative to the federal sample month;
@@ -103,7 +105,7 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 ## A pilot in Texas
 
-1. **Month 0:** map the case-management fields to the tool's inputs (14 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.
+1. **Month 0:** map the case-management fields to the tool's inputs (13 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.
 2. **Months 1–3, shadow:**
    - **Review:** reviewers work a sample from the top of the queue alongside current case selection, with the fairness floor on.
    - **Random slice:** about 10% of reviews on randomly chosen cases.
@@ -116,7 +118,7 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 ## Limitations
 
-- **Public data only.** The model was built from federal public-use files. Texas's own case records would likely do better after a short refit.
+- **Public data only.** The model was built from federal public-use files, whose income and deduction fields are the QC reviewer's values; for error cases those are the corrected facts, while a deployed tool sees the agency's uncorrected ones. Validate on Texas's own pre-review case records before relying on these numbers.
 - **Scenarios, not forecasts.** See the cost-share caveats above.
 - **Coding practice.** Texas's heavy use of the "other" nature code and its missing per-error dollar amounts make error-type analysis less informative than in most states.
 - **The policy library doesn't cover Texas yet.** It holds no Texas SNAP documents (its one Texas benefits document is a TANF FAQ). Rule citations on flag cards would need Texas's SNAP manual added first.
@@ -128,8 +130,8 @@ Code: [github.com/ctrimm/snap-qc-per-experiments](https://github.com/ctrimm/snap
 
 ```bash
 # Texas's numbers as measured (top-10/20% lift, $/hour, forecast, fairness)
-python3 -c "import json; print(json.dumps(json.load(open('experiments/exp83_results.json'))['TX'], indent=1))"
-# refit and re-evaluate every jurisdiction's deployed model (reproduces exp83_results.json exactly)
+python3 -c "import json; print(json.dumps(json.load(open('experiments/exp83_leakfree_results.json'))['TX'], indent=1))"
+# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_leakfree_results.json)
 python3 experiments/exp83_context_models_full_eval.py --workers 8
 # cost share, every step shown
 python3 experiments/cost_share_replicate.py --state TX
@@ -141,7 +143,7 @@ python3 deliverables/state_rankers/score_cases.py --state TX --input cases.csv -
 
 **Sources:**
 - **Model and held-out cases:** exp82 (adoption: Texas uses variant B_ctx) and exp83 (evaluation). The held-out cases are fixed in `experiments/exp68_holdouts.json`.
-- **State-only baseline:** exp68.
+- **Leak-free rebuild:** exp106 (the leak), exp107 (the rebuild, later-years test).
 - **Fairness:** exp72 and exp83.
 - **Underpayments:** exp79.
 - **Cost share:** exp93; method in `COST-SHARE-REPLICATE.md`.

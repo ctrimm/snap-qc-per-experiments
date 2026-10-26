@@ -1,18 +1,18 @@
 # Finding SNAP Payment Errors Faster in South Dakota
 
-**October 23, 2026 · State brief · Cory Trimm**
+**October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 South Dakota's FY2025 payment error rate was 2.47%, the lowest of 53 jurisdictions and far below the 6% line where H.R. 1 cost sharing begins. South Dakota owes nothing under FY2028 rules at that rate. For South Dakota the tool is about staying there, finding the few errors there are efficiently, and finding underpayments.
 
-- **It finds 4.2 times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **$90 per review hour against $22**. The top 10% finds 6.4 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.9× edge. Expected error dollars for the top fifth of the queue were 10% above actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.37 of their share of error cases. A floor brings that to 1.08, at a cost of about 5% of the lift (4.2× → 4.0×).
+- **It finds 2.8 times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **$61 per review hour against $22**. The top 10% finds 2.6 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.6× edge. Expected error dollars for the top fifth of the queue were 17% below actual.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.41 of their share of error cases. A floor brings that to 1.08, at a cost of about 11% of the lift (2.8× → 2.5×).
 - **Underpayments:** 42% of South Dakota's error dollars are households paid too little (national 28%).
-- **Cheap insurance:** at its current rate South Dakota owes nothing. In the model, about 737 ranked reviews a month (2.6 FTEs) would bring a rate of 6.5% or 8.5% back under 6% (see *FY2028 cost share*).
+- **Cheap insurance:** at its current rate South Dakota owes nothing. In the model, about 737 ranked reviews a month (2.6 FTEs) would bring a rate of 6.5% back under 6% (see *FY2028 cost share*).
 
 **Recommendation:** a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.
 
@@ -44,11 +44,13 @@ Each month the tool scores every active case using only information the agency a
 - reported income and earnings;
 - deductions, housing and utility costs;
 - household size;
-- the benefit issued and the household's maximum allotment.
+- the household's maximum allotment.
+
+It does not use the benefit the agency issued: in the federal QC data that would let it compare the issued amount with the reviewer's corrected facts (experiment 106).
 
 It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-South Dakota's model learns from every state's QC cases plus inputs that describe South Dakota's benefit levels, with its own cases weighted ten times. Pooling lifted South Dakota's model the most of any pilot state: from 2.7× to 4.2× on held-out cases (16th of 53), and from 2.5× to 3.9× on later years.
+South Dakota's model learns from every state's QC cases plus South Dakota's maximum allotments, with its own cases weighted ten times. Among the 53 jurisdictions, South Dakota ranks 16 on the top-20% lift, 50 on the top-10% lift and 25 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -56,12 +58,12 @@ South Dakota's model learns from every state's QC cases plus inputs that describ
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **6.4×** | $138 ($22) | 19% over | 27 |
-| 20% of the queue | **4.2×** | $90 ($22) | 10% over | 16 |
-| 20%, trained 2020–22, tested 2023–24 | 3.9× | | | 17 |
-| 20%, with the fairness floor | 4.0× | | | |
+| 10% of the queue | **2.6×** | $56 ($22) | 1% under | 50 |
+| 20% of the queue | **2.8×** | $61 ($22) | 17% under | 16 |
+| 20%, trained 2020–22, tested 2023–24 | 2.6× | | | 25 |
+| 20%, with the fairness floor | 2.5× | | | |
 
-For comparison, a South Dakota-only model found 2.7× on the same held-out cases. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 3.97× (top 20%).
+Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.70× (top 20%).
 
 ### Fairness
 
@@ -69,16 +71,16 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Elderly | 0.37 | 1.08 |
-| Disabled | 0.79 | 1.12 |
-| Single parent | 1.85 | 1.01 |
-| Childless adult | 0.86 | 0.97 |
+| Elderly | 0.41 | 1.08 |
+| Disabled | 0.59 | 1.12 |
+| Single parent | 1.90 | 1.01 |
+| Childless adult | 1.07 | 0.97 |
 
-The floor costs about 5% of the lift. We recommend it on by default.
+The floor costs about 11% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 1.9 times the underpayment dollars of random review, against 1.8 times for the main ranker. These figures come from the earlier South Dakota-only models (exp79). In South Dakota the gain is small, so a separate queue adds little there.
+A second ranker trained on underpayments finds 1.7 times the underpayment dollars of random review, against 1.7 times for the main ranker (both trained on South Dakota's own cases; exp79, leak-free). Here it does no better than the main ranker, so a separate queue adds little.
 
 ### Flag cards for reviewers
 
@@ -92,11 +94,11 @@ At 2.47%, South Dakota pays nothing. **How much a higher rate would cost:** Sout
 
 | If South Dakota's rate were… | Share owed | Cost a year | Rate after ranked reviews (≈737 a month, 2.6 FTEs) | Rate after random reviews |
 |---|---|---|---|---|
-| 2.47% (FY2025) | 0% | $0 | 1.54% | 2.25% |
-| 6.5% | 5% | about $9M | 4.06% | 5.93% |
-| 8.5% | 10% | about $18M | 5.32% | 7.76% |
+| 2.47% (FY2025) | 0% | $0 | 2.14% | 2.25% |
+| 6.5% | 5% | about $9M | 5.63% | 5.93% |
+| 8.5% | 10% | about $18M | 7.37% | 7.76% |
 
-Ranked reviews bring both hypothetical rates back under 6%. Random reviews of the same volume bring 6.5% under too, but not 8.5%. The further the rate rises, the more the ranking matters.
+Ranked reviews bring 6.5% back under 6%; random reviews of the same volume bring 6.5% back under.
 
 These figures show the size of the opportunity, not a forecast. The model leaves out:
 - timing relative to the federal sample month;
@@ -106,7 +108,7 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 ## A pilot in South Dakota
 
-1. **Month 0:** map the case-management fields to the tool's inputs (14 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.
+1. **Month 0:** map the case-management fields to the tool's inputs (13 fields plus the maximum allotment) and score the active caseload. The model runs on a laptop.
 2. **Months 1–3, shadow:**
    - **Review:** reviewers work a sample from the top of the queue alongside current case selection, with the fairness floor on.
    - **Random slice:** about 10% of reviews on randomly chosen cases.
@@ -119,9 +121,9 @@ These figures show the size of the opportunity, not a forecast. The model leaves
 
 ## Limitations
 
-- **Public data only.** The model was built from federal public-use files. South Dakota's own case records would likely do better after a short refit.
+- **Public data only.** The model was built from federal public-use files, whose income and deduction fields are the QC reviewer's values; for error cases those are the corrected facts, while a deployed tool sees the agency's uncorrected ones. Validate on South Dakota's own pre-review case records before relying on these numbers.
 - **Scenarios, not forecasts.** See the cost-share caveats above.
-- **Few errors to learn from.** Five years of South Dakota QC data hold about 600 error cases. The top-10% forecast ran 19% high on held-out cases, so check forecasts against the state's own reviews before quoting them.
+- **Few errors to learn from.** Five years of South Dakota QC data hold about 600 error cases, so check forecasts against the state's own reviews before quoting them.
 - **The policy library doesn't cover South Dakota yet.** It holds 1 South Dakota SNAP document (an employment-and-training policy). Rule citations on flag cards would need South Dakota's SNAP manual added first.
 - **The tool prioritizes; it doesn't decide.** Every determination stays with a reviewer.
 
@@ -131,8 +133,8 @@ Code: [github.com/ctrimm/snap-qc-per-experiments](https://github.com/ctrimm/snap
 
 ```bash
 # South Dakota's numbers as measured (top-10/20% lift, $/hour, forecast, fairness)
-python3 -c "import json; print(json.dumps(json.load(open('experiments/exp83_results.json'))['SD'], indent=1))"
-# refit and re-evaluate every jurisdiction's deployed model (reproduces exp83_results.json exactly)
+python3 -c "import json; print(json.dumps(json.load(open('experiments/exp83_leakfree_results.json'))['SD'], indent=1))"
+# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_leakfree_results.json)
 python3 experiments/exp83_context_models_full_eval.py --workers 8
 # cost share, every step shown
 python3 experiments/cost_share_replicate.py --state SD
@@ -145,7 +147,7 @@ python3 deliverables/state_rankers/score_cases.py --state SD --input cases.csv -
 
 **Sources:**
 - **Model and held-out cases:** exp82 (adoption: South Dakota uses variant C_ctx) and exp83 (evaluation). The held-out cases are fixed in `experiments/exp68_holdouts.json`.
-- **State-only baseline:** exp68.
+- **Leak-free rebuild:** exp106 (the leak), exp107 (the rebuild, later-years test).
 - **Fairness:** exp72 and exp83.
 - **Underpayments:** exp79.
 - **Cost share:** exp93; method in `COST-SHARE-REPLICATE.md`.

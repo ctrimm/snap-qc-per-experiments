@@ -35,9 +35,9 @@
 </head>
 <body>
 <h1>Older Adults in SNAP Error Review</h1>
-<div class="meta">October 23, 2026 · Whitepaper · Cory Trimm</div>
+<div class="meta">October 26, 2026 (corrected; first version October 23) · Whitepaper · Cory Trimm</div>
 <blockquote>
-<p><strong>Under review (October 26, 2026).</strong> The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.</p>
+<p><strong>Corrected October 26, 2026.</strong> The October 23 version's review ratios and cost figures came from ranking models whose inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). They are replaced here with the leak-free rebuild (experiment 107). The conclusion is unchanged and stronger: dollar ranking under-reviews older households. Figures computed directly from the QC data (error rates, error types, income sources, medical deductions, Medicare counts) were not affected.</p>
 </blockquote>
 <h2>Summary</h2>
 <p>About three in ten SNAP households include someone aged 60 or older. This paper looks at those households alone: how often their benefits are paid in error, what kind of errors they are, and how they fare when a state uses a data-driven tool to choose which cases to review. A companion paper covers older adults and people with disabilities together. Every figure here is computed from federal SNAP quality-control (QC) data, FY2020–2024, and checked against the experiment that produced it.</p>
@@ -49,14 +49,14 @@
 </ul>
 </li>
 <li><strong>A review tool that chases error dollars sends reviewers away from older households.</strong><ul>
-<li><strong>Today's models:</strong> in 49 of 53 jurisdictions they review older households at less than 0.8 of their share of the error risk (median 0.61). In 52 of 53 that is less than random selection would give them (median 0.90).</li>
+<li><strong>Today's models:</strong> in all 53 jurisdictions they review older households at less than 0.8 of their share of the error risk (median 0.33). In all 53 that is less than random selection would give them (median 0.90).</li>
 <li><strong>The cause is error size, not missed detection:</strong> when older households are reviewed, errors are found in most of them (66% of reviewed cases in the Pennsylvania test).</li>
 </ul>
 </li>
 <li><strong>A simple budget rule fixes it.</strong><ul>
 <li><strong>What it does:</strong> a fairness floor gives each household type a share of the review budget matching its share of errors, then picks the highest-dollar cases within each type.</li>
 <li><strong>Effect:</strong> it brings older households to a median of 1.00 and leaves no jurisdiction below 0.8.</li>
-<li><strong>Cost:</strong> about 1% of the tool's median effectiveness.</li>
+<li><strong>Cost:</strong> about 10% of the tool's effectiveness in the median state.</li>
 </ul>
 </li>
 <li><strong>Medical deductions are the error most specific to older households.</strong> Among older households with medical expenses on file (about one in seven), <strong>24%</strong> have a medical-deduction error, against 2.5% of older households without.</li>
@@ -97,7 +97,7 @@
 <tr>
 <td>Can a simple rule fix it?</td>
 <td>Gave each household type a share of the review budget matching its share of errors</td>
-<td>Yes, in every state, for about 1% of the tool's effectiveness</td>
+<td>Yes, in every state, for about 10% of the tool's effectiveness in the median state</td>
 </tr>
 <tr>
 <td>Are underpayments owed to older households being missed?</td>
@@ -246,7 +246,7 @@
 </ul>
 <p><strong>It holds in almost every state.</strong> Older households' error rate is higher than the overall rate in 48 of 53 jurisdictions. It's equal in Maine and Virginia, and lower in North Carolina, Texas and Wisconsin (Appendix A).</p>
 <h2>Finding 2: a dollar-chasing review tool under-reviews older households</h2>
-<p>The triage ranker scores each case on information the agency already has: reported income, deductions, rent and utilities, household size and the benefit issued. It orders the review queue by expected error dollars. Its top 20% of cases holds a median <strong>3.97 times</strong> the error dollars of a random 20%, across 53 jurisdictions. Because older households' errors are small, their cases sit lower in that queue.</p>
+<p>The triage ranker scores each case on information the agency already has: reported income, deductions, rent and utilities, household size and the household's maximum allotment (not the benefit issued, which in the federal QC data would let it see the error; experiment 106). It orders the review queue by expected error dollars. Its top 20% of cases holds a median <strong>2.7 times</strong> the error dollars of a random 20%, across 53 jurisdictions. Because older households' errors are small, their cases sit lower in that queue.</p>
 <p><strong>The measure:</strong> older households' share of reviews divided by their share of cases with an error. <strong>1.0</strong> means they are reviewed in proportion to their risk. Random selection gives the overall error rate divided by their error rate (below 1.0, because they have more errors than average).</p>
 <table>
 <thead>
@@ -258,7 +258,7 @@
 <tbody>
 <tr>
 <td>Median review ratio, ranking by dollars</td>
-<td><strong>0.61</strong></td>
+<td><strong>0.33</strong></td>
 </tr>
 <tr>
 <td>Median ratio random selection would give</td>
@@ -266,15 +266,15 @@
 </tr>
 <tr>
 <td>Jurisdictions below 0.8</td>
-<td><strong>49 of 53</strong></td>
+<td><strong>53 of 53</strong></td>
 </tr>
 <tr>
 <td>Jurisdictions below what random selection would give</td>
-<td><strong>52 of 53</strong> (all but Rhode Island)</td>
+<td><strong>53 of 53</strong></td>
 </tr>
 <tr>
 <td>Pennsylvania / New York</td>
-<td>0.65 / 0.62 (random: 0.90 / 1.08)</td>
+<td>0.42 / 0.54 (random: 0.90 / 1.08)</td>
 </tr>
 </tbody>
 </table>
@@ -302,7 +302,7 @@
 <td>Older households' review ratio, dollars only</td>
 <td>0.22</td>
 <td>0.34</td>
-<td>median 0.61</td>
+<td>median 0.33</td>
 </tr>
 <tr>
 <td>With the floor</td>
@@ -320,15 +320,15 @@
 <td>Cost to the tool's lift</td>
 <td>none measurable</td>
 <td>none measurable</td>
-<td>median 3.97× → 3.93× (about 1%); the median state gives up 1.5%</td>
+<td>median 2.70× → 2.42×; the median state gives up about 10%</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Why it can be free:</strong> the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%).</p>
+<p><strong>Why it was free in the early tests:</strong> the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%).</p>
 <p><strong>The FY2028 cost share:</strong> from FY2028, under H.R. 1, states with error rates of 6% or more pay 5–15% of benefit costs.</p>
 <ul>
-<li><strong>With the floor on:</strong> ranker-guided reviews avoid an estimated <strong>$6.05 billion a year</strong> nationally in the central scenario, against $1.03 billion for random reviews of the same volume.</li>
-<li><strong>What the floor costs:</strong> the floor is the main reason that figure isn't $6.82 billion. Protecting older and disabled households' share of reviews costs about $0.77 billion a year in avoided cost share.</li>
+<li><strong>With the floor on:</strong> ranker-guided reviews avoid an estimated <strong>$3.42 billion a year</strong> nationally in the central scenario, against $1.03 billion for random reviews of the same volume.</li>
+<li><strong>What the floor costs:</strong> without it the central figure would be $3.55 billion, so protecting older and disabled households' share of reviews costs about $0.13 billion a year in avoided cost share.</li>
 </ul>
 <p><strong>Default:</strong> we recommend the floor on by default. Age is never used to score a household. It is used only to check that each group gets its fair share of reviews.</p>
 <h2>Finding 4: medical deductions</h2>
@@ -397,7 +397,7 @@
 <h2>Open questions</h2>
 <ol>
 <li><strong>Age in a real deployment.</strong> The analysis groups households by the QC file's elderly flag (<code>FSELDER</code>). In a pilot, the floor needs the state's own record of each member's age, which is usually reliable at intake.</li>
-<li><strong>The early household tests on today's models.</strong> Rerun exp47–49's within-state detail, including the precision of reviews and the cost of the floor, on the current pooled models.</li>
+<li><strong>The early household tests on today's models.</strong> The early tests (exp47–49, Utah, Idaho) used early rankers and were not rechecked after experiment 106. Rerun exp47–49's within-state detail, including the precision of reviews and the cost of the floor, on the current pooled models.</li>
 <li><strong>The underpayment ranker for older households.</strong> Does it reach them better than the main ranker?</li>
 <li><strong>The medical-data fixes,</strong> then a medical-specific score for the language model.</li>
 <li><strong>The FY2025 QC file,</strong> when it is released: rerun everything above.</li>
@@ -406,9 +406,9 @@
 <h2>Talking points</h2>
 <ul>
 <li>About three in ten SNAP households include someone 60 or older. Their benefits have errors more often than other households', but the errors are small: housing costs, Social Security changes, utilities, medical deductions.</li>
-<li>A review tool that chases error dollars sends reviewers elsewhere. In 52 of 53 states and territories, it reviews older households less than random selection would.</li>
+<li>A review tool that chases error dollars sends reviewers elsewhere. In all 53 states and territories, it reviews older households less than random selection would.</li>
 <li>When reviewers do look at older households, they find errors in most cases. The issue is where the tool points, not what reviewers can find.</li>
-<li>A simple budget rule fixes it everywhere, for about 1% of the tool's effectiveness. We recommend it on by default.</li>
+<li>A simple budget rule fixes it everywhere, for about a tenth of the tool's effectiveness in the median state. We recommend it on by default.</li>
 <li>Age is never used to score a household, only to check that older households get their fair share of reviews.</li>
 <li>One in four older households claiming medical expenses has a medical-deduction error. That's where our AI work is weakest.</li>
 <li>About one in five SNAP households likely qualifies for Medicare cost help; confirming who is enrolled needs a state partner.</li>
@@ -419,7 +419,7 @@
 <li><strong>Elderly share:</strong> households with a member aged 60+, as a share of reviewed cases (FY2020–2024).</li>
 <li><strong>Elderly error rate and all households' error rate:</strong> the shares of those cases with a payment error.</li>
 <li><strong>Underpayment share:</strong> underpayments as a share of older households' error dollars.</li>
-<li><strong>Review ratio, dollars only and with the floor:</strong> from today's models on each jurisdiction's held-out cases (exp83).</li>
+<li><strong>Review ratio, dollars only and with the floor:</strong> from the leak-free models on each jurisdiction's held-out cases (exp83 design, exp107).</li>
 <li><strong>Random review would give:</strong> the ratio random selection would give on the same held-out cases.</li>
 </ul>
 <!-- OLDER-TABLE:START -->
@@ -443,7 +443,7 @@
 <td>44%</td>
 <td>34%</td>
 <td>14%</td>
-<td>0.52</td>
+<td>0.15</td>
 <td>1.13</td>
 <td>0.82</td>
 </tr>
@@ -453,7 +453,7 @@
 <td>39%</td>
 <td>35%</td>
 <td>43%</td>
-<td>0.69</td>
+<td>0.54</td>
 <td>0.89</td>
 <td>0.90</td>
 </tr>
@@ -463,7 +463,7 @@
 <td>33%</td>
 <td>31%</td>
 <td>31%</td>
-<td>0.60</td>
+<td>0.31</td>
 <td>1.18</td>
 <td>0.92</td>
 </tr>
@@ -473,7 +473,7 @@
 <td>35%</td>
 <td>33%</td>
 <td>34%</td>
-<td>0.44</td>
+<td>0.39</td>
 <td>1.22</td>
 <td>1.06</td>
 </tr>
@@ -483,7 +483,7 @@
 <td>53%</td>
 <td>41%</td>
 <td>23%</td>
-<td>0.68</td>
+<td>0.47</td>
 <td>0.96</td>
 <td>0.79</td>
 </tr>
@@ -493,7 +493,7 @@
 <td>41%</td>
 <td>35%</td>
 <td>22%</td>
-<td>0.67</td>
+<td>0.29</td>
 <td>0.97</td>
 <td>0.83</td>
 </tr>
@@ -503,7 +503,7 @@
 <td>42%</td>
 <td>40%</td>
 <td>26%</td>
-<td>0.67</td>
+<td>0.38</td>
 <td>1.03</td>
 <td>0.95</td>
 </tr>
@@ -513,7 +513,7 @@
 <td>41%</td>
 <td>38%</td>
 <td>18%</td>
-<td>0.61</td>
+<td>0.36</td>
 <td>1.05</td>
 <td>0.96</td>
 </tr>
@@ -523,7 +523,7 @@
 <td>50%</td>
 <td>43%</td>
 <td>47%</td>
-<td>0.77</td>
+<td>0.72</td>
 <td>0.91</td>
 <td>0.81</td>
 </tr>
@@ -533,7 +533,7 @@
 <td>44%</td>
 <td>41%</td>
 <td>16%</td>
-<td>0.64</td>
+<td>0.33</td>
 <td>1.03</td>
 <td>0.93</td>
 </tr>
@@ -543,7 +543,7 @@
 <td>53%</td>
 <td>51%</td>
 <td>19%</td>
-<td>0.71</td>
+<td>0.34</td>
 <td>0.88</td>
 <td>0.94</td>
 </tr>
@@ -553,7 +553,7 @@
 <td>51%</td>
 <td>47%</td>
 <td>25%</td>
-<td>0.66</td>
+<td>0.41</td>
 <td>0.91</td>
 <td>0.79</td>
 </tr>
@@ -563,7 +563,7 @@
 <td>46%</td>
 <td>44%</td>
 <td>32%</td>
-<td>0.40</td>
+<td>0.35</td>
 <td>0.99</td>
 <td>0.88</td>
 </tr>
@@ -573,7 +573,7 @@
 <td>35%</td>
 <td>34%</td>
 <td>21%</td>
-<td>0.59</td>
+<td>0.20</td>
 <td>1.11</td>
 <td>0.98</td>
 </tr>
@@ -583,7 +583,7 @@
 <td>41%</td>
 <td>35%</td>
 <td>11%</td>
-<td>0.81</td>
+<td>0.38</td>
 <td>1.04</td>
 <td>0.86</td>
 </tr>
@@ -593,7 +593,7 @@
 <td>44%</td>
 <td>39%</td>
 <td>34%</td>
-<td>0.42</td>
+<td>0.30</td>
 <td>1.08</td>
 <td>0.98</td>
 </tr>
@@ -603,7 +603,7 @@
 <td>33%</td>
 <td>33%</td>
 <td>29%</td>
-<td>0.47</td>
+<td>0.29</td>
 <td>0.98</td>
 <td>0.96</td>
 </tr>
@@ -613,7 +613,7 @@
 <td>46%</td>
 <td>42%</td>
 <td>20%</td>
-<td>0.62</td>
+<td>0.19</td>
 <td>1.03</td>
 <td>0.90</td>
 </tr>
@@ -623,7 +623,7 @@
 <td>32%</td>
 <td>30%</td>
 <td>38%</td>
-<td>0.43</td>
+<td>0.28</td>
 <td>0.86</td>
 <td>0.89</td>
 </tr>
@@ -633,7 +633,7 @@
 <td>46%</td>
 <td>42%</td>
 <td>33%</td>
-<td>0.54</td>
+<td>0.16</td>
 <td>0.93</td>
 <td>0.94</td>
 </tr>
@@ -643,7 +643,7 @@
 <td>41%</td>
 <td>41%</td>
 <td>23%</td>
-<td>0.65</td>
+<td>0.32</td>
 <td>1.26</td>
 <td>1.14</td>
 </tr>
@@ -653,7 +653,7 @@
 <td>38%</td>
 <td>38%</td>
 <td>49%</td>
-<td>0.71</td>
+<td>0.47</td>
 <td>0.97</td>
 <td>0.98</td>
 </tr>
@@ -663,7 +663,7 @@
 <td>44%</td>
 <td>37%</td>
 <td>20%</td>
-<td>0.68</td>
+<td>0.45</td>
 <td>1.08</td>
 <td>0.86</td>
 </tr>
@@ -673,7 +673,7 @@
 <td>50%</td>
 <td>44%</td>
 <td>24%</td>
-<td>0.83</td>
+<td>0.32</td>
 <td>0.98</td>
 <td>0.88</td>
 </tr>
@@ -683,7 +683,7 @@
 <td>48%</td>
 <td>38%</td>
 <td>40%</td>
-<td>0.67</td>
+<td>0.26</td>
 <td>0.97</td>
 <td>0.81</td>
 </tr>
@@ -693,7 +693,7 @@
 <td>38%</td>
 <td>37%</td>
 <td>27%</td>
-<td>0.59</td>
+<td>0.29</td>
 <td>0.98</td>
 <td>0.96</td>
 </tr>
@@ -703,7 +703,7 @@
 <td>48%</td>
 <td>40%</td>
 <td>26%</td>
-<td>0.55</td>
+<td>0.29</td>
 <td>1.08</td>
 <td>0.85</td>
 </tr>
@@ -713,7 +713,7 @@
 <td>49%</td>
 <td>42%</td>
 <td>29%</td>
-<td>0.69</td>
+<td>0.35</td>
 <td>0.98</td>
 <td>0.87</td>
 </tr>
@@ -723,7 +723,7 @@
 <td>40%</td>
 <td>35%</td>
 <td>33%</td>
-<td>0.36</td>
+<td>0.17</td>
 <td>1.02</td>
 <td>0.90</td>
 </tr>
@@ -733,7 +733,7 @@
 <td>43%</td>
 <td>33%</td>
 <td>15%</td>
-<td>0.54</td>
+<td>0.39</td>
 <td>1.15</td>
 <td>0.85</td>
 </tr>
@@ -743,7 +743,7 @@
 <td>34%</td>
 <td>34%</td>
 <td>62%</td>
-<td>0.73</td>
+<td>0.23</td>
 <td>1.04</td>
 <td>0.97</td>
 </tr>
@@ -753,7 +753,7 @@
 <td>33%</td>
 <td>32%</td>
 <td>45%</td>
-<td>0.50</td>
+<td>0.33</td>
 <td>0.97</td>
 <td>0.94</td>
 </tr>
@@ -763,7 +763,7 @@
 <td>57%</td>
 <td>48%</td>
 <td>12%</td>
-<td>0.59</td>
+<td>0.20</td>
 <td>0.85</td>
 <td>0.76</td>
 </tr>
@@ -773,7 +773,7 @@
 <td>38%</td>
 <td>37%</td>
 <td>29%</td>
-<td>0.62</td>
+<td>0.54</td>
 <td>1.20</td>
 <td>1.08</td>
 </tr>
@@ -783,7 +783,7 @@
 <td>33%</td>
 <td>36%</td>
 <td>27%</td>
-<td>0.75</td>
+<td>0.43</td>
 <td>1.03</td>
 <td>1.10</td>
 </tr>
@@ -793,7 +793,7 @@
 <td>42%</td>
 <td>38%</td>
 <td>39%</td>
-<td>0.59</td>
+<td>0.25</td>
 <td>1.01</td>
 <td>0.85</td>
 </tr>
@@ -803,7 +803,7 @@
 <td>41%</td>
 <td>38%</td>
 <td>31%</td>
-<td>0.46</td>
+<td>0.34</td>
 <td>1.11</td>
 <td>0.93</td>
 </tr>
@@ -813,7 +813,7 @@
 <td>46%</td>
 <td>41%</td>
 <td>22%</td>
-<td>0.61</td>
+<td>0.20</td>
 <td>1.00</td>
 <td>0.91</td>
 </tr>
@@ -823,7 +823,7 @@
 <td>45%</td>
 <td>40%</td>
 <td>9%</td>
-<td>0.81</td>
+<td>0.47</td>
 <td>0.92</td>
 <td>0.88</td>
 </tr>
@@ -833,7 +833,7 @@
 <td>47%</td>
 <td>43%</td>
 <td>25%</td>
-<td>0.65</td>
+<td>0.42</td>
 <td>0.90</td>
 <td>0.90</td>
 </tr>
@@ -843,7 +843,7 @@
 <td>56%</td>
 <td>48%</td>
 <td>22%</td>
-<td>0.85</td>
+<td>0.27</td>
 <td>1.02</td>
 <td>0.83</td>
 </tr>
@@ -853,7 +853,7 @@
 <td>38%</td>
 <td>36%</td>
 <td>26%</td>
-<td>0.52</td>
+<td>0.28</td>
 <td>1.00</td>
 <td>0.97</td>
 </tr>
@@ -863,7 +863,7 @@
 <td>27%</td>
 <td>26%</td>
 <td>41%</td>
-<td>0.37</td>
+<td>0.41</td>
 <td>1.08</td>
 <td>1.02</td>
 </tr>
@@ -873,7 +873,7 @@
 <td>41%</td>
 <td>35%</td>
 <td>31%</td>
-<td>0.52</td>
+<td>0.37</td>
 <td>0.82</td>
 <td>0.76</td>
 </tr>
@@ -883,7 +883,7 @@
 <td>41%</td>
 <td>44%</td>
 <td>43%</td>
-<td>0.41</td>
+<td>0.21</td>
 <td>0.95</td>
 <td>1.05</td>
 </tr>
@@ -893,7 +893,7 @@
 <td>37%</td>
 <td>33%</td>
 <td>27%</td>
-<td>0.46</td>
+<td>0.30</td>
 <td>1.09</td>
 <td>0.90</td>
 </tr>
@@ -903,7 +903,7 @@
 <td>47%</td>
 <td>35%</td>
 <td>34%</td>
-<td>0.62</td>
+<td>0.58</td>
 <td>0.98</td>
 <td>0.72</td>
 </tr>
@@ -913,7 +913,7 @@
 <td>48%</td>
 <td>42%</td>
 <td>27%</td>
-<td>0.49</td>
+<td>0.24</td>
 <td>0.93</td>
 <td>0.82</td>
 </tr>
@@ -923,7 +923,7 @@
 <td>46%</td>
 <td>46%</td>
 <td>25%</td>
-<td>0.61</td>
+<td>0.48</td>
 <td>1.14</td>
 <td>1.13</td>
 </tr>
@@ -933,7 +933,7 @@
 <td>28%</td>
 <td>26%</td>
 <td>23%</td>
-<td>0.55</td>
+<td>0.42</td>
 <td>0.93</td>
 <td>0.86</td>
 </tr>
@@ -943,7 +943,7 @@
 <td>39%</td>
 <td>38%</td>
 <td>22%</td>
-<td>0.50</td>
+<td>0.35</td>
 <td>0.96</td>
 <td>0.92</td>
 </tr>
@@ -953,7 +953,7 @@
 <td>31%</td>
 <td>33%</td>
 <td>23%</td>
-<td>0.64</td>
+<td>0.28</td>
 <td>0.89</td>
 <td>0.97</td>
 </tr>
@@ -963,7 +963,7 @@
 <td>41%</td>
 <td>34%</td>
 <td>51%</td>
-<td>0.45</td>
+<td>0.27</td>
 <td>1.35</td>
 <td>0.97</td>
 </tr>

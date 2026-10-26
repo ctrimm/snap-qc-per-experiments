@@ -1,6 +1,6 @@
 """Recompute the FY2028 SNAP cost-share figure (exp93) nationally or for one state, from committed inputs.
 
-No model fitting: uses each jurisdiction's measured ranker lift from exp93_results.json, the official FY2025
+No model fitting: uses each jurisdiction's measured ranker lift from exp93_leakfree_results.json (exp107, leak-free; the published pre-exp106 figures are in exp93_results.json), the official FY2025
 payment error rates (exp69_published_per.json) and annual benefits from FY2024 QC microdata (exp93's rows).
 Any input can be overridden for a state, so it also works for a state with newer or its own figures.
 
@@ -17,7 +17,7 @@ HERE = Path(__file__).resolve().parent
 SCEN = {"low": {"R": 0.01, "lift": "top20", "f": 0.6, "m": 4},       # exp69, unchanged in exp93
         "central": {"R": 0.02, "lift": "top10", "f": 0.8, "m": 6},
         "high": {"R": 0.03, "lift": "top10", "f": 0.9, "m": 8}}
-MEDIAN_FLOOR_LIFT = {"top10": 6.17, "top20": 3.93}  # exp93 medians across 53 jurisdictions (fallback for a state with no ranker)
+MEDIAN_FLOOR_LIFT = {"top10": 2.93, "top20": 2.42}  # leak-free exp93/exp107 medians across 53 jurisdictions (fallback for a state with no ranker)
 
 
 def share(per):
@@ -31,7 +31,7 @@ def after(per0, R, L, f, m):
 
 
 def inputs():
-    r = json.loads((HERE / "exp93_results.json").read_text())
+    r = json.loads((HERE / "exp93_leakfree_results.json").read_text())
     rows = {}
     for ab, s in r["states"].items():
         lift = r["measured"][ab]

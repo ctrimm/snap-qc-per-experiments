@@ -1,7 +1,7 @@
 {
  "state": "WY",
  "state_code": "56",
- "built": "2026-10-10",
+ "built": "2026-10-26",
  "training_rows": 1191,
  "training_years": "FY2020-2024 QC public-use",
  "error_rows": 405,
@@ -21,16 +21,14 @@
   "depcare_claimed",
   "child_support_claimed",
   "homeless",
-  "issued_benefit",
   "income_per_person",
   "earned_share",
   "shelter_to_income",
   "net_to_gross",
-  "benefit_max",
-  "benefit_share_of_max"
+  "benefit_max"
  ],
- "feature_note": "agency-side fields only, plus the case's maximum allotment (BENMAX) and issued benefit as a share of it",
- "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores; trained on this jurisdiction's rows (weight 1) pooled with all other jurisdictions' rows, with state-context features (exp80)",
+ "feature_note": "exp107 leak-free: QC case facts plus the case's maximum allotment (BENMAX); the issued benefit is NOT an input (exp106: the QC file's RAW* facts are reviewer values, so pairing them with RAWBEN leaked the error)",
+ "model": "P(error) x E[dollars | error], HistGradientBoosting; expected dollars calibrated by isotonic regression on out-of-fold scores; trained on this jurisdiction's rows (weight 1) pooled with all other jurisdictions' rows (exp80 design, exp107 leak-free features)",
  "config": {
   "clf": {
    "learning_rate": 0.1,
@@ -47,7 +45,7 @@
    "max_iter": 100
   }
  },
- "chosen": "exp80 variant B_ctx",
+ "chosen": "exp80/82 variant B_ctx",
  "evaluation": {
   "nested_cv_top20_lift": {
    "untuned": 1.78,
@@ -82,7 +80,7 @@
  },
  "review_minutes_assumed": 30,
  "sklearn_version": "1.9.1",
- "source": "snap-qc-per-experiments exp80 (experiments/exp80_state_context.py)",
+ "source": "snap-qc-per-experiments exp107 (experiments/exp107_package.py)",
  "exp75": {
   "own_only": {
    "holdout": 1.715,
@@ -105,5 +103,7 @@
    "time_split": 2.91
   },
   "rule": "beats the deployed model on holdout and time split"
- }
+ },
+ "feature_set": "leakfree",
+ "evaluation_current": "experiments/exp83_leakfree_results.json (held-out); exp107_timesplit_results.json"
 }

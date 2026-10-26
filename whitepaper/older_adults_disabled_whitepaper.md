@@ -1,9 +1,9 @@
 # Older Adults and People with Disabilities in SNAP Error Review
 
-**October 23, 2026 (first version October 15, 2026) · Executive summary · Cory Trimm**
+**October 26, 2026 (corrected; versions of October 15 and 23) · Executive summary · Cory Trimm**
 
 
-> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+> **Corrected October 26, 2026.** The review ratios, floor costs and cost-share figures from today's models are replaced with the leak-free rebuild (experiment 107). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49, Utah, Idaho) used early rankers and have not been rechecked.
 
 ## Summary
 
@@ -11,8 +11,8 @@ This paper covers where older adults and people with disabilities show up in the
 
 1. **Elderly and disabled households have the highest error rates of any large group, and a review tool that chases dollars sends reviewers away from them.**
    - **Pennsylvania test set:** 48% of elderly households had a payment error, against 15% of childless adults.
-   - **Today's models (all 53 jurisdictions):** ranking cases by expected dollars reviews elderly households at a median **0.61** of their share of the error risk, below 0.8 in **49 of 53** jurisdictions.
-   - **Against random review:** in Pennsylvania and New York, random selection would give elderly households about 0.90 and 1.08 on the same measure. The dollar ranking gives 0.65 and 0.62, so it reviews them less than random selection would.
+   - **Today's models (all 53 jurisdictions):** ranking cases by expected dollars reviews elderly households at a median **0.33** of their share of the error risk, below 0.8 in **all 53** jurisdictions.
+   - **Against random review:** in Pennsylvania and New York, random selection would give elderly households about 0.90 and 1.08 on the same measure. The dollar ranking gives 0.42 and 0.54, so it reviews them less than random selection would.
 2. **The reason is error size, not missed detection.**
    - **Small but frequent:** older households' errors are frequent but small: medical deductions, Social Security and SSI changes, rent and utility timing.
    - **Larger elsewhere:** errors on earnings are larger, so a list sorted by dollars puts working households first.
@@ -20,7 +20,7 @@ This paper covers where older adults and people with disabilities show up in the
 3. **A fairness floor fixes it, cheaply.**
    - **What it does:** it splits the review budget across household types in proportion to where errors are, then sorts by dollars within each type.
    - **Early test (PA and NY):** it roughly doubled elderly review relative to risk, with no measurable loss in dollars found, and reviewers spent fewer reviews on error-free cases.
-   - **Today's models:** it brings the median elderly ratio to **1.00** and leaves no jurisdiction below 0.8. It costs about **1%** of the median lift; the median state gives up 1.5%.
+   - **Today's models:** it brings the median elderly ratio to **1.00** and leaves no jurisdiction below 0.8. It costs the median state about **10%** of its lift.
    - **Default:** it is on by default in our pilot recommendation.
 4. **The tool doesn't hide money owed to older households, but it leaves much of it unreviewed.** The errors the ranker skips are not disproportionately underpayments. But because few older and disabled households get reviewed, they hold about **half of all unreviewed underpayment dollars** (PA 51%, NY 47%).
 5. **Medical deductions are the biggest gap in our AI work.**
@@ -37,7 +37,7 @@ Everything here is analysis of federal public-use QC data (FY2020–2024). No st
 |---|---|---|
 | Who gets reviewed when a tool picks the cases with the most likely error dollars? | Compared each household type's share of reviews with its share of errors | Elderly and disabled households get far fewer reviews than their errors warrant; childless adults get far more |
 | Is the tool missing their errors? | Checked how often reviews of these households found an error | No: when reviewed, two in three had an error. Their errors are just smaller |
-| Can a simple rule fix it? | Gave each household type a share of the review budget matching its share of errors | Yes, everywhere, for about 1% of the tool's effectiveness |
+| Can a simple rule fix it? | Gave each household type a share of the review budget matching its share of errors | Yes, everywhere, for about 10% of the tool's effectiveness in the median state |
 | What about extra weight for older households? | Multiplied their dollar scores by 1.5–4 | Rejected: it gave some other household types no reviews at all |
 | Are underpayments owed to older households being missed? | Compared the over/under mix of reviewed and skipped errors | Skipped errors aren't mostly underpayments, but half of all unreviewed underpayment dollars sit with these households |
 | Can our AI tools catch medical-deduction errors? | Checked the training data and the language model | Not yet: the training data under-produces them, and the model couldn't identify them |
@@ -59,7 +59,7 @@ Everything here is analysis of federal public-use QC data (FY2020–2024). No st
 **Why states will care more:** the QC system reviews a random sample of cases each year, which sets each state's payment error rate. From FY2028, under H.R. 1, that rate also sets how much of benefit costs the state pays. States will have a strong financial reason to aim their own reviews where the error dollars are, and that is where older households lose out.
 
 **The tools:**
-- **The triage ranker:** scores each case using information the agency already has (reported income, deductions, rent and utilities, household size, benefit issued). Its top 20% of cases holds a median **3.97 times** the error dollars of a random 20%, across 53 jurisdictions.
+- **The triage ranker:** scores each case using information the agency already has (reported income, deductions, rent and utilities, household size, maximum allotment; not the benefit issued). Its top 20% of cases holds a median **2.7 times** the error dollars of a random 20%, across 53 jurisdictions.
 - **Flag cards:** short plain-language notes for each picked case.
 - **The fairness floor:** a setting on the ranker.
 
@@ -102,9 +102,9 @@ On both measures, the same pattern holds: elderly and disabled households score 
   | Models | Elderly under-reviewed | Disabled under-reviewed | Median elderly ratio |
   |---|---|---|---|
   | Earlier models (exp72) | 51 of 53 jurisdictions | 22 of 51 | 0.57 |
-  | Today's models (exp83) | **49 of 53** | **30 of 51** | **0.61** |
+  | Today's models (leak-free, exp107) | **53 of 53** | **47 of 51** | **0.33** |
 
-  Today's Pennsylvania and New York elderly ratios are 0.65 and 0.62, against about 0.90 and 1.08 for random review.
+  Today's Pennsylvania and New York elderly ratios are 0.42 and 0.54, against about 0.90 and 1.08 for random review.
 
 ## Finding 2: the fairness floor, and where to sit on the trade-off
 
@@ -138,13 +138,13 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 |---|---|---|
 | exp49 | PA, NY, early rankers | None measurable in dollars per hour |
 | exp72 | 53 jurisdictions, earlier models | Median lift 3.25× → 3.18× (about 2%). Largest: Wyoming 1.72× → 1.02×, New York 3.54× → 3.13× |
-| exp83 | 53 jurisdictions, today's models | Median lift 3.97× → 3.93× (about 1%; the median state gives up 1.5%). Largest: Hawaii −0.56×, Wyoming −0.51× |
+| exp83 / exp107 | 53 jurisdictions, today's (leak-free) models | Median lift 2.70× → 2.42×; the median state gives up about 10%. Largest: Missouri −0.91×, Hawaii −0.76× |
 | exp78 | FY2028 cost share, earlier models, top-20% basis | $3.85B → $3.49B a year avoided (central), about 9% |
-| exp93 | FY2028 cost share, today's models | Central $6.82B → **$6.05B** a year avoided on the top-10% basis (about 11%); $4.21B → $4.06B on the top-20% basis (about 4%) |
+| exp93 / exp107 | FY2028 cost share, today's (leak-free) models | Central $3.55B → **$3.42B** a year avoided on the top-10% basis (about 4%); $2.88B → $2.79B on the top-20% basis (about 3%) |
 
-**For decision makers, it's a policy choice.** On current models, full proportional review for older households costs about 1% of the dollars found. In avoided FY2028 cost share it costs more, about $0.77B a year in the central scenario (exp93), because it gives up the most at the very top of the queue.
+**For decision makers, it's a policy choice.** On current models, full proportional review for older households costs the median state about 10% of the dollars found. In avoided FY2028 cost share it costs about $0.13B a year in the central scenario.
 
-**With the floor on,** ranker-guided reviews still avoid an estimated **$6.05B a year** (central). That's about six times what random review avoids ($1.03B), or $4.06B on the more conservative top-20% basis. The $5.28B and $3.49B figures in older notes both used earlier, weaker models.
+**With the floor on,** ranker-guided reviews still avoid an estimated **$3.42B a year** (central). That's about 3.3 times what random review avoids ($1.03B), or $2.79B on the more conservative top-20% basis. The $6.05B, $5.28B and $3.49B figures in older notes all used earlier models and are superseded.
 
 ## Finding 3: underpayments owed to older households
 
@@ -154,7 +154,7 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 
 **Two tools target underpayments:**
 - **Floors keyed to underpayment dollars (exp51)** recovered 52–77% more underpayment dollars overall than dollar ranking (New York +52%, Pennsylvania +77%). They didn't reach elderly and disabled households better than the standard floor, though. The chronicle's advice, for equity toward older and disabled households: use the standard floor.
-- **A separate underpayment ranker (exp79)** finds a median 3.36 times the underpayment dollars of random review, better in all 53 jurisdictions. The main ranker manages 1.55 times, and is worse than random in 7 jurisdictions (Alaska 0.65 times). It hasn't been broken out by household type.
+- **A separate underpayment ranker (exp79, leak-free)** finds a median 1.8 times the underpayment dollars of random review, better in 36 of 53 jurisdictions. The main ranker manages 1.54 times, and is worse than random in 6 jurisdictions (Alaska 0.64 times). It hasn't been broken out by household type.
 
 ## Finding 4: medical deductions and the AI models
 
@@ -214,7 +214,7 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 
 - Older and disabled SNAP households have the highest error rates, yet a review tool that chases dollars sends reviewers elsewhere: it reviews them less than random selection would.
 - Their errors are frequent but small: medical deductions, Social Security and SSI changes, rent timing. When reviewers do look at these households, they find errors in about two of three cases.
-- A simple budget rule fixes it in every state and territory, for about 1% of the tool's effectiveness. It's on by default in our recommendation.
+- A simple budget rule fixes it in every state and territory, for about a tenth of the tool's effectiveness in the median state. It's on by default in our recommendation.
 - Age is never used to score a household. It's used only to check that each group gets its fair share of reviews.
 - One in four older or disabled households claiming a medical deduction has an error in it. That's where our AI work is weakest, and the fixes are designed but not run.
 - About one in five SNAP households likely qualifies for Medicare cost help. Matching that against enrollment needs a state partner.
@@ -225,7 +225,7 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 |---|---|---|
 | Today's models bring elderly review to "1.00 of fair share in every jurisdiction" | exp83 | The median is 1.00; individual jurisdictions range from 0.82 to 1.35, none below 0.8 |
 | Reviewers found errors in "62–73%" of reviewed elderly and disabled cases in PA | exp47 table | 66% (elderly) and 70% (disabled); the chronicle's prose range didn't match its own table |
-| exp47's 0.22 and exp72/83's ratios presented on one scale | exp47, exp72 code | Two different measures, defined in the table above. On today's measure PA elderly is 0.65 against about 0.90 at random |
+| exp47's 0.22 and exp72/83's ratios presented on one scale | exp47, exp72 code | Two different measures, defined in the table above. On today's measure (leak-free) PA elderly is 0.42 against about 0.90 at random |
 | The exp47/49/Utah/Idaho results described as "a dollar-chasing review tool" without saying which | exp47, exp49, `ut_fairness`, `idf` | Labeled as the early rankers trained on synthetic cases; the 53-jurisdiction results use the real-data models |
 | "Idaho and South Dakota use a ranker based only on chance of error" | Pilot papers, exp82 | They did in the October 4 pilots; today every jurisdiction uses the expected-dollar model |
 | exp72's floor cost "about 2–3%" | exp72 | About 2% (3.25× → 3.18×) |
@@ -260,6 +260,6 @@ python3 -c "import json; e=json.load(open('experiments/exp83_results.json')); pr
 # the early household-type tests
 python3 experiments/exp47_household_type_burden.py
 python3 experiments/exp49_equity_objective.py
-# cost share with the floor on (central $6.05B) and per state
+# cost share with the floor on (central $3.42B, leak-free) and per state
 python3 experiments/cost_share_replicate.py
 ```

@@ -8,7 +8,7 @@ Error case: STATUS 2 (overissuance) or 3 (underissuance); error dollars: AMTERR.
 A medical-deduction error is a case with any variance element 365 (ELEMENT1..ELEMENTn); exp42's
 elderly-or-disabled, medical-expense-on-file rate (24.2%) is reproduced first as a check of the method.
 Income sources use the verified income fields (FSSOCSEC, FSSSI, FSPENSION, FSWAGES > 0); the ranker never uses them.
-Per-jurisdiction fairness ratios come from experiments/exp83_results.json (today's models); the random-review
+Per-jurisdiction fairness ratios come from experiments/exp83_leakfree_results.json (leak-free models, exp107); the random-review
 ratio is computed on the same held-out cases (experiments/exp68_holdouts.json) as overall error rate / elderly error rate.
 """
 import csv
@@ -100,7 +100,7 @@ def main():
     out["fy2024_share"] = {"unweighted": 100 * sum(x["elderly"] for x in f24) / len(f24),
                            "weighted": 100 * sum(x["w"] * x["elderly"] for x in f24) / sum(x["w"] for x in f24)}
     # per jurisdiction: profile + today's fairness ratios + random-review ratio on the exp68 holdout
-    e83 = json.loads((ROOT / "experiments/exp83_results.json").read_text())
+    e83 = json.loads((ROOT / "experiments/exp83_leakfree_results.json").read_text())  # leak-free (exp107)
     hold = json.loads((ROOT / "experiments/exp68_holdouts.json").read_text())
     table = []
     for c, R in rows.items():
