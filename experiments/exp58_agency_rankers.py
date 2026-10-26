@@ -46,15 +46,22 @@ FEATURES = ["hh_size_cert", "hh_size_reported", "gross_income", "net_income", "e
             "earned_est", "unearned_est", "shelter_deduction", "rent", "utilities", "sua_used",
             "medical_claimed", "depcare_claimed", "child_support_claimed", "homeless",
             "issued_benefit", "income_per_person", "earned_share", "shelter_to_income", "net_to_gross"]
-# exp107: SNAPQC_FEATURES=leakfree drops the issued benefit. The QC file's RAW* income, deduction and size fields are
-# the QC reviewer's recorded values (exp106), so pairing them with RAWBEN (what the agency issued) leaks the error.
-LEAKFREE = os.environ.get("SNAPQC_FEATURES") == "leakfree"
+# Feature set (exp106/exp107). SNAPQC_FEATURES selects it:
+#   leakfree (DEFAULT)  no issued benefit. The QC file's RAW* income, deduction and household-size fields are the QC
+#                       reviewer's recorded values (for error cases, the corrected facts), so pairing them with RAWBEN
+#                       (what the agency issued) lets a model see the error. Never re-add RAWBEN or a ratio built on it.
+#   legacy              the published pre-exp106 feature set, with issued_benefit; only to reproduce or audit old results
+#                       (exp58-exp105 results files). Results written under legacy keep their original file names.
+SNAPQC_FEATURES = os.environ.get("SNAPQC_FEATURES", "leakfree")
+if SNAPQC_FEATURES not in ("leakfree", "legacy"):
+    raise ValueError(f"SNAPQC_FEATURES must be 'leakfree' (default) or 'legacy', not {SNAPQC_FEATURES!r}")
+LEAKFREE = SNAPQC_FEATURES == "leakfree"
 if LEAKFREE:
     FEATURES = [f for f in FEATURES if f != "issued_benefit"]
 
 
 def results_path(name):
-    """experiments/<name>, or its *_leakfree_results.json twin under SNAPQC_FEATURES=leakfree (exp107)."""
+    """experiments/<name>_leakfree_results.json by default (exp107); the original name under SNAPQC_FEATURES=legacy."""
     return ROOT / "experiments" / (name.replace("_results.json", "_leakfree_results.json") if LEAKFREE else name)
 DELIVER = ROOT / "deliverables" / "state_rankers"
 

@@ -27,6 +27,10 @@ exp106 found that our ranker inputs paired the issued benefit (`RAWBEN`) with QC
 
 The briefs also quote each state's later-years result (train FY2020–22, test the state's FY2023–24), taken from exp80/exp82, which used the leaky features. `exp107_timesplit.py` recomputes it under the switch: the adopted variant, other jurisdictions' FY2020–22 rows pooled in, and exp82's procedure. Results go to `exp107_timesplit_results.json`. The state-only comparisons in the briefs (exp68, also leaky) are dropped rather than recomputed.
 
+### Amendment 2 (2026-10-26): leak-free is the default
+
+At the user's request, `SNAPQC_FEATURES` defaults to `leakfree`; `SNAPQC_FEATURES=legacy` reproduces the published pre-exp106 results under their original file names. Documented in the README ("Feature set: leak-free by default"), `CLAUDE.md` and `deliverables/state_rankers/README.md`. This run set `leakfree` explicitly, so the change did not affect it.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->

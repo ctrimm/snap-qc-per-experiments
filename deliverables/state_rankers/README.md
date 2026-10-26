@@ -2,6 +2,8 @@
 
 A model per jurisdiction (all 50 states, DC, Guam and the Virgin Islands; exp68) that ranks SNAP cases by **expected payment-error dollars**, so QC or second-party reviewers spend their hours on the cases most likely to hold large errors. Built in exp58 (`experiments/exp58_agency_rankers.md`) from FY2020–2024 QC public-use data.
 
+> **Leak-free since exp107 (October 26, 2026).** The packaged models no longer use the issued benefit (`RAWBEN`). In the QC public-use data the reported facts are QC reviewers' values, so pairing them with the issued benefit leaked the error (exp106). Inputs are the case fields below plus `BENMAX`; `RAWBEN` is not needed. Older performance figures in this README predate the fix; current ones are in `experiments/exp83_leakfree_results.json`.
+
 ## What's here
 
 | path | contents |

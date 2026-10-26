@@ -8,6 +8,29 @@ Read [`NORTH_STAR.md`](NORTH_STAR.md) first: it defines the goal, the
 synthetic-first data strategy, and the three validation gates (calibration,
 transfer, LM eval) every experiment here must move.
 
+## Feature set: leak-free by default (`SNAPQC_FEATURES`)
+
+Since October 26, 2026 (exp106, exp107), every ranker script builds its inputs with the **leak-free** feature set, selected by the `SNAPQC_FEATURES` environment variable:
+
+| `SNAPQC_FEATURES` | Feature set | Use it for |
+|---|---|---|
+| `leakfree` (**default**; unset means this) | QC case facts plus the maximum allotment; **no issued benefit** | Everything: research, evaluation, packaged models |
+| `legacy` | The pre-exp106 set, including `issued_benefit` (RAWBEN) and `benefit_share_of_max` | Only to reproduce or audit results published before October 26 |
+
+**Why.** In the QC public-use file, the "reported" income, deduction and household-size fields (`RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, `CERTHHSZ`, …) are what the **QC reviewer** recorded, which for an error case are the corrected facts. `RAWBEN` is what the agency issued. A model given both can see the error. exp106 showed it: precision 1.00 on giannella/snap_qc's test, against 0.40 leak-free.
+
+**Rules:**
+- **Never add `RAWBEN` back**, nor any feature computed from it (benefit ratios, differences from a recomputed benefit), to a model that also sees the reported facts.
+- **Leave the switch alone.** The switch lives in `experiments/exp58_agency_rankers.py` (`LEAKFREE`, `results_path`) and `experiments/exp80_state_context.py` (`CONTEXT`).
+- **Results files:** scripts that use `results_path()` write `*_leakfree_results.json` by default, and the original names only under `legacy`.
+
+```bash
+python3 experiments/exp83_context_models_full_eval.py           # leak-free (default) -> exp83_leakfree_results.json
+SNAPQC_FEATURES=legacy python3 experiments/exp83_context_models_full_eval.py   # reproduces the published exp83_results.json
+```
+
+**What is not removable with public data:** for error cases the reported facts are still the corrected ones, and a deployed tool sees the agency's uncorrected facts. Validate on a state's own pre-review data before quoting deployment numbers.
+
 ## Summaries (October 23, 2026)
 
 - [Project summary](whitepaper/project_summary.pdf): the whole project (ranker, cost share, synthetic data, QC language model, flag cards, policy questions), with plain-language descriptions and technical reproduction.
