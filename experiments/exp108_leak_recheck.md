@@ -34,6 +34,16 @@ The published synthetic-ranker figures stay as history, labelled.
 
 The papers quote all four. Each figure is replaced by its leak-free value, or confirmed, and the "not rechecked" labels are removed. No hypothesis on direction, except the expectation stated in exp106 that item 1 is the most exposed.
 
+### Amendment 1 (2026-10-26, before it ran): does pooling still beat state-only without the leak?
+
+**Why.** The comparison paper says both projects find national data is the backbone, and ours rests on the claim that pooled models beat state-only ones (exp75, exp80, exp82). That was measured only on the leaky features.
+
+**Design.** `exp108_pooling.py`. For each of 53 jurisdictions, on the exp68 holdout and the leak-free features (exp83 design), compare:
+- **pooled:** the deployed pooled model, its top-20% lift taken from `exp83_leakfree_results.json`;
+- **state-only:** the same learner (`fit_w`, `E56.DEFAULT`, the same features) trained on the state's own non-holdout cases only.
+
+**Readout:** the median top-20% lift of each, and the number of states where pooled is higher. The claim holds if pooled is higher in the median state and in most states.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
