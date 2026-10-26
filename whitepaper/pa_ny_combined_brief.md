@@ -2,24 +2,24 @@
 
 **October 26, 2026 (corrected; first versions September 29 and October 23, 2026) · Two-state brief · Cory Trimm**
 
-> **Corrected October 26, 2026.** The October 23 version overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107).
+> **Corrected October 26, 2026.** The October 23 version overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111).
 
 ## Summary
 
-The same ranking tool has been built and tested in both states on their federal QC records (FY2020–2024), on cases each model never saw. Reviewing the top fifth of the queue finds about **2.7 times** (Pennsylvania) and **3.0 times** (New York) the error dollars of random review. Dollar forecasts land within 8% of actual.
+The same ranking tool has been built and tested in both states on their federal QC records (FY2020–2024), on cases each model never saw. Reviewing the top fifth of the queue finds about **2.6 times** (Pennsylvania) and **3.2 times** (New York) the error dollars of random review. Those are the dollars of errors over the federal tolerance, the ones the official payment error rate counts.
 
 | Held-out cases, top 20% of the queue | Pennsylvania | New York |
 |---|---|---|
 | QC cases (held out) | 3,268 (817) | 3,257 (815) |
-| Error dollars vs random review | **2.7×** | **3.0×** |
-| Found per review hour (random) | $128 ($47) | $171 ($56) |
-| Top 10% of the queue vs random | 3.7× | 4.3× |
-| Dollar forecast vs actual | 8% over | 1% over |
-| Trained 2020–22, tested 2023–24 | 2.6× | 3.1× |
-| With the fairness floor | 2.7× | 2.5× |
+| Error dollars vs random review | **2.6×** | **3.2×** |
+| Found per review hour (random) | $118 ($45) | $176 ($55) |
+| Top 10% of the queue vs random | 3.4× | 4.5× |
+| Dollar forecast vs actual | 13% over | 1% over |
+| Trained 2020–22, tested 2023–24 | 2.7× | 3.2× |
+| With the fairness floor | 2.2× | 2.9× |
 | FY2025 payment error rate | 9.21% | 13.18% |
 | FY2028 cost share at that rate | 10%, $418M a year | 15%, $1,081M a year |
-| Central scenario (2% of cases reviewed a month): rate after | 6.98% | 9.96% |
+| Central scenario (2% of cases reviewed a month): rate after | 7.01% | 9.46% |
 | Central scenario: share and amount avoided a year | 10% → 5%, $209M | 15% → 10%, $360M |
 | Central scenario: reviews a month (FTEs) | 20,959 (75) | 32,531 (116) |
 
@@ -29,9 +29,9 @@ The same ranking tool has been built and tested in both states on their federal 
   - **Pennsylvania:** its errors are about the shelter deduction: 45% of its error cases and 24% of error dollars (national 31% and 16%).
   - **New York:** its errors are about timing: 63% carry the reporting or timing code (national 42%).
 - **Neither state clears 6% in the central scenario.**
-  - **Pennsylvania:** it would need about 3.3% of cases reviewed a month.
-  - **New York:** each bracket needs more review: 10% at about 2.0% of cases a month, 8% at 4.0%, and 6% at 7.4%.
-- **The fairness floor costs New York more.** Ranking purely by dollars reviews elderly households at 0.42 (Pennsylvania) and 0.54 (New York) of their share of error cases. The floor brings them to 0.90 and 1.20. It costs Pennsylvania nothing measurable, and New York about 16% of its lift.
+  - **Pennsylvania:** it would need about 3.4% of cases reviewed a month.
+  - **New York:** each bracket needs more review: 10% at about 1.6% of cases a month, 8% at 3.3%, and 6% at 6.1%.
+- **The fairness floor costs both states.** Ranking purely by dollars reviews elderly households at 0.58 (Pennsylvania) and 0.76 (New York) of their share of error cases. The floor brings them to 0.94 and 1.31. It costs Pennsylvania about 17% of its lift and New York about 10%.
 
 ## How this evolved
 
@@ -41,7 +41,7 @@ The same ranking tool has been built and tested in both states on their federal 
 
 **October 23: real QC records.** The models moved to real QC records and reported 4.1× and 4.2×. Those numbers were inflated by the reviewer-recorded inputs described above.
 
-**Leak-free models (2.7× and 3.0×):** still about twice as many dollars per review hour as the synthetic-data proof of concept ($128 against $67 in Pennsylvania; $171 against $85 in New York).
+**October 26: today's models (2.6× and 3.2×).** Leak-free, and counting only errors over the tolerance. Their per-hour figures aren't comparable with the proof of concept's, which counted every error.
 
 **Two findings from the first version still hold:**
 - **Rank by dollars:** ranking by the chance of an error alone does worse than random at the top of the queue, because frequent errors are small.
@@ -53,7 +53,7 @@ The same ranking tool has been built and tested in both states on their federal 
 2. Run in shadow alongside existing review, with the fairness floor on and about 10% of reviews on random cases.
 3. Compare dollars found with the forecast.
 
-A pilot on the state's own pre-review case records is also the first real test of these numbers: the public data's income and deduction fields are reviewer values for error cases.
+A pilot on the state's own pre-review case records is also the first real test of these numbers. The public data's income and deduction fields are reviewer values for error cases. Rebuilding pre-review values (experiment 109) cut our model's dollar recall by about 17% on a one-year-ahead test, so expect real results somewhat below these.
 
 ## Full papers
 

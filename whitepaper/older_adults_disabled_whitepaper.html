@@ -37,27 +37,27 @@
 <h1>Older Adults and People with Disabilities in SNAP Error Review</h1>
 <div class="meta">October 26, 2026 (corrected; versions of October 15 and 23) · Executive summary · Cory Trimm</div>
 <blockquote>
-<p><strong>Corrected October 26, 2026.</strong> The review ratios, floor costs and cost-share figures from today's models are replaced with the leak-free rebuild (experiment 107). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49) used early rankers; their within-state detail was rechecked on today's models for Pennsylvania and New York (experiment 108) and holds, with the precision figures corrected below. The Utah and Idaho tests were not rechecked.</p>
+<p><strong>Corrected October 26, 2026.</strong> The review ratios, floor costs and cost-share figures from today's models are replaced with the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49) used early rankers; their within-state detail was rechecked on today's models for Pennsylvania and New York (experiment 108) and holds, with the precision figures corrected below. The Utah and Idaho tests were not rechecked.</p>
 </blockquote>
 <h2>Summary</h2>
 <p>This paper covers where older adults and people with disabilities show up in the SNAP quality-control (QC) research of September 28 – October 23, 2026: what we found, what we changed, and what is still open. It was first written for a conversation with AARP. Every figure has since been checked against its source experiment, and the corrections are listed at the end.</p>
 <ol>
 <li><strong>Elderly and disabled households have the highest error rates of any large group, and a review tool that chases dollars sends reviewers away from them.</strong><ul>
 <li><strong>Pennsylvania test set:</strong> 48% of elderly households had a payment error, against 15% of childless adults.</li>
-<li><strong>Today's models (all 53 jurisdictions):</strong> ranking cases by expected dollars reviews elderly households at a median <strong>0.33</strong> of their share of the error risk, below 0.8 in <strong>all 53</strong> jurisdictions.</li>
-<li><strong>Against random review:</strong> in Pennsylvania and New York, random selection would give elderly households about 0.90 and 1.08 on the same measure. The dollar ranking gives 0.42 and 0.54, so it reviews them less than random selection would.</li>
+<li><strong>Today's models (52 measurable jurisdictions):</strong> ranking cases by expected dollars reviews elderly households at a median <strong>0.44</strong> of their share of the error risk, counting errors over the federal tolerance; below 0.8 in <strong>50 of 52</strong>.</li>
+<li><strong>Against random review:</strong> older households have fewer errors over the tolerance than others, so random selection would give them more than their share: about 1.22 in Pennsylvania and 1.72 in New York. The dollar ranking gives 0.58 and 0.76, far less than random selection would.</li>
 </ul>
 </li>
 <li><strong>The reason is error size, not missed detection.</strong><ul>
 <li><strong>Small but frequent:</strong> older households' errors are frequent but small: medical deductions, Social Security and SSI changes, rent and utility timing.</li>
 <li><strong>Larger elsewhere:</strong> errors on earnings are larger, so a list sorted by dollars puts working households first.</li>
-<li><strong>Found when reviewed:</strong> when older and disabled households' cases are reviewed, reviewers find errors at high rates (62% and 69% in Pennsylvania, 71% and 76% in New York, on today's models).</li>
+<li><strong>Found when reviewed:</strong> when older and disabled households' cases are reviewed, reviewers find errors at high rates (62% and 69% in Pennsylvania, 71% and 76% in New York; exp108, on the any-error models).</li>
 </ul>
 </li>
-<li><strong>A fairness floor fixes it, cheaply.</strong><ul>
+<li><strong>A fairness floor fixes most of it, at a real cost.</strong><ul>
 <li><strong>What it does:</strong> it splits the review budget across household types in proportion to where errors are, then sorts by dollars within each type.</li>
 <li><strong>Early test (PA and NY):</strong> it roughly doubled elderly review relative to risk, with no measurable loss in dollars found, and reviewers spent fewer reviews on error-free cases.</li>
-<li><strong>Today's models:</strong> it brings the median elderly ratio to <strong>1.00</strong> and leaves no jurisdiction below 0.8. It costs the median state about <strong>10%</strong> of its lift.</li>
+<li><strong>Today's models:</strong> it brings the median elderly ratio to <strong>1.02</strong>, but 8 of 52 jurisdictions stay below 0.8. It costs the median state about <strong>7%</strong> of its lift, and about $0.75B of the national central cost-share estimate.</li>
 <li><strong>Default:</strong> it is on by default in our pilot recommendation.</li>
 </ul>
 </li>
@@ -215,7 +215,7 @@
 <p><strong>The pattern:</strong></p>
 <ul>
 <li><strong>Childless adults</strong> were the group least likely to have an error, yet they got the most review relative to risk, and those reviews mostly came up empty (Pennsylvania precision 10%).</li>
-<li><strong>Elderly and disabled households</strong> were found to have an error in 66% and 70% of their reviewed cases in Pennsylvania (44% and 65% in New York) in the early tests. On today's leak-free models: 62% and 69% (Pennsylvania), 71% and 76% (New York) (exp108).</li>
+<li><strong>Elderly and disabled households</strong> were found to have an error in 66% and 70% of their reviewed cases in Pennsylvania (44% and 65% in New York) in the early tests. On the leak-free any-error models (exp108): 62% and 69% (Pennsylvania), 71% and 76% (New York) (exp108).</li>
 <li><strong>The chronicle's summary:</strong> the ranker is "dollar-efficient and risk-regressive at the same time."</li>
 </ul>
 <p><strong>This is the objective, not a bug.</strong> Within each household type, the ranker picks the highest-dollar cases correctly. The tilt comes from sorting everyone on one dollar scale.</p>
@@ -329,9 +329,9 @@
 <td>Median lift 3.25× → 3.18× (about 2%). Largest: Wyoming 1.72× → 1.02×, New York 3.54× → 3.13×</td>
 </tr>
 <tr>
-<td>exp83 / exp107</td>
-<td>53 jurisdictions, today's (leak-free) models</td>
-<td>Median lift 2.70× → 2.42×; the median state gives up about 10%. Largest: Missouri −0.91×, Hawaii −0.76×</td>
+<td>exp83 / exp111</td>
+<td>53 jurisdictions, today's models (leak-free, official definition)</td>
+<td>Median lift 2.61× → 2.45×; the median state gives up about 7%. Largest: Maine −0.95×, Hawaii −0.89×</td>
 </tr>
 <tr>
 <td>exp78</td>
@@ -339,14 +339,14 @@
 <td>$3.85B → $3.49B a year avoided (central), about 9%</td>
 </tr>
 <tr>
-<td>exp93 / exp107</td>
-<td>FY2028 cost share, today's (leak-free) models</td>
-<td>Central $3.55B → <strong>$3.42B</strong> a year avoided on the top-10% basis (about 4%); $2.88B → $2.79B on the top-20% basis (about 3%)</td>
+<td>exp93 / exp111</td>
+<td>FY2028 cost share, today's models</td>
+<td>Central $3.90B → <strong>$3.15B</strong> a year avoided on the top-10% basis (about 19%); $2.72B with the floor on the top-20% basis</td>
 </tr>
 </tbody>
 </table>
-<p><strong>For decision makers, it's a policy choice.</strong> On current models, full proportional review for older households costs the median state about 10% of the dollars found. In avoided FY2028 cost share it costs about $0.13B a year in the central scenario.</p>
-<p><strong>With the floor on,</strong> ranker-guided reviews still avoid an estimated <strong>$3.42B a year</strong> (central). That's about 3.3 times what random review avoids ($1.03B), or $2.79B on the more conservative top-20% basis. The $6.05B, $5.28B and $3.49B figures in older notes all used earlier models and are superseded.</p>
+<p><strong>For decision makers, it's a policy choice.</strong> On current models, proportional review for older households costs the median state about 7% of the dollars found. In avoided FY2028 cost share it costs about $0.75B a year in the central scenario.</p>
+<p><strong>With the floor on,</strong> ranker-guided reviews still avoid an estimated <strong>$3.15B a year</strong> (central). That's about 3.1 times what random review avoids ($1.03B), or $2.72B on the more conservative top-20% basis. The $6.05B, $5.28B, $3.49B and $3.42B figures in older notes all used earlier models or the any-error lift and are superseded.</p>
 <h2>Finding 3: underpayments owed to older households</h2>
 <p><strong>The ranker doesn't hide them (exp48).</strong> The hypothesis was that the errors skipped in elderly and disabled households would be mostly underpayments. That was largely refuted. The skipped mix tracks each group's own mix of over- and underpayments: 0.90 to 1.33 times, where 1.0 is the same mix. The one place to watch is Pennsylvania's disabled households, where skipped errors lean toward underpayments (1.33 times), on a small sample.</p>
 <p><strong>The issue is volume.</strong> Because so few are reviewed, elderly and disabled households hold 51% of Pennsylvania's and 47% of New York's unreviewed underpayment dollars. In New York, 51% of disabled households' error dollars are underpayments.</p>
@@ -534,7 +534,7 @@
 <tr>
 <td>"$6.1B … ($1.0B) … $4.1B"</td>
 <td>exp93</td>
-<td>$6.05B, $1.03B, $4.06B on October 23; superseded October 26 by the leak-free $3.42B, $1.03B, $2.79B (exp107)</td>
+<td>$6.05B, $1.03B, $4.06B on October 23; superseded October 26 by the leak-free $3.42B, $1.03B, $2.79B (exp107), then by $3.15B, $1.03B, $2.72B on the official definition (exp111)</td>
 </tr>
 <tr>
 <td>Floor cost "$4.21B → $4.06B" on the top-20% basis</td>
@@ -591,7 +591,7 @@ python3 -c &quot;import json; e=json.load(open('experiments/exp83_results.json')
 # the early household-type tests
 python3 experiments/exp47_household_type_burden.py
 python3 experiments/exp49_equity_objective.py
-# cost share with the floor on (central $3.42B, leak-free) and per state
+# cost share with the floor on (central $3.15B; leak-free, official definition) and per state
 python3 experiments/cost_share_replicate.py
 </code></pre>
 </body>

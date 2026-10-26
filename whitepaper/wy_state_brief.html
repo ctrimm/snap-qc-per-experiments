@@ -37,14 +37,14 @@
 <h1>Finding SNAP Payment Errors Faster in Wyoming</h1>
 <div class="meta">October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm</div>
 <blockquote>
-<p><strong>Corrected October 26, 2026.</strong> The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.</p>
+<p><strong>Corrected October 26, 2026.</strong> The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.</p>
 </blockquote>
 <h2>Summary</h2>
 <p>Wyoming's FY2025 payment error rate was 3.96%, the third lowest of 53 jurisdictions (after South Dakota and Idaho) and below the 6% line where H.R. 1 cost sharing begins. Wyoming owes nothing under FY2028 rules at that rate. So for Wyoming, a case-ranking tool is about staying below 6%, finding households that are being underpaid, and using a small review staff well.</p>
 <ul>
-<li><strong>It finds 2.0 times the error dollars of random review.</strong> Reviewers working the top 20% of the tool's queue would find about <strong>$55 per review hour against $28</strong>. The top 10% finds 2.1 times.</li>
-<li><strong>It holds up over time.</strong> Trained on 2020–22 and tested on 2023–24, it kept a 2.1× edge. Expected error dollars for the top fifth of the queue were 2% above actual.</li>
-<li><strong>It's fair by design.</strong> Ranking purely by dollars would review elderly households at 0.27 of their share of error cases. A floor brings that to 1.35, at a cost of about 31% of the lift (2.0× → 1.4×).</li>
+<li><strong>It finds 1.6 times the error dollars of random review,</strong> counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about <strong>$44 per review hour against $27</strong>. The top 10% finds 2.8 times.</li>
+<li><strong>It holds up over time.</strong> Trained on 2020–22 and tested on 2023–24, it kept a 2.0× edge. Expected error dollars for the top fifth of the queue were 42% above actual.</li>
+<li><strong>It's fair by design.</strong> Wyoming's test cases have too few elderly households with an error over the tolerance to measure their share; for disabled households, ranking purely by dollars gives 0.42 of their share of error cases and the floor 0.48, at a cost of about 16% of the lift (1.6× → 1.4×).</li>
 <li><strong>Underpayments:</strong> 54% of Wyoming's error dollars are households paid too little (national 28%).</li>
 <li><strong>Cheap insurance:</strong> at its current rate Wyoming owes nothing. In the model, about 268 ranked reviews a month (1.0 FTEs) would bring a rate of 6.5% back under 6% (see <em>FY2028 cost share</em>).</li>
 </ul>
@@ -117,8 +117,8 @@
 <li>the household's maximum allotment.</li>
 </ul>
 <p>It does not use the benefit the agency issued: in the federal QC data that would let it compare the issued amount with the reviewer's corrected facts (experiment 106).</p>
-<p>It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.</p>
-<p>Wyoming's model learns from every state's QC cases plus Wyoming's maximum allotments. Among the 53 jurisdictions, Wyoming ranks 53 on the top-20% lift, 52 on the top-10% lift and 50 on the later-years test (1 = best).</p>
+<p>It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.</p>
+<p>Wyoming's model learns from every state's QC cases plus Wyoming's maximum allotments. Among the 53 jurisdictions, Wyoming ranks 52 on the top-20% lift, 41 on the top-10% lift and 49 on the later-years test (1 = best).</p>
 <h3>Results on cases the model never saw</h3>
 <p>297 Wyoming cases (25%) were set aside before training:</p>
 <table>
@@ -134,24 +134,24 @@
 <tbody>
 <tr>
 <td>10% of the queue</td>
-<td><strong>2.1×</strong></td>
-<td>$58 ($27)</td>
-<td>3% under</td>
-<td>52</td>
+<td><strong>2.8×</strong></td>
+<td>$75 ($26)</td>
+<td>17% under</td>
+<td>41</td>
 </tr>
 <tr>
 <td>20% of the queue</td>
-<td><strong>2.0×</strong></td>
-<td>$55 ($28)</td>
-<td>2% over</td>
-<td>53</td>
+<td><strong>1.6×</strong></td>
+<td>$44 ($27)</td>
+<td>42% over</td>
+<td>52</td>
 </tr>
 <tr>
 <td>20%, trained 2020–22, tested 2023–24</td>
-<td>2.1×</td>
+<td>2.0×</td>
 <td></td>
 <td></td>
-<td>50</td>
+<td>49</td>
 </tr>
 <tr>
 <td>20%, with the fairness floor</td>
@@ -162,9 +162,9 @@
 </tr>
 </tbody>
 </table>
-<p>Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.70× (top 20%).</p>
+<p>Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.61× (top 20%).</p>
 <h3>Fairness</h3>
-<p>The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:</p>
+<p>The measure is each household type's share of reviews divided by its share of cases with an error over the tolerance (its error risk), where 1.0 means reviewed in proportion to risk:</p>
 <table>
 <thead>
 <tr>
@@ -175,30 +175,25 @@
 </thead>
 <tbody>
 <tr>
-<td>Elderly</td>
-<td>0.27</td>
-<td>1.35</td>
-</tr>
-<tr>
 <td>Disabled</td>
-<td>0.37</td>
-<td>0.83</td>
+<td>0.42</td>
+<td>0.48</td>
 </tr>
 <tr>
 <td>Single parent</td>
-<td>1.25</td>
-<td>1.09</td>
+<td>1.03</td>
+<td>1.03</td>
 </tr>
 <tr>
 <td>Childless adult</td>
-<td>0.86</td>
-<td>0.86</td>
+<td>0.28</td>
+<td>1.98</td>
 </tr>
 </tbody>
 </table>
-<p>The floor costs about 31% of the lift. We recommend it on by default.</p>
+<p>The floor costs about 16% of the lift. We recommend it on by default.</p>
 <h3>Underpayments</h3>
-<p>A second ranker trained on underpayments finds 2.8 times the underpayment dollars of random review, against 2.8 times for the main ranker (both trained on Wyoming's own cases; exp79, leak-free).</p>
+<p>A second ranker trained on underpayments finds 1.1 times the underpayment dollars of random review, against 0.6 times for the main ranker (both trained on Wyoming's own cases; exp79, leak-free, official definition).</p>
 <h3>Flag cards for reviewers</h3>
 <p>"Check first" coverage hasn't been measured on Wyoming cases.</p>
 <h2>FY2028 cost share</h2>
@@ -219,21 +214,21 @@
 <td>3.96% (FY2025)</td>
 <td>0%</td>
 <td>$0</td>
-<td>3.35%</td>
+<td>3.58%</td>
 <td>3.61%</td>
 </tr>
 <tr>
 <td>6.5%</td>
 <td>5%</td>
 <td>about $3M</td>
-<td>5.50%</td>
+<td>5.87%</td>
 <td>5.93%</td>
 </tr>
 <tr>
 <td>8.5%</td>
 <td>10%</td>
 <td>about $6M</td>
-<td>7.19%</td>
+<td>7.68%</td>
 <td>7.76%</td>
 </tr>
 </tbody>
@@ -274,8 +269,8 @@
 <h2>Technical reproduction</h2>
 <p>Code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Data: FY2020–2024 QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>, in <code>../snap-qc-data/raw/qcfy20XX_csv/</code>. Python 3 with numpy, joblib and scikit-learn 1.9.1. For other states, see the companion <em>State Replication Guide</em>.</p>
 <pre><code class="language-bash"># Wyoming's numbers as measured (top-10/20% lift, $/hour, forecast, fairness)
-python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_leakfree_results.json'))['WY'], indent=1))&quot;
-# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_leakfree_results.json)
+python3 -c &quot;import json; print(json.dumps(json.load(open('experiments/exp83_official_results.json'))['WY'], indent=1))&quot;
+# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_official_results.json)
 python3 experiments/exp83_context_models_full_eval.py --workers 8
 # cost share, every step shown
 python3 experiments/cost_share_replicate.py --state WY

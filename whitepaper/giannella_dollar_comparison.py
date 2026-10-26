@@ -5,7 +5,8 @@
 Both tools on one footing: mined/trained on FY2022-23, scored on each state's FY2024 QC cases, giannella's error
 definition (|RAWBEN - FSBEN| above the $56 FY2024 tolerance) and their test frame (exp106 D1, 49 states).
   theirs   giannella v2.5.0 lists: methods/v250_benchmark_2024/v250_benchmark_2024.csv
-  ours     the leak-free ranker (exp106 amendment 2, D1): experiments/exp106_leakfree_results.json
+  ours     our default model (leak-free inputs, official error label) on giannella's rebuilt pre-review inputs
+           (exp109 arm B_over, like-for-like): experiments/exp109_leakfree_results.json
 Estimated annual error dollars found = dollar recall at the budget x the state's annual over-threshold error dollars
 (FY2024 QC cases weighted by FYWGT to monthly caseload, x 12).
 Estimated FY2028 cost share avoided = exp69/exp93 central scenario (2% of cases reviewed a month, 80% of found errors
@@ -50,8 +51,8 @@ def avoided(per, benefits, lift):
 
 
 def main():
-    ours = json.loads((ROOT / "experiments/exp106_leakfree_results.json").read_text())["states"]
-    e93 = json.loads((ROOT / "experiments/exp93_leakfree_results.json").read_text())["states"]
+    ours = json.loads((ROOT / "experiments/exp109_leakfree_results.json").read_text())["states"]
+    e93 = json.loads((ROOT / "experiments/exp93_official_results.json").read_text())["states"]
     theirs = {}
     for r in csv.DictReader(open(THEIRS)):
         theirs[(r["state"], round(float(r["budget"]), 2))] = r
@@ -62,7 +63,7 @@ def main():
         if (n, 0.05) not in theirs:
             continue
         t5, t10 = float(theirs[(n, 0.05)]["dollar_recall"]), float(theirs[(n, 0.10)]["dollar_recall"])
-        o5, o10 = ours[ab]["D1"]["budget05"]["dollar_recall"], ours[ab]["D1"]["budget10"]["dollar_recall"]
+        o5, o10 = ours[ab]["B_over"]["budget05"]["dollar_recall"], ours[ab]["B_over"]["budget10"]["dollar_recall"]
         E = err.get(ab, 0.0)
         per, ben = e93[ab]["per_fy2025"], e93[ab]["annual_benefits"]
         rows.append({"state": ab, "name": n, "err": E, "t5": t5 * E, "o5": o5 * E, "t10": t10 * E, "o10": o10 * E,
@@ -95,28 +96,28 @@ repo: snap-qc-per-experiments
 
 ## Conclusion
 
-**On the same test, the leak-free ranker finds more error dollars than giannella's rule lists in {better10} of {len(rows)} states.** In total across {len(rows)} states, at a 10% review budget, it finds about **{B(cum['o10'])} a year**, against **{B(cum['t10'])}**, of {B(cum['err'])} in over-threshold error dollars.
+**On the same test and the same rebuilt inputs, our ranker finds more error dollars than giannella's rule lists in {better10} of {len(rows)} states.** In total across {len(rows)} states, at a 10% review budget, it finds about **{B(cum['o10'])} a year**, against **{B(cum['t10'])}**, of {B(cum['err'])} in over-threshold error dollars.
 
 **FY2028 cost share avoided:** the central scenario with each tool's own lift gives about **{B(cum['o_cs'])} a year** for ours and **{B(cum['t_cs'])}** for theirs. Cost share moves only when a state crosses a bracket line, so some states gain nothing under either tool. Ours avoids more in {cs_more} states, less in {cs_less}.
 
 **Caveats:**
 - **Scope:** these are scenario estimates on one test year (FY2024), not forecasts.
 - **What their lists offer:** they are interpretable rules a state can read and edit; ours is a score.
-- **Not yet like-for-like:** giannella's inputs are pre-review values rebuilt from the reviewer's; ours are still the reviewer's corrected facts for error cases, which a state wouldn't have before review. That may favour ours; read our margin as an upper bound.
-- **Which of our versions:** ours is the leak-free version (exp106 amendment 2).
+- **Like-for-like:** both tools score the same FY2024 cases from the same rebuilt pre-review inputs (exp109). On the reviewer's corrected inputs our dollars would read about 17% higher; these figures don't use them.
+- **Which of our versions:** ours is the default model (leak-free inputs, official error label) run on giannella's rebuilt pre-review inputs, so both tools see the same kind of inputs (exp109).
 
 ## How the numbers are built
 
 | Step | What | Source |
 |---|---|---|
-| Test | Train or mine on FY2022–23, score each state's FY2024 QC cases | exp106 D1; giannella v2.5.0 benchmark |
+| Test | Train or mine on FY2022–23, score each state's FY2024 QC cases, both on giannella's rebuilt pre-review inputs | exp109 B_over; giannella v2.5.0 benchmark |
 | Error | \\|RAWBEN − FSBEN\\| above $56 (FY2024 tolerance), giannella's definition | `features.R` |
 | Annual error dollars | Σ FYWGT × error dollars × 12, FY2024 | QC public-use file |
 | Found a year | Dollar recall at the budget × annual error dollars | |
 | Dollar lift | Dollar recall at the 10% budget ÷ 0.10 | |
 | Cost share avoided | exp69 central scenario (2% reviewed a month, 80% fixed, 6 months) with that lift; FY2025 rates and benefits as exp93 | `exp69`, `exp93` |
 
-Script: `whitepaper/giannella_dollar_comparison.py`. Related: [[2026-10-26 snap-qc exp106 giannella comparison]].
+Script: `whitepaper/giannella_dollar_comparison.py`. Related: [[2026-10-26 snap-qc exp106 giannella comparison]], [[2026-10-26 snap-qc exp109 rebuilt inputs]].
 
 ## By state
 

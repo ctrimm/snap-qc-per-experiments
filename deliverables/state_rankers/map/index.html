@@ -57,7 +57,7 @@
 <div class="tr-wrap">
   <header class="tr-head" id="top">
     <h1>SNAP triage rankers by state</h1>
-    <p class="tr-review" role="note"><strong>Corrected October 26, 2026.</strong> Earlier versions of this page overstated the rankers: their inputs let them partly see errors (the issued benefit beside values recorded by QC reviewers). Every figure now comes from the leak-free rebuild, and the models no longer use the issued benefit.</p>
+    <p class="tr-review" role="note"><strong>Corrected October 26, 2026.</strong> Earlier versions of this page overstated the rankers: their inputs let them partly see errors (the issued benefit beside values recorded by QC reviewers). Every figure now comes from the leak-free rebuild, and the models no longer use the issued benefit. Later the same day the models were retrained on the official error definition: they rank by the dollars of errors over the federal tolerance, the ones the payment error rate counts, and the cost scenarios use the lift on those dollars.</p>
     <p class="tr-take" data-source="summary">—</p>
   </header>
 
@@ -119,8 +119,8 @@
       <h2>How the rankers were built</h2>
       <ul>
         <li>One model per jurisdiction from FY2020–2024 federal QC public-use data, using case facts (income, deductions, rent and utilities, household size) and the household's maximum allotment, but not the benefit issued. In the federal QC data the income and deduction fields are what the QC reviewer recorded, so pairing them with the issued benefit would let a model see the error.</li>
-        <li>It estimates each case's chance of an error times the likely error dollars, then ranks cases by that.</li>
-        <li>"Lift" is error dollars found in the top 20% (or 10%) of the ranked list, divided by what reviewing the same number of random cases finds, on cases held out from training.</li>
+        <li>It estimates each case's chance of an error over the federal tolerance (the kind the official payment error rate counts) times the likely error dollars, then ranks cases by that.</li>
+        <li>"Lift" is error dollars (errors over the tolerance) found in the top 20% (or 10%) of the ranked list, divided by what reviewing the same number of random cases finds, on cases held out from training.</li>
         <li>"2020–22 → 2023–24" trains on the earlier years and tests on the later ones. "Forecast ÷ actual" compares the model's expected dollars with the dollars found in its top 20%.</li>
         <li>Review time is assumed to be 30 minutes a case.</li>
         <li>Each jurisdiction's model is trained on its own cases pooled with every other state's, plus the case's maximum allotment, which tells it the state's benefit levels. Pooling beat state-only models when it was adopted (that test used the earlier inputs).</li>

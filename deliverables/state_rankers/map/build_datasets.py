@@ -15,7 +15,7 @@ EXP = HERE.parent.parent.parent / "experiments"
 r68 = {r["state"]: r for r in json.loads((EXP / "exp68_results.json").read_text())}
 # exp93: exp69's scenarios re-run on the deployed models (exp83) with the fairness floor on
 r69 = json.loads((EXP / "exp69_results.json").read_text())
-r93 = json.loads((EXP / "exp93_leakfree_results.json").read_text())  # leak-free (exp107)
+r93 = json.loads((EXP / "exp93_official_results.json").read_text())  # leak-free (exp107)
 import sys  # noqa: E402
 sys.path.insert(0, str(EXP))
 from exp69_cost_share_scenarios import NAME_TO_USPS  # noqa: E402
@@ -40,8 +40,8 @@ for ab, r in sorted(r68.items()):
     })
 # deployed models (exp80/82: context-aware pooled, all 53), measured in exp83 on each holdout;
 # Cost scenarios come from exp93's leak-free run.
-r83 = json.loads((EXP / "exp83_leakfree_results.json").read_text())  # leak-free (exp107)
-ts107 = json.loads((EXP / "exp107_timesplit_results.json").read_text())
+r83 = json.loads((EXP / "exp83_official_results.json").read_text())  # leak-free (exp107)
+ts107 = json.loads((EXP / "exp107_timesplit_official_results.json").read_text())
 adopt = {}
 for f in ("exp80_results.json", "exp82_results.json"):
     for k, v in json.loads((EXP / f).read_text()).items():

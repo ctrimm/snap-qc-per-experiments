@@ -8,8 +8,9 @@ Error case: STATUS 2 (overissuance) or 3 (underissuance); error dollars: AMTERR.
 A medical-deduction error is a case with any variance element 365 (ELEMENT1..ELEMENTn); exp42's
 elderly-or-disabled, medical-expense-on-file rate (24.2%) is reproduced first as a check of the method.
 Income sources use the verified income fields (FSSOCSEC, FSSSI, FSPENSION, FSWAGES > 0); the ranker never uses them.
-Per-jurisdiction fairness ratios come from experiments/exp83_leakfree_results.json (leak-free models, exp107); the random-review
-ratio is computed on the same held-out cases (experiments/exp68_holdouts.json) as overall error rate / elderly error rate.
+Per-jurisdiction fairness ratios come from experiments/exp83_official_results.json (leak-free inputs, official error label,
+exp111); the random-review ratio is computed on the same held-out cases (experiments/exp68_holdouts.json) as overall
+error rate / elderly error rate, both over the federal tolerance (the model's definition). Profiles stay any-error.
 """
 import csv
 import glob
@@ -27,6 +28,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "experiments"))
 from synth.codebook import ELEMENT_LABELS  # noqa: E402
 from exp69_cost_share_scenarios import NAME_TO_USPS  # noqa: E402
+TOLERANCE = {2020: 38, 2021: 39, 2022: 48, 2023: 54, 2024: 56}  # federal tolerance by fiscal year
 
 NAMES = {v: " ".join(w.capitalize() if w != "OF" else "of" for w in k.split()) for k, v in NAME_TO_USPS.items()}
 
@@ -54,7 +56,8 @@ def load():
                 "status": r["STATUS"].strip(), "amt": num(r["AMTERR"]), "medexp": num(r.get("FSMEDEXP")),
                 "el1": int(num(r.get("ELEMENT1"))), "nat1": int(num(r.get("NATURE1"))), "med_var": 365 in els,
                 "socsec": num(r.get("FSSOCSEC")) > 0, "ssi": num(r.get("FSSSI")) > 0, "pension": num(r.get("FSPENSION")) > 0,
-                "wages": num(r.get("FSWAGES")) > 0, "w": num(r.get("FYWGT")), "fy": fy}
+                "wages": num(r.get("FSWAGES")) > 0, "w": num(r.get("FYWGT")), "fy": fy,
+                "off": abs(num(r.get("RAWBEN")) - num(r.get("FSBEN"))) > TOLERANCE[fy]}
             idx[c] += 1
     return rows, abbr
 
@@ -100,7 +103,7 @@ def main():
     out["fy2024_share"] = {"unweighted": 100 * sum(x["elderly"] for x in f24) / len(f24),
                            "weighted": 100 * sum(x["w"] * x["elderly"] for x in f24) / sum(x["w"] for x in f24)}
     # per jurisdiction: profile + today's fairness ratios + random-review ratio on the exp68 holdout
-    e83 = json.loads((ROOT / "experiments/exp83_leakfree_results.json").read_text())  # leak-free (exp107)
+    e83 = json.loads((ROOT / "experiments/exp83_official_results.json").read_text())  # leak-free (exp107)
     hold = json.loads((ROOT / "experiments/exp68_holdouts.json").read_text())
     table = []
     for c, R in rows.items():
@@ -109,10 +112,13 @@ def main():
         keys = [tuple(k) for k in h["keys"]]
         H = [R[k] for k in keys]
         he = [x for x in H if x["elderly"]]
-        overall = sum(x["status"] in ("2", "3") for x in H) / len(H)
-        eld_rate = sum(x["status"] in ("2", "3") for x in he) / len(he)
+        # the model's error definition (official, exp111): over the federal tolerance
+        overall = sum(x["off"] for x in H) / len(H)
+        eld_rate = sum(x["off"] for x in he) / len(he)
         p = profile([x for x in R.values() if x["elderly"]])
         fr = e83[s]["fairness"]
+        if "elderly" not in fr["baseline_ratio"] or not eld_rate:
+            continue  # too few elderly errors over the tolerance in the held-out cases to measure (e.g. Wyoming)
         table.append({"state": s, "elderly_share": 100 * sum(x["elderly"] for x in R.values()) / len(R), "elderly_err": p["err_rate"],
                       "all_err": profile(list(R.values()))["err_rate"], "under_share": p["under_dollar_share"],
                       "ratio": fr["baseline_ratio"]["elderly"], "floor": fr["floor_ratio"]["elderly"], "random": overall / eld_rate,

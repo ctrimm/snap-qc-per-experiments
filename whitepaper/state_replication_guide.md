@@ -3,7 +3,7 @@
 **October 26, 2026 (corrected; first version October 23) · Replication guide · Cory Trimm**
 
 
-> **Corrected October 26, 2026.** The October 23 version overstated the tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107); the packaged models no longer use the issued benefit. The leak-free feature set is the code's default (`SNAPQC_FEATURES=leakfree`).
+> **Corrected October 26, 2026.** The October 23 version overstated the tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the leak-free rebuild (experiment 107); the packaged models no longer use the issued benefit. The same day they were rebuilt on the official error definition: they learn and are scored on errors over the federal tolerance, the ones the payment error rate counts (experiment 111). Both are the code's defaults (`SNAPQC_FEATURES=leakfree`, `SNAPQC_LABEL=official`).
 
 ## Who this is for
 
@@ -43,7 +43,7 @@ Every jurisdiction's results are committed in the repository. Replace `XX` with 
 
 ```bash
 # held-out results of your state's deployed model: lift, $ per review hour, forecast check, fairness
-python3 -c "import json; print(json.dumps(json.load(open('experiments/exp83_leakfree_results.json'))['XX'], indent=1))"
+python3 -c "import json; print(json.dumps(json.load(open('experiments/exp83_official_results.json'))['XX'], indent=1))"
 # FY2028 cost-share scenarios, every step shown
 python3 experiments/cost_share_replicate.py --state XX
 ```
@@ -52,7 +52,7 @@ How to read the first output:
 
 | Field | Meaning |
 |---|---|
-| `top20.lift` | Error dollars found in the top 20% of the queue, as a multiple of random review. 52 of 53 jurisdictions fall between 2.0 and 3.7 (median 2.70) |
+| `top20.lift` | Error dollars found in the top 20% of the queue, as a multiple of random review. Counts errors over the federal tolerance. 50 of 53 jurisdictions fall between 2.0 and 3.4 (median 2.61) |
 | `top10.lift` | The same for the top 10%. Range 2.1 to 4.8 (median 3.31) |
 | `top20.per_hour_$` (`random_per_hour_$`) | Error dollars found per review hour, assuming 30-minute reviews |
 | `top20.expected_over_actual` | The model's dollar forecast divided by actual dollars; 1.0 is perfect |
@@ -76,7 +76,7 @@ This refits every jurisdiction's deployed model from the federal files and check
 
 ```bash
 python3 experiments/exp83_context_models_full_eval.py --workers 8
-git diff --stat experiments/exp83_leakfree_results.json     # empty = exact reproduction (leak-free is the default)
+git diff --stat experiments/exp83_official_results.json     # empty = exact reproduction (leak-free inputs, official label: the defaults)
 ```
 
 **What the script does:**
@@ -143,7 +143,7 @@ The script also prints the total expected error dollars in the top 20%. Quote it
 - **Look at the top 50 cases with a QC lead.** Do they look like cases that deserve review?
 - **Turn on the fairness floor.** Check each household type's share of the top of the queue against its share of the caseload (see *Fairness* below).
 
-**About the packaged models:** each `deliverables/state_rankers/XX/model.joblib` was refit on all five years of that state's cases plus every other state's, for the best possible model. Since exp107 they are leak-free: they do not use the issued benefit. Their held-out performance is the evaluation fit in `exp83_leakfree_results.json`. The `evaluation` block inside `model_card.json` is from the earlier state-only model; use `exp83_leakfree_results.json`.
+**About the packaged models:** each `deliverables/state_rankers/XX/model.joblib` was refit on all five years of that state's cases plus every other state's, for the best possible model. Since exp107 they are leak-free: they do not use the issued benefit. Their held-out performance is the evaluation fit in `exp83_official_results.json`. The `evaluation` block inside `model_card.json` is from the earlier state-only model; use `exp83_official_results.json`.
 
 ## Level 4: pilot and refit
 
@@ -175,7 +175,7 @@ These are the two numbers that move the cost-share estimate most. Rerun `cost_sh
 
 ### Fairness
 
-Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their share of error cases) in all 53 jurisdictions (median 0.33), and disabled households in 47 of 51 (median 0.63; leak-free models, exp107). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, no jurisdiction leaves elderly households below 0.8, and 2 leave disabled households below it. It is not free: the median lift falls from 2.70× to 2.42×, and the median state gives up about 10% of its lift. Pennsylvania gives up almost nothing, California 2%, New York 16%, Texas 17%, and five states more than 20% (Maine, Utah, Hawaii, Wyoming, Missouri; at most 32%). Each state's figure is in the appendix. We still recommend it on by default; a state that turns it off should know who loses review.
+Ranking purely by dollars under-reviews elderly households (a review share below 0.8 of their share of error cases) in 50 of 52 measurable jurisdictions (median 0.44), and disabled households in 26 of 51 (median 0.79; exp111 models, errors over the tolerance). The fairness floor (exp72) guarantees each household type a share of reviews in line with its share of errors. With the floor on, 8 jurisdictions still leave elderly households below 0.8 (lowest 0.66), and 8 leave disabled households below it: over-tolerance errors are rarer, so the floor's shares rest on fewer cases. It is not free: the median lift falls from 2.61× to 2.45×, and the median state gives up about 7% of its lift. California gives up 1%, New York 10%, Pennsylvania 17%, Texas 27%, and six states more than 20% (Maine, Hawaii, Kansas, Texas, Utah, Alabama; at most 35%); nine give up nothing. Each state's figure is in the appendix. We still recommend it on by default; a state that turns it off should know who loses review.
 
 ### Underpayments
 
@@ -211,8 +211,8 @@ Rule citations on flag cards, and any policy-lookup assistant, read from **state
 
 | Step | Done when |
 |---|---|
-| Level 1 | You have your state's `exp83_leakfree_results.json` entry and the cost-share output, and know your break-even review rate |
-| Level 2 | `exp83_context_models_full_eval.py` reproduces `exp83_leakfree_results.json` with an empty `git diff` |
+| Level 1 | You have your state's `exp83_official_results.json` entry and the cost-share output, and know your break-even review rate |
+| Level 2 | `exp83_context_models_full_eval.py` reproduces `exp83_official_results.json` with an empty `git diff` |
 | Level 3 | `score_cases.py` ranks a month of your cases, the inputs pass the sanity checks, and a QC lead has looked at the top 50 |
 | Level 4 | Three months of shadow reviews with a random slice; lift, forecast accuracy, error lifetime, fix rate and fairness measured; cost share rerun with your lift |
 | Refresh | Yearly refit including the new federal QC sample and your random-slice reviews |
@@ -240,63 +240,63 @@ Generated from the committed results by `python3 whitepaper/state_numbers.py tab
 | Later years | Trained on 2020–22, tested on 2023–24 (exp107) |
 | With floor (cost) | Top-20% lift with the fairness floor, and the share of lift it gives up; negative means the floor came out slightly ahead by chance |
 | QC cases | FY2020–24 (exp68) |
-| Central: avoided a year | The FY2028 cost-share scenario (exp93 design, leak-free); "—" means no bracket change, or a rate already under 6% |
+| Central: avoided a year | The FY2028 cost-share scenario (exp93 design, exp111 models, lift on over-tolerance dollars); "—" means no bracket change, or a rate already under 6% |
 
 <!-- STATE-TABLE:START -->
 | Jurisdiction | Top 20% lift (rank) | Top 10% lift (rank) | Later years (rank) | With floor (cost) | Forecast ÷ actual | QC cases | FY2025 rate | Central: avoided a year |
 |---|---|---|---|---|---|---|---|---|
-| WA | 3.67× (1) | 4.77× (1) | 3.18× (2) | 3.31× (+9.6%) | 0.91 | 3,060 | 6.98% | $95M |
-| MA | 3.21× (2) | 4.52× (5) | 3.17× (3) | 2.90× (+9.9%) | 0.87 | 3,483 | 12.49% | $129M |
-| KY | 3.10× (3) | 4.38× (6) | 2.90× (8) | 2.78× (+10.2%) | 0.87 | 4,073 | 4.70% | — |
-| AZ | 3.08× (4) | 4.64× (2) | 3.44× (1) | 2.98× (+3.2%) | 1.27 | 3,352 | 10.80% | $196M |
-| NY | 3.05× (5) | 4.28× (7) | 3.14× (4) | 2.55× (+16.4%) | 1.01 | 3,257 | 13.18% | $360M |
-| VI | 3.00× (6) | 4.60× (3) | 2.79× (12) | 3.25× (-8.1%) | 0.92 | 998 | 5.36% | — |
-| OH | 2.98× (7) | 3.63× (19) | 2.65× (22) | 2.45× (+17.9%) | 0.87 | 3,475 | 6.76% | $152M |
-| CT | 2.98× (8) | 4.17× (8) | 2.82× (11) | 2.76× (+7.3%) | 0.92 | 3,818 | 9.08% | $45M |
-| NC | 2.98× (9) | 4.52× (4) | 2.49× (33) | 2.76× (+7.3%) | 0.96 | 3,983 | 7.36% | $141M |
-| NV | 2.97× (10) | 3.77× (16) | 2.68× (20) | 2.61× (+12.3%) | 1.03 | 4,047 | 6.22% | $51M |
-| OR | 2.95× (11) | 4.13× (9) | 3.09× (5) | 2.67× (+9.3%) | 1.14 | 3,037 | 14.14% | — |
-| IN | 2.93× (12) | 3.90× (12) | 2.77× (15) | 2.81× (+3.9%) | 1.06 | 3,237 | 9.77% | $70M |
-| CO | 2.91× (13) | 4.10× (10) | 2.77× (14) | 2.86× (+1.7%) | 0.80 | 3,595 | 10.09% | $127M |
-| MO | 2.85× (14) | 3.08× (34) | 2.66× (21) | 1.94× (+31.9%) | 1.00 | 2,933 | 8.67% | $73M |
-| NM | 2.85× (15) | 3.12× (31) | 2.72× (17) | 2.40× (+15.7%) | 1.19 | 3,845 | 16.81% | — |
-| SD | 2.82× (16) | 2.59× (50) | 2.63× (25) | 2.50× (+11.1%) | 0.83 | 2,365 | 2.47% | — |
-| AL | 2.81× (17) | 3.66× (18) | 2.69× (19) | 2.37× (+15.7%) | 0.99 | 4,163 | 9.52% | $85M |
-| WI | 2.80× (18) | 3.32× (26) | 2.47× (35) | 2.40× (+14.6%) | 0.99 | 3,979 | 5.72% | — |
-| MS | 2.80× (19) | 3.83× (15) | 2.69× (18) | 2.55× (+8.8%) | 0.85 | 4,158 | 9.51% | $40M |
-| IL | 2.79× (20) | 3.47× (25) | 2.84× (10) | 2.71× (+3.1%) | 0.89 | 3,246 | 14.67% | — |
-| IA | 2.76× (21) | 4.01× (11) | 2.93× (7) | 2.48× (+10.0%) | 0.82 | 3,892 | 5.34% | — |
-| ND | 2.76× (22) | 3.02× (37) | 2.31× (42) | 2.23× (+19.0%) | 1.08 | 1,691 | 9.89% | $5M |
-| DE | 2.74× (23) | 3.48× (24) | 2.78× (13) | 2.60× (+5.1%) | 0.96 | 1,652 | 16.00% | — |
-| NJ | 2.73× (24) | 3.53× (22) | 2.49× (32) | 2.21× (+19.2%) | 0.95 | 2,327 | 6.86% | $92M |
-| DC | 2.70× (25) | 3.83× (14) | 2.95× (6) | 2.42× (+10.4%) | 1.23 | 2,689 | 18.66% | — |
-| VT | 2.70× (26) | 3.09× (33) | 2.58× (29) | 2.48× (+8.4%) | 1.21 | 2,720 | 5.38% | — |
-| PA | 2.70× (27) | 3.67× (17) | 2.58× (28) | 2.69× (+0.1%) | 1.08 | 3,268 | 9.21% | $209M |
-| GA | 2.69× (28) | 3.86× (13) | 2.87× (9) | 2.57× (+4.3%) | 1.11 | 3,902 | 15.21% | — |
-| HI | 2.67× (29) | 3.02× (38) | 2.48× (34) | 1.91× (+28.5%) | 1.04 | 2,009 | 10.92% | $35M |
-| VA | 2.63× (30) | 3.31× (27) | 2.32× (41) | 2.17× (+17.5%) | 0.87 | 2,942 | 12.32% | — |
-| SC | 2.63× (31) | 3.60× (20) | 2.62× (26) | 2.47× (+5.8%) | 1.06 | 3,737 | 8.80% | $63M |
-| MD | 2.60× (32) | 2.74× (43) | 2.45× (37) | 2.33× (+10.6%) | 1.23 | 2,279 | 13.08% | — |
-| ME | 2.53× (33) | 2.71× (47) | 2.12× (51) | 1.94× (+23.2%) | 0.80 | 3,434 | 10.81% | $17M |
-| OK | 2.53× (34) | 3.55× (21) | 2.73× (16) | 2.47× (+2.3%) | 1.20 | 3,829 | 11.04% | $75M |
-| MT | 2.53× (35) | 2.94× (39) | 2.19× (48) | 2.03× (+19.6%) | 1.02 | 2,421 | 8.86% | $8M |
-| RI | 2.51× (36) | 3.05× (35) | 2.40× (38) | 2.37× (+5.8%) | 0.96 | 3,435 | 12.42% | $17M |
-| NE | 2.50× (37) | 3.17× (29) | 2.38× (39) | 2.27× (+9.3%) | 1.16 | 3,738 | 5.90% | — |
-| WV | 2.49× (38) | 3.24× (28) | 2.31× (43) | 2.35× (+5.7%) | 1.18 | 3,268 | 6.69% | $25M |
-| LA | 2.49× (39) | 3.03× (36) | 2.57× (30) | 2.56× (-3.1%) | 1.00 | 3,325 | 8.14% | $93M |
-| MN | 2.48× (40) | 3.17× (30) | 2.26× (45) | 2.10× (+15.4%) | 0.87 | 4,077 | 12.58% | — |
-| CA | 2.46× (41) | 3.12× (32) | 2.63× (24) | 2.42× (+1.6%) | 1.34 | 3,108 | 10.93% | $596M |
-| FL | 2.42× (42) | 2.75× (42) | 2.53× (31) | 2.17× (+10.5%) | 1.06 | 3,745 | 12.97% | — |
-| TN | 2.39× (43) | 3.49× (23) | 2.46× (36) | 2.09× (+12.3%) | 1.35 | 3,807 | 9.44% | $76M |
-| AR | 2.33× (44) | 2.93× (40) | 2.29× (44) | 2.15× (+7.8%) | 0.96 | 3,430 | 8.81% | $24M |
-| GU | 2.30× (45) | 2.62× (48) | 2.61× (27) | 2.59× (-12.7%) | 1.28 | 732 | 11.70% | $6M |
-| MI | 2.25× (46) | 2.73× (44) | 2.63× (23) | 2.08× (+7.8%) | 1.05 | 3,460 | 9.89% | $150M |
-| AK | 2.21× (47) | 2.61× (49) | 2.22× (47) | 1.98× (+10.5%) | 1.25 | 1,367 | 23.15% | — |
-| NH | 2.21× (48) | 2.73× (45) | 2.08× (52) | 1.98× (+10.7%) | 1.22 | 2,328 | 8.85% | $8M |
-| TX | 2.21× (49) | 2.90× (41) | 2.16× (49) | 1.83× (+17.3%) | 0.92 | 3,457 | 9.34% | $343M |
-| UT | 2.17× (50) | 2.10× (53) | 2.37× (40) | 1.62× (+25.3%) | 1.20 | 4,101 | 5.54% | — |
-| KS | 2.13× (51) | 2.71× (46) | 1.97× (53) | 2.24× (-4.9%) | 0.99 | 3,698 | 9.44% | $19M |
-| ID | 2.02× (52) | 2.38× (51) | 2.23× (46) | 1.77× (+12.6%) | 1.19 | 3,839 | 3.85% | — |
-| WY | 1.98× (53) | 2.11× (52) | 2.15× (50) | 1.36× (+31.1%) | 1.02 | 1,191 | 3.96% | — |
-| **Median** | 2.70× | 3.31× | 2.61× | 2.42× (+10.0%) | 1.02 | | | |
+| AK | 3.37× (1) | 6.18× (1) | 2.88× (8) | 3.12× (+7.2%) | 1.03 | 1,367 | 23.15% | — |
+| WA | 3.35× (2) | 4.57× (4) | 3.04× (4) | 3.17× (+5.4%) | 0.98 | 3,060 | 6.98% | $95M |
+| MA | 3.27× (3) | 4.64× (3) | 3.19× (1) | 3.08× (+5.7%) | 0.83 | 3,483 | 12.49% | $129M |
+| NY | 3.21× (4) | 4.53× (6) | 3.17× (2) | 2.89× (+10.2%) | 1.01 | 3,257 | 13.18% | $360M |
+| CT | 3.15× (5) | 4.56× (5) | 2.95× (7) | 3.08× (+2.4%) | 0.97 | 3,818 | 9.08% | $45M |
+| GU | 3.12× (6) | 5.48× (2) | 3.11× (3) | 3.38× (-8.4%) | 0.56 | 732 | 11.70% | $12M |
+| OR | 3.00× (7) | 4.33× (7) | 3.02× (5) | 2.80× (+6.9%) | 1.08 | 3,037 | 14.14% | — |
+| DC | 2.98× (8) | 4.08× (13) | 2.84× (9) | 2.83× (+5.0%) | 1.11 | 2,689 | 18.66% | — |
+| MO | 2.92× (9) | 3.99× (14) | 2.75× (15) | 2.54× (+12.9%) | 0.91 | 2,933 | 8.67% | $73M |
+| IN | 2.92× (10) | 4.23× (9) | 2.50× (28) | 2.65× (+9.3%) | 0.88 | 3,237 | 9.77% | $70M |
+| NM | 2.84× (11) | 3.63× (20) | 2.75× (14) | 2.54× (+10.5%) | 1.17 | 3,845 | 16.81% | — |
+| MS | 2.83× (12) | 3.91× (15) | 2.74× (16) | 2.76× (+2.3%) | 0.85 | 4,158 | 9.51% | $40M |
+| AL | 2.83× (13) | 3.41× (26) | 2.55× (26) | 2.20× (+22.2%) | 1.02 | 4,163 | 9.52% | $85M |
+| WV | 2.82× (14) | 4.13× (11) | 2.28× (41) | 2.98× (-5.8%) | 0.88 | 3,268 | 6.69% | $25M |
+| CO | 2.81× (15) | 4.32× (8) | 2.79× (11) | 2.70× (+4.0%) | 0.90 | 3,595 | 10.09% | $127M |
+| NC | 2.79× (16) | 3.55× (22) | 2.34× (36) | 2.52× (+9.3%) | 0.98 | 3,983 | 7.36% | $141M |
+| VT | 2.75× (17) | 2.34× (49) | 2.63× (22) | 2.57× (+6.7%) | 1.32 | 2,720 | 5.38% | — |
+| OH | 2.75× (18) | 3.44× (24) | 2.32× (38) | 2.56× (+6.8%) | 0.85 | 3,475 | 6.76% | $152M |
+| GA | 2.74× (19) | 4.14× (10) | 2.83× (10) | 2.61× (+4.6%) | 0.99 | 3,902 | 15.21% | — |
+| ME | 2.72× (20) | 2.62× (44) | 2.19× (44) | 1.77× (+34.8%) | 0.66 | 3,434 | 10.81% | $17M |
+| SC | 2.65× (21) | 3.77× (17) | 2.66× (19) | 2.51× (+5.3%) | 0.97 | 3,737 | 8.80% | $63M |
+| NE | 2.64× (22) | 3.55× (21) | 2.31× (39) | 2.49× (+5.8%) | 0.91 | 3,738 | 5.90% | — |
+| IL | 2.63× (23) | 3.88× (16) | 2.78× (12) | 2.64× (-0.2%) | 0.93 | 3,246 | 14.67% | — |
+| FL | 2.63× (24) | 3.23× (34) | 2.35× (35) | 2.17× (+17.6%) | 1.07 | 3,745 | 12.97% | — |
+| PA | 2.62× (25) | 3.43× (25) | 2.67× (18) | 2.18× (+16.7%) | 1.13 | 3,268 | 9.21% | $209M |
+| AZ | 2.61× (26) | 4.11× (12) | 3.00× (6) | 2.40× (+8.1%) | 1.38 | 3,352 | 10.80% | $196M |
+| DE | 2.61× (27) | 3.23× (33) | 2.57× (25) | 2.39× (+8.3%) | 0.91 | 1,652 | 16.00% | — |
+| HI | 2.61× (28) | 2.88× (40) | 2.44× (30) | 1.72× (+34.0%) | 0.96 | 2,009 | 10.92% | $35M |
+| IA | 2.58× (29) | 3.64× (19) | 2.58× (24) | 2.33× (+9.6%) | 0.79 | 3,892 | 5.34% | — |
+| NV | 2.55× (30) | 3.24× (31) | 2.68× (17) | 2.08× (+18.4%) | 1.04 | 4,047 | 6.22% | $51M |
+| MD | 2.55× (31) | 2.90× (39) | 2.35× (34) | 2.39× (+6.2%) | 1.12 | 2,279 | 13.08% | — |
+| WI | 2.54× (32) | 2.98× (37) | 2.18× (45) | 2.45× (+3.7%) | 0.99 | 3,979 | 5.72% | — |
+| RI | 2.54× (33) | 3.25× (30) | 2.36× (33) | 2.46× (+3.0%) | 1.04 | 3,435 | 12.42% | $17M |
+| VA | 2.53× (34) | 3.19× (35) | 2.30× (40) | 2.31× (+8.7%) | 1.05 | 2,942 | 12.32% | $86M |
+| LA | 2.50× (35) | 3.36× (28) | 2.33× (37) | 2.26× (+9.8%) | 0.87 | 3,325 | 8.14% | $93M |
+| CA | 2.48× (36) | 3.74× (18) | 2.61× (23) | 2.45× (+1.3%) | 1.25 | 3,108 | 10.93% | $596M |
+| NJ | 2.46× (37) | 3.50× (23) | 2.66× (20) | 2.62× (-6.6%) | 1.08 | 2,327 | 6.86% | $92M |
+| OK | 2.44× (38) | 3.18× (36) | 2.63× (21) | 2.43× (+0.2%) | 1.15 | 3,829 | 11.04% | $75M |
+| ND | 2.40× (39) | 2.75× (42) | 2.51× (27) | 2.47× (-2.8%) | 1.06 | 1,691 | 9.89% | $5M |
+| TX | 2.40× (40) | 2.69× (43) | 2.11× (47) | 1.75× (+27.2%) | 0.80 | 3,457 | 9.34% | — |
+| MI | 2.39× (41) | 2.95× (38) | 2.76× (13) | 2.21× (+7.5%) | 1.09 | 3,460 | 9.89% | $150M |
+| MN | 2.37× (42) | 2.49× (47) | 2.09× (48) | 1.91× (+19.4%) | 0.99 | 4,077 | 12.58% | — |
+| KY | 2.36× (43) | 3.36× (29) | 2.23× (42) | 2.31× (+2.2%) | 0.81 | 4,073 | 4.70% | — |
+| AR | 2.33× (44) | 2.60× (45) | 2.15× (46) | 2.69× (-15.3%) | 0.94 | 3,430 | 8.81% | $24M |
+| SD | 2.25× (45) | 2.35× (48) | 1.75× (52) | 1.88× (+16.6%) | 0.84 | 2,365 | 2.47% | — |
+| VI | 2.11× (46) | 3.37× (27) | 2.45× (29) | 2.44× (-15.4%) | 1.12 | 998 | 5.36% | — |
+| MT | 2.05× (47) | 2.54× (46) | 1.83× (51) | 1.84× (+10.2%) | 1.07 | 2,421 | 8.86% | $8M |
+| KS | 2.02× (48) | 1.62× (53) | 1.72× (53) | 1.36× (+32.8%) | 0.93 | 3,698 | 9.44% | — |
+| TN | 2.02× (49) | 3.24× (32) | 2.22× (43) | 2.03× (-0.3%) | 1.43 | 3,807 | 9.44% | $76M |
+| UT | 2.01× (50) | 1.85× (51) | 2.42× (31) | 1.51× (+24.8%) | 1.17 | 4,101 | 5.54% | — |
+| NH | 1.67× (51) | 1.68× (52) | 1.99× (50) | 1.55× (+7.1%) | 1.46 | 2,328 | 8.85% | $8M |
+| WY | 1.64× (52) | 2.82× (41) | 2.02× (49) | 1.38× (+15.8%) | 1.42 | 1,191 | 3.96% | — |
+| ID | 1.49× (53) | 1.89× (50) | 2.41× (32) | 1.36× (+8.7%) | 1.28 | 3,839 | 3.85% | — |
+| **Median** | 2.61× | 3.37× | 2.51× | 2.45× (+7.1%) | 0.99 | | | |
 <!-- STATE-TABLE:END -->

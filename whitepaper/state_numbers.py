@@ -17,11 +17,11 @@ HERE = Path(__file__).resolve().parent
 EXP = HERE.parent / "experiments"
 load = lambda f: json.loads((EXP / f).read_text())  # noqa: E731
 # leak-free rebuild (exp107; SNAPQC_FEATURES=leakfree is the default)
-E83, E93 = load("exp83_leakfree_results.json"), load("exp93_leakfree_results.json")["states"]
+E83, E93 = load("exp83_official_results.json"), load("exp93_official_results.json")["states"]
 E68 = {r["state"]: r for r in load("exp68_results.json")}  # sample sizes only
-E79 = {r["state"]: r for r in load("exp79_leakfree_results.json")}
+E79 = {r["state"]: r for r in load("exp79_official_results.json")}
 ADOPT = {**load("exp80_results.json"), **load("exp82_results.json")}
-TS = {s: r["time_split"] for s, r in load("exp107_timesplit_results.json").items()}
+TS = {s: r["time_split"] for s, r in load("exp107_timesplit_official_results.json").items()}
 STATES = sorted(E83)
 
 

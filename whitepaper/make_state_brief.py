@@ -24,12 +24,12 @@ sys.path.insert(0, str(ROOT / "src"))
 from synth.codebook import ELEMENT_LABELS  # noqa: E402
 
 load = lambda f: json.loads((EXP / f).read_text())  # noqa: E731
-E83, E93 = load("exp83_leakfree_results.json"), load("exp93_leakfree_results.json")["states"]
+E83, E93 = load("exp83_official_results.json"), load("exp93_official_results.json")["states"]
 E68 = {r["state"]: r for r in load("exp68_results.json")}  # sample sizes only
-E79 = {r["state"]: r for r in load("exp79_leakfree_results.json")}
+E79 = {r["state"]: r for r in load("exp79_official_results.json")}
 ADOPT = {**load("exp80_results.json"), **load("exp82_results.json")}
-TS = {s: r["time_split"] for s, r in load("exp107_timesplit_results.json").items()}
-E93_MEAS = load("exp93_leakfree_results.json")["measured"]
+TS = {s: r["time_split"] for s, r in load("exp107_timesplit_official_results.json").items()}
+E93_MEAS = load("exp93_official_results.json")["measured"]
 MED20 = sorted(v["top20"]["lift"] for v in E83.values())[len(E83) // 2]
 rank = lambda d: {s: i + 1 for i, s in enumerate(sorted(d, key=lambda s: -d[s]))}  # noqa: E731
 R20 = rank({s: v["top20"]["lift"] for s, v in E83.items()})
@@ -42,7 +42,7 @@ FILES = {st: f"{st.lower()}_pilot_whitepaper.md" for st in CODES} | {"WY": "wy_s
 CORRECTED = ("> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models "
              "used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC "
              "file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure "
-             "here comes from the leak-free rebuild (experiment 107). Figures computed directly from the QC data (error rates, "
+             "here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, "
              "error patterns, caseload shares) were not affected.")
 STATE_CARDS = {"PA": "83%", "NY": "89%"}  # exp108 leak-free
 
@@ -208,9 +208,10 @@ def brief(s, P):
     holdout_pct = round(100 * e68["n_holdout"] / e68["n_rows"])
     L = []
     L += [f"# Finding SNAP Payment Errors Faster in {name}", "", "**October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**", "", CORRECTED, "", "## Summary", "", n["lede"], ""]
-    L += [f"- **It finds {v['top20']['lift']:.1f} times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **${v['top20']['per_hour_$']:.0f} per review hour against ${v['top20']['random_per_hour_$']:.0f}**. The top 10% finds {v['top10']['lift']:.1f} times.",
+    L += [f"- **It finds {v['top20']['lift']:.1f} times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **${v['top20']['per_hour_$']:.0f} per review hour against ${v['top20']['random_per_hour_$']:.0f}**. The top 10% finds {v['top10']['lift']:.1f} times.",
           f"- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a {TS[s]:.1f}× edge. Expected error dollars for the top fifth of the queue were {evs(v['top20']['expected_over_actual'])}.",
-          f"- **It's fair by design.** Ranking purely by dollars would review elderly households at {b['elderly']:.2f} of their share of error cases. A floor brings that to {f['elderly']:.2f}, " +
+          (f"- **It's fair by design.** Ranking purely by dollars would review elderly households at {b['elderly']:.2f} of their share of error cases. A floor brings that to {f['elderly']:.2f}, "
+           if "elderly" in b else f"- **It's fair by design.** {name}'s test cases have too few elderly households with an error over the tolerance to measure their share; for disabled households, ranking purely by dollars gives {b['disabled']:.2f} of their share of error cases and the floor {f['disabled']:.2f}, ") +
           (f"at a cost of about {round(cost)}% of the lift ({v['top20']['lift']:.1f}× → {fl:.1f}×)." if cost >= 0.5 else "with no measurable cost to the lift."),
           f"- **Underpayments:** {round(ud)}% of {name}'s error dollars are households paid too little (national {round(usd)}%)."]
     if owes:
@@ -236,7 +237,7 @@ def brief(s, P):
           "- reported income and earnings;", "- deductions, housing and utility costs;", "- household size;",
           "- the household's maximum allotment.", "",
           "It does not use the benefit the agency issued: in the federal QC data that would let it compare the issued amount with the reviewer's corrected facts (experiment 106).", "",
-          "It estimates the chance the case has an error and how many dollars the error would be. It multiplies them to get expected error dollars, and orders the review queue by that number.", "",
+          "It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.", "",
           f"{name}'s model learns from every state's QC cases plus {name}'s maximum allotments" + (", with its own cases weighted ten times" if a["adopted"] == "C_ctx" else "") + f". Among the 53 jurisdictions, {name} ranks {R20[s]} on the top-20% lift, {R10[s]} on the top-10% lift and {RTS[s]} on the later-years test (1 = best).", "",
           "### Results on cases the model never saw", "", f"{e68['n_holdout']:,} {name} cases ({holdout_pct}%) were set aside before training:", "",
           "| Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |", "|---|---|---|---|---|",
@@ -244,15 +245,15 @@ def brief(s, P):
           f"| 20% of the queue | **{v['top20']['lift']:.1f}×** | ${v['top20']['per_hour_$']:.0f} (${v['top20']['random_per_hour_$']:.0f}) | {ev(v['top20']['expected_over_actual'])} | {R20[s]} |",
           f"| 20%, trained 2020–22, tested 2023–24 | {TS[s]:.1f}× | | | {RTS[s]} |",
           f"| 20%, with the fairness floor | {fl:.1f}× | | | |", "",
-          f"Reviews are assumed to take 30 minutes. The 53-jurisdiction median is {MED20:.2f}× (top 20%).", "",
-          "### Fairness", "", "The measure is each household type's share of reviews divided by its share of cases with an error (its error risk), where 1.0 means reviewed in proportion to risk:", "",
+          f"Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is {MED20:.2f}× (top 20%).", "",
+          "### Fairness", "", "The measure is each household type's share of reviews divided by its share of cases with an error over the tolerance (its error risk), where 1.0 means reviewed in proportion to risk:", "",
           "| Household type | Dollars only | With the floor |", "|---|---|---|"]
     for k, lab in (("elderly", "Elderly"), ("disabled", "Disabled"), ("single_parent", "Single parent"), ("childless_adult", "Childless adult")):
         if k in b:
             L.append(f"| {lab} | {b[k]:.2f} | {f[k]:.2f} |")
     L += ["", (f"The floor costs about {round(cost)}% of the lift. " if cost >= 0.5 else "In " + name + " the floor came out with no measurable cost (a chance effect on the held-out cases). ") + "We recommend it on by default.", "",
           "### Underpayments", "",
-          f"A second ranker trained on underpayments finds {e79['under']['under_lift']:.1f} times the underpayment dollars of random review, against {e79['total']['under_lift']:.1f} times for the main ranker (both trained on {name}'s own cases; exp79, leak-free)." +
+          f"A second ranker trained on underpayments finds {e79['under']['under_lift']:.1f} times the underpayment dollars of random review, against {e79['total']['under_lift']:.1f} times for the main ranker (both trained on {name}'s own cases; exp79, leak-free, official definition)." +
           (" Here it does no better than the main ranker, so a separate queue adds little." if e79['under']['under_lift'] <= e79['total']['under_lift'] else ""), "",
           "### Flag cards for reviewers", "", n["cards"], ""]
     L += ["## FY2028 cost share", "",
@@ -296,8 +297,8 @@ def brief(s, P):
           "Code: [github.com/ctrimm/snap-qc-per-experiments](https://github.com/ctrimm/snap-qc-per-experiments). Data: FY2020–2024 QC public-use CSVs from [snapqcdata.net/datafiles](https://snapqcdata.net/datafiles), in `../snap-qc-data/raw/qcfy20XX_csv/`. Python 3 with numpy, joblib and scikit-learn 1.9.1. For other states, see the companion *State Replication Guide*.", "",
           "```bash",
           f"# {name}'s numbers as measured (top-10/20% lift, $/hour, forecast, fairness)",
-          f"python3 -c \"import json; print(json.dumps(json.load(open('experiments/exp83_leakfree_results.json'))['{s}'], indent=1))\"",
-          "# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_leakfree_results.json)",
+          f"python3 -c \"import json; print(json.dumps(json.load(open('experiments/exp83_official_results.json'))['{s}'], indent=1))\"",
+          "# refit and re-evaluate every jurisdiction's model, leak-free by default (reproduces exp83_official_results.json)",
           "python3 experiments/exp83_context_models_full_eval.py --workers 8",
           "# cost share, every step shown",
           f"python3 experiments/cost_share_replicate.py --state {s}"]
