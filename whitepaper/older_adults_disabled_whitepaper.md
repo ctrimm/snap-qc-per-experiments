@@ -232,7 +232,7 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 | PA SSI patterns "mostly underpayments" | PA anatomy | SSI left off the budget is 99% overpayments; SSI lower than budgeted is 88% underpayments |
 | Synthetic medical errors "about 0.7×" | exp32, exp44 | 0.71–0.76×, seed-dependent |
 | A flag-card quote ("medical expenses: receipts or recurring bills") | `exp62_flag_cards.py` | The template's wording: "out-of-pocket medical costs for elderly or disabled members, with receipts or recurring bills" |
-| "$6.1B … ($1.0B) … $4.1B" | exp93 | $6.05B, $1.03B, $4.06B (exact figures) |
+| "$6.1B … ($1.0B) … $4.1B" | exp93 | $6.05B, $1.03B, $4.06B on October 23; superseded October 26 by the leak-free $3.42B, $1.03B, $2.79B (exp107) |
 | Floor cost "$4.21B → $4.06B" on the top-20% basis | exp93 formula | Correct; $4.21B is computed with exp93's formula and inputs (it reproduces the published $4.06B with the floor on) but isn't printed in exp93 |
 
 Everything else in the October 15 note matched its sources: the error rates, the ratios within each experiment, the floor's effects, the underpayment shares, the medical figures, the caseload shares (31% and 50%, recomputed from the FY2024 file) and the Medicare counts.
