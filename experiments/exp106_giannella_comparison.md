@@ -55,6 +55,25 @@ No winner is declared. The two tools optimize different goals, and the point is 
 - **Dollars.** Their lists are scored in 2026 dollars and ours in nominal; recall shares are unaffected.
 - **Interpretability.** Their lists are interpretable rules, ours a score; parity on numbers does not mean parity on deployability.
 
+### Amendment 1 (2026-10-26, before part C ran): elderly and disabled households under the official error definition
+
+Part A turned up a definitional split, measured on the QC files with their exclusions:
+- **Any error:** elderly-or-disabled households have more errors than others (FY2022–24: 45.4% against 33.0%).
+- **Over the tolerance threshold:** they have fewer (12.6% against 17.2%), and hold 33.7% of over-threshold error dollars while making up 49.0% of the caseload.
+
+Our fairness findings (exp47–49, exp72, exp83) measure each household type's risk with any error. That raises the question whether dollar ranking still under-reviews elderly households when risk is measured with the errors that count toward the payment error rate.
+
+**Part C:** for each jurisdiction, the deployed model as refit in B0 (exp83 recipe, exp68 holdout, top 20%), compute:
+- each household type's review ratio (share of reviews ÷ share of error cases) with error = over-threshold, beside the any-error ratio (which must reproduce exp83's);
+- the same with the fairness floor (exp72 rule, budget split by training share of error cases, any-error definition as shipped).
+
+**Readouts:**
+- the median elderly and disabled ratios under each definition;
+- the number of jurisdictions below 0.8;
+- the number below what random review would give.
+
+There is no hypothesis on direction; this is a measurement.
+
 ### Results
 
 <!-- AUTO-RESULTS:START -->
