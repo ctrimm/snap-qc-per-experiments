@@ -102,7 +102,7 @@ repo: snap-qc-per-experiments
 **Caveats:**
 - **Scope:** these are scenario estimates on one test year (FY2024), not forecasts.
 - **What their lists offer:** they are interpretable rules a state can read and edit; ours is a score.
-- **A shared limitation:** both use QC reviewers' recorded facts for error cases, which a state wouldn't have before review.
+- **Not yet like-for-like:** giannella's inputs are pre-review values rebuilt from the reviewer's; ours are still the reviewer's corrected facts for error cases, which a state wouldn't have before review. That may favour ours; read our margin as an upper bound.
 - **Which of our versions:** ours is the leak-free version (exp106 amendment 2).
 
 ## How the numbers are built

@@ -14,7 +14,7 @@ The project produced six findings, in order of how ready they are to use:
 1. **A ranking tool can roughly double or triple the error dollars a review finds, in every state.**
    - **What it does:** a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.
    - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 2.7 times the error dollars of random selection (lowest: Wyoming, 1.98 times), and the top 10% holds 3.3 times. Its dollar forecasts are within 20% of actual in 43 of 53 jurisdictions.
-   - **An independent check:** on giannella/snap_qc's one-year-ahead test it found more error dollars than their rule lists in 39 of 49 states (experiment 106).
+   - **An independent check:** on giannella/snap_qc's one-year-ahead test it found more error dollars than their rule lists in 39 of 49 states (experiment 106). That test isn't yet like-for-like: their inputs are rebuilt pre-review values, ours are still the reviewer's for error cases.
    - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate costs the median state about 10% of its lift (the most, Missouri, 32%).
 2. **Under the FY2028 cost-sharing rules, that could be worth billions.**
    - **Exposure:** at FY2025 error rates, 43 jurisdictions would owe about $10.6 billion a year.

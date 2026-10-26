@@ -117,5 +117,14 @@ The leak-free household figures for PA and NY match the corrected briefs (lift 2
 | Retraining on flags only | about 15% worse in 4 years | no measurable loss (2.40× vs 2.29×) | **Withdrawn** |
 | Older households (early tests) | 0.22/0.34 of error rate; 66%/44% of reviewed have errors | 0.20/0.29; 62%/71% | Holds; NY precision corrected; floor precision gain +2–3 points, not +9 |
 
+**Amendment 1: pooling vs state-only. Holds.**
+
+| Leak-free, top 20%, 53 jurisdictions | Median lift |
+|---|---|
+| Pooled (deployed, exp83 design) | 2.70× |
+| State's own cases only | 2.27× |
+
+Pooled is higher in 46 of 53 (`exp108_pooling_results.json`).
+
 **Papers updated (Oct 26):** project summary, triage whitepaper, replication guide, the PA/NY/ID briefs, both older-adults papers, and the comparison paper. The "not rechecked" labels are removed.
 <!-- AUTO-RESULTS:END -->

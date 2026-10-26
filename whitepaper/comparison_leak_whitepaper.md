@@ -2,6 +2,38 @@
 
 **October 26, 2026 · Whitepaper · Cory Trimm**
 
+## TL;DR: giannella/snap_qc and this project
+
+| | giannella/snap_qc | This project |
+|---|---|---|
+| Question | Which SNAP cases should a state review first? | Same |
+| Data | Federal QC public-use files, FY2017–19 and FY2022–24 | Same files, FY2020–24 |
+| Inputs | **Rebuilt pre-review values:** starting from the reviewer's values and the error codes, the field in error is shifted until the benefit formula gives the benefit the agency issued | **The reviewer's recorded values;** until October 26 also the issued benefit, which was the leak |
+| What counts as an error | Off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | Any error the reviewer found: about 38% |
+| Ranked by | Chance that a flagged case has an error, with a 99% safety margin | Expected error dollars |
+| What a state gets | Readable if-then rules in an Excel workbook per state | A scoring model per state |
+| Older and disabled households | A feature in the rules; precision ranking reaches them | An explicit floor on their share of reviews |
+| Dollars | Converted to 2026 prices | As recorded |
+
+**How they are similar:**
+- **Same question, same source:** the same public file, and per-state tools learned mostly from national data. Both find national data is the backbone: tuning on one state's cases alone didn't beat their national ordering, and our pooled models beat state-only ones (2.70× against 2.27×, better in 46 of 53, rechecked without the leak).
+- **Same discipline:** both judge only on held-out later years and warn that training numbers overstate.
+- **Same blind spot in the data:** the public file leaves out ineligible cases, so each state sees only part of its errors (43–91% by giannella's count).
+
+**How they differ:**
+- **Inputs, the difference that mattered:** giannella rebuilt the facts a state had before review. We used the reviewer's facts and, until October 26, put the issued benefit beside them. That leak inflated every published ranker figure: the top-20% lift is 2.7×, not the published 4.0×.
+- **Target and ranking:** they find the cases most likely to have an official-size error; we find the most error dollars. That is why older households fare differently under each.
+- **Form:** rules a reviewer can read and edit against a score.
+
+**Head to head** (FY2024, their test, 49 states, 10% budget):
+- **What we measured:** our corrected tool catches more of the over-threshold error dollars (about $3.5B a year against $2.2B; more in 39 states), at similar precision (0.32 against 0.30).
+- **Why it isn't settled:** this is **not yet like-for-like**. For error cases our inputs are the reviewer's corrected facts; theirs are rebuilt pre-review facts. That may favour ours by an amount we haven't measured.
+- **The fair test:** run our tool on their rebuilt inputs.
+
+**What each project gave the other:**
+- **What we took from them:** their published numbers exposed our leak, and their rebuild of pre-review values is the better way to use the public file.
+- **What we can offer them:** the dollar view, the fairness floor, and the cost-share scenarios.
+
 ## Summary
 
 In October we compared our SNAP error-ranking tool with an independent project on the same problem: [giannella/snap_qc](https://github.com/giannella/snap_qc), which turns the same federal quality-control (QC) data into ranked lists of if-then rules for each state. The comparison did what independent checks are for. It found a serious flaw in our own work, and it showed that the corrected tool is still useful.
@@ -18,10 +50,11 @@ In October we compared our SNAP error-ranking tool with an independent project o
    | Top 10% vs random | 6.4× | **3.3×** |
    | FY2028 cost share avoided, central scenario | $6.05 billion | **$3.42 billion** |
 
-3. **On the same test, the corrected tool beats giannella's lists.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, paired over 49 states at a 10% review budget:
+3. **On the same test, the corrected tool finds more error dollars than giannella's lists, though the test isn't yet like-for-like.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, paired over 49 states at a 10% review budget:
    - **Dollars:** it finds about **$3.5 billion a year** in error dollars against their $2.2 billion, and more in 39 of 49 states.
    - **Precision:** a flagged case has an error more often (0.32 against 0.30 at 10%; 0.40 against 0.32 at 5%).
-   - **Their advantage:** their lists are interpretable rules a state can read and edit; ours is a score.
+   - **The catch:** giannella rebuilds the facts a state had before review; for error cases our inputs are still the reviewer's corrected facts. That may favour ours, by an amount we haven't measured.
+   - **Their advantages:** their lists are interpretable rules a state can read and edit, built on inputs closer to what a state has; ours is a score.
 4. **The comparison confirmed some of our findings and changed others.**
    - **Agreed:** pooling across states beats state-only models; the public file misses part of each state's errors; and training numbers overstate real performance.
    - **Changed:** the fairness floor that protects older and disabled households turned out to cost about 10% of the tool's gain in the median state, not 1%.
@@ -48,9 +81,11 @@ Every paper, brief, guide and dashboard from this project has been corrected (Oc
 | How cases are ranked | By how often a rule's flagged cases have an error (precision), with a statistical safety margin | By expected error dollars (chance of an error × likely dollars) |
 | What counts as an error | A payment off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | Any error found by the reviewer: about 38% of cases |
 | Data | FY2017–19 and FY2022–24; dollars converted to 2026 prices | FY2020–24; nominal dollars |
-| Benefit input | Benefit recomputed from the reported facts | The issued benefit (until October 26) |
+| Inputs | Rebuilt pre-review values: starting from the reviewer's values and the error codes, the field in error is shifted until the benefit formula gives the benefit the agency issued | The reviewer's recorded values, plus the issued benefit (until October 26) |
 
-That last row is the whole story. Their benefit input agrees with the reviewer's facts and can't reveal an error. Ours, the amount actually issued, disagreed with those facts exactly when there was an error.
+That last row is the whole story:
+- **giannella:** they treated the file's facts as the reviewer's and rebuilt the values a state would have had. Their inputs agree with one another and can't reveal an error.
+- **Us:** we treated the reviewer's values as the agency's and put the issued benefit beside them. The two disagreed exactly when there was an error.
 
 ## How the leak was found
 
@@ -61,7 +96,7 @@ That last row is the whole story. Their benefit input agrees with the reviewer's
 | Precision at a 5% review budget | **1.00** | 0.32 |
 | Share of error dollars caught at a 5% budget | 0.59 | 0.14 |
 
-**Why that's impossible.** A 5% budget flags about 44 cases in the median state, and errors occur in 12% of cases. Flagging only errors, in every state, means the model can see the answer.
+**Why that's impossible.** A 5% budget flags about 42 cases in the median state, and errors occur in 12% of cases. Flagging only errors, in every state, means the model can see the answer.
 
 **What the fields hold.** The QC technical documentation says the raw file "is generated from the monthly reviews"; QC reviewers "gather financial and demographic information from the sampled unit's case file, reinterview the participants, and then determine whether the SNAP unit received the correct SNAP benefit amount." We checked the 5,809 FY2024 cases with an over-threshold error:
 
@@ -75,7 +110,7 @@ That last row is the whole story. Their benefit input agrees with the reviewer's
 
 Applying the benefit formula to the reported net income reproduces the **reviewer's** corrected benefit in 79.8% of these cases, and the benefit the agency **issued** in 0.8%.
 
-**Why it was missed.** In early October we removed four fields that are explicitly the reviewer's (`FSEARN` and others) and called the rest "agency-side". That check looked at clean cases, where the agency's and the reviewer's values are the same. It never looked at error cases, the only place the difference shows.
+**Why it was missed.** In early October we removed four fields that are explicitly the reviewer's (`FSEARN` and others) and called the rest "agency-side". That check looked at clean cases, where the agency's and the reviewer's values are the same. It never looked at error cases, the only place the difference shows. The September pilots had in fact flagged the issued benefit as a post-decision field and dropped it (the PA7, UT7, ID7 and SD7 audits). It came back as an "agency-side" input when the rankers moved to real records (exp58).
 
 ## The corrected tool
 
@@ -111,6 +146,12 @@ We removed the two inputs built from the issued benefit and reran everything wit
 | Share of error dollars caught, 5% budget | 0.26 | 0.14 | 39 of 49 |
 | Share of error dollars caught, 10% budget | 0.41 | 0.27 | 39 of 49 |
 
+**Not yet like-for-like.** Both tools were scored on the same cases with the same error definition. They were not scored on the same kind of inputs:
+- **theirs:** pre-review values rebuilt from the reviewer's;
+- **ours:** for error cases, still the reviewer's corrected values.
+
+That may favour ours. The fair test is our model on their rebuilt inputs; until then, read the margin as an upper bound.
+
 **In dollars, summed over the 49 states:**
 
 | Per year | giannella | Ours |
@@ -129,6 +170,7 @@ We removed the two inputs built from the issued benefit and reran everything wit
 The underlying difference is about 1.6 times the error dollars found; the band steps magnify it. A state-level "double" or "$0" can flip with a small change in lift, so read the dollars found as the steadier comparison.
 
 **What their lists offer that ours doesn't:**
+- **Inputs closer to a state's own:** pre-review values rebuilt from the reviewer's, rather than the reviewer's values themselves.
 - **Readable rules:** they are if-then rules a reviewer can read, question and edit.
 - **Workbook delivery:** they ship as a workbook that recomputes when a state pastes its own cases.
 - **Inflation adjustment:** they convert dollars to current prices, which they found helps lists applied three years after their training data. We haven't tested that.
@@ -166,7 +208,12 @@ The fairness concern belongs to dollar ranking specifically, and the floor fixes
 3. **The retraining simulation does not.** A ranker retrained only on its own flags lost about 15% in four years with the leak and nothing measurable without it (2.40× against 2.29× for retraining on every case). That finding is withdrawn.
 4. **The early household tests hold on today's models.** Older households are reviewed at 0.20–0.29 of their error rate, and 62–71% of those reviewed have an error.
 
-**A limit no public-data work can remove.** For error cases the reported facts are still the reviewer's corrected values, while a state's tool would see its own uncorrected values. Both projects share this. The only real test of either tool is a pilot on a state's own pre-review case records.
+**A limit we haven't removed yet.** For error cases our inputs are still the reviewer's corrected values, while a state's tool would see its own uncorrected values.
+- **What giannella does about it:** they rebuild approximate pre-review values: from the reviewer's values and the error codes, the field in error is shifted until the formula gives the issued benefit. That is closer to what a state has.
+- **Us:** we haven't done this yet, so our corrected figures may still be somewhat optimistic.
+- **Next step:** rebuild our inputs the same way and rerun the head-to-head.
+
+The only real test of either tool is a pilot on a state's own pre-review case records.
 
 ## The lesson
 
@@ -176,7 +223,7 @@ Before using any field from the QC file, ask: would a state agency have this val
 - the error amount and finding;
 - the error codes.
 
-Combining a value the agency had with one only the reviewer had is the specific trap. We found it because someone else built the same thing differently and published their numbers. That is an argument for publishing, and for comparing.
+Combining a value the agency had with one only the reviewer had is the specific trap. giannella's answer, rebuilding what the agency had from the reviewer's values and the issued benefit, is the better way to use this file. We found the trap because someone else built the same thing differently and published their numbers. That is an argument for publishing, and for comparing.
 
 ## Technical reproduction
 

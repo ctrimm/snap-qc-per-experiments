@@ -1,0 +1,221 @@
+{
+ "feature_set": "leakfree",
+ "states": {
+  "AK": {
+   "pooled": 2.212,
+   "state_only": 1.126
+  },
+  "AL": {
+   "pooled": 2.805,
+   "state_only": 2.632
+  },
+  "AR": {
+   "pooled": 2.33,
+   "state_only": 1.939
+  },
+  "AZ": {
+   "pooled": 3.077,
+   "state_only": 2.838
+  },
+  "CA": {
+   "pooled": 2.457,
+   "state_only": 2.077
+  },
+  "CO": {
+   "pooled": 2.907,
+   "state_only": 2.487
+  },
+  "CT": {
+   "pooled": 2.981,
+   "state_only": 2.843
+  },
+  "DC": {
+   "pooled": 2.704,
+   "state_only": 2.726
+  },
+  "DE": {
+   "pooled": 2.738,
+   "state_only": 2.503
+  },
+  "FL": {
+   "pooled": 2.421,
+   "state_only": 2.479
+  },
+  "GA": {
+   "pooled": 2.69,
+   "state_only": 2.752
+  },
+  "GU": {
+   "pooled": 2.301,
+   "state_only": 2.585
+  },
+  "HI": {
+   "pooled": 2.671,
+   "state_only": 1.791
+  },
+  "IA": {
+   "pooled": 2.76,
+   "state_only": 2.536
+  },
+  "ID": {
+   "pooled": 2.02,
+   "state_only": 1.927
+  },
+  "IL": {
+   "pooled": 2.795,
+   "state_only": 2.291
+  },
+  "IN": {
+   "pooled": 2.929,
+   "state_only": 2.018
+  },
+  "KS": {
+   "pooled": 2.134,
+   "state_only": 1.958
+  },
+  "KY": {
+   "pooled": 3.097,
+   "state_only": 2.759
+  },
+  "LA": {
+   "pooled": 2.488,
+   "state_only": 2.239
+  },
+  "MA": {
+   "pooled": 3.214,
+   "state_only": 3.29
+  },
+  "MD": {
+   "pooled": 2.604,
+   "state_only": 2.267
+  },
+  "ME": {
+   "pooled": 2.53,
+   "state_only": 1.985
+  },
+  "MI": {
+   "pooled": 2.252,
+   "state_only": 2.029
+  },
+  "MN": {
+   "pooled": 2.48,
+   "state_only": 2.033
+  },
+  "MO": {
+   "pooled": 2.848,
+   "state_only": 1.916
+  },
+  "MS": {
+   "pooled": 2.799,
+   "state_only": 2.541
+  },
+  "MT": {
+   "pooled": 2.528,
+   "state_only": 1.434
+  },
+  "NC": {
+   "pooled": 2.979,
+   "state_only": 2.795
+  },
+  "ND": {
+   "pooled": 2.757,
+   "state_only": 1.266
+  },
+  "NE": {
+   "pooled": 2.505,
+   "state_only": 1.815
+  },
+  "NH": {
+   "pooled": 2.212,
+   "state_only": 1.879
+  },
+  "NJ": {
+   "pooled": 2.735,
+   "state_only": 2.672
+  },
+  "NM": {
+   "pooled": 2.845,
+   "state_only": 2.584
+  },
+  "NV": {
+   "pooled": 2.972,
+   "state_only": 2.335
+  },
+  "NY": {
+   "pooled": 3.049,
+   "state_only": 2.412
+  },
+  "OH": {
+   "pooled": 2.984,
+   "state_only": 2.329
+  },
+  "OK": {
+   "pooled": 2.529,
+   "state_only": 2.437
+  },
+  "OR": {
+   "pooled": 2.946,
+   "state_only": 2.745
+  },
+  "PA": {
+   "pooled": 2.696,
+   "state_only": 2.515
+  },
+  "RI": {
+   "pooled": 2.513,
+   "state_only": 2.227
+  },
+  "SC": {
+   "pooled": 2.626,
+   "state_only": 2.161
+  },
+  "SD": {
+   "pooled": 2.816,
+   "state_only": 1.659
+  },
+  "TN": {
+   "pooled": 2.388,
+   "state_only": 2.086
+  },
+  "TX": {
+   "pooled": 2.209,
+   "state_only": 1.342
+  },
+  "UT": {
+   "pooled": 2.171,
+   "state_only": 1.946
+  },
+  "VA": {
+   "pooled": 2.634,
+   "state_only": 2.267
+  },
+  "VI": {
+   "pooled": 3.004,
+   "state_only": 2.014
+  },
+  "VT": {
+   "pooled": 2.703,
+   "state_only": 2.704
+  },
+  "WA": {
+   "pooled": 3.666,
+   "state_only": 3.079
+  },
+  "WI": {
+   "pooled": 2.804,
+   "state_only": 2.129
+  },
+  "WV": {
+   "pooled": 2.49,
+   "state_only": 2.026
+  },
+  "WY": {
+   "pooled": 1.982,
+   "state_only": 2.056
+  }
+ },
+ "median_pooled": 2.696,
+ "median_state_only": 2.267,
+ "pooled_higher": 46,
+ "n": 53
+}

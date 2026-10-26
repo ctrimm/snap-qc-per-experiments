@@ -188,3 +188,12 @@ Scored 2026-10-26 by `exp106_giannella_comparison.py` (part B, 2 min 57 s) and `
 3. **Remaining limitation:** reviewer-recorded facts for error cases remain in both projects; only a state's own pre-review data can remove it.
 4. **Adopt from giannella:** their 2026-dollar conversion, which they found helps lists applied three years after their training data.
 <!-- AUTO-RESULTS:END -->
+
+### Correction (2026-10-26, after results; found in the triple-check)
+
+Two statements above about giannella's method are wrong, as their munging script shows (`1_data_munging_and_raw_variable_reconstruction_for_using_public_qc_data.R`, steps 5–7, `correct_variables <- TRUE`):
+- **Their inputs are rebuilt, not recomputed.** Amendment 2's "its benefit feature is recomputed from the reported facts" and Part B's "their benefit feature is recomputed from the reported facts" are wrong. giannella starts from the reviewer's final values (`FS*`), uses the error codes (`ELEMENT1`/`NATURE1`) to decide which field was in error, and shifts that field a dollar at a time until the benefit formula gives `RAWBEN`. Their mined features (`rawearn`, `rawgross`, `rawrent`, …) and `raw_benefit_amount = rawben_recreated` are therefore approximate **pre-review** values.
+- **The limitation is not shared.** Verdict item 3 ("reviewer-recorded facts for error cases remain in both projects") is wrong. It remains in ours.
+- **Consequence:** D1 compares our model on reviewer-corrected inputs with their lists on rebuilt pre-review inputs. That is not like-for-like and may favour ours. The fair test is our model on their rebuilt inputs. It needs their R pipeline; R is not installed here.
+- **The near-maximum artifact** they report (CHANGELOG v2.6) is a defect in that rebuild: cases where it could not reach the issued benefit. It is not a trace of our leak.
+
