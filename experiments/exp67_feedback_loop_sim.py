@@ -88,7 +88,7 @@ def main():
                "lift24": float(np.mean([out[s][e]["model_lift_2024"] for s in STATES]))} for e in out[STATES[0]]}
     print("MEAN: " + " | ".join(f"eps={e}: found {v['found']:.1%} lift24 {v['lift24']:.2f}x" for e, v in avg.items()))
     out["_mean"] = avg
-    (ROOT / "experiments" / "exp67_results.json").write_text(json.dumps(out, indent=1))
+    E58.results_path("exp67_results.json").write_text(json.dumps(out, indent=1))
 
 
 if __name__ == "__main__":

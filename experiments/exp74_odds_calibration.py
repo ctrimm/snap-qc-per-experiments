@@ -104,7 +104,7 @@ def main():
     adopt = all(v["ece_calibrated"] < v["ece_raw"] for v in out.values())
     out["adopt"] = adopt
     print("adopt temperature scaling:", adopt)
-    (ROOT / "experiments/exp74_results.json").write_text(json.dumps(out, indent=1))
+    E58.results_path("exp74_results.json").write_text(json.dumps(out, indent=1))
 
 
 if __name__ == "__main__":
