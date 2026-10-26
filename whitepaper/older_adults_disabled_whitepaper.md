@@ -2,6 +2,9 @@
 
 **October 23, 2026 (first version October 15, 2026) · Executive summary · Cory Trimm**
 
+
+> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+
 ## Summary
 
 This paper covers where older adults and people with disabilities show up in the SNAP quality-control (QC) research of September 28 – October 23, 2026: what we found, what we changed, and what is still open. It was first written for a conversation with AARP. Every figure has since been checked against its source experiment, and the corrections are listed at the end.

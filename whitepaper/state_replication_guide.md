@@ -2,6 +2,9 @@
 
 **October 23, 2026 · Replication guide · Cory Trimm**
 
+
+> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+
 ## Who this is for
 
 This guide is for a state SNAP team that wants to know what the error-ranking tool would do for their state, and then try it. It assumes one analyst comfortable running Python scripts, and a program or QC lead who can answer questions about case data and review practice. No machine-learning background is needed for levels 1 and 2.

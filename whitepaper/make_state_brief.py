@@ -149,7 +149,7 @@ def brief(s, P):
     evs = lambda x: (f"{abs(round(100 * (x - 1)))}% {'above' if x > 1 else 'below'} actual" if abs(x - 1) >= 0.005 else "within 1% of actual")  # noqa: E731
     holdout_pct = round(100 * e68["n_holdout"] / e68["n_rows"])
     L = []
-    L += [f"# Finding SNAP Payment Errors Faster in {name}", "", "**October 23, 2026 · State brief · Cory Trimm**", "", "## Summary", "", n["lede"], ""]
+    L += [f"# Finding SNAP Payment Errors Faster in {name}", "", "**October 23, 2026 · State brief · Cory Trimm**", "", UNDER_REVIEW, "", "## Summary", "", n["lede"], ""]
     L += [f"- **It finds {v['top20']['lift']:.1f} times the error dollars of random review.** Reviewers working the top 20% of the tool's queue would find about **${v['top20']['per_hour_$']:.0f} per review hour against ${v['top20']['random_per_hour_$']:.0f}**. The top 10% finds {v['top10']['lift']:.1f} times.",
           f"- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a {TS[s]:.1f}× edge. Expected error dollars for the top fifth of the queue were {evs(v['top20']['expected_over_actual'])}.",
           f"- **It's fair by design.** Ranking purely by dollars would review elderly households at {b['elderly']:.2f} of their share of error cases. A floor brings that to {f['elderly']:.2f}, " +
@@ -258,6 +258,8 @@ def brief(s, P):
           f"- **Error pattern:** computed from the five QC files (state code {CODES[s]})."]
     return "\n".join(L) + "\n"
 
+
+UNDER_REVIEW = "> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration."
 
 NARRATIVE_POLICY = {
     "TX": "It holds no Texas SNAP documents (its one Texas benefits document is a TANF FAQ).",

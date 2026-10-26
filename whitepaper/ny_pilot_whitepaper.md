@@ -2,6 +2,9 @@
 
 **October 23, 2026 · State brief · Cory Trimm**
 
+
+> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+
 ## Summary
 
 New York's FY2025 payment error rate was 13.18%. Under the H.R. 1 cost-sharing rules that is the top bracket: from FY2028 the state would pay 15% of its SNAP benefit costs, about **$1.08 billion a year**. This brief shows what a case-ranking tool, built and tested on New York's own federal QC records, could do about that.

@@ -2,6 +2,7 @@
   /* Layout: header + takeaway, map card (metric switch, legend, state detail), then a full table and notes. */
   .tr-wrap { display: grid; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); max-width: 78rem; margin-inline: auto; }
   .tr-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .tr-review { border-left: 3px solid var(--color-warn); background: var(--color-panel); padding: var(--cds-gap-xs) var(--cds-gap-sm); margin: var(--cds-gap-xs) 0; max-width: 72ch; color: var(--color-fg); }
   .tr-take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: var(--cds-gap-xs) 0 0; max-width: 62ch; }
   .tr-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
   .tr-tile, .tr-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
@@ -55,7 +56,8 @@
 
 <div class="tr-wrap">
   <header class="tr-head" id="top">
-    <h1>SNAP triage rankers by state</h1>
+    <h1>SNAP triage rankers by state (under review)</h1>
+    <p class="tr-review" role="note"><strong>Under review (October 26, 2026).</strong> The lift, dollars-per-hour, forecast, fairness and cost-share figures on this page are inflated: the models' inputs included values recorded by QC reviewers, which a state would not have before a review. Don't cite them until corrected figures replace them. FY2025 error rates are USDA's official figures and are not affected.</p>
     <p class="tr-take" data-source="summary">—</p>
   </header>
 

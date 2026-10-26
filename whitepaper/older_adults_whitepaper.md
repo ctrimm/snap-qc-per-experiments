@@ -2,6 +2,9 @@
 
 **October 23, 2026 · Whitepaper · Cory Trimm**
 
+
+> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+
 ## Summary
 
 About three in ten SNAP households include someone aged 60 or older. This paper looks at those households alone: how often their benefits are paid in error, what kind of errors they are, and how they fare when a state uses a data-driven tool to choose which cases to review. A companion paper covers older adults and people with disabilities together. Every figure here is computed from federal SNAP quality-control (QC) data, FY2020–2024, and checked against the experiment that produced it.

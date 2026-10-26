@@ -36,6 +36,9 @@
 <body>
 <h1>Finding SNAP Payment Errors Faster: Synthetic Data, Language Models and Triage Rankers</h1>
 <div class="meta">October 11, 2026; figures audited and updated October 23, 2026 · Executive whitepaper · Cory Trimm</div>
+<blockquote>
+<p><strong>Under review (October 26, 2026).</strong> The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.</p>
+</blockquote>
 <h2>Executive summary</h2>
 <p>States lose money and federal standing when SNAP benefits are paid in the wrong amount. Quality control (QC) reviewers can only examine a small sample of cases, so the cases they choose matter. This project asked whether machine learning could help them choose better, and whether a small, specialized language model could act as a copilot for QC reviewers.</p>
 <p>In four weeks and 105 numbered experiments plus six state pilot tracks (including rankers for every state), using five years of federal QC data (FY2020–2024, about 167,000 reviewed cases), we reached four findings:</p>
@@ -319,7 +322,7 @@
 <ul>
 <li><strong>Each state's errors look different.</strong> Pennsylvania's errors cluster in how deductions are calculated, especially shelter costs; New York's are mostly about timing. That's why each state's model keeps its own cases and benefit levels as inputs, even when it learns from every state.</li>
 <li><strong>Some states don't record dollar amounts per error.</strong> In 22 of 53 states, more than half of error cases record no per-error dollar amount (Texas almost all of them), while Pennsylvania and New York fill it in. Tools that explain <em>where</em> the error was depend on states that record it.</li>
-<li><strong>Fairness can be built in cheaply.</strong> Ranking purely by dollars gives elderly households well under their share of reviews (below 0.8 of their share of error dollars) in 49 of 53 jurisdictions, and disabled households in 30 of 51. A per-household-type floor brings review into proportion almost everywhere (0 and 2 jurisdictions left below 0.8). It lowers the median lift by about 1% (4.0× → 3.9×); the median state gives up 1.5%, and the most, Hawaii, 15%.</li>
+<li><strong>Fairness can be built in cheaply.</strong> Ranking purely by dollars gives elderly households well under their share of reviews (below 0.8 of their share of cases with an error) in 49 of 53 jurisdictions, and disabled households in 30 of 51. A per-household-type floor brings review into proportion almost everywhere (0 and 2 jurisdictions left below 0.8). It lowers the median lift by about 1% (4.0× → 3.9×); the median state gives up 1.5%, and the most, Hawaii, 15%.</li>
 <li><strong>A second ranker can find households being shorted.</strong> The main ranker targets total error dollars, mostly overpayments, and finds underpayments at only about 1.5 times random. A ranker trained on underpayments finds 3.4 times the underpayment dollars of random review, better in all 53 jurisdictions, so a state can give part of its review budget to it.</li>
 <li><strong>Ranking doesn't need a language model.</strong> The conventional ranker already does the job well, trained on each state's own records, and costs almost nothing to run. The language model's potential lies in reading and explaining cases.</li>
 </ul>

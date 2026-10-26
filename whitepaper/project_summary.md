@@ -2,6 +2,9 @@
 
 **October 23, 2026 · Project summary, September 28 – October 23 · Cory Trimm**
 
+
+> **Under review (October 26, 2026).** The case-ranking figures in this paper are inflated and should not be cited until corrected figures are published. That covers lift over random review, dollars per review hour, forecast accuracy, the FY2028 cost-share scenarios, and review ratios and fairness-floor results. The models' inputs included values recorded by QC reviewers (corrected income, deductions and household size), which a state would not have before a review (experiment 106). Figures computed directly from the QC data are not affected: error rates, error patterns, caseload shares and dollar concentration.
+
 ## Executive summary
 
 States lose money, and from FY2028 will pay a share of benefit costs, when SNAP benefits are paid in the wrong amount. Quality control (QC) reviewers can examine only a small share of cases, and caseworkers have to apply a large, changing body of policy correctly. Over four weeks this project ran 105 numbered experiments, plus pilot tracks for six states. It asked where machine learning can actually help. The data was five years of federal QC records (FY2020–2024, about 167,000 reviewed cases), a synthetic case generator, and a policy library built for the purpose.
