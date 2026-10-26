@@ -22,11 +22,30 @@ Since October 26, 2026 (exp106, exp107), every ranker script builds its inputs w
 **Rules:**
 - **Never add `RAWBEN` back**, nor any feature computed from it (benefit ratios, differences from a recomputed benefit), to a model that also sees the reported facts.
 - **Leave the switch alone.** The switch lives in `experiments/exp58_agency_rankers.py` (`LEAKFREE`, `results_path`) and `experiments/exp80_state_context.py` (`CONTEXT`).
-- **Results files:** scripts that use `results_path()` write `*_leakfree_results.json` by default, and the original names only under `legacy`.
+- **Results files:** see the error-label section below for the file names under each setting.
+
+## Error label: the official definition by default (`SNAPQC_LABEL`)
+
+Since October 26, 2026 (exp110, exp111), the rankers learn and are scored on the **official payment-error definition**, selected by `SNAPQC_LABEL`:
+
+| `SNAPQC_LABEL` | What counts as an error | Dollars | Use it for |
+|---|---|---|---|
+| `official` (**default**) | \|RAWBEN − FSBEN\| above the fiscal year's federal tolerance ($38 FY2020, $39 FY2021, $48 FY2022, $54 FY2023, $56 FY2024): about 12–15% of cases | That difference | Everything: evaluation, cost share, packaged models |
+| `any` | Any error the reviewer found (STATUS 2 or 3): about 38% of cases | AMTERR | Only to reproduce exp107–exp109 |
+
+**Why.** The payment error rate that sets each state's H.R. 1 cost share counts only errors above the tolerance. Training on them raises the lift on those dollars (exp110: median top 20%, 2.47× → 2.61×; with the floor 2.10× → 2.45×). It costs 1.7% of the lift on all error dollars. Cost-share scenarios must use the lift on these dollars.
+
+**`RAWBEN` and `FSBEN` enter the label only, never the inputs.** The label lives in `experiments/exp58_agency_rankers.py` (`label()`, `TOLERANCE`).
+
+**Results files** (`results_path()`):
+- `*_official_results.json` by default;
+- `*_leakfree_results.json` under `SNAPQC_LABEL=any`;
+- the original names under `SNAPQC_FEATURES=legacy`.
 
 ```bash
-python3 experiments/exp83_context_models_full_eval.py           # leak-free (default) -> exp83_leakfree_results.json
-SNAPQC_FEATURES=legacy python3 experiments/exp83_context_models_full_eval.py   # reproduces the published exp83_results.json
+python3 experiments/exp83_context_models_full_eval.py                          # default -> exp83_official_results.json
+SNAPQC_LABEL=any python3 experiments/exp83_context_models_full_eval.py         # exp107 -> exp83_leakfree_results.json
+SNAPQC_FEATURES=legacy SNAPQC_LABEL=any python3 experiments/exp83_context_models_full_eval.py   # published pre-exp106 exp83_results.json
 ```
 
 **What is not removable with public data:** for error cases the reported facts are still the corrected ones, and a deployed tool sees the agency's uncorrected facts. Validate on a state's own pre-review data before quoting deployment numbers.

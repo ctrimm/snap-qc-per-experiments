@@ -93,5 +93,6 @@
   "rule": "beats the deployed model on holdout and time split"
  },
  "feature_set": "leakfree",
- "evaluation_current": "experiments/exp83_leakfree_results.json (held-out); exp107_timesplit_results.json"
+ "evaluation_current": "experiments/exp83_official_results.json (held-out); exp107_timesplit_official_results.json",
+ "error_label": "official"
 }

@@ -9,6 +9,13 @@
 - **Details:** the README section "Feature set: leak-free by default", and `experiments/exp106_giannella_comparison.md` / `exp107_leakfree_rebuild.md`.
 - **Before adding any feature, ask:** "would a state agency have this value, as is, before a QC review?" The fields `FS*`, `RAW*` (except `RAWBEN`), `AMTERR`, `STATUS`, `ELEMENT*`, `NATURE*` and `E_FINDG*` are review outputs or reviewer-recorded.
 
+## Error label: the official definition is the default
+
+- **`SNAPQC_LABEL=official` (the default).** An error is |RAWBEN − FSBEN| above the fiscal year's federal tolerance, which is the payment-error-rate definition; the dollars are that difference.
+- **`SNAPQC_LABEL=any`** (STATUS 2/3, AMTERR dollars) exists only to reproduce exp107–exp109.
+- **Cost-share scenarios** must use the lift on these over-tolerance dollars (exp110: the any-error lift overstated the central estimate, $3.42B against $2.62B).
+- **RAWBEN and FSBEN** may appear in the label, never in the inputs.
+
 ## Working conventions
 
 - **One experiment = `experiments/expNN_*.md` + script.** Pre-register before running, amend before running anything new, and fill results between `<!-- AUTO-RESULTS:START/END -->`. Add an index row in `README.md`.
