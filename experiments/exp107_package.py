@@ -65,7 +65,7 @@ def run_one(job):
                           f"regression on out-of-fold scores; trained on this jurisdiction's rows (weight {wown:g}) pooled with "
                           "all other jurisdictions' rows (exp80 design, exp107 leak-free features)",
                  "chosen": f"exp80/82 variant {adopted}", "config": {"clf": D, "reg": D},
-                 "evaluation_current": ("experiments/exp83_official_results.json (held-out); exp107_timesplit_official_results.json" if E58.OFFICIAL else "experiments/exp83_leakfree_results.json (held-out); exp107_timesplit_results.json"),
+                 "evaluation_current": f"experiments/{E58.results_path('exp83_results.json').name} (held-out); exp107_timesplit_{E58.SNAPQC_LABEL}_results.json",
                  "source": "snap-qc-per-experiments exp107 (experiments/exp107_package.py)"})
     (out / "model_card.json").write_text(json.dumps(card, indent=1))
     return ab

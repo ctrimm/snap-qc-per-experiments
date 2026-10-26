@@ -60,35 +60,45 @@ if LEAKFREE:
     FEATURES = [f for f in FEATURES if f != "issued_benefit"]
 
 
-# Error label (exp110/exp111). SNAPQC_LABEL selects what the rankers learn and are scored on:
-#   official (DEFAULT)  the payment-error-rate definition: |RAWBEN - FSBEN| above the fiscal year's federal tolerance;
-#                       dollars = that difference; status "2" overpaid / "3" underpaid / "1" otherwise. The error rate
-#                       that sets the H.R. 1 cost share counts only these errors.
+# Error label (exp110-exp112). SNAPQC_LABEL selects what the rankers learn and are scored on:
+#   official (DEFAULT, exp112)  the payment-error-rate definition as the reviewer recorded it: an error found (STATUS 2
+#                       overpaid / 3 underpaid) whose amount AMTERR is above the fiscal year's federal tolerance; dollars =
+#                       |AMTERR|. About 10-12% of cases a year, in line with the official rates.
+#   gap                 exp111's version: |RAWBEN - FSBEN| above the tolerance. About 30% of those cases contradict the
+#                       reviewer's recorded amount (4,584 with no error found at all; giannella findings section 24), so it
+#                       is kept only to reproduce exp110/exp111.
 #   any                 any error the reviewer found (STATUS 2 or 3), AMTERR dollars; the label of exp58-exp109.
-# RAWBEN and FSBEN enter the label only, never the inputs.
+# RAWBEN and FSBEN never enter the inputs.
 SNAPQC_LABEL = os.environ.get("SNAPQC_LABEL", "official")
-if SNAPQC_LABEL not in ("official", "any"):
-    raise ValueError(f"SNAPQC_LABEL must be 'official' (default) or 'any', not {SNAPQC_LABEL!r}")
+if SNAPQC_LABEL not in ("official", "gap", "any"):
+    raise ValueError(f"SNAPQC_LABEL must be 'official' (default), 'gap' or 'any', not {SNAPQC_LABEL!r}")
 OFFICIAL = SNAPQC_LABEL == "official"
 TOLERANCE = {2020: 38, 2021: 39, 2022: 48, 2023: 54, 2024: 56}  # federal tolerance by fiscal year (giannella year_data)
 
 
 def label(row, fy):
     """(status, error dollars) for one QC row under SNAPQC_LABEL."""
-    if not OFFICIAL:
-        return row["STATUS"].strip(), fnum(row["AMTERR"])
-    d = fnum(row.get("RAWBEN")) - fnum(row.get("FSBEN"))
+    status, amt = row["STATUS"].strip(), fnum(row["AMTERR"])
+    if SNAPQC_LABEL == "any":
+        return status, amt
+    if SNAPQC_LABEL == "official":
+        if status in ("2", "3") and abs(amt) > TOLERANCE[fy]:
+            return status, abs(amt)
+        return "1", 0.0
+    d = fnum(row.get("RAWBEN")) - fnum(row.get("FSBEN"))  # gap (exp111)
     if abs(d) <= TOLERANCE[fy]:
         return "1", 0.0
     return ("2" if d > 0 else "3"), abs(d)
 
 
 def results_path(name):
-    """Results file for the current settings: *_official_results.json by default (exp111: leak-free, official label);
-    *_leakfree_results.json for leak-free with SNAPQC_LABEL=any (exp107); the original name under SNAPQC_FEATURES=legacy."""
+    """Results file for the current settings: *_official_results.json by default (exp112: leak-free, official label);
+    *_gap_results.json under SNAPQC_LABEL=gap (exp111); *_leakfree_results.json under SNAPQC_LABEL=any (exp107);
+    the original name under SNAPQC_FEATURES=legacy."""
     if not LEAKFREE:
         return ROOT / "experiments" / name
-    return ROOT / "experiments" / name.replace("_results.json", "_official_results.json" if OFFICIAL else "_leakfree_results.json")
+    suffix = {"official": "_official_results.json", "gap": "_gap_results.json", "any": "_leakfree_results.json"}[SNAPQC_LABEL]
+    return ROOT / "experiments" / name.replace("_results.json", suffix)
 DELIVER = ROOT / "deliverables" / "state_rankers"
 
 

@@ -1,6 +1,6 @@
 # Experiment 111 — rebuilding the deployed rankers on the official error definition
 
-**Date:** 2026-10-26 (pre-registered before running) · **Decision:** adopt exp110's OVER arm as the default (its pre-registered rule was met; approved by the project lead the same day) · **Code:** `SNAPQC_LABEL` in `exp58_agency_rankers.py`; reruns of exp83, exp93, exp79, exp107_timesplit, exp107_package · **Results:** `*_official_results.json`
+**Date:** 2026-10-26 (pre-registered before running) · **Decision:** adopt exp110's OVER arm as the default (its pre-registered rule was met; approved by the project lead the same day) · **Code:** `SNAPQC_LABEL` in `exp58_agency_rankers.py`; reruns of exp83, exp93, exp79, exp107_timesplit, exp107_package · **Results:** `*_gap_results.json` (renamed in exp112)
 
 ### What changes
 
