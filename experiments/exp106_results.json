@@ -1,0 +1,2387 @@
+{
+ "AK": {
+  "state": "AK",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 2.963,
+   "lift_over": 3.4,
+   "over_share_of_dollars": 0.8144
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 462,
+    "n_flagged": 23,
+    "precision": 0.8261,
+    "base_rate": 0.1255,
+    "lift": 6.58,
+    "dollar_recall": 0.4213
+   },
+   "budget10": {
+    "n_te": 462,
+    "n_flagged": 46,
+    "precision": 0.6087,
+    "base_rate": 0.1255,
+    "lift": 4.849,
+    "dollar_recall": 0.5572
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 462,
+    "n_flagged": 23,
+    "precision": 0.8696,
+    "base_rate": 0.1255,
+    "lift": 6.927,
+    "dollar_recall": 0.6921
+   },
+   "budget10": {
+    "n_te": 462,
+    "n_flagged": 46,
+    "precision": 0.7174,
+    "base_rate": 0.1255,
+    "lift": 5.714,
+    "dollar_recall": 0.8188
+   }
+  }
+ },
+ "AL": {
+  "state": "AL",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.212,
+   "lift_over": 4.746,
+   "over_share_of_dollars": 0.8029
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 1039,
+    "n_flagged": 52,
+    "precision": 1.0,
+    "base_rate": 0.1347,
+    "lift": 7.421,
+    "dollar_recall": 0.5772
+   },
+   "budget10": {
+    "n_te": 1039,
+    "n_flagged": 104,
+    "precision": 0.9135,
+    "base_rate": 0.1347,
+    "lift": 6.779,
+    "dollar_recall": 0.8048
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 1039,
+    "n_flagged": 52,
+    "precision": 1.0,
+    "base_rate": 0.1347,
+    "lift": 7.421,
+    "dollar_recall": 0.6027
+   },
+   "budget10": {
+    "n_te": 1039,
+    "n_flagged": 104,
+    "precision": 0.9615,
+    "base_rate": 0.1347,
+    "lift": 7.136,
+    "dollar_recall": 0.8663
+   }
+  }
+ },
+ "AR": {
+  "state": "AR",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.849,
+   "lift_over": 4.713,
+   "over_share_of_dollars": 0.6935
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 855,
+    "n_flagged": 43,
+    "precision": 0.8837,
+    "base_rate": 0.0795,
+    "lift": 11.111,
+    "dollar_recall": 0.6197
+   },
+   "budget10": {
+    "n_te": 855,
+    "n_flagged": 86,
+    "precision": 0.593,
+    "base_rate": 0.0795,
+    "lift": 7.456,
+    "dollar_recall": 0.7257
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 855,
+    "n_flagged": 43,
+    "precision": 0.9767,
+    "base_rate": 0.0795,
+    "lift": 12.281,
+    "dollar_recall": 0.7615
+   },
+   "budget10": {
+    "n_te": 855,
+    "n_flagged": 86,
+    "precision": 0.6977,
+    "base_rate": 0.0795,
+    "lift": 8.772,
+    "dollar_recall": 0.9382
+   }
+  }
+ },
+ "AZ": {
+  "state": "AZ",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.319,
+   "lift_over": 4.715,
+   "over_share_of_dollars": 0.8328
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 863,
+    "n_flagged": 43,
+    "precision": 0.9767,
+    "base_rate": 0.1124,
+    "lift": 8.69,
+    "dollar_recall": 0.6513
+   },
+   "budget10": {
+    "n_te": 863,
+    "n_flagged": 86,
+    "precision": 0.7674,
+    "base_rate": 0.1124,
+    "lift": 6.828,
+    "dollar_recall": 0.8385
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 863,
+    "n_flagged": 43,
+    "precision": 0.9767,
+    "base_rate": 0.1124,
+    "lift": 8.69,
+    "dollar_recall": 0.6887
+   },
+   "budget10": {
+    "n_te": 863,
+    "n_flagged": 86,
+    "precision": 0.907,
+    "base_rate": 0.1124,
+    "lift": 8.069,
+    "dollar_recall": 0.9276
+   }
+  }
+ },
+ "CA": {
+  "state": "CA",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.56,
+   "lift_over": 4.197,
+   "over_share_of_dollars": 0.7895
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 814,
+    "n_flagged": 41,
+    "precision": 1.0,
+    "base_rate": 0.1302,
+    "lift": 7.679,
+    "dollar_recall": 0.5709
+   },
+   "budget10": {
+    "n_te": 814,
+    "n_flagged": 81,
+    "precision": 0.8642,
+    "base_rate": 0.1302,
+    "lift": 6.636,
+    "dollar_recall": 0.7642
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 814,
+    "n_flagged": 41,
+    "precision": 0.9756,
+    "base_rate": 0.1302,
+    "lift": 7.492,
+    "dollar_recall": 0.5946
+   },
+   "budget10": {
+    "n_te": 814,
+    "n_flagged": 81,
+    "precision": 0.8395,
+    "base_rate": 0.1302,
+    "lift": 6.447,
+    "dollar_recall": 0.7912
+   }
+  }
+ },
+ "CO": {
+  "state": "CO",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.233,
+   "lift_over": 4.693,
+   "over_share_of_dollars": 0.8163
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 803,
+    "n_flagged": 40,
+    "precision": 1.0,
+    "base_rate": 0.1208,
+    "lift": 8.278,
+    "dollar_recall": 0.6356
+   },
+   "budget10": {
+    "n_te": 803,
+    "n_flagged": 80,
+    "precision": 0.8,
+    "base_rate": 0.1208,
+    "lift": 6.623,
+    "dollar_recall": 0.7953
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 803,
+    "n_flagged": 40,
+    "precision": 1.0,
+    "base_rate": 0.1208,
+    "lift": 8.278,
+    "dollar_recall": 0.6951
+   },
+   "budget10": {
+    "n_te": 803,
+    "n_flagged": 80,
+    "precision": 0.925,
+    "base_rate": 0.1208,
+    "lift": 7.657,
+    "dollar_recall": 0.8819
+   }
+  }
+ },
+ "CT": {
+  "state": "CT",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.191,
+   "lift_over": 4.641,
+   "over_share_of_dollars": 0.8277
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 899,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1446,
+    "lift": 6.915,
+    "dollar_recall": 0.5258
+   },
+   "budget10": {
+    "n_te": 899,
+    "n_flagged": 90,
+    "precision": 0.9444,
+    "base_rate": 0.1446,
+    "lift": 6.531,
+    "dollar_recall": 0.8012
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 899,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1446,
+    "lift": 6.915,
+    "dollar_recall": 0.5691
+   },
+   "budget10": {
+    "n_te": 899,
+    "n_flagged": 90,
+    "precision": 0.9889,
+    "base_rate": 0.1446,
+    "lift": 6.839,
+    "dollar_recall": 0.8285
+   }
+  }
+ },
+ "DC": {
+  "state": "DC",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.944,
+   "lift_over": 4.241,
+   "over_share_of_dollars": 0.9076
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 976,
+    "n_flagged": 49,
+    "precision": 1.0,
+    "base_rate": 0.2193,
+    "lift": 4.561,
+    "dollar_recall": 0.4463
+   },
+   "budget10": {
+    "n_te": 976,
+    "n_flagged": 98,
+    "precision": 0.9796,
+    "base_rate": 0.2193,
+    "lift": 4.468,
+    "dollar_recall": 0.6536
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 976,
+    "n_flagged": 49,
+    "precision": 1.0,
+    "base_rate": 0.2193,
+    "lift": 4.561,
+    "dollar_recall": 0.4802
+   },
+   "budget10": {
+    "n_te": 976,
+    "n_flagged": 98,
+    "precision": 1.0,
+    "base_rate": 0.2193,
+    "lift": 4.561,
+    "dollar_recall": 0.7188
+   }
+  }
+ },
+ "DE": {
+  "state": "DE",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.989,
+   "lift_over": 4.497,
+   "over_share_of_dollars": 0.8292
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 741,
+    "n_flagged": 37,
+    "precision": 1.0,
+    "base_rate": 0.1363,
+    "lift": 7.337,
+    "dollar_recall": 0.5002
+   },
+   "budget10": {
+    "n_te": 741,
+    "n_flagged": 74,
+    "precision": 0.8784,
+    "base_rate": 0.1363,
+    "lift": 6.444,
+    "dollar_recall": 0.7388
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 741,
+    "n_flagged": 37,
+    "precision": 0.973,
+    "base_rate": 0.1363,
+    "lift": 7.138,
+    "dollar_recall": 0.5474
+   },
+   "budget10": {
+    "n_te": 741,
+    "n_flagged": 74,
+    "precision": 0.9459,
+    "base_rate": 0.1363,
+    "lift": 6.94,
+    "dollar_recall": 0.7956
+   }
+  }
+ },
+ "FL": {
+  "state": "FL",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.14,
+   "lift_over": 4.676,
+   "over_share_of_dollars": 0.8235
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 898,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1637,
+    "lift": 6.109,
+    "dollar_recall": 0.51
+   },
+   "budget10": {
+    "n_te": 898,
+    "n_flagged": 90,
+    "precision": 0.9889,
+    "base_rate": 0.1637,
+    "lift": 6.041,
+    "dollar_recall": 0.7587
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 898,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1637,
+    "lift": 6.109,
+    "dollar_recall": 0.5477
+   },
+   "budget10": {
+    "n_te": 898,
+    "n_flagged": 90,
+    "precision": 1.0,
+    "base_rate": 0.1637,
+    "lift": 6.109,
+    "dollar_recall": 0.8052
+   }
+  }
+ },
+ "GA": {
+  "state": "GA",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.941,
+   "lift_over": 4.479,
+   "over_share_of_dollars": 0.8477
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 918,
+    "n_flagged": 46,
+    "precision": 1.0,
+    "base_rate": 0.1895,
+    "lift": 5.276,
+    "dollar_recall": 0.5116
+   },
+   "budget10": {
+    "n_te": 918,
+    "n_flagged": 92,
+    "precision": 0.9783,
+    "base_rate": 0.1895,
+    "lift": 5.161,
+    "dollar_recall": 0.724
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 918,
+    "n_flagged": 46,
+    "precision": 1.0,
+    "base_rate": 0.1895,
+    "lift": 5.276,
+    "dollar_recall": 0.5312
+   },
+   "budget10": {
+    "n_te": 918,
+    "n_flagged": 92,
+    "precision": 1.0,
+    "base_rate": 0.1895,
+    "lift": 5.276,
+    "dollar_recall": 0.7564
+   }
+  }
+ },
+ "GU": {
+  "state": "GU",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.468,
+   "lift_over": 4.0,
+   "over_share_of_dollars": 0.8372
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 182,
+    "n_flagged": 9,
+    "precision": 1.0,
+    "base_rate": 0.1813,
+    "lift": 5.515,
+    "dollar_recall": 0.3741
+   },
+   "budget10": {
+    "n_te": 182,
+    "n_flagged": 18,
+    "precision": 0.9444,
+    "base_rate": 0.1813,
+    "lift": 5.209,
+    "dollar_recall": 0.5877
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 182,
+    "n_flagged": 9,
+    "precision": 1.0,
+    "base_rate": 0.1813,
+    "lift": 5.515,
+    "dollar_recall": 0.4514
+   },
+   "budget10": {
+    "n_te": 182,
+    "n_flagged": 18,
+    "precision": 0.9444,
+    "base_rate": 0.1813,
+    "lift": 5.209,
+    "dollar_recall": 0.6924
+   }
+  }
+ },
+ "HI": {
+  "state": "HI",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.614,
+   "lift_over": 4.506,
+   "over_share_of_dollars": 0.7647
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 539,
+    "n_flagged": 27,
+    "precision": 0.7037,
+    "base_rate": 0.1058,
+    "lift": 6.654,
+    "dollar_recall": 0.4681
+   },
+   "budget10": {
+    "n_te": 539,
+    "n_flagged": 54,
+    "precision": 0.5741,
+    "base_rate": 0.1058,
+    "lift": 5.429,
+    "dollar_recall": 0.621
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 539,
+    "n_flagged": 27,
+    "precision": 0.7778,
+    "base_rate": 0.1058,
+    "lift": 7.355,
+    "dollar_recall": 0.5821
+   },
+   "budget10": {
+    "n_te": 539,
+    "n_flagged": 54,
+    "precision": 0.6111,
+    "base_rate": 0.1058,
+    "lift": 5.779,
+    "dollar_recall": 0.7522
+   }
+  }
+ },
+ "IA": {
+  "state": "IA",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.353,
+   "lift_over": 4.833,
+   "over_share_of_dollars": 0.8268
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.9362,
+    "base_rate": 0.0791,
+    "lift": 11.841,
+    "dollar_recall": 0.7535
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.6277,
+    "base_rate": 0.0791,
+    "lift": 7.939,
+    "dollar_recall": 0.8676
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 1.0,
+    "base_rate": 0.0791,
+    "lift": 12.649,
+    "dollar_recall": 0.8234
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.6809,
+    "base_rate": 0.0791,
+    "lift": 8.612,
+    "dollar_recall": 0.937
+   }
+  }
+ },
+ "ID": {
+  "state": "ID",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.558,
+   "lift_over": 4.721,
+   "over_share_of_dollars": 0.6044
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.7021,
+    "base_rate": 0.0502,
+    "lift": 13.983,
+    "dollar_recall": 0.8283
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.4468,
+    "base_rate": 0.0502,
+    "lift": 8.898,
+    "dollar_recall": 0.9476
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.7872,
+    "base_rate": 0.0502,
+    "lift": 15.678,
+    "dollar_recall": 0.8845
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.4574,
+    "base_rate": 0.0502,
+    "lift": 9.11,
+    "dollar_recall": 0.963
+   }
+  }
+ },
+ "IL": {
+  "state": "IL",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.221,
+   "lift_over": 4.702,
+   "over_share_of_dollars": 0.8375
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 1.0,
+    "base_rate": 0.165,
+    "lift": 6.059,
+    "dollar_recall": 0.5386
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 1.0,
+    "base_rate": 0.165,
+    "lift": 6.059,
+    "dollar_recall": 0.7837
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 1.0,
+    "base_rate": 0.165,
+    "lift": 6.059,
+    "dollar_recall": 0.5511
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 1.0,
+    "base_rate": 0.165,
+    "lift": 6.059,
+    "dollar_recall": 0.8206
+   }
+  }
+ },
+ "IN": {
+  "state": "IN",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.97,
+   "lift_over": 4.599,
+   "over_share_of_dollars": 0.7941
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 875,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.144,
+    "lift": 6.944,
+    "dollar_recall": 0.5679
+   },
+   "budget10": {
+    "n_te": 875,
+    "n_flagged": 88,
+    "precision": 0.9091,
+    "base_rate": 0.144,
+    "lift": 6.313,
+    "dollar_recall": 0.7644
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 875,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.144,
+    "lift": 6.944,
+    "dollar_recall": 0.5798
+   },
+   "budget10": {
+    "n_te": 875,
+    "n_flagged": 88,
+    "precision": 0.9886,
+    "base_rate": 0.144,
+    "lift": 6.866,
+    "dollar_recall": 0.8339
+   }
+  }
+ },
+ "KS": {
+  "state": "KS",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.613,
+   "lift_over": 4.476,
+   "over_share_of_dollars": 0.6276
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 872,
+    "n_flagged": 44,
+    "precision": 0.9545,
+    "base_rate": 0.1044,
+    "lift": 9.147,
+    "dollar_recall": 0.601
+   },
+   "budget10": {
+    "n_te": 872,
+    "n_flagged": 87,
+    "precision": 0.7356,
+    "base_rate": 0.1044,
+    "lift": 7.049,
+    "dollar_recall": 0.8091
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 872,
+    "n_flagged": 44,
+    "precision": 0.9773,
+    "base_rate": 0.1044,
+    "lift": 9.365,
+    "dollar_recall": 0.6389
+   },
+   "budget10": {
+    "n_te": 872,
+    "n_flagged": 87,
+    "precision": 0.8161,
+    "base_rate": 0.1044,
+    "lift": 7.82,
+    "dollar_recall": 0.8695
+   }
+  }
+ },
+ "KY": {
+  "state": "KY",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.082,
+   "lift_over": 4.58,
+   "over_share_of_dollars": 0.7876
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 841,
+    "n_flagged": 42,
+    "precision": 0.9048,
+    "base_rate": 0.082,
+    "lift": 11.028,
+    "dollar_recall": 0.718
+   },
+   "budget10": {
+    "n_te": 841,
+    "n_flagged": 84,
+    "precision": 0.5714,
+    "base_rate": 0.082,
+    "lift": 6.965,
+    "dollar_recall": 0.8235
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 841,
+    "n_flagged": 42,
+    "precision": 0.9048,
+    "base_rate": 0.082,
+    "lift": 11.028,
+    "dollar_recall": 0.7567
+   },
+   "budget10": {
+    "n_te": 841,
+    "n_flagged": 84,
+    "precision": 0.6786,
+    "base_rate": 0.082,
+    "lift": 8.271,
+    "dollar_recall": 0.918
+   }
+  }
+ },
+ "LA": {
+  "state": "LA",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.766,
+   "lift_over": 4.513,
+   "over_share_of_dollars": 0.685
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.11,
+    "lift": 9.094,
+    "dollar_recall": 0.6713
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.7931,
+    "base_rate": 0.11,
+    "lift": 7.212,
+    "dollar_recall": 0.8402
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.11,
+    "lift": 9.094,
+    "dollar_recall": 0.7164
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.8851,
+    "base_rate": 0.11,
+    "lift": 8.048,
+    "dollar_recall": 0.908
+   }
+  }
+ },
+ "MA": {
+  "state": "MA",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.322,
+   "lift_over": 4.872,
+   "over_share_of_dollars": 0.8206
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 764,
+    "n_flagged": 38,
+    "precision": 1.0,
+    "base_rate": 0.1545,
+    "lift": 6.475,
+    "dollar_recall": 0.5172
+   },
+   "budget10": {
+    "n_te": 764,
+    "n_flagged": 76,
+    "precision": 0.9868,
+    "base_rate": 0.1545,
+    "lift": 6.389,
+    "dollar_recall": 0.8268
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 764,
+    "n_flagged": 38,
+    "precision": 1.0,
+    "base_rate": 0.1545,
+    "lift": 6.475,
+    "dollar_recall": 0.5372
+   },
+   "budget10": {
+    "n_te": 764,
+    "n_flagged": 76,
+    "precision": 1.0,
+    "base_rate": 0.1545,
+    "lift": 6.475,
+    "dollar_recall": 0.8438
+   }
+  }
+ },
+ "MD": {
+  "state": "MD",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.471,
+   "lift_over": 3.815,
+   "over_share_of_dollars": 0.8478
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 677,
+    "n_flagged": 34,
+    "precision": 0.9118,
+    "base_rate": 0.1433,
+    "lift": 6.364,
+    "dollar_recall": 0.5197
+   },
+   "budget10": {
+    "n_te": 677,
+    "n_flagged": 68,
+    "precision": 0.6912,
+    "base_rate": 0.1433,
+    "lift": 4.824,
+    "dollar_recall": 0.6848
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 677,
+    "n_flagged": 34,
+    "precision": 0.9412,
+    "base_rate": 0.1433,
+    "lift": 6.569,
+    "dollar_recall": 0.5725
+   },
+   "budget10": {
+    "n_te": 677,
+    "n_flagged": 68,
+    "precision": 0.7647,
+    "base_rate": 0.1433,
+    "lift": 5.337,
+    "dollar_recall": 0.7469
+   }
+  }
+ },
+ "ME": {
+  "state": "ME",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.038,
+   "lift_over": 4.457,
+   "over_share_of_dollars": 0.8293
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 928,
+    "n_flagged": 46,
+    "precision": 1.0,
+    "base_rate": 0.1239,
+    "lift": 8.07,
+    "dollar_recall": 0.5802
+   },
+   "budget10": {
+    "n_te": 928,
+    "n_flagged": 93,
+    "precision": 0.9462,
+    "base_rate": 0.1239,
+    "lift": 7.636,
+    "dollar_recall": 0.8513
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 928,
+    "n_flagged": 46,
+    "precision": 1.0,
+    "base_rate": 0.1239,
+    "lift": 8.07,
+    "dollar_recall": 0.6056
+   },
+   "budget10": {
+    "n_te": 928,
+    "n_flagged": 93,
+    "precision": 0.9355,
+    "base_rate": 0.1239,
+    "lift": 7.549,
+    "dollar_recall": 0.8737
+   }
+  }
+ },
+ "MI": {
+  "state": "MI",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.833,
+   "lift_over": 4.415,
+   "over_share_of_dollars": 0.8143
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 847,
+    "n_flagged": 42,
+    "precision": 1.0,
+    "base_rate": 0.1311,
+    "lift": 7.631,
+    "dollar_recall": 0.5929
+   },
+   "budget10": {
+    "n_te": 847,
+    "n_flagged": 85,
+    "precision": 0.8471,
+    "base_rate": 0.1311,
+    "lift": 6.464,
+    "dollar_recall": 0.7957
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 847,
+    "n_flagged": 42,
+    "precision": 0.9762,
+    "base_rate": 0.1311,
+    "lift": 7.449,
+    "dollar_recall": 0.629
+   },
+   "budget10": {
+    "n_te": 847,
+    "n_flagged": 85,
+    "precision": 0.9765,
+    "base_rate": 0.1311,
+    "lift": 7.451,
+    "dollar_recall": 0.8607
+   }
+  }
+ },
+ "MN": {
+  "state": "MN",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.929,
+   "lift_over": 4.449,
+   "over_share_of_dollars": 0.8064
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 799,
+    "n_flagged": 40,
+    "precision": 1.0,
+    "base_rate": 0.1339,
+    "lift": 7.467,
+    "dollar_recall": 0.5546
+   },
+   "budget10": {
+    "n_te": 799,
+    "n_flagged": 80,
+    "precision": 0.9,
+    "base_rate": 0.1339,
+    "lift": 6.721,
+    "dollar_recall": 0.7698
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 799,
+    "n_flagged": 40,
+    "precision": 1.0,
+    "base_rate": 0.1339,
+    "lift": 7.467,
+    "dollar_recall": 0.6074
+   },
+   "budget10": {
+    "n_te": 799,
+    "n_flagged": 80,
+    "precision": 0.9625,
+    "base_rate": 0.1339,
+    "lift": 7.187,
+    "dollar_recall": 0.8444
+   }
+  }
+ },
+ "MO": {
+  "state": "MO",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.917,
+   "lift_over": 4.752,
+   "over_share_of_dollars": 0.6978
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 756,
+    "n_flagged": 38,
+    "precision": 0.9737,
+    "base_rate": 0.0899,
+    "lift": 10.825,
+    "dollar_recall": 0.705
+   },
+   "budget10": {
+    "n_te": 756,
+    "n_flagged": 76,
+    "precision": 0.7237,
+    "base_rate": 0.0899,
+    "lift": 8.046,
+    "dollar_recall": 0.8877
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 756,
+    "n_flagged": 38,
+    "precision": 1.0,
+    "base_rate": 0.0899,
+    "lift": 11.118,
+    "dollar_recall": 0.7554
+   },
+   "budget10": {
+    "n_te": 756,
+    "n_flagged": 76,
+    "precision": 0.7237,
+    "base_rate": 0.0899,
+    "lift": 8.046,
+    "dollar_recall": 0.9083
+   }
+  }
+ },
+ "MS": {
+  "state": "MS",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.22,
+   "lift_over": 4.777,
+   "over_share_of_dollars": 0.7766
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 902,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1408,
+    "lift": 7.102,
+    "dollar_recall": 0.5383
+   },
+   "budget10": {
+    "n_te": 902,
+    "n_flagged": 90,
+    "precision": 0.8889,
+    "base_rate": 0.1408,
+    "lift": 6.313,
+    "dollar_recall": 0.7878
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 902,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1408,
+    "lift": 7.102,
+    "dollar_recall": 0.6023
+   },
+   "budget10": {
+    "n_te": 902,
+    "n_flagged": 90,
+    "precision": 0.9889,
+    "base_rate": 0.1408,
+    "lift": 7.023,
+    "dollar_recall": 0.8475
+   }
+  }
+ },
+ "MT": {
+  "state": "MT",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.931,
+   "lift_over": 4.574,
+   "over_share_of_dollars": 0.7946
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 575,
+    "n_flagged": 29,
+    "precision": 0.9655,
+    "base_rate": 0.1113,
+    "lift": 8.675,
+    "dollar_recall": 0.6172
+   },
+   "budget10": {
+    "n_te": 575,
+    "n_flagged": 58,
+    "precision": 0.7931,
+    "base_rate": 0.1113,
+    "lift": 7.126,
+    "dollar_recall": 0.8044
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 575,
+    "n_flagged": 29,
+    "precision": 0.931,
+    "base_rate": 0.1113,
+    "lift": 8.365,
+    "dollar_recall": 0.6395
+   },
+   "budget10": {
+    "n_te": 575,
+    "n_flagged": 58,
+    "precision": 0.8448,
+    "base_rate": 0.1113,
+    "lift": 7.59,
+    "dollar_recall": 0.8774
+   }
+  }
+ },
+ "NC": {
+  "state": "NC",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.174,
+   "lift_over": 4.726,
+   "over_share_of_dollars": 0.7964
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 878,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.131,
+    "lift": 7.635,
+    "dollar_recall": 0.5829
+   },
+   "budget10": {
+    "n_te": 878,
+    "n_flagged": 88,
+    "precision": 0.8977,
+    "base_rate": 0.131,
+    "lift": 6.854,
+    "dollar_recall": 0.827
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 878,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.131,
+    "lift": 7.635,
+    "dollar_recall": 0.6362
+   },
+   "budget10": {
+    "n_te": 878,
+    "n_flagged": 88,
+    "precision": 0.9545,
+    "base_rate": 0.131,
+    "lift": 7.288,
+    "dollar_recall": 0.8598
+   }
+  }
+ },
+ "ND": {
+  "state": "ND",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.188,
+   "lift_over": 4.68,
+   "over_share_of_dollars": 0.7916
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 434,
+    "n_flagged": 22,
+    "precision": 0.9545,
+    "base_rate": 0.0968,
+    "lift": 9.864,
+    "dollar_recall": 0.6834
+   },
+   "budget10": {
+    "n_te": 434,
+    "n_flagged": 43,
+    "precision": 0.7209,
+    "base_rate": 0.0968,
+    "lift": 7.45,
+    "dollar_recall": 0.8196
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 434,
+    "n_flagged": 22,
+    "precision": 0.9545,
+    "base_rate": 0.0968,
+    "lift": 9.864,
+    "dollar_recall": 0.7009
+   },
+   "budget10": {
+    "n_te": 434,
+    "n_flagged": 43,
+    "precision": 0.814,
+    "base_rate": 0.0968,
+    "lift": 8.411,
+    "dollar_recall": 0.9191
+   }
+  }
+ },
+ "NE": {
+  "state": "NE",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.879,
+   "lift_over": 4.695,
+   "over_share_of_dollars": 0.7011
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 881,
+    "n_flagged": 44,
+    "precision": 0.7045,
+    "base_rate": 0.0613,
+    "lift": 11.495,
+    "dollar_recall": 0.7215
+   },
+   "budget10": {
+    "n_te": 881,
+    "n_flagged": 88,
+    "precision": 0.4545,
+    "base_rate": 0.0613,
+    "lift": 7.416,
+    "dollar_recall": 0.8147
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 881,
+    "n_flagged": 44,
+    "precision": 0.7955,
+    "base_rate": 0.0613,
+    "lift": 12.978,
+    "dollar_recall": 0.8192
+   },
+   "budget10": {
+    "n_te": 881,
+    "n_flagged": 88,
+    "precision": 0.5,
+    "base_rate": 0.0613,
+    "lift": 8.157,
+    "dollar_recall": 0.9046
+   }
+  }
+ },
+ "NH": {
+  "state": "NH",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.91,
+   "lift_over": 4.607,
+   "over_share_of_dollars": 0.7452
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 620,
+    "n_flagged": 31,
+    "precision": 1.0,
+    "base_rate": 0.1113,
+    "lift": 8.986,
+    "dollar_recall": 0.6074
+   },
+   "budget10": {
+    "n_te": 620,
+    "n_flagged": 62,
+    "precision": 0.7258,
+    "base_rate": 0.1113,
+    "lift": 6.522,
+    "dollar_recall": 0.7251
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 620,
+    "n_flagged": 31,
+    "precision": 1.0,
+    "base_rate": 0.1113,
+    "lift": 8.986,
+    "dollar_recall": 0.6101
+   },
+   "budget10": {
+    "n_te": 620,
+    "n_flagged": 62,
+    "precision": 0.8387,
+    "base_rate": 0.1113,
+    "lift": 7.536,
+    "dollar_recall": 0.8481
+   }
+  }
+ },
+ "NJ": {
+  "state": "NJ",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.169,
+   "lift_over": 4.844,
+   "over_share_of_dollars": 0.7029
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 621,
+    "n_flagged": 31,
+    "precision": 1.0,
+    "base_rate": 0.095,
+    "lift": 10.525,
+    "dollar_recall": 0.6903
+   },
+   "budget10": {
+    "n_te": 621,
+    "n_flagged": 62,
+    "precision": 0.6774,
+    "base_rate": 0.095,
+    "lift": 7.13,
+    "dollar_recall": 0.8485
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 621,
+    "n_flagged": 31,
+    "precision": 0.9677,
+    "base_rate": 0.095,
+    "lift": 10.186,
+    "dollar_recall": 0.7042
+   },
+   "budget10": {
+    "n_te": 621,
+    "n_flagged": 62,
+    "precision": 0.7258,
+    "base_rate": 0.095,
+    "lift": 7.639,
+    "dollar_recall": 0.9065
+   }
+  }
+ },
+ "NM": {
+  "state": "NM",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.071,
+   "lift_over": 4.668,
+   "over_share_of_dollars": 0.7703
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 959,
+    "n_flagged": 48,
+    "precision": 1.0,
+    "base_rate": 0.1575,
+    "lift": 6.351,
+    "dollar_recall": 0.5424
+   },
+   "budget10": {
+    "n_te": 959,
+    "n_flagged": 96,
+    "precision": 1.0,
+    "base_rate": 0.1575,
+    "lift": 6.351,
+    "dollar_recall": 0.7774
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 959,
+    "n_flagged": 48,
+    "precision": 1.0,
+    "base_rate": 0.1575,
+    "lift": 6.351,
+    "dollar_recall": 0.5676
+   },
+   "budget10": {
+    "n_te": 959,
+    "n_flagged": 96,
+    "precision": 1.0,
+    "base_rate": 0.1575,
+    "lift": 6.351,
+    "dollar_recall": 0.8092
+   }
+  }
+ },
+ "NV": {
+  "state": "NV",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.827,
+   "lift_over": 4.768,
+   "over_share_of_dollars": 0.6689
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 911,
+    "n_flagged": 46,
+    "precision": 0.8478,
+    "base_rate": 0.0911,
+    "lift": 9.306,
+    "dollar_recall": 0.6599
+   },
+   "budget10": {
+    "n_te": 911,
+    "n_flagged": 91,
+    "precision": 0.7253,
+    "base_rate": 0.0911,
+    "lift": 7.961,
+    "dollar_recall": 0.8902
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 911,
+    "n_flagged": 46,
+    "precision": 0.8696,
+    "base_rate": 0.0911,
+    "lift": 9.544,
+    "dollar_recall": 0.7051
+   },
+   "budget10": {
+    "n_te": 911,
+    "n_flagged": 91,
+    "precision": 0.7473,
+    "base_rate": 0.0911,
+    "lift": 8.202,
+    "dollar_recall": 0.9121
+   }
+  }
+ },
+ "NY": {
+  "state": "NY",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.176,
+   "lift_over": 4.698,
+   "over_share_of_dollars": 0.8217
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 673,
+    "n_flagged": 34,
+    "precision": 1.0,
+    "base_rate": 0.1456,
+    "lift": 6.867,
+    "dollar_recall": 0.5876
+   },
+   "budget10": {
+    "n_te": 673,
+    "n_flagged": 67,
+    "precision": 0.9552,
+    "base_rate": 0.1456,
+    "lift": 6.56,
+    "dollar_recall": 0.8262
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 673,
+    "n_flagged": 34,
+    "precision": 1.0,
+    "base_rate": 0.1456,
+    "lift": 6.867,
+    "dollar_recall": 0.6079
+   },
+   "budget10": {
+    "n_te": 673,
+    "n_flagged": 67,
+    "precision": 0.9701,
+    "base_rate": 0.1456,
+    "lift": 6.662,
+    "dollar_recall": 0.8575
+   }
+  }
+ },
+ "OH": {
+  "state": "OH",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.174,
+   "lift_over": 4.686,
+   "over_share_of_dollars": 0.7755
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 895,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1017,
+    "lift": 9.835,
+    "dollar_recall": 0.6677
+   },
+   "budget10": {
+    "n_te": 895,
+    "n_flagged": 90,
+    "precision": 0.7667,
+    "base_rate": 0.1017,
+    "lift": 7.54,
+    "dollar_recall": 0.8796
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 895,
+    "n_flagged": 45,
+    "precision": 1.0,
+    "base_rate": 0.1017,
+    "lift": 9.835,
+    "dollar_recall": 0.7444
+   },
+   "budget10": {
+    "n_te": 895,
+    "n_flagged": 90,
+    "precision": 0.8778,
+    "base_rate": 0.1017,
+    "lift": 8.633,
+    "dollar_recall": 0.9429
+   }
+  }
+ },
+ "OK": {
+  "state": "OK",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.003,
+   "lift_over": 4.66,
+   "over_share_of_dollars": 0.7695
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.1592,
+    "lift": 6.281,
+    "dollar_recall": 0.5364
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.9885,
+    "base_rate": 0.1592,
+    "lift": 6.208,
+    "dollar_recall": 0.8046
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 1.0,
+    "base_rate": 0.1592,
+    "lift": 6.281,
+    "dollar_recall": 0.5832
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 1.0,
+    "base_rate": 0.1592,
+    "lift": 6.281,
+    "dollar_recall": 0.8261
+   }
+  }
+ },
+ "OR": {
+  "state": "OR",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.326,
+   "lift_over": 4.754,
+   "over_share_of_dollars": 0.8502
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 823,
+    "n_flagged": 41,
+    "precision": 1.0,
+    "base_rate": 0.1507,
+    "lift": 6.637,
+    "dollar_recall": 0.5691
+   },
+   "budget10": {
+    "n_te": 823,
+    "n_flagged": 82,
+    "precision": 1.0,
+    "base_rate": 0.1507,
+    "lift": 6.637,
+    "dollar_recall": 0.7921
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 823,
+    "n_flagged": 41,
+    "precision": 1.0,
+    "base_rate": 0.1507,
+    "lift": 6.637,
+    "dollar_recall": 0.5902
+   },
+   "budget10": {
+    "n_te": 823,
+    "n_flagged": 82,
+    "precision": 1.0,
+    "base_rate": 0.1507,
+    "lift": 6.637,
+    "dollar_recall": 0.8207
+   }
+  }
+ },
+ "PA": {
+  "state": "PA",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.078,
+   "lift_over": 4.66,
+   "over_share_of_dollars": 0.7699
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 760,
+    "n_flagged": 38,
+    "precision": 1.0,
+    "base_rate": 0.1434,
+    "lift": 6.972,
+    "dollar_recall": 0.6193
+   },
+   "budget10": {
+    "n_te": 760,
+    "n_flagged": 76,
+    "precision": 0.8947,
+    "base_rate": 0.1434,
+    "lift": 6.239,
+    "dollar_recall": 0.7906
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 760,
+    "n_flagged": 38,
+    "precision": 0.9737,
+    "base_rate": 0.1434,
+    "lift": 6.789,
+    "dollar_recall": 0.6242
+   },
+   "budget10": {
+    "n_te": 760,
+    "n_flagged": 76,
+    "precision": 0.9474,
+    "base_rate": 0.1434,
+    "lift": 6.606,
+    "dollar_recall": 0.8171
+   }
+  }
+ },
+ "RI": {
+  "state": "RI",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 4.046,
+   "lift_over": 4.58,
+   "over_share_of_dollars": 0.8447
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 933,
+    "n_flagged": 47,
+    "precision": 1.0,
+    "base_rate": 0.1801,
+    "lift": 5.554,
+    "dollar_recall": 0.4534
+   },
+   "budget10": {
+    "n_te": 933,
+    "n_flagged": 93,
+    "precision": 1.0,
+    "base_rate": 0.1801,
+    "lift": 5.554,
+    "dollar_recall": 0.7226
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 933,
+    "n_flagged": 47,
+    "precision": 1.0,
+    "base_rate": 0.1801,
+    "lift": 5.554,
+    "dollar_recall": 0.4712
+   },
+   "budget10": {
+    "n_te": 933,
+    "n_flagged": 93,
+    "precision": 1.0,
+    "base_rate": 0.1801,
+    "lift": 5.554,
+    "dollar_recall": 0.7401
+   }
+  }
+ },
+ "SC": {
+  "state": "SC",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.88,
+   "lift_over": 4.684,
+   "over_share_of_dollars": 0.7597
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 828,
+    "n_flagged": 41,
+    "precision": 0.9756,
+    "base_rate": 0.1329,
+    "lift": 7.344,
+    "dollar_recall": 0.5733
+   },
+   "budget10": {
+    "n_te": 828,
+    "n_flagged": 83,
+    "precision": 0.8072,
+    "base_rate": 0.1329,
+    "lift": 6.076,
+    "dollar_recall": 0.7512
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 828,
+    "n_flagged": 41,
+    "precision": 0.9756,
+    "base_rate": 0.1329,
+    "lift": 7.344,
+    "dollar_recall": 0.62
+   },
+   "budget10": {
+    "n_te": 828,
+    "n_flagged": 83,
+    "precision": 0.9398,
+    "base_rate": 0.1329,
+    "lift": 7.074,
+    "dollar_recall": 0.8438
+   }
+  }
+ },
+ "SD": {
+  "state": "SD",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.163,
+   "lift_over": 4.979,
+   "over_share_of_dollars": 0.636
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 590,
+    "n_flagged": 30,
+    "precision": 0.7,
+    "base_rate": 0.0492,
+    "lift": 14.241,
+    "dollar_recall": 0.7978
+   },
+   "budget10": {
+    "n_te": 590,
+    "n_flagged": 59,
+    "precision": 0.4068,
+    "base_rate": 0.0492,
+    "lift": 8.276,
+    "dollar_recall": 0.8772
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 590,
+    "n_flagged": 30,
+    "precision": 0.8333,
+    "base_rate": 0.0492,
+    "lift": 16.954,
+    "dollar_recall": 0.9354
+   },
+   "budget10": {
+    "n_te": 590,
+    "n_flagged": 59,
+    "precision": 0.4407,
+    "base_rate": 0.0492,
+    "lift": 8.966,
+    "dollar_recall": 0.9477
+   }
+  }
+ },
+ "TN": {
+  "state": "TN",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.007,
+   "lift_over": 4.771,
+   "over_share_of_dollars": 0.7097
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 938,
+    "n_flagged": 47,
+    "precision": 1.0,
+    "base_rate": 0.0991,
+    "lift": 10.086,
+    "dollar_recall": 0.6637
+   },
+   "budget10": {
+    "n_te": 938,
+    "n_flagged": 94,
+    "precision": 0.7553,
+    "base_rate": 0.0991,
+    "lift": 7.618,
+    "dollar_recall": 0.8736
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 938,
+    "n_flagged": 47,
+    "precision": 1.0,
+    "base_rate": 0.0991,
+    "lift": 10.086,
+    "dollar_recall": 0.7198
+   },
+   "budget10": {
+    "n_te": 938,
+    "n_flagged": 94,
+    "precision": 0.8617,
+    "base_rate": 0.0991,
+    "lift": 8.691,
+    "dollar_recall": 0.9403
+   }
+  }
+ },
+ "TX": {
+  "state": "TX",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.615,
+   "lift_over": 4.462,
+   "over_share_of_dollars": 0.7337
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 832,
+    "n_flagged": 42,
+    "precision": 1.0,
+    "base_rate": 0.149,
+    "lift": 6.71,
+    "dollar_recall": 0.5407
+   },
+   "budget10": {
+    "n_te": 832,
+    "n_flagged": 83,
+    "precision": 0.9277,
+    "base_rate": 0.149,
+    "lift": 6.225,
+    "dollar_recall": 0.7564
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 832,
+    "n_flagged": 42,
+    "precision": 1.0,
+    "base_rate": 0.149,
+    "lift": 6.71,
+    "dollar_recall": 0.575
+   },
+   "budget10": {
+    "n_te": 832,
+    "n_flagged": 83,
+    "precision": 0.9759,
+    "base_rate": 0.149,
+    "lift": 6.548,
+    "dollar_recall": 0.8055
+   }
+  }
+ },
+ "UT": {
+  "state": "UT",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.876,
+   "lift_over": 4.817,
+   "over_share_of_dollars": 0.5961
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 982,
+    "n_flagged": 49,
+    "precision": 0.6122,
+    "base_rate": 0.0438,
+    "lift": 13.982,
+    "dollar_recall": 0.7609
+   },
+   "budget10": {
+    "n_te": 982,
+    "n_flagged": 98,
+    "precision": 0.3571,
+    "base_rate": 0.0438,
+    "lift": 8.156,
+    "dollar_recall": 0.8391
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 982,
+    "n_flagged": 49,
+    "precision": 0.7143,
+    "base_rate": 0.0438,
+    "lift": 16.312,
+    "dollar_recall": 0.8799
+   },
+   "budget10": {
+    "n_te": 982,
+    "n_flagged": 98,
+    "precision": 0.398,
+    "base_rate": 0.0438,
+    "lift": 9.088,
+    "dollar_recall": 0.9556
+   }
+  }
+ },
+ "VA": {
+  "state": "VA",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.748,
+   "lift_over": 4.383,
+   "over_share_of_dollars": 0.7741
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 695,
+    "n_flagged": 35,
+    "precision": 1.0,
+    "base_rate": 0.1698,
+    "lift": 5.89,
+    "dollar_recall": 0.523
+   },
+   "budget10": {
+    "n_te": 695,
+    "n_flagged": 70,
+    "precision": 0.9429,
+    "base_rate": 0.1698,
+    "lift": 5.553,
+    "dollar_recall": 0.724
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 695,
+    "n_flagged": 35,
+    "precision": 1.0,
+    "base_rate": 0.1698,
+    "lift": 5.89,
+    "dollar_recall": 0.5455
+   },
+   "budget10": {
+    "n_te": 695,
+    "n_flagged": 70,
+    "precision": 0.9714,
+    "base_rate": 0.1698,
+    "lift": 5.722,
+    "dollar_recall": 0.7788
+   }
+  }
+ },
+ "VI": {
+  "state": "VI",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.955,
+   "lift_over": 4.7,
+   "over_share_of_dollars": 0.7884
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 259,
+    "n_flagged": 13,
+    "precision": 0.9231,
+    "base_rate": 0.0811,
+    "lift": 11.385,
+    "dollar_recall": 0.7316
+   },
+   "budget10": {
+    "n_te": 259,
+    "n_flagged": 26,
+    "precision": 0.5769,
+    "base_rate": 0.0811,
+    "lift": 7.115,
+    "dollar_recall": 0.8146
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 259,
+    "n_flagged": 13,
+    "precision": 0.9231,
+    "base_rate": 0.0811,
+    "lift": 11.385,
+    "dollar_recall": 0.7468
+   },
+   "budget10": {
+    "n_te": 259,
+    "n_flagged": 26,
+    "precision": 0.5385,
+    "base_rate": 0.0811,
+    "lift": 6.641,
+    "dollar_recall": 0.7976
+   }
+  }
+ },
+ "VT": {
+  "state": "VT",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.941,
+   "lift_over": 5.0,
+   "over_share_of_dollars": 0.5713
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 631,
+    "n_flagged": 32,
+    "precision": 0.8125,
+    "base_rate": 0.0634,
+    "lift": 12.817,
+    "dollar_recall": 0.7939
+   },
+   "budget10": {
+    "n_te": 631,
+    "n_flagged": 63,
+    "precision": 0.5714,
+    "base_rate": 0.0634,
+    "lift": 9.014,
+    "dollar_recall": 0.9492
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 631,
+    "n_flagged": 32,
+    "precision": 0.875,
+    "base_rate": 0.0634,
+    "lift": 13.803,
+    "dollar_recall": 0.8603
+   },
+   "budget10": {
+    "n_te": 631,
+    "n_flagged": 63,
+    "precision": 0.5873,
+    "base_rate": 0.0634,
+    "lift": 9.265,
+    "dollar_recall": 0.97
+   }
+  }
+ },
+ "WA": {
+  "state": "WA",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.538,
+   "lift_over": 4.819,
+   "over_share_of_dollars": 0.8583
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 678,
+    "n_flagged": 34,
+    "precision": 1.0,
+    "base_rate": 0.09,
+    "lift": 11.115,
+    "dollar_recall": 0.7699
+   },
+   "budget10": {
+    "n_te": 678,
+    "n_flagged": 68,
+    "precision": 0.7059,
+    "base_rate": 0.09,
+    "lift": 7.846,
+    "dollar_recall": 0.9036
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 678,
+    "n_flagged": 34,
+    "precision": 1.0,
+    "base_rate": 0.09,
+    "lift": 11.115,
+    "dollar_recall": 0.7835
+   },
+   "budget10": {
+    "n_te": 678,
+    "n_flagged": 68,
+    "precision": 0.7647,
+    "base_rate": 0.09,
+    "lift": 8.5,
+    "dollar_recall": 0.9286
+   }
+  }
+ },
+ "WI": {
+  "state": "WI",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 4.088,
+   "lift_over": 4.821,
+   "over_share_of_dollars": 0.673
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 979,
+    "n_flagged": 49,
+    "precision": 0.7755,
+    "base_rate": 0.0603,
+    "lift": 12.868,
+    "dollar_recall": 0.7932
+   },
+   "budget10": {
+    "n_te": 979,
+    "n_flagged": 98,
+    "precision": 0.4898,
+    "base_rate": 0.0603,
+    "lift": 8.127,
+    "dollar_recall": 0.9064
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 979,
+    "n_flagged": 49,
+    "precision": 0.8367,
+    "base_rate": 0.0603,
+    "lift": 13.884,
+    "dollar_recall": 0.8474
+   },
+   "budget10": {
+    "n_te": 979,
+    "n_flagged": 98,
+    "precision": 0.5408,
+    "base_rate": 0.0603,
+    "lift": 8.974,
+    "dollar_recall": 0.9376
+   }
+  }
+ },
+ "WV": {
+  "state": "WV",
+  "variant": "C_ctx",
+  "B0": {
+   "lift_any": 3.614,
+   "lift_over": 4.481,
+   "over_share_of_dollars": 0.6954
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 643,
+    "n_flagged": 32,
+    "precision": 0.7812,
+    "base_rate": 0.0715,
+    "lift": 10.921,
+    "dollar_recall": 0.6949
+   },
+   "budget10": {
+    "n_te": 643,
+    "n_flagged": 64,
+    "precision": 0.5469,
+    "base_rate": 0.0715,
+    "lift": 7.644,
+    "dollar_recall": 0.8236
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 643,
+    "n_flagged": 32,
+    "precision": 0.875,
+    "base_rate": 0.0715,
+    "lift": 12.231,
+    "dollar_recall": 0.7432
+   },
+   "budget10": {
+    "n_te": 643,
+    "n_flagged": 64,
+    "precision": 0.6562,
+    "base_rate": 0.0715,
+    "lift": 9.173,
+    "dollar_recall": 0.9491
+   }
+  }
+ },
+ "WY": {
+  "state": "WY",
+  "variant": "B_ctx",
+  "B0": {
+   "lift_any": 3.785,
+   "lift_over": 4.706,
+   "over_share_of_dollars": 0.6087
+  },
+  "B1": {
+   "budget05": {
+    "n_te": 266,
+    "n_flagged": 13,
+    "precision": 0.6923,
+    "base_rate": 0.0752,
+    "lift": 9.208,
+    "dollar_recall": 0.5905
+   },
+   "budget10": {
+    "n_te": 266,
+    "n_flagged": 27,
+    "precision": 0.4444,
+    "base_rate": 0.0752,
+    "lift": 5.911,
+    "dollar_recall": 0.6785
+   }
+  },
+  "B2": {
+   "budget05": {
+    "n_te": 266,
+    "n_flagged": 13,
+    "precision": 0.9231,
+    "base_rate": 0.0752,
+    "lift": 12.277,
+    "dollar_recall": 0.7717
+   },
+   "budget10": {
+    "n_te": 266,
+    "n_flagged": 27,
+    "precision": 0.6296,
+    "base_rate": 0.0752,
+    "lift": 8.374,
+    "dollar_recall": 0.9366
+   }
+  }
+ }
+}

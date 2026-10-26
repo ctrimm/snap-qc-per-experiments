@@ -77,5 +77,29 @@ There is no hypothesis on direction; this is a measurement.
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending)
+Interim, 2026-10-26. Part B ran (2 min 57 s, 8 workers); part C has not run.
+
+**Gate:** B0 reproduced exp83's top-20% lift in 53 of 53 jurisdictions, so the refit is the deployed recipe.
+
+**Same test frame:** our test frame matched theirs: median 847 FY2024 cases per state, 12.4% base rate, 49 states.
+
+| Median of 49 states, FY2024 | Ours (B1) | Theirs (v2.5.0 lists) |
+|---|---|---|
+| Precision, 5% budget | **1.000** | 0.318 |
+| Precision, 10% budget | 0.800 | 0.298 |
+| Dollar recall, 5% | 0.593 | 0.141 |
+| Dollar recall, 10% | 0.805 | 0.265 |
+
+**These results are not credible; they show a leak in our features.**
+
+**The evidence:**
+- **The fields hold the reviewer's values.** The QC technical documentation says the raw file "is generated from the monthly reviews"; "reported" (R) fields are what the QC reviewer recorded.
+- **They equal the reviewer's calculations on error cases.** On the 5,809 FY2024 over-threshold error cases, the "reported" fields our rankers use equal the reviewer's calculated values in most cases: RAWGROSS = FSGRINC 98.9%, RAWERND = FSERNDED 98.1%, SHELDED = FSSLTDED 91.9%, RAWNET = FSNETINC 86.0%, CERTHHSZ = FSUSIZE 100%.
+- **The formula reproduces the reviewer's benefit, not the agency's.** The benefit formula applied to RAWNET reproduces the reviewer's benefit (FSBEN) in 79.8% of them, and the issued benefit (RAWBEN) in 0.8%.
+
+**The mechanism:** our "agency-side" features (exp58 onward) put the issued benefit (RAWBEN, the agency's) beside the reviewer's corrected income, deductions and household size, so the model can see when they disagree.
+
+**What it affects:** every ranker figure since exp58: the 53-jurisdiction lifts, the cost-share scenarios, the fairness ratios, and the state briefs and whitepapers built on them.
+
+**Next (amendment 2, to be written before it runs):** a leak-resistant feature set, and the comparison re-run on it.
 <!-- AUTO-RESULTS:END -->
