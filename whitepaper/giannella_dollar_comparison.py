@@ -124,6 +124,14 @@ Script: `whitepaper/giannella_dollar_comparison.py`. Related: [[2026-10-26 snap-
 """
     VAULT.write_text(note)
     print("wrote", VAULT)
+    wp = HERE / "comparison_leak_whitepaper.md"
+    if wp.exists():
+        import re
+        t = wp.read_text()
+        t = re.sub(r"<!-- DOLLAR-TABLE:START -->.*?<!-- DOLLAR-TABLE:END -->",
+                   "<!-- DOLLAR-TABLE:START -->\n" + table + "\n<!-- DOLLAR-TABLE:END -->", t, flags=re.S)
+        wp.write_text(t)
+        print("updated", wp.name)
 
 
 if __name__ == "__main__":

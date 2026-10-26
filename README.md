@@ -37,6 +37,7 @@ SNAPQC_FEATURES=legacy python3 experiments/exp83_context_models_full_eval.py   #
 - [Policy-QA summary](whitepaper/policy_qa_summary.pdf): exp84–105, grounding Gemma 4 in SNAP policy on Cornell's CalFresh quiz.
 - State briefs: [Pennsylvania](whitepaper/pa_pilot_whitepaper.pdf), [New York](whitepaper/ny_pilot_whitepaper.pdf), [Texas](whitepaper/tx_pilot_whitepaper.pdf), [South Dakota](whitepaper/sd_pilot_whitepaper.pdf), [Utah](whitepaper/ut_pilot_whitepaper.pdf), [Idaho](whitepaper/id_pilot_whitepaper.pdf), [Wyoming](whitepaper/wy_state_brief.pdf), and the [Pennsylvania–New York brief](whitepaper/pa_ny_combined_brief.md); and a [replication guide for other states](whitepaper/state_replication_guide.pdf).
 - [Older adults and people with disabilities](whitepaper/older_adults_disabled_whitepaper.pdf): how review tools treat elderly and disabled households, the fairness floor, underpayments, medical deductions and Medicare cost help (validated October 23).
+- [An independent comparison, and the leak it found](whitepaper/comparison_leak_whitepaper.pdf): giannella/snap_qc vs ours, the feature leak (exp106), the corrected figures (exp107), and both tools state by state in dollars.
 - [Older adults](whitepaper/older_adults_whitepaper.pdf): households with a member aged 60+ on their own: error profile, how a dollar-ranked review tool treats them in every state, the fairness floor, medical deductions and Medicare cost help.
 - Rebuild either PDF from its Markdown: `python whitepaper/build_pdf.py <name>.md ...` (needs `markdown` and Google Chrome).
 
