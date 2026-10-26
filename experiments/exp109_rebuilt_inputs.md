@@ -58,5 +58,50 @@ It runs in a scratch copy, so their clone is untouched. Frame rows link to the Q
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending)
+**The run.**
+- **giannella's munging script ran unmodified** apart from the two pre-registered changes (R 4.x, Homebrew; packages in a scratch library; scratch copy of `eedb3f5`).
+- **Frame:** 231,619 rows (FY2017–19 and FY2022–24), of which 115,559 are FY2022–24. All linked to QC rows by (year, `HHLDNO`).
+
+**Gate passed:** the per-state FY2024 test count equals giannella's benchmark `n_te` in 49 of 49. Same cases, same error definition, same budgets.
+
+**Column mapping used:**
+- CERTHHSZ → `cert_HH_size_FS_n` (`rawusize`)
+- RAWHSIZE → `people_in_HH_n` (`ctprhh`)
+- RAWGROSS → `rawgross` (`rawgrinc`)
+- RAWNET → `rawnet_capped`
+- RAWERND → `rawernded`
+- SHELDED → `rawsltded`
+- RENT, UTIL → `rawrent`, `utilities`
+- FSMEDEXP → `medical_deductions` (`rawmedded`)
+- FSDEPDED, FSCSEXP → `rawdepded`, `rawcsded`
+- BENMAX → `maximum_benefit_for_HH_size` (`rawbenmax`)
+
+| Median of 49 states, FY2024, their error definition | R: our model, reviewer inputs | **B: our model, rebuilt pre-review inputs** | B_over | giannella lists |
+|---|---|---|---|---|
+| Precision, 5% budget | 0.391 | **0.385** | 0.386 | 0.318 |
+| Precision, 10% budget | 0.323 | **0.341** | 0.341 | 0.298 |
+| Dollar recall, 5% budget | 0.255 | **0.196** | 0.208 | 0.141 |
+| Dollar recall, 10% budget | 0.381 | **0.331** | 0.323 | 0.265 |
+
+**1. The reviewer's values flatter our model's dollars, not its precision.**
+- **R − B, median paired:** dollar recall +0.049 (5%) and +0.065 (10%), about 17–19% of R's value.
+- **Precision:** +0.024 at 5% and −0.024 at 10%, so no consistent effect.
+
+**2. Like-for-like, our model still beats giannella's lists:**
+
+| B vs giannella | Median paired difference | States higher / lower |
+|---|---|---|
+| Precision, 5% | +0.039 | 36 / 11 |
+| Precision, 10% | +0.041 | 39 / 9 |
+| Dollar recall, 5% | +0.049 | 40 / 9 |
+| Dollar recall, 10% | +0.048 | 35 / 14 |
+
+The margin is smaller than exp106 D1 reported (dollar recall at 10% 0.41 against 0.27, higher in 39) but consistent.
+
+**3. The training label hardly matters here.** B_over is close to B on this one-year-ahead test, as in exp110.
+
+### Verdict
+
+- **Decision 1 (comparison):** B beats their lists in a majority of states on dollar recall at 10% (35 of 49), so the comparison paper keeps its conclusion with the B numbers. Every comparison figure (paper, dollar table, README, vault) moves to B.
+- **Decision 2 (default inputs):** the rule (adopt rebuilt inputs if B loses under 10% of R's dollar recall) is **not met**: B loses 17%. Read the other way, the gap is an estimate of how much the reviewer's corrected values flatter any figure we compute from the public file. A deployed tool sees pre-review values, so B-style numbers are the more honest forecast. A Python port of the rebuild, to train our packaged models on it, is the next step worth testing.
 <!-- AUTO-RESULTS:END -->
