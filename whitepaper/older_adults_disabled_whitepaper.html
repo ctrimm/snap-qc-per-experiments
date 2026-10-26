@@ -37,7 +37,7 @@
 <h1>Older Adults and People with Disabilities in SNAP Error Review</h1>
 <div class="meta">October 26, 2026 (corrected; versions of October 15 and 23) · Executive summary · Cory Trimm</div>
 <blockquote>
-<p><strong>Corrected October 26, 2026.</strong> The review ratios, floor costs and cost-share figures from today's models are replaced with the leak-free rebuild (experiment 107). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49, Utah, Idaho) used early rankers and have not been rechecked.</p>
+<p><strong>Corrected October 26, 2026.</strong> The review ratios, floor costs and cost-share figures from today's models are replaced with the leak-free rebuild (experiment 107). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49) used early rankers; their within-state detail was rechecked on today's models for Pennsylvania and New York (experiment 108) and holds, with the precision figures corrected below. The Utah and Idaho tests were not rechecked.</p>
 </blockquote>
 <h2>Summary</h2>
 <p>This paper covers where older adults and people with disabilities show up in the SNAP quality-control (QC) research of September 28 – October 23, 2026: what we found, what we changed, and what is still open. It was first written for a conversation with AARP. Every figure has since been checked against its source experiment, and the corrections are listed at the end.</p>
@@ -51,7 +51,7 @@
 <li><strong>The reason is error size, not missed detection.</strong><ul>
 <li><strong>Small but frequent:</strong> older households' errors are frequent but small: medical deductions, Social Security and SSI changes, rent and utility timing.</li>
 <li><strong>Larger elsewhere:</strong> errors on earnings are larger, so a list sorted by dollars puts working households first.</li>
-<li><strong>Found when reviewed:</strong> when older and disabled households' cases are reviewed, reviewers find errors at high rates (66% and 70% in the Pennsylvania test).</li>
+<li><strong>Found when reviewed:</strong> when older and disabled households' cases are reviewed, reviewers find errors at high rates (62% and 69% in Pennsylvania, 71% and 76% in New York, on today's models).</li>
 </ul>
 </li>
 <li><strong>A fairness floor fixes it, cheaply.</strong><ul>
@@ -215,7 +215,7 @@
 <p><strong>The pattern:</strong></p>
 <ul>
 <li><strong>Childless adults</strong> were the group least likely to have an error, yet they got the most review relative to risk, and those reviews mostly came up empty (Pennsylvania precision 10%).</li>
-<li><strong>Elderly and disabled households</strong> were found to have an error in 66% and 70% of their reviewed cases in Pennsylvania (44% and 65% in New York).</li>
+<li><strong>Elderly and disabled households</strong> were found to have an error in 66% and 70% of their reviewed cases in Pennsylvania (44% and 65% in New York) in the early tests. On today's leak-free models: 62% and 69% (Pennsylvania), 71% and 76% (New York) (exp108).</li>
 <li><strong>The chronicle's summary:</strong> the ranker is "dollar-efficient and risk-regressive at the same time."</li>
 </ul>
 <p><strong>This is the objective, not a bug.</strong> Within each household type, the ranker picks the highest-dollar cases correctly. The tilt comes from sorting everyone on one dollar scale.</p>
@@ -301,7 +301,7 @@
 </table>
 <p><strong>New York was similar.</strong> The floor took elderly from 0.34 to 0.66 and disabled from 0.35 to 0.48, at $85.4 → $95.3 per review hour.</p>
 <p><strong>This is where "1.4 to 1.9 times" comes from.</strong> Elderly review relative to risk rose about 1.9 times in both states (0.22 → 0.42; 0.34 → 0.66). Disabled review rose 1.6 times in Pennsylvania and 1.35 times in New York. The dollar changes were positive in point terms (bootstrap estimates PA +$1.8 an hour, 95% interval −$13.6 to +$16.4; NY +$10.0, −$14.5 to +$37.8), but the intervals include zero. The supported claim is "no measurable loss", not a gain.</p>
-<p><strong>Why it can be free:</strong> the dollar-only queue was full of cases with high predicted dollars that turned out to have no error, mostly childless adults. The floor swaps those for older and disabled households' cases, which reliably have errors. The share of reviews finding an error rose from 49% to 58%, so reviewers spent less time on clean cases.</p>
+<p><strong>Why it can be free:</strong> the dollar-only queue was full of cases with high predicted dollars that turned out to have no error, mostly childless adults. The floor swaps those for older and disabled households' cases, which reliably have errors. The share of reviews finding an error rose from 49% to 58%, so reviewers spent less time on clean cases. On today's models the gain is smaller (68% → 71% in Pennsylvania, 74% → 76% in New York; exp108).</p>
 <p><strong>Weighting was dropped.</strong> At ×2.5 and above it gave whole household types no reviews at all (married couples with children in New York, for example). It just moved the unfairness onto someone else.</p>
 <h3>The trade-off</h3>
 <p>Every queue rule sits somewhere on a trade-off between dollars found and how evenly review tracks risk. exp49 found the curve <strong>flat near the dollar-only end</strong>: moving to proportional review cost nothing measurable.</p>
@@ -500,6 +500,11 @@
 <td>The exp47/49/Utah/Idaho results described as "a dollar-chasing review tool" without saying which</td>
 <td>exp47, exp49, <code>ut_fairness</code>, <code>idf</code></td>
 <td>Labeled as the early rankers trained on synthetic cases; the 53-jurisdiction results use the real-data models</td>
+</tr>
+<tr>
+<td>Early-test precision (66%/44% elderly) and the floor's precision gain (49% → 58%) quoted as current</td>
+<td>exp108</td>
+<td>Early rankers only. On today's leak-free models: elderly 62% (PA) and 71% (NY); with the floor 68% → 71% and 74% → 76%</td>
 </tr>
 <tr>
 <td>"Idaho and South Dakota use a ranker based only on chance of error"</td>

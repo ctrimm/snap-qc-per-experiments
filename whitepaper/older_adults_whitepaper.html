@@ -50,7 +50,7 @@
 </li>
 <li><strong>A review tool that chases error dollars sends reviewers away from older households.</strong><ul>
 <li><strong>Today's models:</strong> in all 53 jurisdictions they review older households at less than 0.8 of their share of the error risk (median 0.33). In all 53 that is less than random selection would give them (median 0.90).</li>
-<li><strong>The cause is error size, not missed detection:</strong> when older households are reviewed, errors are found in most of them (66% of reviewed cases in the Pennsylvania test).</li>
+<li><strong>The cause is error size, not missed detection:</strong> when older households are reviewed, errors are found in most of them (62% of reviewed cases in Pennsylvania and 71% in New York on today's models).</li>
 </ul>
 </li>
 <li><strong>A simple budget rule fixes it.</strong><ul>
@@ -285,7 +285,7 @@
 <li><strong>Utah:</strong> <strong>0.155</strong>, about one-sixth. Ranking on the chance of an error alone, without the dollar term, raised it to 0.37.</li>
 <li><strong>Idaho:</strong> a ranker using only the chance of an error gave 0.57.</li>
 </ul>
-<p><strong>This is not a detection failure.</strong> When older households' cases were reviewed, errors were found in 66% of them in Pennsylvania (44% in New York). The tool picks the right cases <em>within</em> each group. It deprioritizes older households because their errors are worth fewer dollars, not because it can't find them.</p>
+<p><strong>This is not a detection failure.</strong> When older households' cases were reviewed, errors were found in 62% of them in Pennsylvania and 71% in New York on today's leak-free models (exp108; 66% and 44% in the early tests). On those models the dollar-only queue reviews them at 0.20 (Pennsylvania) and 0.29 (New York) of their error rate, close to the early tests' 0.22 and 0.34. The tool picks the right cases <em>within</em> each group. It deprioritizes older households because their errors are worth fewer dollars, not because it can't find them.</p>
 <h2>Finding 3: the fairness floor</h2>
 <p><strong>The fix:</strong> split the review budget across household types in proportion to each type's share of errors, then take the highest-dollar cases within each type. A second idea, giving older households' scores extra weight, was rejected: at higher weights it gave some other household types no reviews at all.</p>
 <table>
@@ -324,7 +324,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Why it was free in the early tests:</strong> the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%).</p>
+<p><strong>Why it was free in the early tests:</strong> the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%). On today's models the gain is smaller (68% → 71% in Pennsylvania, 74% → 76% in New York; exp108), because the queue holds fewer error-free cases to swap out.</p>
 <p><strong>The FY2028 cost share:</strong> from FY2028, under H.R. 1, states with error rates of 6% or more pay 5–15% of benefit costs.</p>
 <ul>
 <li><strong>With the floor on:</strong> ranker-guided reviews avoid an estimated <strong>$3.42 billion a year</strong> nationally in the central scenario, against $1.03 billion for random reviews of the same volume.</li>
@@ -397,7 +397,6 @@
 <h2>Open questions</h2>
 <ol>
 <li><strong>Age in a real deployment.</strong> The analysis groups households by the QC file's elderly flag (<code>FSELDER</code>). In a pilot, the floor needs the state's own record of each member's age, which is usually reliable at intake.</li>
-<li><strong>The early household tests on today's models.</strong> The early tests (exp47–49, Utah, Idaho) used early rankers and were not rechecked after experiment 106. Rerun exp47–49's within-state detail, including the precision of reviews and the cost of the floor, on the current pooled models.</li>
 <li><strong>The underpayment ranker for older households.</strong> Does it reach them better than the main ranker?</li>
 <li><strong>The medical-data fixes,</strong> then a medical-specific score for the language model.</li>
 <li><strong>The FY2025 QC file,</strong> when it is released: rerun everything above.</li>

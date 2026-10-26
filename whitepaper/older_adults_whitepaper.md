@@ -15,7 +15,7 @@ About three in ten SNAP households include someone aged 60 or older. This paper 
    - **What kind:** most involve the shelter deduction, Social Security amounts, the utility allowance or medical deductions. Wages carry only 10% of older households' error dollars, against 44% for other households.
 2. **A review tool that chases error dollars sends reviewers away from older households.**
    - **Today's models:** in all 53 jurisdictions they review older households at less than 0.8 of their share of the error risk (median 0.33). In all 53 that is less than random selection would give them (median 0.90).
-   - **The cause is error size, not missed detection:** when older households are reviewed, errors are found in most of them (66% of reviewed cases in the Pennsylvania test).
+   - **The cause is error size, not missed detection:** when older households are reviewed, errors are found in most of them (62% of reviewed cases in Pennsylvania and 71% in New York on today's models).
 3. **A simple budget rule fixes it.**
    - **What it does:** a fairness floor gives each household type a share of the review budget matching its share of errors, then picks the highest-dollar cases within each type.
    - **Effect:** it brings older households to a median of 1.00 and leaves no jurisdiction below 0.8.
@@ -107,7 +107,7 @@ The triage ranker scores each case on information the agency already has: report
 - **Utah:** **0.155**, about one-sixth. Ranking on the chance of an error alone, without the dollar term, raised it to 0.37.
 - **Idaho:** a ranker using only the chance of an error gave 0.57.
 
-**This is not a detection failure.** When older households' cases were reviewed, errors were found in 66% of them in Pennsylvania (44% in New York). The tool picks the right cases *within* each group. It deprioritizes older households because their errors are worth fewer dollars, not because it can't find them.
+**This is not a detection failure.** When older households' cases were reviewed, errors were found in 62% of them in Pennsylvania and 71% in New York on today's leak-free models (exp108; 66% and 44% in the early tests). On those models the dollar-only queue reviews them at 0.20 (Pennsylvania) and 0.29 (New York) of their error rate, close to the early tests' 0.22 and 0.34. The tool picks the right cases *within* each group. It deprioritizes older households because their errors are worth fewer dollars, not because it can't find them.
 
 ## Finding 3: the fairness floor
 
@@ -120,7 +120,7 @@ The triage ranker scores each case on information the agency already has: report
 | Dollars found per review hour | $67.3 → $68.9 | $85.4 → $95.3 | — |
 | Cost to the tool's lift | none measurable | none measurable | median 2.70× → 2.42×; the median state gives up about 10% |
 
-**Why it was free in the early tests:** the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%).
+**Why it was free in the early tests:** the dollar-only queue contained many cases with high predicted dollars and no actual error, mostly childless adults. Swapping those for older households' cases, which reliably have errors, raised the share of reviews that found an error (Pennsylvania 49% → 58%). On today's models the gain is smaller (68% → 71% in Pennsylvania, 74% → 76% in New York; exp108), because the queue holds fewer error-free cases to swap out.
 
 **The FY2028 cost share:** from FY2028, under H.R. 1, states with error rates of 6% or more pay 5–15% of benefit costs.
 - **With the floor on:** ranker-guided reviews avoid an estimated **$3.42 billion a year** nationally in the central scenario, against $1.03 billion for random reviews of the same volume.
@@ -166,7 +166,6 @@ The triage ranker scores each case on information the agency already has: report
 ## Open questions
 
 1. **Age in a real deployment.** The analysis groups households by the QC file's elderly flag (`FSELDER`). In a pilot, the floor needs the state's own record of each member's age, which is usually reliable at intake.
-2. **The early household tests on today's models.** The early tests (exp47–49, Utah, Idaho) used early rankers and were not rechecked after experiment 106. Rerun exp47–49's within-state detail, including the precision of reviews and the cost of the floor, on the current pooled models.
 3. **The underpayment ranker for older households.** Does it reach them better than the main ranker?
 4. **The medical-data fixes,** then a medical-specific score for the language model.
 5. **The FY2025 QC file,** when it is released: rerun everything above.

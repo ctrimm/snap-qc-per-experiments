@@ -3,7 +3,7 @@
 **October 26, 2026 (corrected; versions of October 15 and 23) · Executive summary · Cory Trimm**
 
 
-> **Corrected October 26, 2026.** The review ratios, floor costs and cost-share figures from today's models are replaced with the leak-free rebuild (experiment 107). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49, Utah, Idaho) used early rankers and have not been rechecked.
+> **Corrected October 26, 2026.** The review ratios, floor costs and cost-share figures from today's models are replaced with the leak-free rebuild (experiment 107). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49) used early rankers; their within-state detail was rechecked on today's models for Pennsylvania and New York (experiment 108) and holds, with the precision figures corrected below. The Utah and Idaho tests were not rechecked.
 
 ## Summary
 
@@ -16,7 +16,7 @@ This paper covers where older adults and people with disabilities show up in the
 2. **The reason is error size, not missed detection.**
    - **Small but frequent:** older households' errors are frequent but small: medical deductions, Social Security and SSI changes, rent and utility timing.
    - **Larger elsewhere:** errors on earnings are larger, so a list sorted by dollars puts working households first.
-   - **Found when reviewed:** when older and disabled households' cases are reviewed, reviewers find errors at high rates (66% and 70% in the Pennsylvania test).
+   - **Found when reviewed:** when older and disabled households' cases are reviewed, reviewers find errors at high rates (62% and 69% in Pennsylvania, 71% and 76% in New York, on today's models).
 3. **A fairness floor fixes it, cheaply.**
    - **What it does:** it splits the review budget across household types in proportion to where errors are, then sorts by dollars within each type.
    - **Early test (PA and NY):** it roughly doubled elderly review relative to risk, with no measurable loss in dollars found, and reviewers spent fewer reviews on error-free cases.
@@ -89,7 +89,7 @@ On both measures, the same pattern holds: elderly and disabled households score 
 
 **The pattern:**
 - **Childless adults** were the group least likely to have an error, yet they got the most review relative to risk, and those reviews mostly came up empty (Pennsylvania precision 10%).
-- **Elderly and disabled households** were found to have an error in 66% and 70% of their reviewed cases in Pennsylvania (44% and 65% in New York).
+- **Elderly and disabled households** were found to have an error in 66% and 70% of their reviewed cases in Pennsylvania (44% and 65% in New York) in the early tests. On today's leak-free models: 62% and 69% (Pennsylvania), 71% and 76% (New York) (exp108).
 - **The chronicle's summary:** the ranker is "dollar-efficient and risk-regressive at the same time."
 
 **This is the objective, not a bug.** Within each household type, the ranker picks the highest-dollar cases correctly. The tilt comes from sorting everyone on one dollar scale.
@@ -124,7 +124,7 @@ On both measures, the same pattern holds: elderly and disabled households score 
 
 **This is where "1.4 to 1.9 times" comes from.** Elderly review relative to risk rose about 1.9 times in both states (0.22 → 0.42; 0.34 → 0.66). Disabled review rose 1.6 times in Pennsylvania and 1.35 times in New York. The dollar changes were positive in point terms (bootstrap estimates PA +$1.8 an hour, 95% interval −$13.6 to +$16.4; NY +$10.0, −$14.5 to +$37.8), but the intervals include zero. The supported claim is "no measurable loss", not a gain.
 
-**Why it can be free:** the dollar-only queue was full of cases with high predicted dollars that turned out to have no error, mostly childless adults. The floor swaps those for older and disabled households' cases, which reliably have errors. The share of reviews finding an error rose from 49% to 58%, so reviewers spent less time on clean cases.
+**Why it can be free:** the dollar-only queue was full of cases with high predicted dollars that turned out to have no error, mostly childless adults. The floor swaps those for older and disabled households' cases, which reliably have errors. The share of reviews finding an error rose from 49% to 58%, so reviewers spent less time on clean cases. On today's models the gain is smaller (68% → 71% in Pennsylvania, 74% → 76% in New York; exp108).
 
 **Weighting was dropped.** At ×2.5 and above it gave whole household types no reviews at all (married couples with children in New York, for example). It just moved the unfairness onto someone else.
 
@@ -227,6 +227,7 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 | Reviewers found errors in "62–73%" of reviewed elderly and disabled cases in PA | exp47 table | 66% (elderly) and 70% (disabled); the chronicle's prose range didn't match its own table |
 | exp47's 0.22 and exp72/83's ratios presented on one scale | exp47, exp72 code | Two different measures, defined in the table above. On today's measure (leak-free) PA elderly is 0.42 against about 0.90 at random |
 | The exp47/49/Utah/Idaho results described as "a dollar-chasing review tool" without saying which | exp47, exp49, `ut_fairness`, `idf` | Labeled as the early rankers trained on synthetic cases; the 53-jurisdiction results use the real-data models |
+| Early-test precision (66%/44% elderly) and the floor's precision gain (49% → 58%) quoted as current | exp108 | Early rankers only. On today's leak-free models: elderly 62% (PA) and 71% (NY); with the floor 68% → 71% and 74% → 76% |
 | "Idaho and South Dakota use a ranker based only on chance of error" | Pilot papers, exp82 | They did in the October 4 pilots; today every jurisdiction uses the expected-dollar model |
 | exp72's floor cost "about 2–3%" | exp72 | About 2% (3.25× → 3.18×) |
 | PA SSI patterns "mostly underpayments" | PA anatomy | SSI left off the budget is 99% overpayments; SSI lower than budgeted is 88% underpayments |

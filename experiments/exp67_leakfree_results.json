@@ -1,0 +1,416 @@
+{
+ "PA": {
+  "0.0": {
+   "found_share_by_year": [
+    0.418,
+    0.499,
+    0.53,
+    0.566
+   ],
+   "found_share_mean": 0.503,
+   "model_lift_by_year": [
+    2.088,
+    2.494,
+    2.652,
+    2.832
+   ],
+   "model_lift_2024": 2.832
+  },
+  "0.1": {
+   "found_share_by_year": [
+    0.433,
+    0.502,
+    0.492,
+    0.547
+   ],
+   "found_share_mean": 0.494,
+   "model_lift_by_year": [
+    2.088,
+    2.561,
+    2.56,
+    2.862
+   ],
+   "model_lift_2024": 2.862
+  },
+  "0.2": {
+   "found_share_by_year": [
+    0.387,
+    0.495,
+    0.443,
+    0.495
+   ],
+   "found_share_mean": 0.455,
+   "model_lift_by_year": [
+    2.088,
+    2.606,
+    2.477,
+    2.751
+   ],
+   "model_lift_2024": 2.751
+  },
+  "all": {
+   "found_share_by_year": [
+    0.418,
+    0.531,
+    0.498,
+    0.511
+   ],
+   "found_share_mean": 0.489,
+   "model_lift_by_year": [
+    2.088,
+    2.653,
+    2.488,
+    2.555
+   ],
+   "model_lift_2024": 2.555
+  }
+ },
+ "NY": {
+  "0.0": {
+   "found_share_by_year": [
+    0.533,
+    0.453,
+    0.507,
+    0.62
+   ],
+   "found_share_mean": 0.528,
+   "model_lift_by_year": [
+    2.666,
+    2.265,
+    2.537,
+    3.099
+   ],
+   "model_lift_2024": 3.099
+  },
+  "0.1": {
+   "found_share_by_year": [
+    0.501,
+    0.44,
+    0.506,
+    0.62
+   ],
+   "found_share_mean": 0.517,
+   "model_lift_by_year": [
+    2.666,
+    2.301,
+    2.584,
+    3.181
+   ],
+   "model_lift_2024": 3.181
+  },
+  "0.2": {
+   "found_share_by_year": [
+    0.487,
+    0.422,
+    0.481,
+    0.599
+   ],
+   "found_share_mean": 0.497,
+   "model_lift_by_year": [
+    2.666,
+    2.264,
+    2.586,
+    3.128
+   ],
+   "model_lift_2024": 3.128
+  },
+  "all": {
+   "found_share_by_year": [
+    0.533,
+    0.471,
+    0.525,
+    0.625
+   ],
+   "found_share_mean": 0.539,
+   "model_lift_by_year": [
+    2.666,
+    2.356,
+    2.626,
+    3.127
+   ],
+   "model_lift_2024": 3.127
+  }
+ },
+ "TX": {
+  "0.0": {
+   "found_share_by_year": [
+    0.336,
+    0.367,
+    0.376,
+    0.368
+   ],
+   "found_share_mean": 0.362,
+   "model_lift_by_year": [
+    1.682,
+    1.836,
+    1.88,
+    1.839
+   ],
+   "model_lift_2024": 1.839
+  },
+  "0.1": {
+   "found_share_by_year": [
+    0.327,
+    0.376,
+    0.354,
+    0.324
+   ],
+   "found_share_mean": 0.345,
+   "model_lift_by_year": [
+    1.682,
+    1.937,
+    1.838,
+    1.693
+   ],
+   "model_lift_2024": 1.693
+  },
+  "0.2": {
+   "found_share_by_year": [
+    0.362,
+    0.371,
+    0.341,
+    0.309
+   ],
+   "found_share_mean": 0.346,
+   "model_lift_by_year": [
+    1.682,
+    1.95,
+    1.854,
+    1.655
+   ],
+   "model_lift_2024": 1.655
+  },
+  "all": {
+   "found_share_by_year": [
+    0.336,
+    0.388,
+    0.398,
+    0.352
+   ],
+   "found_share_mean": 0.369,
+   "model_lift_by_year": [
+    1.682,
+    1.938,
+    1.992,
+    1.761
+   ],
+   "model_lift_2024": 1.761
+  }
+ },
+ "SD": {
+  "0.0": {
+   "found_share_by_year": [
+    0.389,
+    0.461,
+    0.508,
+    0.495
+   ],
+   "found_share_mean": 0.463,
+   "model_lift_by_year": [
+    1.943,
+    2.304,
+    2.542,
+    2.474
+   ],
+   "model_lift_2024": 2.474
+  },
+  "0.1": {
+   "found_share_by_year": [
+    0.366,
+    0.404,
+    0.4,
+    0.395
+   ],
+   "found_share_mean": 0.391,
+   "model_lift_by_year": [
+    1.943,
+    2.039,
+    2.117,
+    2.123
+   ],
+   "model_lift_2024": 2.123
+  },
+  "0.2": {
+   "found_share_by_year": [
+    0.412,
+    0.468,
+    0.369,
+    0.361
+   ],
+   "found_share_mean": 0.403,
+   "model_lift_by_year": [
+    1.943,
+    2.383,
+    2.199,
+    2.124
+   ],
+   "model_lift_2024": 2.124
+  },
+  "all": {
+   "found_share_by_year": [
+    0.389,
+    0.421,
+    0.479,
+    0.417
+   ],
+   "found_share_mean": 0.426,
+   "model_lift_by_year": [
+    1.943,
+    2.103,
+    2.396,
+    2.085
+   ],
+   "model_lift_2024": 2.085
+  }
+ },
+ "UT": {
+  "0.0": {
+   "found_share_by_year": [
+    0.283,
+    0.336,
+    0.414,
+    0.404
+   ],
+   "found_share_mean": 0.359,
+   "model_lift_by_year": [
+    1.414,
+    1.68,
+    2.07,
+    2.018
+   ],
+   "model_lift_2024": 2.018
+  },
+  "0.1": {
+   "found_share_by_year": [
+    0.285,
+    0.343,
+    0.397,
+    0.374
+   ],
+   "found_share_mean": 0.35,
+   "model_lift_by_year": [
+    1.414,
+    1.699,
+    2.051,
+    1.918
+   ],
+   "model_lift_2024": 1.918
+  },
+  "0.2": {
+   "found_share_by_year": [
+    0.29,
+    0.322,
+    0.388,
+    0.362
+   ],
+   "found_share_mean": 0.34,
+   "model_lift_by_year": [
+    1.414,
+    1.652,
+    2.085,
+    1.89
+   ],
+   "model_lift_2024": 1.89
+  },
+  "all": {
+   "found_share_by_year": [
+    0.283,
+    0.322,
+    0.388,
+    0.46
+   ],
+   "found_share_mean": 0.363,
+   "model_lift_by_year": [
+    1.414,
+    1.611,
+    1.939,
+    2.299
+   ],
+   "model_lift_2024": 2.299
+  }
+ },
+ "ID": {
+  "0.0": {
+   "found_share_by_year": [
+    0.385,
+    0.36,
+    0.375,
+    0.425
+   ],
+   "found_share_mean": 0.386,
+   "model_lift_by_year": [
+    1.924,
+    1.8,
+    1.875,
+    2.126
+   ],
+   "model_lift_2024": 2.126
+  },
+  "0.1": {
+   "found_share_by_year": [
+    0.389,
+    0.357,
+    0.359,
+    0.408
+   ],
+   "found_share_mean": 0.378,
+   "model_lift_by_year": [
+    1.924,
+    1.761,
+    1.867,
+    2.071
+   ],
+   "model_lift_2024": 2.071
+  },
+  "0.2": {
+   "found_share_by_year": [
+    0.387,
+    0.356,
+    0.311,
+    0.332
+   ],
+   "found_share_mean": 0.346,
+   "model_lift_by_year": [
+    1.924,
+    1.807,
+    1.725,
+    1.747
+   ],
+   "model_lift_2024": 1.747
+  },
+  "all": {
+   "found_share_by_year": [
+    0.385,
+    0.34,
+    0.424,
+    0.384
+   ],
+   "found_share_mean": 0.383,
+   "model_lift_by_year": [
+    1.924,
+    1.698,
+    2.119,
+    1.919
+   ],
+   "model_lift_2024": 1.919
+  }
+ },
+ "_mean": {
+  "0.0": {
+   "found": 0.43350000000000005,
+   "lift24": 2.398
+  },
+  "0.1": {
+   "found": 0.41250000000000003,
+   "lift24": 2.3080000000000003
+  },
+  "0.2": {
+   "found": 0.3978333333333333,
+   "lift24": 2.2158333333333333
+  },
+  "all": {
+   "found": 0.42816666666666664,
+   "lift24": 2.291
+  }
+ }
+}

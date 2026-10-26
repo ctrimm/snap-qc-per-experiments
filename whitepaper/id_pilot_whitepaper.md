@@ -88,7 +88,7 @@ Idaho is where the flag cards have been tested most outside Pennsylvania and New
 - **Rules line:** tested at scale on fresh Idaho, Utah and South Dakota cards (exp97), with 100% agreement with the large model.
 - **Where to look:** that model beat generic advice in Idaho after about 100 labelled error cases (exp63).
 
-The odds and where-to-look results were measured before experiment 106, on models using the same reviewer-recorded fields, and have not been rechecked.
+Rechecked without the leak (exp108): the odds recalibration holds in Idaho (error 0.22 → 0.08), and the top three "check first" items cover 88% of flagged errors, against 82% for a fixed list of Idaho's three most common error locations. The exp63 result was measured on the earlier models.
 
 ## FY2028 cost share
 

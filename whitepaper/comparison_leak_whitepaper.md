@@ -160,13 +160,11 @@ The fairness concern belongs to dollar ranking specifically, and the floor fixes
 - **Documents:** every paper, state brief, the replication guides and the state-map dashboard now carry the corrected figures and a correction note.
 - **Code:** the leak-free inputs are the default (`SNAPQC_FEATURES=leakfree`); the old inputs remain only to reproduce the published results.
 
-**Not yet rechecked.** These used models with the same reviewer-recorded fields and may also be inflated:
-1. the flag cards' "check first" coverage (86–88%);
-2. the flag cards' odds calibration;
-3. the retraining simulation (a ranker trained only on its own flags loses about 15% in four years);
-4. the early household-type tests.
-
-They are marked in the papers, and they are the next experiment.
+**Rechecked the same day (experiment 108).** Four further results used models with the same inputs. Each was rerun both ways; the old inputs reproduced every published figure.
+1. **Flag cards' "check first" coverage holds** (83–89% leak-free against 86–88%). But a fixed list of each state's three most common error locations covers about 79–80%, so most of it is base rate.
+2. **The cards' odds calibration holds** (error 0.12–0.22 → 0.05–0.08).
+3. **The retraining simulation does not.** A ranker retrained only on its own flags lost about 15% in four years with the leak and nothing measurable without it (2.40× against 2.29× for retraining on every case). That finding is withdrawn.
+4. **The early household tests hold on today's models.** Older households are reviewed at 0.20–0.29 of their error rate, and 62–71% of those reviewed have an error.
 
 **A limit no public-data work can remove.** For error cases the reported facts are still the reviewer's corrected values, while a state's tool would see its own uncorrected values. Both projects share this. The only real test of either tool is a pilot on a state's own pre-review case records.
 

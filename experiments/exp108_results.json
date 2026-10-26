@@ -1,0 +1,284 @@
+{
+ "feature_set": "legacy",
+ "coverage": {
+  "PA": {
+   "n_flagged_errors_with_location": 127,
+   "top1": 0.614,
+   "top2": 0.78,
+   "top3": 0.882,
+   "base_top3_most_common_parts": 0.835
+  },
+  "NY": {
+   "n_flagged_errors_with_location": 127,
+   "top1": 0.575,
+   "top2": 0.74,
+   "top3": 0.858,
+   "base_top3_most_common_parts": 0.772
+  },
+  "ID": {
+   "n_flagged_errors_with_location": 82,
+   "top1": 0.451,
+   "top2": 0.768,
+   "top3": 0.866,
+   "base_top3_most_common_parts": 0.829
+  },
+  "UT": {
+   "n_flagged_errors_with_location": 46,
+   "top1": 0.391,
+   "top2": 0.609,
+   "top3": 0.761,
+   "base_top3_most_common_parts": 0.739
+  },
+  "SD": {
+   "n_flagged_errors_with_location": 27,
+   "top1": 0.519,
+   "top2": 0.593,
+   "top3": 0.852,
+   "base_top3_most_common_parts": 0.778
+  }
+ },
+ "households": {
+  "PA": {
+   "variant": "C_ctx",
+   "n_holdout": 817,
+   "random_precision": 0.427,
+   "dollar_only": {
+    "lift": 4.078,
+    "precision": 0.853,
+    "types": {
+     "elderly": {
+      "n": 307,
+      "error_rate": 0.476,
+      "review_rate": 0.143,
+      "ratio_exp47": 0.301,
+      "ratio_exp72": 0.645,
+      "precision_reviewed": 0.955
+     },
+     "disabled": {
+      "n": 168,
+      "error_rate": 0.542,
+      "review_rate": 0.232,
+      "ratio_exp47": 0.429,
+      "ratio_exp72": 0.918,
+      "precision_reviewed": 0.897
+     },
+     "single_parent": {
+      "n": 122,
+      "error_rate": 0.393,
+      "review_rate": 0.27,
+      "ratio_exp47": 0.688,
+      "ratio_exp72": 1.472,
+      "precision_reviewed": 0.788
+     },
+     "married_with_kids": {
+      "n": 30,
+      "error_rate": 0.5,
+      "review_rate": 0.433,
+      "ratio_exp47": 0.867,
+      "ratio_exp72": 1.856,
+      "precision_reviewed": 0.615
+     },
+     "multiadult_with_kids": {
+      "n": 33,
+      "error_rate": 0.697,
+      "review_rate": 0.515,
+      "ratio_exp47": 0.739,
+      "ratio_exp72": 1.583,
+      "precision_reviewed": 0.882
+     },
+     "childless_adult": {
+      "n": 148,
+      "error_rate": 0.149,
+      "review_rate": 0.095,
+      "ratio_exp47": 0.636,
+      "ratio_exp72": 1.363,
+      "precision_reviewed": 0.786
+     },
+     "other": {
+      "n": 9,
+      "error_rate": 0.444,
+      "review_rate": 0.333,
+      "ratio_exp47": 0.75,
+      "ratio_exp72": 1.606,
+      "precision_reviewed": 0.667
+     }
+    }
+   },
+   "floor": {
+    "lift": 3.964,
+    "precision": 0.859,
+    "types": {
+     "elderly": {
+      "n": 307,
+      "error_rate": 0.476,
+      "review_rate": 0.199,
+      "ratio_exp47": 0.418,
+      "ratio_exp72": 0.895,
+      "precision_reviewed": 0.902
+     },
+     "disabled": {
+      "n": 168,
+      "error_rate": 0.542,
+      "review_rate": 0.286,
+      "ratio_exp47": 0.527,
+      "ratio_exp72": 1.129,
+      "precision_reviewed": 0.854
+     },
+     "single_parent": {
+      "n": 122,
+      "error_rate": 0.393,
+      "review_rate": 0.197,
+      "ratio_exp47": 0.5,
+      "ratio_exp72": 1.071,
+      "precision_reviewed": 0.75
+     },
+     "married_with_kids": {
+      "n": 30,
+      "error_rate": 0.5,
+      "review_rate": 0.267,
+      "ratio_exp47": 0.533,
+      "ratio_exp72": 1.142,
+      "precision_reviewed": 0.75
+     },
+     "multiadult_with_kids": {
+      "n": 33,
+      "error_rate": 0.697,
+      "review_rate": 0.273,
+      "ratio_exp47": 0.391,
+      "ratio_exp72": 0.838,
+      "precision_reviewed": 1.0
+     },
+     "childless_adult": {
+      "n": 148,
+      "error_rate": 0.149,
+      "review_rate": 0.081,
+      "ratio_exp47": 0.545,
+      "ratio_exp72": 1.168,
+      "precision_reviewed": 0.833
+     },
+     "other": {
+      "n": 9,
+      "error_rate": 0.444,
+      "review_rate": 0.111,
+      "ratio_exp47": 0.25,
+      "ratio_exp72": 0.535,
+      "precision_reviewed": 1.0
+     }
+    }
+   }
+  },
+  "NY": {
+   "variant": "B_ctx",
+   "n_holdout": 815,
+   "random_precision": 0.367,
+   "dollar_only": {
+    "lift": 4.176,
+    "precision": 0.84,
+    "types": {
+     "elderly": {
+      "n": 341,
+      "error_rate": 0.34,
+      "review_rate": 0.114,
+      "ratio_exp47": 0.336,
+      "ratio_exp72": 0.617,
+      "precision_reviewed": 0.897
+     },
+     "disabled": {
+      "n": 155,
+      "error_rate": 0.419,
+      "review_rate": 0.187,
+      "ratio_exp47": 0.446,
+      "ratio_exp72": 0.818,
+      "precision_reviewed": 0.793
+     },
+     "single_parent": {
+      "n": 95,
+      "error_rate": 0.526,
+      "review_rate": 0.368,
+      "ratio_exp47": 0.7,
+      "ratio_exp72": 1.284,
+      "precision_reviewed": 0.971
+     },
+     "married_with_kids": {
+      "n": 29,
+      "error_rate": 0.345,
+      "review_rate": 0.483,
+      "ratio_exp47": 1.4,
+      "ratio_exp72": 2.568,
+      "precision_reviewed": 0.5
+     },
+     "childless_adult": {
+      "n": 162,
+      "error_rate": 0.235,
+      "review_rate": 0.191,
+      "ratio_exp47": 0.816,
+      "ratio_exp72": 1.496,
+      "precision_reviewed": 0.742
+     },
+     "other": {
+      "n": 33,
+      "error_rate": 0.606,
+      "review_rate": 0.455,
+      "ratio_exp47": 0.75,
+      "ratio_exp72": 1.376,
+      "precision_reviewed": 1.0
+     }
+    }
+   },
+   "floor": {
+    "lift": 3.935,
+    "precision": 0.847,
+    "types": {
+     "elderly": {
+      "n": 341,
+      "error_rate": 0.34,
+      "review_rate": 0.223,
+      "ratio_exp47": 0.655,
+      "ratio_exp72": 1.202,
+      "precision_reviewed": 0.816
+     },
+     "disabled": {
+      "n": 155,
+      "error_rate": 0.419,
+      "review_rate": 0.2,
+      "ratio_exp47": 0.477,
+      "ratio_exp72": 0.875,
+      "precision_reviewed": 0.774
+     },
+     "single_parent": {
+      "n": 95,
+      "error_rate": 0.526,
+      "review_rate": 0.242,
+      "ratio_exp47": 0.46,
+      "ratio_exp72": 0.844,
+      "precision_reviewed": 1.0
+     },
+     "married_with_kids": {
+      "n": 29,
+      "error_rate": 0.345,
+      "review_rate": 0.276,
+      "ratio_exp47": 0.8,
+      "ratio_exp72": 1.467,
+      "precision_reviewed": 0.75
+     },
+     "childless_adult": {
+      "n": 162,
+      "error_rate": 0.235,
+      "review_rate": 0.099,
+      "ratio_exp47": 0.421,
+      "ratio_exp72": 0.772,
+      "precision_reviewed": 0.875
+     },
+     "other": {
+      "n": 33,
+      "error_rate": 0.606,
+      "review_rate": 0.273,
+      "ratio_exp47": 0.45,
+      "ratio_exp72": 0.825,
+      "precision_reviewed": 1.0
+     }
+    }
+   }
+  }
+ }
+}

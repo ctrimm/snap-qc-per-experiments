@@ -201,7 +201,7 @@
 <h3>Underpayments</h3>
 <p>A second ranker trained on underpayments finds 2.5 times the underpayment dollars of random review, against 1.9 times for the main ranker (both trained on Pennsylvania's own cases; exp79, leak-free).</p>
 <h3>Flag cards for reviewers</h3>
-<p>Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In Pennsylvania the card's top three "check first" items included the real error for 88% of flagged errors (exp65). That figure was measured before experiment 106, on a model using the same reviewer-recorded fields, and has not been rechecked.</p>
+<p>Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In Pennsylvania the card's top three "check first" items included the real error for 83% of flagged errors on the leak-free model (exp108; 88% before). A fixed list of Pennsylvania's three most common error locations would cover 80%, so the model's value is mostly in which item it lists first.</p>
 <h2>FY2028 cost share</h2>
 <p>H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10% at 8–10%, and 15% at 10% or more. We modelled reviews as removing a share of the caseload's error dollars each month (cases reviewed × the tool's lift × the share fixed), with errors otherwise lasting until recertification. All assumptions were fixed before results existed (exp69, exp93).</p>
 <table>

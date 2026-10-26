@@ -44,7 +44,7 @@ CORRECTED = ("> **Corrected October 26, 2026.** The October 23 version of this b
              "file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure "
              "here comes from the leak-free rebuild (experiment 107). Figures computed directly from the QC data (error rates, "
              "error patterns, caseload shares) were not affected.")
-STATE_CARDS = {"PA": "88%", "NY": "86%"}
+STATE_CARDS = {"PA": "83%", "NY": "89%"}  # exp108 leak-free
 
 
 def num(x):
@@ -120,7 +120,7 @@ NARRATIVE = {
 - **Wages:** wage errors are less frequent but larger, and carry the most dollars (37%).
 - **Ranking:** that's why ranking by the chance of an error alone does poorly; the frequent errors are small. The tool ranks by expected dollars instead.
 - **Arithmetic:** benefit arithmetic errors are almost nonexistent (0.1% of error cases), so errors come from the facts entered.""",
-        "cards": "Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In Pennsylvania the card's top three \"check first\" items included the real error for 88% of flagged errors (exp65). That figure was measured before experiment 106, on a model using the same reviewer-recorded fields, and has not been rechecked.",
+        "cards": "Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In Pennsylvania the card's top three \"check first\" items included the real error for 83% of flagged errors on the leak-free model (exp108; 88% before). A fixed list of Pennsylvania's three most common error locations would cover 80%, so the model's value is mostly in which item it lists first.",
         "pilot_extra": "",
         "limit_extra": "",
     },
@@ -129,7 +129,7 @@ NARRATIVE = {
         "pattern": """**New York's distinctive problem is timing.**
 - **Timing:** nearly two-thirds of its errors (63%) carry the reporting or timing code, half again the national share (42%). The facts changed, usually income or household members, and the case wasn't updated in time.
 - **Where the dollars are:** wages carry the most error dollars (39%). Social Security, unemployment benefits and household composition each carry more than their national share.""",
-        "cards": "Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In New York the card's top three \"check first\" items included the real error for 86% of flagged errors (exp65). That figure was measured before experiment 106, on a model using the same reviewer-recorded fields, and has not been rechecked.",
+        "cards": "Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In New York the card's top three \"check first\" items included the real error for 89% of flagged errors on the leak-free model (exp108; 86% before). A fixed list of New York's three most common error locations would cover 79%, so the model's value is mostly in which item it lists first.",
         "pilot_extra": "Record when the underlying change happened: timing errors are New York's main problem.",
         "limit_extra": "",
     },
@@ -183,7 +183,7 @@ NARRATIVE = {
 - **Timing:** 64% of errors carry the reporting or timing code (national 42%).
 - **Social Security:** Social Security (RSDI) income carries 12% of error dollars, about twice the national share.
 - **Small amounts:** the median error is $17, against $28 nationally.""",
-        "cards": "Idaho is where the flag cards have been tested most outside Pennsylvania and New York:\n- **Odds:** the cards' \"N in 10\" odds were recalibrated on Idaho cases (exp74).\n- **Rules line:** tested at scale on fresh Idaho, Utah and South Dakota cards (exp97), with 100% agreement with the large model.\n- **Where to look:** that model beat generic advice in Idaho after about 100 labelled error cases (exp63).\n\nThe odds and where-to-look results were measured before experiment 106, on models using the same reviewer-recorded fields, and have not been rechecked.",
+        "cards": "Idaho is where the flag cards have been tested most outside Pennsylvania and New York:\n- **Odds:** the cards' \"N in 10\" odds were recalibrated on Idaho cases (exp74).\n- **Rules line:** tested at scale on fresh Idaho, Utah and South Dakota cards (exp97), with 100% agreement with the large model.\n- **Where to look:** that model beat generic advice in Idaho after about 100 labelled error cases (exp63).\n\nRechecked without the leak (exp108): the odds recalibration holds in Idaho (error 0.22 → 0.08), and the top three \"check first\" items cover 88% of flagged errors, against 82% for a fixed list of Idaho's three most common error locations. The exp63 result was measured on the earlier models.",
         "pilot_extra": "",
         "limit_extra": "- **Small errors.** Idaho's errors are small (median $17), so dollars found per review hour are low even when the lift is good. The case for a pilot rests on accuracy and staying below 6% more than on dollars.",
     },

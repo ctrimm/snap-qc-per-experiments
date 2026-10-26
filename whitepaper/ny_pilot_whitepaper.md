@@ -81,7 +81,7 @@ A second ranker trained on underpayments finds 2.0 times the underpayment dollar
 
 ### Flag cards for reviewers
 
-Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In New York the card's top three "check first" items included the real error for 86% of flagged errors (exp65). That figure was measured before experiment 106, on a model using the same reviewer-recorded fields, and has not been rechecked.
+Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In New York the card's top three "check first" items included the real error for 89% of flagged errors on the leak-free model (exp108; 86% before). A fixed list of New York's three most common error locations would cover 79%, so the model's value is mostly in which item it lists first.
 
 ## FY2028 cost share
 

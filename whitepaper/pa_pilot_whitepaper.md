@@ -83,7 +83,7 @@ A second ranker trained on underpayments finds 2.5 times the underpayment dollar
 
 ### Flag cards for reviewers
 
-Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In Pennsylvania the card's top three "check first" items included the real error for 88% of flagged errors (exp65). That figure was measured before experiment 106, on a model using the same reviewer-recorded fields, and has not been rechecked.
+Each flagged case can come with a short card saying why it was flagged and which parts of the case to check first. In Pennsylvania the card's top three "check first" items included the real error for 83% of flagged errors on the leak-free model (exp108; 88% before). A fixed list of Pennsylvania's three most common error locations would cover 80%, so the model's value is mostly in which item it lists first.
 
 ## FY2028 cost share
 

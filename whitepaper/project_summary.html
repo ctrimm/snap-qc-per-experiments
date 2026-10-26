@@ -62,7 +62,7 @@
 </ul>
 </li>
 <li><strong>Plain-language flag cards can tell a reviewer where to look, with honest odds and correct citations.</strong><ul>
-<li><strong>Where to look:</strong> the cards' top three "check first" items include the real error for 86–88% of flagged errors in Pennsylvania and New York.</li>
+<li><strong>Where to look:</strong> the cards' top three "check first" items include the real error for 83–89% of flagged errors in Pennsylvania and New York (exp108). A fixed list of each state's three most common error locations would get about 79%, so the model's value is mostly in which item it lists first.</li>
 <li><strong>Honest odds:</strong> their odds were recalibrated so that "7 in 10" means about 7 in 10.</li>
 <li><strong>Citations:</strong> a small model writes the card text, and its rule citations matched a much larger model's 100% of the time on 517 fresh cards.</li>
 </ul>
@@ -119,7 +119,7 @@
 <tr>
 <td>Can we tell reviewers <em>why</em> a case was flagged?</td>
 <td>Flag cards: why it was flagged, what to check first, the rule that applies</td>
-<td>The top three checks catch 86–88% of errors; the odds are calibrated; citations are correct</td>
+<td>The top three checks catch 83–89% of errors (a fixed list of the commonest gets about 79%); the odds are calibrated; citations are correct</td>
 </tr>
 <tr>
 <td>Can an AI model answer policy questions correctly?</td>
@@ -215,7 +215,7 @@
 <li><strong>No issued benefit:</strong> in the federal QC file the "reported" income, deduction and household-size fields are what the QC reviewer recorded. Pairing them with the issued benefit let the earlier models see the error (exp106), so the issued benefit is no longer an input (exp107). The reported facts remain, and for error cases they are the corrected ones; a pilot on a state's own pre-review records is the real test.</li>
 </ul>
 <p><strong>Underpayments:</strong> a second ranker trained on underpayments finds a median 1.8 times the underpayment dollars of random review, against 1.5 times for the main ranker, and is better in 36 of 53 jurisdictions. A state can give part of its review budget to finding households that are being shorted; the gain is modest.</p>
-<p><strong>Keeping it working:</strong> a simulation over FY2021–24 showed that a ranker retrained only on the cases it flagged loses about 15% of its effectiveness in four years (measured on the earlier models). Adding each year's federal QC sample, which is random and fully reviewed, closes most of that gap.</p>
+<p><strong>Keeping it working:</strong> an early simulation over FY2021–24 suggested that a ranker retrained only on the cases it flagged would lose about 15% of its effectiveness in four years. Rechecked without the leak (exp108), it doesn't: retraining only on flagged reviews did as well as retraining on every case (2.40× against 2.29× in 2024, mean of six states), so that finding is withdrawn. Retraining each year on the federal QC sample, which is random, fully reviewed and free, is still the simplest design.</p>
 <h3>2. FY2028 cost share</h3>
 <p>H.R. 1 (2025) makes states with payment error rates of 6% or more pay 5–15% of their SNAP benefit costs from FY2028.</p>
 <table>
@@ -319,11 +319,11 @@
 <tbody>
 <tr>
 <td>Real error among the top three "check first" items</td>
-<td>88% (Pennsylvania), 86% (New York); measured before exp106 on a model using the same reviewer-recorded fields, not yet rechecked</td>
+<td>83% (Pennsylvania), 89% (New York), leak-free (exp108); a fixed list of the three most common locations: 80% and 79%</td>
 </tr>
 <tr>
 <td>"N in 10" odds, before → after calibration</td>
-<td>expected calibration error 0.12–0.22 → 0.05–0.07</td>
+<td>expected calibration error 0.12–0.22 → 0.05–0.08 (leak-free, exp108)</td>
 </tr>
 <tr>
 <td>Small model (E2B) writing the card, automatic checks</td>

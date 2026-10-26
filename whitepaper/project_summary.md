@@ -24,7 +24,7 @@ The project produced six findings, in order of how ready they are to use:
    - **Result:** Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Its overall score was 33% (28% above chance), against 0.5% untrained and 24% for a conventional classifier.
    - **Limits:** it spots errors, their direction and where they are well above chance, but not the type of mistake or whose mistake it was.
 5. **Plain-language flag cards can tell a reviewer where to look, with honest odds and correct citations.**
-   - **Where to look:** the cards' top three "check first" items include the real error for 86–88% of flagged errors in Pennsylvania and New York.
+   - **Where to look:** the cards' top three "check first" items include the real error for 83–89% of flagged errors in Pennsylvania and New York (exp108). A fixed list of each state's three most common error locations would get about 79%, so the model's value is mostly in which item it lists first.
    - **Honest odds:** their odds were recalibrated so that "7 in 10" means about 7 in 10.
    - **Citations:** a small model writes the card text, and its rule citations matched a much larger model's 100% of the time on 517 fresh cards.
 6. **Looking up policy helps a mid-sized open model answer policy questions, up to a point.**
@@ -46,7 +46,7 @@ The project produced six findings, in order of how ready they are to use:
 | Which cases should reviewers look at first? | A ranking model per state that estimates each case's likely error dollars | The top fifth of the queue holds about 2.7 times the error dollars of a random fifth (median; 2.0 times or more in 52 of 53 states) |
 | Does ranking by dollars shortchange anyone? | A fairness audit of review shares by household type, and a floor | Elderly households were under-reviewed everywhere; a floor fixes it for a median 10% of the gain per state |
 | What is it worth under the new cost-share rules? | A scenario model of error dollars in each state's caseload | About $3.4 billion a year avoided nationally in the central scenario ($0.2–6.6 billion range) |
-| Can we tell reviewers *why* a case was flagged? | Flag cards: why it was flagged, what to check first, the rule that applies | The top three checks catch 86–88% of errors; the odds are calibrated; citations are correct |
+| Can we tell reviewers *why* a case was flagged? | Flag cards: why it was flagged, what to check first, the rule that applies | The top three checks catch 83–89% of errors (a fixed list of the commonest gets about 79%); the odds are calibrated; citations are correct |
 | Can an AI model answer policy questions correctly? | A searchable, dated library of federal and state SNAP policy, and tools to search and open it | A mid-sized model goes from 84% to about 90% on a public CalFresh quiz; a small one doesn't gain |
 
 ## How the pieces fit
@@ -84,7 +84,7 @@ The ranker carries steps 1 and 2, where the dollar gains come from. The language
 
 **Underpayments:** a second ranker trained on underpayments finds a median 1.8 times the underpayment dollars of random review, against 1.5 times for the main ranker, and is better in 36 of 53 jurisdictions. A state can give part of its review budget to finding households that are being shorted; the gain is modest.
 
-**Keeping it working:** a simulation over FY2021–24 showed that a ranker retrained only on the cases it flagged loses about 15% of its effectiveness in four years (measured on the earlier models). Adding each year's federal QC sample, which is random and fully reviewed, closes most of that gap.
+**Keeping it working:** an early simulation over FY2021–24 suggested that a ranker retrained only on the cases it flagged would lose about 15% of its effectiveness in four years. Rechecked without the leak (exp108), it doesn't: retraining only on flagged reviews did as well as retraining on every case (2.40× against 2.29× in 2024, mean of six states), so that finding is withdrawn. Retraining each year on the federal QC sample, which is random, fully reviewed and free, is still the simplest design.
 
 ### 2. FY2028 cost share
 
@@ -138,8 +138,8 @@ A flag card has three parts:
 
 | Measure | Result |
 |---|---|
-| Real error among the top three "check first" items | 88% (Pennsylvania), 86% (New York); measured before exp106 on a model using the same reviewer-recorded fields, not yet rechecked |
-| "N in 10" odds, before → after calibration | expected calibration error 0.12–0.22 → 0.05–0.07 |
+| Real error among the top three "check first" items | 83% (Pennsylvania), 89% (New York), leak-free (exp108); a fixed list of the three most common locations: 80% and 79% |
+| "N in 10" odds, before → after calibration | expected calibration error 0.12–0.22 → 0.05–0.08 (leak-free, exp108) |
 | Small model (E2B) writing the card, automatic checks | 97–99% pass |
 | Rules line on 517 fresh cards vs the 31B model | 100% precision and recall; every citation resolves |
 | Notes grounded in rule excerpts (E4B) | cite the governing rule for 97% of checks; no invented citations |

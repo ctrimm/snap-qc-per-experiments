@@ -183,15 +183,15 @@ The main ranker mostly finds overpayments. A second ranker trained on underpayme
 
 ### Refitting on your own data
 
-Your own review findings, from the pilot and from routine second-party reviews, can improve the model. Two rules, from a simulation over four years in six states (exp67):
-- **Never retrain only on the cases the model flagged.** It stops learning about errors it doesn't flag, and lost about 15% of its edge in four years in that simulation. Always include the yearly federal QC sample (random and fully reviewed) and the pilot's random slice.
+Your own review findings, from the pilot and from routine second-party reviews, can improve the model. Two rules:
+- **Retrain on the yearly federal QC sample as well as your own findings.** It is random, fully reviewed and free. An early simulation (exp67) suggested that retraining only on flagged cases would lose about 15% of the tool's edge in four years; rechecked without the leak (exp108) it found no measurable loss, so treat this as good practice, not a measured safeguard. Keep the pilot's random slice to check the forecast.
 - **Refresh once a year,** when the new QC public-use file is released.
 
 **The code change:** the training code reads cases in the QC public-use layout (`experiments/exp58_agency_rankers.py`, `load_state`; the year list `FY_FILES`). The input fields above plus `STATUS` (1 correct, 2 overpaid, 3 underpaid) and `AMTERR` (error dollars) are all it needs. Export your reviewed cases in that layout as an extra year's file, add it to `FY_FILES`, and rerun the fit for your state. This is a small change. Keep the federal years in, and hold out a recent slice of your own cases to test on before replacing the packaged model.
 
 ### Flag cards (optional)
 
-A flag card tells the reviewer why a case was flagged and which parts to check first. Its top three items included the real error for 86–88% of flagged errors in Pennsylvania and New York, measured before experiment 106 on a model using the same reviewer-recorded fields; that figure has not been rechecked. The card logic is in `experiments/exp62_*`, `exp65_*` and `exp74_*`. The "check first" model needs about 100–200 labelled error cases from your state to beat generic advice (exp63), which a pilot produces in a few months.
+A flag card tells the reviewer why a case was flagged and which parts to check first. Its top three items included the real error for 83% (Pennsylvania) and 89% (New York) of flagged errors on the leak-free models (exp108). A fixed list of each state's three most common error locations would cover about 79–80%, so most of that coverage is base rate; the model's value is mostly in which item it lists first. The card logic is in `experiments/exp62_*`, `exp65_*` and `exp74_*`. The "check first" model needs about 100–200 labelled error cases from your state to beat generic advice (exp63, measured on the earlier models), which a pilot produces in a few months.
 
 ### Your state's policy library (optional)
 
