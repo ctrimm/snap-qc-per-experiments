@@ -35,3 +35,25 @@ not moving it:
 - Real QC microdata never enters training — held-out validation only.
 - The generator is a harness, not the Minimodel: parameters are approximations,
   documented as such in `src/synth/params.py`.
+
+## Where this stands (October 27, 2026)
+
+*The goal above is the September 28 statement, kept as written. This section records how the project has moved against it.*
+
+**The copilot thesis held, as research:**
+- **The calibration and transfer gates both held:** models trained only on synthetic cases predict real QC labels above baseline.
+- **The language model:** a 4-billion-parameter model fine-tuned on synthetic cases passed its pre-registered test on fresh real cases.
+- **Policy questions:** a larger open model with policy lookup reached about 90% on the CalFresh quiz.
+
+**The working product is a different one.**
+- **What it is:** case-ranking models trained on the real QC records, one per jurisdiction, packaged for states to pilot. They're trained on real QC data, a departure from the "real microdata never enters training" non-goal above. That non-goal applied to the language model; the language model still follows it.
+- **The case for it:** this tool is the one with a near-term case, through the H.R. 1 cost-share rules from FY2028.
+
+**What changed the numbers:**
+- **The leak (October 26):** an independent comparison (giannella/snap_qc) exposed a leak in the rankers' inputs.
+- **The rebuild:** the rankers were rebuilt without it, then retrained on the official error definition.
+- **What's still open:** the inputs remain the reviewer's corrected values for error cases. Rebuilding them as pre-review values is under test (exp113).
+
+**What still governs the work:**
+- **Pre-registration:** every result is pre-registered and gated.
+- **Evaluation-only data:** the CalFresh quiz is never trained on, and real microdata never enters the repo.
