@@ -1,0 +1,52 @@
+{
+ "public": {
+  "official_rate": 0.12102648637811587,
+  "rate_earner": 0.22604863717969642,
+  "rate_noearner": 0.08159450929926157,
+  "dollars": {
+   "median": 141.0,
+   "p75": 237.0,
+   "p90": 348.0
+  },
+  "overpaid_share": 0.7187557518866188,
+  "agency_equals_verified": {
+   "gross": 0.8860666298545923,
+   "net": 0.5556782624700902,
+   "shelter": 0.804527885146328,
+   "all3": 0.5216270936867292
+  }
+ },
+ "rebuilt": {
+  "n": 4764,
+  "agency_equals_verified": {
+   "gross": 0.4554995801847187,
+   "net": 0.0982367758186398,
+   "shelter": 0.30184718723761544,
+   "all3": 0.06612090680100756
+  }
+ },
+ "synthetic": {
+  "n": 20000,
+  "any_error_rate": 0.39895,
+  "official_rate": 0.11805,
+  "rate_earner": 0.20247851289226465,
+  "rate_noearner": 0.08988464359538574,
+  "dollars": {
+   "median": 128.0,
+   "p75": 202.0,
+   "p90": 268.0
+  },
+  "overpaid_share": 0.7522236340533672,
+  "agency_equals_verified": {
+   "gross": 0.4726810673443456,
+   "net": 0.17534942820838628,
+   "shelter": 0.3900889453621347,
+   "all3": 0.1012282930961457
+  }
+ },
+ "exp52_view_calibration_targets": {
+  "correct": 0.7922676735162598,
+  "overissuance": 0.5351205418462559,
+  "underissuance": 0.5541341428158427
+ }
+}
