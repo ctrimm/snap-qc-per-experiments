@@ -2,17 +2,17 @@
 
 **October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate: errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 New York's FY2025 payment error rate was 13.18%. Under the H.R. 1 cost-sharing rules that is the top bracket: from FY2028 the state would pay 15% of its SNAP benefit costs, about **$1.08 billion a year**. This brief shows what a case-ranking tool, built and tested on New York's federal QC records, could do about that.
 
-- **It finds 3.2 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$176 per review hour against $55**. The top 10% finds 4.5 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.2× edge. Expected error dollars for the top fifth of the queue were 1% above actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.76 of their share of error cases. A floor brings that to 1.31, at a cost of about 10% of the lift (3.2× → 2.9×).
+- **It finds 3.5 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$163 per review hour against $47**. The top 10% finds 5.2 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.6× edge. Expected error dollars for the top fifth of the queue were 7% below actual.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.72 of their share of error cases. A floor brings that to 1.28, at a cost of about 7% of the lift (3.5× → 3.3×).
 - **Underpayments:** 28% of New York's error dollars are households paid too little (national 28%).
-- **Cost share:** in the central scenario (2% of cases reviewed a month, about 32,531 reviews and 116 FTEs), the rate falls to 9.46%, avoiding about **$360 million a year**. Random reviews of the same volume leave it at 12.03%.
+- **Cost share:** in the central scenario (2% of cases reviewed a month, about 32,531 reviews and 116 FTEs), the rate falls to 8.99%, avoiding about **$360 million a year**. Random reviews of the same volume leave it at 12.03%.
 
 **Recommendation:** a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.
 
@@ -47,7 +47,7 @@ It does not use the benefit the agency issued: in the federal QC data that would
 
 It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-New York's model learns from every state's QC cases plus New York's maximum allotments. Among the 53 jurisdictions, New York ranks 4 on the top-20% lift, 6 on the top-10% lift and 2 on the later-years test (1 = best).
+New York's model learns from every state's QC cases plus New York's maximum allotments. Among the 53 jurisdictions, New York ranks 5 on the top-20% lift, 6 on the top-10% lift and 2 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -55,12 +55,12 @@ New York's model learns from every state's QC cases plus New York's maximum allo
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **4.5×** | $246 ($54) | 6% over | 6 |
-| 20% of the queue | **3.2×** | $176 ($55) | 1% over | 4 |
-| 20%, trained 2020–22, tested 2023–24 | 3.2× | | | 2 |
-| 20%, with the fairness floor | 2.9× | | | |
+| 10% of the queue | **5.2×** | $239 ($46) | 4% under | 6 |
+| 20% of the queue | **3.5×** | $163 ($47) | 7% under | 5 |
+| 20%, trained 2020–22, tested 2023–24 | 3.6× | | | 2 |
+| 20%, with the fairness floor | 3.3× | | | |
 
-Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.61× (top 20%).
+Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.96× (top 20%).
 
 ### Fairness
 
@@ -68,16 +68,16 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Elderly | 0.76 | 1.31 |
-| Disabled | 0.93 | 0.96 |
-| Single parent | 1.19 | 0.84 |
-| Childless adult | 0.52 | 1.11 |
+| Elderly | 0.72 | 1.28 |
+| Disabled | 1.00 | 1.04 |
+| Single parent | 1.14 | 0.84 |
+| Childless adult | 0.82 | 1.04 |
 
-The floor costs about 10% of the lift. We recommend it on by default.
+The floor costs about 7% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 1.4 times the underpayment dollars of random review, against 0.6 times for the main ranker (both trained on New York's own cases; exp79, leak-free, official definition).
+A second ranker trained on underpayments finds 1.1 times the underpayment dollars of random review, against 0.7 times for the main ranker (both trained on New York's own cases; exp79, leak-free, official definition).
 
 ### Flag cards for reviewers
 
@@ -90,11 +90,11 @@ H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10
 | Scenario | Reviewed a month | Rate after | State share | Avoided a year | Random reviews, same volume |
 |---|---|---|---|---|---|
 | Today (FY2025 rate) | — | 13.18% | 15% | — | — |
-| Low | 1% (16,266 reviews, 58 FTEs) | 12.33% | 15% | $0M | 12.87%, $0M |
-| **Central** | 2% (32,531 reviews, 116 FTEs) | 9.46% | 10% | $360M | 12.03%, $0M |
-| High | 3% (48,797 reviews, 174 FTEs) | 6.99% | 5% | $721M | 10.84%, $0M |
+| Low | 1% (16,266 reviews, 58 FTEs) | 12.22% | 15% | $0M | 12.87%, $0M |
+| **Central** | 2% (32,531 reviews, 116 FTEs) | 8.99% | 10% | $360M | 12.03%, $0M |
+| High | 3% (48,797 reviews, 174 FTEs) | 6.43% | 5% | $721M | 10.84%, $0M |
 
-**The thresholds.** Under the central scenario's other assumptions, New York crosses 10% at about **1.6%** of cases reviewed a month (10% share); 8% at about **3.3%** of cases reviewed a month (5% share); 6% at about **6.1%** of cases reviewed a month (no share).
+**The thresholds.** Under the central scenario's other assumptions, New York crosses 10% at about **1.4%** of cases reviewed a month (10% share); 8% at about **2.8%** of cases reviewed a month (5% share); 6% at about **5.1%** of cases reviewed a month (no share).
 
 These figures show the size of the opportunity, not a forecast. The model leaves out:
 - timing relative to the federal sample month;

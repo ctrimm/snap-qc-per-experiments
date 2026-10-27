@@ -2,15 +2,15 @@
 
 **October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate: errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 Wyoming's FY2025 payment error rate was 3.96%, the third lowest of 53 jurisdictions (after South Dakota and Idaho) and below the 6% line where H.R. 1 cost sharing begins. Wyoming owes nothing under FY2028 rules at that rate. So for Wyoming, a case-ranking tool is about staying below 6%, finding households that are being underpaid, and using a small review staff well.
 
-- **It finds 1.6 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$44 per review hour against $27**. The top 10% finds 2.8 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.0× edge. Expected error dollars for the top fifth of the queue were 42% above actual.
-- **It's fair by design.** Wyoming's test cases have too few elderly households with an error over the tolerance to measure their share; for disabled households, ranking purely by dollars gives 0.42 of their share of error cases and the floor 0.48, at a cost of about 16% of the lift (1.6× → 1.4×).
+- **It finds 2.7 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$47 per review hour against $17**. The top 10% finds 3.6 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.2× edge. Expected error dollars for the top fifth of the queue were 19% below actual.
+- **It's fair by design.** Wyoming's test cases have too few elderly households with an error over the tolerance to measure their share; for disabled households, ranking purely by dollars gives 0.68 of their share of error cases and the floor 0.88, at a cost of about 18% of the lift (2.7× → 2.2×).
 - **Underpayments:** 54% of Wyoming's error dollars are households paid too little (national 28%).
 - **Cheap insurance:** at its current rate Wyoming owes nothing. In the model, about 268 ranked reviews a month (1.0 FTEs) would bring a rate of 6.5% back under 6% (see *FY2028 cost share*).
 
@@ -48,7 +48,7 @@ It does not use the benefit the agency issued: in the federal QC data that would
 
 It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-Wyoming's model learns from every state's QC cases plus Wyoming's maximum allotments. Among the 53 jurisdictions, Wyoming ranks 52 on the top-20% lift, 41 on the top-10% lift and 49 on the later-years test (1 = best).
+Wyoming's model learns from every state's QC cases plus Wyoming's maximum allotments. Among the 53 jurisdictions, Wyoming ranks 38 on the top-20% lift, 40 on the top-10% lift and 52 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -56,12 +56,12 @@ Wyoming's model learns from every state's QC cases plus Wyoming's maximum allotm
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **2.8×** | $75 ($26) | 17% under | 41 |
-| 20% of the queue | **1.6×** | $44 ($27) | 42% over | 52 |
-| 20%, trained 2020–22, tested 2023–24 | 2.0× | | | 49 |
-| 20%, with the fairness floor | 1.4× | | | |
+| 10% of the queue | **3.6×** | $61 ($17) | 37% under | 40 |
+| 20% of the queue | **2.7×** | $47 ($17) | 19% under | 38 |
+| 20%, trained 2020–22, tested 2023–24 | 2.2× | | | 52 |
+| 20%, with the fairness floor | 2.2× | | | |
 
-Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.61× (top 20%).
+Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.96× (top 20%).
 
 ### Fairness
 
@@ -69,15 +69,14 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Disabled | 0.42 | 0.48 |
-| Single parent | 1.03 | 1.03 |
-| Childless adult | 0.28 | 1.98 |
+| Disabled | 0.68 | 0.88 |
+| Single parent | 0.87 | 0.81 |
 
-The floor costs about 16% of the lift. We recommend it on by default.
+The floor costs about 18% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 1.1 times the underpayment dollars of random review, against 0.6 times for the main ranker (both trained on Wyoming's own cases; exp79, leak-free, official definition).
+A second ranker trained on underpayments finds 3.4 times the underpayment dollars of random review, against 3.4 times for the main ranker (both trained on Wyoming's own cases; exp79, leak-free, official definition). Here it does no better than the main ranker, so a separate queue adds little.
 
 ### Flag cards for reviewers
 
@@ -91,9 +90,9 @@ At 3.96%, Wyoming pays nothing. **How much a higher rate would cost:** Wyoming's
 
 | If Wyoming's rate were… | Share owed | Cost a year | Rate after ranked reviews (≈268 a month, 1.0 FTEs) | Rate after random reviews |
 |---|---|---|---|---|
-| 3.96% (FY2025) | 0% | $0 | 3.58% | 3.61% |
-| 6.5% | 5% | about $3M | 5.87% | 5.93% |
-| 8.5% | 10% | about $6M | 7.68% | 7.76% |
+| 3.96% (FY2025) | 0% | $0 | 3.19% | 3.61% |
+| 6.5% | 5% | about $3M | 5.24% | 5.93% |
+| 8.5% | 10% | about $6M | 6.85% | 7.76% |
 
 Ranked reviews bring 6.5% back under 6%; random reviews of the same volume bring 6.5% back under.
 

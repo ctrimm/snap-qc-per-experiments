@@ -1,0 +1,1875 @@
+{
+ "AK": {
+  "state": "AK",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 2.389,
+   "per_hour_$": 115.8,
+   "random_per_hour_$": 48.5,
+   "expected_over_actual": 2.002
+  },
+  "top20": {
+   "lift": 2.374,
+   "per_hour_$": 115.1,
+   "random_per_hour_$": 48.5,
+   "expected_over_actual": 1.503
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.662,
+    "disabled": 0.794,
+    "single_parent": 1.489,
+    "married_with_kids": 1.891,
+    "childless_adult": 0.662,
+    "other": 1.04
+   },
+   "floor_ratio": {
+    "elderly": 0.703,
+    "disabled": 1.721,
+    "single_parent": 1.489,
+    "married_with_kids": 1.04,
+    "childless_adult": 0.882,
+    "other": 0.945
+   },
+   "floor_lift": 2.205
+  }
+ },
+ "AL": {
+  "state": "AL",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.331,
+   "per_hour_$": 150.4,
+   "random_per_hour_$": 34.7,
+   "expected_over_actual": 1.151
+  },
+  "top20": {
+   "lift": 2.963,
+   "per_hour_$": 102.9,
+   "random_per_hour_$": 34.7,
+   "expected_over_actual": 1.125
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.376,
+    "disabled": 0.631,
+    "single_parent": 1.372,
+    "married_with_kids": 2.473,
+    "multiadult_with_kids": 1.298,
+    "childless_adult": 0.742,
+    "other": 0.865
+   },
+   "floor_ratio": {
+    "elderly": 1.405,
+    "disabled": 0.865,
+    "single_parent": 0.846,
+    "married_with_kids": 0.824,
+    "multiadult_with_kids": 0.721,
+    "childless_adult": 1.566,
+    "other": 1.154
+   },
+   "floor_lift": 2.713
+  }
+ },
+ "AR": {
+  "state": "AR",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.365,
+   "per_hour_$": 78.2,
+   "random_per_hour_$": 23.2,
+   "expected_over_actual": 0.891
+  },
+  "top20": {
+   "lift": 2.587,
+   "per_hour_$": 60.4,
+   "random_per_hour_$": 23.4,
+   "expected_over_actual": 0.976
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.887,
+    "disabled": 0.863,
+    "single_parent": 1.327,
+    "married_with_kids": 2.99,
+    "child_only": 0.863,
+    "childless_adult": 0.207,
+    "other": 0.46
+   },
+   "floor_ratio": {
+    "elderly": 1.528,
+    "disabled": 0.834,
+    "single_parent": 0.929,
+    "married_with_kids": 1.84,
+    "child_only": 0.431,
+    "childless_adult": 1.035,
+    "other": 1.265
+   },
+   "floor_lift": 2.522
+  }
+ },
+ "AZ": {
+  "state": "AZ",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 5.253,
+   "per_hour_$": 221.3,
+   "random_per_hour_$": 42.1,
+   "expected_over_actual": 1.157
+  },
+  "top20": {
+   "lift": 3.305,
+   "per_hour_$": 139.2,
+   "random_per_hour_$": 42.1,
+   "expected_over_actual": 1.297
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.525,
+    "disabled": 0.734,
+    "single_parent": 1.704,
+    "married_with_kids": 1.479,
+    "multiadult_with_kids": 1.359,
+    "childless_adult": 0.28,
+    "other": 0.56
+   },
+   "floor_ratio": {
+    "elderly": 1.259,
+    "disabled": 0.699,
+    "single_parent": 1.17,
+    "married_with_kids": 0.879,
+    "multiadult_with_kids": 1.519,
+    "childless_adult": 0.734,
+    "other": 0.746
+   },
+   "floor_lift": 3.028
+  }
+ },
+ "CA": {
+  "state": "CA",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.173,
+   "per_hour_$": 158.5,
+   "random_per_hour_$": 38.0,
+   "expected_over_actual": 1.281
+  },
+  "top20": {
+   "lift": 2.824,
+   "per_hour_$": 107.3,
+   "random_per_hour_$": 38.0,
+   "expected_over_actual": 1.317
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.654,
+    "disabled": 0.981,
+    "single_parent": 1.417,
+    "married_with_kids": 1.962,
+    "child_only": 1.635,
+    "childless_adult": 0.716,
+    "other": 1.962
+   },
+   "floor_ratio": {
+    "elderly": 1.06,
+    "disabled": 0.695,
+    "single_parent": 1.035,
+    "married_with_kids": 1.226,
+    "child_only": 1.471,
+    "childless_adult": 0.872,
+    "other": 1.308
+   },
+   "floor_lift": 2.834
+  }
+ },
+ "CO": {
+  "state": "CO",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.776,
+   "per_hour_$": 198.4,
+   "random_per_hour_$": 41.5,
+   "expected_over_actual": 0.679
+  },
+  "top20": {
+   "lift": 3.143,
+   "per_hour_$": 130.6,
+   "random_per_hour_$": 41.5,
+   "expected_over_actual": 0.797
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.487,
+    "disabled": 0.8,
+    "single_parent": 1.375,
+    "married_with_kids": 1.65,
+    "multiadult_with_kids": 0.9,
+    "childless_adult": 1.21,
+    "other": 0.367
+   },
+   "floor_ratio": {
+    "elderly": 0.994,
+    "disabled": 1.1,
+    "single_parent": 1.225,
+    "married_with_kids": 1.2,
+    "multiadult_with_kids": 0.45,
+    "childless_adult": 0.99,
+    "other": 0.367
+   },
+   "floor_lift": 3.022
+  }
+ },
+ "CT": {
+  "state": "CT",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.76,
+   "per_hour_$": 210.7,
+   "random_per_hour_$": 44.3,
+   "expected_over_actual": 0.913
+  },
+  "top20": {
+   "lift": 3.308,
+   "per_hour_$": 147.2,
+   "random_per_hour_$": 44.5,
+   "expected_over_actual": 0.97
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.555,
+    "disabled": 0.763,
+    "single_parent": 1.303,
+    "married_with_kids": 2.178,
+    "multiadult_with_kids": 0.938,
+    "childless_adult": 1.34,
+    "other": 1.005
+   },
+   "floor_ratio": {
+    "elderly": 0.977,
+    "disabled": 0.878,
+    "single_parent": 0.894,
+    "married_with_kids": 1.173,
+    "multiadult_with_kids": 1.072,
+    "childless_adult": 1.843,
+    "other": 0.67
+   },
+   "floor_lift": 3.377
+  }
+ },
+ "DC": {
+  "state": "DC",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.266,
+   "per_hour_$": 362.2,
+   "random_per_hour_$": 84.9,
+   "expected_over_actual": 1.27
+  },
+  "top20": {
+   "lift": 2.903,
+   "per_hour_$": 244.7,
+   "random_per_hour_$": 84.3,
+   "expected_over_actual": 1.198
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.708,
+    "disabled": 0.625,
+    "single_parent": 1.28,
+    "childless_adult": 1.223,
+    "other": 1.36
+   },
+   "floor_ratio": {
+    "elderly": 0.992,
+    "disabled": 0.977,
+    "single_parent": 1.28,
+    "childless_adult": 0.775,
+    "other": 1.058
+   },
+   "floor_lift": 2.754
+  }
+ },
+ "DE": {
+  "state": "DE",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.053,
+   "per_hour_$": 210.1,
+   "random_per_hour_$": 51.8,
+   "expected_over_actual": 0.836
+  },
+  "top20": {
+   "lift": 3.143,
+   "per_hour_$": 160.9,
+   "random_per_hour_$": 51.2,
+   "expected_over_actual": 0.918
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.465,
+    "disabled": 0.723,
+    "single_parent": 1.408,
+    "childless_adult": 0.843,
+    "other": 1.446
+   },
+   "floor_ratio": {
+    "elderly": 1.033,
+    "disabled": 0.723,
+    "single_parent": 0.913,
+    "childless_adult": 1.446,
+    "other": 1.205
+   },
+   "floor_lift": 2.871
+  }
+ },
+ "FL": {
+  "state": "FL",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.528,
+   "per_hour_$": 159.5,
+   "random_per_hour_$": 45.2,
+   "expected_over_actual": 1.205
+  },
+  "top20": {
+   "lift": 2.962,
+   "per_hour_$": 134.6,
+   "random_per_hour_$": 45.4,
+   "expected_over_actual": 1.103
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.571,
+    "disabled": 0.904,
+    "single_parent": 1.326,
+    "married_with_kids": 2.735,
+    "child_only": 0.884,
+    "childless_adult": 0.958,
+    "other": 0.947
+   },
+   "floor_ratio": {
+    "elderly": 1.172,
+    "disabled": 1.055,
+    "single_parent": 0.791,
+    "married_with_kids": 1.16,
+    "child_only": 0.884,
+    "childless_adult": 0.81,
+    "other": 0.758
+   },
+   "floor_lift": 2.523
+  }
+ },
+ "GA": {
+  "state": "GA",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.51,
+   "per_hour_$": 318.6,
+   "random_per_hour_$": 70.6,
+   "expected_over_actual": 0.99
+  },
+  "top20": {
+   "lift": 2.968,
+   "per_hour_$": 210.7,
+   "random_per_hour_$": 71.0,
+   "expected_over_actual": 1.034
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.652,
+    "disabled": 0.589,
+    "single_parent": 1.142,
+    "married_with_kids": 2.199,
+    "multiadult_with_kids": 1.838,
+    "childless_adult": 0.935,
+    "other": 1.237
+   },
+   "floor_ratio": {
+    "elderly": 0.869,
+    "disabled": 0.872,
+    "single_parent": 0.99,
+    "married_with_kids": 1.32,
+    "multiadult_with_kids": 0.848,
+    "childless_adult": 1.54,
+    "other": 1.237
+   },
+   "floor_lift": 2.942
+  }
+ },
+ "GU": {
+  "state": "GU",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.64,
+   "per_hour_$": 291.1,
+   "random_per_hour_$": 80.0,
+   "expected_over_actual": 1.057
+  },
+  "top20": {
+   "lift": 2.533,
+   "per_hour_$": 197.1,
+   "random_per_hour_$": 77.8,
+   "expected_over_actual": 1.209
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.268,
+    "single_parent": 1.561,
+    "married_with_kids": 1.656,
+    "childless_adult": 0.0,
+    "other": 1.249
+   },
+   "floor_ratio": {
+    "elderly": 0.803,
+    "single_parent": 0.669,
+    "married_with_kids": 1.274,
+    "childless_adult": 0.892,
+    "other": 1.605
+   },
+   "floor_lift": 3.24
+  }
+ },
+ "HI": {
+  "state": "HI",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.791,
+   "per_hour_$": 149.0,
+   "random_per_hour_$": 39.3,
+   "expected_over_actual": 1.168
+  },
+  "top20": {
+   "lift": 2.532,
+   "per_hour_$": 99.5,
+   "random_per_hour_$": 39.3,
+   "expected_over_actual": 1.339
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.63,
+    "disabled": 1.103,
+    "single_parent": 1.89,
+    "married_with_kids": 0.862,
+    "childless_adult": 0.63,
+    "other": 1.89
+   },
+   "floor_ratio": {
+    "elderly": 1.05,
+    "disabled": 1.103,
+    "single_parent": 1.26,
+    "married_with_kids": 0.431,
+    "childless_adult": 1.575,
+    "other": 2.1
+   },
+   "floor_lift": 2.288
+  }
+ },
+ "IA": {
+  "state": "IA",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.068,
+   "per_hour_$": 164.6,
+   "random_per_hour_$": 40.4,
+   "expected_over_actual": 0.847
+  },
+  "top20": {
+   "lift": 2.863,
+   "per_hour_$": 115.2,
+   "random_per_hour_$": 40.2,
+   "expected_over_actual": 0.85
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.761,
+    "disabled": 0.944,
+    "single_parent": 1.156,
+    "married_with_kids": 1.701,
+    "multiadult_with_kids": 0.697,
+    "childless_adult": 0.755
+   },
+   "floor_ratio": {
+    "elderly": 1.611,
+    "disabled": 0.779,
+    "single_parent": 0.942,
+    "married_with_kids": 0.85,
+    "multiadult_with_kids": 0.779,
+    "childless_adult": 1.116
+   },
+   "floor_lift": 2.752
+  }
+ },
+ "ID": {
+  "state": "ID",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 2.167,
+   "per_hour_$": 27.2,
+   "random_per_hour_$": 12.6,
+   "expected_over_actual": 1.904
+  },
+  "top20": {
+   "lift": 2.31,
+   "per_hour_$": 29.0,
+   "random_per_hour_$": 12.6,
+   "expected_over_actual": 1.161
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.354,
+    "disabled": 0.583,
+    "single_parent": 1.528,
+    "married_with_kids": 4.167,
+    "multiadult_with_kids": 1.0,
+    "childless_adult": 1.375
+   },
+   "floor_ratio": {
+    "elderly": 1.083,
+    "disabled": 0.778,
+    "single_parent": 1.028,
+    "married_with_kids": 0.917,
+    "multiadult_with_kids": 1.312,
+    "childless_adult": 1.25
+   },
+   "floor_lift": 1.897
+  }
+ },
+ "IL": {
+  "state": "IL",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.376,
+   "per_hour_$": 229.4,
+   "random_per_hour_$": 52.4,
+   "expected_over_actual": 0.939
+  },
+  "top20": {
+   "lift": 3.031,
+   "per_hour_$": 158.9,
+   "random_per_hour_$": 52.4,
+   "expected_over_actual": 0.958
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.576,
+    "disabled": 0.979,
+    "single_parent": 1.296,
+    "married_with_kids": 1.164,
+    "child_only": 3.457,
+    "childless_adult": 1.01,
+    "other": 0.847
+   },
+   "floor_ratio": {
+    "elderly": 1.091,
+    "disabled": 0.688,
+    "single_parent": 0.979,
+    "married_with_kids": 1.058,
+    "child_only": 1.975,
+    "childless_adult": 1.414,
+    "other": 0.741
+   },
+   "floor_lift": 2.743
+  }
+ },
+ "IN": {
+  "state": "IN",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.822,
+   "per_hour_$": 206.2,
+   "random_per_hour_$": 42.8,
+   "expected_over_actual": 1.103
+  },
+  "top20": {
+   "lift": 3.309,
+   "per_hour_$": 141.5,
+   "random_per_hour_$": 42.8,
+   "expected_over_actual": 1.049
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.533,
+    "disabled": 1.003,
+    "single_parent": 1.126,
+    "married_with_kids": 2.267,
+    "multiadult_with_kids": 0.973,
+    "childless_adult": 0.84,
+    "other": 0.315
+   },
+   "floor_ratio": {
+    "elderly": 1.308,
+    "disabled": 1.026,
+    "single_parent": 0.954,
+    "married_with_kids": 1.763,
+    "multiadult_with_kids": 0.63,
+    "childless_adult": 0.909,
+    "other": 0.472
+   },
+   "floor_lift": 3.211
+  }
+ },
+ "KS": {
+  "state": "KS",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 2.344,
+   "per_hour_$": 46.3,
+   "random_per_hour_$": 19.8,
+   "expected_over_actual": 1.233
+  },
+  "top20": {
+   "lift": 2.175,
+   "per_hour_$": 42.7,
+   "random_per_hour_$": 19.6,
+   "expected_over_actual": 1.1
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.434,
+    "disabled": 0.916,
+    "single_parent": 2.405,
+    "married_with_kids": 1.903,
+    "child_only": 0.902,
+    "childless_adult": 0.37,
+    "other": 2.289
+   },
+   "floor_ratio": {
+    "elderly": 0.763,
+    "disabled": 1.165,
+    "single_parent": 1.48,
+    "married_with_kids": 1.189,
+    "child_only": 0.694,
+    "childless_adult": 0.601,
+    "other": 2.081
+   },
+   "floor_lift": 2.041
+  }
+ },
+ "KY": {
+  "state": "KY",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 5.345,
+   "per_hour_$": 148.8,
+   "random_per_hour_$": 27.8,
+   "expected_over_actual": 0.688
+  },
+  "top20": {
+   "lift": 3.396,
+   "per_hour_$": 94.6,
+   "random_per_hour_$": 27.8,
+   "expected_over_actual": 0.816
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.501,
+    "disabled": 0.84,
+    "single_parent": 1.431,
+    "married_with_kids": 1.204,
+    "multiadult_with_kids": 1.12,
+    "childless_adult": 0.728
+   },
+   "floor_ratio": {
+    "elderly": 0.741,
+    "disabled": 1.064,
+    "single_parent": 1.02,
+    "married_with_kids": 1.232,
+    "multiadult_with_kids": 0.504,
+    "childless_adult": 1.232
+   },
+   "floor_lift": 3.176
+  }
+ },
+ "LA": {
+  "state": "LA",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.016,
+   "per_hour_$": 122.2,
+   "random_per_hour_$": 30.4,
+   "expected_over_actual": 0.969
+  },
+  "top20": {
+   "lift": 2.818,
+   "per_hour_$": 85.7,
+   "random_per_hour_$": 30.4,
+   "expected_over_actual": 1.012
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.323,
+    "disabled": 0.803,
+    "single_parent": 1.388,
+    "multiadult_with_kids": 2.711,
+    "childless_adult": 0.703,
+    "other": 0.904
+   },
+   "floor_ratio": {
+    "elderly": 1.097,
+    "disabled": 0.954,
+    "single_parent": 0.92,
+    "multiadult_with_kids": 1.958,
+    "childless_adult": 0.753,
+    "other": 1.355
+   },
+   "floor_lift": 3.007
+  }
+ },
+ "MA": {
+  "state": "MA",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 5.333,
+   "per_hour_$": 255.2,
+   "random_per_hour_$": 47.8,
+   "expected_over_actual": 0.801
+  },
+  "top20": {
+   "lift": 3.763,
+   "per_hour_$": 180.1,
+   "random_per_hour_$": 47.8,
+   "expected_over_actual": 0.847
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.734,
+    "disabled": 0.849,
+    "single_parent": 1.287,
+    "childless_adult": 0.855,
+    "other": 1.438
+   },
+   "floor_ratio": {
+    "elderly": 1.255,
+    "disabled": 0.927,
+    "single_parent": 0.798,
+    "childless_adult": 1.052,
+    "other": 0.93
+   },
+   "floor_lift": 3.389
+  }
+ },
+ "MD": {
+  "state": "MD",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.103,
+   "per_hour_$": 158.2,
+   "random_per_hour_$": 51.0,
+   "expected_over_actual": 1.475
+  },
+  "top20": {
+   "lift": 3.233,
+   "per_hour_$": 164.8,
+   "random_per_hour_$": 51.0,
+   "expected_over_actual": 1.056
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.589,
+    "disabled": 0.867,
+    "single_parent": 1.314,
+    "childless_adult": 0.921,
+    "other": 1.243
+   },
+   "floor_ratio": {
+    "elderly": 1.105,
+    "disabled": 0.91,
+    "single_parent": 1.121,
+    "childless_adult": 0.921,
+    "other": 0.829
+   },
+   "floor_lift": 2.787
+  }
+ },
+ "ME": {
+  "state": "ME",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.204,
+   "per_hour_$": 157.8,
+   "random_per_hour_$": 49.3,
+   "expected_over_actual": 0.754
+  },
+  "top20": {
+   "lift": 2.54,
+   "per_hour_$": 125.2,
+   "random_per_hour_$": 49.3,
+   "expected_over_actual": 0.794
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.557,
+    "disabled": 0.7,
+    "single_parent": 1.197,
+    "married_with_kids": 1.409,
+    "multiadult_with_kids": 1.484,
+    "childless_adult": 1.36
+   },
+   "floor_ratio": {
+    "elderly": 1.577,
+    "disabled": 0.875,
+    "single_parent": 0.735,
+    "married_with_kids": 0.875,
+    "multiadult_with_kids": 0.866,
+    "childless_adult": 1.088
+   },
+   "floor_lift": 2.305
+  }
+ },
+ "MI": {
+  "state": "MI",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 2.963,
+   "per_hour_$": 159.3,
+   "random_per_hour_$": 53.7,
+   "expected_over_actual": 1.35
+  },
+  "top20": {
+   "lift": 2.644,
+   "per_hour_$": 141.3,
+   "random_per_hour_$": 53.4,
+   "expected_over_actual": 1.092
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.291,
+    "disabled": 0.97,
+    "single_parent": 1.608,
+    "married_with_kids": 1.825,
+    "multiadult_with_kids": 1.711,
+    "childless_adult": 1.244,
+    "other": 0.0
+   },
+   "floor_ratio": {
+    "elderly": 0.764,
+    "disabled": 1.397,
+    "single_parent": 0.924,
+    "married_with_kids": 1.027,
+    "multiadult_with_kids": 1.283,
+    "childless_adult": 1.011,
+    "other": 0.57
+   },
+   "floor_lift": 2.364
+  }
+ },
+ "MN": {
+  "state": "MN",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.708,
+   "per_hour_$": 140.7,
+   "random_per_hour_$": 38.0,
+   "expected_over_actual": 0.769
+  },
+  "top20": {
+   "lift": 2.702,
+   "per_hour_$": 102.5,
+   "random_per_hour_$": 38.0,
+   "expected_over_actual": 0.892
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.233,
+    "disabled": 0.564,
+    "single_parent": 3.068,
+    "married_with_kids": 2.094,
+    "multiadult_with_kids": 1.556,
+    "child_only": 1.868,
+    "childless_adult": 1.245
+   },
+   "floor_ratio": {
+    "elderly": 0.817,
+    "disabled": 1.012,
+    "single_parent": 1.69,
+    "married_with_kids": 0.906,
+    "multiadult_with_kids": 0.623,
+    "child_only": 1.245,
+    "childless_adult": 1.307
+   },
+   "floor_lift": 2.175
+  }
+ },
+ "MO": {
+  "state": "MO",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.72,
+   "per_hour_$": 130.8,
+   "random_per_hour_$": 27.7,
+   "expected_over_actual": 0.905
+  },
+  "top20": {
+   "lift": 3.456,
+   "per_hour_$": 95.1,
+   "random_per_hour_$": 27.5,
+   "expected_over_actual": 0.966
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.298,
+    "disabled": 0.745,
+    "single_parent": 1.769,
+    "married_with_kids": 1.174,
+    "other": 1.986
+   },
+   "floor_ratio": {
+    "elderly": 0.745,
+    "disabled": 0.948,
+    "single_parent": 1.428,
+    "married_with_kids": 0.406,
+    "other": 1.366
+   },
+   "floor_lift": 2.851
+  }
+ },
+ "MS": {
+  "state": "MS",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.647,
+   "per_hour_$": 182.7,
+   "random_per_hour_$": 39.3,
+   "expected_over_actual": 0.839
+  },
+  "top20": {
+   "lift": 3.181,
+   "per_hour_$": 125.1,
+   "random_per_hour_$": 39.3,
+   "expected_over_actual": 0.834
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.63,
+    "disabled": 1.455,
+    "single_parent": 1.021,
+    "married_with_kids": 0.729,
+    "multiadult_with_kids": 0.928,
+    "child_only": 1.305,
+    "childless_adult": 0.441
+   },
+   "floor_ratio": {
+    "elderly": 0.977,
+    "disabled": 1.11,
+    "single_parent": 0.922,
+    "married_with_kids": 0.973,
+    "multiadult_with_kids": 1.289,
+    "child_only": 1.191,
+    "childless_adult": 0.567
+   },
+   "floor_lift": 3.143
+  }
+ },
+ "MT": {
+  "state": "MT",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.442,
+   "per_hour_$": 124.1,
+   "random_per_hour_$": 36.0,
+   "expected_over_actual": 1.066
+  },
+  "top20": {
+   "lift": 3.057,
+   "per_hour_$": 109.3,
+   "random_per_hour_$": 35.7,
+   "expected_over_actual": 0.908
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.459,
+    "disabled": 1.395,
+    "single_parent": 1.13,
+    "married_with_kids": 1.782,
+    "multiadult_with_kids": 0.992,
+    "childless_adult": 1.488
+   },
+   "floor_ratio": {
+    "elderly": 0.826,
+    "disabled": 2.634,
+    "single_parent": 0.656,
+    "married_with_kids": 0.852,
+    "multiadult_with_kids": 0.558,
+    "childless_adult": 1.612
+   },
+   "floor_lift": 2.228
+  }
+ },
+ "NC": {
+  "state": "NC",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 5.138,
+   "per_hour_$": 207.9,
+   "random_per_hour_$": 40.5,
+   "expected_over_actual": 0.889
+  },
+  "top20": {
+   "lift": 3.241,
+   "per_hour_$": 131.8,
+   "random_per_hour_$": 40.7,
+   "expected_over_actual": 0.996
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.89,
+    "disabled": 0.821,
+    "single_parent": 1.088,
+    "married_with_kids": 2.023,
+    "multiadult_with_kids": 0.923,
+    "child_only": 0.704,
+    "childless_adult": 0.879
+   },
+   "floor_ratio": {
+    "elderly": 1.154,
+    "disabled": 1.114,
+    "single_parent": 0.89,
+    "married_with_kids": 1.495,
+    "multiadult_with_kids": 0.66,
+    "child_only": 1.583,
+    "childless_adult": 0.909
+   },
+   "floor_lift": 3.247
+  }
+ },
+ "ND": {
+  "state": "ND",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.001,
+   "per_hour_$": 139.8,
+   "random_per_hour_$": 34.9,
+   "expected_over_actual": 1.227
+  },
+  "top20": {
+   "lift": 2.804,
+   "per_hour_$": 96.8,
+   "random_per_hour_$": 34.5,
+   "expected_over_actual": 1.108
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.384,
+    "disabled": 0.798,
+    "single_parent": 1.189,
+    "childless_adult": 0.576,
+    "other": 2.536
+   },
+   "floor_ratio": {
+    "elderly": 0.705,
+    "disabled": 0.665,
+    "single_parent": 1.081,
+    "childless_adult": 0.961,
+    "other": 2.191
+   },
+   "floor_lift": 3.073
+  }
+ },
+ "NE": {
+  "state": "NE",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.993,
+   "per_hour_$": 102.0,
+   "random_per_hour_$": 20.4,
+   "expected_over_actual": 1.176
+  },
+  "top20": {
+   "lift": 2.975,
+   "per_hour_$": 61.1,
+   "random_per_hour_$": 20.5,
+   "expected_over_actual": 1.266
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.502,
+    "disabled": 0.529,
+    "single_parent": 1.665,
+    "married_with_kids": 0.955,
+    "multiadult_with_kids": 5.374,
+    "childless_adult": 0.597
+   },
+   "floor_ratio": {
+    "elderly": 1.254,
+    "disabled": 0.614,
+    "single_parent": 1.117,
+    "married_with_kids": 0.746,
+    "multiadult_with_kids": 5.374,
+    "childless_adult": 1.075
+   },
+   "floor_lift": 3.102
+  }
+ },
+ "NH": {
+  "state": "NH",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 2.192,
+   "per_hour_$": 67.0,
+   "random_per_hour_$": 30.6,
+   "expected_over_actual": 1.988
+  },
+  "top20": {
+   "lift": 2.205,
+   "per_hour_$": 67.4,
+   "random_per_hour_$": 30.6,
+   "expected_over_actual": 1.391
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.206,
+    "disabled": 0.614,
+    "single_parent": 1.958,
+    "married_with_kids": 2.5,
+    "other": 1.833
+   },
+   "floor_ratio": {
+    "elderly": 0.824,
+    "disabled": 0.955,
+    "single_parent": 1.125,
+    "married_with_kids": 0.5,
+    "other": 1.5
+   },
+   "floor_lift": 2.453
+  }
+ },
+ "NJ": {
+  "state": "NJ",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.552,
+   "per_hour_$": 106.4,
+   "random_per_hour_$": 23.4,
+   "expected_over_actual": 0.842
+  },
+  "top20": {
+   "lift": 2.72,
+   "per_hour_$": 63.6,
+   "random_per_hour_$": 23.4,
+   "expected_over_actual": 1.103
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.757,
+    "disabled": 0.825,
+    "single_parent": 0.966,
+    "married_with_kids": 1.06,
+    "child_only": 1.767,
+    "childless_adult": 1.06,
+    "other": 2.121
+   },
+   "floor_ratio": {
+    "elderly": 1.565,
+    "disabled": 1.237,
+    "single_parent": 0.707,
+    "married_with_kids": 0.766,
+    "child_only": 1.944,
+    "childless_adult": 0.442,
+    "other": 1.767
+   },
+   "floor_lift": 2.879
+  }
+ },
+ "NM": {
+  "state": "NM",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.376,
+   "per_hour_$": 177.6,
+   "random_per_hour_$": 40.6,
+   "expected_over_actual": 1.245
+  },
+  "top20": {
+   "lift": 3.192,
+   "per_hour_$": 129.6,
+   "random_per_hour_$": 40.6,
+   "expected_over_actual": 1.284
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.36,
+    "disabled": 0.609,
+    "single_parent": 1.104,
+    "married_with_kids": 1.371,
+    "multiadult_with_kids": 2.031,
+    "childless_adult": 1.364,
+    "other": 0.305
+   },
+   "floor_ratio": {
+    "elderly": 1.053,
+    "disabled": 0.914,
+    "single_parent": 0.933,
+    "married_with_kids": 0.838,
+    "multiadult_with_kids": 1.117,
+    "childless_adult": 1.277,
+    "other": 0.609
+   },
+   "floor_lift": 3.212
+  }
+ },
+ "NV": {
+  "state": "NV",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 6.06,
+   "per_hour_$": 131.0,
+   "random_per_hour_$": 21.6,
+   "expected_over_actual": 0.925
+  },
+  "top20": {
+   "lift": 3.618,
+   "per_hour_$": 78.2,
+   "random_per_hour_$": 21.6,
+   "expected_over_actual": 1.102
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.454,
+    "disabled": 1.782,
+    "single_parent": 1.528,
+    "married_with_kids": 0.99,
+    "multiadult_with_kids": 2.525,
+    "childless_adult": 0.817,
+    "other": 0.297
+   },
+   "floor_ratio": {
+    "elderly": 1.136,
+    "disabled": 1.663,
+    "single_parent": 0.976,
+    "married_with_kids": 0.644,
+    "multiadult_with_kids": 1.931,
+    "childless_adult": 0.693,
+    "other": 0.668
+   },
+   "floor_lift": 3.51
+  }
+ },
+ "NY": {
+  "state": "NY",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 5.166,
+   "per_hour_$": 239.3,
+   "random_per_hour_$": 46.3,
+   "expected_over_actual": 0.964
+  },
+  "top20": {
+   "lift": 3.506,
+   "per_hour_$": 163.4,
+   "random_per_hour_$": 46.6,
+   "expected_over_actual": 0.926
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.716,
+    "disabled": 1.0,
+    "single_parent": 1.136,
+    "married_with_kids": 2.343,
+    "childless_adult": 0.824,
+    "other": 0.79
+   },
+   "floor_ratio": {
+    "elderly": 1.28,
+    "disabled": 1.036,
+    "single_parent": 0.845,
+    "married_with_kids": 0.607,
+    "childless_adult": 1.041,
+    "other": 0.729
+   },
+   "floor_lift": 3.257
+  }
+ },
+ "OH": {
+  "state": "OH",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.298,
+   "per_hour_$": 136.0,
+   "random_per_hour_$": 31.6,
+   "expected_over_actual": 0.905
+  },
+  "top20": {
+   "lift": 3.17,
+   "per_hour_$": 100.3,
+   "random_per_hour_$": 31.6,
+   "expected_over_actual": 0.854
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.616,
+    "disabled": 0.965,
+    "single_parent": 1.215,
+    "married_with_kids": 2.586,
+    "multiadult_with_kids": 0.862,
+    "childless_adult": 0.8,
+    "other": 0.431
+   },
+   "floor_ratio": {
+    "elderly": 1.57,
+    "disabled": 0.965,
+    "single_parent": 0.803,
+    "married_with_kids": 0.862,
+    "multiadult_with_kids": 1.006,
+    "childless_adult": 0.862,
+    "other": 0.216
+   },
+   "floor_lift": 3.26
+  }
+ },
+ "OK": {
+  "state": "OK",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.054,
+   "per_hour_$": 153.6,
+   "random_per_hour_$": 37.9,
+   "expected_over_actual": 1.314
+  },
+  "top20": {
+   "lift": 2.866,
+   "per_hour_$": 109.2,
+   "random_per_hour_$": 38.1,
+   "expected_over_actual": 1.227
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.361,
+    "disabled": 0.706,
+    "single_parent": 1.95,
+    "married_with_kids": 1.232,
+    "childless_adult": 0.723,
+    "other": 1.054
+   },
+   "floor_ratio": {
+    "elderly": 0.993,
+    "disabled": 1.059,
+    "single_parent": 1.233,
+    "married_with_kids": 0.821,
+    "childless_adult": 0.803,
+    "other": 1.054
+   },
+   "floor_lift": 2.681
+  }
+ },
+ "OR": {
+  "state": "OR",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.926,
+   "per_hour_$": 284.6,
+   "random_per_hour_$": 57.8,
+   "expected_over_actual": 0.954
+  },
+  "top20": {
+   "lift": 3.384,
+   "per_hour_$": 195.5,
+   "random_per_hour_$": 57.8,
+   "expected_over_actual": 1.011
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.56,
+    "disabled": 0.812,
+    "single_parent": 1.563,
+    "married_with_kids": 2.061,
+    "childless_adult": 0.881,
+    "other": 1.098
+   },
+   "floor_ratio": {
+    "elderly": 0.926,
+    "disabled": 1.117,
+    "single_parent": 1.137,
+    "married_with_kids": 1.279,
+    "childless_adult": 0.938,
+    "other": 0.775
+   },
+   "floor_lift": 3.455
+  }
+ },
+ "PA": {
+  "state": "PA",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.445,
+   "per_hour_$": 160.2,
+   "random_per_hour_$": 36.0,
+   "expected_over_actual": 1.109
+  },
+  "top20": {
+   "lift": 2.997,
+   "per_hour_$": 108.7,
+   "random_per_hour_$": 36.3,
+   "expected_over_actual": 1.172
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.713,
+    "disabled": 0.808,
+    "single_parent": 1.712,
+    "married_with_kids": 1.712,
+    "multiadult_with_kids": 1.141,
+    "childless_adult": 1.084,
+    "other": 0.571
+   },
+   "floor_ratio": {
+    "elderly": 0.945,
+    "disabled": 1.046,
+    "single_parent": 1.66,
+    "married_with_kids": 1.046,
+    "multiadult_with_kids": 0.571,
+    "childless_adult": 0.685,
+    "other": 1.141
+   },
+   "floor_lift": 2.685
+  }
+ },
+ "RI": {
+  "state": "RI",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.804,
+   "per_hour_$": 230.7,
+   "random_per_hour_$": 60.6,
+   "expected_over_actual": 0.991
+  },
+  "top20": {
+   "lift": 2.656,
+   "per_hour_$": 161.1,
+   "random_per_hour_$": 60.6,
+   "expected_over_actual": 1.059
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.308,
+    "disabled": 0.81,
+    "single_parent": 1.846,
+    "childless_adult": 1.612,
+    "other": 1.862
+   },
+   "floor_ratio": {
+    "elderly": 0.941,
+    "disabled": 1.042,
+    "single_parent": 1.069,
+    "childless_adult": 1.512,
+    "other": 0.716
+   },
+   "floor_lift": 2.763
+  }
+ },
+ "SC": {
+  "state": "SC",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.816,
+   "per_hour_$": 135.0,
+   "random_per_hour_$": 35.4,
+   "expected_over_actual": 1.136
+  },
+  "top20": {
+   "lift": 2.968,
+   "per_hour_$": 105.6,
+   "random_per_hour_$": 35.6,
+   "expected_over_actual": 1.07
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.419,
+    "disabled": 0.838,
+    "single_parent": 1.272,
+    "married_with_kids": 1.701,
+    "multiadult_with_kids": 1.842,
+    "childless_adult": 0.891,
+    "other": 0.567
+   },
+   "floor_ratio": {
+    "elderly": 1.282,
+    "disabled": 1.158,
+    "single_parent": 0.816,
+    "married_with_kids": 0.756,
+    "multiadult_with_kids": 0.85,
+    "childless_adult": 1.053,
+    "other": 0.567
+   },
+   "floor_lift": 2.773
+  }
+ },
+ "SD": {
+  "state": "SD",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 2.459,
+   "per_hour_$": 33.3,
+   "random_per_hour_$": 13.5,
+   "expected_over_actual": 0.974
+  },
+  "top20": {
+   "lift": 2.182,
+   "per_hour_$": 29.5,
+   "random_per_hour_$": 13.5,
+   "expected_over_actual": 0.861
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 2.436,
+    "disabled": 0.575,
+    "single_parent": 1.43,
+    "multiadult_with_kids": 1.801,
+    "child_only": 0.424,
+    "childless_adult": 0.847,
+    "other": 0.989
+   },
+   "floor_ratio": {
+    "elderly": 1.695,
+    "disabled": 0.605,
+    "single_parent": 1.218,
+    "multiadult_with_kids": 0.636,
+    "child_only": 0.678,
+    "childless_adult": 1.483,
+    "other": 1.624
+   },
+   "floor_lift": 2.461
+  }
+ },
+ "TN": {
+  "state": "TN",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.971,
+   "per_hour_$": 91.7,
+   "random_per_hour_$": 23.1,
+   "expected_over_actual": 1.297
+  },
+  "top20": {
+   "lift": 2.628,
+   "per_hour_$": 60.7,
+   "random_per_hour_$": 23.1,
+   "expected_over_actual": 1.459
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.688,
+    "disabled": 1.005,
+    "single_parent": 1.113,
+    "married_with_kids": 1.879,
+    "childless_adult": 0.737,
+    "other": 1.074
+   },
+   "floor_ratio": {
+    "elderly": 0.982,
+    "disabled": 1.005,
+    "single_parent": 0.982,
+    "married_with_kids": 1.437,
+    "childless_adult": 0.737,
+    "other": 1.074
+   },
+   "floor_lift": 2.676
+  }
+ },
+ "TX": {
+  "state": "TX",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.076,
+   "per_hour_$": 122.7,
+   "random_per_hour_$": 39.9,
+   "expected_over_actual": 1.029
+  },
+  "top20": {
+   "lift": 2.456,
+   "per_hour_$": 97.4,
+   "random_per_hour_$": 39.7,
+   "expected_over_actual": 1.035
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.491,
+    "disabled": 0.743,
+    "single_parent": 1.318,
+    "married_with_kids": 1.554,
+    "child_only": 1.032,
+    "childless_adult": 0.505,
+    "other": 1.297
+   },
+   "floor_ratio": {
+    "elderly": 1.015,
+    "disabled": 1.0,
+    "single_parent": 0.919,
+    "married_with_kids": 1.018,
+    "child_only": 1.327,
+    "childless_adult": 0.842,
+    "other": 1.415
+   },
+   "floor_lift": 2.398
+  }
+ },
+ "UT": {
+  "state": "UT",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 1.897,
+   "per_hour_$": 28.6,
+   "random_per_hour_$": 15.1,
+   "expected_over_actual": 2.15
+  },
+  "top20": {
+   "lift": 2.447,
+   "per_hour_$": 37.1,
+   "random_per_hour_$": 15.2,
+   "expected_over_actual": 1.361
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.702,
+    "disabled": 0.859,
+    "single_parent": 1.554,
+    "married_with_kids": 0.853,
+    "multiadult_with_kids": 0.878,
+    "childless_adult": 0.702
+   },
+   "floor_ratio": {
+    "elderly": 1.405,
+    "disabled": 1.561,
+    "single_parent": 1.298,
+    "married_with_kids": 0.418,
+    "multiadult_with_kids": 0.761,
+    "childless_adult": 0.527
+   },
+   "floor_lift": 1.336
+  }
+ },
+ "VA": {
+  "state": "VA",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.922,
+   "per_hour_$": 191.6,
+   "random_per_hour_$": 48.9,
+   "expected_over_actual": 0.899
+  },
+  "top20": {
+   "lift": 2.926,
+   "per_hour_$": 144.0,
+   "random_per_hour_$": 49.2,
+   "expected_over_actual": 0.948
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.884,
+    "disabled": 0.665,
+    "single_parent": 0.935,
+    "married_with_kids": 1.663,
+    "childless_adult": 0.962,
+    "other": 1.571
+   },
+   "floor_ratio": {
+    "elderly": 1.293,
+    "disabled": 1.372,
+    "single_parent": 0.612,
+    "married_with_kids": 1.164,
+    "childless_adult": 1.283,
+    "other": 1.048
+   },
+   "floor_lift": 2.355
+  }
+ },
+ "VI": {
+  "state": "VI",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 4.848,
+   "per_hour_$": 246.8,
+   "random_per_hour_$": 50.9,
+   "expected_over_actual": 0.979
+  },
+  "top20": {
+   "lift": 3.292,
+   "per_hour_$": 167.6,
+   "random_per_hour_$": 50.9,
+   "expected_over_actual": 0.991
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.387,
+    "single_parent": 1.804,
+    "childless_adult": 0.725,
+    "other": 0.911
+   },
+   "floor_ratio": {
+    "elderly": 0.709,
+    "single_parent": 1.418,
+    "childless_adult": 0.87,
+    "other": 0.911
+   },
+   "floor_lift": 3.611
+  }
+ },
+ "VT": {
+  "state": "VT",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.659,
+   "per_hour_$": 65.6,
+   "random_per_hour_$": 14.1,
+   "expected_over_actual": 1.298
+  },
+  "top20": {
+   "lift": 3.617,
+   "per_hour_$": 51.0,
+   "random_per_hour_$": 14.1,
+   "expected_over_actual": 1.345
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.849,
+    "disabled": 1.001,
+    "single_parent": 0.915,
+    "childless_adult": 1.158,
+    "other": 1.39
+   },
+   "floor_ratio": {
+    "elderly": 1.261,
+    "disabled": 1.029,
+    "single_parent": 0.543,
+    "childless_adult": 1.029,
+    "other": 1.235
+   },
+   "floor_lift": 3.75
+  }
+ },
+ "WA": {
+  "state": "WA",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 5.739,
+   "per_hour_$": 192.7,
+   "random_per_hour_$": 33.6,
+   "expected_over_actual": 0.877
+  },
+  "top20": {
+   "lift": 3.899,
+   "per_hour_$": 130.0,
+   "random_per_hour_$": 33.4,
+   "expected_over_actual": 0.815
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.619,
+    "disabled": 0.755,
+    "single_parent": 1.56,
+    "married_with_kids": 1.929,
+    "childless_adult": 0.939,
+    "other": 1.51
+   },
+   "floor_ratio": {
+    "elderly": 0.813,
+    "disabled": 1.222,
+    "single_parent": 1.158,
+    "married_with_kids": 1.258,
+    "childless_adult": 0.906,
+    "other": 1.007
+   },
+   "floor_lift": 3.837
+  }
+ },
+ "WI": {
+  "state": "WI",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 4.665,
+   "per_hour_$": 97.1,
+   "random_per_hour_$": 20.8,
+   "expected_over_actual": 0.856
+  },
+  "top20": {
+   "lift": 3.161,
+   "per_hour_$": 65.4,
+   "random_per_hour_$": 20.7,
+   "expected_over_actual": 1.093
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.3,
+    "disabled": 0.712,
+    "single_parent": 1.351,
+    "married_with_kids": 2.573,
+    "multiadult_with_kids": 3.377,
+    "childless_adult": 0.831,
+    "other": 1.126
+   },
+   "floor_ratio": {
+    "elderly": 0.75,
+    "disabled": 0.781,
+    "single_parent": 0.943,
+    "married_with_kids": 1.528,
+    "multiadult_with_kids": 3.216,
+    "childless_adult": 1.152,
+    "other": 0.643
+   },
+   "floor_lift": 3.311
+  }
+ },
+ "WV": {
+  "state": "WV",
+  "variant": "C_ctx",
+  "top10": {
+   "lift": 3.872,
+   "per_hour_$": 87.0,
+   "random_per_hour_$": 22.5,
+   "expected_over_actual": 1.073
+  },
+  "top20": {
+   "lift": 2.572,
+   "per_hour_$": 58.2,
+   "random_per_hour_$": 22.6,
+   "expected_over_actual": 1.202
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "elderly": 0.685,
+    "disabled": 0.582,
+    "single_parent": 1.468,
+    "married_with_kids": 1.439,
+    "multiadult_with_kids": 1.85,
+    "childless_adult": 1.174
+   },
+   "floor_ratio": {
+    "elderly": 1.267,
+    "disabled": 0.685,
+    "single_parent": 1.086,
+    "married_with_kids": 1.028,
+    "multiadult_with_kids": 1.439,
+    "childless_adult": 1.116
+   },
+   "floor_lift": 2.488
+  }
+ },
+ "WY": {
+  "state": "WY",
+  "variant": "B_ctx",
+  "top10": {
+   "lift": 3.553,
+   "per_hour_$": 60.7,
+   "random_per_hour_$": 17.1,
+   "expected_over_actual": 0.629
+  },
+  "top20": {
+   "lift": 2.69,
+   "per_hour_$": 46.7,
+   "random_per_hour_$": 17.4,
+   "expected_over_actual": 0.811
+  },
+  "fairness": {
+   "baseline_ratio": {
+    "disabled": 0.678,
+    "single_parent": 0.868,
+    "other": 0.969
+   },
+   "floor_ratio": {
+    "disabled": 0.881,
+    "single_parent": 0.814,
+    "other": 0.62
+   },
+   "floor_lift": 2.216
+  }
+ }
+}

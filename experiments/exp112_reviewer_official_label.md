@@ -39,5 +39,46 @@ No hypothesis on direction. Then every paper, brief, the guide and the dashboard
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending)
+**Gate passed:** under `SNAPQC_LABEL=gap`, exp83 reproduced `exp83_gap_results.json` byte for byte, so the refactor changed nothing but the label. **Packaged:** 53 of 53 model cards record `error_label: official`.
+
+All lifts below are on the dollars the official payment error rate counts.
+
+| Median of 53 jurisdictions | exp111 (gap label) | **exp112 (reviewer's finding over the tolerance)** |
+|---|---|---|
+| Top 20% vs random | 2.61× (Idaho 1.49× – Alaska 3.37×) | **2.96×** (Kansas 2.18× – Washington 3.90×) |
+| Jurisdictions at 2.0× or better | 50 of 53 | **53 of 53** |
+| Top 10% vs random | 3.37× | **4.07×** |
+| Found per review hour, top 20% (random) | $142 ($52) | **$109 ($38)**; range $29–245 |
+| Dollar forecast within 20% of actual | 43 of 53 (median 0.99) | **38 of 53** (median 1.06) |
+| Later years (train 2020–22, test 2023–24) | 2.51× | **2.95×** (Kansas lowest, 2.20×) |
+| With the fairness floor, top 20% | 2.45× (median cost 7%) | **2.79×** (median cost 4%; most Utah 45%, then Montana 27%; no cost in 18) |
+| Older households' review ratio, dollar-only | 0.44 (50 of 52 below 0.8) | **0.56** (47 of 52 below 0.8) |
+| With the floor | 1.02; 8 of 52 below 0.8 | **1.05; 8 of 52 below 0.8** (lowest 0.70) |
+| Disabled households, dollar-only → floor | 0.79 (26 of 51 below 0.8) | **0.81** (23 of 51); 11 below 0.8 with the floor |
+| Underpayment ranker vs main ranker | 1.91× vs 1.41× (better in 41) | **1.69× vs 1.34× (better in 33)** |
+
+**Per state, top 20%:** the official label is higher than the gap label in 46 of 53.
+
+**FY2028 cost share avoided a year (exp93 scenarios, top-10% floor-on lift):**
+
+| Scenario | Floor on | Dollar-only | Random review |
+|---|---|---|---|
+| Low | $0.21B | $0.21B | $0.16B |
+| **Central** | **$4.47B** (36 states drop a bracket) | $4.79B | $1.03B |
+| High | $8.24B | $8.78B | $2.39B |
+| Central, top-20% basis | $2.81B | | |
+
+### Reading it
+
+- **The cleaner label finds the official errors better everywhere it matters.** It removes about 30% noise from the training labels, cases where the benefit gap contradicted the reviewer's finding.
+- **Lift:** up 2.61× → 2.96×, and every jurisdiction now reaches 2.0×.
+- **The floor:** cheaper again ($0.32B of the central estimate, against $0.75B).
+- **Per review hour:** the dollars are lower than exp111 ($109 against $142) because the gap label had counted dollars the reviewer didn't find.
+- **Forecasts are less accurate** (38 of 53 within 20%, from 43). The dollar calibrator sees fewer, larger errors.
+- **The floor still leaves 8 jurisdictions below 0.8** for older households.
+- **The 17% caveat still applies:** for error cases the inputs are the reviewer's corrected values, which flattered dollar figures by about 17% in exp109.
+
+### Verdict
+
+Adopted; `SNAPQC_LABEL=official` (this definition) is the default. The cost share's central estimate is **$4.47B** (low $0.21B, high $8.24B), superseding exp111's $3.15B. Papers, briefs, guide and dashboard are restated on these figures.
 <!-- AUTO-RESULTS:END -->

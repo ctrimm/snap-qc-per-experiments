@@ -3,7 +3,7 @@
 **October 26, 2026 (corrected; versions of October 15 and 23) · Executive summary · Cory Trimm**
 
 
-> **Corrected October 26, 2026.** The review ratios, floor costs and cost-share figures from today's models are replaced with the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49) used early rankers; their within-state detail was rechecked on today's models for Pennsylvania and New York (experiment 108) and holds, with the precision figures corrected below. The Utah and Idaho tests were not rechecked.
+> **Corrected October 26, 2026.** The review ratios, floor costs and cost-share figures from today's models are replaced with the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). The earlier models' inputs let them partly see errors: the issued benefit beside values recorded by QC reviewers (experiment 106). The conclusion is unchanged and stronger. The direct data profiles were not affected. The early tests (exp47–49) used early rankers; their within-state detail was rechecked on today's models for Pennsylvania and New York (experiment 108) and holds, with the precision figures corrected below. The Utah and Idaho tests were not rechecked.
 
 ## Summary
 
@@ -11,8 +11,8 @@ This paper covers where older adults and people with disabilities show up in the
 
 1. **Elderly and disabled households have the highest error rates of any large group, and a review tool that chases dollars sends reviewers away from them.**
    - **Pennsylvania test set:** 48% of elderly households had a payment error, against 15% of childless adults.
-   - **Today's models (52 measurable jurisdictions):** ranking cases by expected dollars reviews elderly households at a median **0.44** of their share of the error risk, counting errors over the federal tolerance; below 0.8 in **50 of 52**.
-   - **Against random review:** older households have fewer errors over the tolerance than others, so random selection would give them more than their share: about 1.22 in Pennsylvania and 1.72 in New York. The dollar ranking gives 0.58 and 0.76, far less than random selection would.
+   - **Today's models (52 measurable jurisdictions):** ranking cases by expected dollars reviews elderly households at a median **0.56** of their share of the error risk, counting errors over the federal tolerance; below 0.8 in **47 of 52**.
+   - **Against random review:** older households have fewer errors over the tolerance than others, so random selection would give them more than their share: about 1.09 in Pennsylvania and 1.48 in New York. The dollar ranking gives 0.71 and 0.72, far less than random selection would.
 2. **The reason is error size, not missed detection.**
    - **Small but frequent:** older households' errors are frequent but small: medical deductions, Social Security and SSI changes, rent and utility timing.
    - **Larger elsewhere:** errors on earnings are larger, so a list sorted by dollars puts working households first.
@@ -20,7 +20,7 @@ This paper covers where older adults and people with disabilities show up in the
 3. **A fairness floor fixes most of it, at a real cost.**
    - **What it does:** it splits the review budget across household types in proportion to where errors are, then sorts by dollars within each type.
    - **Early test (PA and NY):** it roughly doubled elderly review relative to risk, with no measurable loss in dollars found, and reviewers spent fewer reviews on error-free cases.
-   - **Today's models:** it brings the median elderly ratio to **1.02**, but 8 of 52 jurisdictions stay below 0.8. It costs the median state about **7%** of its lift, and about $0.75B of the national central cost-share estimate.
+   - **Today's models:** it brings the median elderly ratio to **1.05**, but 8 of 52 jurisdictions stay below 0.8. It costs the median state about **4%** of its lift, and about $0.32B of the national central cost-share estimate.
    - **Default:** it is on by default in our pilot recommendation.
 4. **The tool doesn't hide money owed to older households, but it leaves much of it unreviewed.** The errors the ranker skips are not disproportionately underpayments. But because few older and disabled households get reviewed, they hold about **half of all unreviewed underpayment dollars** (PA 51%, NY 47%).
 5. **Medical deductions are the biggest gap in our AI work.**
@@ -138,13 +138,13 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 |---|---|---|
 | exp49 | PA, NY, early rankers | None measurable in dollars per hour |
 | exp72 | 53 jurisdictions, earlier models | Median lift 3.25× → 3.18× (about 2%). Largest: Wyoming 1.72× → 1.02×, New York 3.54× → 3.13× |
-| exp83 / exp111 | 53 jurisdictions, today's models (leak-free, official definition) | Median lift 2.61× → 2.45×; the median state gives up about 7%. Largest: Maine −0.95×, Hawaii −0.89× |
+| exp83 / exp112 | 53 jurisdictions, today's models (leak-free, official definition) | Median lift 2.96× → 2.79×; the median state gives up about 4%. Largest: Utah −1.11×, Montana −0.83× |
 | exp78 | FY2028 cost share, earlier models, top-20% basis | $3.85B → $3.49B a year avoided (central), about 9% |
-| exp93 / exp111 | FY2028 cost share, today's models | Central $3.90B → **$3.15B** a year avoided on the top-10% basis (about 19%); $2.72B with the floor on the top-20% basis |
+| exp93 / exp112 | FY2028 cost share, today's models | Central $4.79B → **$4.47B** a year avoided on the top-10% basis (about 7%); $2.81B with the floor on the top-20% basis |
 
-**For decision makers, it's a policy choice.** On current models, proportional review for older households costs the median state about 7% of the dollars found. In avoided FY2028 cost share it costs about $0.75B a year in the central scenario.
+**For decision makers, it's a policy choice.** On current models, proportional review for older households costs the median state about 4% of the dollars found. In avoided FY2028 cost share it costs about $0.32B a year in the central scenario.
 
-**With the floor on,** ranker-guided reviews still avoid an estimated **$3.15B a year** (central). That's about 3.1 times what random review avoids ($1.03B), or $2.72B on the more conservative top-20% basis. The $6.05B, $5.28B, $3.49B and $3.42B figures in older notes all used earlier models or the any-error lift and are superseded.
+**With the floor on,** ranker-guided reviews still avoid an estimated **$4.47B a year** (central). That's about 4.3 times what random review avoids ($1.03B), or $2.81B on the more conservative top-20% basis. The $6.05B, $5.28B, $3.49B, $3.42B and $3.15B figures in older notes all used earlier models or the any-error lift and are superseded.
 
 ## Finding 3: underpayments owed to older households
 
@@ -233,7 +233,7 @@ Every queue rule sits somewhere on a trade-off between dollars found and how eve
 | PA SSI patterns "mostly underpayments" | PA anatomy | SSI left off the budget is 99% overpayments; SSI lower than budgeted is 88% underpayments |
 | Synthetic medical errors "about 0.7×" | exp32, exp44 | 0.71–0.76×, seed-dependent |
 | A flag-card quote ("medical expenses: receipts or recurring bills") | `exp62_flag_cards.py` | The template's wording: "out-of-pocket medical costs for elderly or disabled members, with receipts or recurring bills" |
-| "$6.1B … ($1.0B) … $4.1B" | exp93 | $6.05B, $1.03B, $4.06B on October 23; superseded October 26 by the leak-free $3.42B, $1.03B, $2.79B (exp107), then by $3.15B, $1.03B, $2.72B on the official definition (exp111) |
+| "$6.1B … ($1.0B) … $4.1B" | exp93 | $6.05B, $1.03B, $4.06B on October 23; superseded October 26 by the leak-free $3.42B, $1.03B, $2.79B (exp107), then by $3.15B, $1.03B, $2.72B on an interim label (exp111), and by $4.47B, $1.03B, $2.81B on the official definition as the reviewer recorded it (exp112) |
 | Floor cost "$4.21B → $4.06B" on the top-20% basis | exp93 formula | Correct; $4.21B is computed with exp93's formula and inputs (it reproduces the published $4.06B with the floor on) but isn't printed in exp93 |
 
 Everything else in the October 15 note matched its sources: the error rates, the ratios within each experiment, the floor's effects, the underpayment shares, the medical figures, the caseload shares (31% and 50%, recomputed from the FY2024 file) and the Medicare counts.
@@ -261,6 +261,6 @@ python3 -c "import json; e=json.load(open('experiments/exp83_results.json')); pr
 # the early household-type tests
 python3 experiments/exp47_household_type_burden.py
 python3 experiments/exp49_equity_objective.py
-# cost share with the floor on (central $3.15B; leak-free, official definition) and per state
+# cost share with the floor on (central $4.47B; leak-free, official definition) and per state
 python3 experiments/cost_share_replicate.py
 ```

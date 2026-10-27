@@ -11,10 +11,11 @@
 
 ## Error label: the official definition is the default
 
-- **`SNAPQC_LABEL=official` (the default).** An error is |RAWBEN − FSBEN| above the fiscal year's federal tolerance, which is the payment-error-rate definition; the dollars are that difference.
+- **`SNAPQC_LABEL=official` (the default, exp112).** An error is one the reviewer found (STATUS 2/3) whose AMTERR is above the fiscal year's federal tolerance, which is the payment-error-rate definition; the dollars are |AMTERR|.
+- **Don't build labels from |RAWBEN − FSBEN|.** About 30% of those gaps contradict the reviewer's recorded error (`gap`, exp111, kept only to reproduce).
 - **`SNAPQC_LABEL=any`** (STATUS 2/3, AMTERR dollars) exists only to reproduce exp107–exp109.
 - **Cost-share scenarios** must use the lift on these over-tolerance dollars (exp110: the any-error lift overstated the central estimate, $3.42B against $2.62B).
-- **RAWBEN and FSBEN** may appear in the label, never in the inputs.
+- **RAWBEN and FSBEN** never appear in the inputs.
 
 ## Working conventions
 

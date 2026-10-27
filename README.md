@@ -26,19 +26,21 @@ Since October 26, 2026 (exp106, exp107), every ranker script builds its inputs w
 
 ## Error label: the official definition by default (`SNAPQC_LABEL`)
 
-Since October 26, 2026 (exp110, exp111), the rankers learn and are scored on the **official payment-error definition**, selected by `SNAPQC_LABEL`:
+Since October 26, 2026 (exp110–exp112), the rankers learn and are scored on the **official payment-error definition**, selected by `SNAPQC_LABEL`:
 
 | `SNAPQC_LABEL` | What counts as an error | Dollars | Use it for |
 |---|---|---|---|
-| `official` (**default**) | \|RAWBEN − FSBEN\| above the fiscal year's federal tolerance ($38 FY2020, $39 FY2021, $48 FY2022, $54 FY2023, $56 FY2024): about 12–15% of cases | That difference | Everything: evaluation, cost share, packaged models |
+| `official` (**default**, exp112) | An error the reviewer found (STATUS 2 or 3) whose amount AMTERR is above the fiscal year's federal tolerance ($38 FY2020, $39 FY2021, $48 FY2022, $54 FY2023, $56 FY2024): about 10–12% of cases | \|AMTERR\| | Everything: evaluation, cost share, packaged models |
+| `gap` | \|RAWBEN − FSBEN\| above the tolerance (exp111). About 30% of these contradict the reviewer's recorded amount | That difference | Only to reproduce exp110–exp111 (`*_gap_results.json`) |
 | `any` | Any error the reviewer found (STATUS 2 or 3): about 38% of cases | AMTERR | Only to reproduce exp107–exp109 |
 
 **Why.** The payment error rate that sets each state's H.R. 1 cost share counts only errors above the tolerance. Training on them raises the lift on those dollars (exp110: median top 20%, 2.47× → 2.61×; with the floor 2.10× → 2.45×). It costs 1.7% of the lift on all error dollars. Cost-share scenarios must use the lift on these dollars.
 
-**`RAWBEN` and `FSBEN` enter the label only, never the inputs.** The label lives in `experiments/exp58_agency_rankers.py` (`label()`, `TOLERANCE`).
+**`RAWBEN` and `FSBEN` never enter the inputs** (and, since exp112, not the default label either). The label lives in `experiments/exp58_agency_rankers.py` (`label()`, `TOLERANCE`).
 
 **Results files** (`results_path()`):
 - `*_official_results.json` by default;
+- `*_gap_results.json` under `SNAPQC_LABEL=gap`;
 - `*_leakfree_results.json` under `SNAPQC_LABEL=any`;
 - the original names under `SNAPQC_FEATURES=legacy`.
 
@@ -194,7 +196,8 @@ SNAPQC_FEATURES=legacy SNAPQC_LABEL=any python3 experiments/exp83_context_models
 | 108 | [Rechecking four results that may share the leak](experiments/exp108_leak_recheck.md) | Production | **Two hold, one withdrawn, one corrected.** Card top-3 coverage holds (83% PA, 89% NY; but a fixed list of the 3 most common locations gets 79–80%); odds calibration holds (ECE 0.12–0.22 → 0.05–0.08); the feedback-loop "15% loss" was the leak (leak-free: 2.40× flagged-only vs 2.29× all labels), withdrawn; older-household detail holds on today's models (0.20/0.29 of error rate; 62%/71% of reviewed have errors). Amendment 1: pooling still beats state-only (2.70× vs 2.27×, 46 of 53) |
 | 109 | [Our ranker on giannella's rebuilt pre-review inputs](experiments/exp109_rebuilt_inputs.md) | Production | **Like-for-like: ours still wins, by less.** giannella's R munging script (rebuilds pre-review values) run unmodified except nominal dollars; test cases match theirs in 49 of 49. On rebuilt inputs our dollar recall at 10% is 0.33 vs their lists' 0.27 (higher in 35 of 49), precision 0.34 vs 0.30 (37 of 49). The reviewer's corrected values had flattered our dollar recall by about 17% (0.38 → 0.33) |
 | 110 | [Training on the official error definition](experiments/exp110_official_error_definition.md) | Production | **Adoption rule met.** Training on over-tolerance errors raises top-20% lift on those dollars 2.47× → 2.61× (floor on 2.10× → 2.45×) at 1.7% of the any-error lift. Also found: the published cost share used the any-error lift; on the dollars the rate counts it is $2.62B, not $3.42B; $3.15B with the official-label model |
-| 111 | [Rebuild on the official error definition](experiments/exp111_official_label_rebuild.md) | Production | **Adopted; `SNAPQC_LABEL=official` is the default.** Gate 53 of 53. Median top-20% lift 2.61× (Idaho 1.49×–Alaska 3.37×; 50 of 53 at 2.0×+), top-10% 3.37×, later years 2.51×, floor 2.45× (median cost 7%); elderly ratio 0.44 → 1.02 with the floor, but 8 of 52 stay below 0.8. Central cost share $3.15B (low $0.21B, high $7.05B). 53 models repackaged; every paper, brief and the dashboard restated |
+| 111 | [Rebuild on the official error definition](experiments/exp111_official_label_rebuild.md) | Production | **Superseded by exp112** (its label, built from the benefit gap, contradicted the reviewer in ~30% of cases; kept as `SNAPQC_LABEL=gap`). Gate 53 of 53. Median top-20% lift 2.61× (Idaho 1.49×–Alaska 3.37×; 50 of 53 at 2.0×+), top-10% 3.37×, later years 2.51×, floor 2.45× (median cost 7%); elderly ratio 0.44 → 1.02 with the floor, but 8 of 52 stay below 0.8. Central cost share $3.15B (low $0.21B, high $7.05B). 53 models repackaged; every paper, brief and the dashboard restated |
+| 112 | [The official error label, as the reviewer recorded it](experiments/exp112_reviewer_official_label.md) | Production | **Adopted; the default.** Error = reviewer found one (STATUS 2/3) with \|AMTERR\| over the tolerance (10–12% of cases a year, matching official rates). Gate: `gap` reproduces exp111 byte for byte. Median top-20% lift 2.96× (Kansas 2.18×–Washington 3.90×; all 53 at 2.0×+), top-10% 4.07×, later years 2.95×, floor 2.79× (median cost 4%); forecasts within 20% in 38 of 53. Elderly 0.56 → 1.05 with the floor (8 of 52 below 0.8). Central cost share **$4.47B** (low $0.21B, high $8.24B). 53 models repackaged; papers, briefs, guide and dashboard restated |
 
 Recommended next run: earner×senior joint experiment (exp44 named it the binding constraint for
 medical: earner_senior 0.019 vs 0.042 real, no_earner_nonsenior 0.342 vs 0.273) — exp44's size-mix

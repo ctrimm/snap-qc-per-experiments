@@ -1,0 +1,267 @@
+{
+ "AK": {
+  "state": "AK",
+  "variant": "B_ctx",
+  "time_split": 2.393
+ },
+ "AL": {
+  "state": "AL",
+  "variant": "C_ctx",
+  "time_split": 2.791
+ },
+ "AR": {
+  "state": "AR",
+  "variant": "B_ctx",
+  "time_split": 2.552
+ },
+ "AZ": {
+  "state": "AZ",
+  "variant": "B_ctx",
+  "time_split": 3.705
+ },
+ "CA": {
+  "state": "CA",
+  "variant": "C_ctx",
+  "time_split": 2.859
+ },
+ "CO": {
+  "state": "CO",
+  "variant": "B_ctx",
+  "time_split": 2.983
+ },
+ "CT": {
+  "state": "CT",
+  "variant": "B_ctx",
+  "time_split": 3.31
+ },
+ "DC": {
+  "state": "DC",
+  "variant": "C_ctx",
+  "time_split": 3.08
+ },
+ "DE": {
+  "state": "DE",
+  "variant": "B_ctx",
+  "time_split": 3.001
+ },
+ "FL": {
+  "state": "FL",
+  "variant": "C_ctx",
+  "time_split": 2.769
+ },
+ "GA": {
+  "state": "GA",
+  "variant": "B_ctx",
+  "time_split": 3.2
+ },
+ "GU": {
+  "state": "GU",
+  "variant": "C_ctx",
+  "time_split": 2.806
+ },
+ "HI": {
+  "state": "HI",
+  "variant": "C_ctx",
+  "time_split": 2.553
+ },
+ "IA": {
+  "state": "IA",
+  "variant": "C_ctx",
+  "time_split": 3.432
+ },
+ "ID": {
+  "state": "ID",
+  "variant": "B_ctx",
+  "time_split": 2.51
+ },
+ "IL": {
+  "state": "IL",
+  "variant": "C_ctx",
+  "time_split": 3.073
+ },
+ "IN": {
+  "state": "IN",
+  "variant": "C_ctx",
+  "time_split": 3.119
+ },
+ "KS": {
+  "state": "KS",
+  "variant": "C_ctx",
+  "time_split": 2.197
+ },
+ "KY": {
+  "state": "KY",
+  "variant": "B_ctx",
+  "time_split": 3.255
+ },
+ "LA": {
+  "state": "LA",
+  "variant": "C_ctx",
+  "time_split": 3.117
+ },
+ "MA": {
+  "state": "MA",
+  "variant": "B_ctx",
+  "time_split": 3.556
+ },
+ "MD": {
+  "state": "MD",
+  "variant": "C_ctx",
+  "time_split": 2.595
+ },
+ "ME": {
+  "state": "ME",
+  "variant": "C_ctx",
+  "time_split": 2.355
+ },
+ "MI": {
+  "state": "MI",
+  "variant": "C_ctx",
+  "time_split": 2.966
+ },
+ "MN": {
+  "state": "MN",
+  "variant": "C_ctx",
+  "time_split": 2.364
+ },
+ "MO": {
+  "state": "MO",
+  "variant": "B_ctx",
+  "time_split": 3.176
+ },
+ "MS": {
+  "state": "MS",
+  "variant": "B_ctx",
+  "time_split": 3.083
+ },
+ "MT": {
+  "state": "MT",
+  "variant": "B_ctx",
+  "time_split": 2.457
+ },
+ "NC": {
+  "state": "NC",
+  "variant": "B_ctx",
+  "time_split": 2.951
+ },
+ "ND": {
+  "state": "ND",
+  "variant": "B_ctx",
+  "time_split": 2.647
+ },
+ "NE": {
+  "state": "NE",
+  "variant": "C_ctx",
+  "time_split": 3.182
+ },
+ "NH": {
+  "state": "NH",
+  "variant": "B_ctx",
+  "time_split": 2.299
+ },
+ "NJ": {
+  "state": "NJ",
+  "variant": "B_ctx",
+  "time_split": 2.782
+ },
+ "NM": {
+  "state": "NM",
+  "variant": "C_ctx",
+  "time_split": 3.055
+ },
+ "NV": {
+  "state": "NV",
+  "variant": "B_ctx",
+  "time_split": 3.243
+ },
+ "NY": {
+  "state": "NY",
+  "variant": "B_ctx",
+  "time_split": 3.616
+ },
+ "OH": {
+  "state": "OH",
+  "variant": "B_ctx",
+  "time_split": 2.889
+ },
+ "OK": {
+  "state": "OK",
+  "variant": "B_ctx",
+  "time_split": 3.012
+ },
+ "OR": {
+  "state": "OR",
+  "variant": "C_ctx",
+  "time_split": 3.414
+ },
+ "PA": {
+  "state": "PA",
+  "variant": "C_ctx",
+  "time_split": 2.953
+ },
+ "RI": {
+  "state": "RI",
+  "variant": "B_ctx",
+  "time_split": 2.646
+ },
+ "SC": {
+  "state": "SC",
+  "variant": "B_ctx",
+  "time_split": 2.995
+ },
+ "SD": {
+  "state": "SD",
+  "variant": "C_ctx",
+  "time_split": 2.606
+ },
+ "TN": {
+  "state": "TN",
+  "variant": "C_ctx",
+  "time_split": 2.713
+ },
+ "TX": {
+  "state": "TX",
+  "variant": "B_ctx",
+  "time_split": 2.407
+ },
+ "UT": {
+  "state": "UT",
+  "variant": "B_ctx",
+  "time_split": 2.661
+ },
+ "VA": {
+  "state": "VA",
+  "variant": "B_ctx",
+  "time_split": 2.612
+ },
+ "VI": {
+  "state": "VI",
+  "variant": "B_ctx",
+  "time_split": 3.237
+ },
+ "VT": {
+  "state": "VT",
+  "variant": "C_ctx",
+  "time_split": 3.227
+ },
+ "WA": {
+  "state": "WA",
+  "variant": "C_ctx",
+  "time_split": 3.566
+ },
+ "WI": {
+  "state": "WI",
+  "variant": "C_ctx",
+  "time_split": 3.027
+ },
+ "WV": {
+  "state": "WV",
+  "variant": "C_ctx",
+  "time_split": 2.713
+ },
+ "WY": {
+  "state": "WY",
+  "variant": "B_ctx",
+  "time_split": 2.206
+ }
+}

@@ -3,7 +3,7 @@
 **October 26, 2026 (corrected) · Project summary, September 28 – October 26 · Cory Trimm**
 
 
-> **Corrected October 26, 2026.** Earlier versions overstated the ranking tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error. Comparing with an independent project (giannella/snap_qc) exposed it (experiment 106). Every ranker and cost-share figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). The cost share uses the tool's lift on those dollars; on the earlier any-error basis it had read $3.42 billion (experiment 110). The synthetic-data, language-model and policy-question results did not use these models.
+> **Corrected October 26, 2026.** Earlier versions overstated the ranking tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error. Comparing with an independent project (giannella/snap_qc) exposed it (experiment 106). Every ranker and cost-share figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). The cost share uses the tool's lift on those dollars; on the earlier any-error basis it had read $3.42 billion (experiment 110), and on an interim label built from the benefit gap $3.15 billion (experiment 111). The synthetic-data, language-model and policy-question results did not use these models.
 
 ## Executive summary
 
@@ -13,12 +13,12 @@ The project produced six findings, in order of how ready they are to use:
 
 1. **A ranking tool can roughly double or triple the error dollars a review finds, in every state.**
    - **What it does:** a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.
-   - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 2.6 times the error dollars of random selection, counting the errors the official rate counts (lowest: Idaho, 1.49 times), and the top 10% holds 3.4 times. Its dollar forecasts are within 20% of actual in 43 of 53 jurisdictions.
+   - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 3.0 times the error dollars of random selection, counting the errors the official rate counts (lowest: Kansas, 2.18 times), and the top 10% holds 4.1 times. Its dollar forecasts are within 20% of actual in 38 of 53 jurisdictions.
    - **An independent check:** on giannella/snap_qc's one-year-ahead test, with both tools on their rebuilt pre-review inputs, it found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109).
-   - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate costs the median state about 7% of its lift (the most, Maine, 35%). It leaves 8 jurisdictions below 0.8 for elderly households.
+   - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate costs the median state about 4% of its lift (the most, Utah, 45%). It leaves 8 jurisdictions below 0.8 for elderly households.
 2. **Under the FY2028 cost-sharing rules, that could be worth billions.**
    - **Exposure:** at FY2025 error rates, 43 jurisdictions would owe about $10.6 billion a year.
-   - **Avoided:** in a central scenario, reviewing 2% of cases a month in ranker order (fairness floor on), states would avoid an estimated $3.15 billion of it a year, against $1.03 billion for random reviews of the same volume. The range across scenarios is $0.21–7.05 billion.
+   - **Avoided:** in a central scenario, reviewing 2% of cases a month in ranker order (fairness floor on), states would avoid an estimated $4.47 billion of it a year, against $1.03 billion for random reviews of the same volume. The range across scenarios is $0.21–8.24 billion.
 3. **Realistic synthetic cases teach real skills.** A generator calibrated to the federal data produces fake cases with known errors. Models trained only on these fake cases predict errors in real cases well above chance, reaching about half to two-thirds of what models trained on real data achieve.
 4. **A small language model can learn part of a QC reviewer's job from synthetic data alone.**
    - **Result:** Gemma 4 E4B (about 4 billion parameters), fine-tuned only on synthetic cases, passed all three pre-registered checks on 1,200 fresh real cases. Its overall score was 33% (28% above chance), against 0.5% untrained and 24% for a conventional classifier.
@@ -43,7 +43,7 @@ The project produced six findings, in order of how ready they are to use:
 | Can we make realistic fake SNAP cases? | A generator: fake households, the federal benefit formula, and errors injected at the rates seen in real QC data | Yes. The mix of errors matches the real data to within about 2%, and the dollar error rate to within about 1 point |
 | Do fake cases teach anything real? | Models trained only on fake cases, tested on real ones | Yes, every time; about half to two-thirds as well as training on real data. More fake data stops helping past about 10,000 cases; realism matters more |
 | Can a small AI model read a case like a reviewer? | A 4-billion-parameter model trained on fake cases, tested on 1,200 real ones under rules set in advance | Partly. It finds that there's an error, which way and where; it can't yet say what kind or whose |
-| Which cases should reviewers look at first? | A ranking model per state that estimates each case's likely error dollars | The top fifth of the queue holds about 2.6 times the error dollars of a random fifth (errors over the tolerance; median; 2.0 times or more in 50 of 53 states) |
+| Which cases should reviewers look at first? | A ranking model per state that estimates each case's likely error dollars | The top fifth of the queue holds about 3.0 times the error dollars of a random fifth (errors over the tolerance; median; 2.0 times or more in all 53) |
 | Does ranking by dollars shortchange anyone? | A fairness audit of review shares by household type, and a floor | Elderly households were under-reviewed everywhere; a floor fixes it for a median 10% of the gain per state |
 | What is it worth under the new cost-share rules? | A scenario model of error dollars in each state's caseload | About $3.4 billion a year avoided nationally in the central scenario ($0.2–6.6 billion range) |
 | Can we tell reviewers *why* a case was flagged? | Flag cards: why it was flagged, what to check first, the rule that applies | The top three checks catch 83–89% of errors (a fixed list of the commonest gets about 79%); the odds are calibrated; citations are correct |
@@ -70,12 +70,12 @@ The ranker carries steps 1 and 2, where the dollar gains come from. The language
 
 | All 53 jurisdictions, held-out cases | Result |
 |---|---|
-| Top 20% of the queue vs random review (errors over the tolerance) | median 2.6× (lowest Idaho 1.49×, highest Alaska 3.37×) |
-| Top 10% of the queue | median 3.4× |
-| Train on 2020–22, test on 2023–24 | median 2.5× (lowest Kansas 1.72×) |
-| Error dollars found per review hour | $44–550; median $142 (Pennsylvania $118, against $45 at random) |
-| Dollar forecast within 20% of actual | 43 of 53 |
-| Cost of the fairness floor | median lift 2.6× → 2.4×; median state about 7%, most 35% (Maine) |
+| Top 20% of the queue vs random review (errors over the tolerance) | median 3.0× (lowest Kansas 2.18×, highest Washington 3.90×) |
+| Top 10% of the queue | median 4.1× |
+| Train on 2020–22, test on 2023–24 | median 3.0× (lowest Kansas 2.20×) |
+| Error dollars found per review hour | $29–245; median $109 (Pennsylvania $109, against $36 at random) |
+| Dollar forecast within 20% of actual | 38 of 53 |
+| Cost of the fairness floor | median lift 3.0× → 2.8×; median state about 4%, most 45% (Utah) |
 
 **How it works:**
 - **Two parts:** one estimates the chance a case has an error, the other the dollars if it does. Cases are ranked by the product.
@@ -93,8 +93,8 @@ H.R. 1 (2025) makes states with payment error rates of 6% or more pay 5–15% of
 | All jurisdictions, per year | Ranker-guided reviews (floor on) | Random reviews | Reviewer FTEs |
 |---|---|---|---|
 | Low (1% of cases reviewed a month) | $0.21B avoided | $0.16B | about 770 |
-| **Central (2% a month)** | **$3.15B avoided** | **$1.03B** | about 1,540 |
-| High (3% a month) | $7.05B avoided | $2.39B | about 2,310 |
+| **Central (2% a month)** | **$4.47B avoided** | **$1.03B** | about 1,540 |
+| High (3% a month) | $8.24B avoided | $2.39B | about 2,310 |
 
 **Examples:**
 - **Pennsylvania:** in the central scenario its rate falls from 9.21% to about 7.0%, halving its cost share (10% → 5%, about $209 million a year).
@@ -236,13 +236,13 @@ python3 experiments/exp83_context_models_full_eval.py --workers 6
 python3 deliverables/state_rankers/score_cases.py --state PA --input cases.csv --output ranked.csv --id-col CASE_ID
 ```
 
-- **Expected (the defaults: leak-free inputs, official error label):** median top-20% lift 2.61×, top-10% 3.37×, forecasts within ±20% in 43 of 53 (`exp83_official_results.json`). `SNAPQC_LABEL=any` reproduces exp107 (`exp83_leakfree_results.json`); adding `SNAPQC_FEATURES=legacy` reproduces the published pre-exp106 figures.
+- **Expected (the defaults: leak-free inputs, official error label):** median top-20% lift 2.96×, top-10% 4.07×, forecasts within ±20% in 38 of 53 (`exp83_official_results.json`). `SNAPQC_LABEL=gap` reproduces exp111 (`exp83_gap_results.json`); `SNAPQC_LABEL=any` reproduces exp107 (`exp83_leakfree_results.json`); adding `SNAPQC_FEATURES=legacy` reproduces the published pre-exp106 figures.
 - **Holdouts:** fixed per state in `exp68_holdouts.json` (25%, stratified, seed 68 + state code).
 
 ### Finding 2: the cost-share figure
 
 ```bash
-python3 experiments/cost_share_replicate.py              # national: $3.15B central (no dependencies)
+python3 experiments/cost_share_replicate.py              # national: $4.47B central (no dependencies)
 python3 experiments/cost_share_replicate.py --state PA   # one state, every step shown
 # full rebuild from raw data: refits every ranker; stops unless every lift matches exp83 exactly
 python3 experiments/exp93_cost_share_current_models.py --workers 6
@@ -312,7 +312,7 @@ cd experiments && inspect eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model op
 | Oct 15 | Cost share re-run on the deployed rankers with the fairness floor on (reported then as $6.05 billion, later found inflated) |
 | Oct 16–18 | Flag-card Rules line at scale; `COST-SHARE-REPLICATE.md` for national and per-state reproduction; quiz audit; best policy setup 89.6% |
 | Oct 19–23 | Policy-assistant plateau: supersession notes, the date, 458 CDSS letters, citation links, a routing layer confirmed in a pre-registered run (89.8%) |
-| Oct 26 | Comparing with giannella/snap_qc exposed a feature leak in the rankers (exp106); leak-free rebuild (exp107): median 2.7×, $3.42 billion central cost share. Leak-free became the default. Same day: the official error definition became the default (exp110, exp111): median 2.6×, $3.15 billion |
+| Oct 26 | Comparing with giannella/snap_qc exposed a feature leak in the rankers (exp106); leak-free rebuild (exp107): median 2.7×, $3.42 billion central cost share. Leak-free became the default. Same day: the official error definition became the default (exp110, exp111: median 2.6×, $3.15 billion on a label built from the benefit gap), then the label was corrected to the reviewer's finding (exp112): median 3.0×, $4.47 billion |
 
 ## Appendix: how concentrated are error dollars?
 

@@ -2,17 +2,17 @@
 
 **October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate: errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 Pennsylvania's FY2025 payment error rate was 9.21%. Under the H.R. 1 cost-sharing rules, that rate means the state would pay 10% of its SNAP benefit costs from FY2028, about **$418 million a year**. This brief shows what a case-ranking tool, built and tested on Pennsylvania's federal QC records, could do about that.
 
-- **It finds 2.6 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$118 per review hour against $45**. The top 10% finds 3.4 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.7× edge. Expected error dollars for the top fifth of the queue were 13% above actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.58 of their share of error cases. A floor brings that to 0.94, at a cost of about 17% of the lift (2.6× → 2.2×).
+- **It finds 3.0 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$109 per review hour against $36**. The top 10% finds 4.4 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 3.0× edge. Expected error dollars for the top fifth of the queue were 17% above actual.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.71 of their share of error cases. A floor brings that to 0.94, at a cost of about 10% of the lift (3.0× → 2.7×).
 - **Underpayments:** 26% of Pennsylvania's error dollars are households paid too little (national 28%).
-- **Cost share:** in the central scenario (2% of cases reviewed a month, about 20,959 reviews and 75 FTEs), the rate falls to 7.01%, avoiding about **$209 million a year**. Random reviews of the same volume leave it at 8.40%.
+- **Cost share:** in the central scenario (2% of cases reviewed a month, about 20,959 reviews and 75 FTEs), the rate falls to 6.61%, avoiding about **$209 million a year**. Random reviews of the same volume leave it at 8.40%.
 
 **Recommendation:** a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.
 
@@ -49,7 +49,7 @@ It does not use the benefit the agency issued: in the federal QC data that would
 
 It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-Pennsylvania's model learns from every state's QC cases plus Pennsylvania's maximum allotments, with its own cases weighted ten times. Among the 53 jurisdictions, Pennsylvania ranks 25 on the top-20% lift, 25 on the top-10% lift and 18 on the later-years test (1 = best).
+Pennsylvania's model learns from every state's QC cases plus Pennsylvania's maximum allotments, with its own cases weighted ten times. Among the 53 jurisdictions, Pennsylvania ranks 23 on the top-20% lift, 20 on the top-10% lift and 27 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -57,12 +57,12 @@ Pennsylvania's model learns from every state's QC cases plus Pennsylvania's maxi
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **3.4×** | $153 ($45) | 14% over | 25 |
-| 20% of the queue | **2.6×** | $118 ($45) | 13% over | 25 |
-| 20%, trained 2020–22, tested 2023–24 | 2.7× | | | 18 |
-| 20%, with the fairness floor | 2.2× | | | |
+| 10% of the queue | **4.4×** | $160 ($36) | 11% over | 20 |
+| 20% of the queue | **3.0×** | $109 ($36) | 17% over | 23 |
+| 20%, trained 2020–22, tested 2023–24 | 3.0× | | | 27 |
+| 20%, with the fairness floor | 2.7× | | | |
 
-Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.61× (top 20%).
+Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.96× (top 20%).
 
 ### Fairness
 
@@ -70,16 +70,16 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Elderly | 0.58 | 0.94 |
-| Disabled | 0.82 | 0.96 |
-| Single parent | 1.87 | 1.72 |
-| Childless adult | 0.72 | 0.97 |
+| Elderly | 0.71 | 0.94 |
+| Disabled | 0.81 | 1.05 |
+| Single parent | 1.71 | 1.66 |
+| Childless adult | 1.08 | 0.69 |
 
-The floor costs about 17% of the lift. We recommend it on by default.
+The floor costs about 10% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 1.4 times the underpayment dollars of random review, against 1.6 times for the main ranker (both trained on Pennsylvania's own cases; exp79, leak-free, official definition). Here it does no better than the main ranker, so a separate queue adds little.
+A second ranker trained on underpayments finds 3.1 times the underpayment dollars of random review, against 2.2 times for the main ranker (both trained on Pennsylvania's own cases; exp79, leak-free, official definition).
 
 ### Flag cards for reviewers
 
@@ -92,11 +92,11 @@ H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10
 | Scenario | Reviewed a month | Rate after | State share | Avoided a year | Random reviews, same volume |
 |---|---|---|---|---|---|
 | Today (FY2025 rate) | — | 9.21% | 10% | — | — |
-| Low | 1% (10,480 reviews, 37 FTEs) | 8.75% | 10% | $0M | 8.99%, $0M |
-| **Central** | 2% (20,959 reviews, 75 FTEs) | 7.01% | 5% | $209M | 8.40%, $0M |
-| High | 3% (31,439 reviews, 112 FTEs) | 5.39% | 0% | $418M | 7.57%, $209M |
+| Low | 1% (10,480 reviews, 37 FTEs) | 8.65% | 10% | $0M | 8.99%, $0M |
+| **Central** | 2% (20,959 reviews, 75 FTEs) | 6.61% | 5% | $209M | 8.40%, $0M |
+| High | 3% (31,439 reviews, 112 FTEs) | 4.89% | 0% | $418M | 7.57%, $209M |
 
-**The thresholds.** Under the central scenario's other assumptions, Pennsylvania crosses 8% at about **1.0%** of cases reviewed a month (5% share); 6% at about **3.4%** of cases reviewed a month (no share).
+**The thresholds.** Under the central scenario's other assumptions, Pennsylvania crosses 8% at about **0.8%** of cases reviewed a month (5% share); 6% at about **2.7%** of cases reviewed a month (no share).
 
 These figures show the size of the opportunity, not a forecast. The model leaves out:
 - timing relative to the federal sample month;

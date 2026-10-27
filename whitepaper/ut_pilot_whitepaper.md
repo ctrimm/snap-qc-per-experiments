@@ -2,17 +2,17 @@
 
 **October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate: errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 Utah's FY2025 payment error rate was 5.54%, the eighth lowest of 53 jurisdictions and just under the 6% line where H.R. 1 cost sharing begins. Utah owes nothing at that rate. But it is the closest of the pilot states to the line: a rise of half a point would cost about $19 million a year.
 
-- **It finds 2.0 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$74 per review hour against $37**. The top 10% finds 1.9 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.4× edge. Expected error dollars for the top fifth of the queue were 17% above actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.45 of their share of error cases. A floor brings that to 1.34, at a cost of about 25% of the lift (2.0× → 1.5×).
+- **It finds 2.4 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$37 per review hour against $15**. The top 10% finds 1.9 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.7× edge. Expected error dollars for the top fifth of the queue were 36% above actual.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.70 of their share of error cases. A floor brings that to 1.41, at a cost of about 45% of the lift (2.4× → 1.3×).
 - **Underpayments:** 37% of Utah's error dollars are households paid too little (national 28%).
-- **Cheap insurance:** at its current rate Utah owes nothing. In the model, about 1,633 ranked reviews a month (5.8 FTEs) would bring a rate of 6.5% back under 6% (see *FY2028 cost share*).
+- **Cheap insurance:** at its current rate Utah owes nothing. In the model, about 1,633 ranked reviews a month (5.8 FTEs) would bring neither a 6.5% nor an 8.5% rate back under 6% (see *FY2028 cost share*).
 
 **Recommendation:** a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.
 
@@ -49,7 +49,7 @@ It does not use the benefit the agency issued: in the federal QC data that would
 
 It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-Utah's model learns from every state's QC cases plus Utah's maximum allotments. Among the 53 jurisdictions, Utah ranks 50 on the top-20% lift, 51 on the top-10% lift and 31 on the later-years test (1 = best).
+Utah's model learns from every state's QC cases plus Utah's maximum allotments. Among the 53 jurisdictions, Utah ranks 48 on the top-20% lift, 53 on the top-10% lift and 37 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -57,12 +57,12 @@ Utah's model learns from every state's QC cases plus Utah's maximum allotments. 
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **1.9×** | $68 ($37) | 49% over | 51 |
-| 20% of the queue | **2.0×** | $74 ($37) | 17% over | 50 |
-| 20%, trained 2020–22, tested 2023–24 | 2.4× | | | 31 |
-| 20%, with the fairness floor | 1.5× | | | |
+| 10% of the queue | **1.9×** | $29 ($15) | 115% over | 53 |
+| 20% of the queue | **2.4×** | $37 ($15) | 36% over | 48 |
+| 20%, trained 2020–22, tested 2023–24 | 2.7× | | | 37 |
+| 20%, with the fairness floor | 1.3× | | | |
 
-Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.61× (top 20%).
+Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.96× (top 20%).
 
 ### Fairness
 
@@ -70,16 +70,16 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Elderly | 0.45 | 1.34 |
-| Disabled | 0.96 | 1.23 |
-| Single parent | 1.33 | 1.01 |
-| Childless adult | 0.15 | 0.99 |
+| Elderly | 0.70 | 1.41 |
+| Disabled | 0.86 | 1.56 |
+| Single parent | 1.55 | 1.30 |
+| Childless adult | 0.70 | 0.53 |
 
-The floor costs about 25% of the lift. We recommend it on by default.
+The floor costs about 45% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 2.3 times the underpayment dollars of random review, against 2.1 times for the main ranker (both trained on Utah's own cases; exp79, leak-free, official definition).
+A second ranker trained on underpayments finds 1.4 times the underpayment dollars of random review, against 1.9 times for the main ranker (both trained on Utah's own cases; exp79, leak-free, official definition). Here it does no better than the main ranker, so a separate queue adds little.
 
 ### Flag cards for reviewers
 
@@ -93,11 +93,11 @@ At 5.54%, Utah pays nothing. **How much a higher rate would cost:** Utah's SNAP 
 
 | If Utah's rate were… | Share owed | Cost a year | Rate after ranked reviews (≈1,633 a month, 5.8 FTEs) | Rate after random reviews |
 |---|---|---|---|---|
-| 5.54% (FY2025) | 0% | $0 | 4.76% | 5.05% |
-| 6.5% | 5% | about $19M | 5.58% | 5.93% |
-| 8.5% | 10% | about $37M | 7.30% | 7.76% |
+| 5.54% (FY2025) | 0% | $0 | 5.19% | 5.05% |
+| 6.5% | 5% | about $19M | 6.09% | 5.93% |
+| 8.5% | 10% | about $37M | 7.96% | 7.76% |
 
-Ranked reviews bring 6.5% back under 6%; random reviews of the same volume bring 6.5% back under.
+Ranked reviews bring neither hypothetical rate back under 6%; random reviews of the same volume bring 6.5% back under.
 
 These figures show the size of the opportunity, not a forecast. The model leaves out:
 - timing relative to the federal sample month;

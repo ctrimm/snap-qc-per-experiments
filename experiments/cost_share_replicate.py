@@ -17,7 +17,7 @@ HERE = Path(__file__).resolve().parent
 SCEN = {"low": {"R": 0.01, "lift": "top20", "f": 0.6, "m": 4},       # exp69, unchanged in exp93
         "central": {"R": 0.02, "lift": "top10", "f": 0.8, "m": 6},
         "high": {"R": 0.03, "lift": "top10", "f": 0.9, "m": 8}}
-MEDIAN_FLOOR_LIFT = {"top10": 3.13, "top20": 2.45}  # leak-free exp93/exp107 medians across 53 jurisdictions (fallback for a state with no ranker)
+MEDIAN_FLOOR_LIFT = {"top10": 3.97, "top20": 2.79}  # leak-free exp93/exp107 medians across 53 jurisdictions (fallback for a state with no ranker)
 
 
 def share(per):

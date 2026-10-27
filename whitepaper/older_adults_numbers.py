@@ -10,7 +10,7 @@ elderly-or-disabled, medical-expense-on-file rate (24.2%) is reproduced first as
 Income sources use the verified income fields (FSSOCSEC, FSSSI, FSPENSION, FSWAGES > 0); the ranker never uses them.
 Per-jurisdiction fairness ratios come from experiments/exp83_official_results.json (leak-free inputs, official error label,
 exp111); the random-review ratio is computed on the same held-out cases (experiments/exp68_holdouts.json) as overall
-error rate / elderly error rate, both over the federal tolerance (the model's definition). Profiles stay any-error.
+error rate / elderly error rate, both with the model's definition: an error found whose amount is over the federal tolerance (exp112). Profiles stay any-error.
 """
 import csv
 import glob
@@ -57,7 +57,7 @@ def load():
                 "el1": int(num(r.get("ELEMENT1"))), "nat1": int(num(r.get("NATURE1"))), "med_var": 365 in els,
                 "socsec": num(r.get("FSSOCSEC")) > 0, "ssi": num(r.get("FSSSI")) > 0, "pension": num(r.get("FSPENSION")) > 0,
                 "wages": num(r.get("FSWAGES")) > 0, "w": num(r.get("FYWGT")), "fy": fy,
-                "off": abs(num(r.get("RAWBEN")) - num(r.get("FSBEN"))) > TOLERANCE[fy]}
+                "off": r["STATUS"].strip() in ("2", "3") and abs(num(r["AMTERR"])) > TOLERANCE[fy]}
             idx[c] += 1
     return rows, abbr
 

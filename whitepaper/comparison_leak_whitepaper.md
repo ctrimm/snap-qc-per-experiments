@@ -9,7 +9,7 @@
 | Question | Which SNAP cases should a state review first? | Same |
 | Data | Federal QC public-use files, FY2017–19 and FY2022–24 | Same files, FY2020–24 |
 | Inputs | **Rebuilt pre-review values:** starting from the reviewer's values and the error codes, the field in error is shifted until the benefit formula gives the benefit the agency issued | **The reviewer's recorded values;** until October 26 also the issued benefit, which was the leak |
-| What counts as an error | Off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | **The same, since October 26** (experiment 111); before that, any error the reviewer found: about 38% |
+| What counts as an error | Off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | **The same, since October 26** (experiments 111–112); before that, any error the reviewer found: about 38% |
 | Ranked by | Chance that a flagged case has an error, with a 99% safety margin | Expected error dollars |
 | What a state gets | Readable if-then rules in an Excel workbook per state | A scoring model per state |
 | Older and disabled households | A feature in the rules; precision ranking reaches them | An explicit floor on their share of reviews |
@@ -46,11 +46,11 @@ In October we compared our SNAP error-ranking tool with an independent project o
 
    | Median of 53 | Published | Corrected (leak-free) | Today (also official error definition) |
    |---|---|---|---|
-   | Top 20% of the review queue vs random | 4.0× | **2.7×** | **2.6×** |
-   | Top 10% vs random | 6.4× | **3.3×** | **3.4×** |
-   | FY2028 cost share avoided, central scenario | $6.05 billion | $3.42 billion | **$3.15 billion** |
+   | Top 20% of the review queue vs random | 4.0× | **2.7×** | **3.0×** |
+   | Top 10% vs random | 6.4× | **3.3×** | **4.1×** |
+   | FY2028 cost share avoided, central scenario | $6.05 billion | $3.42 billion | **$4.47 billion** |
 
-   The last column counts only errors over the federal tolerance, the ones the payment error rate counts. The cost share now uses the lift on those dollars (experiments 110 and 111).
+   The last column counts only errors over the federal tolerance, the ones the payment error rate counts. The cost share now uses the lift on those dollars (experiments 110–112).
 
 3. **On the same test and the same inputs, our tool finds more error dollars than giannella's lists.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:
    - **Dollars:** it finds about **$2.6 billion a year** in error dollars against their $2.2 billion, and more in 35 of 49 states.
@@ -74,7 +74,7 @@ Every paper, brief, guide and dashboard from this project has been corrected (Oc
 | Remove the leak | Took the issued benefit out of the model's inputs and reran everything | About two-thirds of the published gain held up (2.7× against 4.0×) |
 | Compare again | Leak-free model on their test | Ours finds more error dollars in 39 of 49 states, at slightly higher precision |
 | Compare like-for-like | Ran giannella's own data-preparation script and trained our model on its rebuilt pre-review inputs | Ours still finds more in 35 of 49 states; the reviewer's values had flattered our dollars by about 17% |
-| Match the official definition | Trained and scored on errors over the federal tolerance, which is what the error rate counts | Lift on those dollars up (2.47× → 2.61×); cost share restated to $3.15 billion |
+| Match the official definition | Trained and scored on errors over the federal tolerance, which is what the error rate counts | Lift on those dollars up (2.47× → 2.96×, once the label used the reviewer's own finding); cost share restated to $4.47 billion |
 | Correct everything | Rebuilt the models, papers, briefs and dashboard; made leak-free the default | Corrected October 26 |
 
 ## The two projects
@@ -83,7 +83,7 @@ Every paper, brief, guide and dashboard from this project has been corrected (Oc
 |---|---|---|
 | What a state gets | A ranked list of if-then rules per state, in an Excel workbook | A scoring model per state that ranks cases by expected error dollars |
 | How cases are ranked | By how often a rule's flagged cases have an error (precision), with a statistical safety margin | By expected error dollars (chance of an error × likely dollars) |
-| What counts as an error | A payment off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | The same since October 26 (experiment 111); before, any error found by the reviewer: about 38% of cases |
+| What counts as an error | A payment off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | The same since October 26 (experiments 111–112); before, any error found by the reviewer: about 38% of cases |
 | Data | FY2017–19 and FY2022–24; dollars converted to 2026 prices | FY2020–24; nominal dollars |
 | Inputs | Rebuilt pre-review values: starting from the reviewer's values and the error codes, the field in error is shifted until the benefit formula gives the benefit the agency issued | The reviewer's recorded values, plus the issued benefit (until October 26) |
 
@@ -120,21 +120,21 @@ Applying the benefit formula to the reported net income reproduces the **reviewe
 
 We removed the two inputs built from the issued benefit and reran everything with the same data, splits, seeds and settings (experiments 106 and 107). The rerun matched the published results exactly when the two inputs were put back, so the change comes from those inputs alone.
 
-| Median of 53 jurisdictions | Published | Corrected: leak-free (exp107) | **Today: leak-free, official definition (exp111)** |
+| Median of 53 jurisdictions | Published | Corrected: leak-free (exp107) | **Today: leak-free, official definition (exp112)** |
 |---|---|---|---|
-| Top 20% of the queue vs random review | 3.97× | 2.70× (range 1.98–3.67) | **2.61×** (range 1.49–3.37) |
-| Top 10% | 6.38× | 3.31× | **3.37×** |
-| Trained 2020–22, tested 2023–24 | 3.80× | 2.61× | **2.51×** |
-| Dollar forecast within 20% of actual | 52 of 53 | 43 of 53 | **43 of 53** |
-| Older households' review ratio, ranking by dollars (1.0 = in proportion to risk) | 0.61 | 0.33 | **0.44** |
-| Cost of the fairness floor (median state) | about 1.5% of the gain | about 10% | **about 7%** |
-| Underpayment ranker vs main ranker (underpayment dollars) | 3.4× vs 1.5× | 1.8× vs 1.5× | **1.9× vs 1.4×** |
-| FY2028 cost share avoided: central (low–high) | $6.05B ($0.39–10.06B) | $3.42B ($0.21–6.63B) | **$3.15B ($0.21–7.05B)** |
+| Top 20% of the queue vs random review | 3.97× | 2.70× (range 1.98–3.67) | **2.96×** (range 2.18–3.90) |
+| Top 10% | 6.38× | 3.31× | **4.07×** |
+| Trained 2020–22, tested 2023–24 | 3.80× | 2.61× | **2.95×** |
+| Dollar forecast within 20% of actual | 52 of 53 | 43 of 53 | **38 of 53** |
+| Older households' review ratio, ranking by dollars (1.0 = in proportion to risk) | 0.61 | 0.33 | **0.56** |
+| Cost of the fairness floor (median state) | about 1.5% of the gain | about 10% | **about 4%** |
+| Underpayment ranker vs main ranker (underpayment dollars) | 3.4× vs 1.5× | 1.8× vs 1.5× | **1.7× vs 1.3×** |
+| FY2028 cost share avoided: central (low–high) | $6.05B ($0.39–10.06B) | $3.42B ($0.21–6.63B) | **$4.47B ($0.21–8.24B)** |
 
-The first two columns count every error the reviewer found. The last counts only errors over the federal tolerance, the ones the payment error rate (and so the cost share) counts. On those dollars the exp107 model scored 2.47×; training on them raised it to 2.61× (experiment 110). The $3.42 billion had used the lift on all error dollars; on the dollars the rate counts, the same model gives $2.62 billion.
+The first two columns count every error the reviewer found. The last counts only errors over the federal tolerance, the ones the payment error rate (and so the cost share) counts. On those dollars the exp107 model scored 2.47×; training on them raised it to 2.61× (experiment 110), and to 2.96× once the label used the reviewer's own finding rather than the benefit gap, which contradicts the reviewer in about 30% of cases (experiment 112). The $3.42 billion had used the lift on all error dollars; on the dollars the rate counts, the same model gives $2.62 billion.
 
 **What held up:**
-- **The tool finds more error dollars than random review in every state:** at least 2.0 times in 50 of 53 on today's models (the lowest, Idaho, 1.49 times).
+- **The tool finds more error dollars than random review in every state:** at least 2.0 times in all 53 on today's models (the lowest, Kansas, 2.18 times).
 - **Ranking by dollars under-reviews older households.** It does so even more clearly without the leak, under either error definition.
 - **The fairness floor fixes most of it.** On today's models it leaves 8 jurisdictions below 0.8 for older households.
 
@@ -199,7 +199,7 @@ The underlying difference is about 1.2 times the error dollars found; the band s
 
 **Older and disabled households have more errors, but smaller ones.** Under the official definition they have fewer.
 - **giannella's result:** their precision-ranked lists catch more of these households' errors.
-- **Ours:** a dollar-ranked tool reviews them less than random selection would under either definition (leak-free any-error models: 0.33 of their share of any-error risk, 0.50 under the official definition; today's models, trained on the official definition: 0.44).
+- **Ours:** a dollar-ranked tool reviews them less than random selection would under either definition (leak-free any-error models: 0.33 of their share of any-error risk, 0.50 under the official definition; today's models, trained on the official definition: 0.56).
 
 The fairness concern belongs to dollar ranking specifically, and the floor fixes it.
 
@@ -209,7 +209,7 @@ The fairness concern belongs to dollar ranking specifically, and the floor fixes
 - **Models:** all 53 state models were rebuilt without the issued benefit.
 - **Documents:** every paper, state brief, the replication guides and the state-map dashboard now carry the corrected figures and a correction note.
 - **Code:** the leak-free inputs are the default (`SNAPQC_FEATURES=leakfree`); the old inputs remain only to reproduce the published results.
-- **Error definition (the same day, experiments 110–111):** the models now learn and are scored on errors over the federal tolerance (`SNAPQC_LABEL=official`, the default), all 53 were repackaged, and the cost share uses the lift on those dollars: $3.15 billion central.
+- **Error definition (the same day, experiments 110–112):** the models now learn and are scored on errors the reviewer found whose amount is over the federal tolerance (`SNAPQC_LABEL=official`, the default). All 53 were repackaged, and the cost share uses the lift on those dollars: $4.47 billion central. An interim version labelled errors by the benefit gap ($3.15 billion), which contradicts the reviewer's finding in about 30% of cases.
 
 **Rechecked the same day (experiment 108).** Four further results used models with the same inputs. Each was rerun both ways; the old inputs reproduced every published figure.
 1. **Flag cards' "check first" coverage holds** (83–89% leak-free against 86–88%). But a fixed list of each state's three most common error locations covers about 79–80%, so most of it is base rate.
@@ -248,7 +248,7 @@ python3 experiments/exp93_cost_share_current_models.py --workers 6
 python3 experiments/exp79_underpayment_ranker.py --workers 8
 python3 experiments/exp107_timesplit.py --workers 8
 python3 experiments/exp107_package.py --workers 8
-# the official error definition (exp110 test; exp111 is the default rebuild: rerun exp83/93/79/107 above without SNAPQC_LABEL)
+# the official error definition (exp110 test; exp112 is the default rebuild: rerun exp83/93/79/107 above with no SNAPQC_LABEL; SNAPQC_LABEL=gap reproduces exp111)
 python3 experiments/exp110_official_error_definition.py --workers 8
 # like-for-like on giannella's rebuilt inputs: their munging script in a scratch copy (R + dplyr, tidyr, haven, here, ranger,
 # yardstick, ggplot2, scales, arrow), then our model on its frame

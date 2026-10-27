@@ -2,17 +2,17 @@
 
 **October 26, 2026 (corrected; first version October 23) · State brief · Cory Trimm**
 
-> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
+> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate: errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). Figures computed directly from the QC data (error rates, error patterns, caseload shares) were not affected.
 
 ## Summary
 
 Texas's FY2025 payment error rate was 9.34%. Under the H.R. 1 cost-sharing rules, that rate means the state would pay 10% of its SNAP benefit costs from FY2028, about **$685 million a year**. This brief shows what a case-ranking tool, built and tested on Texas's federal QC records, could do about that.
 
-- **It finds 2.4 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$154 per review hour against $64**. The top 10% finds 2.7 times.
-- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.1× edge. Expected error dollars for the top fifth of the queue were 20% below actual.
-- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.17 of their share of error cases. A floor brings that to 1.04, at a cost of about 27% of the lift (2.4× → 1.8×).
+- **It finds 2.5 times the error dollars of random review,** counting the errors the official payment error rate counts (over the federal tolerance). Reviewers working the top 20% of the tool's queue would find about **$97 per review hour against $40**. The top 10% finds 3.1 times.
+- **It holds up over time.** Trained on 2020–22 and tested on 2023–24, it kept a 2.4× edge. Expected error dollars for the top fifth of the queue were 3% above actual.
+- **It's fair by design.** Ranking purely by dollars would review elderly households at 0.49 of their share of error cases. A floor brings that to 1.01, at a cost of about 2% of the lift (2.5× → 2.4×).
 - **Underpayments:** 41% of Texas's error dollars are households paid too little (national 28%).
-- **Cost share:** in the central scenario (2% of cases reviewed a month, about 28,837 reviews and 103 FTEs), the rate falls to 8.05%, avoiding about **$0 million a year**. Random reviews of the same volume leave it at 8.52%.
+- **Cost share:** in the central scenario (2% of cases reviewed a month, about 28,837 reviews and 103 FTEs), the rate falls to 7.79%, avoiding about **$343 million a year**. Random reviews of the same volume leave it at 8.52%.
 
 **Recommendation:** a shadow pilot. Score the active caseload, have reviewers work the top of the queue alongside current selection with the fairness floor on, and compare the dollars found with the tool's forecast.
 
@@ -48,7 +48,7 @@ It does not use the benefit the agency issued: in the federal QC data that would
 
 It estimates the chance the case has an error over the federal tolerance (the kind the official payment error rate counts) and how many dollars it would be. It multiplies them to get expected error dollars, and orders the review queue by that number.
 
-Texas's model learns from every state's QC cases plus Texas's maximum allotments. Among the 53 jurisdictions, Texas ranks 40 on the top-20% lift, 43 on the top-10% lift and 47 on the later-years test (1 = best).
+Texas's model learns from every state's QC cases plus Texas's maximum allotments. Among the 53 jurisdictions, Texas ranks 47 on the top-20% lift, 46 on the top-10% lift and 47 on the later-years test (1 = best).
 
 ### Results on cases the model never saw
 
@@ -56,12 +56,12 @@ Texas's model learns from every state's QC cases plus Texas's maximum allotments
 
 | Review the top… | Error dollars vs random | Found per review hour (random) | Forecast vs actual | Rank of 53 |
 |---|---|---|---|---|
-| 10% of the queue | **2.7×** | $173 ($64) | 16% under | 43 |
-| 20% of the queue | **2.4×** | $154 ($64) | 20% under | 40 |
-| 20%, trained 2020–22, tested 2023–24 | 2.1× | | | 47 |
-| 20%, with the fairness floor | 1.8× | | | |
+| 10% of the queue | **3.1×** | $123 ($40) | 3% over | 46 |
+| 20% of the queue | **2.5×** | $97 ($40) | 3% over | 47 |
+| 20%, trained 2020–22, tested 2023–24 | 2.4× | | | 47 |
+| 20%, with the fairness floor | 2.4× | | | |
 
-Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.61× (top 20%).
+Error dollars here are those over the federal tolerance. Reviews are assumed to take 30 minutes. The 53-jurisdiction median is 2.96× (top 20%).
 
 ### Fairness
 
@@ -69,16 +69,16 @@ The measure is each household type's share of reviews divided by its share of ca
 
 | Household type | Dollars only | With the floor |
 |---|---|---|
-| Elderly | 0.17 | 1.04 |
-| Disabled | 1.11 | 1.15 |
-| Single parent | 1.63 | 0.95 |
-| Childless adult | 0.19 | 0.76 |
+| Elderly | 0.49 | 1.01 |
+| Disabled | 0.74 | 1.00 |
+| Single parent | 1.32 | 0.92 |
+| Childless adult | 0.51 | 0.84 |
 
-The floor costs about 27% of the lift. We recommend it on by default.
+The floor costs about 2% of the lift. We recommend it on by default.
 
 ### Underpayments
 
-A second ranker trained on underpayments finds 1.8 times the underpayment dollars of random review, against 1.4 times for the main ranker (both trained on Texas's own cases; exp79, leak-free, official definition).
+A second ranker trained on underpayments finds 1.2 times the underpayment dollars of random review, against 1.1 times for the main ranker (both trained on Texas's own cases; exp79, leak-free, official definition).
 
 ### Flag cards for reviewers
 
@@ -91,11 +91,11 @@ H.R. 1 sets the state share by payment error rate: 0% under 6%, 5% at 6–8%, 10
 | Scenario | Reviewed a month | Rate after | State share | Avoided a year | Random reviews, same volume |
 |---|---|---|---|---|---|
 | Today (FY2025 rate) | — | 9.34% | 10% | — | — |
-| Low | 1% (14,418 reviews, 52 FTEs) | 8.96% | 10% | $0M | 9.12%, $0M |
-| **Central** | 2% (28,837 reviews, 103 FTEs) | 8.05% | 10% | $0M | 8.52%, $0M |
-| High | 3% (43,255 reviews, 154 FTEs) | 6.87% | 5% | $343M | 7.68%, $343M |
+| Low | 1% (14,418 reviews, 52 FTEs) | 8.83% | 10% | $0M | 9.12%, $0M |
+| **Central** | 2% (28,837 reviews, 103 FTEs) | 7.79% | 5% | $343M | 8.52%, $0M |
+| High | 3% (43,255 reviews, 154 FTEs) | 6.45% | 5% | $343M | 7.68%, $343M |
 
-**The thresholds.** Under the central scenario's other assumptions, Texas crosses 8% at about **2.1%** of cases reviewed a month (5% share); 6% at about **7.0%** of cases reviewed a month (no share).
+**The thresholds.** Under the central scenario's other assumptions, Texas crosses 8% at about **1.7%** of cases reviewed a month (5% share); 6% at about **5.6%** of cases reviewed a month (no share).
 
 These figures show the size of the opportunity, not a forecast. The model leaves out:
 - timing relative to the federal sample month;

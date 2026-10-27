@@ -42,7 +42,7 @@ FILES = {st: f"{st.lower()}_pilot_whitepaper.md" for st in CODES} | {"WY": "wy_s
 CORRECTED = ("> **Corrected October 26, 2026.** The October 23 version of this brief overstated the tool's results. Its models "
              "used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC "
              "file, are what the QC reviewer recorded, so they could partly see the error (experiment 106). Every model figure "
-             "here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, those over the federal tolerance (experiment 111). Figures computed directly from the QC data (error rates, "
+             "here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate: errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). Figures computed directly from the QC data (error rates, "
              "error patterns, caseload shares) were not affected.")
 STATE_CARDS = {"PA": "83%", "NY": "89%"}  # exp108 leak-free
 
