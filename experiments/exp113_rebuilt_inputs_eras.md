@@ -70,5 +70,49 @@ No hypothesis on direction.
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-(pending)
+**Gate passed:** our test counts equal giannella's lists' `n_te` in every state, window and price basis (0 mismatches). Same cases, same error definition, same budgets.
+
+**Coverage:** 49 jurisdictions. giannella's frame leaves out Alaska, Hawaii, Guam and the Virgin Islands, the jurisdictions with their own allotment tables.
+
+**Our model on rebuilt pre-review inputs, median of 49:**
+
+| | W1: one year ahead (test 2024) | W2: second era (test 2019) | W3: three years ahead (test 2022) |
+|---|---|---|---|
+| Top-20% dollar lift, nominal | **2.61×** (47 at 2.0×+) | **2.58×** (44) | **2.66×** (45) |
+| Top-20% dollar lift, 2026 prices | 2.53× (45) | 2.60× (43) | 2.56× (46) |
+| Lowest states, nominal | Texas 1.82×, Montana 1.91× | Vermont 1.46×, Idaho 1.55× | **Wyoming 0.66×**, New Hampshire 1.63× |
+
+**Against giannella's lists (same price basis, seed 1; seed 2 within 0.03 of every median difference).** Dollar recall at a 10% budget:
+
+| | W1 | W2 | W3 |
+|---|---|---|---|
+| Nominal: ours / theirs | 0.337 / 0.258 | 0.337 / 0.244 | **0.330 / 0.214** |
+| Median diff, mean diff | +0.043, +0.054 | +0.096, +0.086 | +0.091, +0.108 |
+| Higher in; helped / harmed (±0.05) | 39 of 49; 21 / 3 | 36; 30 / 4 | **47; 38 / 0** |
+| 2026 prices: ours / theirs | 0.314 / 0.279 | 0.297 / 0.264 | 0.305 / 0.232 |
+
+**Precision at 10%, nominal:**
+
+| | W1 | W2 | W3 |
+|---|---|---|---|
+| Ours / theirs | 0.333 / 0.297 | 0.278 / 0.220 | 0.305 / 0.237 |
+| States higher | 36 | 34 | 44 |
+
+**At a 5% budget,** every median and mean difference is positive too, for both metrics and both price bases.
+
+### Decisions (as pre-registered)
+
+1. **Price basis: nominal.**
+   - **The test:** at three years ahead, dollar recall at 10% is 0.330 nominal against 0.305 in 2026 prices, outside the 0.005 tie band.
+   - **The contrast with giannella:** the conversion that helps their rules three years ahead (their findings §41) doesn't help ours. A plausible reason is that our ratio features (income per person, shelter to income, net to gross) already carry most of the scale-free signal.
+2. **Head-to-head:** ours beats their lists in **all 24** window × price × metric comparisons, each meeting all three conditions (median > 0, mean > 0, helped > harmed).
+   - **The second era holds.** Their §21 found dollar ranking barely beat precision ranking for their rules in 2019. Our model's lead in 2019 is as large as in 2024.
+   - **Three years ahead, the lead is largest:** ours finds more dollars in 47 of 49 states and is worse by more than 0.05 in none.
+3. **Rebuild our inputs: go (exp114).** The median top-20% lift on rebuilt inputs is at least 2.0× in all three windows (2.58–2.66× nominal).
+   - **The honest headline:** this is what our model achieves on inputs closer to what a state has. It sits about 10–13% below the 2.96× on reviewer-recorded inputs (exp112), in line with exp109's estimate of the flattering.
+
+**Caveats:**
+- **Wyoming is below random three years ahead** (0.66×). Small samples make single states volatile.
+- **The rebuild is approximate:** it uses the review's error codes to decide which field to shift. A state's own pre-review records remain the real test.
+- **Their lists are a fixed rule list, ours a score.** Their advantage, readable rules, isn't measured here.
 <!-- AUTO-RESULTS:END -->

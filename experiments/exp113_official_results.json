@@ -1,0 +1,5594 @@
+{
+ "summary": {
+  "cpi_W1": {
+   "top20_dollar_lift_median": 2.527,
+   "top20_at_2x": 45,
+   "n_states": 49,
+   "budget05_precision": {
+    "ours_median": 0.3721,
+    "theirs_median": 0.3514,
+    "median_diff": 0.0747,
+    "mean_diff": 0.0625,
+    "helped": 30,
+    "harmed": 7,
+    "higher": 37,
+    "n": 49,
+    "vs_seed2": 0.0682
+   },
+   "budget05_dollar_recall": {
+    "ours_median": 0.2041,
+    "theirs_median": 0.1634,
+    "median_diff": 0.0372,
+    "mean_diff": 0.0434,
+    "helped": 22,
+    "harmed": 4,
+    "higher": 37,
+    "n": 49,
+    "vs_seed2": 0.0554
+   },
+   "budget10_precision": {
+    "ours_median": 0.3295,
+    "theirs_median": 0.2985,
+    "median_diff": 0.0306,
+    "mean_diff": 0.0286,
+    "helped": 17,
+    "harmed": 4,
+    "higher": 33,
+    "n": 49,
+    "vs_seed2": 0.0324
+   },
+   "budget10_dollar_recall": {
+    "ours_median": 0.3135,
+    "theirs_median": 0.2792,
+    "median_diff": 0.0434,
+    "mean_diff": 0.0457,
+    "helped": 22,
+    "harmed": 6,
+    "higher": 36,
+    "n": 49,
+    "vs_seed2": 0.0465
+   }
+  },
+  "cpi_W2": {
+   "top20_dollar_lift_median": 2.596,
+   "top20_at_2x": 43,
+   "n_states": 49,
+   "budget05_precision": {
+    "ours_median": 0.3182,
+    "theirs_median": 0.2632,
+    "median_diff": 0.0244,
+    "mean_diff": 0.0453,
+    "helped": 23,
+    "harmed": 8,
+    "higher": 30,
+    "n": 49,
+    "vs_seed2": 0.0485
+   },
+   "budget05_dollar_recall": {
+    "ours_median": 0.1938,
+    "theirs_median": 0.1487,
+    "median_diff": 0.0311,
+    "mean_diff": 0.0412,
+    "helped": 20,
+    "harmed": 3,
+    "higher": 37,
+    "n": 49,
+    "vs_seed2": 0.0314
+   },
+   "budget10_precision": {
+    "ours_median": 0.2727,
+    "theirs_median": 0.2317,
+    "median_diff": 0.0135,
+    "mean_diff": 0.0285,
+    "helped": 16,
+    "harmed": 3,
+    "higher": 30,
+    "n": 49,
+    "vs_seed2": 0.0172
+   },
+   "budget10_dollar_recall": {
+    "ours_median": 0.2974,
+    "theirs_median": 0.2641,
+    "median_diff": 0.0448,
+    "mean_diff": 0.0419,
+    "helped": 24,
+    "harmed": 7,
+    "higher": 36,
+    "n": 49,
+    "vs_seed2": 0.0428
+   }
+  },
+  "cpi_W3": {
+   "top20_dollar_lift_median": 2.558,
+   "top20_at_2x": 46,
+   "n_states": 49,
+   "budget05_precision": {
+    "ours_median": 0.3529,
+    "theirs_median": 0.2632,
+    "median_diff": 0.082,
+    "mean_diff": 0.0882,
+    "helped": 32,
+    "harmed": 6,
+    "higher": 35,
+    "n": 49,
+    "vs_seed2": 0.0682
+   },
+   "budget05_dollar_recall": {
+    "ours_median": 0.1838,
+    "theirs_median": 0.1277,
+    "median_diff": 0.0669,
+    "mean_diff": 0.0688,
+    "helped": 30,
+    "harmed": 2,
+    "higher": 38,
+    "n": 49,
+    "vs_seed2": 0.0548
+   },
+   "budget10_precision": {
+    "ours_median": 0.2921,
+    "theirs_median": 0.2444,
+    "median_diff": 0.0421,
+    "mean_diff": 0.0544,
+    "helped": 22,
+    "harmed": 3,
+    "higher": 38,
+    "n": 49,
+    "vs_seed2": 0.046
+   },
+   "budget10_dollar_recall": {
+    "ours_median": 0.3054,
+    "theirs_median": 0.2323,
+    "median_diff": 0.0667,
+    "mean_diff": 0.0826,
+    "helped": 30,
+    "harmed": 3,
+    "higher": 43,
+    "n": 49,
+    "vs_seed2": 0.0637
+   }
+  },
+  "nominal_W1": {
+   "top20_dollar_lift_median": 2.605,
+   "top20_at_2x": 47,
+   "n_states": 49,
+   "budget05_precision": {
+    "ours_median": 0.4062,
+    "theirs_median": 0.3409,
+    "median_diff": 0.0747,
+    "mean_diff": 0.0647,
+    "helped": 27,
+    "harmed": 10,
+    "higher": 34,
+    "n": 49,
+    "vs_seed2": 0.0633
+   },
+   "budget05_dollar_recall": {
+    "ours_median": 0.1952,
+    "theirs_median": 0.1547,
+    "median_diff": 0.039,
+    "mean_diff": 0.0351,
+    "helped": 20,
+    "harmed": 5,
+    "higher": 35,
+    "n": 49,
+    "vs_seed2": 0.0422
+   },
+   "budget10_precision": {
+    "ours_median": 0.3333,
+    "theirs_median": 0.2967,
+    "median_diff": 0.0317,
+    "mean_diff": 0.0418,
+    "helped": 19,
+    "harmed": 4,
+    "higher": 36,
+    "n": 49,
+    "vs_seed2": 0.029
+   },
+   "budget10_dollar_recall": {
+    "ours_median": 0.337,
+    "theirs_median": 0.2575,
+    "median_diff": 0.0429,
+    "mean_diff": 0.0536,
+    "helped": 21,
+    "harmed": 3,
+    "higher": 39,
+    "n": 49,
+    "vs_seed2": 0.0529
+   }
+  },
+  "nominal_W2": {
+   "top20_dollar_lift_median": 2.58,
+   "top20_at_2x": 44,
+   "n_states": 49,
+   "budget05_precision": {
+    "ours_median": 0.3243,
+    "theirs_median": 0.2692,
+    "median_diff": 0.0322,
+    "mean_diff": 0.0534,
+    "helped": 22,
+    "harmed": 6,
+    "higher": 31,
+    "n": 49,
+    "vs_seed2": 0.066
+   },
+   "budget05_dollar_recall": {
+    "ours_median": 0.1951,
+    "theirs_median": 0.1371,
+    "median_diff": 0.0584,
+    "mean_diff": 0.0567,
+    "helped": 27,
+    "harmed": 3,
+    "higher": 39,
+    "n": 49,
+    "vs_seed2": 0.0598
+   },
+   "budget10_precision": {
+    "ours_median": 0.2778,
+    "theirs_median": 0.2195,
+    "median_diff": 0.0521,
+    "mean_diff": 0.0456,
+    "helped": 26,
+    "harmed": 2,
+    "higher": 34,
+    "n": 49,
+    "vs_seed2": 0.0352
+   },
+   "budget10_dollar_recall": {
+    "ours_median": 0.3372,
+    "theirs_median": 0.2441,
+    "median_diff": 0.0957,
+    "mean_diff": 0.0859,
+    "helped": 30,
+    "harmed": 4,
+    "higher": 36,
+    "n": 49,
+    "vs_seed2": 0.0689
+   }
+  },
+  "nominal_W3": {
+   "top20_dollar_lift_median": 2.663,
+   "top20_at_2x": 45,
+   "n_states": 49,
+   "budget05_precision": {
+    "ours_median": 0.3409,
+    "theirs_median": 0.25,
+    "median_diff": 0.0933,
+    "mean_diff": 0.1098,
+    "helped": 37,
+    "harmed": 5,
+    "higher": 41,
+    "n": 49,
+    "vs_seed2": 0.1087
+   },
+   "budget05_dollar_recall": {
+    "ours_median": 0.1917,
+    "theirs_median": 0.1131,
+    "median_diff": 0.0669,
+    "mean_diff": 0.0704,
+    "helped": 30,
+    "harmed": 1,
+    "higher": 44,
+    "n": 49,
+    "vs_seed2": 0.0667
+   },
+   "budget10_precision": {
+    "ours_median": 0.3049,
+    "theirs_median": 0.2368,
+    "median_diff": 0.0577,
+    "mean_diff": 0.0787,
+    "helped": 27,
+    "harmed": 2,
+    "higher": 44,
+    "n": 49,
+    "vs_seed2": 0.0658
+   },
+   "budget10_dollar_recall": {
+    "ours_median": 0.3295,
+    "theirs_median": 0.2141,
+    "median_diff": 0.0915,
+    "mean_diff": 0.1082,
+    "helped": 38,
+    "harmed": 0,
+    "higher": 47,
+    "n": 49,
+    "vs_seed2": 0.1021
+   }
+  },
+  "gate_mismatches": [],
+  "gate_mismatch_count": 0
+ },
+ "states": [
+  {
+   "state": "Alabama",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 1039,
+    "n_flagged": 52,
+    "precision": 0.4423,
+    "dollar_recall": 0.2215
+   },
+   "budget10": {
+    "n_te": 1039,
+    "n_flagged": 104,
+    "precision": 0.3654,
+    "dollar_recall": 0.3016
+   },
+   "top20_dollar_lift": 2.531
+  },
+  {
+   "state": "Alabama",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 1039,
+    "n_flagged": 52,
+    "precision": 0.5,
+    "dollar_recall": 0.2155
+   },
+   "budget10": {
+    "n_te": 1039,
+    "n_flagged": 104,
+    "precision": 0.375,
+    "dollar_recall": 0.308
+   },
+   "top20_dollar_lift": 2.504
+  },
+  {
+   "state": "Arizona",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 863,
+    "n_flagged": 43,
+    "precision": 0.3721,
+    "dollar_recall": 0.2595
+   },
+   "budget10": {
+    "n_te": 863,
+    "n_flagged": 86,
+    "precision": 0.3488,
+    "dollar_recall": 0.3861
+   },
+   "top20_dollar_lift": 2.839
+  },
+  {
+   "state": "Alabama",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 965,
+    "n_flagged": 48,
+    "precision": 0.3125,
+    "dollar_recall": 0.2393
+   },
+   "budget10": {
+    "n_te": 965,
+    "n_flagged": 96,
+    "precision": 0.2396,
+    "dollar_recall": 0.3477
+   },
+   "top20_dollar_lift": 2.754
+  },
+  {
+   "state": "Alabama",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 965,
+    "n_flagged": 48,
+    "precision": 0.3125,
+    "dollar_recall": 0.2174
+   },
+   "budget10": {
+    "n_te": 965,
+    "n_flagged": 96,
+    "precision": 0.2188,
+    "dollar_recall": 0.3038
+   },
+   "top20_dollar_lift": 2.22
+  },
+  {
+   "state": "Arizona",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 765,
+    "n_flagged": 38,
+    "precision": 0.2895,
+    "dollar_recall": 0.2274
+   },
+   "budget10": {
+    "n_te": 765,
+    "n_flagged": 76,
+    "precision": 0.2105,
+    "dollar_recall": 0.2808
+   },
+   "top20_dollar_lift": 2.518
+  },
+  {
+   "state": "Alabama",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 983,
+    "n_flagged": 49,
+    "precision": 0.2857,
+    "dollar_recall": 0.2366
+   },
+   "budget10": {
+    "n_te": 983,
+    "n_flagged": 98,
+    "precision": 0.1939,
+    "dollar_recall": 0.3182
+   },
+   "top20_dollar_lift": 2.571
+  },
+  {
+   "state": "Alabama",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 983,
+    "n_flagged": 49,
+    "precision": 0.2449,
+    "dollar_recall": 0.1816
+   },
+   "budget10": {
+    "n_te": 983,
+    "n_flagged": 98,
+    "precision": 0.2143,
+    "dollar_recall": 0.3467
+   },
+   "top20_dollar_lift": 2.578
+  },
+  {
+   "state": "Arizona",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 863,
+    "n_flagged": 43,
+    "precision": 0.2558,
+    "dollar_recall": 0.206
+   },
+   "budget10": {
+    "n_te": 863,
+    "n_flagged": 86,
+    "precision": 0.314,
+    "dollar_recall": 0.3648
+   },
+   "top20_dollar_lift": 2.877
+  },
+  {
+   "state": "Arkansas",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 855,
+    "n_flagged": 43,
+    "precision": 0.3488,
+    "dollar_recall": 0.2257
+   },
+   "budget10": {
+    "n_te": 855,
+    "n_flagged": 86,
+    "precision": 0.2442,
+    "dollar_recall": 0.3217
+   },
+   "top20_dollar_lift": 2.388
+  },
+  {
+   "state": "Arizona",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 765,
+    "n_flagged": 38,
+    "precision": 0.3421,
+    "dollar_recall": 0.2761
+   },
+   "budget10": {
+    "n_te": 765,
+    "n_flagged": 76,
+    "precision": 0.2105,
+    "dollar_recall": 0.318
+   },
+   "top20_dollar_lift": 2.525
+  },
+  {
+   "state": "Arkansas",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 870,
+    "n_flagged": 44,
+    "precision": 0.2045,
+    "dollar_recall": 0.1452
+   },
+   "budget10": {
+    "n_te": 870,
+    "n_flagged": 87,
+    "precision": 0.1494,
+    "dollar_recall": 0.243
+   },
+   "top20_dollar_lift": 2.57
+  },
+  {
+   "state": "Arizona",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 0.2927,
+    "dollar_recall": 0.1631
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 0.2439,
+    "dollar_recall": 0.2273
+   },
+   "top20_dollar_lift": 2.426
+  },
+  {
+   "state": "Arkansas",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 855,
+    "n_flagged": 43,
+    "precision": 0.3023,
+    "dollar_recall": 0.2014
+   },
+   "budget10": {
+    "n_te": 855,
+    "n_flagged": 86,
+    "precision": 0.2093,
+    "dollar_recall": 0.2527
+   },
+   "top20_dollar_lift": 2.499
+  },
+  {
+   "state": "Arizona",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 0.2683,
+    "dollar_recall": 0.1571
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 0.3049,
+    "dollar_recall": 0.268
+   },
+   "top20_dollar_lift": 2.397
+  },
+  {
+   "state": "Arkansas",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 761,
+    "n_flagged": 38,
+    "precision": 0.2632,
+    "dollar_recall": 0.271
+   },
+   "budget10": {
+    "n_te": 761,
+    "n_flagged": 76,
+    "precision": 0.2237,
+    "dollar_recall": 0.4218
+   },
+   "top20_dollar_lift": 2.837
+  },
+  {
+   "state": "Arkansas",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 870,
+    "n_flagged": 44,
+    "precision": 0.2955,
+    "dollar_recall": 0.2556
+   },
+   "budget10": {
+    "n_te": 870,
+    "n_flagged": 87,
+    "precision": 0.2299,
+    "dollar_recall": 0.4126
+   },
+   "top20_dollar_lift": 2.742
+  },
+  {
+   "state": "California",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 833,
+    "n_flagged": 42,
+    "precision": 0.3333,
+    "dollar_recall": 0.1811
+   },
+   "budget10": {
+    "n_te": 833,
+    "n_flagged": 83,
+    "precision": 0.3253,
+    "dollar_recall": 0.3764
+   },
+   "top20_dollar_lift": 3.01
+  },
+  {
+   "state": "California",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 814,
+    "n_flagged": 41,
+    "precision": 0.3902,
+    "dollar_recall": 0.1728
+   },
+   "budget10": {
+    "n_te": 814,
+    "n_flagged": 81,
+    "precision": 0.3333,
+    "dollar_recall": 0.2836
+   },
+   "top20_dollar_lift": 2.31
+  },
+  {
+   "state": "California",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 833,
+    "n_flagged": 42,
+    "precision": 0.5238,
+    "dollar_recall": 0.3469
+   },
+   "budget10": {
+    "n_te": 833,
+    "n_flagged": 83,
+    "precision": 0.3253,
+    "dollar_recall": 0.3946
+   },
+   "top20_dollar_lift": 3.025
+  },
+  {
+   "state": "Arkansas",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 761,
+    "n_flagged": 38,
+    "precision": 0.2368,
+    "dollar_recall": 0.1514
+   },
+   "budget10": {
+    "n_te": 761,
+    "n_flagged": 76,
+    "precision": 0.2237,
+    "dollar_recall": 0.3842
+   },
+   "top20_dollar_lift": 2.526
+  },
+  {
+   "state": "California",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 814,
+    "n_flagged": 41,
+    "precision": 0.5122,
+    "dollar_recall": 0.195
+   },
+   "budget10": {
+    "n_te": 814,
+    "n_flagged": 81,
+    "precision": 0.4198,
+    "dollar_recall": 0.3219
+   },
+   "top20_dollar_lift": 2.623
+  },
+  {
+   "state": "California",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 721,
+    "n_flagged": 36,
+    "precision": 0.3611,
+    "dollar_recall": 0.1397
+   },
+   "budget10": {
+    "n_te": 721,
+    "n_flagged": 72,
+    "precision": 0.2778,
+    "dollar_recall": 0.2219
+   },
+   "top20_dollar_lift": 2.004
+  },
+  {
+   "state": "California",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 721,
+    "n_flagged": 36,
+    "precision": 0.3333,
+    "dollar_recall": 0.1144
+   },
+   "budget10": {
+    "n_te": 721,
+    "n_flagged": 72,
+    "precision": 0.3194,
+    "dollar_recall": 0.3113
+   },
+   "top20_dollar_lift": 2.233
+  },
+  {
+   "state": "Colorado",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 803,
+    "n_flagged": 40,
+    "precision": 0.525,
+    "dollar_recall": 0.2754
+   },
+   "budget10": {
+    "n_te": 803,
+    "n_flagged": 80,
+    "precision": 0.4375,
+    "dollar_recall": 0.4425
+   },
+   "top20_dollar_lift": 3.154
+  },
+  {
+   "state": "Colorado",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 769,
+    "n_flagged": 38,
+    "precision": 0.4474,
+    "dollar_recall": 0.2145
+   },
+   "budget10": {
+    "n_te": 769,
+    "n_flagged": 77,
+    "precision": 0.3117,
+    "dollar_recall": 0.2906
+   },
+   "top20_dollar_lift": 2.75
+  },
+  {
+   "state": "Colorado",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 803,
+    "n_flagged": 40,
+    "precision": 0.6,
+    "dollar_recall": 0.3036
+   },
+   "budget10": {
+    "n_te": 803,
+    "n_flagged": 80,
+    "precision": 0.45,
+    "dollar_recall": 0.4237
+   },
+   "top20_dollar_lift": 2.988
+  },
+  {
+   "state": "Colorado",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 769,
+    "n_flagged": 38,
+    "precision": 0.3947,
+    "dollar_recall": 0.1824
+   },
+   "budget10": {
+    "n_te": 769,
+    "n_flagged": 77,
+    "precision": 0.3247,
+    "dollar_recall": 0.3148
+   },
+   "top20_dollar_lift": 2.341
+  },
+  {
+   "state": "Colorado",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 979,
+    "n_flagged": 49,
+    "precision": 0.2245,
+    "dollar_recall": 0.1222
+   },
+   "budget10": {
+    "n_te": 979,
+    "n_flagged": 98,
+    "precision": 0.2449,
+    "dollar_recall": 0.2759
+   },
+   "top20_dollar_lift": 2.54
+  },
+  {
+   "state": "Connecticut",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 899,
+    "n_flagged": 45,
+    "precision": 0.5778,
+    "dollar_recall": 0.2044
+   },
+   "budget10": {
+    "n_te": 899,
+    "n_flagged": 90,
+    "precision": 0.4889,
+    "dollar_recall": 0.3653
+   },
+   "top20_dollar_lift": 3.127
+  },
+  {
+   "state": "Colorado",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 979,
+    "n_flagged": 49,
+    "precision": 0.2653,
+    "dollar_recall": 0.117
+   },
+   "budget10": {
+    "n_te": 979,
+    "n_flagged": 98,
+    "precision": 0.2551,
+    "dollar_recall": 0.2478
+   },
+   "top20_dollar_lift": 2.312
+  },
+  {
+   "state": "Connecticut",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 829,
+    "n_flagged": 41,
+    "precision": 0.5366,
+    "dollar_recall": 0.2826
+   },
+   "budget10": {
+    "n_te": 829,
+    "n_flagged": 83,
+    "precision": 0.3133,
+    "dollar_recall": 0.3493
+   },
+   "top20_dollar_lift": 2.846
+  },
+  {
+   "state": "Connecticut",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 899,
+    "n_flagged": 45,
+    "precision": 0.4889,
+    "dollar_recall": 0.1757
+   },
+   "budget10": {
+    "n_te": 899,
+    "n_flagged": 90,
+    "precision": 0.4667,
+    "dollar_recall": 0.339
+   },
+   "top20_dollar_lift": 2.93
+  },
+  {
+   "state": "Connecticut",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 959,
+    "n_flagged": 48,
+    "precision": 0.4167,
+    "dollar_recall": 0.212
+   },
+   "budget10": {
+    "n_te": 959,
+    "n_flagged": 96,
+    "precision": 0.3229,
+    "dollar_recall": 0.3751
+   },
+   "top20_dollar_lift": 2.775
+  },
+  {
+   "state": "Connecticut",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 829,
+    "n_flagged": 41,
+    "precision": 0.439,
+    "dollar_recall": 0.2398
+   },
+   "budget10": {
+    "n_te": 829,
+    "n_flagged": 83,
+    "precision": 0.3253,
+    "dollar_recall": 0.3951
+   },
+   "top20_dollar_lift": 2.7
+  },
+  {
+   "state": "Delaware",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 741,
+    "n_flagged": 37,
+    "precision": 0.3784,
+    "dollar_recall": 0.1264
+   },
+   "budget10": {
+    "n_te": 741,
+    "n_flagged": 74,
+    "precision": 0.3378,
+    "dollar_recall": 0.2314
+   },
+   "top20_dollar_lift": 2.232
+  },
+  {
+   "state": "Connecticut",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 959,
+    "n_flagged": 48,
+    "precision": 0.4167,
+    "dollar_recall": 0.226
+   },
+   "budget10": {
+    "n_te": 959,
+    "n_flagged": 96,
+    "precision": 0.3125,
+    "dollar_recall": 0.3458
+   },
+   "top20_dollar_lift": 2.842
+  },
+  {
+   "state": "Delaware",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 741,
+    "n_flagged": 37,
+    "precision": 0.3784,
+    "dollar_recall": 0.13
+   },
+   "budget10": {
+    "n_te": 741,
+    "n_flagged": 74,
+    "precision": 0.3108,
+    "dollar_recall": 0.2079
+   },
+   "top20_dollar_lift": 2.032
+  },
+  {
+   "state": "Delaware",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 436,
+    "n_flagged": 22,
+    "precision": 0.5455,
+    "dollar_recall": 0.2077
+   },
+   "budget10": {
+    "n_te": 436,
+    "n_flagged": 44,
+    "precision": 0.4545,
+    "dollar_recall": 0.4129
+   },
+   "top20_dollar_lift": 2.851
+  },
+  {
+   "state": "Delaware",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 126,
+    "n_flagged": 6,
+    "precision": 0.3333,
+    "dollar_recall": 0.3076
+   },
+   "budget10": {
+    "n_te": 126,
+    "n_flagged": 13,
+    "precision": 0.3077,
+    "dollar_recall": 0.5068
+   },
+   "top20_dollar_lift": 2.658
+  },
+  {
+   "state": "Delaware",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 436,
+    "n_flagged": 22,
+    "precision": 0.4545,
+    "dollar_recall": 0.2176
+   },
+   "budget10": {
+    "n_te": 436,
+    "n_flagged": 44,
+    "precision": 0.4318,
+    "dollar_recall": 0.443
+   },
+   "top20_dollar_lift": 3.111
+  },
+  {
+   "state": "District of Columbia",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 976,
+    "n_flagged": 49,
+    "precision": 0.4898,
+    "dollar_recall": 0.119
+   },
+   "budget10": {
+    "n_te": 976,
+    "n_flagged": 98,
+    "precision": 0.4694,
+    "dollar_recall": 0.2499
+   },
+   "top20_dollar_lift": 2.379
+  },
+  {
+   "state": "District of Columbia",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 854,
+    "n_flagged": 43,
+    "precision": 0.5581,
+    "dollar_recall": 0.1537
+   },
+   "budget10": {
+    "n_te": 854,
+    "n_flagged": 85,
+    "precision": 0.6235,
+    "dollar_recall": 0.375
+   },
+   "top20_dollar_lift": 2.612
+  },
+  {
+   "state": "Delaware",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 126,
+    "n_flagged": 6,
+    "precision": 0.5,
+    "dollar_recall": 0.3517
+   },
+   "budget10": {
+    "n_te": 126,
+    "n_flagged": 13,
+    "precision": 0.3846,
+    "dollar_recall": 0.5509
+   },
+   "top20_dollar_lift": 2.872
+  },
+  {
+   "state": "District of Columbia",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 976,
+    "n_flagged": 49,
+    "precision": 0.449,
+    "dollar_recall": 0.0944
+   },
+   "budget10": {
+    "n_te": 976,
+    "n_flagged": 98,
+    "precision": 0.4592,
+    "dollar_recall": 0.1742
+   },
+   "top20_dollar_lift": 2.146
+  },
+  {
+   "state": "District of Columbia",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 854,
+    "n_flagged": 43,
+    "precision": 0.6279,
+    "dollar_recall": 0.1839
+   },
+   "budget10": {
+    "n_te": 854,
+    "n_flagged": 85,
+    "precision": 0.6353,
+    "dollar_recall": 0.3487
+   },
+   "top20_dollar_lift": 2.84
+  },
+  {
+   "state": "District of Columbia",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 322,
+    "n_flagged": 16,
+    "precision": 0.625,
+    "dollar_recall": 0.1838
+   },
+   "budget10": {
+    "n_te": 322,
+    "n_flagged": 32,
+    "precision": 0.5312,
+    "dollar_recall": 0.2754
+   },
+   "top20_dollar_lift": 2.134
+  },
+  {
+   "state": "Florida",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 898,
+    "n_flagged": 45,
+    "precision": 0.6222,
+    "dollar_recall": 0.2064
+   },
+   "budget10": {
+    "n_te": 898,
+    "n_flagged": 90,
+    "precision": 0.4778,
+    "dollar_recall": 0.3409
+   },
+   "top20_dollar_lift": 2.546
+  },
+  {
+   "state": "District of Columbia",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 322,
+    "n_flagged": 16,
+    "precision": 0.5,
+    "dollar_recall": 0.1694
+   },
+   "budget10": {
+    "n_te": 322,
+    "n_flagged": 32,
+    "precision": 0.4375,
+    "dollar_recall": 0.2378
+   },
+   "top20_dollar_lift": 1.898
+  },
+  {
+   "state": "Florida",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 812,
+    "n_flagged": 41,
+    "precision": 0.2195,
+    "dollar_recall": 0.1681
+   },
+   "budget10": {
+    "n_te": 812,
+    "n_flagged": 81,
+    "precision": 0.1852,
+    "dollar_recall": 0.2778
+   },
+   "top20_dollar_lift": 2.862
+  },
+  {
+   "state": "Florida",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 898,
+    "n_flagged": 45,
+    "precision": 0.6,
+    "dollar_recall": 0.2315
+   },
+   "budget10": {
+    "n_te": 898,
+    "n_flagged": 90,
+    "precision": 0.4889,
+    "dollar_recall": 0.3933
+   },
+   "top20_dollar_lift": 2.805
+  },
+  {
+   "state": "Florida",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 812,
+    "n_flagged": 41,
+    "precision": 0.2439,
+    "dollar_recall": 0.2377
+   },
+   "budget10": {
+    "n_te": 812,
+    "n_flagged": 81,
+    "precision": 0.2222,
+    "dollar_recall": 0.3806
+   },
+   "top20_dollar_lift": 2.86
+  },
+  {
+   "state": "Florida",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 872,
+    "n_flagged": 44,
+    "precision": 0.2955,
+    "dollar_recall": 0.2171
+   },
+   "budget10": {
+    "n_te": 872,
+    "n_flagged": 87,
+    "precision": 0.2184,
+    "dollar_recall": 0.2898
+   },
+   "top20_dollar_lift": 2.732
+  },
+  {
+   "state": "Georgia",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 918,
+    "n_flagged": 46,
+    "precision": 0.587,
+    "dollar_recall": 0.1756
+   },
+   "budget10": {
+    "n_te": 918,
+    "n_flagged": 92,
+    "precision": 0.4891,
+    "dollar_recall": 0.3179
+   },
+   "top20_dollar_lift": 2.456
+  },
+  {
+   "state": "Florida",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 872,
+    "n_flagged": 44,
+    "precision": 0.2727,
+    "dollar_recall": 0.1451
+   },
+   "budget10": {
+    "n_te": 872,
+    "n_flagged": 87,
+    "precision": 0.2414,
+    "dollar_recall": 0.2823
+   },
+   "top20_dollar_lift": 2.835
+  },
+  {
+   "state": "Georgia",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 891,
+    "n_flagged": 45,
+    "precision": 0.4667,
+    "dollar_recall": 0.2223
+   },
+   "budget10": {
+    "n_te": 891,
+    "n_flagged": 89,
+    "precision": 0.3258,
+    "dollar_recall": 0.2974
+   },
+   "top20_dollar_lift": 2.463
+  },
+  {
+   "state": "Georgia",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 1001,
+    "n_flagged": 50,
+    "precision": 0.66,
+    "dollar_recall": 0.1609
+   },
+   "budget10": {
+    "n_te": 1001,
+    "n_flagged": 100,
+    "precision": 0.56,
+    "dollar_recall": 0.2938
+   },
+   "top20_dollar_lift": 2.314
+  },
+  {
+   "state": "Georgia",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 918,
+    "n_flagged": 46,
+    "precision": 0.6087,
+    "dollar_recall": 0.1952
+   },
+   "budget10": {
+    "n_te": 918,
+    "n_flagged": 92,
+    "precision": 0.5435,
+    "dollar_recall": 0.3421
+   },
+   "top20_dollar_lift": 2.386
+  },
+  {
+   "state": "Georgia",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 891,
+    "n_flagged": 45,
+    "precision": 0.4,
+    "dollar_recall": 0.1814
+   },
+   "budget10": {
+    "n_te": 891,
+    "n_flagged": 89,
+    "precision": 0.3258,
+    "dollar_recall": 0.2783
+   },
+   "top20_dollar_lift": 2.489
+  },
+  {
+   "state": "Idaho",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.2979,
+    "dollar_recall": 0.3865
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.2021,
+    "dollar_recall": 0.5232
+   },
+   "top20_dollar_lift": 2.929
+  },
+  {
+   "state": "Georgia",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 1001,
+    "n_flagged": 50,
+    "precision": 0.64,
+    "dollar_recall": 0.1761
+   },
+   "budget10": {
+    "n_te": 1001,
+    "n_flagged": 100,
+    "precision": 0.53,
+    "dollar_recall": 0.2762
+   },
+   "top20_dollar_lift": 2.457
+  },
+  {
+   "state": "Idaho",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 896,
+    "n_flagged": 45,
+    "precision": 0.0667,
+    "dollar_recall": 0.1437
+   },
+   "budget10": {
+    "n_te": 896,
+    "n_flagged": 90,
+    "precision": 0.0444,
+    "dollar_recall": 0.172
+   },
+   "top20_dollar_lift": 1.751
+  },
+  {
+   "state": "Idaho",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.2553,
+    "dollar_recall": 0.396
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.1702,
+    "dollar_recall": 0.4877
+   },
+   "top20_dollar_lift": 3.369
+  },
+  {
+   "state": "Idaho",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 783,
+    "n_flagged": 39,
+    "precision": 0.1282,
+    "dollar_recall": 0.1766
+   },
+   "budget10": {
+    "n_te": 783,
+    "n_flagged": 78,
+    "precision": 0.1282,
+    "dollar_recall": 0.2933
+   },
+   "top20_dollar_lift": 3.165
+  },
+  {
+   "state": "Idaho",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 896,
+    "n_flagged": 45,
+    "precision": 0.0889,
+    "dollar_recall": 0.2215
+   },
+   "budget10": {
+    "n_te": 896,
+    "n_flagged": 90,
+    "precision": 0.0667,
+    "dollar_recall": 0.2922
+   },
+   "top20_dollar_lift": 1.55
+  },
+  {
+   "state": "Illinois",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 0.6098,
+    "dollar_recall": 0.1881
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 0.5122,
+    "dollar_recall": 0.3786
+   },
+   "top20_dollar_lift": 2.667
+  },
+  {
+   "state": "Idaho",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 783,
+    "n_flagged": 39,
+    "precision": 0.1538,
+    "dollar_recall": 0.1881
+   },
+   "budget10": {
+    "n_te": 783,
+    "n_flagged": 78,
+    "precision": 0.1538,
+    "dollar_recall": 0.4694
+   },
+   "top20_dollar_lift": 3.123
+  },
+  {
+   "state": "Illinois",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 716,
+    "n_flagged": 36,
+    "precision": 0.3611,
+    "dollar_recall": 0.1445
+   },
+   "budget10": {
+    "n_te": 716,
+    "n_flagged": 72,
+    "precision": 0.2917,
+    "dollar_recall": 0.3253
+   },
+   "top20_dollar_lift": 2.638
+  },
+  {
+   "state": "Illinois",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 801,
+    "n_flagged": 40,
+    "precision": 0.45,
+    "dollar_recall": 0.1785
+   },
+   "budget10": {
+    "n_te": 801,
+    "n_flagged": 80,
+    "precision": 0.4,
+    "dollar_recall": 0.3328
+   },
+   "top20_dollar_lift": 2.509
+  },
+  {
+   "state": "Illinois",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 0.5122,
+    "dollar_recall": 0.1982
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 0.5,
+    "dollar_recall": 0.337
+   },
+   "top20_dollar_lift": 2.502
+  },
+  {
+   "state": "Illinois",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 716,
+    "n_flagged": 36,
+    "precision": 0.2778,
+    "dollar_recall": 0.2043
+   },
+   "budget10": {
+    "n_te": 716,
+    "n_flagged": 72,
+    "precision": 0.2778,
+    "dollar_recall": 0.2974
+   },
+   "top20_dollar_lift": 2.87
+  },
+  {
+   "state": "Indiana",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 875,
+    "n_flagged": 44,
+    "precision": 0.5,
+    "dollar_recall": 0.2041
+   },
+   "budget10": {
+    "n_te": 875,
+    "n_flagged": 88,
+    "precision": 0.3977,
+    "dollar_recall": 0.3064
+   },
+   "top20_dollar_lift": 2.551
+  },
+  {
+   "state": "Illinois",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 801,
+    "n_flagged": 40,
+    "precision": 0.525,
+    "dollar_recall": 0.1979
+   },
+   "budget10": {
+    "n_te": 801,
+    "n_flagged": 80,
+    "precision": 0.475,
+    "dollar_recall": 0.3406
+   },
+   "top20_dollar_lift": 2.663
+  },
+  {
+   "state": "Indiana",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 806,
+    "n_flagged": 40,
+    "precision": 0.325,
+    "dollar_recall": 0.215
+   },
+   "budget10": {
+    "n_te": 806,
+    "n_flagged": 81,
+    "precision": 0.2099,
+    "dollar_recall": 0.2659
+   },
+   "top20_dollar_lift": 2.462
+  },
+  {
+   "state": "Indiana",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 875,
+    "n_flagged": 44,
+    "precision": 0.4091,
+    "dollar_recall": 0.1356
+   },
+   "budget10": {
+    "n_te": 875,
+    "n_flagged": 88,
+    "precision": 0.3636,
+    "dollar_recall": 0.2784
+   },
+   "top20_dollar_lift": 2.547
+  },
+  {
+   "state": "Indiana",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 777,
+    "n_flagged": 39,
+    "precision": 0.2051,
+    "dollar_recall": 0.1823
+   },
+   "budget10": {
+    "n_te": 777,
+    "n_flagged": 78,
+    "precision": 0.2436,
+    "dollar_recall": 0.3687
+   },
+   "top20_dollar_lift": 2.876
+  },
+  {
+   "state": "Indiana",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 806,
+    "n_flagged": 40,
+    "precision": 0.275,
+    "dollar_recall": 0.1713
+   },
+   "budget10": {
+    "n_te": 806,
+    "n_flagged": 81,
+    "precision": 0.2593,
+    "dollar_recall": 0.3404
+   },
+   "top20_dollar_lift": 2.816
+  },
+  {
+   "state": "Iowa",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.2128,
+    "dollar_recall": 0.1794
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.1596,
+    "dollar_recall": 0.2201
+   },
+   "top20_dollar_lift": 1.536
+  },
+  {
+   "state": "Indiana",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 777,
+    "n_flagged": 39,
+    "precision": 0.3077,
+    "dollar_recall": 0.2206
+   },
+   "budget10": {
+    "n_te": 777,
+    "n_flagged": 78,
+    "precision": 0.2949,
+    "dollar_recall": 0.3351
+   },
+   "top20_dollar_lift": 3.016
+  },
+  {
+   "state": "Iowa",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.1702,
+    "dollar_recall": 0.1526
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.1702,
+    "dollar_recall": 0.2601
+   },
+   "top20_dollar_lift": 2.456
+  },
+  {
+   "state": "Iowa",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 852,
+    "n_flagged": 43,
+    "precision": 0.4186,
+    "dollar_recall": 0.1556
+   },
+   "budget10": {
+    "n_te": 852,
+    "n_flagged": 85,
+    "precision": 0.3882,
+    "dollar_recall": 0.2722
+   },
+   "top20_dollar_lift": 2.402
+  },
+  {
+   "state": "Iowa",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 928,
+    "n_flagged": 46,
+    "precision": 0.413,
+    "dollar_recall": 0.282
+   },
+   "budget10": {
+    "n_te": 928,
+    "n_flagged": 93,
+    "precision": 0.3441,
+    "dollar_recall": 0.4591
+   },
+   "top20_dollar_lift": 3.494
+  },
+  {
+   "state": "Iowa",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 852,
+    "n_flagged": 43,
+    "precision": 0.4419,
+    "dollar_recall": 0.1894
+   },
+   "budget10": {
+    "n_te": 852,
+    "n_flagged": 85,
+    "precision": 0.4118,
+    "dollar_recall": 0.3474
+   },
+   "top20_dollar_lift": 2.69
+  },
+  {
+   "state": "Kansas",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 872,
+    "n_flagged": 44,
+    "precision": 0.2955,
+    "dollar_recall": 0.1614
+   },
+   "budget10": {
+    "n_te": 872,
+    "n_flagged": 87,
+    "precision": 0.2069,
+    "dollar_recall": 0.2165
+   },
+   "top20_dollar_lift": 1.665
+  },
+  {
+   "state": "Iowa",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 928,
+    "n_flagged": 46,
+    "precision": 0.3696,
+    "dollar_recall": 0.2673
+   },
+   "budget10": {
+    "n_te": 928,
+    "n_flagged": 93,
+    "precision": 0.3441,
+    "dollar_recall": 0.4838
+   },
+   "top20_dollar_lift": 3.114
+  },
+  {
+   "state": "Kansas",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 875,
+    "n_flagged": 44,
+    "precision": 0.1364,
+    "dollar_recall": 0.1084
+   },
+   "budget10": {
+    "n_te": 875,
+    "n_flagged": 88,
+    "precision": 0.1591,
+    "dollar_recall": 0.2395
+   },
+   "top20_dollar_lift": 1.902
+  },
+  {
+   "state": "Kansas",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 872,
+    "n_flagged": 44,
+    "precision": 0.3182,
+    "dollar_recall": 0.1755
+   },
+   "budget10": {
+    "n_te": 872,
+    "n_flagged": 87,
+    "precision": 0.2529,
+    "dollar_recall": 0.3421
+   },
+   "top20_dollar_lift": 2.348
+  },
+  {
+   "state": "Kansas",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 875,
+    "n_flagged": 44,
+    "precision": 0.25,
+    "dollar_recall": 0.1928
+   },
+   "budget10": {
+    "n_te": 875,
+    "n_flagged": 88,
+    "precision": 0.1705,
+    "dollar_recall": 0.2948
+   },
+   "top20_dollar_lift": 2.342
+  },
+  {
+   "state": "Kansas",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 864,
+    "n_flagged": 43,
+    "precision": 0.1628,
+    "dollar_recall": 0.1101
+   },
+   "budget10": {
+    "n_te": 864,
+    "n_flagged": 86,
+    "precision": 0.1512,
+    "dollar_recall": 0.2472
+   },
+   "top20_dollar_lift": 1.656
+  },
+  {
+   "state": "Kansas",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 864,
+    "n_flagged": 43,
+    "precision": 0.2093,
+    "dollar_recall": 0.1934
+   },
+   "budget10": {
+    "n_te": 864,
+    "n_flagged": 86,
+    "precision": 0.1512,
+    "dollar_recall": 0.2283
+   },
+   "top20_dollar_lift": 2.304
+  },
+  {
+   "state": "Kentucky",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 841,
+    "n_flagged": 42,
+    "precision": 0.4048,
+    "dollar_recall": 0.3354
+   },
+   "budget10": {
+    "n_te": 841,
+    "n_flagged": 84,
+    "precision": 0.2976,
+    "dollar_recall": 0.4523
+   },
+   "top20_dollar_lift": 3.068
+  },
+  {
+   "state": "Kentucky",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 915,
+    "n_flagged": 46,
+    "precision": 0.3043,
+    "dollar_recall": 0.2713
+   },
+   "budget10": {
+    "n_te": 915,
+    "n_flagged": 92,
+    "precision": 0.2826,
+    "dollar_recall": 0.4576
+   },
+   "top20_dollar_lift": 3.474
+  },
+  {
+   "state": "Kentucky",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 841,
+    "n_flagged": 42,
+    "precision": 0.4286,
+    "dollar_recall": 0.3169
+   },
+   "budget10": {
+    "n_te": 841,
+    "n_flagged": 84,
+    "precision": 0.3095,
+    "dollar_recall": 0.4751
+   },
+   "top20_dollar_lift": 3.21
+  },
+  {
+   "state": "Kentucky",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 905,
+    "n_flagged": 45,
+    "precision": 0.3333,
+    "dollar_recall": 0.2146
+   },
+   "budget10": {
+    "n_te": 905,
+    "n_flagged": 90,
+    "precision": 0.2556,
+    "dollar_recall": 0.3311
+   },
+   "top20_dollar_lift": 2.72
+  },
+  {
+   "state": "Kentucky",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 915,
+    "n_flagged": 46,
+    "precision": 0.3913,
+    "dollar_recall": 0.3006
+   },
+   "budget10": {
+    "n_te": 915,
+    "n_flagged": 92,
+    "precision": 0.2717,
+    "dollar_recall": 0.425
+   },
+   "top20_dollar_lift": 3.082
+  },
+  {
+   "state": "Louisiana",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 0.2273,
+    "dollar_recall": 0.1262
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.2414,
+    "dollar_recall": 0.2265
+   },
+   "top20_dollar_lift": 1.963
+  },
+  {
+   "state": "Kentucky",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 905,
+    "n_flagged": 45,
+    "precision": 0.3556,
+    "dollar_recall": 0.2274
+   },
+   "budget10": {
+    "n_te": 905,
+    "n_flagged": 90,
+    "precision": 0.2889,
+    "dollar_recall": 0.3732
+   },
+   "top20_dollar_lift": 3.107
+  },
+  {
+   "state": "Louisiana",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 807,
+    "n_flagged": 40,
+    "precision": 0.1,
+    "dollar_recall": 0.1286
+   },
+   "budget10": {
+    "n_te": 807,
+    "n_flagged": 81,
+    "precision": 0.0864,
+    "dollar_recall": 0.1897
+   },
+   "top20_dollar_lift": 1.526
+  },
+  {
+   "state": "Louisiana",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 0.25,
+    "dollar_recall": 0.0906
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.2184,
+    "dollar_recall": 0.179
+   },
+   "top20_dollar_lift": 2.081
+  },
+  {
+   "state": "Louisiana",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 807,
+    "n_flagged": 40,
+    "precision": 0.175,
+    "dollar_recall": 0.2267
+   },
+   "budget10": {
+    "n_te": 807,
+    "n_flagged": 81,
+    "precision": 0.1852,
+    "dollar_recall": 0.622
+   },
+   "top20_dollar_lift": 3.622
+  },
+  {
+   "state": "Louisiana",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 824,
+    "n_flagged": 41,
+    "precision": 0.4146,
+    "dollar_recall": 0.2705
+   },
+   "budget10": {
+    "n_te": 824,
+    "n_flagged": 82,
+    "precision": 0.3049,
+    "dollar_recall": 0.3514
+   },
+   "top20_dollar_lift": 2.546
+  },
+  {
+   "state": "Maine",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 934,
+    "n_flagged": 47,
+    "precision": 0.5319,
+    "dollar_recall": 0.1573
+   },
+   "budget10": {
+    "n_te": 934,
+    "n_flagged": 93,
+    "precision": 0.4516,
+    "dollar_recall": 0.2545
+   },
+   "top20_dollar_lift": 2.244
+  },
+  {
+   "state": "Maine",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 928,
+    "n_flagged": 46,
+    "precision": 0.3261,
+    "dollar_recall": 0.1962
+   },
+   "budget10": {
+    "n_te": 928,
+    "n_flagged": 93,
+    "precision": 0.2796,
+    "dollar_recall": 0.3135
+   },
+   "top20_dollar_lift": 2.483
+  },
+  {
+   "state": "Louisiana",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 824,
+    "n_flagged": 41,
+    "precision": 0.439,
+    "dollar_recall": 0.2652
+   },
+   "budget10": {
+    "n_te": 824,
+    "n_flagged": 82,
+    "precision": 0.3171,
+    "dollar_recall": 0.3711
+   },
+   "top20_dollar_lift": 2.741
+  },
+  {
+   "state": "Maine",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 863,
+    "n_flagged": 43,
+    "precision": 0.4419,
+    "dollar_recall": 0.2737
+   },
+   "budget10": {
+    "n_te": 863,
+    "n_flagged": 86,
+    "precision": 0.3256,
+    "dollar_recall": 0.3361
+   },
+   "top20_dollar_lift": 2.846
+  },
+  {
+   "state": "Maine",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 928,
+    "n_flagged": 46,
+    "precision": 0.2609,
+    "dollar_recall": 0.1427
+   },
+   "budget10": {
+    "n_te": 928,
+    "n_flagged": 93,
+    "precision": 0.3333,
+    "dollar_recall": 0.3549
+   },
+   "top20_dollar_lift": 2.605
+  },
+  {
+   "state": "Maine",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 934,
+    "n_flagged": 47,
+    "precision": 0.4681,
+    "dollar_recall": 0.1113
+   },
+   "budget10": {
+    "n_te": 934,
+    "n_flagged": 93,
+    "precision": 0.4839,
+    "dollar_recall": 0.2613
+   },
+   "top20_dollar_lift": 2.376
+  },
+  {
+   "state": "Maine",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 863,
+    "n_flagged": 43,
+    "precision": 0.4651,
+    "dollar_recall": 0.2178
+   },
+   "budget10": {
+    "n_te": 863,
+    "n_flagged": 86,
+    "precision": 0.3605,
+    "dollar_recall": 0.3371
+   },
+   "top20_dollar_lift": 2.843
+  },
+  {
+   "state": "Maryland",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 677,
+    "n_flagged": 34,
+    "precision": 0.2941,
+    "dollar_recall": 0.1391
+   },
+   "budget10": {
+    "n_te": 677,
+    "n_flagged": 68,
+    "precision": 0.2941,
+    "dollar_recall": 0.2318
+   },
+   "top20_dollar_lift": 2.232
+  },
+  {
+   "state": "Maryland",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 535,
+    "n_flagged": 27,
+    "precision": 0.4074,
+    "dollar_recall": 0.2205
+   },
+   "budget10": {
+    "n_te": 535,
+    "n_flagged": 54,
+    "precision": 0.3519,
+    "dollar_recall": 0.4034
+   },
+   "top20_dollar_lift": 3.046
+  },
+  {
+   "state": "Maryland",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 677,
+    "n_flagged": 34,
+    "precision": 0.3824,
+    "dollar_recall": 0.1754
+   },
+   "budget10": {
+    "n_te": 677,
+    "n_flagged": 68,
+    "precision": 0.3971,
+    "dollar_recall": 0.2961
+   },
+   "top20_dollar_lift": 2.287
+  },
+  {
+   "state": "Maryland",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 403,
+    "n_flagged": 20,
+    "precision": 0.55,
+    "dollar_recall": 0.1397
+   },
+   "budget10": {
+    "n_te": 403,
+    "n_flagged": 40,
+    "precision": 0.475,
+    "dollar_recall": 0.2962
+   },
+   "top20_dollar_lift": 2.976
+  },
+  {
+   "state": "Maryland",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 535,
+    "n_flagged": 27,
+    "precision": 0.3704,
+    "dollar_recall": 0.1697
+   },
+   "budget10": {
+    "n_te": 535,
+    "n_flagged": 54,
+    "precision": 0.2407,
+    "dollar_recall": 0.2656
+   },
+   "top20_dollar_lift": 2.439
+  },
+  {
+   "state": "Massachusetts",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 764,
+    "n_flagged": 38,
+    "precision": 0.6842,
+    "dollar_recall": 0.3009
+   },
+   "budget10": {
+    "n_te": 764,
+    "n_flagged": 76,
+    "precision": 0.4605,
+    "dollar_recall": 0.3706
+   },
+   "top20_dollar_lift": 2.713
+  },
+  {
+   "state": "Maryland",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 403,
+    "n_flagged": 20,
+    "precision": 0.65,
+    "dollar_recall": 0.2357
+   },
+   "budget10": {
+    "n_te": 403,
+    "n_flagged": 40,
+    "precision": 0.55,
+    "dollar_recall": 0.3295
+   },
+   "top20_dollar_lift": 3.018
+  },
+  {
+   "state": "Massachusetts",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 836,
+    "n_flagged": 42,
+    "precision": 0.1667,
+    "dollar_recall": 0.1339
+   },
+   "budget10": {
+    "n_te": 836,
+    "n_flagged": 84,
+    "precision": 0.1905,
+    "dollar_recall": 0.2933
+   },
+   "top20_dollar_lift": 1.946
+  },
+  {
+   "state": "Massachusetts",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 764,
+    "n_flagged": 38,
+    "precision": 0.6316,
+    "dollar_recall": 0.243
+   },
+   "budget10": {
+    "n_te": 764,
+    "n_flagged": 76,
+    "precision": 0.5132,
+    "dollar_recall": 0.4017
+   },
+   "top20_dollar_lift": 2.783
+  },
+  {
+   "state": "Massachusetts",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 782,
+    "n_flagged": 39,
+    "precision": 0.4872,
+    "dollar_recall": 0.2671
+   },
+   "budget10": {
+    "n_te": 782,
+    "n_flagged": 78,
+    "precision": 0.2949,
+    "dollar_recall": 0.293
+   },
+   "top20_dollar_lift": 2.371
+  },
+  {
+   "state": "Massachusetts",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 836,
+    "n_flagged": 42,
+    "precision": 0.2143,
+    "dollar_recall": 0.178
+   },
+   "budget10": {
+    "n_te": 836,
+    "n_flagged": 84,
+    "precision": 0.1548,
+    "dollar_recall": 0.2261
+   },
+   "top20_dollar_lift": 2.029
+  },
+  {
+   "state": "Massachusetts",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 782,
+    "n_flagged": 39,
+    "precision": 0.4872,
+    "dollar_recall": 0.2365
+   },
+   "budget10": {
+    "n_te": 782,
+    "n_flagged": 78,
+    "precision": 0.3333,
+    "dollar_recall": 0.3236
+   },
+   "top20_dollar_lift": 2.652
+  },
+  {
+   "state": "Michigan",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 847,
+    "n_flagged": 42,
+    "precision": 0.3571,
+    "dollar_recall": 0.1764
+   },
+   "budget10": {
+    "n_te": 847,
+    "n_flagged": 85,
+    "precision": 0.3294,
+    "dollar_recall": 0.283
+   },
+   "top20_dollar_lift": 2.157
+  },
+  {
+   "state": "Michigan",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 821,
+    "n_flagged": 41,
+    "precision": 0.4146,
+    "dollar_recall": 0.1447
+   },
+   "budget10": {
+    "n_te": 821,
+    "n_flagged": 82,
+    "precision": 0.3293,
+    "dollar_recall": 0.2201
+   },
+   "top20_dollar_lift": 2.05
+  },
+  {
+   "state": "Michigan",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 808,
+    "n_flagged": 40,
+    "precision": 0.5,
+    "dollar_recall": 0.1601
+   },
+   "budget10": {
+    "n_te": 808,
+    "n_flagged": 81,
+    "precision": 0.3457,
+    "dollar_recall": 0.2497
+   },
+   "top20_dollar_lift": 2.105
+  },
+  {
+   "state": "Michigan",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 847,
+    "n_flagged": 42,
+    "precision": 0.4048,
+    "dollar_recall": 0.1949
+   },
+   "budget10": {
+    "n_te": 847,
+    "n_flagged": 85,
+    "precision": 0.3059,
+    "dollar_recall": 0.2666
+   },
+   "top20_dollar_lift": 2.57
+  },
+  {
+   "state": "Michigan",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 821,
+    "n_flagged": 41,
+    "precision": 0.3902,
+    "dollar_recall": 0.1274
+   },
+   "budget10": {
+    "n_te": 821,
+    "n_flagged": 82,
+    "precision": 0.3537,
+    "dollar_recall": 0.2247
+   },
+   "top20_dollar_lift": 1.95
+  },
+  {
+   "state": "Michigan",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 808,
+    "n_flagged": 40,
+    "precision": 0.5,
+    "dollar_recall": 0.1596
+   },
+   "budget10": {
+    "n_te": 808,
+    "n_flagged": 81,
+    "precision": 0.4568,
+    "dollar_recall": 0.2923
+   },
+   "top20_dollar_lift": 2.307
+  },
+  {
+   "state": "Minnesota",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 799,
+    "n_flagged": 40,
+    "precision": 0.45,
+    "dollar_recall": 0.2055
+   },
+   "budget10": {
+    "n_te": 799,
+    "n_flagged": 80,
+    "precision": 0.375,
+    "dollar_recall": 0.3292
+   },
+   "top20_dollar_lift": 2.623
+  },
+  {
+   "state": "Minnesota",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 0.2439,
+    "dollar_recall": 0.1181
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 0.3049,
+    "dollar_recall": 0.2592
+   },
+   "top20_dollar_lift": 2.593
+  },
+  {
+   "state": "Minnesota",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 799,
+    "n_flagged": 40,
+    "precision": 0.425,
+    "dollar_recall": 0.2164
+   },
+   "budget10": {
+    "n_te": 799,
+    "n_flagged": 80,
+    "precision": 0.35,
+    "dollar_recall": 0.3596
+   },
+   "top20_dollar_lift": 2.911
+  },
+  {
+   "state": "Minnesota",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 839,
+    "n_flagged": 42,
+    "precision": 0.4048,
+    "dollar_recall": 0.1683
+   },
+   "budget10": {
+    "n_te": 839,
+    "n_flagged": 84,
+    "precision": 0.3929,
+    "dollar_recall": 0.3362
+   },
+   "top20_dollar_lift": 2.635
+  },
+  {
+   "state": "Minnesota",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 818,
+    "n_flagged": 41,
+    "precision": 0.3902,
+    "dollar_recall": 0.1762
+   },
+   "budget10": {
+    "n_te": 818,
+    "n_flagged": 82,
+    "precision": 0.3049,
+    "dollar_recall": 0.2871
+   },
+   "top20_dollar_lift": 2.571
+  },
+  {
+   "state": "Minnesota",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 839,
+    "n_flagged": 42,
+    "precision": 0.4286,
+    "dollar_recall": 0.1917
+   },
+   "budget10": {
+    "n_te": 839,
+    "n_flagged": 84,
+    "precision": 0.369,
+    "dollar_recall": 0.3121
+   },
+   "top20_dollar_lift": 2.678
+  },
+  {
+   "state": "Mississippi",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 902,
+    "n_flagged": 45,
+    "precision": 0.5556,
+    "dollar_recall": 0.2492
+   },
+   "budget10": {
+    "n_te": 902,
+    "n_flagged": 90,
+    "precision": 0.4111,
+    "dollar_recall": 0.3403
+   },
+   "top20_dollar_lift": 2.541
+  },
+  {
+   "state": "Mississippi",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 800,
+    "n_flagged": 40,
+    "precision": 0.2,
+    "dollar_recall": 0.1579
+   },
+   "budget10": {
+    "n_te": 800,
+    "n_flagged": 80,
+    "precision": 0.1625,
+    "dollar_recall": 0.2085
+   },
+   "top20_dollar_lift": 2.254
+  },
+  {
+   "state": "Mississippi",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 859,
+    "n_flagged": 43,
+    "precision": 0.2791,
+    "dollar_recall": 0.1439
+   },
+   "budget10": {
+    "n_te": 859,
+    "n_flagged": 86,
+    "precision": 0.2907,
+    "dollar_recall": 0.267
+   },
+   "top20_dollar_lift": 2.407
+  },
+  {
+   "state": "Mississippi",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 902,
+    "n_flagged": 45,
+    "precision": 0.5333,
+    "dollar_recall": 0.2279
+   },
+   "budget10": {
+    "n_te": 902,
+    "n_flagged": 90,
+    "precision": 0.4556,
+    "dollar_recall": 0.3493
+   },
+   "top20_dollar_lift": 2.551
+  },
+  {
+   "state": "Mississippi",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 800,
+    "n_flagged": 40,
+    "precision": 0.15,
+    "dollar_recall": 0.0828
+   },
+   "budget10": {
+    "n_te": 800,
+    "n_flagged": 80,
+    "precision": 0.175,
+    "dollar_recall": 0.1928
+   },
+   "top20_dollar_lift": 1.956
+  },
+  {
+   "state": "Missouri",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 756,
+    "n_flagged": 38,
+    "precision": 0.3421,
+    "dollar_recall": 0.2501
+   },
+   "budget10": {
+    "n_te": 756,
+    "n_flagged": 76,
+    "precision": 0.2895,
+    "dollar_recall": 0.3757
+   },
+   "top20_dollar_lift": 2.911
+  },
+  {
+   "state": "Mississippi",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 859,
+    "n_flagged": 43,
+    "precision": 0.3023,
+    "dollar_recall": 0.1667
+   },
+   "budget10": {
+    "n_te": 859,
+    "n_flagged": 86,
+    "precision": 0.2674,
+    "dollar_recall": 0.238
+   },
+   "top20_dollar_lift": 2.373
+  },
+  {
+   "state": "Missouri",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 829,
+    "n_flagged": 41,
+    "precision": 0.2439,
+    "dollar_recall": 0.2567
+   },
+   "budget10": {
+    "n_te": 829,
+    "n_flagged": 83,
+    "precision": 0.1687,
+    "dollar_recall": 0.3209
+   },
+   "top20_dollar_lift": 2.493
+  },
+  {
+   "state": "Missouri",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 756,
+    "n_flagged": 38,
+    "precision": 0.2895,
+    "dollar_recall": 0.2517
+   },
+   "budget10": {
+    "n_te": 756,
+    "n_flagged": 76,
+    "precision": 0.2763,
+    "dollar_recall": 0.3701
+   },
+   "top20_dollar_lift": 2.797
+  },
+  {
+   "state": "Missouri",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 679,
+    "n_flagged": 34,
+    "precision": 0.2941,
+    "dollar_recall": 0.1819
+   },
+   "budget10": {
+    "n_te": 679,
+    "n_flagged": 68,
+    "precision": 0.2206,
+    "dollar_recall": 0.2354
+   },
+   "top20_dollar_lift": 2.488
+  },
+  {
+   "state": "Missouri",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 829,
+    "n_flagged": 41,
+    "precision": 0.2439,
+    "dollar_recall": 0.2565
+   },
+   "budget10": {
+    "n_te": 829,
+    "n_flagged": 83,
+    "precision": 0.2048,
+    "dollar_recall": 0.3483
+   },
+   "top20_dollar_lift": 2.613
+  },
+  {
+   "state": "Montana",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 575,
+    "n_flagged": 29,
+    "precision": 0.4483,
+    "dollar_recall": 0.2757
+   },
+   "budget10": {
+    "n_te": 575,
+    "n_flagged": 58,
+    "precision": 0.2414,
+    "dollar_recall": 0.2824
+   },
+   "top20_dollar_lift": 2.375
+  },
+  {
+   "state": "Missouri",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 679,
+    "n_flagged": 34,
+    "precision": 0.2647,
+    "dollar_recall": 0.1647
+   },
+   "budget10": {
+    "n_te": 679,
+    "n_flagged": 68,
+    "precision": 0.3088,
+    "dollar_recall": 0.3163
+   },
+   "top20_dollar_lift": 2.849
+  },
+  {
+   "state": "Montana",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 633,
+    "n_flagged": 32,
+    "precision": 0.4688,
+    "dollar_recall": 0.2611
+   },
+   "budget10": {
+    "n_te": 633,
+    "n_flagged": 63,
+    "precision": 0.3333,
+    "dollar_recall": 0.3743
+   },
+   "top20_dollar_lift": 2.596
+  },
+  {
+   "state": "Montana",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 561,
+    "n_flagged": 28,
+    "precision": 0.3929,
+    "dollar_recall": 0.1629
+   },
+   "budget10": {
+    "n_te": 561,
+    "n_flagged": 56,
+    "precision": 0.3571,
+    "dollar_recall": 0.2521
+   },
+   "top20_dollar_lift": 1.955
+  },
+  {
+   "state": "Montana",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 575,
+    "n_flagged": 29,
+    "precision": 0.4483,
+    "dollar_recall": 0.2757
+   },
+   "budget10": {
+    "n_te": 575,
+    "n_flagged": 58,
+    "precision": 0.3103,
+    "dollar_recall": 0.3331
+   },
+   "top20_dollar_lift": 1.91
+  },
+  {
+   "state": "Montana",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 633,
+    "n_flagged": 32,
+    "precision": 0.4062,
+    "dollar_recall": 0.2072
+   },
+   "budget10": {
+    "n_te": 633,
+    "n_flagged": 63,
+    "precision": 0.2857,
+    "dollar_recall": 0.3363
+   },
+   "top20_dollar_lift": 2.367
+  },
+  {
+   "state": "Montana",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 561,
+    "n_flagged": 28,
+    "precision": 0.3929,
+    "dollar_recall": 0.188
+   },
+   "budget10": {
+    "n_te": 561,
+    "n_flagged": 56,
+    "precision": 0.3571,
+    "dollar_recall": 0.2921
+   },
+   "top20_dollar_lift": 2.195
+  },
+  {
+   "state": "Nebraska",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 881,
+    "n_flagged": 44,
+    "precision": 0.1818,
+    "dollar_recall": 0.2476
+   },
+   "budget10": {
+    "n_te": 881,
+    "n_flagged": 88,
+    "precision": 0.125,
+    "dollar_recall": 0.3533
+   },
+   "top20_dollar_lift": 2.565
+  },
+  {
+   "state": "Nebraska",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 881,
+    "n_flagged": 44,
+    "precision": 0.2727,
+    "dollar_recall": 0.2628
+   },
+   "budget10": {
+    "n_te": 881,
+    "n_flagged": 88,
+    "precision": 0.2386,
+    "dollar_recall": 0.3608
+   },
+   "top20_dollar_lift": 2.354
+  },
+  {
+   "state": "Nebraska",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 0.2727,
+    "dollar_recall": 0.2954
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.1839,
+    "dollar_recall": 0.3729
+   },
+   "top20_dollar_lift": 2.903
+  },
+  {
+   "state": "Nebraska",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 881,
+    "n_flagged": 44,
+    "precision": 0.1591,
+    "dollar_recall": 0.2681
+   },
+   "budget10": {
+    "n_te": 881,
+    "n_flagged": 88,
+    "precision": 0.1705,
+    "dollar_recall": 0.4117
+   },
+   "top20_dollar_lift": 2.766
+  },
+  {
+   "state": "Nebraska",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 881,
+    "n_flagged": 44,
+    "precision": 0.1591,
+    "dollar_recall": 0.1916
+   },
+   "budget10": {
+    "n_te": 881,
+    "n_flagged": 88,
+    "precision": 0.1591,
+    "dollar_recall": 0.3098
+   },
+   "top20_dollar_lift": 2.551
+  },
+  {
+   "state": "Nebraska",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 0.25,
+    "dollar_recall": 0.2679
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.1609,
+    "dollar_recall": 0.3209
+   },
+   "top20_dollar_lift": 2.96
+  },
+  {
+   "state": "Nevada",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 911,
+    "n_flagged": 46,
+    "precision": 0.5,
+    "dollar_recall": 0.2564
+   },
+   "budget10": {
+    "n_te": 911,
+    "n_flagged": 91,
+    "precision": 0.3736,
+    "dollar_recall": 0.3973
+   },
+   "top20_dollar_lift": 2.76
+  },
+  {
+   "state": "Nevada",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 817,
+    "n_flagged": 41,
+    "precision": 0.4146,
+    "dollar_recall": 0.3317
+   },
+   "budget10": {
+    "n_te": 817,
+    "n_flagged": 82,
+    "precision": 0.2683,
+    "dollar_recall": 0.3897
+   },
+   "top20_dollar_lift": 2.956
+  },
+  {
+   "state": "Nevada",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 911,
+    "n_flagged": 46,
+    "precision": 0.5,
+    "dollar_recall": 0.2418
+   },
+   "budget10": {
+    "n_te": 911,
+    "n_flagged": 91,
+    "precision": 0.3407,
+    "dollar_recall": 0.3836
+   },
+   "top20_dollar_lift": 2.94
+  },
+  {
+   "state": "Nevada",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 963,
+    "n_flagged": 48,
+    "precision": 0.3333,
+    "dollar_recall": 0.2155
+   },
+   "budget10": {
+    "n_te": 963,
+    "n_flagged": 96,
+    "precision": 0.25,
+    "dollar_recall": 0.2981
+   },
+   "top20_dollar_lift": 2.369
+  },
+  {
+   "state": "Nevada",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 817,
+    "n_flagged": 41,
+    "precision": 0.3902,
+    "dollar_recall": 0.3672
+   },
+   "budget10": {
+    "n_te": 817,
+    "n_flagged": 82,
+    "precision": 0.3171,
+    "dollar_recall": 0.4809
+   },
+   "top20_dollar_lift": 3.251
+  },
+  {
+   "state": "New Hampshire",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 620,
+    "n_flagged": 31,
+    "precision": 0.2581,
+    "dollar_recall": 0.1526
+   },
+   "budget10": {
+    "n_te": 620,
+    "n_flagged": 62,
+    "precision": 0.2581,
+    "dollar_recall": 0.2817
+   },
+   "top20_dollar_lift": 2.22
+  },
+  {
+   "state": "Nevada",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 963,
+    "n_flagged": 48,
+    "precision": 0.375,
+    "dollar_recall": 0.2605
+   },
+   "budget10": {
+    "n_te": 963,
+    "n_flagged": 96,
+    "precision": 0.3333,
+    "dollar_recall": 0.4478
+   },
+   "top20_dollar_lift": 2.744
+  },
+  {
+   "state": "New Hampshire",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 583,
+    "n_flagged": 29,
+    "precision": 0.3448,
+    "dollar_recall": 0.1938
+   },
+   "budget10": {
+    "n_te": 583,
+    "n_flagged": 58,
+    "precision": 0.2931,
+    "dollar_recall": 0.4054
+   },
+   "top20_dollar_lift": 3.152
+  },
+  {
+   "state": "New Hampshire",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 516,
+    "n_flagged": 26,
+    "precision": 0.3846,
+    "dollar_recall": 0.1097
+   },
+   "budget10": {
+    "n_te": 516,
+    "n_flagged": 52,
+    "precision": 0.3462,
+    "dollar_recall": 0.2561
+   },
+   "top20_dollar_lift": 2.426
+  },
+  {
+   "state": "New Hampshire",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 620,
+    "n_flagged": 31,
+    "precision": 0.3871,
+    "dollar_recall": 0.2304
+   },
+   "budget10": {
+    "n_te": 620,
+    "n_flagged": 62,
+    "precision": 0.2419,
+    "dollar_recall": 0.2716
+   },
+   "top20_dollar_lift": 2.415
+  },
+  {
+   "state": "New Hampshire",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 583,
+    "n_flagged": 29,
+    "precision": 0.5517,
+    "dollar_recall": 0.3682
+   },
+   "budget10": {
+    "n_te": 583,
+    "n_flagged": 58,
+    "precision": 0.3621,
+    "dollar_recall": 0.4722
+   },
+   "top20_dollar_lift": 3.241
+  },
+  {
+   "state": "New Jersey",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 621,
+    "n_flagged": 31,
+    "precision": 0.3226,
+    "dollar_recall": 0.219
+   },
+   "budget10": {
+    "n_te": 621,
+    "n_flagged": 62,
+    "precision": 0.2097,
+    "dollar_recall": 0.2787
+   },
+   "top20_dollar_lift": 2.393
+  },
+  {
+   "state": "New Hampshire",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 516,
+    "n_flagged": 26,
+    "precision": 0.3077,
+    "dollar_recall": 0.106
+   },
+   "budget10": {
+    "n_te": 516,
+    "n_flagged": 52,
+    "precision": 0.2692,
+    "dollar_recall": 0.2281
+   },
+   "top20_dollar_lift": 1.634
+  },
+  {
+   "state": "New Jersey",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 689,
+    "n_flagged": 34,
+    "precision": 0.5,
+    "dollar_recall": 0.2517
+   },
+   "budget10": {
+    "n_te": 689,
+    "n_flagged": 69,
+    "precision": 0.3478,
+    "dollar_recall": 0.3277
+   },
+   "top20_dollar_lift": 2.965
+  },
+  {
+   "state": "New Jersey",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 621,
+    "n_flagged": 31,
+    "precision": 0.2903,
+    "dollar_recall": 0.191
+   },
+   "budget10": {
+    "n_te": 621,
+    "n_flagged": 62,
+    "precision": 0.2742,
+    "dollar_recall": 0.371
+   },
+   "top20_dollar_lift": 2.494
+  },
+  {
+   "state": "New Jersey",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 569,
+    "n_flagged": 28,
+    "precision": 0.2143,
+    "dollar_recall": 0.1185
+   },
+   "budget10": {
+    "n_te": 569,
+    "n_flagged": 57,
+    "precision": 0.193,
+    "dollar_recall": 0.2478
+   },
+   "top20_dollar_lift": 2.313
+  },
+  {
+   "state": "New Jersey",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 689,
+    "n_flagged": 34,
+    "precision": 0.4118,
+    "dollar_recall": 0.2401
+   },
+   "budget10": {
+    "n_te": 689,
+    "n_flagged": 69,
+    "precision": 0.3043,
+    "dollar_recall": 0.3442
+   },
+   "top20_dollar_lift": 2.506
+  },
+  {
+   "state": "New Jersey",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 569,
+    "n_flagged": 28,
+    "precision": 0.25,
+    "dollar_recall": 0.1448
+   },
+   "budget10": {
+    "n_te": 569,
+    "n_flagged": 57,
+    "precision": 0.2105,
+    "dollar_recall": 0.2877
+   },
+   "top20_dollar_lift": 2.515
+  },
+  {
+   "state": "New Mexico",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 824,
+    "n_flagged": 41,
+    "precision": 0.4634,
+    "dollar_recall": 0.1528
+   },
+   "budget10": {
+    "n_te": 824,
+    "n_flagged": 82,
+    "precision": 0.3659,
+    "dollar_recall": 0.2581
+   },
+   "top20_dollar_lift": 2.639
+  },
+  {
+   "state": "New Mexico",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 959,
+    "n_flagged": 48,
+    "precision": 0.4583,
+    "dollar_recall": 0.1801
+   },
+   "budget10": {
+    "n_te": 959,
+    "n_flagged": 96,
+    "precision": 0.4062,
+    "dollar_recall": 0.3009
+   },
+   "top20_dollar_lift": 2.399
+  },
+  {
+   "state": "New Mexico",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 959,
+    "n_flagged": 48,
+    "precision": 0.4375,
+    "dollar_recall": 0.1748
+   },
+   "budget10": {
+    "n_te": 959,
+    "n_flagged": 96,
+    "precision": 0.3958,
+    "dollar_recall": 0.3024
+   },
+   "top20_dollar_lift": 2.44
+  },
+  {
+   "state": "New Mexico",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 926,
+    "n_flagged": 46,
+    "precision": 0.587,
+    "dollar_recall": 0.2161
+   },
+   "budget10": {
+    "n_te": 926,
+    "n_flagged": 93,
+    "precision": 0.4194,
+    "dollar_recall": 0.3016
+   },
+   "top20_dollar_lift": 2.379
+  },
+  {
+   "state": "New Mexico",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 824,
+    "n_flagged": 41,
+    "precision": 0.4878,
+    "dollar_recall": 0.1929
+   },
+   "budget10": {
+    "n_te": 824,
+    "n_flagged": 82,
+    "precision": 0.4268,
+    "dollar_recall": 0.3372
+   },
+   "top20_dollar_lift": 2.605
+  },
+  {
+   "state": "New Mexico",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 926,
+    "n_flagged": 46,
+    "precision": 0.5652,
+    "dollar_recall": 0.1723
+   },
+   "budget10": {
+    "n_te": 926,
+    "n_flagged": 93,
+    "precision": 0.5269,
+    "dollar_recall": 0.338
+   },
+   "top20_dollar_lift": 2.419
+  },
+  {
+   "state": "New York",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 673,
+    "n_flagged": 34,
+    "precision": 0.3529,
+    "dollar_recall": 0.1392
+   },
+   "budget10": {
+    "n_te": 673,
+    "n_flagged": 67,
+    "precision": 0.3134,
+    "dollar_recall": 0.2415
+   },
+   "top20_dollar_lift": 2.343
+  },
+  {
+   "state": "New York",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 651,
+    "n_flagged": 33,
+    "precision": 0.2424,
+    "dollar_recall": 0.1571
+   },
+   "budget10": {
+    "n_te": 651,
+    "n_flagged": 65,
+    "precision": 0.2154,
+    "dollar_recall": 0.3149
+   },
+   "top20_dollar_lift": 2.604
+  },
+  {
+   "state": "New York",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 673,
+    "n_flagged": 34,
+    "precision": 0.4412,
+    "dollar_recall": 0.157
+   },
+   "budget10": {
+    "n_te": 673,
+    "n_flagged": 67,
+    "precision": 0.3731,
+    "dollar_recall": 0.2574
+   },
+   "top20_dollar_lift": 2.643
+  },
+  {
+   "state": "New York",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 687,
+    "n_flagged": 34,
+    "precision": 0.3529,
+    "dollar_recall": 0.1669
+   },
+   "budget10": {
+    "n_te": 687,
+    "n_flagged": 69,
+    "precision": 0.3478,
+    "dollar_recall": 0.3229
+   },
+   "top20_dollar_lift": 2.439
+  },
+  {
+   "state": "New York",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 651,
+    "n_flagged": 33,
+    "precision": 0.2424,
+    "dollar_recall": 0.2089
+   },
+   "budget10": {
+    "n_te": 651,
+    "n_flagged": 65,
+    "precision": 0.2615,
+    "dollar_recall": 0.372
+   },
+   "top20_dollar_lift": 2.446
+  },
+  {
+   "state": "North Carolina",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 878,
+    "n_flagged": 44,
+    "precision": 0.3409,
+    "dollar_recall": 0.1286
+   },
+   "budget10": {
+    "n_te": 878,
+    "n_flagged": 88,
+    "precision": 0.3295,
+    "dollar_recall": 0.2704
+   },
+   "top20_dollar_lift": 2.179
+  },
+  {
+   "state": "New York",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 687,
+    "n_flagged": 34,
+    "precision": 0.3824,
+    "dollar_recall": 0.1505
+   },
+   "budget10": {
+    "n_te": 687,
+    "n_flagged": 69,
+    "precision": 0.2899,
+    "dollar_recall": 0.2533
+   },
+   "top20_dollar_lift": 2.073
+  },
+  {
+   "state": "North Carolina",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 883,
+    "n_flagged": 44,
+    "precision": 0.1818,
+    "dollar_recall": 0.0988
+   },
+   "budget10": {
+    "n_te": 883,
+    "n_flagged": 88,
+    "precision": 0.1705,
+    "dollar_recall": 0.221
+   },
+   "top20_dollar_lift": 2.169
+  },
+  {
+   "state": "North Carolina",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 878,
+    "n_flagged": 44,
+    "precision": 0.3182,
+    "dollar_recall": 0.143
+   },
+   "budget10": {
+    "n_te": 878,
+    "n_flagged": 88,
+    "precision": 0.3409,
+    "dollar_recall": 0.2864
+   },
+   "top20_dollar_lift": 2.12
+  },
+  {
+   "state": "North Carolina",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 883,
+    "n_flagged": 44,
+    "precision": 0.2727,
+    "dollar_recall": 0.1951
+   },
+   "budget10": {
+    "n_te": 883,
+    "n_flagged": 88,
+    "precision": 0.2159,
+    "dollar_recall": 0.2907
+   },
+   "top20_dollar_lift": 2.199
+  },
+  {
+   "state": "North Carolina",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 839,
+    "n_flagged": 42,
+    "precision": 0.4524,
+    "dollar_recall": 0.2355
+   },
+   "budget10": {
+    "n_te": 839,
+    "n_flagged": 84,
+    "precision": 0.369,
+    "dollar_recall": 0.3564
+   },
+   "top20_dollar_lift": 2.593
+  },
+  {
+   "state": "North Dakota",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 434,
+    "n_flagged": 22,
+    "precision": 0.3182,
+    "dollar_recall": 0.3221
+   },
+   "budget10": {
+    "n_te": 434,
+    "n_flagged": 43,
+    "precision": 0.2791,
+    "dollar_recall": 0.4663
+   },
+   "top20_dollar_lift": 2.768
+  },
+  {
+   "state": "North Carolina",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 839,
+    "n_flagged": 42,
+    "precision": 0.4524,
+    "dollar_recall": 0.2101
+   },
+   "budget10": {
+    "n_te": 839,
+    "n_flagged": 84,
+    "precision": 0.3452,
+    "dollar_recall": 0.3207
+   },
+   "top20_dollar_lift": 2.455
+  },
+  {
+   "state": "North Dakota",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 438,
+    "n_flagged": 22,
+    "precision": 0.3182,
+    "dollar_recall": 0.2987
+   },
+   "budget10": {
+    "n_te": 438,
+    "n_flagged": 44,
+    "precision": 0.2727,
+    "dollar_recall": 0.4725
+   },
+   "top20_dollar_lift": 3.087
+  },
+  {
+   "state": "North Dakota",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 434,
+    "n_flagged": 22,
+    "precision": 0.1818,
+    "dollar_recall": 0.1557
+   },
+   "budget10": {
+    "n_te": 434,
+    "n_flagged": 43,
+    "precision": 0.2558,
+    "dollar_recall": 0.4685
+   },
+   "top20_dollar_lift": 2.734
+  },
+  {
+   "state": "North Dakota",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 429,
+    "n_flagged": 21,
+    "precision": 0.381,
+    "dollar_recall": 0.2744
+   },
+   "budget10": {
+    "n_te": 429,
+    "n_flagged": 43,
+    "precision": 0.3488,
+    "dollar_recall": 0.4343
+   },
+   "top20_dollar_lift": 3.046
+  },
+  {
+   "state": "North Dakota",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 438,
+    "n_flagged": 22,
+    "precision": 0.2727,
+    "dollar_recall": 0.2386
+   },
+   "budget10": {
+    "n_te": 438,
+    "n_flagged": 44,
+    "precision": 0.2955,
+    "dollar_recall": 0.5529
+   },
+   "top20_dollar_lift": 3.318
+  },
+  {
+   "state": "Ohio",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 895,
+    "n_flagged": 45,
+    "precision": 0.2444,
+    "dollar_recall": 0.1689
+   },
+   "budget10": {
+    "n_te": 895,
+    "n_flagged": 90,
+    "precision": 0.1889,
+    "dollar_recall": 0.2364
+   },
+   "top20_dollar_lift": 2.244
+  },
+  {
+   "state": "North Dakota",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 429,
+    "n_flagged": 21,
+    "precision": 0.4286,
+    "dollar_recall": 0.234
+   },
+   "budget10": {
+    "n_te": 429,
+    "n_flagged": 43,
+    "precision": 0.3488,
+    "dollar_recall": 0.3373
+   },
+   "top20_dollar_lift": 3.023
+  },
+  {
+   "state": "Ohio",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 876,
+    "n_flagged": 44,
+    "precision": 0.3636,
+    "dollar_recall": 0.1986
+   },
+   "budget10": {
+    "n_te": 876,
+    "n_flagged": 88,
+    "precision": 0.3182,
+    "dollar_recall": 0.3292
+   },
+   "top20_dollar_lift": 3.163
+  },
+  {
+   "state": "Ohio",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 895,
+    "n_flagged": 45,
+    "precision": 0.2889,
+    "dollar_recall": 0.2093
+   },
+   "budget10": {
+    "n_te": 895,
+    "n_flagged": 90,
+    "precision": 0.2111,
+    "dollar_recall": 0.2824
+   },
+   "top20_dollar_lift": 2.37
+  },
+  {
+   "state": "Ohio",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 888,
+    "n_flagged": 44,
+    "precision": 0.2727,
+    "dollar_recall": 0.2385
+   },
+   "budget10": {
+    "n_te": 888,
+    "n_flagged": 89,
+    "precision": 0.1798,
+    "dollar_recall": 0.2959
+   },
+   "top20_dollar_lift": 2.351
+  },
+  {
+   "state": "Ohio",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 876,
+    "n_flagged": 44,
+    "precision": 0.4091,
+    "dollar_recall": 0.2309
+   },
+   "budget10": {
+    "n_te": 876,
+    "n_flagged": 88,
+    "precision": 0.2841,
+    "dollar_recall": 0.3201
+   },
+   "top20_dollar_lift": 2.911
+  },
+  {
+   "state": "Ohio",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 888,
+    "n_flagged": 44,
+    "precision": 0.3409,
+    "dollar_recall": 0.2762
+   },
+   "budget10": {
+    "n_te": 888,
+    "n_flagged": 89,
+    "precision": 0.2584,
+    "dollar_recall": 0.3793
+   },
+   "top20_dollar_lift": 2.773
+  },
+  {
+   "state": "Oklahoma",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 0.5,
+    "dollar_recall": 0.2073
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.3908,
+    "dollar_recall": 0.336
+   },
+   "top20_dollar_lift": 2.332
+  },
+  {
+   "state": "Oklahoma",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 949,
+    "n_flagged": 47,
+    "precision": 0.3617,
+    "dollar_recall": 0.231
+   },
+   "budget10": {
+    "n_te": 949,
+    "n_flagged": 95,
+    "precision": 0.2842,
+    "dollar_recall": 0.3762
+   },
+   "top20_dollar_lift": 2.98
+  },
+  {
+   "state": "Oklahoma",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 873,
+    "n_flagged": 44,
+    "precision": 0.4091,
+    "dollar_recall": 0.1611
+   },
+   "budget10": {
+    "n_te": 873,
+    "n_flagged": 87,
+    "precision": 0.3563,
+    "dollar_recall": 0.2888
+   },
+   "top20_dollar_lift": 2.653
+  },
+  {
+   "state": "Oklahoma",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 887,
+    "n_flagged": 44,
+    "precision": 0.3864,
+    "dollar_recall": 0.2189
+   },
+   "budget10": {
+    "n_te": 887,
+    "n_flagged": 89,
+    "precision": 0.2921,
+    "dollar_recall": 0.3054
+   },
+   "top20_dollar_lift": 2.413
+  },
+  {
+   "state": "Oklahoma",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 949,
+    "n_flagged": 47,
+    "precision": 0.3404,
+    "dollar_recall": 0.1939
+   },
+   "budget10": {
+    "n_te": 949,
+    "n_flagged": 95,
+    "precision": 0.2737,
+    "dollar_recall": 0.299
+   },
+   "top20_dollar_lift": 2.621
+  },
+  {
+   "state": "Oregon",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 823,
+    "n_flagged": 41,
+    "precision": 0.5122,
+    "dollar_recall": 0.1751
+   },
+   "budget10": {
+    "n_te": 823,
+    "n_flagged": 82,
+    "precision": 0.5,
+    "dollar_recall": 0.4069
+   },
+   "top20_dollar_lift": 3.121
+  },
+  {
+   "state": "Oklahoma",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 887,
+    "n_flagged": 44,
+    "precision": 0.3182,
+    "dollar_recall": 0.17
+   },
+   "budget10": {
+    "n_te": 887,
+    "n_flagged": 89,
+    "precision": 0.2472,
+    "dollar_recall": 0.2365
+   },
+   "top20_dollar_lift": 2.455
+  },
+  {
+   "state": "Oregon",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 823,
+    "n_flagged": 41,
+    "precision": 0.561,
+    "dollar_recall": 0.2261
+   },
+   "budget10": {
+    "n_te": 823,
+    "n_flagged": 82,
+    "precision": 0.5,
+    "dollar_recall": 0.44
+   },
+   "top20_dollar_lift": 3.099
+  },
+  {
+   "state": "Oregon",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 775,
+    "n_flagged": 39,
+    "precision": 0.5385,
+    "dollar_recall": 0.2951
+   },
+   "budget10": {
+    "n_te": 775,
+    "n_flagged": 78,
+    "precision": 0.3974,
+    "dollar_recall": 0.4116
+   },
+   "top20_dollar_lift": 2.692
+  },
+  {
+   "state": "Oregon",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 725,
+    "n_flagged": 36,
+    "precision": 0.6389,
+    "dollar_recall": 0.2384
+   },
+   "budget10": {
+    "n_te": 725,
+    "n_flagged": 72,
+    "precision": 0.5,
+    "dollar_recall": 0.425
+   },
+   "top20_dollar_lift": 3.03
+  },
+  {
+   "state": "Oregon",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 775,
+    "n_flagged": 39,
+    "precision": 0.4103,
+    "dollar_recall": 0.2315
+   },
+   "budget10": {
+    "n_te": 775,
+    "n_flagged": 78,
+    "precision": 0.359,
+    "dollar_recall": 0.3826
+   },
+   "top20_dollar_lift": 2.824
+  },
+  {
+   "state": "Pennsylvania",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 760,
+    "n_flagged": 38,
+    "precision": 0.5263,
+    "dollar_recall": 0.3212
+   },
+   "budget10": {
+    "n_te": 760,
+    "n_flagged": 76,
+    "precision": 0.4211,
+    "dollar_recall": 0.4392
+   },
+   "top20_dollar_lift": 3.257
+  },
+  {
+   "state": "Oregon",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 725,
+    "n_flagged": 36,
+    "precision": 0.6944,
+    "dollar_recall": 0.2299
+   },
+   "budget10": {
+    "n_te": 725,
+    "n_flagged": 72,
+    "precision": 0.6111,
+    "dollar_recall": 0.4262
+   },
+   "top20_dollar_lift": 2.881
+  },
+  {
+   "state": "Pennsylvania",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 755,
+    "n_flagged": 38,
+    "precision": 0.4474,
+    "dollar_recall": 0.2142
+   },
+   "budget10": {
+    "n_te": 755,
+    "n_flagged": 76,
+    "precision": 0.3289,
+    "dollar_recall": 0.2838
+   },
+   "top20_dollar_lift": 2.598
+  },
+  {
+   "state": "Pennsylvania",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 755,
+    "n_flagged": 38,
+    "precision": 0.3947,
+    "dollar_recall": 0.1777
+   },
+   "budget10": {
+    "n_te": 755,
+    "n_flagged": 76,
+    "precision": 0.3553,
+    "dollar_recall": 0.3277
+   },
+   "top20_dollar_lift": 2.502
+  },
+  {
+   "state": "Pennsylvania",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 760,
+    "n_flagged": 38,
+    "precision": 0.5,
+    "dollar_recall": 0.2553
+   },
+   "budget10": {
+    "n_te": 760,
+    "n_flagged": 76,
+    "precision": 0.4474,
+    "dollar_recall": 0.4521
+   },
+   "top20_dollar_lift": 3.279
+  },
+  {
+   "state": "Pennsylvania",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 766,
+    "n_flagged": 38,
+    "precision": 0.3158,
+    "dollar_recall": 0.1749
+   },
+   "budget10": {
+    "n_te": 766,
+    "n_flagged": 77,
+    "precision": 0.2987,
+    "dollar_recall": 0.2787
+   },
+   "top20_dollar_lift": 2.628
+  },
+  {
+   "state": "Rhode Island",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 933,
+    "n_flagged": 47,
+    "precision": 0.7447,
+    "dollar_recall": 0.2395
+   },
+   "budget10": {
+    "n_te": 933,
+    "n_flagged": 93,
+    "precision": 0.5054,
+    "dollar_recall": 0.334
+   },
+   "top20_dollar_lift": 2.892
+  },
+  {
+   "state": "Pennsylvania",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 766,
+    "n_flagged": 38,
+    "precision": 0.2632,
+    "dollar_recall": 0.1451
+   },
+   "budget10": {
+    "n_te": 766,
+    "n_flagged": 77,
+    "precision": 0.2597,
+    "dollar_recall": 0.3649
+   },
+   "top20_dollar_lift": 2.709
+  },
+  {
+   "state": "Rhode Island",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 899,
+    "n_flagged": 45,
+    "precision": 0.9333,
+    "dollar_recall": 0.1911
+   },
+   "budget10": {
+    "n_te": 899,
+    "n_flagged": 90,
+    "precision": 0.9444,
+    "dollar_recall": 0.382
+   },
+   "top20_dollar_lift": 2.885
+  },
+  {
+   "state": "Rhode Island",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 643,
+    "n_flagged": 32,
+    "precision": 0.6562,
+    "dollar_recall": 0.2746
+   },
+   "budget10": {
+    "n_te": 643,
+    "n_flagged": 64,
+    "precision": 0.4531,
+    "dollar_recall": 0.3503
+   },
+   "top20_dollar_lift": 3.005
+  },
+  {
+   "state": "Rhode Island",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 933,
+    "n_flagged": 47,
+    "precision": 0.7234,
+    "dollar_recall": 0.2421
+   },
+   "budget10": {
+    "n_te": 933,
+    "n_flagged": 93,
+    "precision": 0.5699,
+    "dollar_recall": 0.3557
+   },
+   "top20_dollar_lift": 2.754
+  },
+  {
+   "state": "Rhode Island",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 899,
+    "n_flagged": 45,
+    "precision": 0.9778,
+    "dollar_recall": 0.1966
+   },
+   "budget10": {
+    "n_te": 899,
+    "n_flagged": 90,
+    "precision": 0.9556,
+    "dollar_recall": 0.3893
+   },
+   "top20_dollar_lift": 2.976
+  },
+  {
+   "state": "South Carolina",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 828,
+    "n_flagged": 41,
+    "precision": 0.439,
+    "dollar_recall": 0.1345
+   },
+   "budget10": {
+    "n_te": 828,
+    "n_flagged": 83,
+    "precision": 0.3735,
+    "dollar_recall": 0.2906
+   },
+   "top20_dollar_lift": 2.527
+  },
+  {
+   "state": "Rhode Island",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 643,
+    "n_flagged": 32,
+    "precision": 0.6875,
+    "dollar_recall": 0.2627
+   },
+   "budget10": {
+    "n_te": 643,
+    "n_flagged": 64,
+    "precision": 0.5312,
+    "dollar_recall": 0.3997
+   },
+   "top20_dollar_lift": 3.139
+  },
+  {
+   "state": "South Carolina",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 953,
+    "n_flagged": 48,
+    "precision": 0.2292,
+    "dollar_recall": 0.1184
+   },
+   "budget10": {
+    "n_te": 953,
+    "n_flagged": 95,
+    "precision": 0.2526,
+    "dollar_recall": 0.351
+   },
+   "top20_dollar_lift": 2.847
+  },
+  {
+   "state": "South Carolina",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 828,
+    "n_flagged": 41,
+    "precision": 0.4634,
+    "dollar_recall": 0.1528
+   },
+   "budget10": {
+    "n_te": 828,
+    "n_flagged": 83,
+    "precision": 0.3855,
+    "dollar_recall": 0.3087
+   },
+   "top20_dollar_lift": 2.34
+  },
+  {
+   "state": "South Carolina",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 807,
+    "n_flagged": 40,
+    "precision": 0.525,
+    "dollar_recall": 0.2562
+   },
+   "budget10": {
+    "n_te": 807,
+    "n_flagged": 81,
+    "precision": 0.3457,
+    "dollar_recall": 0.3171
+   },
+   "top20_dollar_lift": 2.646
+  },
+  {
+   "state": "South Carolina",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 953,
+    "n_flagged": 48,
+    "precision": 0.25,
+    "dollar_recall": 0.1427
+   },
+   "budget10": {
+    "n_te": 953,
+    "n_flagged": 95,
+    "precision": 0.2737,
+    "dollar_recall": 0.3421
+   },
+   "top20_dollar_lift": 2.913
+  },
+  {
+   "state": "South Dakota",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 590,
+    "n_flagged": 30,
+    "precision": 0.2,
+    "dollar_recall": 0.1694
+   },
+   "budget10": {
+    "n_te": 590,
+    "n_flagged": 59,
+    "precision": 0.1356,
+    "dollar_recall": 0.2407
+   },
+   "top20_dollar_lift": 2.951
+  },
+  {
+   "state": "South Dakota",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 594,
+    "n_flagged": 30,
+    "precision": 0.0333,
+    "dollar_recall": 0.0634
+   },
+   "budget10": {
+    "n_te": 594,
+    "n_flagged": 59,
+    "precision": 0.0508,
+    "dollar_recall": 0.1682
+   },
+   "top20_dollar_lift": 1.239
+  },
+  {
+   "state": "South Carolina",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 807,
+    "n_flagged": 40,
+    "precision": 0.45,
+    "dollar_recall": 0.2027
+   },
+   "budget10": {
+    "n_te": 807,
+    "n_flagged": 81,
+    "precision": 0.3333,
+    "dollar_recall": 0.3133
+   },
+   "top20_dollar_lift": 2.4
+  },
+  {
+   "state": "South Dakota",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 524,
+    "n_flagged": 26,
+    "precision": 0.1538,
+    "dollar_recall": 0.3595
+   },
+   "budget10": {
+    "n_te": 524,
+    "n_flagged": 52,
+    "precision": 0.1154,
+    "dollar_recall": 0.4201
+   },
+   "top20_dollar_lift": 2.998
+  },
+  {
+   "state": "South Dakota",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 590,
+    "n_flagged": 30,
+    "precision": 0.1667,
+    "dollar_recall": 0.1504
+   },
+   "budget10": {
+    "n_te": 590,
+    "n_flagged": 59,
+    "precision": 0.1356,
+    "dollar_recall": 0.2831
+   },
+   "top20_dollar_lift": 2.948
+  },
+  {
+   "state": "South Dakota",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 594,
+    "n_flagged": 30,
+    "precision": 0.0667,
+    "dollar_recall": 0.143
+   },
+   "budget10": {
+    "n_te": 594,
+    "n_flagged": 59,
+    "precision": 0.0678,
+    "dollar_recall": 0.3111
+   },
+   "top20_dollar_lift": 1.974
+  },
+  {
+   "state": "South Dakota",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 524,
+    "n_flagged": 26,
+    "precision": 0.1538,
+    "dollar_recall": 0.2481
+   },
+   "budget10": {
+    "n_te": 524,
+    "n_flagged": 52,
+    "precision": 0.1923,
+    "dollar_recall": 0.6194
+   },
+   "top20_dollar_lift": 4.002
+  },
+  {
+   "state": "Tennessee",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 938,
+    "n_flagged": 47,
+    "precision": 0.234,
+    "dollar_recall": 0.1221
+   },
+   "budget10": {
+    "n_te": 938,
+    "n_flagged": 94,
+    "precision": 0.2128,
+    "dollar_recall": 0.2331
+   },
+   "top20_dollar_lift": 2.111
+  },
+  {
+   "state": "Tennessee",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 983,
+    "n_flagged": 49,
+    "precision": 0.2653,
+    "dollar_recall": 0.2269
+   },
+   "budget10": {
+    "n_te": 983,
+    "n_flagged": 98,
+    "precision": 0.2041,
+    "dollar_recall": 0.2948
+   },
+   "top20_dollar_lift": 2.533
+  },
+  {
+   "state": "Tennessee",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 938,
+    "n_flagged": 47,
+    "precision": 0.3191,
+    "dollar_recall": 0.1693
+   },
+   "budget10": {
+    "n_te": 938,
+    "n_flagged": 94,
+    "precision": 0.2128,
+    "dollar_recall": 0.2244
+   },
+   "top20_dollar_lift": 2.435
+  },
+  {
+   "state": "Tennessee",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 898,
+    "n_flagged": 45,
+    "precision": 0.3556,
+    "dollar_recall": 0.1843
+   },
+   "budget10": {
+    "n_te": 898,
+    "n_flagged": 90,
+    "precision": 0.3444,
+    "dollar_recall": 0.3643
+   },
+   "top20_dollar_lift": 3.272
+  },
+  {
+   "state": "Tennessee",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 983,
+    "n_flagged": 49,
+    "precision": 0.2449,
+    "dollar_recall": 0.23
+   },
+   "budget10": {
+    "n_te": 983,
+    "n_flagged": 98,
+    "precision": 0.2449,
+    "dollar_recall": 0.3397
+   },
+   "top20_dollar_lift": 2.466
+  },
+  {
+   "state": "Texas",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 832,
+    "n_flagged": 42,
+    "precision": 0.3095,
+    "dollar_recall": 0.1016
+   },
+   "budget10": {
+    "n_te": 832,
+    "n_flagged": 83,
+    "precision": 0.241,
+    "dollar_recall": 0.1494
+   },
+   "top20_dollar_lift": 1.76
+  },
+  {
+   "state": "Tennessee",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 898,
+    "n_flagged": 45,
+    "precision": 0.3778,
+    "dollar_recall": 0.217
+   },
+   "budget10": {
+    "n_te": 898,
+    "n_flagged": 90,
+    "precision": 0.2889,
+    "dollar_recall": 0.3148
+   },
+   "top20_dollar_lift": 2.664
+  },
+  {
+   "state": "Texas",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 718,
+    "n_flagged": 36,
+    "precision": 0.3056,
+    "dollar_recall": 0.1857
+   },
+   "budget10": {
+    "n_te": 718,
+    "n_flagged": 72,
+    "precision": 0.25,
+    "dollar_recall": 0.2923
+   },
+   "top20_dollar_lift": 2.133
+  },
+  {
+   "state": "Texas",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 832,
+    "n_flagged": 42,
+    "precision": 0.2143,
+    "dollar_recall": 0.0587
+   },
+   "budget10": {
+    "n_te": 832,
+    "n_flagged": 83,
+    "precision": 0.2289,
+    "dollar_recall": 0.1458
+   },
+   "top20_dollar_lift": 1.818
+  },
+  {
+   "state": "Texas",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 761,
+    "n_flagged": 38,
+    "precision": 0.3684,
+    "dollar_recall": 0.1639
+   },
+   "budget10": {
+    "n_te": 761,
+    "n_flagged": 76,
+    "precision": 0.2895,
+    "dollar_recall": 0.2434
+   },
+   "top20_dollar_lift": 2.371
+  },
+  {
+   "state": "Texas",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 718,
+    "n_flagged": 36,
+    "precision": 0.3056,
+    "dollar_recall": 0.2106
+   },
+   "budget10": {
+    "n_te": 718,
+    "n_flagged": 72,
+    "precision": 0.2778,
+    "dollar_recall": 0.3147
+   },
+   "top20_dollar_lift": 2.127
+  },
+  {
+   "state": "Utah",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 982,
+    "n_flagged": 49,
+    "precision": 0.1633,
+    "dollar_recall": 0.2382
+   },
+   "budget10": {
+    "n_te": 982,
+    "n_flagged": 98,
+    "precision": 0.1224,
+    "dollar_recall": 0.3128
+   },
+   "top20_dollar_lift": 2.619
+  },
+  {
+   "state": "Texas",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 761,
+    "n_flagged": 38,
+    "precision": 0.2895,
+    "dollar_recall": 0.1164
+   },
+   "budget10": {
+    "n_te": 761,
+    "n_flagged": 76,
+    "precision": 0.2632,
+    "dollar_recall": 0.2285
+   },
+   "top20_dollar_lift": 1.972
+  },
+  {
+   "state": "Utah",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 900,
+    "n_flagged": 45,
+    "precision": 0.0667,
+    "dollar_recall": 0.1481
+   },
+   "budget10": {
+    "n_te": 900,
+    "n_flagged": 90,
+    "precision": 0.1222,
+    "dollar_recall": 0.2507
+   },
+   "top20_dollar_lift": 2.019
+  },
+  {
+   "state": "Utah",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 982,
+    "n_flagged": 49,
+    "precision": 0.102,
+    "dollar_recall": 0.082
+   },
+   "budget10": {
+    "n_te": 982,
+    "n_flagged": 98,
+    "precision": 0.1327,
+    "dollar_recall": 0.3398
+   },
+   "top20_dollar_lift": 2.894
+  },
+  {
+   "state": "Utah",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 929,
+    "n_flagged": 46,
+    "precision": 0.2174,
+    "dollar_recall": 0.1623
+   },
+   "budget10": {
+    "n_te": 929,
+    "n_flagged": 93,
+    "precision": 0.1505,
+    "dollar_recall": 0.2866
+   },
+   "top20_dollar_lift": 2.414
+  },
+  {
+   "state": "Utah",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 900,
+    "n_flagged": 45,
+    "precision": 0.1333,
+    "dollar_recall": 0.1584
+   },
+   "budget10": {
+    "n_te": 900,
+    "n_flagged": 90,
+    "precision": 0.1111,
+    "dollar_recall": 0.2268
+   },
+   "top20_dollar_lift": 2.574
+  },
+  {
+   "state": "Vermont",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 631,
+    "n_flagged": 32,
+    "precision": 0.3125,
+    "dollar_recall": 0.2589
+   },
+   "budget10": {
+    "n_te": 631,
+    "n_flagged": 63,
+    "precision": 0.2222,
+    "dollar_recall": 0.3596
+   },
+   "top20_dollar_lift": 2.259
+  },
+  {
+   "state": "Utah",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 929,
+    "n_flagged": 46,
+    "precision": 0.1957,
+    "dollar_recall": 0.1268
+   },
+   "budget10": {
+    "n_te": 929,
+    "n_flagged": 93,
+    "precision": 0.2151,
+    "dollar_recall": 0.3622
+   },
+   "top20_dollar_lift": 2.434
+  },
+  {
+   "state": "Vermont",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 607,
+    "n_flagged": 30,
+    "precision": 0.1333,
+    "dollar_recall": 0.1012
+   },
+   "budget10": {
+    "n_te": 607,
+    "n_flagged": 61,
+    "precision": 0.0984,
+    "dollar_recall": 0.1991
+   },
+   "top20_dollar_lift": 2.752
+  },
+  {
+   "state": "Vermont",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 695,
+    "n_flagged": 35,
+    "precision": 0.2,
+    "dollar_recall": 0.1512
+   },
+   "budget10": {
+    "n_te": 695,
+    "n_flagged": 70,
+    "precision": 0.2286,
+    "dollar_recall": 0.4489
+   },
+   "top20_dollar_lift": 3.908
+  },
+  {
+   "state": "Vermont",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 631,
+    "n_flagged": 32,
+    "precision": 0.2812,
+    "dollar_recall": 0.2686
+   },
+   "budget10": {
+    "n_te": 631,
+    "n_flagged": 63,
+    "precision": 0.1746,
+    "dollar_recall": 0.3514
+   },
+   "top20_dollar_lift": 2.778
+  },
+  {
+   "state": "Vermont",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 607,
+    "n_flagged": 30,
+    "precision": 0.0667,
+    "dollar_recall": 0.0477
+   },
+   "budget10": {
+    "n_te": 607,
+    "n_flagged": 61,
+    "precision": 0.082,
+    "dollar_recall": 0.1208
+   },
+   "top20_dollar_lift": 1.463
+  },
+  {
+   "state": "Vermont",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 695,
+    "n_flagged": 35,
+    "precision": 0.2286,
+    "dollar_recall": 0.2643
+   },
+   "budget10": {
+    "n_te": 695,
+    "n_flagged": 70,
+    "precision": 0.2143,
+    "dollar_recall": 0.5436
+   },
+   "top20_dollar_lift": 3.82
+  },
+  {
+   "state": "Virginia",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 695,
+    "n_flagged": 35,
+    "precision": 0.4571,
+    "dollar_recall": 0.2221
+   },
+   "budget10": {
+    "n_te": 695,
+    "n_flagged": 70,
+    "precision": 0.4143,
+    "dollar_recall": 0.3573
+   },
+   "top20_dollar_lift": 2.7
+  },
+  {
+   "state": "Virginia",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 590,
+    "n_flagged": 30,
+    "precision": 0.4667,
+    "dollar_recall": 0.1656
+   },
+   "budget10": {
+    "n_te": 590,
+    "n_flagged": 59,
+    "precision": 0.3559,
+    "dollar_recall": 0.2675
+   },
+   "top20_dollar_lift": 2.294
+  },
+  {
+   "state": "Virginia",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 695,
+    "n_flagged": 35,
+    "precision": 0.4571,
+    "dollar_recall": 0.1361
+   },
+   "budget10": {
+    "n_te": 695,
+    "n_flagged": 70,
+    "precision": 0.4571,
+    "dollar_recall": 0.3113
+   },
+   "top20_dollar_lift": 2.594
+  },
+  {
+   "state": "Virginia",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 720,
+    "n_flagged": 36,
+    "precision": 0.2778,
+    "dollar_recall": 0.1664
+   },
+   "budget10": {
+    "n_te": 720,
+    "n_flagged": 72,
+    "precision": 0.2917,
+    "dollar_recall": 0.3143
+   },
+   "top20_dollar_lift": 2.558
+  },
+  {
+   "state": "Virginia",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 590,
+    "n_flagged": 30,
+    "precision": 0.5333,
+    "dollar_recall": 0.1727
+   },
+   "budget10": {
+    "n_te": 590,
+    "n_flagged": 59,
+    "precision": 0.3729,
+    "dollar_recall": 0.2497
+   },
+   "top20_dollar_lift": 2.205
+  },
+  {
+   "state": "Virginia",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 720,
+    "n_flagged": 36,
+    "precision": 0.1944,
+    "dollar_recall": 0.1431
+   },
+   "budget10": {
+    "n_te": 720,
+    "n_flagged": 72,
+    "precision": 0.2639,
+    "dollar_recall": 0.2938
+   },
+   "top20_dollar_lift": 2.38
+  },
+  {
+   "state": "Washington",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 678,
+    "n_flagged": 34,
+    "precision": 0.3824,
+    "dollar_recall": 0.3114
+   },
+   "budget10": {
+    "n_te": 678,
+    "n_flagged": 68,
+    "precision": 0.3529,
+    "dollar_recall": 0.5048
+   },
+   "top20_dollar_lift": 3.13
+  },
+  {
+   "state": "Washington",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 672,
+    "n_flagged": 34,
+    "precision": 0.2353,
+    "dollar_recall": 0.2606
+   },
+   "budget10": {
+    "n_te": 672,
+    "n_flagged": 67,
+    "precision": 0.1791,
+    "dollar_recall": 0.338
+   },
+   "top20_dollar_lift": 2.591
+  },
+  {
+   "state": "Washington",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 623,
+    "n_flagged": 31,
+    "precision": 0.6452,
+    "dollar_recall": 0.3898
+   },
+   "budget10": {
+    "n_te": 623,
+    "n_flagged": 62,
+    "precision": 0.4677,
+    "dollar_recall": 0.5909
+   },
+   "top20_dollar_lift": 3.393
+  },
+  {
+   "state": "Washington",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 678,
+    "n_flagged": 34,
+    "precision": 0.4118,
+    "dollar_recall": 0.3157
+   },
+   "budget10": {
+    "n_te": 678,
+    "n_flagged": 68,
+    "precision": 0.3529,
+    "dollar_recall": 0.5084
+   },
+   "top20_dollar_lift": 2.972
+  },
+  {
+   "state": "Washington",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 672,
+    "n_flagged": 34,
+    "precision": 0.1765,
+    "dollar_recall": 0.1965
+   },
+   "budget10": {
+    "n_te": 672,
+    "n_flagged": 67,
+    "precision": 0.194,
+    "dollar_recall": 0.3913
+   },
+   "top20_dollar_lift": 3.434
+  },
+  {
+   "state": "Washington",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 623,
+    "n_flagged": 31,
+    "precision": 0.5161,
+    "dollar_recall": 0.294
+   },
+   "budget10": {
+    "n_te": 623,
+    "n_flagged": 62,
+    "precision": 0.3387,
+    "dollar_recall": 0.4197
+   },
+   "top20_dollar_lift": 3.032
+  },
+  {
+   "state": "West Virginia",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 643,
+    "n_flagged": 32,
+    "precision": 0.25,
+    "dollar_recall": 0.1405
+   },
+   "budget10": {
+    "n_te": 643,
+    "n_flagged": 64,
+    "precision": 0.2656,
+    "dollar_recall": 0.2961
+   },
+   "top20_dollar_lift": 2.314
+  },
+  {
+   "state": "West Virginia",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 741,
+    "n_flagged": 37,
+    "precision": 0.3784,
+    "dollar_recall": 0.2472
+   },
+   "budget10": {
+    "n_te": 741,
+    "n_flagged": 74,
+    "precision": 0.2973,
+    "dollar_recall": 0.3847
+   },
+   "top20_dollar_lift": 2.97
+  },
+  {
+   "state": "West Virginia",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 757,
+    "n_flagged": 38,
+    "precision": 0.2895,
+    "dollar_recall": 0.2212
+   },
+   "budget10": {
+    "n_te": 757,
+    "n_flagged": 76,
+    "precision": 0.2632,
+    "dollar_recall": 0.3737
+   },
+   "top20_dollar_lift": 3.242
+  },
+  {
+   "state": "West Virginia",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 643,
+    "n_flagged": 32,
+    "precision": 0.4062,
+    "dollar_recall": 0.2314
+   },
+   "budget10": {
+    "n_te": 643,
+    "n_flagged": 64,
+    "precision": 0.2812,
+    "dollar_recall": 0.3069
+   },
+   "top20_dollar_lift": 2.221
+  },
+  {
+   "state": "West Virginia",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 741,
+    "n_flagged": 37,
+    "precision": 0.3243,
+    "dollar_recall": 0.1528
+   },
+   "budget10": {
+    "n_te": 741,
+    "n_flagged": 74,
+    "precision": 0.3649,
+    "dollar_recall": 0.4274
+   },
+   "top20_dollar_lift": 3.237
+  },
+  {
+   "state": "Wisconsin",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 979,
+    "n_flagged": 49,
+    "precision": 0.1633,
+    "dollar_recall": 0.1856
+   },
+   "budget10": {
+    "n_te": 979,
+    "n_flagged": 98,
+    "precision": 0.1429,
+    "dollar_recall": 0.2652
+   },
+   "top20_dollar_lift": 2.346
+  },
+  {
+   "state": "West Virginia",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 757,
+    "n_flagged": 38,
+    "precision": 0.2895,
+    "dollar_recall": 0.1836
+   },
+   "budget10": {
+    "n_te": 757,
+    "n_flagged": 76,
+    "precision": 0.3289,
+    "dollar_recall": 0.4366
+   },
+   "top20_dollar_lift": 3.135
+  },
+  {
+   "state": "Wisconsin",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 1007,
+    "n_flagged": 50,
+    "precision": 0.3,
+    "dollar_recall": 0.2595
+   },
+   "budget10": {
+    "n_te": 1007,
+    "n_flagged": 101,
+    "precision": 0.2079,
+    "dollar_recall": 0.3301
+   },
+   "top20_dollar_lift": 2.562
+  },
+  {
+   "state": "Wisconsin",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 979,
+    "n_flagged": 49,
+    "precision": 0.2449,
+    "dollar_recall": 0.2679
+   },
+   "budget10": {
+    "n_te": 979,
+    "n_flagged": 98,
+    "precision": 0.1837,
+    "dollar_recall": 0.3497
+   },
+   "top20_dollar_lift": 2.76
+  },
+  {
+   "state": "Wisconsin",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.1277,
+    "dollar_recall": 0.1367
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.1383,
+    "dollar_recall": 0.2803
+   },
+   "top20_dollar_lift": 2.294
+  },
+  {
+   "state": "Wisconsin",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 1007,
+    "n_flagged": 50,
+    "precision": 0.28,
+    "dollar_recall": 0.1891
+   },
+   "budget10": {
+    "n_te": 1007,
+    "n_flagged": 101,
+    "precision": 0.2871,
+    "dollar_recall": 0.4336
+   },
+   "top20_dollar_lift": 2.645
+  },
+  {
+   "state": "Wisconsin",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 936,
+    "n_flagged": 47,
+    "precision": 0.1489,
+    "dollar_recall": 0.1979
+   },
+   "budget10": {
+    "n_te": 936,
+    "n_flagged": 94,
+    "precision": 0.1702,
+    "dollar_recall": 0.3651
+   },
+   "top20_dollar_lift": 2.631
+  },
+  {
+   "state": "Wyoming",
+   "frame": "cpi",
+   "window": "W1",
+   "budget05": {
+    "n_te": 266,
+    "n_flagged": 13,
+    "precision": 0.3077,
+    "dollar_recall": 0.1575
+   },
+   "budget10": {
+    "n_te": 266,
+    "n_flagged": 27,
+    "precision": 0.3704,
+    "dollar_recall": 0.5347
+   },
+   "top20_dollar_lift": 3.817
+  },
+  {
+   "state": "Wyoming",
+   "frame": "cpi",
+   "window": "W2",
+   "budget05": {
+    "n_te": 273,
+    "n_flagged": 14,
+    "precision": 0.1429,
+    "dollar_recall": 0.2044
+   },
+   "budget10": {
+    "n_te": 273,
+    "n_flagged": 27,
+    "precision": 0.0741,
+    "dollar_recall": 0.2044
+   },
+   "top20_dollar_lift": 1.482
+  },
+  {
+   "state": "Wyoming",
+   "frame": "nominal",
+   "window": "W1",
+   "budget05": {
+    "n_te": 266,
+    "n_flagged": 13,
+    "precision": 0.3077,
+    "dollar_recall": 0.1172
+   },
+   "budget10": {
+    "n_te": 266,
+    "n_flagged": 27,
+    "precision": 0.2222,
+    "dollar_recall": 0.2443
+   },
+   "top20_dollar_lift": 3.0
+  },
+  {
+   "state": "Wyoming",
+   "frame": "cpi",
+   "window": "W3",
+   "budget05": {
+    "n_te": 272,
+    "n_flagged": 14,
+    "precision": 0.0714,
+    "dollar_recall": 0.0575
+   },
+   "budget10": {
+    "n_te": 272,
+    "n_flagged": 27,
+    "precision": 0.1481,
+    "dollar_recall": 0.1653
+   },
+   "top20_dollar_lift": 0.976
+  },
+  {
+   "state": "Wyoming",
+   "frame": "nominal",
+   "window": "W2",
+   "budget05": {
+    "n_te": 273,
+    "n_flagged": 14,
+    "precision": 0.1429,
+    "dollar_recall": 0.1496
+   },
+   "budget10": {
+    "n_te": 273,
+    "n_flagged": 27,
+    "precision": 0.1481,
+    "dollar_recall": 0.3839
+   },
+   "top20_dollar_lift": 2.58
+  },
+  {
+   "state": "Wyoming",
+   "frame": "nominal",
+   "window": "W3",
+   "budget05": {
+    "n_te": 272,
+    "n_flagged": 14,
+    "precision": 0.0714,
+    "dollar_recall": 0.0575
+   },
+   "budget10": {
+    "n_te": 272,
+    "n_flagged": 27,
+    "precision": 0.1111,
+    "dollar_recall": 0.1312
+   },
+   "top20_dollar_lift": 0.656
+  }
+ ]
+}
