@@ -68,6 +68,10 @@ SNAPQC_FEATURES=legacy SNAPQC_LABEL=any python3 experiments/exp83_context_models
   benefit math (a stand-in for the QC Minimodel), and a variance injector that
   samples element/nature/cause from empirical QC distributions.
   Parameters are approximations, documented in `src/synth/params.py`.
+  Setup and usage: [`docs/SYNTHETIC_QC_GENERATOR.md`](docs/SYNTHETIC_QC_GENERATOR.md).
+- `tests/` — unit tests for the generator (benefit math, case invariants in every
+  mode, determinism, a loose calibration guard, CLI, PA variant). Standard library
+  plus pytest; no real data needed: `uv run --no-project --with pytest pytest tests`.
 - `experiments/` — one script + one chronicle doc per experiment.
   `build_dist.py` / `measure_effectiveness.py` are shared tooling;
   `dist.json` and `eff.json` are committed so the repo runs without the
