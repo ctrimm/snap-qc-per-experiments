@@ -36,12 +36,12 @@
 <body>
 <h1>An Independent Comparison, and the Leak It Found</h1>
 <div class="meta">October 26, 2026 · Whitepaper · Cory Trimm</div>
-<h2>TL;DR: giannella/snap_qc and this project</h2>
+<h2>TL;DR: Better Government Lab's snap_qc and this project</h2>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>giannella/snap_qc</th>
+<th>Better Government Lab's snap_qc</th>
 <th>This project</th>
 </tr>
 </thead>
@@ -97,14 +97,14 @@
 <ul>
 <li><strong>Same question, same source:</strong> the same public file, and per-state tools learned mostly from national data. Both find national data is the backbone: tuning on one state's cases alone didn't beat their national ordering, and our pooled models beat state-only ones (2.70× against 2.27×, better in 46 of 53, rechecked without the leak).</li>
 <li><strong>Same discipline:</strong> both judge only on held-out later years and warn that training numbers overstate.</li>
-<li><strong>Same blind spot in the data:</strong> the public file leaves out ineligible cases, so each state sees only part of its errors (43–91% by giannella's count).</li>
+<li><strong>Same blind spot in the data:</strong> the public file leaves out ineligible cases, so each state sees only part of its errors (43–91% by Better Government Lab's count).</li>
 </ul>
 <p><strong>How they differ:</strong></p>
 <ul>
-<li><strong>Inputs, the difference that mattered:</strong> giannella rebuilt the facts a state had before review. We used the reviewer's facts and, until October 26, put the issued benefit beside them. That leak inflated every published ranker figure: the top-20% lift is 2.7×, not the published 4.0×.</li>
+<li><strong>Inputs, the difference that mattered:</strong> Better Government Lab rebuilt the facts a state had before review. We used the reviewer's facts and, until October 26, put the issued benefit beside them. That leak inflated every published ranker figure: the top-20% lift is 2.7×, not the published 4.0×.</li>
 <li><strong>Ranking:</strong> we now count errors the same way, but they find the cases most likely to have one, and we find the most error dollars. That is why older households fare differently under each.</li>
 <li><strong>Form:</strong> rules a reviewer can read and edit against a score.</li>
-<li><strong>What the head-to-head measures:</strong> our per-case predictions against their rule lists, not model against model. giannella reports that its own boosted-tree models give numbers matching ours. The gap below is mostly what is given up by turning predictions into readable rules.</li>
+<li><strong>What the head-to-head measures:</strong> our per-case predictions against their rule lists, not model against model. Better Government Lab reports that its own boosted-tree models give numbers matching ours. The gap below is mostly what is given up by turning predictions into readable rules.</li>
 </ul>
 <p><strong>Head to head, like-for-like</strong> (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109; our predictions against their rule lists):</p>
 <ul>
@@ -118,12 +118,12 @@
 <li><strong>What we can offer them:</strong> the dollar view, the fairness floor, and the cost-share scenarios.</li>
 </ul>
 <h2>Summary</h2>
-<p>In October we compared our SNAP error-ranking tool with an independent project on the same problem: <a href="https://github.com/giannella/snap_qc">giannella/snap_qc</a>, which turns the same federal quality-control (QC) data into ranked lists of if-then rules for each state. The comparison did what independent checks are for. It found a serious flaw in our own work, and it showed that the corrected tool is still useful.</p>
+<p>In October we compared our SNAP error-ranking tool with an independent project on the same problem: <a href="https://github.com/giannella/snap_qc">Better Government Lab's snap_qc</a>, which turns the same federal quality-control (QC) data into ranked lists of if-then rules for each state. The comparison did what independent checks are for. It found a serious flaw in our own work, and it showed that the corrected tool is still useful.</p>
 <ol>
 <li><strong>Our published ranker figures were inflated by a data leak.</strong><ul>
 <li><strong>The fields:</strong> in the federal QC file, the "reported" income, deduction and household-size fields are what the <strong>QC reviewer recorded</strong>, which for an error case are the corrected facts.</li>
 <li><strong>The leak:</strong> our models used those fields next to the benefit the agency actually issued. A model that sees both can spot an error by noticing they disagree, something no state can do before a review.</li>
-<li><strong>How it showed:</strong> on giannella's test, our model flagged errors with 100% precision, which no honest model achieves when only 12% of cases have an error.</li>
+<li><strong>How it showed:</strong> on Better Government Lab's test, our model flagged errors with 100% precision, which no honest model achieves when only 12% of cases have an error.</li>
 </ul>
 </li>
 <li>
@@ -161,12 +161,12 @@
 <p>The last column counts only errors over the federal tolerance, the ones the payment error rate counts. The cost share now uses the lift on those dollars (experiments 110–112).</p>
 </li>
 <li>
-<p><strong>On the same test and the same inputs, our tool's predictions find more error dollars than giannella's rule lists.</strong> Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:</p>
+<p><strong>On the same test and the same inputs, our tool's predictions find more error dollars than Better Government Lab's rule lists.</strong> Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:</p>
 <ul>
 <li><strong>Dollars:</strong> it finds about <strong>$2.6 billion a year</strong> in error dollars against their $2.2 billion, and more in 35 of 49 states.</li>
 <li><strong>Precision:</strong> a flagged case has an error slightly more often (0.34 against 0.30 at 10%; 0.39 against 0.32 at 5%).</li>
 <li><strong>What changed from the first comparison:</strong> our first figures ($3.5 billion, more in 39 states) used the reviewer's corrected values as inputs, which flattered our dollars by about 17%.</li>
-<li><strong>Predictions against rules, not model against model:</strong> we scored our model's per-case predictions against the rule lists giannella delivers. giannella reports that its own boosted-tree models give numbers matching ours, so the gap is mostly what is given up by turning predictions into rules.</li>
+<li><strong>Predictions against rules, not model against model:</strong> we scored our model's per-case predictions against the rule lists Better Government Lab delivers. Better Government Lab reports that its own boosted-tree models give numbers matching ours, so the gap is mostly what is given up by turning predictions into rules.</li>
 <li><strong>Their advantages:</strong> their lists are interpretable rules a state can read and edit, built on inputs closer to what a state has; ours is a score.</li>
 </ul>
 </li>
@@ -190,7 +190,7 @@
 <tbody>
 <tr>
 <td>Compare findings</td>
-<td>Read giannella/snap_qc's documentation and set their claims beside ours</td>
+<td>Read Better Government Lab's snap_qc documentation and set their claims beside ours</td>
 <td>Agreement on pooling, data visibility and testing; a different definition of "error"</td>
 </tr>
 <tr>
@@ -215,7 +215,7 @@
 </tr>
 <tr>
 <td>Compare like-for-like</td>
-<td>Ran giannella's own data-preparation script and trained our model on its rebuilt pre-review inputs</td>
+<td>Ran Better Government Lab's own data-preparation script and trained our model on its rebuilt pre-review inputs</td>
 <td>Ours still finds more in 35 of 49 states; the reviewer's values had flattered our dollars by about 17%</td>
 </tr>
 <tr>
@@ -235,7 +235,7 @@
 <thead>
 <tr>
 <th></th>
-<th>giannella/snap_qc</th>
+<th>Better Government Lab's snap_qc</th>
 <th>This project</th>
 </tr>
 </thead>
@@ -269,17 +269,17 @@
 </table>
 <p>That last row is the whole story:</p>
 <ul>
-<li><strong>giannella:</strong> they treated the file's facts as the reviewer's and rebuilt the values a state would have had. Their inputs agree with one another and can't reveal an error.</li>
+<li><strong>Better Government Lab:</strong> they treated the file's facts as the reviewer's and rebuilt the values a state would have had. Their inputs agree with one another and can't reveal an error.</li>
 <li><strong>Us:</strong> we treated the reviewer's values as the agency's and put the issued benefit beside them. The two disagreed exactly when there was an error.</li>
 </ul>
 <h2>How the leak was found</h2>
-<p><strong>The comparison test.</strong> giannella publishes, per state, how its lists did a year ahead: mined on FY2022–23, scored on FY2024. We trained our model the same way, applied their exclusions and their error definition, and matched their test frame exactly (a median of 847 cases per state, the same 12.4% error rate).</p>
+<p><strong>The comparison test.</strong> Better Government Lab publishes, per state, how its lists did a year ahead: mined on FY2022–23, scored on FY2024. We trained our model the same way, applied their exclusions and their error definition, and matched their test frame exactly (a median of 847 cases per state, the same 12.4% error rate).</p>
 <table>
 <thead>
 <tr>
 <th>Median of 49 states, FY2024</th>
 <th>Our published model</th>
-<th>giannella's lists</th>
+<th>Better Government Lab's lists</th>
 </tr>
 </thead>
 <tbody>
@@ -404,15 +404,15 @@
 <li><strong>The floor's cost.</strong> It is no longer nearly free.</li>
 <li><strong>The separate underpayment ranker.</strong> It is now only slightly better than the main one.</li>
 </ul>
-<h2>The corrected tool against giannella's lists</h2>
-<p><strong>Like-for-like (experiment 109).</strong> We ran giannella's own data-preparation script (unchanged except for leaving dollars in nominal terms) and trained our model on its rebuilt pre-review inputs. The test cases matched theirs exactly in all 49 states.</p>
+<h2>The corrected tool against Better Government Lab's lists</h2>
+<p><strong>Like-for-like (experiment 109).</strong> We ran Better Government Lab's own data-preparation script (unchanged except for leaving dollars in nominal terms) and trained our model on its rebuilt pre-review inputs. The test cases matched theirs exactly in all 49 states.</p>
 <table>
 <thead>
 <tr>
 <th>Median of 49 states, FY2024, their error definition</th>
 <th>Ours, on the reviewer's values</th>
 <th><strong>Ours, on their rebuilt inputs</strong></th>
-<th>giannella</th>
+<th>Better Government Lab</th>
 <th>Rebuilt: ours higher / lower</th>
 </tr>
 </thead>
@@ -458,7 +458,7 @@
 <thead>
 <tr>
 <th>Per year</th>
-<th>giannella</th>
+<th>Better Government Lab</th>
 <th>Ours</th>
 </tr>
 </thead>
@@ -531,7 +531,7 @@
 </table>
 <p><strong>Older and disabled households have more errors, but smaller ones.</strong> Under the official definition they have fewer.</p>
 <ul>
-<li><strong>giannella's result:</strong> their precision-ranked lists catch more of these households' errors.</li>
+<li><strong>Better Government Lab's result:</strong> their precision-ranked lists catch more of these households' errors.</li>
 <li><strong>Ours:</strong> a dollar-ranked tool reviews them less than random selection would under either definition (leak-free any-error models: 0.33 of their share of any-error risk, 0.50 under the official definition; today's models, trained on the official definition: 0.56).</li>
 </ul>
 <p>The fairness concern belongs to dollar ranking specifically, and the floor fixes it.</p>
@@ -552,7 +552,7 @@
 </ol>
 <p><strong>A limit we haven't removed yet.</strong> For error cases our inputs are still the reviewer's corrected values, while a state's tool would see its own uncorrected values.</p>
 <ul>
-<li><strong>What giannella does about it:</strong> they rebuild approximate pre-review values: from the reviewer's values and the error codes, the field in error is shifted until the formula gives the issued benefit. That is closer to what a state has.</li>
+<li><strong>What Better Government Lab does about it:</strong> they rebuild approximate pre-review values: from the reviewer's values and the error codes, the field in error is shifted until the formula gives the issued benefit. That is closer to what a state has.</li>
 <li><strong>Us:</strong> we haven't rebuilt our own inputs yet. Experiment 109 measured what that costs: on their rebuilt inputs our dollar recall is about 17% lower. Our corrected figures are likely optimistic by about that much.</li>
 <li><strong>Next step:</strong> port the rebuild to our pipeline and train the packaged models on it.</li>
 </ul>
@@ -565,7 +565,7 @@
 <li>the error amount and finding;</li>
 <li>the error codes.</li>
 </ul>
-<p>Combining a value the agency had with one only the reviewer had is the specific trap. giannella's answer, rebuilding what the agency had from the reviewer's values and the issued benefit, is the better way to use this file. We found the trap because someone else built the same thing differently and published their numbers. That is an argument for publishing, and for comparing.</p>
+<p>Combining a value the agency had with one only the reviewer had is the specific trap. Better Government Lab's answer, rebuilding what the agency had from the reviewer's values and the issued benefit, is the better way to use this file. We found the trap because someone else built the same thing differently and published their numbers. That is an argument for publishing, and for comparing.</p>
 <h2>Technical reproduction</h2>
 <p>Code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Their repo: <a href="https://github.com/giannella/snap_qc">github.com/giannella/snap_qc</a> at <code>eedb3f5</code> (v2.7.0), cloned beside ours as <code>giannella-snap_qc</code>. Data: FY2020–2024 QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>.</p>
 <pre><code class="language-bash"># the comparison: B0 (reproduces exp83), B1/B2 on their FY2024 test; then the leak-free re-run and fairness by definition
@@ -579,10 +579,10 @@ python3 experiments/exp107_timesplit.py --workers 8
 python3 experiments/exp107_package.py --workers 8
 # the official error definition (exp110 test; exp112 is the default rebuild: rerun exp83/93/79/107 above with no SNAPQC_LABEL; SNAPQC_LABEL=gap reproduces exp111)
 python3 experiments/exp110_official_error_definition.py --workers 8
-# like-for-like on giannella's rebuilt inputs: their munging script in a scratch copy (R + dplyr, tidyr, haven, here, ranger,
+# like-for-like on Better Government Lab's rebuilt inputs: their munging script in a scratch copy (R + dplyr, tidyr, haven, here, ranger,
 # yardstick, ggplot2, scales, arrow), then our model on its frame
-(cd /path/to/scratch/copy/of/giannella-snap_qc &amp;&amp; Rscript /path/to/experiments/exp109_export_frame.R)
-python3 experiments/exp109_rebuilt_inputs.py --frame /path/to/scratch/copy/of/giannella-snap_qc/exp109_frame.parquet
+(cd /path/to/scratch/copy/of/snap_qc &amp;&amp; Rscript /path/to/experiments/exp109_export_frame.R)
+python3 experiments/exp109_rebuilt_inputs.py --frame /path/to/scratch/copy/of/snap_qc/exp109_frame.parquet
 # the dollar comparison (writes the table below and the vault note)
 python3 whitepaper/giannella_dollar_comparison.py
 </code></pre>
@@ -596,7 +596,7 @@ python3 whitepaper/giannella_dollar_comparison.py
 <h2>Appendix: the two tools, state by state</h2>
 <p>How to read the table:</p>
 <ul>
-<li><strong>Test:</strong> each tool trained or mined on FY2022–23 and scored on the state's FY2024 QC cases, under giannella's error definition (over the $56 tolerance), both on giannella's rebuilt pre-review inputs (ours: the default model; experiment 109).</li>
+<li><strong>Test:</strong> each tool trained or mined on FY2022–23 and scored on the state's FY2024 QC cases, under Better Government Lab's error definition (over the $56 tolerance), both on Better Government Lab's rebuilt pre-review inputs (ours: the default model; experiment 109).</li>
 <li><strong>Error dollars a year:</strong> FY2024 cases weighted to the caseload, times 12.</li>
 <li><strong>Found:</strong> each tool's share of error dollars caught at the budget, times that total.</li>
 <li><strong>Dollar lift:</strong> dollars caught at 10% ÷ 0.10.</li>
@@ -609,13 +609,13 @@ python3 whitepaper/giannella_dollar_comparison.py
 <tr>
 <th>State</th>
 <th>Over-threshold error $ a year</th>
-<th>Found at 5%: giannella</th>
+<th>Found at 5%: Better Government Lab</th>
 <th>Found at 5%: ours</th>
-<th>Found at 10%: giannella</th>
+<th>Found at 10%: Better Government Lab</th>
 <th>Found at 10%: ours</th>
-<th>10% dollar lift: giannella / ours</th>
+<th>10% dollar lift: Better Government Lab / ours</th>
 <th>FY2025 rate</th>
-<th>FY2028 cost share avoided: giannella</th>
+<th>FY2028 cost share avoided: Better Government Lab</th>
 <th>ours</th>
 </tr>
 </thead>

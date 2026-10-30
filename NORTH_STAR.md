@@ -50,7 +50,7 @@ not moving it:
 - **The case for it:** this tool is the one with a near-term case, through the H.R. 1 cost-share rules from FY2028.
 
 **What changed the numbers:**
-- **The leak (October 26):** an independent comparison (giannella/snap_qc) exposed a leak in the rankers' inputs.
+- **The leak (October 26):** an independent comparison (Better Government Lab's snap_qc) exposed a leak in the rankers' inputs.
 - **The rebuild:** the rankers were rebuilt without it, then retrained on the official error definition.
 - **What's still open:** the inputs remain the reviewer's corrected values for error cases. Rebuilding them as pre-review values is under test (exp113).
 

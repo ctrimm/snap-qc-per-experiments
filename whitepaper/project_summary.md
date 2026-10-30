@@ -3,7 +3,7 @@
 **October 26, 2026 (corrected) · Project summary, September 28 – October 26 · Cory Trimm**
 
 
-> **Corrected October 26, 2026.** Earlier versions overstated the ranking tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error. Comparing with an independent project (giannella/snap_qc) exposed it (experiment 106). Every ranker and cost-share figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). The cost share uses the tool's lift on those dollars; on the earlier any-error basis it had read $3.42 billion (experiment 110), and on an interim label built from the benefit gap $3.15 billion (experiment 111). The synthetic-data, language-model and policy-question results did not use these models.
+> **Corrected October 26, 2026.** Earlier versions overstated the ranking tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error. Comparing with an independent project (Better Government Lab's snap_qc) exposed it (experiment 106). Every ranker and cost-share figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). The cost share uses the tool's lift on those dollars; on the earlier any-error basis it had read $3.42 billion (experiment 110), and on an interim label built from the benefit gap $3.15 billion (experiment 111). The synthetic-data, language-model and policy-question results did not use these models.
 
 ## Executive summary
 
@@ -14,7 +14,7 @@ The project produced six findings, in order of how ready they are to use:
 1. **A ranking tool can roughly double or triple the error dollars a review finds, in every state.**
    - **What it does:** a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.
    - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 3.0 times the error dollars of random selection, counting the errors the official rate counts (lowest: Kansas, 2.18 times), and the top 10% holds 4.1 times. Its dollar forecasts are within 20% of actual in 38 of 53 jurisdictions.
-   - **An independent check:** on giannella/snap_qc's one-year-ahead test, with both tools on their rebuilt pre-review inputs, it found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109).
+   - **An independent check:** on Better Government Lab's snap_qc one-year-ahead test, with both tools on their rebuilt pre-review inputs, it found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109).
    - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate costs the median state about 4% of its lift (the most, Utah, 45%). It leaves 8 jurisdictions below 0.8 for elderly households.
 2. **Under the FY2028 cost-sharing rules, that could be worth billions.**
    - **Exposure:** at FY2025 error rates, 43 jurisdictions would owe about $10.6 billion a year.
@@ -312,7 +312,7 @@ cd experiments && inspect eval exp85_mcq_rag_task.py@calfresh_mcq_rag --model op
 | Oct 15 | Cost share re-run on the deployed rankers with the fairness floor on (reported then as $6.05 billion, later found inflated) |
 | Oct 16–18 | Flag-card Rules line at scale; `COST-SHARE-REPLICATE.md` for national and per-state reproduction; quiz audit; best policy setup 89.6% |
 | Oct 19–23 | Policy-assistant plateau: supersession notes, the date, 458 CDSS letters, citation links, a routing layer confirmed in a pre-registered run (89.8%) |
-| Oct 26 | Comparing with giannella/snap_qc exposed a feature leak in the rankers (exp106); leak-free rebuild (exp107): median 2.7×, $3.42 billion central cost share. Leak-free became the default. Same day: the official error definition became the default (exp110, exp111: median 2.6×, $3.15 billion on a label built from the benefit gap), then the label was corrected to the reviewer's finding (exp112): median 3.0×, $4.47 billion |
+| Oct 26 | Comparing with Better Government Lab's snap_qc exposed a feature leak in the rankers (exp106); leak-free rebuild (exp107): median 2.7×, $3.42 billion central cost share. Leak-free became the default. Same day: the official error definition became the default (exp110, exp111: median 2.6×, $3.15 billion on a label built from the benefit gap), then the label was corrected to the reviewer's finding (exp112): median 3.0×, $4.47 billion |
 
 ## Appendix: how concentrated are error dollars?
 

@@ -65,7 +65,7 @@ Once rankers were trained on the real QC records (each state's cases pooled with
 ## 7. An outside comparison found a leak we had missed
 
 **What happened (exp106):** our rankers paired the issued benefit with income and deduction values that, in the QC file, are the reviewer's corrected facts. A model can then see an error as a mismatch.
-- **How it showed:** on giannella/snap_qc's test, our model flagged errors with 100% precision, which is impossible.
+- **How it showed:** on Better Government Lab's snap_qc test, our model flagged errors with 100% precision, which is impossible.
 - **The size of it:** about a third of the published gain was the leak (4.0× → 2.7×; exp107).
 - **Missed twice:** the September pilots had flagged the issued benefit and dropped it. It came back when the rankers moved to real data.
 
@@ -83,7 +83,7 @@ Once rankers were trained on the real QC records (each state's cases pooled with
 
 ## 9. The honest figures are lower, and still good
 
-**Public data flatters us.** For error cases, the public file's reported fields are the reviewer's corrected values, while a state sees its own uncorrected ones. giannella's pipeline rebuilds approximate pre-review values.
+**Public data flatters us.** For error cases, the public file's reported fields are the reviewer's corrected values, while a state sees its own uncorrected ones. Better Government Lab's pipeline rebuilds approximate pre-review values.
 - **One year ahead (exp109):** on those rebuilt inputs our dollar figures fall about 17%.
 - **Across three windows (exp113):** the top-20% lift is about 2.6×, against 2.96× on reviewer values. That includes a second era (FY2019) and three years ahead (the gap a state actually faces).
 
@@ -91,7 +91,7 @@ Once rankers were trained on the real QC records (each state's cases pooled with
 
 ## 10. Compared like-for-like, a score beats a rule list on dollars, but rules have their place
 
-**The comparison:** on the same cases, the same inputs and the same budgets, our model catches more over-tolerance error dollars than giannella's rule lists. That holds in every window tested, and three years ahead it does better in 47 of 49 states (exp113).
+**The comparison:** on the same cases, the same inputs and the same budgets, our model catches more over-tolerance error dollars than Better Government Lab's rule lists. That holds in every window tested, and three years ahead it does better in 47 of 49 states (exp113).
 
 **What their rules offer that our score can't:** a reviewer can read, question and edit them.
 

@@ -7,7 +7,7 @@
 The deployed rankers (exp112) are trained and evaluated on the public QC file's "reported" fields, which for error cases hold the reviewer's corrected values. A state scoring its own caseload sees the agency's pre-review values instead.
 
 Two experiments have measured the gap:
-- **exp109:** on giannella/snap_qc's rebuilt pre-review values, our dollar recall falls about 17% one year ahead.
+- **exp109:** on Better Government Lab's snap_qc rebuilt pre-review values, our dollar recall falls about 17% one year ahead.
 - **exp113:** across three windows (test 2024, test 2019, three years ahead), the median top-20% lift on rebuilt inputs is 2.58–2.66×, against 2.96× on reviewer values.
 
 exp113's pre-registered rule says go. This experiment would make rebuilt inputs the basis of the packaged models and of every headline figure.
@@ -32,11 +32,11 @@ exp113's pre-registered rule says go. This experiment would make rebuilt inputs 
 
 | Option | For | Against |
 |---|---|---|
-| A. giannella's published frame (`reg_model_data.rds`) | No new code. It's their maintained output, and exactly what exp113 tested | 2026 prices only, so we'd still need our own nominal build (exp109 ran their R script with one flag). It depends on their release cadence and choices (exclusions, years) |
+| A. Better Government Lab's published frame (`reg_model_data.rds`) | No new code. It's their maintained output, and exactly what exp113 tested | 2026 prices only, so we'd still need our own nominal build (exp109 ran their R script with one flag). It depends on their release cadence and choices (exclusions, years) |
 | B. Run their R munging script ourselves (as exp109 did) | Nominal, and our own control of the flag. Reproducible from their tagged commit | An R toolchain in our pipeline (Homebrew R, 9 packages, about 25 minutes to compile Arrow) |
 | C. Port the rebuild to Python | Self-contained. We could extend it to FY2020–21 and to AK/HI/GU/VI with their allotment tables | Real work (their script is about 1,100 lines with several repaired defects; findings §28, §38). It must reproduce their frame exactly before use |
 
-*Leaning:* **B** now, pinned to a giannella commit, with **C** as a follow-up that has to reproduce B row for row.
+*Leaning:* **B** now, pinned to a Better Government Lab commit, with **C** as a follow-up that has to reproduce B row for row.
 
 **2. The four jurisdictions their frame leaves out** (Alaska, Hawaii, Guam, Virgin Islands; separate allotment tables).
 - (a) Keep their current exp112 models, clearly labelled as trained on reviewer values.
@@ -63,7 +63,7 @@ exp113's pre-registered rule says go. This experiment would make rebuilt inputs 
 
 **6. Label.**
 - **Training:** the official label (STATUS 2/3 with |AMTERR| over the tolerance, exp112), computed on the frame's rows.
-- **Scoring:** the frame's `over_threshold` / `total_error_amount` (giannella's definition) agrees by construction after their reconciliation filter. Report both.
+- **Scoring:** the frame's `over_threshold` / `total_error_amount` (Better Government Lab's definition) agrees by construction after their reconciliation filter. Report both.
 
 **7. Cost share.**
 - **How:** recompute exp93's scenarios on the new floor-on lifts (top 10%, over-tolerance dollars).
@@ -74,7 +74,7 @@ exp113's pre-registered rule says go. This experiment would make rebuilt inputs 
 
 **9. Scoring script.**
 - **No input change:** `score_cases.py` keeps the same 13 fields plus BENMAX.
-- **Model cards:** they record `input_basis: rebuilt_pre_review`, the giannella commit, and the price basis.
+- **Model cards:** they record `input_basis: rebuilt_pre_review`, the Better Government Lab commit, and the price basis.
 
 ### Gates (to pre-register)
 
@@ -93,7 +93,7 @@ exp113's pre-registered rule says go. This experiment would make rebuilt inputs 
 ### Not in scope
 
 - Changing the model (features, learner, weighting), and inflation adjustment (exp113 chose nominal).
-- giannella's rule lists. The head-to-head is settled in exp113 and isn't rerun here.
+- Better Government Lab's rule lists. The head-to-head is settled in exp113 and isn't rerun here.
 
 ### Decision needed from the project lead
 

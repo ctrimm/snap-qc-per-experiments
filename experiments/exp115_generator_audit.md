@@ -8,7 +8,7 @@ Since the generator was last calibrated (exp1–exp55), four things have been es
 1. **The public file's "reported" fields are the reviewer's values.** For error cases they hold the corrected facts (exp106).
 2. **The target that matters is the official error.** That is an error the reviewer found with an amount over the federal tolerance, about 12% of cases. Not any error, which is about 38% (exp110, exp112).
 3. **The issued-vs-correct benefit gap is not a reliable label.** About 30% of over-tolerance gaps contradict the reviewer's recorded amount (exp112).
-4. **Rebuilt pre-review values exist.** giannella/snap_qc's frame (exp109, exp113) gives the first real-data view of what the agency had before review.
+4. **Rebuilt pre-review values exist.** Better Government Lab's snap_qc frame (exp109, exp113) gives the first real-data view of what the agency had before review.
 
 **The question:** does the generator match this understanding, and which of the work built on it assumed otherwise?
 
@@ -19,7 +19,7 @@ Since the generator was last calibrated (exp1–exp55), four things have been es
 
 ### Results (FY2024, errors over $56; synthetic: 20,000 cases, seed 7, default settings)
 
-| | Public file (RAW* vs FS*) | Rebuilt pre-review (giannella) vs FS* | **Synthetic** (issued vs truth) |
+| | Public file (RAW* vs FS*) | Rebuilt pre-review (Better Government Lab) vs FS* | **Synthetic** (issued vs truth) |
 |---|---|---|---|
 | Share of cases with an official error | 12.1% | — | **11.8%** |
 | … among earner households / others | 22.6% / 8.2% | — | 20.2% / 9.0% |
@@ -35,7 +35,7 @@ Since the generator was last calibrated (exp1–exp55), four things have been es
 ### Findings
 
 1. **The generator's core design matches reality, better than the public file does.**
-   - **Its agency view is a real pre-review view.** It sits next to giannella's independently rebuilt values (gross equal in 47% against 46%), not next to the public file's reviewer-filled fields (89%).
+   - **Its agency view is a real pre-review view.** It sits next to Better Government Lab's independently rebuilt values (gross equal in 47% against 46%), not next to the public file's reviewer-filled fields (89%).
    - **The generator never had our leak.** Its issued benefit is computed from the agency view, so the two always agree.
    - **The official-error rate already matches without being targeted:** 11.8% against 12.1%, with the right earner gradient.
 2. **The view-identity calibration in exp52 points the wrong way for deployment.**

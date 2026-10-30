@@ -53,7 +53,7 @@ domain and generator vocabulary.
 
 - **Ranker** — a per-state model that scores each case by expected error dollars (chance of an error × likely dollars) so reviewers work the highest-scoring cases first. Packaged in `deliverables/state_rankers/`.
 - **Lift** — dollars found by reviewing the top of the ranked queue, divided by what the same number of randomly chosen cases would find. "Top-20% lift 3.0×" means the top fifth of the queue holds three times the error dollars of a random fifth.
-- **Dollar recall** — share of all error dollars caught at a given review budget (e.g. 5% or 10% of cases). giannella/snap_qc's main dollar metric.
+- **Dollar recall** — share of all error dollars caught at a given review budget (e.g. 5% or 10% of cases). Better Government Lab's main dollar metric.
 - **Review budget** — the share of the caseload a state can review (5% or 10% in comparisons).
 - **Federal tolerance (error threshold)** — the dollar amount below which a payment error doesn't count toward the official payment error rate: $56 in FY2024 ($38 FY2017, $37 FY2018–19, $38 FY2020, $39 FY2021, $48 FY2022, $54 FY2023).
 - **Official error** — the rankers' training label since exp112 (`SNAPQC_LABEL=official`): an error the QC reviewer found (STATUS 2 or 3) whose amount (AMTERR) is above the tolerance. About 10–12% of cases a year.
@@ -61,7 +61,7 @@ domain and generator vocabulary.
 - **Benefit gap** — |issued benefit − correct benefit| (RAWBEN − FSBEN). Not used as a label: about 30% of over-tolerance gaps contradict the reviewer's recorded error (exp112).
 - **Reviewer-recorded values** — the QC file's "reported" fields (RAWGROSS, RAWNET, SHELDED, …) are what the reviewer recorded; for error cases, the corrected facts.
 - **Leak / leak-free** — the October 26 finding (exp106) that pairing those values with the issued benefit let models see the error. Leak-free inputs (`SNAPQC_FEATURES=leakfree`, the default) leave the issued benefit out.
-- **Rebuilt pre-review inputs** — giannella/snap_qc's reconstruction of what the agency had before review: start from the reviewer's values and shift the field in error until the formula gives the issued benefit (exp109, exp113).
+- **Rebuilt pre-review inputs** — Better Government Lab's snap_qc reconstruction of what the agency had before review: start from the reviewer's values and shift the field in error until the formula gives the issued benefit (exp109, exp113).
 - **Fairness floor** — a review-budget rule giving each household type (elderly, disabled, single parent, …) a share of reviews in line with its share of errors, then ranking by dollars within each type.
 - **Review ratio** — a household type's share of reviews ÷ its share of errors; 1.0 means reviewed in proportion to risk.
 - **Cost share (H.R. 1)** — from FY2028, states with payment error rates of 6% or more pay 5%, 10% or 15% of benefit costs depending on the rate band. "Cost share avoided" is the scenario estimate of how much ranked reviews could lower that bill.

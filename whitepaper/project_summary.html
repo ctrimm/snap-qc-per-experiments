@@ -37,7 +37,7 @@
 <h1>Machine Learning for SNAP Payment Accuracy: Project Summary</h1>
 <div class="meta">October 26, 2026 (corrected) · Project summary, September 28 – October 26 · Cory Trimm</div>
 <blockquote>
-<p><strong>Corrected October 26, 2026.</strong> Earlier versions overstated the ranking tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error. Comparing with an independent project (giannella/snap_qc) exposed it (experiment 106). Every ranker and cost-share figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). The cost share uses the tool's lift on those dollars; on the earlier any-error basis it had read $3.42 billion (experiment 110), and on an interim label built from the benefit gap $3.15 billion (experiment 111). The synthetic-data, language-model and policy-question results did not use these models.</p>
+<p><strong>Corrected October 26, 2026.</strong> Earlier versions overstated the ranking tool's results. The models used the benefit the agency issued alongside income, deduction and household-size values that, in the federal QC file, are what the QC reviewer recorded, so they could partly see the error. Comparing with an independent project (Better Government Lab's snap_qc) exposed it (experiment 106). Every ranker and cost-share figure here comes from the October 26 rebuild: leak-free inputs (experiment 107), trained and scored on the errors that count toward the official payment error rate, errors the QC reviewer found whose amount is over the federal tolerance (experiments 111–112). The cost share uses the tool's lift on those dollars; on the earlier any-error basis it had read $3.42 billion (experiment 110), and on an interim label built from the benefit gap $3.15 billion (experiment 111). The synthetic-data, language-model and policy-question results did not use these models.</p>
 </blockquote>
 <h2>Executive summary</h2>
 <p>States lose money, and from FY2028 will pay a share of benefit costs, when SNAP benefits are paid in the wrong amount. Quality control (QC) reviewers can examine only a small share of cases, and caseworkers have to apply a large, changing body of policy correctly. Over four weeks this project ran 105 numbered experiments, plus pilot tracks for six states. It asked where machine learning can actually help. The data was five years of federal QC records (FY2020–2024, about 167,000 reviewed cases), a synthetic case generator, and a policy library built for the purpose.</p>
@@ -46,7 +46,7 @@
 <li><strong>A ranking tool can roughly double or triple the error dollars a review finds, in every state.</strong><ul>
 <li><strong>What it does:</strong> a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.</li>
 <li><strong>Accuracy:</strong> on cases it never saw, the top 20% of its queue holds a median 3.0 times the error dollars of random selection, counting the errors the official rate counts (lowest: Kansas, 2.18 times), and the top 10% holds 4.1 times. Its dollar forecasts are within 20% of actual in 38 of 53 jurisdictions.</li>
-<li><strong>An independent check:</strong> on giannella/snap_qc's one-year-ahead test, with both tools on their rebuilt pre-review inputs, it found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109).</li>
+<li><strong>An independent check:</strong> on Better Government Lab's snap_qc one-year-ahead test, with both tools on their rebuilt pre-review inputs, it found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109).</li>
 <li><strong>Fairness:</strong> a floor that keeps elderly and disabled households' share of reviews proportionate costs the median state about 4% of its lift (the most, Utah, 45%). It leaves 8 jurisdictions below 0.8 for elderly households.</li>
 </ul>
 </li>
@@ -552,7 +552,7 @@ cd experiments &amp;&amp; inspect eval exp85_mcq_rag_task.py@calfresh_mcq_rag --
 </tr>
 <tr>
 <td>Oct 26</td>
-<td>Comparing with giannella/snap_qc exposed a feature leak in the rankers (exp106); leak-free rebuild (exp107): median 2.7×, $3.42 billion central cost share. Leak-free became the default. Same day: the official error definition became the default (exp110, exp111: median 2.6×, $3.15 billion on a label built from the benefit gap), then the label was corrected to the reviewer's finding (exp112): median 3.0×, $4.47 billion</td>
+<td>Comparing with Better Government Lab's snap_qc exposed a feature leak in the rankers (exp106); leak-free rebuild (exp107): median 2.7×, $3.42 billion central cost share. Leak-free became the default. Same day: the official error definition became the default (exp110, exp111: median 2.6×, $3.15 billion on a label built from the benefit gap), then the label was corrected to the reviewer's finding (exp112): median 3.0×, $4.47 billion</td>
 </tr>
 </tbody>
 </table>
