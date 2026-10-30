@@ -1,6 +1,6 @@
 # Experiment 106 — comparing with Better Government Lab's snap_qc
 
-**Date:** 2026-10-26 (pre-registered before any part B code ran) · **Code:** `exp106_giannella_comparison.py` · **Their repo:** [github.com/giannella/snap_qc](https://github.com/giannella/snap_qc) at `eedb3f5` (v2.7.0, 2026-10-06), Apache 2.0 · **Results:** `exp106_results.json`
+**Date:** 2026-10-26 (pre-registered before any part B code ran) · **Code:** `exp106_better_government_lab_comparison.py` · **Their repo:** [github.com/giannella/snap_qc](https://github.com/giannella/snap_qc) at `eedb3f5` (v2.7.0, 2026-10-06), Apache 2.0 · **Results:** `exp106_results.json`
 
 > **Note (October 30):** where this write-up compares our results with Better Government Lab's lists, it is our model's per-case predictions against their published rule lists, not model against model. Their rule lists are built for agencies that can't run a model: readable if-then rules in a workbook a state can use as is. A model scoring higher on dollar recall than those lists is expected and isn't a judgment on that approach. Better Government Lab reports that its own boosted-tree models give numbers matching ours. See the README section "Building on Better Government Lab's work" for what we adopted from them.
 
@@ -102,7 +102,7 @@ Whatever it shows replaces the ranker figures in the papers, which carry an unde
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-Scored 2026-10-26 by `exp106_giannella_comparison.py` (part B, 2 min 57 s) and `exp106_leakfree.py` (amendments 1–2, 3 min 13 s), 8 workers.
+Scored 2026-10-26 by `exp106_better_government_lab_comparison.py` (part B, 2 min 57 s) and `exp106_leakfree.py` (amendments 1–2, 3 min 13 s), 8 workers.
 
 **Gates:** the leaky refit reproduced exp83's top-20% lift, exp83's floor lift and exp93's top-10% floor lift in 53 of 53 jurisdictions each. The leak-free numbers therefore differ from the published ones by the two removed inputs only.
 

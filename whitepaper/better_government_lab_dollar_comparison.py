@@ -1,6 +1,6 @@
-"""giannella/snap_qc vs this repo: estimated dollars per state, and in total (exp106 follow-up).
+"""Better Government Lab's snap_qc beside this repo: estimated dollars per state, and in total (exp106 follow-up).
 
-    python3 whitepaper/giannella_dollar_comparison.py      # prints the Markdown and writes the vault note
+    python3 whitepaper/better_government_lab_dollar_comparison.py      # prints the Markdown and writes the vault note
 
 Both tools on one footing: mined/trained on FY2022-23, scored on each state's FY2024 QC cases, giannella's error
 definition (|RAWBEN - FSBEN| above the $56 FY2024 tolerance) and their test frame (exp106 D1, 49 states).
@@ -25,7 +25,7 @@ from exp69_cost_share_scenarios import NAME_TO_USPS, share  # noqa: E402
 
 NAMES = {v: " ".join(w.capitalize() if w != "OF" else "of" for w in k.split()) for k, v in NAME_TO_USPS.items()}
 THEIRS = ROOT.parent / "giannella-snap_qc/methods/v250_benchmark_2024/v250_benchmark_2024.csv"
-VAULT = Path.home() / "Documents/Obsidian Vault/Labs/2026-10-26 snap-qc giannella vs ours estimated dollars.md"
+VAULT = Path.home() / "Documents/Nava Work Vault/Labs/2026-10-26 snap-qc Better Government Lab vs ours estimated dollars.md"
 
 
 def num(x):
@@ -71,7 +71,7 @@ def main():
                      "lift_t": t10 / 0.10, "lift_o": o10 / 0.10, "per": per})
     M = lambda x: f"${x / 1e6:,.1f}M"  # noqa: E731
     B = lambda x: f"${x / 1e9:,.2f}B"  # noqa: E731
-    L = ["| State | Over-threshold error $ a year | Found at 5%: giannella | Found at 5%: ours | Found at 10%: giannella | Found at 10%: ours | 10% dollar lift: giannella / ours | FY2025 rate | FY2028 cost share avoided: giannella | ours |",
+    L = ["| State | Over-threshold error $ a year | Found at 5%: Better Government Lab | Found at 5%: ours | Found at 10%: Better Government Lab | Found at 10%: ours | 10% dollar lift: Better Government Lab / ours | FY2025 rate | FY2028 cost share avoided: Better Government Lab | ours |",
          "|---|---|---|---|---|---|---|---|---|---|"]
     cum = {"err": 0, "t5": 0, "o5": 0, "t10": 0, "o10": 0, "t_cs": 0, "o_cs": 0}
     for r in rows:
@@ -89,14 +89,16 @@ def main():
     print(json.dumps(summary, indent=1))
     note = f"""---
 date: 2026-10-26
-tags: [snap-qc, labs, comparison, giannella]
+tags: [snap-qc, labs, comparison, better-government-lab]
 repo: snap-qc-per-experiments
 ---
-# snap-qc: giannella vs ours, estimated dollars by state
+# snap-qc: Better Government Lab vs ours, estimated dollars by state
 
 ## Conclusion
 
-**On the same test and the same rebuilt inputs, our ranker finds more error dollars than giannella's rule lists in {better10} of {len(rows)} states.** In total across {len(rows)} states, at a 10% review budget, it finds about **{B(cum['o10'])} a year**, against **{B(cum['t10'])}**, of {B(cum['err'])} in over-threshold error dollars.
+> **Note (Oct 30): building on Better Government Lab's work.** Much of what we changed after October 26 came from Better Government Lab's snap_qc: the leak (exp106), the rebuilt pre-review inputs (exp109, exp113, exp114), the official over-tolerance error definition (exp110–111), the reviewer's-finding label and yearly tolerances (exp112), and the test windows and price basis (exp113). Where this note sets our numbers beside theirs, it is our model's per-case predictions beside their published rule lists, not model against model. Their rule lists are built for agencies that can't run a model, so a model scoring higher is expected and isn't a judgment on that approach. Better Government Lab reports that its own boosted-tree models give numbers matching ours, and plans a release where one script outputs predictions. Repo: navapbc/snap-qc-per-experiments PR #4.
+
+**On the same test and the same rebuilt inputs, our ranker's predictions find more error dollars than Better Government Lab's rule lists in {better10} of {len(rows)} states,** as expected of a model against rules built for agencies that can't run one. In total across {len(rows)} states, at a 10% review budget, it finds about **{B(cum['o10'])} a year**, against **{B(cum['t10'])}**, of {B(cum['err'])} in over-threshold error dollars.
 
 **FY2028 cost share avoided:** the central scenario with each tool's own lift gives about **{B(cum['o_cs'])} a year** for ours and **{B(cum['t_cs'])}** for theirs. Cost share moves only when a state crosses a bracket line, so some states gain nothing under either tool. Ours avoids more in {cs_more} states, less in {cs_less}.
 
@@ -104,20 +106,20 @@ repo: snap-qc-per-experiments
 - **Scope:** these are scenario estimates on one test year (FY2024), not forecasts.
 - **What their lists offer:** they are interpretable rules a state can read and edit; ours is a score.
 - **Like-for-like:** both tools score the same FY2024 cases from the same rebuilt pre-review inputs (exp109). On the reviewer's corrected inputs our dollars would read about 17% higher; these figures don't use them.
-- **Which of our versions:** ours is the default model (leak-free inputs, official error label) run on giannella's rebuilt pre-review inputs, so both tools see the same kind of inputs (exp109).
+- **Which of our versions:** ours is the default model (leak-free inputs, official error label) run on Better Government Lab's rebuilt pre-review inputs, so both tools see the same kind of inputs (exp109).
 
 ## How the numbers are built
 
 | Step | What | Source |
 |---|---|---|
-| Test | Train or mine on FY2022–23, score each state's FY2024 QC cases, both on giannella's rebuilt pre-review inputs | exp109 B_over; giannella v2.5.0 benchmark |
-| Error | \\|RAWBEN − FSBEN\\| above $56 (FY2024 tolerance), giannella's definition | `features.R` |
+| Test | Train or mine on FY2022–23, score each state's FY2024 QC cases, both on Better Government Lab's rebuilt pre-review inputs | exp109 B_over; Better Government Lab v2.5.0 benchmark |
+| Error | \\|RAWBEN − FSBEN\\| above $56 (FY2024 tolerance), Better Government Lab's definition | `features.R` |
 | Annual error dollars | Σ FYWGT × error dollars × 12, FY2024 | QC public-use file |
 | Found a year | Dollar recall at the budget × annual error dollars | |
 | Dollar lift | Dollar recall at the 10% budget ÷ 0.10 | |
 | Cost share avoided | exp69 central scenario (2% reviewed a month, 80% fixed, 6 months) with that lift; FY2025 rates and benefits as exp93 | `exp69`, `exp93` |
 
-Script: `whitepaper/giannella_dollar_comparison.py`. Related: [[2026-10-26 snap-qc exp106 giannella comparison]], [[2026-10-26 snap-qc exp109 rebuilt inputs]].
+Script: `whitepaper/better_government_lab_dollar_comparison.py`. Related: [[2026-10-26 snap-qc exp106 Better Government Lab comparison]], [[2026-10-26 snap-qc exp109 rebuilt inputs]].
 
 ## By state
 
@@ -125,7 +127,7 @@ Script: `whitepaper/giannella_dollar_comparison.py`. Related: [[2026-10-26 snap-
 """
     VAULT.write_text(note)
     print("wrote", VAULT)
-    wp = HERE / "comparison_leak_whitepaper.md"
+    wp = HERE / "better_government_lab_whitepaper.md"
     if wp.exists():
         import re
         t = wp.read_text()

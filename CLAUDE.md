@@ -6,7 +6,7 @@
 - **The QC file's "reported" fields are reviewer values.** `RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, `CERTHHSZ` and the like are what the QC reviewer recorded, so for error cases they hold the corrected values.
 - **Don't pair them with the issued benefit.** Pairing them with `RAWBEN` (what the agency issued), or anything derived from it, leaks the error label. That inflated every ranker result from exp58 to exp105 (found in exp106; leak-free top-20% lift 2.70×, not 3.97×).
 - **`SNAPQC_FEATURES=legacy`** exists only to reproduce or audit those old results.
-- **Details:** the README section "Feature set: leak-free by default", and `experiments/exp106_giannella_comparison.md` / `exp107_leakfree_rebuild.md`.
+- **Details:** the README section "Feature set: leak-free by default", and `experiments/exp106_better_government_lab_comparison.md` / `exp107_leakfree_rebuild.md`.
 - **Before adding any feature, ask:** "would a state agency have this value, as is, before a QC review?" The fields `FS*`, `RAW*` (except `RAWBEN`), `AMTERR`, `STATUS`, `ELEMENT*`, `NATURE*` and `E_FINDG*` are review outputs or reviewer-recorded.
 
 ## Error label: the official definition is the default

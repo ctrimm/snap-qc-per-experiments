@@ -249,7 +249,7 @@ Code: [github.com/ctrimm/snap-qc-per-experiments](https://github.com/ctrimm/snap
 
 ```bash
 # the comparison: B0 (reproduces exp83), B1/B2 on their FY2024 test; then the leak-free re-run and fairness by definition
-SNAPQC_FEATURES=legacy python3 experiments/exp106_giannella_comparison.py --workers 8
+SNAPQC_FEATURES=legacy python3 experiments/exp106_better_government_lab_comparison.py --workers 8
 python3 experiments/exp106_leakfree.py --workers 8
 # the rebuild (leak-free is the default): evaluation, cost share, underpayments, later years, packaged models
 python3 experiments/exp83_context_models_full_eval.py --workers 8
@@ -264,13 +264,13 @@ python3 experiments/exp110_official_error_definition.py --workers 8
 (cd /path/to/scratch/copy/of/snap_qc && Rscript /path/to/experiments/exp109_export_frame.R)
 python3 experiments/exp109_rebuilt_inputs.py --frame /path/to/scratch/copy/of/snap_qc/exp109_frame.parquet
 # the dollar comparison (writes the table below and the vault note)
-python3 whitepaper/giannella_dollar_comparison.py
+python3 whitepaper/better_government_lab_dollar_comparison.py
 ```
 
 **The leak check itself, on the FY2024 file:** compare `RAWGROSS` with `FSGRINC`, `RAWNET` with `FSNETINC`, `SHELDED` with `FSSLTDED` and `CERTHHSZ` with `FSUSIZE` on cases with STATUS 2 or 3. The reported field equals the reviewer's calculated value in 86–100% of them.
 
 **Write-ups:**
-- `experiments/exp106_giannella_comparison.md` (pre-registration, two amendments, results);
+- `experiments/exp106_better_government_lab_comparison.md` (pre-registration, two amendments, results);
 - `experiments/exp107_leakfree_rebuild.md`;
 - the README section "Feature set: leak-free by default".
 

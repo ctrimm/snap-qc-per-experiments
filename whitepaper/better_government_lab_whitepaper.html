@@ -574,7 +574,7 @@
 <h2>Technical reproduction</h2>
 <p>Code: <a href="https://github.com/ctrimm/snap-qc-per-experiments">github.com/ctrimm/snap-qc-per-experiments</a>. Their repo: <a href="https://github.com/giannella/snap_qc">github.com/giannella/snap_qc</a> at <code>eedb3f5</code> (v2.7.0), cloned beside ours as <code>giannella-snap_qc</code>. Data: FY2020–2024 QC public-use CSVs from <a href="https://snapqcdata.net/datafiles">snapqcdata.net/datafiles</a>.</p>
 <pre><code class="language-bash"># the comparison: B0 (reproduces exp83), B1/B2 on their FY2024 test; then the leak-free re-run and fairness by definition
-SNAPQC_FEATURES=legacy python3 experiments/exp106_giannella_comparison.py --workers 8
+SNAPQC_FEATURES=legacy python3 experiments/exp106_better_government_lab_comparison.py --workers 8
 python3 experiments/exp106_leakfree.py --workers 8
 # the rebuild (leak-free is the default): evaluation, cost share, underpayments, later years, packaged models
 python3 experiments/exp83_context_models_full_eval.py --workers 8
@@ -589,12 +589,12 @@ python3 experiments/exp110_official_error_definition.py --workers 8
 (cd /path/to/scratch/copy/of/snap_qc &amp;&amp; Rscript /path/to/experiments/exp109_export_frame.R)
 python3 experiments/exp109_rebuilt_inputs.py --frame /path/to/scratch/copy/of/snap_qc/exp109_frame.parquet
 # the dollar comparison (writes the table below and the vault note)
-python3 whitepaper/giannella_dollar_comparison.py
+python3 whitepaper/better_government_lab_dollar_comparison.py
 </code></pre>
 <p><strong>The leak check itself, on the FY2024 file:</strong> compare <code>RAWGROSS</code> with <code>FSGRINC</code>, <code>RAWNET</code> with <code>FSNETINC</code>, <code>SHELDED</code> with <code>FSSLTDED</code> and <code>CERTHHSZ</code> with <code>FSUSIZE</code> on cases with STATUS 2 or 3. The reported field equals the reviewer's calculated value in 86–100% of them.</p>
 <p><strong>Write-ups:</strong></p>
 <ul>
-<li><code>experiments/exp106_giannella_comparison.md</code> (pre-registration, two amendments, results);</li>
+<li><code>experiments/exp106_better_government_lab_comparison.md</code> (pre-registration, two amendments, results);</li>
 <li><code>experiments/exp107_leakfree_rebuild.md</code>;</li>
 <li>the README section "Feature set: leak-free by default".</li>
 </ul>

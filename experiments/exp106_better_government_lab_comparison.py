@@ -1,4 +1,4 @@
-"""Exp 106 — our rankers on giannella/snap_qc's test and definitions (pre-registered in exp106_giannella_comparison.md).
+"""Exp 106 — our rankers on giannella/snap_qc's test and definitions (pre-registered in exp106_better_government_lab_comparison.md).
 
 B0  exp83's refit (adopted variant, exp68 holdout): top-20% lift on all error dollars (gate: must reproduce exp83) and
     on over-threshold error dollars only (AMTERR of cases with |RAWBEN - FSBEN| above the fiscal year's tolerance).
@@ -8,7 +8,7 @@ B1  our recipe trained on FY2022-23 (all 53 jurisdictions pooled, adopted varian
 B2  as B1, trained on their target (over-threshold errors and dollars).
 Compared per state with their published v2.5.0 2024 benchmark (giannella/snap_qc methods/v250_benchmark_2024).
 
-Usage: python3 experiments/exp106_giannella_comparison.py [--workers 8]
+Usage: python3 experiments/exp106_better_government_lab_comparison.py [--workers 8]
 """
 import argparse
 import csv

@@ -1,4 +1,4 @@
-"""Exp 106, amendment 2 — the leak-free re-run (pre-registered in exp106_giannella_comparison.md before running).
+"""Exp 106, amendment 2 — the leak-free re-run (pre-registered in exp106_better_government_lab_comparison.md before running).
 
 L1 = our 22 features minus issued_benefit (RAWBEN, index 15) and benefit_share_of_max (RAWBEN/BENMAX, index 21).
 Per jurisdiction (adopted variant, same seeds and engine):
@@ -21,7 +21,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT / "experiments"), str(ROOT / "src")]
-import exp106_giannella_comparison as G  # noqa: E402
+import exp106_better_government_lab_comparison as G  # noqa: E402
 
 L1 = [i for i in range(22) if i not in (15, 21)]
 _G = G._G
