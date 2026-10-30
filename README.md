@@ -8,6 +8,20 @@ Read [`NORTH_STAR.md`](NORTH_STAR.md) first: it defines the goal, the
 synthetic-first data strategy, and the three validation gates (calibration,
 transfer, LM eval) every experiment here must move.
 
+## See the results: the state map
+
+**[Open the interactive map of all 53 SNAP jurisdictions](https://navapbc.github.io/snap-qc-per-experiments/state_map/)**. It shows each state's triage ranker: top-20% lift over random review, dollars per review hour, whether elderly households get their share of reviews, and FY2028 cost-share scenarios. Click a state for its numbers.
+
+[![The state map: switching between metrics and selecting states](docs/assets/state-map.gif)](https://navapbc.github.io/snap-qc-per-experiments/state_map/)
+
+- **Offline:** the same page is [`outputs/state_map/index.html`](outputs/state_map/index.html). It has all its data built in, so a downloaded copy opens in any browser.
+- **The report:** [`outputs/report/`](outputs/report/) has the executive whitepaper as PDF, HTML and Markdown.
+- **Hosting:** GitHub Pages publishes `outputs/` on every push to `main` (`.github/workflows/pages.yml`).
+
+## Related work
+
+**[giannella/snap_qc](https://github.com/giannella/snap_qc)** is an independent project modeling SNAP payment errors from the same QC public-use files. Comparing with it found the feature leak described below (exp106). Its rebuilt pre-review inputs are what our like-for-like tests use (exp109, exp113). See [the comparison paper](whitepaper/comparison_leak_whitepaper.pdf).
+
 ## Feature set: leak-free by default (`SNAPQC_FEATURES`)
 
 Since October 26, 2026 (exp106, exp107), every ranker script builds its inputs with the **leak-free** feature set, selected by the `SNAPQC_FEATURES` environment variable:
@@ -17,7 +31,7 @@ Since October 26, 2026 (exp106, exp107), every ranker script builds its inputs w
 | `leakfree` (**default**; unset means this) | QC case facts plus the maximum allotment; **no issued benefit** | Everything: research, evaluation, packaged models |
 | `legacy` | The pre-exp106 set, including `issued_benefit` (RAWBEN) and `benefit_share_of_max` | Only to reproduce or audit results published before October 26 |
 
-**Why.** In the QC public-use file, the "reported" income, deduction and household-size fields (`RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, `CERTHHSZ`, …) are what the **QC reviewer** recorded, which for an error case are the corrected facts. `RAWBEN` is what the agency issued. A model given both can see the error. exp106 showed it: precision 1.00 on giannella/snap_qc's test, against 0.40 leak-free.
+**Why.** In the QC public-use file, the "reported" income, deduction and household-size fields (`RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, `CERTHHSZ`, …) are what the **QC reviewer** recorded, which for an error case are the corrected facts. `RAWBEN` is what the agency issued. A model given both can see the error. exp106 showed it: precision 1.00 on [giannella/snap_qc](https://github.com/giannella/snap_qc)'s test, against 0.40 leak-free.
 
 **Rules:**
 - **Never add `RAWBEN` back**, nor any feature computed from it (benefit ratios, differences from a recomputed benefit), to a model that also sees the reported facts.
@@ -58,7 +72,7 @@ SNAPQC_FEATURES=legacy SNAPQC_LABEL=any python3 experiments/exp83_context_models
 - [Policy-QA summary](whitepaper/policy_qa_summary.pdf): exp84–105, grounding Gemma 4 in SNAP policy on Cornell's CalFresh quiz.
 - State briefs: [Pennsylvania](whitepaper/pa_pilot_whitepaper.pdf), [New York](whitepaper/ny_pilot_whitepaper.pdf), [Texas](whitepaper/tx_pilot_whitepaper.pdf), [South Dakota](whitepaper/sd_pilot_whitepaper.pdf), [Utah](whitepaper/ut_pilot_whitepaper.pdf), [Idaho](whitepaper/id_pilot_whitepaper.pdf), [Wyoming](whitepaper/wy_state_brief.pdf), and the [Pennsylvania–New York brief](whitepaper/pa_ny_combined_brief.md); and a [replication guide for other states](whitepaper/state_replication_guide.pdf).
 - [Older adults and people with disabilities](whitepaper/older_adults_disabled_whitepaper.pdf): how review tools treat elderly and disabled households, the fairness floor, underpayments, medical deductions and Medicare cost help (validated October 23).
-- [An independent comparison, and the leak it found](whitepaper/comparison_leak_whitepaper.pdf): giannella/snap_qc vs ours, the feature leak (exp106), the corrected figures (exp107), and both tools state by state in dollars.
+- [An independent comparison, and the leak it found](whitepaper/comparison_leak_whitepaper.pdf): [giannella/snap_qc](https://github.com/giannella/snap_qc) vs ours, the feature leak (exp106), the corrected figures (exp107), and both tools state by state in dollars.
 - [Older adults](whitepaper/older_adults_whitepaper.pdf): households with a member aged 60+ on their own: error profile, how a dollar-ranked review tool treats them in every state, the fairness floor, medical deductions and Medicare cost help.
 - Rebuild either PDF from its Markdown: `python whitepaper/build_pdf.py <name>.md ...` (needs `markdown` and Google Chrome).
 
