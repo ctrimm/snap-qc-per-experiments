@@ -4,7 +4,7 @@
 
 ### Why
 
-exp111 made the official error definition the default, but built the label from the benefit gap: |RAWBEN − FSBEN| above the tolerance. giannella/snap_qc's findings record (section 24) shows that gap often contradicts the error the reviewer recorded, and they exclude such rows. In our FY2020–24 data:
+exp111 made the official error definition the default, but built the label from the benefit gap: |RAWBEN − FSBEN| above the tolerance. Better Government Lab's snap_qc findings record (section 24) shows that gap often contradicts the error the reviewer recorded, and they exclude such rows. In our FY2020–24 data:
 - **Contradictions:** 30% of the gap label's errors (33% of its dollars) disagree with AMTERR by more than $5.
 - **No error found:** in 4,584 of them, STATUS = 1.
 - **Rates:** the gap label marks 13.6–18.4% of cases a year. The reviewer-based definition marks 10.2–12.1%, in line with the official national rates (about 11–12%).

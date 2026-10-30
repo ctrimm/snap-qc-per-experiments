@@ -40,7 +40,7 @@ Research and working tools for **SNAP payment accuracy**, built from the federal
 - **Flag cards, and the policy-QA work.**
 
 **October 26–27:**
-- **An independent comparison exposed a leak** (giannella/snap_qc, exp106): our inputs paired the issued benefit with reviewer-corrected facts.
+- **Comparing with Better Government Lab's snap_qc exposed a leak** (exp106), and much of the later work builds on theirs: our inputs paired the issued benefit with reviewer-corrected facts.
 - **The models were rebuilt.** First without the leak (exp107), then on the official error definition (exp110–112).
 
 The record of every experiment is the README index. `LEARNINGS.md` is the plain-language synthesis.

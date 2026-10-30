@@ -1,14 +1,16 @@
-# Experiment 106 — comparing with giannella/snap_qc
+# Experiment 106 — comparing with Better Government Lab's snap_qc
 
-**Date:** 2026-10-26 (pre-registered before any part B code ran) · **Code:** `exp106_giannella_comparison.py` · **Their repo:** [github.com/giannella/snap_qc](https://github.com/giannella/snap_qc) at `eedb3f5` (v2.7.0, 2026-10-06), Apache 2.0 · **Results:** `exp106_results.json`
+**Date:** 2026-10-26 (pre-registered before any part B code ran) · **Code:** `exp106_better_government_lab_comparison.py` · **Their repo:** [github.com/giannella/snap_qc](https://github.com/giannella/snap_qc) at `eedb3f5` (v2.7.0, 2026-10-06), Apache 2.0 · **Results:** `exp106_results.json`
+
+> **Note (October 30):** where this write-up compares our results with Better Government Lab's lists, it is our model's per-case predictions against their published rule lists, not model against model. Their rule lists are built for agencies that can't run a model: readable if-then rules in a workbook a state can use as is. A model scoring higher on dollar recall than those lists is expected and isn't a judgment on that approach. Better Government Lab reports that its own boosted-tree models give numbers matching ours. See the README section "Building on Better Government Lab's work" for what we adopted from them.
 
 ### Why
 
-giannella/snap_qc is an independent project on the same problem with the same public data. It mines interpretable if-then rules from the SNAP QC public-use files and delivers a ranked rule list per state, for a review budget of 5% or 10% of the caseload. Where two independent teams agree, the finding is more trustworthy; where they disagree, one of us has something to learn. This experiment compares the two on findings (part A) and head to head on one test (part B).
+Better Government Lab's snap_qc is an independent project on the same problem with the same public data. It mines interpretable if-then rules from the SNAP QC public-use files and delivers a ranked rule list per state, for a review budget of 5% or 10% of the caseload. Where two independent teams agree, the finding is more trustworthy; where they disagree, one of us has something to learn. This experiment compares the two on findings (part A) and head to head on one test (part B).
 
 ### What they do, in brief (from their README, GUIDANCE.md, PIPELINE.md and features.R)
 
-| | giannella/snap_qc | This repo |
+| | Better Government Lab's snap_qc | This repo |
 |---|---|---|
 | Output | A frozen, ranked list of if-then rules per state (interpretable; ships as an Excel workbook) | A scoring model per state (expected error dollars per case) |
 | Engine | Rules mined from xgboost + ranger tree paths, filtered by a false-discovery-rate test and a 30-case floor | Two-part gradient-boosted model: P(error) × E[dollars \| error], isotonic-calibrated |
@@ -76,15 +78,15 @@ There is no hypothesis on direction; this is a measurement.
 
 ### Amendment 2 (2026-10-26, before it ran): leak-free re-run
 
-**Why.** Part B showed our rankers' inputs combine the agency's issued benefit (`RAWBEN`) with the QC reviewer's recorded facts (`RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, household size, and the ratios built on them), which for error cases are the corrected values. giannella/snap_qc avoids this: its benefit feature is recomputed from the reported facts (`raw_benefit_amount = rawben_recreated`), never the issued amount.
+**Why.** Part B showed our rankers' inputs combine the agency's issued benefit (`RAWBEN`) with the QC reviewer's recorded facts (`RAWGROSS`, `RAWNET`, `RAWERND`, `SHELDED`, household size, and the ratios built on them), which for error cases are the corrected values. Better Government Lab's snap_qc avoids this: its benefit feature is recomputed from the reported facts (`raw_benefit_amount = rawben_recreated`), never the issued amount.
 
 **Leak-free feature set (L1):** our 22 features minus the two that carry the issued benefit: `issued_benefit` (RAWBEN) and `benefit_share_of_max` (RAWBEN / BENMAX). The remaining inputs are all reviewer-recorded facts plus BENMAX, so they agree with one another and cannot reveal an error by disagreeing.
 
-**Limitation that remains:** for error cases these facts are still the corrected ones, while a deployed tool sees the agency's uncorrected facts. With public data this can't be removed, and it affects giannella's lists equally. L1 removes the direct leak; it does not make the held-out numbers a deployment forecast.
+**Limitation that remains:** for error cases these facts are still the corrected ones, while a deployed tool sees the agency's uncorrected facts. With public data this can't be removed, and it affects Better Government Lab's lists equally. L1 removes the direct leak; it does not make the held-out numbers a deployment forecast.
 
 **Runs** (same splits, seeds, engine and adopted variants as before; the variants were chosen on leaky features, a stated bias):
 - **D0:** exp83's design (exp68 holdouts): top-10% and top-20% lift on all error dollars and on over-threshold dollars, per jurisdiction.
-- **D1:** part B's one-year-ahead test with L1, paired against giannella's v2.5.0 lists.
+- **D1:** part B's one-year-ahead test with L1, paired against Better Government Lab's v2.5.0 lists.
 - **C:** part C's fairness ratios, on both the leaky (B0) and the L1 refit:
   - review ratio of elderly and disabled households, any-error and over-threshold definitions;
   - with and without the floor;
@@ -92,7 +94,7 @@ There is no hypothesis on direction; this is a measurement.
 - **Cost share:** exp93's central scenario recomputed with the L1 floor-on top-10% lift (and the top-20% basis).
 
 **Expectation, stated in advance:**
-- **D1:** L1 precision at the 5% budget should fall to roughly the range of giannella's (0.25–0.40).
+- **D1:** L1 precision at the 5% budget should fall to roughly the range of Better Government Lab's (0.25–0.40).
 - **D0:** the top-20% lift should fall well below 3.97×.
 
 Whatever it shows replaces the ranker figures in the papers, which carry an under-review notice until then.
@@ -100,11 +102,11 @@ Whatever it shows replaces the ranker figures in the papers, which carry an unde
 ### Results
 
 <!-- AUTO-RESULTS:START -->
-Scored 2026-10-26 by `exp106_giannella_comparison.py` (part B, 2 min 57 s) and `exp106_leakfree.py` (amendments 1–2, 3 min 13 s), 8 workers.
+Scored 2026-10-26 by `exp106_better_government_lab_comparison.py` (part B, 2 min 57 s) and `exp106_leakfree.py` (amendments 1–2, 3 min 13 s), 8 workers.
 
 **Gates:** the leaky refit reproduced exp83's top-20% lift, exp83's floor lift and exp93's top-10% floor lift in 53 of 53 jurisdictions each. The leak-free numbers therefore differ from the published ones by the two removed inputs only.
 
-**Same test frame:** our FY2024 frame matched giannella's (median 847 cases per state, 12.4% over-threshold base rate, 49 states).
+**Same test frame:** our FY2024 frame matched Better Government Lab's (median 847 cases per state, 12.4% over-threshold base rate, 49 states).
 
 ### Part B: the published (leaky) model on their test
 
@@ -118,7 +120,7 @@ Scored 2026-10-26 by `exp106_giannella_comparison.py` (part B, 2 min 57 s) and `
 - **The fields hold the reviewer's values.** The QC technical documentation says the raw file "is generated from the monthly reviews"; "reported" fields are the reviewer's.
 - **They equal the reviewer's calculations on error cases.** On 5,809 FY2024 over-threshold error cases: RAWGROSS = FSGRINC 98.9%, RAWERND = FSERNDED 98.1%, SHELDED = FSSLTDED 91.9%, RAWNET = FSNETINC 86.0%, CERTHHSZ = FSUSIZE 100%.
 - **The formula reproduces the reviewer's benefit.** The benefit formula on RAWNET reproduces the reviewer's benefit (FSBEN) in 79.8%, and the issued benefit (RAWBEN) in 0.8%.
-- **The mechanism:** our features put the issued benefit beside the reviewer's corrected facts. giannella's do not; their benefit feature is recomputed from the reported facts.
+- **The mechanism:** our features put the issued benefit beside the reviewer's corrected facts. Better Government Lab's do not; their benefit feature is recomputed from the reported facts.
 
 ### Amendment 2: leak-free (L1, without `issued_benefit` and `benefit_share_of_max`)
 
@@ -179,20 +181,20 @@ Scored 2026-10-26 by `exp106_giannella_comparison.py` (part B, 2 min 57 s) and `
 **Our published ranker figures were inflated by a feature leak.**
 - **The cause:** our models paired the agency's issued benefit with the QC reviewer's corrected facts.
 - **Without the leak:** the ranker still finds about 2.7× the error dollars of random review in the top fifth of the queue (3.3× in the top tenth), and a central $3.42B a year of FY2028 cost share avoided, against $6.05B published.
-- **On the same leak-free footing it beats giannella's lists** on dollar recall (+0.11 to +0.13) and precision (+0.04 to +0.07), paired over 49 states.
+- **On the same leak-free footing it beats Better Government Lab's lists** on dollar recall (+0.11 to +0.13) and precision (+0.04 to +0.07), paired over 49 states.
 - **The fairness finding holds and is stronger:** dollar ranking under-reviews older households under both error definitions, and the floor fixes it.
 
 **What follows:**
 1. **Papers and dashboard:** every paper and the dashboard need their ranker figures replaced. They carry an under-review notice until then.
 2. **Packaged models:** the models in `deliverables/state_rankers/` use the leaky features and must be refit on L1.
 3. **Remaining limitation:** reviewer-recorded facts for error cases remain in both projects; only a state's own pre-review data can remove it.
-4. **Adopt from giannella:** their 2026-dollar conversion, which they found helps lists applied three years after their training data.
+4. **Adopt from Better Government Lab:** their 2026-dollar conversion, which they found helps lists applied three years after their training data.
 <!-- AUTO-RESULTS:END -->
 
 ### Correction (2026-10-26, after results; found in the triple-check)
 
-Two statements above about giannella's method are wrong, as their munging script shows (`1_data_munging_and_raw_variable_reconstruction_for_using_public_qc_data.R`, steps 5–7, `correct_variables <- TRUE`):
-- **Their inputs are rebuilt, not recomputed.** Amendment 2's "its benefit feature is recomputed from the reported facts" and Part B's "their benefit feature is recomputed from the reported facts" are wrong. giannella starts from the reviewer's final values (`FS*`), uses the error codes (`ELEMENT1`/`NATURE1`) to decide which field was in error, and shifts that field a dollar at a time until the benefit formula gives `RAWBEN`. Their mined features (`rawearn`, `rawgross`, `rawrent`, …) and `raw_benefit_amount = rawben_recreated` are therefore approximate **pre-review** values.
+Two statements above about Better Government Lab's method are wrong, as their munging script shows (`1_data_munging_and_raw_variable_reconstruction_for_using_public_qc_data.R`, steps 5–7, `correct_variables <- TRUE`):
+- **Their inputs are rebuilt, not recomputed.** Amendment 2's "its benefit feature is recomputed from the reported facts" and Part B's "their benefit feature is recomputed from the reported facts" are wrong. Better Government Lab starts from the reviewer's final values (`FS*`), uses the error codes (`ELEMENT1`/`NATURE1`) to decide which field was in error, and shifts that field a dollar at a time until the benefit formula gives `RAWBEN`. Their mined features (`rawearn`, `rawgross`, `rawrent`, …) and `raw_benefit_amount = rawben_recreated` are therefore approximate **pre-review** values.
 - **The limitation is not shared.** Verdict item 3 ("reviewer-recorded facts for error cases remain in both projects") is wrong. It remains in ours.
 - **Consequence:** D1 compares our model on reviewer-corrected inputs with their lists on rebuilt pre-review inputs. That is not like-for-like and may favour ours. The fair test is our model on their rebuilt inputs. It needs their R pipeline; R is not installed here.
 - **The near-maximum artifact** they report (CHANGELOG v2.6) is a defect in that rebuild: cases where it could not reach the issued benefit. It is not a trace of our leak.

@@ -4,7 +4,7 @@
 
 ### Why
 
-Our rankers learn "any error the reviewer found" (STATUS 2 or 3, about 38% of cases), weighted by AMTERR dollars. giannella/snap_qc, and the official payment error rate, count only errors above the federal tolerance: |RAWBEN − FSBEN| above $48 (FY2022), $54 (FY2023) or $56 (FY2024), about 12% of cases. exp106 only *scored* our any-error model on that definition. What happens if we *train* on it?
+Our rankers learn "any error the reviewer found" (STATUS 2 or 3, about 38% of cases), weighted by AMTERR dollars. Better Government Lab's snap_qc, and the official payment error rate, count only errors above the federal tolerance: |RAWBEN − FSBEN| above $48 (FY2022), $54 (FY2023) or $56 (FY2024), about 12% of cases. exp106 only *scored* our any-error model on that definition. What happens if we *train* on it?
 
 ### Design
 
@@ -19,7 +19,7 @@ Leak-free features (the default), the deployed pooled design (exp83: adopted var
 - elderly and disabled review ratios (exp106 measure) under the arm's own definition;
 - floor-on lift. The floor shares are set from the arm's own training labels.
 
-**D1 (giannella's one-year-ahead test, 49 states):** the OVER arm trained on FY2022–23 and tested on FY2024 with their exclusions. Precision and dollar recall at 5% and 10%, against exp106's ANY-trained D1 and giannella's v2.5.0 benchmark.
+**D1 (Better Government Lab's one-year-ahead test, 49 states):** the OVER arm trained on FY2022–23 and tested on FY2024 with their exclusions. Precision and dollar recall at 5% and 10%, against exp106's ANY-trained D1 and Better Government Lab's v2.5.0 benchmark.
 
 **Cost share:** the official error rate counts over-threshold errors, so the scenario lift should be the lift on over-threshold dollars. The exp106 cost-share function (exp69 central, high and low; top-10% floor-on lift) is computed three ways:
 - ANY with any-error lift (as published);
@@ -59,14 +59,14 @@ No hypothesis on direction.
 - **Disabled:** ANY 0.63; OVER 0.79.
 - **Floor:** the floor is still needed under either label.
 
-**One year ahead (giannella's D1 test, 49 states):** OVER does not help there.
+**One year ahead (Better Government Lab's D1 test, 49 states):** OVER does not help there.
 
-| Median, FY2024 | OVER | ANY (exp106) | giannella |
+| Median, FY2024 | OVER | ANY (exp106) | Better Government Lab |
 |---|---|---|---|
 | Precision, 5% / 10% | 0.40 / 0.30 | 0.40 / 0.32 | 0.32 / 0.30 |
 | Dollar recall, 5% / 10% | 0.26 / 0.39 | 0.26 / 0.41 | 0.14 / 0.27 |
 
-OVER beats giannella's lists on dollar recall at 10% in 40 of 49 states, against ANY in 21 of 49.
+OVER beats Better Government Lab's lists on dollar recall at 10% in 40 of 49 states, against ANY in 21 of 49.
 
 **FY2028 cost share avoided, a year (exp69 scenarios, top-10% floor-on lift):**
 
@@ -81,7 +81,7 @@ OVER beats giannella's lists on dollar recall at 10% in 40 of 49 states, against
 ### Verdict
 
 - **Training on the official definition** helps the dollars that move the payment error rate, especially with the floor on (+0.20–0.25×). It barely changes the any-error dollars, and it reviews older and disabled households closer to their share. By the pre-registered rule it should become the default.
-- **The forward test is flat:** on giannella's one-year-ahead test it doesn't improve on the current model.
+- **The forward test is flat:** on Better Government Lab's one-year-ahead test it doesn't improve on the current model.
 - **Next, not done here:**
   - repackage the 53 models with the OVER label;
   - restate the cost share on the over-threshold lift ($2.62B for the deployed models; $3.15B after repackaging) in every paper that quotes $3.42B.

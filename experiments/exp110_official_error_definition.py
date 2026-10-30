@@ -15,7 +15,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT / "experiments"), str(ROOT / "src")]
-import exp106_giannella_comparison as G  # noqa: E402
+import exp106_better_government_lab_comparison as G  # noqa: E402
 import exp106_leakfree as LF  # noqa: E402
 
 _G = G._G
