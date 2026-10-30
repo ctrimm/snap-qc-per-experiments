@@ -22,6 +22,8 @@ transfer, LM eval) every experiment here must move.
 
 **[giannella/snap_qc](https://github.com/giannella/snap_qc)** is an independent project modeling SNAP payment errors from the same QC public-use files. Comparing with it found the feature leak described below (exp106). Its rebuilt pre-review inputs are what our like-for-like tests use (exp109, exp113). See [the comparison paper](whitepaper/comparison_leak_whitepaper.pdf).
 
+**What our head-to-head compares: predictions against rule lists.** Our ranker outputs a prediction for every case (expected error dollars from boosted trees) and reviews the highest-scored cases. giannella's published benchmarks are its **rule lists**: the readable if-then rules a state receives. Where this repo says "ours beats their lists" (exp106, exp109, exp113), it means our per-case predictions against those rule lists, not our model against theirs. giannella reports that its own boosted-tree models give numbers matching ours when replicated. So the gap we measured is mostly what is given up by turning predictions into rules a reviewer can read and edit. The rules' readability isn't measured here.
+
 ## Feature set: leak-free by default (`SNAPQC_FEATURES`)
 
 Since October 26, 2026 (exp106, exp107), every ranker script builds its inputs with the **leak-free** feature set, selected by the `SNAPQC_FEATURES` environment variable:

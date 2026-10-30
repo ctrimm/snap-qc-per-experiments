@@ -12,6 +12,7 @@
 | What counts as an error | Off by more than the federal tolerance ($56 in FY2024), the official definition: about 12% of cases | **The same, since October 26** (experiments 111–112); before that, any error the reviewer found: about 38% |
 | Ranked by | Chance that a flagged case has an error, with a 99% safety margin | Expected error dollars |
 | What a state gets | Readable if-then rules in an Excel workbook per state | A scoring model per state |
+| What our comparison scores | **The rule lists** (the rules a state receives) | **Per-case predictions** (boosted trees' expected error dollars) |
 | Older and disabled households | A feature in the rules; precision ranking reaches them | An explicit floor on their share of reviews |
 | Dollars | Converted to 2026 prices | As recorded |
 
@@ -24,8 +25,9 @@
 - **Inputs, the difference that mattered:** giannella rebuilt the facts a state had before review. We used the reviewer's facts and, until October 26, put the issued benefit beside them. That leak inflated every published ranker figure: the top-20% lift is 2.7×, not the published 4.0×.
 - **Ranking:** we now count errors the same way, but they find the cases most likely to have one, and we find the most error dollars. That is why older households fare differently under each.
 - **Form:** rules a reviewer can read and edit against a score.
+- **What the head-to-head measures:** our per-case predictions against their rule lists, not model against model. giannella reports that its own boosted-tree models give numbers matching ours. The gap below is mostly what is given up by turning predictions into readable rules.
 
-**Head to head, like-for-like** (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109):
+**Head to head, like-for-like** (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109; our predictions against their rule lists):
 - **Dollars:** our tool catches more of the over-tolerance error dollars, about $2.6B a year against $2.2B, and more in 35 of 49 states.
 - **Precision:** slightly higher (0.34 against 0.30; higher in 37 of 49).
 - **What the reviewer's values were worth:** on the reviewer's corrected values instead, our dollar figures read about 17% higher. The first comparison ($3.5B against $2.2B) was flattered by that.
@@ -52,10 +54,11 @@ In October we compared our SNAP error-ranking tool with an independent project o
 
    The last column counts only errors over the federal tolerance, the ones the payment error rate counts. The cost share now uses the lift on those dollars (experiments 110–112).
 
-3. **On the same test and the same inputs, our tool finds more error dollars than giannella's lists.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:
+3. **On the same test and the same inputs, our tool's predictions find more error dollars than giannella's rule lists.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:
    - **Dollars:** it finds about **$2.6 billion a year** in error dollars against their $2.2 billion, and more in 35 of 49 states.
    - **Precision:** a flagged case has an error slightly more often (0.34 against 0.30 at 10%; 0.39 against 0.32 at 5%).
    - **What changed from the first comparison:** our first figures ($3.5 billion, more in 39 states) used the reviewer's corrected values as inputs, which flattered our dollars by about 17%.
+   - **Predictions against rules, not model against model:** we scored our model's per-case predictions against the rule lists giannella delivers. giannella reports that its own boosted-tree models give numbers matching ours, so the gap is mostly what is given up by turning predictions into rules.
    - **Their advantages:** their lists are interpretable rules a state can read and edit, built on inputs closer to what a state has; ours is a score.
 4. **The comparison confirmed some of our findings and changed others.**
    - **Agreed:** pooling across states beats state-only models; the public file misses part of each state's errors; and training numbers overstate real performance.

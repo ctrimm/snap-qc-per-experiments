@@ -77,6 +77,11 @@
 <td>A scoring model per state</td>
 </tr>
 <tr>
+<td>What our comparison scores</td>
+<td><strong>The rule lists</strong> (the rules a state receives)</td>
+<td><strong>Per-case predictions</strong> (boosted trees' expected error dollars)</td>
+</tr>
+<tr>
 <td>Older and disabled households</td>
 <td>A feature in the rules; precision ranking reaches them</td>
 <td>An explicit floor on their share of reviews</td>
@@ -99,8 +104,9 @@
 <li><strong>Inputs, the difference that mattered:</strong> giannella rebuilt the facts a state had before review. We used the reviewer's facts and, until October 26, put the issued benefit beside them. That leak inflated every published ranker figure: the top-20% lift is 2.7×, not the published 4.0×.</li>
 <li><strong>Ranking:</strong> we now count errors the same way, but they find the cases most likely to have one, and we find the most error dollars. That is why older households fare differently under each.</li>
 <li><strong>Form:</strong> rules a reviewer can read and edit against a score.</li>
+<li><strong>What the head-to-head measures:</strong> our per-case predictions against their rule lists, not model against model. giannella reports that its own boosted-tree models give numbers matching ours. The gap below is mostly what is given up by turning predictions into readable rules.</li>
 </ul>
-<p><strong>Head to head, like-for-like</strong> (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109):</p>
+<p><strong>Head to head, like-for-like</strong> (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109; our predictions against their rule lists):</p>
 <ul>
 <li><strong>Dollars:</strong> our tool catches more of the over-tolerance error dollars, about $2.6B a year against $2.2B, and more in 35 of 49 states.</li>
 <li><strong>Precision:</strong> slightly higher (0.34 against 0.30; higher in 37 of 49).</li>
@@ -155,11 +161,12 @@
 <p>The last column counts only errors over the federal tolerance, the ones the payment error rate counts. The cost share now uses the lift on those dollars (experiments 110–112).</p>
 </li>
 <li>
-<p><strong>On the same test and the same inputs, our tool finds more error dollars than giannella's lists.</strong> Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:</p>
+<p><strong>On the same test and the same inputs, our tool's predictions find more error dollars than giannella's rule lists.</strong> Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:</p>
 <ul>
 <li><strong>Dollars:</strong> it finds about <strong>$2.6 billion a year</strong> in error dollars against their $2.2 billion, and more in 35 of 49 states.</li>
 <li><strong>Precision:</strong> a flagged case has an error slightly more often (0.34 against 0.30 at 10%; 0.39 against 0.32 at 5%).</li>
 <li><strong>What changed from the first comparison:</strong> our first figures ($3.5 billion, more in 39 states) used the reviewer's corrected values as inputs, which flattered our dollars by about 17%.</li>
+<li><strong>Predictions against rules, not model against model:</strong> we scored our model's per-case predictions against the rule lists giannella delivers. giannella reports that its own boosted-tree models give numbers matching ours, so the gap is mostly what is given up by turning predictions into rules.</li>
 <li><strong>Their advantages:</strong> their lists are interpretable rules a state can read and edit, built on inputs closer to what a state has; ours is a score.</li>
 </ul>
 </li>

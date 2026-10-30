@@ -116,3 +116,7 @@ No hypothesis on direction.
 - **The rebuild is approximate:** it uses the review's error codes to decide which field to shift. A state's own pre-review records remain the real test.
 - **Their lists are a fixed rule list, ours a score.** Their advantage, readable rules, isn't measured here.
 <!-- AUTO-RESULTS:END -->
+
+## Note (October 30): predictions against rule lists
+
+Every "ours beats their lists" result above compares **our model's per-case predictions** with **giannella's published rule lists**, the if-then rules a state receives. It doesn't compare model with model. giannella reports that its own boosted-tree models, replicated, give numbers matching ours. So these margins measure mostly what is given up by turning predictions into readable rules, not a better model. giannella plans a release in which one script outputs predictions rather than rules. That allows a prediction-to-prediction comparison, which would need its own pre-registration.
