@@ -2,6 +2,8 @@
 
 **Date:** 2026-10-26 (pre-registered before any part B code ran) · **Code:** `exp106_giannella_comparison.py` · **Their repo:** [github.com/giannella/snap_qc](https://github.com/giannella/snap_qc) at `eedb3f5` (v2.7.0, 2026-10-06), Apache 2.0 · **Results:** `exp106_results.json`
 
+> **Note (October 30):** where this write-up compares our results with Better Government Lab's lists, it is our model's per-case predictions against their published rule lists, not model against model. Their rule lists are built for agencies that can't run a model: readable if-then rules in a workbook a state can use as is. A model scoring higher on dollar recall than those lists is expected and isn't a judgment on that approach. Better Government Lab reports that its own boosted-tree models give numbers matching ours. See the README section "Building on Better Government Lab's work" for what we adopted from them.
+
 ### Why
 
 Better Government Lab's snap_qc is an independent project on the same problem with the same public data. It mines interpretable if-then rules from the SNAP QC public-use files and delivers a ranked rule list per state, for a review budget of 5% or 10% of the caseload. Where two independent teams agree, the finding is more trustworthy; where they disagree, one of us has something to learn. This experiment compares the two on findings (part A) and head to head on one test (part B).

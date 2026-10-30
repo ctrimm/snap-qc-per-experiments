@@ -1,4 +1,4 @@
-# An Independent Comparison, and the Leak It Found
+# What We Learned from Better Government Lab, and the Leak It Found
 
 **October 26, 2026 · Whitepaper · Cory Trimm**
 
@@ -25,20 +25,25 @@
 - **Inputs, the difference that mattered:** Better Government Lab rebuilt the facts a state had before review. We used the reviewer's facts and, until October 26, put the issued benefit beside them. That leak inflated every published ranker figure: the top-20% lift is 2.7×, not the published 4.0×.
 - **Ranking:** we now count errors the same way, but they find the cases most likely to have one, and we find the most error dollars. That is why older households fare differently under each.
 - **Form:** rules a reviewer can read and edit against a score.
-- **What the head-to-head measures:** our per-case predictions against their rule lists, not model against model. Better Government Lab reports that its own boosted-tree models give numbers matching ours. The gap below is mostly what is given up by turning predictions into readable rules.
+- **What the head-to-head measures:** our per-case predictions against their rule lists, not model against model. Better Government Lab reports that its own boosted-tree models give numbers matching ours. The gap below is mostly what is given up by turning predictions into readable rules. Their rules are built for agencies that can't run a model, so a model scoring higher is expected.
 
-**Head to head, like-for-like** (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109; our predictions against their rule lists):
+**Side by side, like-for-like** (FY2024, their test, 49 states, 10% budget, both tools on their rebuilt pre-review inputs; experiment 109; our predictions against their rule lists):
 - **Dollars:** our tool catches more of the over-tolerance error dollars, about $2.6B a year against $2.2B, and more in 35 of 49 states.
 - **Precision:** slightly higher (0.34 against 0.30; higher in 37 of 49).
 - **What the reviewer's values were worth:** on the reviewer's corrected values instead, our dollar figures read about 17% higher. The first comparison ($3.5B against $2.2B) was flattered by that.
 
-**What each project gave the other:**
-- **What we took from them:** their published numbers exposed our leak, and their rebuild of pre-review values is the better way to use the public file.
-- **What we can offer them:** the dollar view, the fairness floor, and the cost-share scenarios.
+**What we took from Better Government Lab.** Much of this project since October 26 changed in response to their work:
+- **The leak:** comparing with their published results exposed it (experiment 106).
+- **Pre-review inputs:** their rebuild of what an agency had before review is the better way to use the public file. Our like-for-like tests run on it (experiments 109 and 113), and our deployed models are to be rebuilt on it (experiment 114).
+- **The error definition:** we moved to the official over-tolerance definition they use (experiments 110–111).
+- **The label:** their findings record showed that the benefit gap often contradicts the reviewer's own finding, so our label now comes from the finding (experiment 112).
+- **The test design:** their second-era and three-years-ahead windows, and their 2026-price conversion (experiment 113).
+
+**What may be useful to them:** the dollar view, the fairness floor, and the cost-share scenarios.
 
 ## Summary
 
-In October we compared our SNAP error-ranking tool with an independent project on the same problem: [Better Government Lab's snap_qc](https://github.com/giannella/snap_qc), which turns the same federal quality-control (QC) data into ranked lists of if-then rules for each state. The comparison did what independent checks are for. It found a serious flaw in our own work, and it showed that the corrected tool is still useful.
+In October we set our SNAP error-ranking tool beside [Better Government Lab's snap_qc](https://github.com/giannella/snap_qc), which turns the same federal quality-control (QC) data into ranked lists of if-then rules for each state, for agencies that can't run a model of their own. Their work found a serious flaw in ours, and much of what we changed afterwards follows their lead. The corrected tool is still useful.
 
 1. **Our published ranker figures were inflated by a data leak.**
    - **The fields:** in the federal QC file, the "reported" income, deduction and household-size fields are what the **QC reviewer recorded**, which for an error case are the corrected facts.
@@ -54,11 +59,11 @@ In October we compared our SNAP error-ranking tool with an independent project o
 
    The last column counts only errors over the federal tolerance, the ones the payment error rate counts. The cost share now uses the lift on those dollars (experiments 110–112).
 
-3. **On the same test and the same inputs, our tool's predictions find more error dollars than Better Government Lab's rule lists.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:
+3. **On the same test and the same inputs, our model's predictions find more error dollars than Better Government Lab's rule lists, as expected of a model against readable rules.** Trained on FY2022–23 and tested on each state's FY2024 cases, under their error definition, both tools on their rebuilt pre-review inputs (experiment 109), paired over 49 states at a 10% review budget:
    - **Dollars:** it finds about **$2.6 billion a year** in error dollars against their $2.2 billion, and more in 35 of 49 states.
    - **Precision:** a flagged case has an error slightly more often (0.34 against 0.30 at 10%; 0.39 against 0.32 at 5%).
    - **What changed from the first comparison:** our first figures ($3.5 billion, more in 39 states) used the reviewer's corrected values as inputs, which flattered our dollars by about 17%.
-   - **Predictions against rules, not model against model:** we scored our model's per-case predictions against the rule lists Better Government Lab delivers. Better Government Lab reports that its own boosted-tree models give numbers matching ours, so the gap is mostly what is given up by turning predictions into rules.
+   - **Predictions against rules, not model against model:** we scored our model's per-case predictions against the rule lists Better Government Lab delivers. Better Government Lab reports that its own boosted-tree models give numbers matching ours, so the gap is mostly what is given up by turning predictions into rules. Their rules are built for agencies that can't run a model.
    - **Their advantages:** their lists are interpretable rules a state can read and edit, built on inputs closer to what a state has; ours is a score.
 4. **The comparison confirmed some of our findings and changed others.**
    - **Agreed:** pooling across states beats state-only models; the public file misses part of each state's errors; and training numbers overstate real performance.
@@ -146,7 +151,7 @@ The first two columns count every error the reviewer found. The last counts only
 - **The floor's cost.** It is no longer nearly free.
 - **The separate underpayment ranker.** It is now only slightly better than the main one.
 
-## The corrected tool against Better Government Lab's lists
+## Our corrected model beside Better Government Lab's rule lists
 
 **Like-for-like (experiment 109).** We ran Better Government Lab's own data-preparation script (unchanged except for leaving dollars in nominal terms) and trained our model on its rebuilt pre-review inputs. The test cases matched theirs exactly in all 49 states.
 
@@ -159,7 +164,7 @@ The first two columns count every error the reviewer found. The last counts only
 
 **Two results:**
 - **The reviewer's values flattered our dollars, not our precision.** Dollar recall falls by about 17% on rebuilt inputs, while precision barely moves. Any dollar figure computed from the public file's reported values is likely optimistic by about that much.
-- **Like-for-like, ours still wins in most states,** by a smaller margin than first reported.
+- **Like-for-like, our predictions still catch more in most states,** by a smaller margin than first reported, as expected of a model against rules.
 
 Both "ours" columns use our default model (official error label). The any-error model gives nearly the same results (exp109).
 
@@ -180,11 +185,12 @@ Both "ours" columns use our default model (official error label). The any-error 
 
 The underlying difference is about 1.2 times the error dollars found; the band steps magnify it. A state-level "double" or "$0" can flip with a small change in lift, so read the dollars found as the steadier comparison.
 
-**What their lists offer that ours doesn't:**
+**What their approach offers that ours doesn't:**
+- **Built for agencies that can't run a model:** a state can use the rules without building or hosting one.
 - **Inputs closer to a state's own:** pre-review values rebuilt from the reviewer's, rather than the reviewer's values themselves.
 - **Readable rules:** they are if-then rules a reviewer can read, question and edit.
 - **Workbook delivery:** they ship as a workbook that recomputes when a state pastes its own cases.
-- **Inflation adjustment:** they convert dollars to current prices, which they found helps lists applied three years after their training data. We haven't tested that.
+- **Inflation adjustment:** they convert dollars to current prices, which they found helps lists applied three years after their training data. For our model, nominal dollars did slightly better (experiment 113).
 
 ## Where the two projects agree, and where the definition matters
 

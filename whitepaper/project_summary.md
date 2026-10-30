@@ -14,7 +14,7 @@ The project produced six findings, in order of how ready they are to use:
 1. **A ranking tool can roughly double or triple the error dollars a review finds, in every state.**
    - **What it does:** a conventional model, built for all 53 jurisdictions, ranks active cases by expected error dollars using only what the agency has on file before review.
    - **Accuracy:** on cases it never saw, the top 20% of its queue holds a median 3.0 times the error dollars of random selection, counting the errors the official rate counts (lowest: Kansas, 2.18 times), and the top 10% holds 4.1 times. Its dollar forecasts are within 20% of actual in 38 of 53 jurisdictions.
-   - **An independent check:** on Better Government Lab's snap_qc one-year-ahead test, with both tools on their rebuilt pre-review inputs, it found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109).
+   - **Building on Better Government Lab:** comparing with their snap_qc exposed the leak, and their rebuilt pre-review inputs, error definition and test design shaped the later work. On their one-year-ahead test, with both on their rebuilt inputs, our model's predictions found more error dollars than their rule lists in 35 of 49 states (experiments 106 and 109). Their rules are built for agencies that can't run a model, so that is expected.
    - **Fairness:** a floor that keeps elderly and disabled households' share of reviews proportionate costs the median state about 4% of its lift (the most, Utah, 45%). It leaves 8 jurisdictions below 0.8 for elderly households.
 2. **Under the FY2028 cost-sharing rules, that could be worth billions.**
    - **Exposure:** at FY2025 error rates, 43 jurisdictions would owe about $10.6 billion a year.

@@ -89,17 +89,16 @@ Once rankers were trained on the real QC records (each state's cases pooled with
 
 **Expect real results about 10–15% below the public-data figures.** Only a pilot on a state's own records settles it.
 
-## 10. Compared like-for-like, a score beats a rule list on dollars, but rules have their place
+## 10. Much of the later work came from Better Government Lab's snap_qc
 
-**The comparison:** on the same cases, the same inputs and the same budgets, our model catches more over-tolerance error dollars than Better Government Lab's rule lists. That holds in every window tested, and three years ahead it does better in 47 of 49 states (exp113).
+**What we learned from it:**
+- **The leak:** comparing with their published results exposed it (exp106).
+- **Pre-review inputs:** their rebuild of what an agency had before review is the better way to use the public file. Our like-for-like tests run on it (exp109, exp113), and the deployed rankers are to be rebuilt on it (exp114).
+- **The error definition:** we moved to the official over-tolerance definition they use (exp110–111).
+- **The label:** their findings record showed that the benefit gap often contradicts the reviewer's own finding, so our label now comes from the finding (exp112). The yearly tolerances come from their `year_data.csv`.
+- **The test design:** their second-era and three-years-ahead windows, and their 2026-price conversion, which we tested (exp113).
 
-**What their rules offer that our score can't:** a reviewer can read, question and edit them.
-
-**What they taught us:**
-- **The leak:** their comparison exposed it.
-- **The pre-review rebuild:** it's the better way to use the file.
-- **The gap between labels:** the benefit gap contradicts the reviewer's own finding.
-- **The second-era test:** it showed our result isn't a one-year effect.
+**Predictions and rule lists do different jobs.** On the same cases, inputs and budgets, our model's predictions catch more over-tolerance error dollars than their rule lists (exp113). Their rule lists are built for agencies that can't run a model: readable if-then rules in a workbook a state can use as is. A model scoring higher on dollar recall than those lists is expected and isn't a judgment on that approach. Better Government Lab reports that its own boosted-tree models give numbers matching ours. Their rules can be read, questioned and edited, which a score can't.
 
 ## 11. Fairness has to be built in, and checked every time the model changes
 

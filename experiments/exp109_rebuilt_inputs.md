@@ -2,6 +2,8 @@
 
 **Date:** 2026-10-26 (pre-registered before running) · **Code:** `exp109_export_frame.R` (runs Better Government Lab's munging script in a scratch copy and exports the frame), `exp109_rebuilt_inputs.py` · **Results:** `exp109_leakfree_results.json`
 
+> **Note (October 30):** where this write-up compares our results with Better Government Lab's lists, it is our model's per-case predictions against their published rule lists, not model against model. Their rule lists are built for agencies that can't run a model: readable if-then rules in a workbook a state can use as is. A model scoring higher on dollar recall than those lists is expected and isn't a judgment on that approach. Better Government Lab reports that its own boosted-tree models give numbers matching ours. See the README section "Building on Better Government Lab's work" for what we adopted from them.
+
 ### Why
 
 The triple-check (exp106 correction) found that Better Government Lab's snap_qc does not use the QC reviewer's values as inputs. Their munging script rebuilds approximate **pre-review** values: starting from the reviewer's final values and the error codes, it shifts the field in error until the benefit formula gives the benefit the agency issued.
