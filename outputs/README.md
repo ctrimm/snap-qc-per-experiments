@@ -7,6 +7,7 @@ The finished product of this project, kept apart from the experiments, data and 
 | `report/snap_qc_triage_report.pdf` | The executive whitepaper: what was built, how well it works, what it could mean for FY2028 cost sharing, limitations and recommendations. Also as `.md` and `.html`. |
 | `state_map/index.html` | An interactive map of all 53 SNAP jurisdictions (50 states, DC, Guam, Virgin Islands). Open it in any web browser; it works offline, with all data built in. Click a state for its numbers; sort and search the table below the map. |
 | `state_map/data/` | The numbers the map shows: `state_results.csv` / `.json` (one row per jurisdiction), the cost-share scenario inputs, and the map outlines. |
+| `charts/` | Research charts of the experiments themselves: `snap-qc-verdicts.png` (every experiment exp1–83 by track and verdict), `snap-qc-tracks.png` (the numbers behind each track, including the leak restatement), `snap-qc-routing.png` (exp104 routing signals and the exp105 confirmation). Each has a `.csv` table. Rebuilt by `uv run --no-project --with matplotlib python experiments/lab_charts.py`. |
 
 ## What the map shows
 
