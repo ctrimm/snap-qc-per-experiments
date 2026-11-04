@@ -95,6 +95,14 @@ parameter shifts; FY2024 only; unweighted shares are sample shares
 - The +$54 T1 cluster (28 cases): identify the shared trait before any
   broader claim about the minimodel reconstruction.
 
+### Relation to exp8b
+
+exp8b fit national effective parameters from this file and found the
+statute ($198-class parameters, 0.30 rate). exp117 confirms that
+result with an exact instrument on a defined slice — reconstruct the
+minimodel first (99.87%), then fit — and exp118/exp119 extend it to
+earnings cases and the territories.
+
 ## Repository note (2026-11-03)
 
 This experiment lives in two repositories: **ctrimm/snap-qc-per-experiments**

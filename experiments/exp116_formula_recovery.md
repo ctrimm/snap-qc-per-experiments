@@ -156,6 +156,18 @@ where that shows.
   (kink estimation from caseload-density data) is the harder instrument
   and the honest sequel if exp117's slices are too thin.
 
+### Relation to exp8a/exp8b
+
+This line is not new: exp8a validated `RAWBEN` as the issued benefit
+for rules recovery, and exp8b fit national effective parameters from
+the QC file and found them matching the FY2024 statute. What exp116
+adds is the instrument, not the question: query-based recovery
+against a black-box oracle rather than sample fitting, exactness as
+the success criterion, a planted-defect calibration, and compilation
+of the recovered formula into weights. exp117/exp118 then redo
+exp8b's fit as exact per-slice reconstruction (minimodel first, then
+issued benefits), and exp119 extends it to the territories.
+
 ## Repository note (2026-11-03)
 
 This experiment lives in two repositories: **ctrimm/snap-qc-per-experiments**
