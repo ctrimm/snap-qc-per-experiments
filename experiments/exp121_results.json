@@ -1,0 +1,198 @@
+{
+  "frame_n": 39262,
+  "cluster_n": 37,
+  "cluster_by_earn": {
+    "noearn": 28,
+    "earn": 9
+  },
+  "scan_top15": [
+    {
+      "column": "HOMELESS_DED",
+      "value": "180.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.0019866537619071876,
+      "lift": 0.9980133462380928,
+      "cluster_n_with_value": 37
+    },
+    {
+      "column": "HOMEDED",
+      "value": "3.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.0019888319437007572,
+      "lift": 0.9980111680562992,
+      "cluster_n_with_value": 37
+    },
+    {
+      "column": "ELEMENT3",
+      "value": "350.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.044145873320537425,
+      "lift": 0.9558541266794626,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "NATURE3",
+      "value": "38.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.04702495201535509,
+      "lift": 0.9529750479846449,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "OCCDATE3",
+      "value": "202401.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.11420982735723771,
+      "lift": 0.8857901726427623,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "AGENCY3",
+      "value": "12.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.12124463519313304,
+      "lift": 0.878755364806867,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "VERIF3",
+      "value": "1.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.19256308100929614,
+      "lift": 0.8074369189907038,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "DISCOV3",
+      "value": "1.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.2908366533864542,
+      "lift": 0.7091633466135459,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "VERIF2",
+      "value": "3.0",
+      "cluster_share": 0.6666666666666666,
+      "baseline_share": 0.1859437751004016,
+      "lift": 0.480722891566265,
+      "cluster_n_with_value": 2
+    },
+    {
+      "column": "TIMEPER3",
+      "value": "2.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.5477453580901857,
+      "lift": 0.45225464190981435,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "RACETH3",
+      "value": "5.0",
+      "cluster_share": 0.6666666666666666,
+      "baseline_share": 0.22086398010981043,
+      "lift": 0.4458026865568562,
+      "cluster_n_with_value": 2
+    },
+    {
+      "column": "E_FINDG2",
+      "value": "2.0",
+      "cluster_share": 1.0,
+      "baseline_share": 0.6527050610820244,
+      "lift": 0.3472949389179756,
+      "cluster_n_with_value": 2
+    },
+    {
+      "column": "SUA1",
+      "value": "1.0",
+      "cluster_share": 0.6486486486486487,
+      "baseline_share": 0.30586826957363356,
+      "lift": 0.34278037907501513,
+      "cluster_n_with_value": 24
+    },
+    {
+      "column": "CTZN3",
+      "value": "5.0",
+      "cluster_share": 0.3333333333333333,
+      "baseline_share": 0.005233318796336677,
+      "lift": 0.32810001453699666,
+      "cluster_n_with_value": 1
+    },
+    {
+      "column": "EMPSTA3",
+      "value": "2.0",
+      "cluster_share": 0.3333333333333333,
+      "baseline_share": 0.019939577039274924,
+      "lift": 0.3133937562940584,
+      "cluster_n_with_value": 1
+    }
+  ],
+  "cluster_STATENAME": {
+    "Massachusetts": 10,
+    "Utah": 9,
+    "Colorado": 5,
+    "Missouri": 4,
+    "Oregon": 3,
+    "Maine": 2,
+    "Michigan": 1,
+    "Georgia": 1
+  },
+  "cluster_CERTHHSZ": {
+    "1": 27,
+    "2": 7,
+    "3": 3
+  },
+  "cluster_SUA1": {
+    "1.0": 24,
+    "6.0": 9,
+    "3.0": 2,
+    "9.0": 1,
+    "4.0": 1
+  },
+  "cluster_SUA2": {
+    "1.0": 37
+  },
+  "cluster_SHELCAP": {
+    "672": 37
+  },
+  "cluster_FSDEPDED_summary": {
+    "share_positive": 0.0,
+    "baseline_share_positive": 0.01838928225765371,
+    "median": 0.0
+  },
+  "cluster_FSSLTDED_summary": {
+    "share_positive": 0.0,
+    "baseline_share_positive": 0.6565381284702766,
+    "median": 0.0
+  },
+  "cluster_FSMEDDED_summary": {
+    "share_positive": 0.02702702702702703,
+    "baseline_share_positive": 0.06370026998115226,
+    "median": 0.0
+  },
+  "cluster_FSCSDED_summary": {
+    "share_positive": 0.0,
+    "baseline_share_positive": 0.013957516173399215,
+    "median": 0.0
+  },
+  "verification": {
+    "frame_cases_with_homeless_ded_180": 78,
+    "their_residuals_before_fix": {
+      "54": 37,
+      "0": 31,
+      "46": 1,
+      "22": 1,
+      "53": 1,
+      "12": 1,
+      "19": 1,
+      "45": 1,
+      "50": 1,
+      "37": 1,
+      "15": 1,
+      "2": 1
+    },
+    "exact_share_before_fix": 0.9986246243186796,
+    "exact_share_after_fix": 0.9998217105598288,
+    "residual_+54_remaining_after_fix": 0
+  }
+}

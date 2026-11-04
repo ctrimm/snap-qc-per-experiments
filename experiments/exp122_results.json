@@ -1,0 +1,242 @@
+{
+  "ak_n": 395,
+  "probe_n": 133,
+  "probe_plateau_values": {
+    "374": 111,
+    "581": 19,
+    "477": 3
+  },
+  "separation_scan_top10": [
+    {
+      "column": "BENMAX",
+      "purity": 1.0,
+      "n": 133,
+      "n_values": 3
+    },
+    {
+      "column": "MINIMUM_BEN",
+      "purity": 1.0,
+      "n": 133,
+      "n_values": 3
+    },
+    {
+      "column": "YRSED1",
+      "purity": 0.9139784946236559,
+      "n": 93,
+      "n_values": 8
+    },
+    {
+      "column": "UTIL",
+      "purity": 0.9022556390977443,
+      "n": 133,
+      "n_values": 15
+    },
+    {
+      "column": "WRKREG1",
+      "purity": 0.8421052631578947,
+      "n": 133,
+      "n_values": 7
+    },
+    {
+      "column": "RENT",
+      "purity": 0.8421052631578947,
+      "n": 133,
+      "n_values": 20
+    },
+    {
+      "column": "SEX1",
+      "purity": 0.8345864661654135,
+      "n": 133,
+      "n_values": 3
+    },
+    {
+      "column": "RACETH1",
+      "purity": 0.8345864661654135,
+      "n": 133,
+      "n_values": 10
+    },
+    {
+      "column": "CTZN1",
+      "purity": 0.8345864661654135,
+      "n": 133,
+      "n_values": 5
+    },
+    {
+      "column": "EMPRG1",
+      "purity": 0.8345864661654135,
+      "n": 133,
+      "n_values": 2
+    }
+  ],
+  "ak_plateau_clusters_by_size": {
+    "1": {
+      "n_net_le_0": 133,
+      "plateau_clusters": [
+        [
+          374,
+          111
+        ],
+        [
+          581,
+          19
+        ],
+        [
+          477,
+          3
+        ]
+      ]
+    },
+    "2": {
+      "n_net_le_0": 21,
+      "plateau_clusters": [
+        [
+          686,
+          11
+        ],
+        [
+          1065,
+          9
+        ]
+      ]
+    },
+    "3": {
+      "n_net_le_0": 9,
+      "plateau_clusters": [
+        [
+          983,
+          6
+        ],
+        [
+          1525,
+          3
+        ]
+      ]
+    },
+    "4": {
+      "n_net_le_0": 7,
+      "plateau_clusters": [
+        [
+          1937,
+          4
+        ],
+        [
+          1248,
+          3
+        ]
+      ]
+    },
+    "5": {
+      "n_net_le_0": 9,
+      "plateau_clusters": [
+        [
+          2300,
+          6
+        ],
+        [
+          1482,
+          3
+        ]
+      ]
+    },
+    "6": {
+      "n_net_le_0": 7,
+      "plateau_clusters": [
+        [
+          2760,
+          5
+        ],
+        [
+          1778,
+          2
+        ]
+      ]
+    },
+    "7": {
+      "n_net_le_0": 1,
+      "plateau_clusters": []
+    },
+    "8": {
+      "n_net_le_0": 0,
+      "plateau_clusters": []
+    }
+  },
+  "separator_found": "BENMAX",
+  "benmax_equals_fsben_at_net_le_0": 1.0,
+  "benmax_values_by_size": {
+    "1": {
+      "374": 246,
+      "581": 29,
+      "477": 3
+    },
+    "2": {
+      "686": 39,
+      "1065": 14,
+      "875": 1
+    },
+    "3": {
+      "983": 17,
+      "1525": 3
+    },
+    "4": {
+      "1248": 8,
+      "1937": 4
+    },
+    "5": {
+      "1482": 8,
+      "2300": 6
+    },
+    "6": {
+      "2760": 8,
+      "1778": 3
+    },
+    "7": {
+      "1966": 3,
+      "3051": 1
+    },
+    "8": {}
+  },
+  "schedule_shares_full_frame": {
+    "Urban": 321,
+    "Rural 2": 64,
+    "Rural 1 (by elimination)": 10
+  },
+  "std_fits": {
+    "pooled": 338,
+    "Urban": 338,
+    "Rural 2": 338,
+    "fit_slice_exact": {
+      "Urban": 0.9968847352024922,
+      "Rural 2": 0.953125
+    }
+  },
+  "reconstruction_exact_with_assignment": 0.979746835443038,
+  "control_single_table_urban_sizes1_6": {
+    "n": 389,
+    "exact_single_table": 0.8226221079691517,
+    "exact_with_assignment": 0.9897172236503856
+  },
+  "assigned_misses": {
+    "n": 8,
+    "sizes": {
+      "6": 4,
+      "7": 3,
+      "9": 1
+    },
+    "residuals": {
+      "3": 7,
+      "4": 1
+    }
+  },
+  "benmax_crosscheck_Hawaii": {
+    "n_net_le_0": 96,
+    "benmax_matches_exp119_table": 1.0
+  },
+  "benmax_crosscheck_Guam": {
+    "n_net_le_0": 74,
+    "benmax_matches_exp119_table": 1.0
+  },
+  "benmax_crosscheck_Virgin Islands": {
+    "n_net_le_0": 76,
+    "benmax_matches_exp119_table": 1.0
+  }
+}
