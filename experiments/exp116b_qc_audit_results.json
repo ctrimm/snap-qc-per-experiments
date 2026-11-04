@@ -1,0 +1,76 @@
+{
+  "n_rows": 44891,
+  "columns_used": [
+    "CERTHHSZ",
+    "FSEARN",
+    "FSUNEARN",
+    "FSBEN",
+    "BENFIX",
+    "RAWBEN"
+  ],
+  "cases_benfix_ne_fsbens": 6890,
+  "share_cases_with_correction": 0.15348288075560804,
+  "mean_abs_correction_where_diff": 67.03947750362845,
+  "slice_size1_noearn_n": 23331,
+  "slice_bins": [
+    {
+      "bin": [
+        0,
+        198
+      ],
+      "n": 6817,
+      "fsben_p10": 291.0,
+      "fsben_median": 291.0,
+      "statute_at_bin_mid": 291.0,
+      "share_below_statute_minus_1": 0.013642364676543934
+    },
+    {
+      "bin": [
+        199,
+        400
+      ],
+      "n": 512,
+      "fsben_p10": 252.0,
+      "fsben_median": 291.0,
+      "statute_at_bin_mid": 260.55,
+      "share_below_statute_minus_1": 0.0078125
+    },
+    {
+      "bin": [
+        401,
+        700
+      ],
+      "n": 956,
+      "fsben_p10": 162.0,
+      "fsben_median": 288.5,
+      "statute_at_bin_mid": 185.25,
+      "share_below_statute_minus_1": 0.005230125523012552
+    },
+    {
+      "bin": [
+        701,
+        1000
+      ],
+      "n": 7431,
+      "fsben_p10": 70.0,
+      "fsben_median": 177.0,
+      "statute_at_bin_mid": 95.25,
+      "share_below_statute_minus_1": 0.003229713362939039
+    },
+    {
+      "bin": [
+        1001,
+        1500
+      ],
+      "n": 5655,
+      "fsben_p10": 23.0,
+      "fsben_median": 124.0,
+      "statute_at_bin_mid": 23.0,
+      "share_below_statute_minus_1": 0.0007073386383731211
+    }
+  ],
+  "n_size1_noearn": 23331,
+  "n_size2_noearn": 4649,
+  "n_size3_noearn": 2299,
+  "n_size4_noearn": 1291
+}

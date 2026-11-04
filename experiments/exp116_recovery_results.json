@@ -1,0 +1,338 @@
+{
+  "armA_queries": 21882,
+  "armA_recovered": {
+    "max_allotment": {
+      "1": 291,
+      "2": 535,
+      "3": 766,
+      "4": 973,
+      "5": 1155,
+      "6": 1386,
+      "7": 1532,
+      "8": 1751
+    },
+    "each_additional_person": 219,
+    "minimum_benefit": 23,
+    "minimum_benefit_sizes": [
+      1,
+      2
+    ],
+    "standard_deduction": {
+      "1": 198,
+      "2": 198,
+      "3": 198,
+      "4": 208,
+      "5": 244,
+      "6": 279,
+      "7": 279,
+      "8": 279
+    },
+    "benefit_rate": 0.3,
+    "earned_rate": 0.19999999999999996,
+    "earned_rate_fraction": "1/5",
+    "earned_model_mismatches": {
+      "smooth": 220,
+      "floored": 0
+    },
+    "earned_deduction_floored": true,
+    "medical_threshold": 35,
+    "medical_conditional_on_senior": true,
+    "depcare_slope_per_dollar": 0.3,
+    "depcare_uncapped_to": 1500,
+    "shelter_factor": 0.5,
+    "shelter_cap": 672,
+    "shelter_senior_matches_uncapped": true
+  },
+  "armA_diff": {
+    "each_additional_person": {
+      "recovered": 219,
+      "truth": 219,
+      "abs_err": 0
+    },
+    "minimum_benefit": {
+      "recovered": 23,
+      "truth": 23,
+      "abs_err": 0
+    },
+    "benefit_rate": {
+      "recovered": 0.3,
+      "truth": 0.3,
+      "abs_err": 0.0
+    },
+    "earned_rate": {
+      "recovered": 0.19999999999999996,
+      "truth": 0.2,
+      "abs_err": 5.551115123125783e-17
+    },
+    "medical_threshold": {
+      "recovered": 35,
+      "truth": 35,
+      "abs_err": 0
+    },
+    "shelter_factor": {
+      "recovered": 0.5,
+      "truth": 0.5,
+      "abs_err": 0.0
+    },
+    "shelter_cap": {
+      "recovered": 672,
+      "truth": 672,
+      "abs_err": 0
+    },
+    "max_allotment": {
+      "1": {
+        "recovered": 291,
+        "truth": 291,
+        "abs_err": 0
+      },
+      "2": {
+        "recovered": 535,
+        "truth": 535,
+        "abs_err": 0
+      },
+      "3": {
+        "recovered": 766,
+        "truth": 766,
+        "abs_err": 0
+      },
+      "4": {
+        "recovered": 973,
+        "truth": 973,
+        "abs_err": 0
+      },
+      "5": {
+        "recovered": 1155,
+        "truth": 1155,
+        "abs_err": 0
+      },
+      "6": {
+        "recovered": 1386,
+        "truth": 1386,
+        "abs_err": 0
+      },
+      "7": {
+        "recovered": 1532,
+        "truth": 1532,
+        "abs_err": 0
+      },
+      "8": {
+        "recovered": 1751,
+        "truth": 1751,
+        "abs_err": 0
+      }
+    },
+    "standard_deduction": {
+      "1": {
+        "recovered": 198,
+        "truth": 198,
+        "abs_err": 0
+      },
+      "2": {
+        "recovered": 198,
+        "truth": 198,
+        "abs_err": 0
+      },
+      "3": {
+        "recovered": 198,
+        "truth": 198,
+        "abs_err": 0
+      },
+      "4": {
+        "recovered": 208,
+        "truth": 208,
+        "abs_err": 0
+      },
+      "5": {
+        "recovered": 244,
+        "truth": 244,
+        "abs_err": 0
+      },
+      "6": {
+        "recovered": 279,
+        "truth": 279,
+        "abs_err": 0
+      },
+      "7": {
+        "recovered": 279,
+        "truth": 279,
+        "abs_err": 0
+      },
+      "8": {
+        "recovered": 279,
+        "truth": 279,
+        "abs_err": 0
+      }
+    }
+  },
+  "armB_queries": 21882,
+  "armB_diff_vs_statute": {
+    "each_additional_person": {
+      "recovered": 219,
+      "truth": 219,
+      "abs_err": 0
+    },
+    "minimum_benefit": {
+      "recovered": 23,
+      "truth": 23,
+      "abs_err": 0
+    },
+    "benefit_rate": {
+      "recovered": 0.3,
+      "truth": 0.3,
+      "abs_err": 0.0
+    },
+    "earned_rate": {
+      "recovered": 0.19999999999999996,
+      "truth": 0.2,
+      "abs_err": 5.551115123125783e-17
+    },
+    "medical_threshold": {
+      "recovered": 35,
+      "truth": 35,
+      "abs_err": 0
+    },
+    "shelter_factor": {
+      "recovered": 0.5,
+      "truth": 0.5,
+      "abs_err": 0.0
+    },
+    "shelter_cap": {
+      "recovered": 638,
+      "truth": 672,
+      "abs_err": 34
+    },
+    "max_allotment": {
+      "1": {
+        "recovered": 291,
+        "truth": 291,
+        "abs_err": 0
+      },
+      "2": {
+        "recovered": 535,
+        "truth": 535,
+        "abs_err": 0
+      },
+      "3": {
+        "recovered": 766,
+        "truth": 766,
+        "abs_err": 0
+      },
+      "4": {
+        "recovered": 973,
+        "truth": 973,
+        "abs_err": 0
+      },
+      "5": {
+        "recovered": 1155,
+        "truth": 1155,
+        "abs_err": 0
+      },
+      "6": {
+        "recovered": 1386,
+        "truth": 1386,
+        "abs_err": 0
+      },
+      "7": {
+        "recovered": 1532,
+        "truth": 1532,
+        "abs_err": 0
+      },
+      "8": {
+        "recovered": 1751,
+        "truth": 1751,
+        "abs_err": 0
+      }
+    },
+    "standard_deduction": {
+      "1": {
+        "recovered": 198,
+        "truth": 198,
+        "abs_err": 0
+      },
+      "2": {
+        "recovered": 198,
+        "truth": 198,
+        "abs_err": 0
+      },
+      "3": {
+        "recovered": 183,
+        "truth": 198,
+        "abs_err": 15
+      },
+      "4": {
+        "recovered": 208,
+        "truth": 208,
+        "abs_err": 0
+      },
+      "5": {
+        "recovered": 244,
+        "truth": 244,
+        "abs_err": 0
+      },
+      "6": {
+        "recovered": 279,
+        "truth": 279,
+        "abs_err": 0
+      },
+      "7": {
+        "recovered": 279,
+        "truth": 279,
+        "abs_err": 0
+      },
+      "8": {
+        "recovered": 279,
+        "truth": 279,
+        "abs_err": 0
+      }
+    }
+  },
+  "armC_net_vs_reference_max_err": 5.9117155615240335e-12,
+  "armC_sampler_v1_relaxation": {
+    "exact_agreement": 0.9667,
+    "max_abs_err": 1.0,
+    "mean_abs_err": 0.0333
+  },
+  "armC_sampler_v2_staircase_in_code": {
+    "exact_agreement": 1.0,
+    "max_abs_err": 0.0,
+    "mean_abs_err": 0.0
+  },
+  "armC_uniform_v1_relaxation": {
+    "exact_agreement": 0.91565,
+    "max_abs_err": 1.0,
+    "mean_abs_err": 0.08435
+  },
+  "armC_uniform_v2_staircase_in_code": {
+    "exact_agreement": 1.0,
+    "max_abs_err": 0.0,
+    "mean_abs_err": 0.0
+  },
+  "armD_mlp_sampler": {
+    "max_abs_err": 71.98606847551332,
+    "mean_abs_err": 5.812474504184762,
+    "pct_within_1": 22.24
+  },
+  "armD_mlp_uniform": {
+    "max_abs_err": 1019.6086201725041,
+    "mean_abs_err": 235.47175273128013,
+    "pct_within_1": 0.27999999999999997
+  },
+  "armD_mlp_monotonicity": {
+    "violations": 261,
+    "checks": 3900
+  },
+  "armD_gbm_sampler": {
+    "max_abs_err": 158.22456931720217,
+    "mean_abs_err": 6.01481015864393,
+    "pct_within_1": 27.74
+  },
+  "armD_gbm_uniform": {
+    "max_abs_err": 1185.138514782297,
+    "mean_abs_err": 262.3137209939977,
+    "pct_within_1": 0.32
+  },
+  "armD_gbm_monotonicity": {
+    "violations": 350,
+    "checks": 3900
+  }
+}
