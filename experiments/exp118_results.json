@@ -1,0 +1,329 @@
+{
+  "slice_n_before_complete": 9709,
+  "slice_n": 9690,
+  "T1_pred_vs_FSBEN": {
+    "exact_share": 0.9984520123839009,
+    "exact_share_weighted": 0.9990029316689836,
+    "share_over": 0.0015479876160990713,
+    "share_under": 0.0,
+    "top_residuals": [
+      [
+        54,
+        9
+      ],
+      [
+        207,
+        2
+      ],
+      [
+        53,
+        1
+      ],
+      [
+        19,
+        1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        37,
+        1
+      ]
+    ]
+  },
+  "T2_pred_vs_BENFIX": {
+    "exact_share": 0.7968008255933953,
+    "exact_share_weighted": 0.7879928545874821,
+    "share_over": 0.10526315789473684,
+    "share_under": 0.09793601651186791,
+    "top_residuals": [
+      [
+        1,
+        722
+      ],
+      [
+        -1,
+        254
+      ],
+      [
+        2,
+        41
+      ],
+      [
+        -10,
+        18
+      ],
+      [
+        -2,
+        17
+      ],
+      [
+        -4,
+        15
+      ]
+    ]
+  },
+  "T3_pred_vs_RAWBEN": {
+    "exact_share": 0.3698658410732714,
+    "exact_share_weighted": 0.36189687820987787,
+    "share_over": 0.4004127966976264,
+    "share_under": 0.22972136222910217,
+    "top_residuals": [
+      [
+        1,
+        275
+      ],
+      [
+        268,
+        205
+      ],
+      [
+        -1,
+        97
+      ],
+      [
+        2,
+        62
+      ],
+      [
+        -3,
+        54
+      ],
+      [
+        6,
+        53
+      ]
+    ]
+  },
+  "states_T3": [
+    {
+      "state": "Illinois",
+      "n": 246,
+      "T3_exact": 0.18699186991869918
+    },
+    {
+      "state": "Virginia",
+      "n": 194,
+      "T3_exact": 0.20103092783505155
+    },
+    {
+      "state": "Mississippi",
+      "n": 202,
+      "T3_exact": 0.28217821782178215
+    },
+    {
+      "state": "Louisiana",
+      "n": 247,
+      "T3_exact": 0.2834008097165992
+    },
+    {
+      "state": "Georgia",
+      "n": 214,
+      "T3_exact": 0.29439252336448596
+    },
+    {
+      "state": "Connecticut",
+      "n": 203,
+      "T3_exact": 0.2955665024630542
+    },
+    {
+      "state": "Rhode Island",
+      "n": 199,
+      "T3_exact": 0.3065326633165829
+    },
+    {
+      "state": "New Mexico",
+      "n": 327,
+      "T3_exact": 0.327217125382263
+    },
+    {
+      "state": "Florida",
+      "n": 236,
+      "T3_exact": 0.3305084745762712
+    },
+    {
+      "state": "Kansas",
+      "n": 198,
+      "T3_exact": 0.3333333333333333
+    },
+    {
+      "state": "South Carolina",
+      "n": 200,
+      "T3_exact": 0.35
+    },
+    {
+      "state": "Texas",
+      "n": 249,
+      "T3_exact": 0.3534136546184739
+    },
+    {
+      "state": "Washington",
+      "n": 151,
+      "T3_exact": 0.3576158940397351
+    },
+    {
+      "state": "Massachusetts",
+      "n": 187,
+      "T3_exact": 0.3582887700534759
+    },
+    {
+      "state": "Oklahoma",
+      "n": 245,
+      "T3_exact": 0.3673469387755102
+    },
+    {
+      "state": "Ohio",
+      "n": 205,
+      "T3_exact": 0.37073170731707317
+    },
+    {
+      "state": "Michigan",
+      "n": 212,
+      "T3_exact": 0.37264150943396224
+    },
+    {
+      "state": "Kentucky",
+      "n": 198,
+      "T3_exact": 0.3787878787878788
+    },
+    {
+      "state": "Utah",
+      "n": 227,
+      "T3_exact": 0.3788546255506608
+    },
+    {
+      "state": "Maine",
+      "n": 194,
+      "T3_exact": 0.3865979381443299
+    },
+    {
+      "state": "Tennessee",
+      "n": 172,
+      "T3_exact": 0.38953488372093026
+    },
+    {
+      "state": "Oregon",
+      "n": 233,
+      "T3_exact": 0.3948497854077253
+    },
+    {
+      "state": "Nevada",
+      "n": 260,
+      "T3_exact": 0.39615384615384613
+    },
+    {
+      "state": "Indiana",
+      "n": 208,
+      "T3_exact": 0.39903846153846156
+    },
+    {
+      "state": "California",
+      "n": 210,
+      "T3_exact": 0.40476190476190477
+    },
+    {
+      "state": "Idaho",
+      "n": 271,
+      "T3_exact": 0.4059040590405904
+    },
+    {
+      "state": "Pennsylvania",
+      "n": 214,
+      "T3_exact": 0.40654205607476634
+    },
+    {
+      "state": "North Carolina",
+      "n": 276,
+      "T3_exact": 0.40942028985507245
+    },
+    {
+      "state": "Arizona",
+      "n": 183,
+      "T3_exact": 0.4207650273224044
+    },
+    {
+      "state": "Minnesota",
+      "n": 184,
+      "T3_exact": 0.42391304347826086
+    },
+    {
+      "state": "Delaware",
+      "n": 193,
+      "T3_exact": 0.42487046632124353
+    },
+    {
+      "state": "New York",
+      "n": 160,
+      "T3_exact": 0.43125
+    },
+    {
+      "state": "Maryland",
+      "n": 165,
+      "T3_exact": 0.43636363636363634
+    },
+    {
+      "state": "Wisconsin",
+      "n": 302,
+      "T3_exact": 0.4370860927152318
+    },
+    {
+      "state": "Nebraska",
+      "n": 239,
+      "T3_exact": 0.4435146443514644
+    },
+    {
+      "state": "Alabama",
+      "n": 258,
+      "T3_exact": 0.44573643410852715
+    },
+    {
+      "state": "Colorado",
+      "n": 226,
+      "T3_exact": 0.4557522123893805
+    },
+    {
+      "state": "Iowa",
+      "n": 274,
+      "T3_exact": 0.4635036496350365
+    }
+  ],
+  "fit_subslice_n": 2440,
+  "fit_vs_FSBEN_control": {
+    "std_fit": 198,
+    "earn_kind": "floor",
+    "earn_rate": 0.2,
+    "match": 0.8180327868852459,
+    "runner_up": {
+      "std": 198,
+      "earn_kind": "smooth",
+      "earn_rate": 0.2,
+      "match": 0.7790983606557377
+    }
+  },
+  "fit_vs_BENFIX": {
+    "std_fit": 198,
+    "earn_kind": "smooth",
+    "earn_rate": 0.2,
+    "match": 0.7077868852459016,
+    "runner_up": {
+      "std": 198,
+      "earn_kind": "floor",
+      "earn_rate": 0.2,
+      "match": 0.6877049180327869
+    }
+  },
+  "fit_vs_RAWBEN_target": {
+    "std_fit": 198,
+    "earn_kind": "smooth",
+    "earn_rate": 0.2,
+    "match": 0.32254098360655736,
+    "runner_up": {
+      "std": 198,
+      "earn_kind": "floor",
+      "earn_rate": 0.2,
+      "match": 0.3155737704918033
+    }
+  }
+}

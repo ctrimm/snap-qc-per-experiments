@@ -1,0 +1,366 @@
+{
+  "Alaska": {
+    "n": 393,
+    "recovered_allotments": {
+      "1": 374,
+      "2": 686,
+      "3": 983,
+      "4": 1937,
+      "5": 2300,
+      "6": 2760
+    },
+    "allotment_detail": {
+      "1": {
+        "n_net_le_0": 133,
+        "top_values": [
+          [
+            374,
+            111
+          ],
+          [
+            581,
+            19
+          ],
+          [
+            477,
+            3
+          ]
+        ]
+      },
+      "2": {
+        "n_net_le_0": 21,
+        "top_values": [
+          [
+            686,
+            11
+          ],
+          [
+            1065,
+            9
+          ],
+          [
+            875,
+            1
+          ]
+        ]
+      },
+      "3": {
+        "n_net_le_0": 9,
+        "top_values": [
+          [
+            983,
+            6
+          ],
+          [
+            1525,
+            3
+          ]
+        ]
+      },
+      "4": {
+        "n_net_le_0": 7,
+        "top_values": [
+          [
+            1937,
+            4
+          ],
+          [
+            1248,
+            3
+          ]
+        ]
+      },
+      "5": {
+        "n_net_le_0": 9,
+        "top_values": [
+          [
+            2300,
+            6
+          ],
+          [
+            1482,
+            3
+          ]
+        ]
+      },
+      "6": {
+        "n_net_le_0": 7,
+        "top_values": [
+          [
+            2760,
+            5
+          ],
+          [
+            1778,
+            2
+          ]
+        ]
+      },
+      "7": {
+        "n_net_le_0": 1,
+        "note": "thin"
+      },
+      "8": {
+        "n_net_le_0": 0,
+        "note": "thin"
+      }
+    },
+    "ak_size1_net_le_0_values": [
+      [
+        374,
+        111
+      ],
+      [
+        581,
+        19
+      ],
+      [
+        477,
+        3
+      ]
+    ],
+    "T1_reconstruction_FSBEN": 0.7840616966580977,
+    "T3_vs_RAWBEN": 0.4652956298200514,
+    "reconstruction_n": 389,
+    "std_fit_vs_FSBEN": {
+      "std": 338,
+      "match": 0.7715736040609137,
+      "n": 197
+    },
+    "std_fit_vs_RAWBEN": {
+      "std": 338,
+      "match": 0.5482233502538071
+    }
+  },
+  "Hawaii": {
+    "n": 421,
+    "recovered_allotments": {
+      "1": 527,
+      "2": 967,
+      "3": 1385,
+      "4": 1759,
+      "7": 2770
+    },
+    "allotment_detail": {
+      "1": {
+        "n_net_le_0": 74,
+        "top_values": [
+          [
+            527,
+            74
+          ]
+        ]
+      },
+      "2": {
+        "n_net_le_0": 13,
+        "top_values": [
+          [
+            967,
+            13
+          ]
+        ]
+      },
+      "3": {
+        "n_net_le_0": 4,
+        "top_values": [
+          [
+            1385,
+            4
+          ]
+        ]
+      },
+      "4": {
+        "n_net_le_0": 5,
+        "top_values": [
+          [
+            1759,
+            5
+          ]
+        ]
+      },
+      "5": {
+        "n_net_le_0": 2,
+        "note": "thin"
+      },
+      "6": {
+        "n_net_le_0": 1,
+        "note": "thin"
+      },
+      "7": {
+        "n_net_le_0": 3,
+        "top_values": [
+          [
+            2770,
+            3
+          ]
+        ]
+      },
+      "8": {
+        "n_net_le_0": 0,
+        "note": "thin"
+      }
+    },
+    "T1_reconstruction_FSBEN": 1.0,
+    "T3_vs_RAWBEN": 0.5903614457831325,
+    "reconstruction_n": 415,
+    "std_fit_vs_FSBEN": {
+      "std": 279,
+      "match": 1.0,
+      "n": 242
+    },
+    "std_fit_vs_RAWBEN": {
+      "std": 279,
+      "match": 0.7768595041322314
+    }
+  },
+  "Guam": {
+    "n": 126,
+    "recovered_allotments": {
+      "1": 430,
+      "2": 788,
+      "3": 1129,
+      "4": 1434
+    },
+    "allotment_detail": {
+      "1": {
+        "n_net_le_0": 46,
+        "top_values": [
+          [
+            430,
+            46
+          ]
+        ]
+      },
+      "2": {
+        "n_net_le_0": 17,
+        "top_values": [
+          [
+            788,
+            17
+          ]
+        ]
+      },
+      "3": {
+        "n_net_le_0": 5,
+        "top_values": [
+          [
+            1129,
+            5
+          ]
+        ]
+      },
+      "4": {
+        "n_net_le_0": 6,
+        "top_values": [
+          [
+            1434,
+            6
+          ]
+        ]
+      },
+      "5": {
+        "n_net_le_0": 2,
+        "note": "thin"
+      },
+      "6": {
+        "n_net_le_0": 2,
+        "note": "thin"
+      },
+      "7": {
+        "n_net_le_0": 2,
+        "note": "thin"
+      },
+      "8": {
+        "n_net_le_0": 0,
+        "note": "thin"
+      }
+    },
+    "T1_reconstruction_FSBEN": 1.0,
+    "T3_vs_RAWBEN": 0.6218487394957983,
+    "reconstruction_n": 119,
+    "std_fit_vs_FSBEN": {
+      "std": 397,
+      "match": 0.9827586206896551,
+      "n": 58
+    },
+    "std_fit_vs_RAWBEN": {
+      "std": 396,
+      "match": 0.7931034482758621
+    }
+  },
+  "Virgin Islands": {
+    "n": 178,
+    "recovered_allotments": {
+      "1": 375,
+      "2": 688,
+      "3": 985,
+      "4": 1251
+    },
+    "allotment_detail": {
+      "1": {
+        "n_net_le_0": 50,
+        "top_values": [
+          [
+            375,
+            50
+          ]
+        ]
+      },
+      "2": {
+        "n_net_le_0": 13,
+        "top_values": [
+          [
+            688,
+            13
+          ]
+        ]
+      },
+      "3": {
+        "n_net_le_0": 10,
+        "top_values": [
+          [
+            985,
+            10
+          ]
+        ]
+      },
+      "4": {
+        "n_net_le_0": 3,
+        "top_values": [
+          [
+            1251,
+            3
+          ]
+        ]
+      },
+      "5": {
+        "n_net_le_0": 2,
+        "note": "thin"
+      },
+      "6": {
+        "n_net_le_0": 2,
+        "note": "thin"
+      },
+      "7": {
+        "n_net_le_0": 1,
+        "note": "thin"
+      },
+      "8": {
+        "n_net_le_0": 0,
+        "note": "thin"
+      }
+    },
+    "T1_reconstruction_FSBEN": 0.9705882352941176,
+    "T3_vs_RAWBEN": 0.5823529411764706,
+    "reconstruction_n": 170,
+    "std_fit_vs_FSBEN": {
+      "std": 174,
+      "match": 0.9659090909090909,
+      "n": 88
+    },
+    "std_fit_vs_RAWBEN": {
+      "std": 175,
+      "match": 0.7613636363636364
+    }
+  }
+}
